@@ -1,11 +1,10 @@
-package java.org.smartregister.chw.repository;
+package org.smartregister.chw.repository;
 
 import android.content.Context;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.smartregister.chw.anc.repository.VisitRepository;
-import org.smartregister.chw.repository.ChwRepository;
 import org.smartregister.chw.util.ChildDBConstants;
 import org.smartregister.chw.util.RepositoryUtils;
 import org.smartregister.domain.db.Column;

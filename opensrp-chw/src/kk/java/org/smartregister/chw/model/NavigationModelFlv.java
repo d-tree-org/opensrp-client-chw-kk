@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.model;
-
-import org.smartregister.chw.model.DefaultNavigationModelFlv;
+package org.smartregister.chw.model;
 
 public class NavigationModelFlv extends DefaultNavigationModelFlv {
 }

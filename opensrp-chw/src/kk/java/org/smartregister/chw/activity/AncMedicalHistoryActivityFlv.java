@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.activity;
-
-import org.smartregister.chw.activity.DefaultChwAncMedicalHistoryActivityFlv;
+package org.smartregister.chw.activity;
 
 public class AncMedicalHistoryActivityFlv extends DefaultChwAncMedicalHistoryActivityFlv {
 

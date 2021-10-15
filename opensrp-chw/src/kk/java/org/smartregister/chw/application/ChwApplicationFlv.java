@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.application;
-
-import org.smartregister.chw.application.DefaultChwApplicationFlv;
+package org.smartregister.chw.application;
 
 public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     @Override

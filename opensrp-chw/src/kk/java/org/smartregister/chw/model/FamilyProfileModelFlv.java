@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.model;
-
-import org.smartregister.chw.model.DefaultFamilyProfileModelFlv;
+package org.smartregister.chw.model;
 
 public class FamilyProfileModelFlv extends DefaultFamilyProfileModelFlv {
 }

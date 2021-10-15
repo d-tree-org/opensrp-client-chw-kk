@@ -1,11 +1,10 @@
-package java.org.smartregister.chw.fragment;
+package org.smartregister.chw.fragment;
 
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.VaccineDisplay;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 import org.smartregister.chw.anc.util.NCUtils;
-import org.smartregister.chw.fragment.DefaultBaseHomeVisitImmunizationFragment;
 
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.activity;
-
-import org.smartregister.chw.activity.DefaultChildProfileActivityFlv;
+package org.smartregister.chw.activity;
 
 public class ChildProfileActivityFlv extends DefaultChildProfileActivityFlv {
 }

@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.intent;
-
-import org.smartregister.chw.intent.DefaultChwPncCloseDateIntentFlv;
+package org.smartregister.chw.intent;
 
 public class ChwPncCloseDateIntentFlv extends DefaultChwPncCloseDateIntentFlv {
 }

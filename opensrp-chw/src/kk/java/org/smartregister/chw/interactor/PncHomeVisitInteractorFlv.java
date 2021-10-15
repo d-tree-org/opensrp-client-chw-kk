@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.interactor;
-
-import org.smartregister.chw.interactor.DefaultPncHomeVisitInteractorFlv;
+package org.smartregister.chw.interactor;
 
 public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv {
 }

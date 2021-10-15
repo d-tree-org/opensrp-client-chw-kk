@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.task;
-
-import org.smartregister.chw.task.DefaultChildHomeVisitSchedulerFlv;
+package org.smartregister.chw.task;
 
 public class ChildHomeVisitSchedulerFlv extends DefaultChildHomeVisitSchedulerFlv {
 }

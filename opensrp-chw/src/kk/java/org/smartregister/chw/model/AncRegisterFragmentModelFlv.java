@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.model;
-
-import org.smartregister.chw.model.DefaultAncRegisterFragmentModelFlv;
+package org.smartregister.chw.model;
 
 public class AncRegisterFragmentModelFlv extends DefaultAncRegisterFragmentModelFlv {
 }

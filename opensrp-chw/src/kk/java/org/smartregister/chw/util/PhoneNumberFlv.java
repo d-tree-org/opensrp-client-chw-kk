@@ -1,4 +1,4 @@
-package java.org.smartregister.chw.util;
+package org.smartregister.chw.util;
 
 
 import org.smartregister.chw.core.adapter.MemberAdapter;

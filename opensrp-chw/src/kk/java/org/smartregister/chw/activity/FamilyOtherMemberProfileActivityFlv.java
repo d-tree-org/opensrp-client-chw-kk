@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.activity;
-
-import org.smartregister.chw.activity.DefaultFamilyOtherMemberProfileActivityFlv;
+package org.smartregister.chw.activity;
 
 public class FamilyOtherMemberProfileActivityFlv extends DefaultFamilyOtherMemberProfileActivityFlv {
 }

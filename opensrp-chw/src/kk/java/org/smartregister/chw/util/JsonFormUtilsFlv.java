@@ -1,6 +1,4 @@
-package java.org.smartregister.chw.util;
-
-import org.smartregister.chw.util.DefaultJsonFormUtilsFlv;
+package org.smartregister.chw.util;
 
 public class JsonFormUtilsFlv extends DefaultJsonFormUtilsFlv {
 }
