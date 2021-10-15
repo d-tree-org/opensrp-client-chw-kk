@@ -1,4 +1,4 @@
-package org.smartregister.chw.util;
+package java.org.smartregister.chw.util;
 
 public class TestConstant {
 

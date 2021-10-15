@@ -1,4 +1,6 @@
-package org.smartregister.chw.util;
+package java.org.smartregister.chw.util;
+
+import org.smartregister.chw.util.ChildUtils;
 
 import java.util.ArrayList;
 

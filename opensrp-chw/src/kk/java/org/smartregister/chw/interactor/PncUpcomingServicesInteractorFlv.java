@@ -1,4 +1,6 @@
-package org.smartregister.chw.interactor;
+package java.org.smartregister.chw.interactor;
 
-public class PncUpcomingServicesInteractorFlv extends DefaultPncUpcomingServiceInteractorFlv{
+import org.smartregister.chw.interactor.DefaultPncUpcomingServiceInteractorFlv;
+
+public class PncUpcomingServicesInteractorFlv extends DefaultPncUpcomingServiceInteractorFlv {
 }

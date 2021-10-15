@@ -1,4 +1,4 @@
-package org.smartregister.chw.activity;
+package java.org.smartregister.chw.activity;
 
 import org.smartregister.chw.core.activity.DefaultChildMedicalHistoryActivityFlv;
 import org.smartregister.chw.core.utils.CoreChildUtils;

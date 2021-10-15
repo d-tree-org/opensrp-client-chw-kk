@@ -1,6 +1,8 @@
-package org.smartregister.chw.activity;
+package java.org.smartregister.chw.activity;
 
-public class PncMemberProfileActivityFlv extends DefaultPncMemberProfileActivityFlv{
+import org.smartregister.chw.activity.DefaultPncMemberProfileActivityFlv;
+
+public class PncMemberProfileActivityFlv extends DefaultPncMemberProfileActivityFlv {
 
 
 }
