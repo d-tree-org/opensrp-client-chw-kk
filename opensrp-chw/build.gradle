@@ -296,9 +296,9 @@ android {
             applicationIdSuffix ".kk"
             versionCode 1
             versionName "0.0.1"
-            buildConfigField "String", 'opensrp_url', '"https://wcaro-td.smartregister.org/opensrp/"'
+            buildConfigField "String", 'opensrp_url', '"https://opensrp-proto.d-tree.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/chad/"'
-            buildConfigField "String", 'opensrp_url_debug', '"https://wcaro-stage.smartregister.org/opensrp/"'
+            buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-proto.d-tree.org/opensrp/"'
             buildConfigField "String[]", "LOCATION_HIERACHY", '{"Country" , "Province" , "Health District","Health Facility","Village","Clinic" , "CHSS" , "CHA"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS", '{"Health District","Health Facility","Village"}'
             buildConfigField "String[]", "ALLOWED_LOCATION_LEVELS_DEBUG", '{"Clinic" , "CHSS" , "CHA"}'
