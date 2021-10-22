@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ChwTheme.Login" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:textSize">@dimen/login_font_size</item>
+        <item name="colorControlActivated">@android:color/black</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+    </style>
+
+    <style name="ChwTheme.AppBarOverlay.NavigationDrawerStyle">
+        <item name="android:textSize">20sp</item>
+        <!-- text size in menu-->
+        <item name="android:listPreferredItemHeightSmall">70dp</item>
+        <!-- item size in menu-->
+        <item name="android:fontFamily">@font/google_sans_medium</item>
+    </style>
+
+</resources>
