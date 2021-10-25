@@ -30,4 +30,8 @@
     // forms colors
     <color name="family_actionbar">@color/primary</color>
     <color name="family_navigation">@color/primary</color>
+
+    <color name="navigation_item_selected">@color/primary</color>
+    <color name="navigation_item_unselected">@color/black_tranparent_50</color>
+
 </resources>
