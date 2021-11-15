@@ -248,11 +248,11 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "middle_name",
         "type": "edit_text",
-        "hint": "{{family_register.step3.middle_name.hint}}",
+        "hint": "{{family_register.step3.preferred_name.hint}}",
         "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "{{family_register.step3.middle_name.v_regex.err}}"
+          "err": "{{family_register.step3.preferred_name.v_regex.err}}"
         }
       },
       {
