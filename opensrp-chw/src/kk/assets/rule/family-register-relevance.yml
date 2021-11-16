@@ -26,3 +26,10 @@ priority: 1
 condition: "step3_dob_unknown.contains('dob_unknown')"
 actions:
   - "isRelevant = true"
+---
+name: step3_edd
+description: EDD relevance
+priority: 1
+condition: "step3_edd_present.contains('edd_present_yes')"
+actions:
+  - "isRelevant = true"
