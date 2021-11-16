@@ -505,64 +505,6 @@
             }
           }
         }
-      },
-
-
-
-      {
-        "key": "highest_edu_level",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "{{family_register.step3.highest_edu_level.hint}}",
-        "values": [
-          "{{family_register.step3.highest_edu_level.values[0]}}",
-          "{{family_register.step3.highest_edu_level.values[1]}}",
-          "{{family_register.step3.highest_edu_level.values[2]}}",
-          "{{family_register.step3.highest_edu_level.values[3]}}",
-          "{{family_register.step3.highest_edu_level.values[4]}}"
-        ],
-        "keys": [
-          "None",
-          "Literacy",
-          "Primary",
-          "Secondary",
-          "University"
-        ],
-        "openmrs_choice_ids": {
-          "None": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Literacy": "",
-          "Primary": "1713AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Secondary": "1714AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "University": "159785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        }
-      },
-      {
-        "key": "marital_status",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1054AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "{{family_register.step3.marital_status.hint}}",
-        "v_required": {
-          "value": "true",
-          "err": "{{family_register.step3.marital_status.v_required.err}}"
-        },
-        "values": [
-          "{{family_register.step3.marital_status.values[0]}}",
-          "{{family_register.step3.marital_status.values[1]}}",
-          "{{family_register.step3.marital_status.values[2]}}",
-          "{{family_register.step3  .marital_status.values[3]}}"
-        ],
-        "openmrs_choice_ids": {
-          "Married": "5555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Co-habiting": "1060AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Single": "5615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Widowed": "1059AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        }
       }
     ]
   },
