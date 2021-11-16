@@ -33,3 +33,10 @@ priority: 1
 condition: "step3_edd_present.contains('edd_present_yes')"
 actions:
   - "isRelevant = true"
+---
+name: step3_lmnp
+description: LNMP Relevance
+priority: 1
+condition: "step3_clin_card.contains('clin_card_no')||step3_edd_present.contains('edd_present_no')"
+actions:
+  - "isRelevant = true"

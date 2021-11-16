@@ -490,10 +490,22 @@
           }
         }
       },
-
-
-
-
+      {
+        "key": "lmnp",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "label": "{{family_register.step3.lnmp.label}}",
+        "hint": "{{family_register.step3.lnmp.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
 
 
 
