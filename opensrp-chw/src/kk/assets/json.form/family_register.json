@@ -230,21 +230,8 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
         "openmrs_entity_id": "gender",
-        "type": "spinner",
-        "hint": "{{family_register.step3.sex.hint}}",
+        "type": "edit_text",
         "hidden": true,
-        "values": [
-          "{{family_register.step3.sex.values[0]}}",
-          "{{family_register.step3.sex.values[1]}}"
-        ],
-        "keys": [
-          "Male",
-          "Female"
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "{{family_register.step3.sex.v_required.err}}"
-        },
         "value": "Female"
       },
       {
