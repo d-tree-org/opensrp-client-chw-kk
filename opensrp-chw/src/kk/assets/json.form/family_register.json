@@ -417,6 +417,69 @@
         }
       },
       {
+        "key": "clin_card",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{family_register.step3.clin_card.label}}",
+        "exclusive": [
+          "clin_card_yes",
+          "clin_card_no"
+        ],
+        "options": [
+          {
+            "key": "clin_card_yes",
+            "text": "{{family_register.step3.clin_card.options.clin_card.yes.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "clin_card_no",
+            "text": "{{family_register.step3.clin_card.options.clin_card.no.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "key": "edd_present",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{family_register.step3.edd_present.label}}",
+        "exclusive": [
+          "edd_present_yes",
+          "edd_present_no"
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        },
+        "options": [
+          {
+            "key": "edd_present_yes",
+            "text": "{{family_register.step3.edd_present.options.edd_present.yes.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "edd_present_no",
+            "text": "{{family_register.step3.edd_present.options.edd_present.no.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ]
+      },
+
+
+
+
+      {
         "key": "highest_edu_level",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
