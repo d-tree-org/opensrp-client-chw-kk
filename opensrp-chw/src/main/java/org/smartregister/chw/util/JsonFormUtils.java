@@ -27,6 +27,7 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.Photo;
 import org.smartregister.domain.tag.FormTag;
 import org.smartregister.family.FamilyLibrary;
+import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.immunization.domain.ServiceRecord;
@@ -79,6 +80,83 @@ public class JsonFormUtils extends CoreJsonFormUtils {
         event.setClientDatabaseVersion(FamilyLibrary.getInstance().getDatabaseVersion());
 
         return event;
+    }
+
+    /**
+     * @issyzac
+     * Removed from the family library to get the family details from the second step of the form instead of the
+     * first as implemented in the library
+     * @param allSharedPreferences
+     * @param jsonString
+     * @return
+     */
+    public static FamilyEventClient processFamilyUpdateForm(AllSharedPreferences allSharedPreferences, String jsonString) {
+        try {
+            String familyStep = org.smartregister.family.util.Utils.getCustomConfigs("family_form_image_step");
+            Triple<Boolean, JSONObject, JSONArray> registrationFormParams = StringUtils.isBlank(familyStep) ? validateParameters(jsonString, "step2") : validateParameters(jsonString, familyStep);
+            if (!(Boolean)registrationFormParams.getLeft()) {
+                return null;
+            } else {
+                JSONObject jsonForm = (JSONObject)registrationFormParams.getMiddle();
+                JSONArray fields = (JSONArray)registrationFormParams.getRight();
+                String entityId = getString(jsonForm, "entity_id");
+                if (StringUtils.isBlank(entityId)) {
+                    entityId = generateRandomUUIDString();
+                }
+
+                lastInteractedWith(fields);
+                dobUnknownUpdateFromAge(fields);
+                Client baseClient = org.smartregister.util.JsonFormUtils.createBaseClient(fields, formTag(allSharedPreferences), entityId);
+                baseClient.setLastName("Family");
+                baseClient.setBirthdate(new Date(0L));
+                baseClient.setGender("Male");
+                baseClient.setClientType("Family");
+                Event baseEvent = org.smartregister.util.JsonFormUtils.createEvent(fields, getJSONObject(jsonForm, "metadata"), formTag(allSharedPreferences), entityId, org.smartregister.family.util.Utils.metadata().familyRegister.registerEventType, org.smartregister.family.util.Utils.metadata().familyRegister.tableName);
+                tagSyncMetadata(allSharedPreferences, baseEvent);
+                return new FamilyEventClient(baseClient, baseEvent);
+            }
+        } catch (Exception var9) {
+            Timber.e(var9);
+            return null;
+        }
+    }
+
+    /**
+     * @issyzac
+     * Removed from the family library to get the head of the house (Pregnant mother in Kizazi Kijacho) from the third step and not the second as
+     * originally implemented
+     *
+     * @param allSharedPreferences
+     * @param jsonString
+     * @param familyBaseEntityId
+     * @return
+     */
+    public static FamilyEventClient processFamilyHeadRegistrationForm(AllSharedPreferences allSharedPreferences, String jsonString, String familyBaseEntityId) {
+        try {
+            String familyStep = org.smartregister.family.util.Utils.getCustomConfigs("family_member_form_image_step");
+            Triple<Boolean, JSONObject, JSONArray> registrationFormParams = StringUtils.isBlank(familyStep) ? validateParameters(jsonString, "step3") : validateParameters(jsonString, familyStep);
+            if (!(Boolean)registrationFormParams.getLeft()) {
+                return null;
+            } else {
+                JSONObject jsonForm = (JSONObject)registrationFormParams.getMiddle();
+                JSONArray fields = (JSONArray)registrationFormParams.getRight();
+                String entityId = getString(jsonForm, "entity_id");
+                if (StringUtils.isBlank(entityId)) {
+                    entityId = generateRandomUUIDString();
+                }
+
+                lastInteractedWith(fields);
+                dobUnknownUpdateFromAge(fields);
+                Client baseClient = org.smartregister.util.JsonFormUtils.createBaseClient(fields, formTag(allSharedPreferences), entityId);
+                baseClient.addRelationship(org.smartregister.family.util.Utils.metadata().familyMemberRegister.familyRelationKey, familyBaseEntityId);
+                Event baseEvent = org.smartregister.util.JsonFormUtils.createEvent(fields, getJSONObject(jsonForm, "metadata"), formTag(allSharedPreferences), entityId, org.smartregister.family.util.Utils.metadata().familyMemberRegister.registerEventType, org.smartregister.family.util.Utils.metadata().familyMemberRegister.tableName);
+                tagSyncMetadata(allSharedPreferences, baseEvent);
+                return new FamilyEventClient(baseClient, baseEvent);
+            }
+        } catch (Exception var10) {
+            Timber.e(var10);
+            return null;
+        }
     }
 
     public static Pair<Client, Event> processChildRegistrationForm(AllSharedPreferences allSharedPreferences, String jsonString) {
