@@ -197,13 +197,12 @@
         }
       },
       {
-        "key": "sex",
+        "key": "gender",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
         "openmrs_entity_id": "gender",
-        "type": "edit_text",
-        "hidden": true,
-        "value": "Female"
+        "type": "hidden",
+        "value": "{{family_register.step2.gender.value}}"
       },
       {
         "key": "first_and_middle_name",
@@ -397,6 +396,53 @@
         }
       },
       {
+        "key": "last_menstrual_period",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1427AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "{{family_register.step2.last_menstrual_period.hint}}",
+        "label_info_title": "{{family_register.step2.last_menstrual_period.label_info_title}}",
+        "label_info_text": "{{family_register.step2.last_menstrual_period.label_info_text}}",
+        "expanded": false,
+        "max_date": "today",
+        "min_date": "today-50w",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step2.last_menstrual_period.v_required.err}}"
+        },
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-calculation.yml"
+            }
+          }
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "last_menstrual_period_unknown",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "last_menstrual_period_unknown",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "lmp_unknown",
+            "text": "{{family_register.step2.last_menstrual_period_unknown.options.lmp_unknown.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ]
+      },
+      {
         "key": "clin_card",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -459,33 +505,86 @@
         "key": "edd",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
+        "openmrs_entity_id": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
         "hint": "{{family_register.step2.edd.hint}}",
+        "max_date": "today+50w",
+        "min_date": "today",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-calculation.yml"
+            }
+          }
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
               "rules-file": "family-register-relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step2.edd.v_required.err}}"
+        }
+      },
+
+      {
+        "key": "gest_age_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{family_register.step2.gest_age_note.hint}}",
+        "read_only": true,
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-calculation.yml"
             }
           }
         }
       },
       {
-        "key": "lmnp",
+        "key": "weeks",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "value": "{{family_register.step2.weeks.value}}",
+        "type": "hidden"
+      },
+      {
+        "key": "edd_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "label": "{{family_register.step2.lnmp.label}}",
-        "hint": "{{family_register.step2.lnmp.hint}}",
-        "relevance": {
+        "hint": "{{family_register.step2.edd_note.hint}}",
+        "read_only": true,
+        "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "family-register-relevance.yml"
+              "rules-file": "family-register-calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "gest_age",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-calculation.yml"
             }
           }
         }
       }
+
     ]
   },
   "properties_file_name": "family_register"
