@@ -2,6 +2,9 @@ package org.smartregister.chw.interactor;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
+import org.smartregister.chw.anc.contract.BaseAncRegisterContract;
+import org.smartregister.chw.anc.interactor.BaseAncRegisterInteractor;
+import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.domain.db.EventClient;
@@ -16,7 +19,7 @@ import java.util.List;
 
 import timber.log.Timber;
 
-public class FamilyRegisterInteractor extends org.smartregister.family.interactor.FamilyRegisterInteractor {
+public class FamilyRegisterInteractor extends org.smartregister.family.interactor.FamilyRegisterInteractor implements BaseAncRegisterContract.InteractorCallBack {
 
     public FamilyRegisterInteractor(){
         super();
@@ -27,14 +30,32 @@ public class FamilyRegisterInteractor extends org.smartregister.family.interacto
         Runnable runnable = new Runnable() {
             public void run() {
                 final boolean isSaved = FamilyRegisterInteractor.this.saveRegistration(familyEventClientList, jsonString, isEditMode);
-                FamilyRegisterInteractor.this.appExecutors.mainThread().execute(new Runnable() {
-                    public void run() {
-                        callBack.onRegistrationSaved(isEditMode, isSaved, familyEventClientList);
-                    }
-                });
+                //Before returning to the presenter save the ANC information of this client then return
+                saveANCClient(jsonString, isEditMode, isSaved, familyEventClientList, callBack);
             }
         };
         this.appExecutors.diskIO().execute(runnable);
+    }
+
+    private void saveANCClient(String jsonString, boolean isEditMode, boolean isSaved, List<FamilyEventClient> familyEventClientList, FamilyRegisterContract.InteractorCallBack callBack){
+        try {
+            JSONObject form = new JSONObject(jsonString);
+            String encounterType = form.optString(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE);
+            form.put(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE, Constants.EVENT_TYPE.ANC_REGISTRATION);
+            new BaseAncRegisterInteractor().saveRegistration(jsonString, false, new BaseAncRegisterContract.InteractorCallBack() {
+                @Override
+                public void onRegistrationSaved(String encounterType, boolean isEdit, boolean hasChildren) {
+                    Timber.d("Registration Saved!");
+                    FamilyRegisterInteractor.this.appExecutors.mainThread().execute(new Runnable() {
+                        public void run() {
+                            callBack.onRegistrationSaved(isEditMode, isSaved, familyEventClientList);
+                        }
+                    });
+                }
+            }, null);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private boolean saveRegistration(List<FamilyEventClient> familyEventClientList, String jsonString, boolean isEditMode) {
@@ -109,4 +130,8 @@ public class FamilyRegisterInteractor extends org.smartregister.family.interacto
         }
     }
 
+    @Override
+    public void onRegistrationSaved(String encounterType, boolean isEdit, boolean hasChildren) {
+        //ANC Registration Completed
+    }
 }
