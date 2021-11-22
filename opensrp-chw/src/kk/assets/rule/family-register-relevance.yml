@@ -1,42 +1,42 @@
 ---
-name: step3_edd_present
+name: step2_edd_present
 description: EDD present relevance
 priority: 1
-condition: "step3_clin_card.contains('clin_card_yes')"
+condition: "step2_clin_card.contains('clin_card_yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step3_surname
+name: step2_surname
 description: surname relevance
 priority: 1
-condition: "!step3_same_as_fam_name.contains('same_as_fam_name')"
+condition: "!step2_same_as_fam_name.contains('same_as_fam_name')"
 actions:
   - "isRelevant = true"
 ---
-name: step3_dob
+name: step2_dob
 description: dob relevance
 priority: 1
-condition: "!step3_dob_unknown.contains('dob_unknown')"
+condition: "!step2_dob_unknown.contains('dob_unknown')"
 actions:
   - "isRelevant = true"
 ---
-name: step3_age
+name: step2_age
 description: age relevance
 priority: 1
-condition: "step3_dob_unknown.contains('dob_unknown')"
+condition: "step2_dob_unknown.contains('dob_unknown')"
 actions:
   - "isRelevant = true"
 ---
-name: step3_edd
+name: step2_edd
 description: EDD relevance
 priority: 1
-condition: "step3_edd_present.contains('edd_present_yes')"
+condition: "step2_edd_present.contains('edd_present_yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step3_lmnp
+name: step2_lmnp
 description: LNMP Relevance
 priority: 1
-condition: "step3_clin_card.contains('clin_card_no')||step3_edd_present.contains('edd_present_no')"
+condition: "step2_clin_card.contains('clin_card_no')||step2_edd_present.contains('edd_present_no')"
 actions:
   - "isRelevant = true"
