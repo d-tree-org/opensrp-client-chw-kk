@@ -2,6 +2,7 @@ package org.smartregister.chw.presenter;
 
 import org.apache.commons.lang3.tuple.Triple;
 import org.smartregister.chw.R;
+import org.smartregister.chw.interactor.FamilyRegisterInteractor;
 import org.smartregister.chw.model.FamilyRegisterModel;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.contract.FamilyRegisterContract.Interactor;
@@ -10,7 +11,6 @@ import org.smartregister.family.contract.FamilyRegisterContract.Model;
 import org.smartregister.family.contract.FamilyRegisterContract.Presenter;
 import org.smartregister.family.contract.FamilyRegisterContract.View;
 import org.smartregister.family.domain.FamilyEventClient;
-import org.smartregister.family.interactor.FamilyRegisterInteractor;
 import org.smartregister.family.presenter.BaseFamilyRegisterPresenter;
 
 import java.lang.ref.WeakReference;
@@ -22,6 +22,7 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter {
 
     public FamilyRegisterPresenter(View view, Model model){
         super(view, model);
+        this.interactor = new FamilyRegisterInteractor();
     }
 
     @Override
