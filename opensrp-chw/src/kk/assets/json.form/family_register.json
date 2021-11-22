@@ -1,5 +1,5 @@
 {
-  "count": "3",
+  "count": "2",
   "encounter_type": "Family Registration",
   "entity_id": "",
   "relational_id": "",
@@ -52,7 +52,7 @@
     }
   },
   "step1": {
-    "title": "{{family_register.step1.title}}",
+    "title": "{{family_register.step2.title}}",
     "fields": [
       {
         "key": "fam_consent",
@@ -94,35 +94,6 @@
           }
         ]
       },
-      {
-        "key": "unique_id",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "person_identifier",
-        "openmrs_entity_id": "opensrp_id",
-        "type": "barcode",
-        "hint": "{{family_register.step1.unique_id.hint}}",
-        "scanButtonText": "{{family_register.step1.unique_id.scanButtonText}}",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{family_register.step1.unique_id.v_numeric.err}}"
-        },
-        "hidden": "true",
-        "barcode_type": "qrcode"
-      },
-      {
-        "key": "spacer",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "spacer",
-        "spacer_height": "15dp"
-      }
-    ],
-    "next": "step2"
-  },
-  "step2": {
-    "title": "{{family_register.step2.title}}",
-    "fields": [
       {
         "key": "consent_photo",
         "openmrs_entity_parent": "",
@@ -200,12 +171,12 @@
         "spacer_height": "15dp"
       }
     ],
-    "next": "step3"
+    "next": "step2"
   },
   "validate_on_submit": true,
   "show_errors_on_submit": false,
-  "step3": {
-    "title": "{{family_register.step3.title}}",
+  "step2": {
+    "title": "{{family_register.step2.title}}",
     "fields": [
       {
         "key": "unique_id",
@@ -213,16 +184,16 @@
         "openmrs_entity": "person_identifier",
         "openmrs_entity_id": "opensrp_id",
         "type": "edit_text",
-        "hint": "{{family_register.step3.unique_id.hint}}",
+        "hint": "{{family_register.step2.unique_id.hint}}",
         "value": "0",
         "read_only": "true",
         "v_numeric": {
           "value": "true",
-          "err": "{{family_register.step3.unique_id.v_numeric.err}}"
+          "err": "{{family_register.step2.unique_id.v_numeric.err}}"
         },
         "v_required": {
           "value": "true",
-          "err": "{{family_register.step3.unique_id.v_required.err}}"
+          "err": "{{family_register.step2.unique_id.v_required.err}}"
         }
       },
       {
@@ -240,15 +211,15 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "first_name",
         "type": "edit_text",
-        "hint": "{{family_register.step3.first_and_middle_name.hint}}",
+        "hint": "{{family_register.step2.first_and_middle_name.hint}}",
         "edit_type": "name",
         "v_required": {
           "value": "true",
-          "err": "{{family_register.step3.first_and_middle_name.v_required.err}}"
+          "err": "{{family_register.step2.first_and_middle_name.v_required.err}}"
         },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "{{family_register.step3.first_and_middle_name.v_regex.err}}"
+          "err": "{{family_register.step2.first_and_middle_name.v_regex.err}}"
         }
       },
       {
@@ -257,11 +228,11 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "middle_name",
         "type": "edit_text",
-        "hint": "{{family_register.step3.preferred_name.hint}}",
+        "hint": "{{family_register.step2.preferred_name.hint}}",
         "edit_type": "name",
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "{{family_register.step3.preferred_name.v_regex.err}}"
+          "err": "{{family_register.step2.preferred_name.v_regex.err}}"
         }
       },
       {
@@ -270,15 +241,15 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "{{family_register.step3.surname.hint}}",
+        "hint": "{{family_register.step2.surname.hint}}",
         "edit_type": "name",
         "v_required": {
           "value": "true",
-          "err": "{{family_register.step3.surname.v_required.err}}"
+          "err": "{{family_register.step2.surname.v_required.err}}"
         },
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-          "err": "{{family_register.step3.surname.v_regex.err}}"
+          "err": "{{family_register.step2.surname.v_regex.err}}"
         },
         "relevance": {
           "rules-engine": {
@@ -294,11 +265,11 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "{{family_register.step3.same_as_fam_name.label}}",
+        "label": "{{family_register.step2.same_as_fam_name.label}}",
         "options": [
           {
             "key": "same_as_fam_name",
-            "text": "{{family_register.step3.same_as_fam_name.options.same_as_fam_name.text}}",
+            "text": "{{family_register.step2.same_as_fam_name.options.same_as_fam_name.text}}",
             "text_size": "18px",
             "value": "false"
           }
@@ -312,7 +283,7 @@
         "openmrs_entity_id": "last_name",
         "type": "edit_text",
         "hidden": true,
-        "hint": "{{family_register.step3.surname_calculation.hint}}",
+        "hint": "{{family_register.step2.surname_calculation.hint}}",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
@@ -327,16 +298,16 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "birthdate",
         "type": "date_picker",
-        "hint": "{{family_register.step3.dob.hint}}",
+        "hint": "{{family_register.step2.dob.hint}}",
         "expanded": false,
         "duration": {
-          "label": "{{family_register.step3.dob.duration.label}}"
+          "label": "{{family_register.step2.dob.duration.label}}"
         },
         "min_date": "today-120y",
         "max_date": "today-15y",
         "v_required": {
           "value": "true",
-          "err": "{{family_register.step3.dob.v_required.err}}"
+          "err": "{{family_register.step2.dob.v_required.err}}"
         },
         "relevance": {
           "rules-engine": {
@@ -352,11 +323,11 @@
         "openmrs_entity": "person",
         "openmrs_entity_id": "birthdateApprox",
         "type": "check_box",
-        "label": "{{family_register.step3.dob_unknown.label}}",
+        "label": "{{family_register.step2.dob_unknown.label}}",
         "options": [
           {
             "key": "dob_unknown",
-            "text": "{{family_register.step3.dob_unknown.options.dob_unknown.text}}",
+            "text": "{{family_register.step2.dob_unknown.options.dob_unknown.text}}",
             "text_size": "18px",
             "value": "false"
           }
@@ -368,22 +339,22 @@
         "openmrs_entity": "person_attribute",
         "openmrs_entity_id": "age_entered",
         "type": "edit_text",
-        "hint": "{{family_register.step3.age.hint}}",
+        "hint": "{{family_register.step2.age.hint}}",
         "v_numeric_integer": {
           "value": "true",
-          "err": "{{family_register.step3.age.v_numeric_integer.err}}"
+          "err": "{{family_register.step2.age.v_numeric_integer.err}}"
         },
         "v_numeric": {
           "value": "true",
-          "err": "{{family_register.step3.age.v_numeric.err}}"
+          "err": "{{family_register.step2.age.v_numeric.err}}"
         },
         "v_min": {
           "value": "15",
-          "err": "{{family_register.step3.age.v_min.err}}"
+          "err": "{{family_register.step2.age.v_min.err}}"
         },
         "v_max": {
           "value": "120",
-          "err": "{{family_register.step3.age.v_max.err}}"
+          "err": "{{family_register.step2.age.v_max.err}}"
         },
         "relevance": {
           "rules-engine": {
@@ -394,7 +365,7 @@
         },
         "v_required": {
           "value": true,
-          "err": "{{family_register.step3.age.v_required.err}}"
+          "err": "{{family_register.step2.age.v_required.err}}"
         }
       },
       {
@@ -403,14 +374,14 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
-        "hint": "{{family_register.step3.phone_number.hint}}",
+        "hint": "{{family_register.step2.phone_number.hint}}",
         "v_numeric": {
           "value": "true",
-          "err": "{{family_register.step3.phone_number.v_numeric.err}}"
+          "err": "{{family_register.step2.phone_number.v_numeric.err}}"
         },
         "v_required": {
           "value": false,
-          "err": "{{family_register.step3.phone_number.v_required.err}}"
+          "err": "{{family_register.step2.phone_number.v_required.err}}"
         }
       },
       {
@@ -419,10 +390,10 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
-        "hint": "{{family_register.step3.other_phone_number.hint}}",
+        "hint": "{{family_register.step2.other_phone_number.hint}}",
         "v_numeric": {
           "value": "true",
-          "err": "{{family_register.step3.other_phone_number.v_numeric.err}}"
+          "err": "{{family_register.step2.other_phone_number.v_numeric.err}}"
         }
       },
       {
@@ -431,7 +402,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "{{family_register.step3.clin_card.label}}",
+        "label": "{{family_register.step2.clin_card.label}}",
         "exclusive": [
           "clin_card_yes",
           "clin_card_no"
@@ -439,13 +410,13 @@
         "options": [
           {
             "key": "clin_card_yes",
-            "text": "{{family_register.step3.clin_card.options.clin_card.yes.text}}",
+            "text": "{{family_register.step2.clin_card.options.clin_card.yes.text}}",
             "text_size": "18px",
             "value": "false"
           },
           {
             "key": "clin_card_no",
-            "text": "{{family_register.step3.clin_card.options.clin_card.no.text}}",
+            "text": "{{family_register.step2.clin_card.options.clin_card.no.text}}",
             "text_size": "18px",
             "value": "false"
           }
@@ -457,7 +428,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "{{family_register.step3.edd_present.label}}",
+        "label": "{{family_register.step2.edd_present.label}}",
         "exclusive": [
           "edd_present_yes",
           "edd_present_no"
@@ -472,13 +443,13 @@
         "options": [
           {
             "key": "edd_present_yes",
-            "text": "{{family_register.step3.edd_present.options.edd_present.yes.text}}",
+            "text": "{{family_register.step2.edd_present.options.edd_present.yes.text}}",
             "text_size": "18px",
             "value": "false"
           },
           {
             "key": "edd_present_no",
-            "text": "{{family_register.step3.edd_present.options.edd_present.no.text}}",
+            "text": "{{family_register.step2.edd_present.options.edd_present.no.text}}",
             "text_size": "18px",
             "value": "false"
           }
@@ -490,7 +461,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "hint": "{{family_register.step3.edd.hint}}",
+        "hint": "{{family_register.step2.edd.hint}}",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -505,8 +476,8 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
-        "label": "{{family_register.step3.lnmp.label}}",
-        "hint": "{{family_register.step3.lnmp.hint}}",
+        "label": "{{family_register.step2.lnmp.label}}",
+        "hint": "{{family_register.step2.lnmp.hint}}",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
