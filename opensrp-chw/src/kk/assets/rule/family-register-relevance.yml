@@ -30,7 +30,7 @@ actions:
 name: step2_edd
 description: EDD relevance
 priority: 1
-condition: "step2_edd_present.contains('edd_present_yes')"
+condition: "step2_edd_present.contains('edd_present_yes') && step2_last_menstrual_period_unknown.contains('lmp_unknown')"
 actions:
   - "isRelevant = true"
 ---
@@ -38,5 +38,26 @@ name: step2_lmnp
 description: LNMP Relevance
 priority: 1
 condition: "step2_clin_card.contains('clin_card_no')||step2_edd_present.contains('edd_present_no')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_name_person_assist
+description: assist person relevance
+priority: 1
+condition: "step2_person_assist == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step2_phone_person_assist
+description: assist person phone number relevance
+priority: 1
+condition: "step2_person_assist == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step2_last_menstrual_period
+description: lmp_entered relevance
+priority: 1
+condition: "!step2_last_menstrual_period_unknown.contains('lmp_unknown')"
 actions:
   - "isRelevant = true"
