@@ -1,4 +1,46 @@
 ---
+name: step1_consent_photo
+description: Consent Photo relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_fam_name
+description: Family name relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_village_town
+description: Village relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_landmark
+description: Village relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_gps
+description: GPS relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_consent_note
+description: No consent relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_no')"
+actions:
+  - "isRelevant = true"
+---
 name: step2_edd_present
 description: EDD present relevance
 priority: 1
