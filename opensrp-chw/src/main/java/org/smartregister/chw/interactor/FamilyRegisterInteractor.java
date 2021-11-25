@@ -36,12 +36,11 @@ public class FamilyRegisterInteractor extends org.smartregister.family.interacto
                 final boolean isSaved = FamilyRegisterInteractor.this.saveRegistration(familyEventClientList, jsonString, isEditMode);
                 String clientBaseEntityId = "";
                 String relationalId = "";
-                for (FamilyEventClient fec : familyEventClientList){
-                    if (null==fec.getClient().getClientType()){
-                        clientBaseEntityId = fec.getClient().getBaseEntityId();
-                        Timber.d("Somethinghere:  %s", fec.getClient().getBaseEntityId());
+                for (FamilyEventClient ec : familyEventClientList){
+                    if (null==ec.getClient().getClientType()){
+                        clientBaseEntityId = ec.getClient().getBaseEntityId();
                     }else {
-                        relationalId = fec.getClient().getBaseEntityId();
+                        relationalId = ec.getClient().getBaseEntityId();
                     }
                 }
                 //Before returning to the presenter save the ANC information of this client then return
