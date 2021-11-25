@@ -197,6 +197,13 @@
         }
       },
       {
+        "key": "relational_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "relational_id",
+        "type": "hidden"
+      },
+      {
         "key": "gender",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person",
@@ -529,7 +536,6 @@
           "err": "{{family_register.step2.edd.v_required.err}}"
         }
       },
-
       {
         "key": "gest_age_note",
         "openmrs_entity_parent": "",
