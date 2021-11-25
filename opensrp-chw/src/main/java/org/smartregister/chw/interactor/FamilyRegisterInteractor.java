@@ -33,18 +33,40 @@ public class FamilyRegisterInteractor extends org.smartregister.family.interacto
     public void saveRegistration(List<FamilyEventClient> familyEventClientList, String jsonString, boolean isEditMode, FamilyRegisterContract.InteractorCallBack callBack) {
         Runnable runnable = new Runnable() {
             public void run() {
-                final boolean isSaved = FamilyRegisterInteractor.this.saveRegistration(familyEventClientList, jsonString, isEditMode);
-                String clientBaseEntityId = "";
-                String relationalId = "";
-                for (FamilyEventClient ec : familyEventClientList){
-                    if (null==ec.getClient().getClientType()){
-                        clientBaseEntityId = ec.getClient().getBaseEntityId();
+
+                try {
+
+                    JSONObject form = new JSONObject(jsonString);
+                    JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
+                    JSONObject consentField = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "fam_consent");
+                    assert consentField != null;
+                    JSONArray consent = consentField.getJSONArray("value");
+
+                    //Only store client information when the conset has been given
+                    if (consent.get(0).equals("fam_consent_yes")){
+                        final boolean isSaved = FamilyRegisterInteractor.this.saveRegistration(familyEventClientList, jsonString, isEditMode);
+                        String clientBaseEntityId = "";
+                        String relationalId = "";
+                        for (FamilyEventClient ec : familyEventClientList){
+                            if (null==ec.getClient().getClientType()){
+                                clientBaseEntityId = ec.getClient().getBaseEntityId();
+                            }else {
+                                relationalId = ec.getClient().getBaseEntityId();
+                            }
+                        }
+                        //Before returning to the presenter save the ANC information of this client then return
+                        saveANCClient(jsonString, isEditMode, clientBaseEntityId, relationalId, isSaved, familyEventClientList, callBack);
                     }else {
-                        relationalId = ec.getClient().getBaseEntityId();
+                        FamilyRegisterInteractor.this.appExecutors.mainThread().execute(new Runnable() {
+                            public void run() {
+                                callBack.onRegistrationSaved(isEditMode, false, familyEventClientList);
+                            }
+                        });
                     }
+
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-                //Before returning to the presenter save the ANC information of this client then return
-                saveANCClient(jsonString, isEditMode, clientBaseEntityId, relationalId, isSaved, familyEventClientList, callBack);
             }
         };
         this.appExecutors.diskIO().execute(runnable);
