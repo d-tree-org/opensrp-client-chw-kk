@@ -6,4 +6,7 @@
     <string name="add_anc_member"> Sajili mama mjamzito </string>
     <string name="add_care_giver"> Sajili Msimamizi </string>
 
+    <string name="call"> Piga simu </string>
+    <string name="call_no_number_provided"> Hamna namba ya simu </string>
+
 </resources>

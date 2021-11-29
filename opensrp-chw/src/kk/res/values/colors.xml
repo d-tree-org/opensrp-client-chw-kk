@@ -34,4 +34,6 @@
     <color name="navigation_item_selected">@color/primary</color>
     <color name="navigation_item_unselected">@color/black_tranparent_50</color>
 
+    <color name="white"> #ffffff </color>
+
 </resources>
