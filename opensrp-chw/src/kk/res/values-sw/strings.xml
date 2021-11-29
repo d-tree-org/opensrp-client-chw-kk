@@ -2,4 +2,8 @@
     <string name="app_name">Kizazi Kijacho</string>
     <string name="login_title">Kizazi Kijacho</string>
     <string name="nav_logo">Kizazi Kijacho</string>
+
+    <string name="add_anc_member"> Sajili mama mjamzito </string>
+    <string name="add_care_giver"> Sajili Msimamizi </string>
+
 </resources>
