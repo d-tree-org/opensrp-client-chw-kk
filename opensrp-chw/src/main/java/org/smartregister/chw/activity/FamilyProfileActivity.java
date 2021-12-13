@@ -61,6 +61,15 @@ public class FamilyProfileActivity extends CoreFamilyProfileActivity {
         super.setupViews();
         tvEventDate = findViewById(R.id.textview_event_date);
         tvInterpunct = findViewById(R.id.interpunct);
+
+        /**
+         * TODO:
+         *  1. Get the @familyFloatingMenu variable here (update chw-core library)
+         *  2. Assign a custom onclick listener
+         *  3. The listener will invoke a separate AddMemberFragment that contains the new entries ANC and Caregiver
+         *  4. Handle the two within the Fragment
+         */
+
     }
 
     @Override
