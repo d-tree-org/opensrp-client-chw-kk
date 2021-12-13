@@ -3,10 +3,12 @@
     <string name="login_title">Kizazi Kijacho</string>
     <string name="nav_logo">Kizazi Kijacho</string>
 
-    <string name="add_anc_member"> Add ANC Member </string>
     <string name="add_care_giver"> Add Caregiver </string>
 
     <string name="call"> Call </string>
     <string name="call_no_number_provided"> No number provided </string>
+
+    <string name="add_anc_member">ANC Member</string>
+    <string name="add_care_giver_member">Caregiver</string>
 
 </resources>
