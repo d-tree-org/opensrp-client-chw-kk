@@ -47,7 +47,7 @@ actions:
   - "calculation = helper.subtractDuration(step2_edd,'280d')"
 
 ---
-name: step1_edd_note
+name: step2_edd_note
 description: Edd calculated
 priority: 1
 condition: "true"
