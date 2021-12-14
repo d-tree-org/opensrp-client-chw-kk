@@ -27,6 +27,7 @@ import org.smartregister.chw.fp.dao.FpDao;
 import org.smartregister.chw.fragment.FamilyProfileActivityFragment;
 import org.smartregister.chw.fragment.FamilyProfileDueFragment;
 import org.smartregister.chw.fragment.FamilyProfileMemberFragment;
+import org.smartregister.chw.listener.FloatingMenuListener;
 import org.smartregister.chw.model.FamilyProfileModel;
 import org.smartregister.chw.pnc.activity.BasePncMemberProfileActivity;
 import org.smartregister.chw.presenter.FamilyProfilePresenter;
@@ -69,6 +70,9 @@ public class FamilyProfileActivity extends CoreFamilyProfileActivity {
          *  3. The listener will invoke a separate AddMemberFragment that contains the new entries ANC and Caregiver
          *  4. Handle the two within the Fragment
          */
+        familyFloatingMenu.setClickListener(
+                FloatingMenuListener.getInstance(this, presenter().familyBaseEntityId())
+        );
 
     }
 
