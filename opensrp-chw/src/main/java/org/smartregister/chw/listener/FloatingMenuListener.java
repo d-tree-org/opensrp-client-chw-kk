@@ -55,7 +55,7 @@ public class FloatingMenuListener implements OnClickFloatingMenu {
             if (viewId == R.id.call_layout) {
                 FamilyCallDialogFragment.launchDialog(context.get(), familyBaseEntityId);
             } else if (viewId == R.id.add_new_member_layout) {
-                AddMemberFragment addmemberFragment = (AddMemberFragment) AddMemberFragment.newInstance();
+                AddMemberFragment addmemberFragment = AddMemberFragment.newInstance();
                 addmemberFragment.setContext(context.get());
                 addmemberFragment.show(context.get().getFragmentManager(), AddMemberFragment.DIALOG_TAG);
             }
