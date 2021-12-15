@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+import org.smartregister.AllConstants;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -31,6 +34,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -47,6 +53,9 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (hasPermissions()) {
+            setServerUrl();
+        }
     }
 
     @Override
@@ -89,6 +98,7 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
             menu.add(getString(R.string.reset_pin_login));
         }
         menu.add(getString(R.string.export_database));
+        menu.add(getString(R.string.switch_environment));
         return true;
     }
 
@@ -107,6 +117,11 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
             if (hasPermissions()) {
                 copyDatabase(DBNAME, COPYDBNAME + "-" + currentTimeStamp + ".db", this);
                 Toast.makeText(this, R.string.export_db_done_notification, Toast.LENGTH_SHORT).show();
+            }
+        } else if (item.getTitle().toString().equalsIgnoreCase(getString(R.string.switch_environment))) {
+            if (hasPermissions()) {
+                this.startActivity(new Intent(this, KkEnvironmentSwitchingActivity.class));
+                return true;
             }
         }
         return super.onOptionsItemSelected(item);
@@ -202,6 +217,70 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
             WeightForHeightIntentService.startParseWFHZScores(this);
             allSharedPreferences.savePreference(WFH_CSV_PARSED, "true");
         }
+    }
+
+    private void setServerUrl() {
+        AllSharedPreferences preferences = org.smartregister.util.Utils.getAllSharedPreferences();
+
+        try {
+            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "Kizazi", "env_switch.json");
+
+            if (file.exists()) {
+                // if the file is there, then  switching has taken place and the data was cleared from the device
+                // Get the environment configurations from the file and set the url based on that
+/*                        Yaml yaml = new Yaml();
+                        Map<String, Object> envConfig = (Map<String, Object>) yaml.load(new FileInputStream(file));*/
+                JSONObject envConfig = getSwitchConfigurationsFromFile(file);
+
+                if (envConfig != null) {
+
+                    if (envConfig.get("env").toString().equalsIgnoreCase("test")) {
+
+                        //preferences.savePreference(AllConstants.DRISHTI_BASE_URL, BuildConfig.opensrp_url_staging);
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", false).commit();
+                        //preferences.savePreference(Constants.ENVIRONMENT_CONFIG.OPENSRP_ADDO_ENVIRONMENT, "test");
+                        //setAppNameProductionEnvironment("test");
+                    } else {
+
+                        //preferences.savePreference(AllConstants.DRISHTI_BASE_URL, BuildConfig.opensrp_url_production);
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", true).commit();
+                        //preferences.savePreference(Constants.ENVIRONMENT_CONFIG.OPENSRP_ADDO_ENVIRONMENT, "production");
+                        //setAppNameProductionEnvironment("production");
+                    }
+                }
+
+            } else {
+                // The file does not exist, no switching environment has taken place. This is the first time the user logged into the device
+                //preferences.savePreference(AllConstants.DRISHTI_BASE_URL, BuildConfig.opensrp_url_production);
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", true).commit();
+                //preferences.savePreference(Constants.ENVIRONMENT_CONFIG.OPENSRP_ADDO_ENVIRONMENT, "production");
+                //setAppNameProductionEnvironment("production");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private JSONObject getSwitchConfigurationsFromFile(File file) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            FileInputStream stream = new FileInputStream(file);
+            String jString = null;
+            try {
+                FileChannel fc = stream.getChannel();
+                MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
+                /* Instead of using default, pass in a decoder. */
+                jString = Charset.defaultCharset().decode(bb).toString();
+            } finally {
+                stream.close();
+            }
+            jsonObject = new JSONObject(jString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return jsonObject;
     }
 
 }

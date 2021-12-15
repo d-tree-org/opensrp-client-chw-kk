@@ -2,4 +2,10 @@
     <string name="app_name">Kizazi Kijacho</string>
     <string name="login_title">Kizazi Kijacho</string>
     <string name="nav_logo">Kizazi Kijacho</string>
+
+    <!--Settings -->
+    <string name="switch_environment">Switch Environment</string>
+    <string name="switch_environment_message">You are about to switch to %s environment. This procedure will wipe out all of your device data, you need to make sure everything is synced before you proceed. Do you want to switch the environment?</string>
+    <string name="switch_environment_title">Alert! Switching Environment</string>
+
 </resources>

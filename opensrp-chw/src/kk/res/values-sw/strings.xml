@@ -2,4 +2,9 @@
     <string name="app_name">Kizazi Kijacho</string>
     <string name="login_title">Kizazi Kijacho</string>
     <string name="nav_logo">Kizazi Kijacho</string>
+
+    <!--Settings -->
+    <string name="switch_environment">Switch Environment</string>
+    <string name="switch_environment_message">Unakaribia kubadilisha mazingira ya mfumo kwenda %s. Kitendo hiki kitaondoa taarifa zote zilizohifadhiwa katika simu hii, kabla ya kuendelea mbele tafadhali hakikisha umeoanisha/sinki taarifa zako. Je ungependa kuendelea kubadilisha mazingira ya mfumo?</string>
+    <string name="switch_environment_title">Tahadhari! Unabadilisha Mazingira Ya Mfumo</string>
 </resources>
