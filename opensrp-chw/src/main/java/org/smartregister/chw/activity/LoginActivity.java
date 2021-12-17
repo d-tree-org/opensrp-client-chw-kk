@@ -3,16 +3,21 @@ package org.smartregister.chw.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import org.json.JSONObject;
 import org.smartregister.AllConstants;
+import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
@@ -34,10 +39,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -127,7 +135,7 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean hasPermissions(){
+    public boolean hasPermissions() {
         return PermissionUtils.isPermissionGranted(this
                 , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}
                 , CoreConstants.RQ_CODE.STORAGE_PERMISIONS);
@@ -220,7 +228,6 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
     }
 
     private void setServerUrl() {
-        AllSharedPreferences preferences = org.smartregister.util.Utils.getAllSharedPreferences();
 
         try {
             File file = new File(Environment.getExternalStorageDirectory() + File.separator + "Kizazi", "env_switch.json");
@@ -236,14 +243,14 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
 
                     if (envConfig.get("env").toString().equalsIgnoreCase("test")) {
 
-                        //preferences.savePreference(AllConstants.DRISHTI_BASE_URL, BuildConfig.opensrp_url_staging);
-                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", false).commit();
+                        updateEnvironmentUrl(BuildConfig.opensrp_url_staging);
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", false).apply();
                         //preferences.savePreference(Constants.ENVIRONMENT_CONFIG.OPENSRP_ADDO_ENVIRONMENT, "test");
-                        //setAppNameProductionEnvironment("test");
+                        setEnvironmentIndicator();
                     } else {
 
-                        //preferences.savePreference(AllConstants.DRISHTI_BASE_URL, BuildConfig.opensrp_url_production);
-                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", true).commit();
+                        updateEnvironmentUrl(BuildConfig.opensrp_url_production);
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", true).apply();
                         //preferences.savePreference(Constants.ENVIRONMENT_CONFIG.OPENSRP_ADDO_ENVIRONMENT, "production");
                         //setAppNameProductionEnvironment("production");
                     }
@@ -251,10 +258,8 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
 
             } else {
                 // The file does not exist, no switching environment has taken place. This is the first time the user logged into the device
-                //preferences.savePreference(AllConstants.DRISHTI_BASE_URL, BuildConfig.opensrp_url_production);
-                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", true).commit();
-                //preferences.savePreference(Constants.ENVIRONMENT_CONFIG.OPENSRP_ADDO_ENVIRONMENT, "production");
-                //setAppNameProductionEnvironment("production");
+                updateEnvironmentUrl(BuildConfig.opensrp_url_production);
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putBoolean("enable_production", true).apply();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -283,4 +288,44 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
         return jsonObject;
     }
 
+    private void updateEnvironmentUrl(String baseUrl) {
+        try {
+
+            AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+
+            URL url = new URL(baseUrl);
+
+            String base = url.getProtocol() + "://" + url.getHost();
+            int port = url.getPort();
+
+            Timber.i("Base URL: %s", base);
+            Timber.i("Port: %s", port);
+
+            allSharedPreferences.saveHost(base);
+            allSharedPreferences.savePort(port);
+
+            allSharedPreferences.savePreference(AllConstants.DRISHTI_BASE_URL, baseUrl);
+
+            Timber.i("Saved URL: %s", allSharedPreferences.fetchHost(""));
+            Timber.i("Port: %s", allSharedPreferences.fetchPort(0));
+        } catch (MalformedURLException e) {
+            Timber.e("Malformed Url: %s", baseUrl);
+        }
+    }
+
+    private void setEnvironmentIndicator() {
+
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.top_section);
+        linearLayout.setBackgroundColor(getColor(R.color.translucent_yellow));
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (Arrays.asList(permissions).contains(Manifest.permission.READ_EXTERNAL_STORAGE) && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            setServerUrl();
+        }
+
+    }
 }

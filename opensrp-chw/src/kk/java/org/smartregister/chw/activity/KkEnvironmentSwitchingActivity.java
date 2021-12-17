@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
@@ -28,7 +27,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -168,9 +166,6 @@ public class KkEnvironmentSwitchingActivity extends AppCompatActivity implements
                     }
                 }, newEnvironment);
             }
-/*        if (newValue != null) {
-            updateUrl(newValue.toString());
-        }*/
             return userAgreed[0];
 
         }
@@ -247,9 +242,8 @@ public class KkEnvironmentSwitchingActivity extends AppCompatActivity implements
                         Timber.i("File /data/data/APP_PACKAGE/" + s + " DELETED");
                     }
                 }
-            } else {
-                // TODO
-            }
+            }  // TODO else part
+
 
             requireActivity().finish();
             System.exit(0);
