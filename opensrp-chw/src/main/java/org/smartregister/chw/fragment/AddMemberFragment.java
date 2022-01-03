@@ -50,7 +50,7 @@ public class AddMemberFragment extends org.smartregister.chw.core.fragment.AddMe
             }
             else if (i == R.id.layout_add_anc) {
                 //TODO: Fire up anc reg form
-                ((CoreFamilyProfileActivity) context).startChildForm(Constants.JSON_FORM_CONSTANT.getAncMotherRegistration(), "", "", "");
+                ((CoreFamilyProfileActivity) context).startFormActivity(Constants.JSON_FORM_CONSTANT.getAncMotherRegistration(), null, "");
                 dismiss();
             } else if (i == R.id.layout_add_caregiver) {
                 //TODO: Fire up care giver registration form
