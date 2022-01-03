@@ -55,14 +55,6 @@
     "title": "{{family_member_register.step1.title}}",
     "fields": [
       {
-        "key": "photo",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "choose_image",
-        "uploadButtonText": "{{family_member_register.step1.photo.uploadButtonText}}"
-      },
-      {
         "key": "unique_id",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
@@ -79,20 +71,6 @@
         "v_required": {
           "value": "true",
           "err": "{{family_member_register.step1.unique_id.v_required.err}}"
-        }
-      },
-      {
-        "key": "national_id",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "163084AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "edit_text",
-        "label_info_text": "{{family_member_register.step1.national_id.label_info_text}}",
-        "label_info_title": "{{family_member_register.step1.national_id.label_info_title}}",
-        "hint": "{{family_member_register.step1.national_id.hint}}",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{family_member_register.step1.national_id.v_numeric.err}}"
         }
       },
       {
@@ -289,69 +267,11 @@
         }
       },
       {
-        "key": "ever_school",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "everSchool",
-        "type": "spinner",
-        "expanded": false,
-        "hint": "{{family_member_register.step1.ever_school.hint}}",
-        "values": [
-          "{{family_member_register.step1.ever_school.values[0]}}",
-          "{{family_member_register.step1.ever_school.values[1]}}"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-member-relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "school_level",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "schoolLevel",
-        "type": "spinner",
-        "expanded": false,
-        "hint": "{{family_member_register.step1.school_level.hint}}",
-        "values": [
-          "{{family_member_register.step1.school_level.values[0]}}",
-          "{{family_member_register.step1.school_level.values[1]}}",
-          "{{family_member_register.step1.school_level.values[2]}}",
-          "{{family_member_register.step1.school_level.values[3]}}",
-          "{{family_member_register.step1.school_level.values[4]}}",
-          "{{family_member_register.step1.school_level.values[5]}}",
-          "{{family_member_register.step1.school_level.values[6]}}"
-        ],
-        "keys": [
-          "Not currently attending school or any learning program",
-          "Early childhood programme",
-          "Primary",
-          "Lower secondary",
-          "Upper secondary",
-          "Alternative learning program",
-          "Higher"
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-member-relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "primary_caregiver",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "spinner",
+        "type": "hidden",
         "hint": "{{family_member_register.step1.primary_caregiver.hint}}",
         "values": [
           "{{family_member_register.step1.primary_caregiver.values[0]}}",
@@ -367,7 +287,8 @@
               "rules-file": "family-member-relevance.yml"
             }
           }
-        }
+        },
+        "value": "Yes"
       },
       {
         "key": "phone_number",
@@ -407,73 +328,6 @@
             "type": "string",
             "ex": "equalTo(., \"Yes\")"
           }
-        }
-      },
-      {
-        "key": "highest_edu_level",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1712AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "{{family_member_register.step1.highest_edu_level.hint}}",
-        "values": [
-          "{{family_member_register.step1.highest_edu_level.values[0]}}",
-          "{{family_member_register.step1.highest_edu_level.values[1]}}",
-          "{{family_member_register.step1.highest_edu_level.values[2]}}",
-          "{{family_member_register.step1.highest_edu_level.values[3]}}",
-          "{{family_member_register.step1.highest_edu_level.values[4]}}"
-        ],
-        "keys": [
-          "None",
-          "Primary",
-          "Literacy",
-          "Secondary",
-          "University"
-        ],
-        "openmrs_choice_ids": {
-          "None": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Literacy": "",
-          "Primary": "1713AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Secondary": "1714AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "University": "159785AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "relevance": {
-          "step1:primary_caregiver": {
-            "type": "string",
-            "ex": "equalTo(., \"Yes\")"
-          }
-        }
-      },
-      {
-        "key": "marital_status",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1054AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "{{family_member_register.step1.marital_status.hint}}",
-        "v_required": {
-          "value": "true",
-          "err": "{{family_member_register.step1.marital_status.v_required.err}}"
-        },
-        "values": [
-          "{{family_member_register.step1.marital_status.values[0]}}",
-          "{{family_member_register.step1.marital_status.values[1]}}",
-          "{{family_member_register.step1.marital_status.values[2]}}",
-          "{{family_member_register.step1.marital_status.values[3]}}"
-        ],
-        "keys": [
-          "Married",
-          "Co-habiting",
-          "Single",
-          "Widowed"
-        ],
-        "openmrs_choice_ids": {
-          "Married": "5555AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Co-habiting": "1060AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Single": "5615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Widowed": "1059AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
       }
     ]
