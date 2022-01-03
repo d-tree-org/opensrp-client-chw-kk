@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.activity.BaseAncMemberProfileActivity;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -37,12 +38,15 @@ import org.smartregister.family.adapter.ViewPagerAdapter;
 import org.smartregister.family.fragment.BaseFamilyProfileDueFragment;
 import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.DBConstants;
+import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 import java.util.HashMap;
 
 import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
+
+import timber.log.Timber;
 
 public class FamilyProfileActivity extends CoreFamilyProfileActivity {
     private BaseFamilyProfileDueFragment profileDueFragment;
@@ -55,6 +59,24 @@ public class FamilyProfileActivity extends CoreFamilyProfileActivity {
         if (resultCode == Activity.RESULT_OK && profileDueFragment != null) {
             profileDueFragment.onActivityResult(requestCode, resultCode, data);
         }
+
+        switch (requestCode){
+            case JsonFormUtils.REQUEST_CODE_GET_JSON:
+                try {
+                    String jsonString = data.getStringExtra(Constants.JSON_FORM_EXTRA.JSON);
+                    Timber.d("JSONResult : %s", jsonString);
+
+                    JSONObject form = new JSONObject(jsonString);
+                    String encounter_type = form.getString(JsonFormUtils.ENCOUNTER_TYPE);
+                    if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals("ANC Registration")) {
+                        presenter().saveAncMember(jsonString, false);
+                    }
+                    }catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+        }
+
     }
 
     @Override
@@ -63,13 +85,6 @@ public class FamilyProfileActivity extends CoreFamilyProfileActivity {
         tvEventDate = findViewById(R.id.textview_event_date);
         tvInterpunct = findViewById(R.id.interpunct);
 
-        /**
-         * TODO:
-         *  1. Get the @familyFloatingMenu variable here (update chw-core library)
-         *  2. Assign a custom onclick listener
-         *  3. The listener will invoke a separate AddMemberFragment that contains the new entries ANC and Caregiver
-         *  4. Handle the two within the Fragment
-         */
         familyFloatingMenu.setClickListener(
                 FloatingMenuListener.getInstance(this, presenter().familyBaseEntityId())
         );
