@@ -94,25 +94,10 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
         "openmrs_entity_id": "opensrp_id",
-        "type": "edit_text",
+        "type": "hidden",
         "hint": "{{add_anc_registration.step1.unique_id.hint}}",
         "read_only": "true",
-        "value": "0",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{add_anc_registration.step1.unique_id.v_numeric.err}}"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "{{add_anc_registration.step1.unique_id.v_required.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "add_anc_registration_relevance.yml"
-            }
-          }
-        }
+        "value": "0"
       },
       {
         "key": "relational_id",
