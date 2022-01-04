@@ -96,9 +96,8 @@
         "openmrs_entity_id": "opensrp_id",
         "type": "edit_text",
         "hint": "{{add_anc_registration.step1.unique_id.hint}}",
-        "value": "0",
         "read_only": "true",
-        "hidden": true,
+        "value": "0",
         "v_numeric": {
           "value": "true",
           "err": "{{add_anc_registration.step1.unique_id.v_numeric.err}}"
