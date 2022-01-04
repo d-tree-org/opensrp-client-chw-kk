@@ -33,20 +33,21 @@
             <RelativeLayout
                 android:id="@+id/rlLogo"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:paddingTop="30dp">
+                android:paddingTop="30dp"
+                android:paddingBottom="10dp">
 
                 <ImageView
                     android:id="@+id/ivLogo"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:contentDescription="@string/nav_logo"
-                    android:src="@drawable/ic_logo"
-                    android:visibility="gone" />
+                    android:scaleType="center"
+                    android:src="@drawable/ic_logo" />
 
                 <TextView
                     android:id="@+id/tvLogo"
@@ -57,7 +58,8 @@
                     android:fontFamily="@font/roboto_light"
                     android:textColor="@color/primary"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 

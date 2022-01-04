@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="chw_primary">#A7C5E3</color>
-    <color name="primary">#A7C5E3</color>
+    <color name="chw_primary">#4990D8</color>
+    <color name="primary">#4990D8</color>
     <color name="chw_primary_dark">#0B3465</color>
     <color name="chw_accent">@color/primary</color>
     <color name="primaryAccent">@color/primary</color>
