@@ -2,6 +2,7 @@ package org.smartregister.chw.presenter;
 
 import android.content.Context;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Triple;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,6 +40,16 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter implement
         return new ChildRegisterModel();
     }
 
+    @Override
+    public void startForm(String formName, String entityId, String metadata, String currentLocationId) throws Exception {
+        if (StringUtils.isBlank(entityId)) {
+            Triple<String, String, String> triple = Triple.of(formName, metadata, currentLocationId);
+            this.interactor.getNextUniqueId(triple, this);
+        } else {
+            JSONObject form = this.model.getFormAsJson(formName, entityId, currentLocationId);
+            this.getView().startFormActivity(form);
+        }
+    }
 
     @Override
     public void saveAncMember(String jsonString, boolean isEditMode) {
