@@ -20,6 +20,7 @@ import org.smartregister.chw.interactor.FamilyChangeContractInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
 import org.smartregister.chw.model.ChildRegisterModel;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.contract.FamilyProfileContract;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.location.helper.LocationHelper;
@@ -129,7 +130,7 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter implement
 
     @Override
     public void onRegistrationSaved(String encounterType, boolean isEdit, boolean hasChildren) {
+        getView().refreshMemberList(FetchStatus.fetched);
         getView().hideProgressDialog();
-        Timber.d("Saved successfully!");
     }
 }
