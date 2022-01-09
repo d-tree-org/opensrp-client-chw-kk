@@ -33,20 +33,21 @@
             <RelativeLayout
                 android:id="@+id/rlLogo"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:paddingTop="30dp">
+                android:paddingTop="30dp"
+                android:paddingBottom="10dp">
 
                 <ImageView
                     android:id="@+id/ivLogo"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:contentDescription="@string/nav_logo"
-                    android:src="@drawable/ic_logo"
-                    android:visibility="gone" />
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_logo" />
 
                 <TextView
                     android:id="@+id/tvLogo"
@@ -57,7 +58,8 @@
                     android:fontFamily="@font/roboto_light"
                     android:textColor="@color/primary"
                     android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -79,28 +81,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/tvRegisters"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:fontFamily="@font/roboto_bold"
-                        android:text="@string/nav_registers"
-                        android:textColor="@color/black_tranparent_50"
-                        android:textSize="20sp" />
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvOptions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvRegisters"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="15dp"
                         android:layout_marginEnd="15dp"
                         android:layout_marginBottom="15dp" />
 
@@ -259,10 +243,8 @@
                         <RelativeLayout
                             android:id="@+id/rlIconLang"
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginBottom="15dp">
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp">
 
                             <ImageView
                                 android:id="@+id/ivIconLang"
@@ -278,24 +260,23 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_toEndOf="@+id/ivIconLang"
                                 android:layout_toRightOf="@+id/ivIconLang"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/google_sans_medium"
                                 android:text="English"
                                 android:textColor="@color/black_tranparent_50"
-                                android:textSize="18sp" />
+                                android:textSize="16sp" />
 
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/rlIconDevice"
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginBottom="15dp">
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp">
 
                             <ImageView
                                 android:id="@+id/ivIconDevice"
@@ -311,24 +292,23 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_toEndOf="@+id/ivIconDevice"
                                 android:layout_toRightOf="@+id/ivIconDevice"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/google_sans_medium"
                                 android:text="@string/device_to_device"
                                 android:textColor="@color/black_tranparent_50"
-                                android:textSize="18sp" />
+                                android:textSize="16sp" />
 
                         </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/rlLogout"
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginBottom="15dp">
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="15dp">
 
                             <ImageView
                                 android:id="@+id/ivLogout"
@@ -344,14 +324,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginLeft="10dp"
+                                android:layout_marginLeft="15dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_toEndOf="@+id/ivLogout"
                                 android:layout_toRightOf="@+id/ivLogout"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/google_sans_medium"
                                 android:text="@string/log_out_as"
                                 android:textColor="@color/black_tranparent_50"
-                                android:textSize="18sp" />
+                                android:textSize="16sp" />
 
                         </RelativeLayout>
 
@@ -378,6 +358,7 @@
                 <RelativeLayout
                     android:id="@+id/rlIconSync"
                     android:layout_width="40dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_height="wrap_content">
 
                     <ImageView
@@ -416,6 +397,9 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
                         android:textSize="16sp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:fontFamily="@font/google_sans_medium"
                         android:visibility="invisible" />
 
                     <TextView
@@ -442,16 +426,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="4dp"
                     android:layout_toEndOf="@+id/rlIconSync"
                     android:clickable="true"
                     android:ellipsize="end"
                     android:focusable="true"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/google_sans_medium"
                     android:maxLines="1"
                     android:text="@string/nav_sync"
                     android:textColor="@color/black_text_color"
-                    android:textSize="18sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tvSyncTimeTitle"

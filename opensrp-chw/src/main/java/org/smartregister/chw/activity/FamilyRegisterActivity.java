@@ -11,6 +11,8 @@ import org.smartregister.chw.core.activity.CoreFamilyRegisterActivity;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.fragment.FamilyRegisterFragment;
 import org.smartregister.chw.listener.ChwBottomNavigationListener;
+import org.smartregister.chw.model.FamilyRegisterModel;
+import org.smartregister.chw.presenter.FamilyRegisterPresenter;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.helper.BottomNavigationHelper;
@@ -38,6 +40,11 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
     protected void registerBottomNavigation() {
         super.registerBottomNavigation();
         FamilyRegisterActivity.registerBottomNavigation(bottomNavigationHelper, bottomNavigationView, this);
+    }
+
+    @Override
+    protected void initializePresenter() {
+        presenter = new FamilyRegisterPresenter(this, new FamilyRegisterModel());
     }
 
     @Override
