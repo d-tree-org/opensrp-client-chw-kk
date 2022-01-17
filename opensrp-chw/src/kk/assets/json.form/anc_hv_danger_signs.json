@@ -65,39 +65,11 @@
         ],
         "options": [
           {
-            "key": "chk_fever",
-            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_fever.text}}",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
             "key": "chk_bleeding_vaginally",
             "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_bleeding_vaginally.text}}",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_server_headache",
-            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_server_headache.text}}",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_convulsions",
-            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_convulsions.text}}",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
-            "key": "chk_difficulty_breathing",
-            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_difficulty_breathing.text}}",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_severe_abdominal_pain",
@@ -107,11 +79,116 @@
             "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
+            "key": "chk_server_headache",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_server_headache.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_fever",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_fever.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
             "key": "chk_swollen_face",
             "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_swollen_face.text}}",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "460AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_vaginal_discharge",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_vaginal_discharge.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_liquid_from_vaginal",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_liquid_from_vaginal.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_early_labour_pain",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_early_labour_pain.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_pallor",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_pallor.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_loss_consciousness",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_loss_consciousness.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_fetal_movement",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_fetal_movement.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_tinnitus",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_tinnitus.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_fatigue",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_fatigue.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_dizziness",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_dizziness.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_severe_frontal_headache",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_severe_frontal_headache.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_signs_of_malaria",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_signs_of_malaria.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_difficulty_breathing",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_difficulty_breathing.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_convulsions",
+            "text": "{{anc_hv_danger_signs.step1.danger_signs_present.options.chk_convulsions.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           },
           {
             "key": "chk_none",
@@ -146,7 +223,18 @@
                   "chk_convulsions",
                   "chk_difficulty_breathing",
                   "chk_severe_abdominal_pain",
-                  "chk_swollen_face"
+                  "chk_swollen_face",
+                  "chk_fatigue",
+                  "chk_tinnitus",
+                  "chk_fetal_movement",
+                  "chk_loss_consciousness",
+                  "chk_pallor",
+                  "chk_early_labour_pain",
+                  "chk_vaginal_discharge",
+                  "chk_swollen_face",
+                  "chk_signs_of_malaria",
+                  "chk_severe_frontal_headache",
+                  "chk_dizziness"
                 ]
               }
             ]
@@ -154,28 +242,24 @@
         }
       },
       {
-        "key": "danger_signs_counseling",
+        "key": "danger_signs_absent_toaster",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "{{anc_hv_danger_signs.step1.danger_signs_counseling.hint}}",
-        "values": [
-          "{{anc_hv_danger_signs.step1.danger_signs_counseling.values[0]}}",
-          "{{anc_hv_danger_signs.step1.danger_signs_counseling.values[1]}}"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "openmrs_choice_ids": {
-          "Yes": "1267AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "{{anc_hv_danger_signs.step1.danger_signs_counseling.v_required.err}}"
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_danger_signs.step1.danger_signs_absent_toaster.text}}",
+        "text_color": "#00cf71",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_none"
+                ]
+              }
+            ]
+          }
         }
       }
     ]
