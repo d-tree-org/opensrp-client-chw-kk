@@ -223,7 +223,6 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         public void onPayloadReceived(String jsonPayload) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
-                danger_signs_counseling = JsonFormUtils.getValue(jsonObject, "danger_signs_counseling");
                 danger_signs_present = JsonFormUtils.getCheckBoxValue(jsonObject, "danger_signs_present");
             } catch (JSONException e) {
                 Timber.e(e);
@@ -247,25 +246,15 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return MessageFormat.format("Danger signs: {0}", danger_signs_present) +
-                    "\n" +
-                    MessageFormat.format("Health facility counselling {0}",
-                            (danger_signs_counseling.equalsIgnoreCase("Yes") ? context.getString(R.string.done).toLowerCase() : context.getString(R.string.not_done).toLowerCase())
-                    );
+            return MessageFormat.format("Danger signs: {0}", danger_signs_present);
         }
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            if (StringUtils.isBlank(danger_signs_counseling)) {
+            if (StringUtils.isBlank(danger_signs_present)) {
                 return BaseAncHomeVisitAction.Status.PENDING;
-            }
-
-            if (danger_signs_counseling.equalsIgnoreCase("Yes")) {
-                return BaseAncHomeVisitAction.Status.COMPLETED;
-            } else if (danger_signs_counseling.equalsIgnoreCase("No")) {
-                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             } else {
-                return BaseAncHomeVisitAction.Status.PENDING;
+                return BaseAncHomeVisitAction.Status.COMPLETED;
             }
         }
 
