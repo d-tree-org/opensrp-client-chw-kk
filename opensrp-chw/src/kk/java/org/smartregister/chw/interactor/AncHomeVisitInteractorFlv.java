@@ -78,14 +78,16 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         dateMap.putAll(ContactUtil.getContactWeeks(isFirst, lastContact, lastMenstrualPeriod));
 
         evaluateDangerSigns(actionList, details, context);
-        evaluateHealthFacilityVisit(actionList, details, memberObject, dateMap, context);
+
+
+        /*evaluateHealthFacilityVisit(actionList, details, memberObject, dateMap, context);
         evaluatePregnancyRisk(actionList, details, context);
         evaluateFamilyPlanning(actionList, details, context);
         evaluateNutritionStatus(actionList, details, context);
         evaluateCounsellingStatus(actionList, details, context);
         evaluateMalaria(actionList, details, context);
         evaluateObservation(actionList, details, context);
-        evaluateRemarks(actionList, details, context);
+        evaluateRemarks(actionList, details, context);*/
 
         return actionList;
     }
