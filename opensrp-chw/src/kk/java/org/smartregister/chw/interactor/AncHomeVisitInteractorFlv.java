@@ -78,13 +78,14 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         dateMap.putAll(ContactUtil.getContactWeeks(isFirst, lastContact, lastMenstrualPeriod));
 
         evaluateDangerSigns(actionList, details, context);
+        evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
+        evaluateCounsellingStatus(actionList, details, context);
 
-
-        /*evaluateHealthFacilityVisit(actionList, details, memberObject, dateMap, context);
+        /*
         evaluatePregnancyRisk(actionList, details, context);
         evaluateFamilyPlanning(actionList, details, context);
         evaluateNutritionStatus(actionList, details, context);
-        evaluateCounsellingStatus(actionList, details, context);
+
         evaluateMalaria(actionList, details, context);
         evaluateObservation(actionList, details, context);
         evaluateRemarks(actionList, details, context);*/
@@ -102,6 +103,22 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withHelper(new DangerSignsAction())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
+    }
+
+    private void evaluateBirthPreparedness(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                             Map<String, List<VisitDetail>> details,
+                                             final MemberObject memberObject,
+                                             Map<Integer, LocalDate> dateMap,
+                                             final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        String visit_title = MessageFormat.format("Birth Preparedness", memberObject.getConfirmedContacts() + 1);
+        BaseAncHomeVisitAction facility_visit = new BaseAncHomeVisitAction.Builder(context, visit_title)
+                .withOptional(false)
+                .withDetails(details)
+                .withHelper(new BirthPreparednessAction())
+                .withFormName("anc_hv_birth_preparedness")
+                .build();
+
+        actionList.put(visit_title, facility_visit);
     }
 
     private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -150,7 +167,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         BaseAncHomeVisitAction counselling_ba = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_counselling_task))
                 .withOptional(false)
                 .withDetails(details)
-                .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getCOUNSELLING())
+                .withFormName("anc_hv_counseling")
                 .withHelper(new CounsellingStatusAction())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_counselling_task), counselling_ba);
@@ -263,6 +280,56 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
             Timber.v("onPayloadReceived");
+        }
+    }
+
+    private class BirthPreparednessAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+
+        private Context context;
+
+        @Override
+        public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String jsonPayload) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction ancHomeVisitAction) {
+
         }
     }
 
