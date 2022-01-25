@@ -101,6 +101,8 @@ public class EnvironmentSelectDialogFragment extends DialogFragment {
     private void restartLoginActivity() {
         Intent intent = requireActivity().getIntent();
         requireActivity().finish();
+        requireActivity().overridePendingTransition(0, 0);
         requireActivity().startActivity(intent);
+        requireActivity().overridePendingTransition(0, 0);
     }
 }
