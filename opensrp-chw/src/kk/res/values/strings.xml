@@ -11,4 +11,9 @@
     <string name="add_anc_member">ANC Member</string>
     <string name="add_care_giver_member">Caregiver</string>
 
+    <!--Settings -->
+    <string name="switch_environment">Switch Environment</string>
+    <string name="switch_environment_message">You are about to switch from %s environment. This procedure will wipe out all of your device data, you need to make sure everything is synced before you proceed. Do you want to switch the environment?</string>
+    <string name="switch_environment_title">Alert! Switching Environment</string>
+
 </resources>
