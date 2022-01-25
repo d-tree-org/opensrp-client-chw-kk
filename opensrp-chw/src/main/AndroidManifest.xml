@@ -163,7 +163,7 @@
             android:name=".activity.ClientReferralActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activity.KizaziLoginActivity"
             android:icon="@drawable/ic_launcher"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -207,6 +207,9 @@
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".core.activity.HIA2ReportsActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
+        <activity
+            android:name=".activity.LoginActivity"
             android:theme="@style/ChwTheme.NoActionBar" />
         <activity
             android:name=".core.activity.ReportSummaryActivity"
@@ -268,6 +271,9 @@
 
         <activity android:name=".activity.GuideBooksCounselingActivity"
             android:theme="@style/ChwTheme.NoActionBar"/>
+
+        <activity android:name=".activity.KkEnvironmentSwitchingActivity"
+            android:theme="@style/ChwTheme.NoActionBar" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
