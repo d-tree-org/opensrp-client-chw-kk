@@ -57,13 +57,12 @@ public class EnvironmentSelectDialogFragment extends DialogFragment {
             updateUrl(BuildConfig.opensrp_url_production);
             Objects.requireNonNull(allSharedPreferences.getPreferences()).edit().putString(KkSwitchConstants.KIZAZI_ENVIRONMENT, KkSwitchConstants.PRODUCTION_ENV).apply();
             allSharedPreferences.getPreferences().edit().putBoolean(KkSwitchConstants.IS_PRODUCTION_ENABLED, true).apply();
-            restartLoginActivity();
         } else {
             Objects.requireNonNull(allSharedPreferences.getPreferences()).edit().putString(KkSwitchConstants.KIZAZI_ENVIRONMENT, KkSwitchConstants.TEST_ENV).apply();
             allSharedPreferences.getPreferences().edit().putBoolean(KkSwitchConstants.IS_PRODUCTION_ENABLED, false).apply();
             updateUrl(BuildConfig.opensrp_url_debug);
-            restartLoginActivity();
         }
+        restartLoginActivity();
 
     }
 
