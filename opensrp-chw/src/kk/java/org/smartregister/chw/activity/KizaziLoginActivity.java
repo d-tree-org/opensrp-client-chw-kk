@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.smartregister.AllConstants;
@@ -64,6 +65,7 @@ public class KizaziLoginActivity extends LoginActivity{
                     updateEnvironmentUrl(BuildConfig.opensrp_url_production);
                 } else {
                     updateEnvironmentUrl(BuildConfig.opensrp_url_debug);
+                    setTestEnvironmentIndicator();
                 }
             } else {
                 EnvironmentSelectDialogFragment switchFrag = new EnvironmentSelectDialogFragment();
@@ -100,6 +102,13 @@ public class KizaziLoginActivity extends LoginActivity{
         } catch (MalformedURLException e) {
             Timber.e("Malformed Url: %s", baseUrl);
         }
+    }
+
+    private void setTestEnvironmentIndicator() {
+
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.top_section);
+        linearLayout.setBackgroundColor(getColor(R.color.translucent_yellow));
+
     }
 
 }
