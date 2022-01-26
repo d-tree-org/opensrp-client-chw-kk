@@ -33,6 +33,13 @@ priority: 1
 condition: "step1_last_clinic_visit.contains('More than a month ago')"
 actions:
   - "isRelevant = true"
+---
+name: step1_services_received
+description: Services that the woman has received at the clinic
+priority: 1
+condition: "step1_number_anc_clinic_visit > 0"
+actions:
+  - "isRelevant = true"
 
 
 
