@@ -1,0 +1,427 @@
+{
+  "count": "1",
+  "encounter_type": "Home Visit - Clinic Attendance",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{anc_hv_clinic_attendance.step1.title}}",
+    "fields": [
+      {
+        "key": "clinic_attendance_heading",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_clinic_attendance.step1.clinic_attendance_heading.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "number_anc_clinic_visit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "edit_text",
+        "hint": "{{anc_hv_clinic_attendance.step1.number_anc_clinic_visit.hint}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{anc_hv_clinic_attendance.step1.v_numeric_integer.err}}"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{anc_hv_clinic_attendance.step1.v_numeric.err}}"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "{{anc_hv_clinic_attendance.step1.v_min.err}}"
+        },
+        "v_max": {
+          "value": "8",
+          "err": "{{anc_hv_clinic_attendance.step1.v_max.err}}"
+        },
+        "v_required": {
+          "value": true,
+          "err": "{{anc_hv_clinic_attendance.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "reason_not_attending_visit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "chk_not_important",
+            "text": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.options.chk_not_important.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_bad_experience",
+            "text": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.options.chk_bad_experience.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_afraid",
+            "text": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.options.chk_afraid.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_perception",
+            "text": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.options.chk_perception.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_no_money",
+            "text": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.options.chk_no_money.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_no_partner_support",
+            "text": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.options.chk_no_partner_support.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_no_privacy",
+            "text": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.options.chk_no_privacy.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_too_early",
+            "text": "{{anc_hv_clinic_attendance.step1.reason_not_attending_visit.options.chk_too_early.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_clinic_attendance.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_clinic_attendance_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "important_attend_eight_visits_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_clinic_attendance.step1.important_attend_eight_visits_toaster.text}}",
+        "text_color": "#F91A00",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_clinic_attendance_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "first_clinic_visit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "edit_text",
+        "hint": "{{anc_hv_clinic_attendance.step1.first_clinic_visit.hint}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{anc_hv_clinic_attendance.step1.v_numeric_integer.err}}"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{anc_hv_clinic_attendance.step1.v_numeric.err}}"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "{{anc_hv_clinic_attendance.step1.v_min.err}}"
+        },
+        "v_max": {
+          "value": "40",
+          "err": "{{anc_hv_clinic_attendance.step1.v_max.err}}"
+        },
+        "v_required": {
+          "value": true,
+          "err": "{{anc_hv_clinic_attendance.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_clinic_attendance_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "last_clinic_visit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_clinic_attendance.step1.last_clinic_visit.hint}}",
+        "values": [
+          "{{anc_hv_clinic_attendance.step1.last_clinic_visit.value[0]}}",
+          "{{anc_hv_clinic_attendance.step1.last_clinic_visit.value[1]}}",
+          "{{anc_hv_clinic_attendance.step1.last_clinic_visit.value[2]}}",
+          "{{anc_hv_clinic_attendance.step1.last_clinic_visit.value[3]}}"
+        ],
+        "keys": [
+          "1 week ago",
+          "2 weeks ago",
+          "A month ago",
+          "More than a month ago"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_clinic_attendance.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_clinic_attendance_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "early_clinic_attendance_advice_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_clinic_attendance.step1.early_clinic_attendance_advice_toaster.text}}",
+        "text_color": "#F91A00",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_clinic_attendance_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "services_received",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_hv_clinic_attendance.step1.services_received.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "chk_weight",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_weight.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_height",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_height.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_blood_test",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_blood_test.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sugar_level",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_sugar_level.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_pregnancy_development",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_sugar_level.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_baby_heartbeat",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_baby_heartbeat.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_syphilis_counselling",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_syphilis_counselling.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_hiv_test",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_hiv_test.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_urine_test",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_urine_test.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_deworm",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_deworm.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_anaemia_drug",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_anaemia_drug.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_tetanus_vaccine",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_tetanus_vaccine.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sp_doses",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_sp_doses.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_bed_nets",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_bed_nets.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_delivery_plan_counselling",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_delivery_plan_counselling.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_newborn_care_counselling",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_newborn_care_counselling.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_ultrasound",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_ultrasound.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_none",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_none.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_clinic_attendance.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_clinic_attendance_relevance.yml"
+            }
+          }
+        }
+      }
+
+    ]
+  },
+  "properties_file_name": "anc_hv_birth_preparedness"
+}
