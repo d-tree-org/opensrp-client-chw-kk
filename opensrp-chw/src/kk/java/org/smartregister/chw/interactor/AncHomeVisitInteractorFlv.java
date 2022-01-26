@@ -27,6 +27,7 @@ import org.smartregister.chw.util.JsonFormUtils;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -52,6 +53,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 details = VisitUtils.getVisitGroups(AncLibrary.getInstance().visitDetailsRepository().getVisits(lastVisit.getVisitId()));
             }
         }
+
+        // get all ANC visits
+        List<Visit> allAncVisits = new ArrayList<>();
+        allAncVisits = AncLibrary.getInstance().visitRepository().getVisits(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT);
 
         // get contact
         LocalDate lastContact = new DateTime(memberObject.getDateCreated()).toLocalDate();
@@ -79,6 +84,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
+        evaluateAncClinicAttendance(actionList, details, memberObject, allAncVisits, context);
         evaluateCounsellingStatus(actionList, details, context);
 
         /*
@@ -111,14 +117,34 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                              Map<Integer, LocalDate> dateMap,
                                              final Context context) throws BaseAncHomeVisitAction.ValidationException {
         String visit_title = MessageFormat.format("Birth Preparedness", memberObject.getConfirmedContacts() + 1);
-        BaseAncHomeVisitAction facility_visit = new BaseAncHomeVisitAction.Builder(context, visit_title)
+        BaseAncHomeVisitAction birth_preparedness = new BaseAncHomeVisitAction.Builder(context, visit_title)
                 .withOptional(false)
                 .withDetails(details)
                 .withHelper(new BirthPreparednessAction())
                 .withFormName("anc_hv_birth_preparedness")
                 .build();
 
-        actionList.put(visit_title, facility_visit);
+        actionList.put(visit_title, birth_preparedness);
+    }
+
+    private void evaluateAncClinicAttendance(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                             Map<String, List<VisitDetail>> details,
+                                             final MemberObject memberObject,
+                                             List<Visit> allVisits,
+                                             final Context context) throws BaseAncHomeVisitAction.ValidationException {
+
+        if (allVisits.size() > 2)
+            return;
+
+        String visit_title = MessageFormat.format("ANC Clinic attendance", allVisits.size() + 1);
+        BaseAncHomeVisitAction anc_clinic_attendance = new BaseAncHomeVisitAction.Builder(context, visit_title)
+                .withOptional(true)
+                .withDetails(details)
+                .withHelper(new ClinicAttendanceAction())
+                .withFormName("anc_hv_clinic_attendance")
+                .build();
+
+        actionList.put(visit_title, anc_clinic_attendance);
     }
 
     private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -329,6 +355,56 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public void onPayloadReceived(BaseAncHomeVisitAction ancHomeVisitAction) {
+
+        }
+    }
+
+    private class ClinicAttendanceAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+
+        private Context context;
+
+        @Override
+        public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String s) {
+
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String s) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
 
         }
     }
