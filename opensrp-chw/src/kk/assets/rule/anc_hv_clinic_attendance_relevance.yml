@@ -1,0 +1,41 @@
+---
+name: step1_reason_not_attending_visit
+description: Reason for not attending the ANC Clinic Visit
+priority: 1
+condition: "step1_number_anc_clinic_visit == 0"
+actions:
+  - "isRelevant = true"
+---
+name: step1_important_attend_eight_visits_toaster
+description: Not to remind ANC mother importance of attending all the eight visits
+priority: 1
+condition: "step1_number_anc_clinic_visit == 0"
+actions:
+  - "isRelevant = true"
+---
+name: step1_first_clinic_visit
+description: The first time an anc mother has attended clinic
+priority: 1
+condition: "step1_number_anc_clinic_visit > 0"
+actions:
+  - "isRelevant = true"
+---
+name: step1_last_clinic_visit
+description: The last time an anc mother has attended clinic
+priority: 1
+condition: "step1_number_anc_clinic_visit > 0"
+actions:
+  - "isRelevant = true"
+---
+name: step1_early_clinic_attendance_advice_toaster
+description: Advice the woman to attend ANC clinic as soon as possible
+priority: 1
+condition: "step1_last_clinic_visit.contains('More than a month ago')"
+actions:
+  - "isRelevant = true"
+
+
+
+
+
+
