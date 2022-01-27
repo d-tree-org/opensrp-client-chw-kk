@@ -1,0 +1,418 @@
+{
+  "count": "1",
+  "encounter_type": "Home Visit - Nutrition counselling",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{anc_hv_nutrition_counselling.step1.title.text}}",
+    "fields": [
+      {
+        "key": "nutrition_counselling_heading",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_nutrition_counselling.step1.nutrition_counselling_heading.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "foods_available",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_hv_nutrition_counselling.step1.foods_available.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "chk_protein",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_protein.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_carbohydrates",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_carbohydrates.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_fruits",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_fruits.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_vegetables",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_vegetables.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_oil_or_fats",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_oil_or_fats.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_nutrition_counselling.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "foods_consumed_last_week",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_hv_nutrition_counselling.step1.foods_consumed_last_week.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "chk_protein",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_protein.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_carbohydrates",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_carbohydrates.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_fruits",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_fruits.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_vegetables",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_vegetables.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_oil_or_fats",
+            "text": "{{anc_hv_nutrition_counselling.step1.foods_available.options.chk_oil_or_fats.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_nutrition_counselling.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "important_nutrition_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.important_nutrition_note.toaster}}",
+        "text_color": "#000000",
+        "toaster_type": "info"
+      },
+      {
+        "key": "nutrition_restrictions",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{anc_hv_nutrition_counselling.step1.nutrition_restrictions.hint}}",
+        "hint": "{{anc_hv_nutrition_counselling.step1.nutrition_restrictions.hint}}",
+        "values": [
+          "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
+          "{{anc_hv_nutrition_counselling.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_nutrition_counselling.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "unusual_things_crave",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{anc_hv_nutrition_counselling.step1.unusual_things_crave.hint}}",
+        "hint": "{{anc_hv_nutrition_counselling.step1.unusual_things_crave.hint}}",
+        "values": [
+          "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
+          "{{anc_hv_nutrition_counselling.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_nutrition_counselling.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "eaten_unusual_things",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{anc_hv_nutrition_counselling.step1.eaten_unusual_things.hint}}",
+        "hint": "{{anc_hv_nutrition_counselling.step1.eaten_unusual_things.hint}}",
+        "values": [
+          "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
+          "{{anc_hv_nutrition_counselling.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_nutrition_counselling.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "eaten_unusual_things_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.eaten_unusual_things_note.toaster}}",
+        "text_color": "#2C0000",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_nutrition_counselling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "important_iron_tablet_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.important_iron_tablet_note.toaster}}",
+        "text_color": "#2C0000",
+        "toaster_type": "info"
+      },
+      {
+        "key": "anaemia_tablets",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{anc_hv_nutrition_counselling.step1.anaemia_tablets.hint}}",
+        "hint": "{{anc_hv_nutrition_counselling.step1.anaemia_tablets.hint}}",
+        "values": [
+          "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
+          "{{anc_hv_nutrition_counselling.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_nutrition_counselling.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "no_anaemia_tablets",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.no_anaemia_tablets.toaster}}",
+        "text_color": "#2C0000",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_nutrition_counselling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "meals_per_day",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{anc_hv_nutrition_counselling.step1.meals_per_day.hint}}",
+        "hint": "{{anc_hv_nutrition_counselling.step1.meals_per_day.hint}}",
+        "values": [
+          "{{anc_hv_nutrition_counselling.step1.meals_per_day.value[0].text}}",
+          "{{anc_hv_nutrition_counselling.step1.meals_per_day.value[1].text}}",
+          "{{anc_hv_nutrition_counselling.step1.meals_per_day.value[2].text}}"
+        ],
+        "keys": [
+          "three",
+          "two",
+          "one"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_nutrition_counselling.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "meals_per_day_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.meals_per_day_note.toaster}}",
+        "text_color": "#2C0000",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_nutrition_counselling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "folic_acid_tablets",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{anc_hv_nutrition_counselling.step1.folic_acid_tablets.hint}}",
+        "hint": "{{anc_hv_nutrition_counselling.step1.folic_acid_tablets.hint}}",
+        "values": [
+          "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
+          "{{anc_hv_nutrition_counselling.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_nutrition_counselling.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "folic_acid_tablets_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.folic_acid_tablets_note.toaster}}",
+        "text_color": "#2C0000",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_nutrition_counselling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "completing_medications_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.completing_medications_note.toaster}}",
+        "text_color": "#2C0000",
+        "toaster_type": "warning"
+      },
+      {
+        "key": "traditional_herbs_warning",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.traditional_herbs_warning.toaster}}",
+        "text_color": "#2C0000",
+        "toaster_type": "warning"
+      },
+      {
+        "key": "continue_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_nutrition_counselling.step1.continue_bango_kitita.toaster}}",
+        "text_color": "#2C0000",
+        "toaster_type": "warning"
+      }
+    ]
+  },
+  "properties_file_name": "anc_hv_nutrition_counselling"
+}
