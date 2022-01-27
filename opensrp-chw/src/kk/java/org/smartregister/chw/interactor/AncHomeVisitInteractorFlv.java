@@ -4,6 +4,7 @@ import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONArray;
@@ -80,6 +81,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
         evaluateCounsellingStatus(actionList, details, context);
+        evaluateHIVAIDSGeneralInformation(actionList, lastMenstrualPeriod, memberObject, context);
 
         /*
         evaluatePregnancyRisk(actionList, details, context);
@@ -119,6 +121,33 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .build();
 
         actionList.put(visit_title, facility_visit);
+    }
+
+    private void evaluateHIVAIDSGeneralInformation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                                   LocalDate lmp, final MemberObject memberObject,
+                                                   final Context context) throws BaseAncHomeVisitAction.ValidationException {
+
+
+        if (isFirstVisit(memberObject, lmp)) {
+
+            String visit_tittle = context.getString(R.string.hiv_aids_general_info);
+
+            BaseAncHomeVisitAction hiv_aids_general_info = new BaseAncHomeVisitAction.Builder(context, visit_tittle)
+                    .withOptional(false)
+                    .withFormName("anc_hv_hiv_aids_general_information")
+                    .build();
+
+            actionList.put(visit_tittle, hiv_aids_general_info);
+        }
+    }
+
+    private boolean isFirstVisit(final MemberObject memberObject, LocalDate lmp) {
+        int gaWeeks = Days.daysBetween(lmp, new LocalDate()).getDays() / 7;
+        Visit lastVisit = AncLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT);
+        // Assumption 6 months pregnancy is 24 weeks GA
+        boolean isFirst = gaWeeks < 24 && lastVisit == null;
+
+        return isFirst;
     }
 
     private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
