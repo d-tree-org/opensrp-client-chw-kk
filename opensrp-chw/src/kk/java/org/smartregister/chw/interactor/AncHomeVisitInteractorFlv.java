@@ -85,6 +85,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
         evaluateAncClinicAttendance(actionList, details, memberObject, allAncVisits, context);
+        evaluateNutritionCounselling(actionList, details, memberObject, allAncVisits, context);
         evaluateCounsellingStatus(actionList, details, context);
 
         /*
@@ -145,6 +146,26 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .build();
 
         actionList.put(visit_title, anc_clinic_attendance);
+    }
+
+    private void evaluateNutritionCounselling(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                             Map<String, List<VisitDetail>> details,
+                                             final MemberObject memberObject,
+                                             List<Visit> allVisits,
+                                             final Context context) throws BaseAncHomeVisitAction.ValidationException {
+
+        if (allVisits.size() > 2)
+            return;
+
+        String visit_title = MessageFormat.format("Nutrition Counselling", allVisits.size() + 1);
+        BaseAncHomeVisitAction nutrition_counselling = new BaseAncHomeVisitAction.Builder(context, visit_title)
+                .withOptional(false)
+                .withDetails(details)
+                .withHelper(new NutritionAction())
+                .withFormName("anc_hv_nutrition_counselling")
+                .build();
+
+        actionList.put(visit_title, nutrition_counselling);
     }
 
     private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -608,12 +629,12 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public void onPayloadReceived(String jsonPayload) {
-            try {
+            /*try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
                 nutrition_status = JsonFormUtils.getValue(jsonObject, "nutrition_status").toLowerCase();
             } catch (JSONException e) {
                 Timber.e(e);
-            }
+            }*/
         }
 
         @Override
@@ -633,14 +654,11 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return MessageFormat.format("{0}: {1}", context.getString(R.string.nutrition_status), StringUtils.capitalize(nutrition_status));
+            return MessageFormat.format("{0}: {1}", context.getString(R.string.nutrition_status), "TODO: Capture status");
         }
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            if (StringUtils.isBlank(nutrition_status)) {
-                return BaseAncHomeVisitAction.Status.PENDING;
-            }
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
 
