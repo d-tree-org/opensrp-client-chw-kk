@@ -654,7 +654,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return MessageFormat.format("{0}: {1}", context.getString(R.string.nutrition_status), "TODO: Capture status");
+            return MessageFormat.format("{0}: {1}", context.getString(R.string.nutrition_status), "Nutrition counselling complete");
         }
 
         @Override
