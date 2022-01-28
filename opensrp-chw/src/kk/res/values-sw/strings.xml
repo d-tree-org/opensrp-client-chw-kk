@@ -11,4 +11,8 @@
     <string name="add_anc_member">Mama Mjamzito</string>
     <string name="add_care_giver_member">Msimamizi</string>
 
+    <!-- home visit strings-->
+    <string name="anc_home_visit_gender_issues"> Gender Issues </string>
+
+
 </resources>
