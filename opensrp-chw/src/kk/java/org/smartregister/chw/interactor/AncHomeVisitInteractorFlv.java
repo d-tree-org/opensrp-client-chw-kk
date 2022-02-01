@@ -162,10 +162,11 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private void evaluateGenderIssues(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
                                            Map<String, List<VisitDetail>> details,
                                             final MemberObject memberObject,
-                                            List<Visit> allVisits,
+                                            List<Visit> allAncVisits,
                                            final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
-        if (allVisits.size() != 0)
+        //Check if visit 1 had already been conducted
+        if (allAncVisits.size() != 0)
             return;
 
         String visit_title = MessageFormat.format("Gender Issues", "");
