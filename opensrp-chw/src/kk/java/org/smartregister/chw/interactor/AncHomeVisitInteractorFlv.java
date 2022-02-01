@@ -87,7 +87,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateAncClinicAttendance(actionList, details, memberObject, allAncVisits, context);
         evaluateNutritionCounselling(actionList, details, memberObject, allAncVisits, context);
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
-        evaluateMalaria(actionList, details, context);
+        evaluateMalaria(actionList, details, context, allAncVisits);
 
         return actionList;
     }
@@ -182,7 +182,13 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
     private void evaluateMalaria(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
                                  Map<String, List<VisitDetail>> details,
-                                 final Context context) throws BaseAncHomeVisitAction.ValidationException {
+                                 final Context context,
+                                 List<Visit> allAncVisits) throws BaseAncHomeVisitAction.ValidationException {
+
+        //Check if first and second visit had already been conducted
+        if (allAncVisits.size() > 2)
+            return;
+
         BaseAncHomeVisitAction malaria_ba = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_malaria_prevention))
                 .withOptional(false)
                 .withDetails(details)
