@@ -341,6 +341,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private class ClinicAttendanceAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
 
         private Context context;
+        private String clinic_attendance;
 
         @Override
         public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
@@ -353,8 +354,13 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         }
 
         @Override
-        public void onPayloadReceived(String s) {
-
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                clinic_attendance = JsonFormUtils.getValue(jsonObject, "number_anc_clinic_visit").toLowerCase();
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
         }
 
         @Override
@@ -374,12 +380,16 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return null;
+            return MessageFormat.format("{0}: {1}", "Number of clinic attendance", clinic_attendance );
         }
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            return BaseAncHomeVisitAction.Status.COMPLETED;
+            if (StringUtils.isBlank(clinic_attendance)){
+                return BaseAncHomeVisitAction.Status.PENDING;
+            }else{
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            }
         }
 
         @Override
