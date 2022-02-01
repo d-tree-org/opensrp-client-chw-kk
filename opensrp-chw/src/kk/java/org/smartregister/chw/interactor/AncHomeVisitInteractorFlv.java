@@ -86,16 +86,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
         evaluateAncClinicAttendance(actionList, details, memberObject, allAncVisits, context);
         evaluateNutritionCounselling(actionList, details, memberObject, allAncVisits, context);
-        evaluateCounsellingStatus(actionList, details, context);
-
-        /*
-        evaluatePregnancyRisk(actionList, details, context);
-        evaluateFamilyPlanning(actionList, details, context);
-        evaluateNutritionStatus(actionList, details, context);
-
-        evaluateMalaria(actionList, details, context);
-        evaluateObservation(actionList, details, context);
-        evaluateRemarks(actionList, details, context);*/
+        evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
 
         return actionList;
     }
@@ -139,7 +130,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         String visit_title = MessageFormat.format("ANC Clinic attendance", allVisits.size() + 1);
         BaseAncHomeVisitAction anc_clinic_attendance = new BaseAncHomeVisitAction.Builder(context, visit_title)
-                .withOptional(true)
+                .withOptional(false)
                 .withDetails(details)
                 .withHelper(new ClinicAttendanceAction())
                 .withFormName("anc_hv_clinic_attendance")
@@ -162,62 +153,29 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withOptional(false)
                 .withDetails(details)
                 .withHelper(new NutritionAction())
-                .withFormName("anc_hv_nutrition_counselling")
+                .withFormName("anc_hv_gender_issues")
                 .build();
 
         actionList.put(visit_title, nutrition_counselling);
     }
 
-    private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                             Map<String, List<VisitDetail>> details,
-                                             final MemberObject memberObject,
-                                             Map<Integer, LocalDate> dateMap,
-                                             final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        String visit_title = MessageFormat.format(context.getString(R.string.anc_home_visit_facility_visit), memberObject.getConfirmedContacts() + 1);
-        BaseAncHomeVisitAction facility_visit = new BaseAncHomeVisitAction.Builder(context, visit_title)
-                .withOptional(false)
-                .withDetails(details)
-                .withHelper(new HealthFacilityAction(memberObject, dateMap))
-                .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getHealthFacilityVisit())
-                .build();
-
-        actionList.put(visit_title, facility_visit);
-    }
-
-    private void evaluateFamilyPlanning(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                        Map<String, List<VisitDetail>> details,
-                                        final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        BaseAncHomeVisitAction family_planning_ba = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_family_planning))
-                .withOptional(false)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getFamilyPlanning())
-                .withHelper(new FamilyPlanningAction())
-                .build();
-        actionList.put(context.getString(R.string.anc_home_visit_family_planning), family_planning_ba);
-    }
-
-    private void evaluateNutritionStatus(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                         Map<String, List<VisitDetail>> details,
-                                         final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        BaseAncHomeVisitAction nutrition_ba = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_nutrition_status))
-                .withOptional(true)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getNutritionStatus())
-                .withHelper(new NutritionAction())
-                .build();
-        actionList.put(context.getString(R.string.anc_home_visit_nutrition_status), nutrition_ba);
-    }
-
-    private void evaluateCounsellingStatus(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+    private void evaluateGenderIssues(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
                                            Map<String, List<VisitDetail>> details,
+                                            final MemberObject memberObject,
+                                            List<Visit> allVisits,
                                            final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        BaseAncHomeVisitAction counselling_ba = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_counselling_task))
+
+        if (allVisits.size() != 0)
+            return;
+
+        String visit_title = MessageFormat.format("Gender Issues", "");
+        BaseAncHomeVisitAction gender_issues_counselling = new BaseAncHomeVisitAction.Builder(context, visit_title)
                 .withOptional(false)
                 .withDetails(details)
-                .withFormName("anc_hv_counseling")
-                .withHelper(new CounsellingStatusAction())
+                .withFormName("anc_hv_gender_issues")
+                .withHelper(new GenderIssuesAction())
                 .build();
-        actionList.put(context.getString(R.string.anc_home_visit_counselling_task), counselling_ba);
+        actionList.put(context.getString(R.string.anc_home_visit_gender_issues), gender_issues_counselling);
     }
 
     private void evaluateMalaria(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -720,6 +678,67 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
             }
 
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
+            Timber.v("onPayloadReceived");
+        }
+    }
+
+    private class GenderIssuesAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+
+        Context context;
+        private String counselling_given;
+
+        @Override
+        public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                counselling_given = JsonFormUtils.getValue(jsonObject, "gender_issues_counselling_status").toLowerCase();
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String s) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            String subTitle = (!counselling_given.contains("yes") ? context.getString(R.string.done).toLowerCase() : context.getString(R.string.not_done).toLowerCase());
+            return MessageFormat.format("{0} {1}", context.getString(R.string.counselling), subTitle);
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            if (counselling_given.contains("yes")){
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            }else {
+                return BaseAncHomeVisitAction.Status.PENDING;
+            }
         }
 
         @Override
