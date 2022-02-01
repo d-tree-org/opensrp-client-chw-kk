@@ -738,7 +738,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            String subTitle = (!counselling_given.contains("yes") ? context.getString(R.string.done).toLowerCase() : context.getString(R.string.not_done).toLowerCase());
+            String subTitle = (counselling_given.contains("yes") ? context.getString(R.string.done).toLowerCase() : context.getString(R.string.not_done).toLowerCase());
             return MessageFormat.format("{0} {1}", context.getString(R.string.counselling), subTitle);
         }
 
@@ -747,7 +747,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
             if (counselling_given.contains("yes")){
                 return BaseAncHomeVisitAction.Status.COMPLETED;
             }else {
-                return BaseAncHomeVisitAction.Status.PENDING;
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             }
         }
 
