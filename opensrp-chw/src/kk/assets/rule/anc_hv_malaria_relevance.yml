@@ -1,0 +1,7 @@
+---
+name: step1_malaria_protective_measure_other
+description: Other protective measure taken
+priority: 1
+condition: "step1_malaria_protective_measures.contains('chk_other')"
+actions:
+  - "isRelevant = true"
