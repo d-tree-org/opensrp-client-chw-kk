@@ -81,7 +81,8 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
         evaluateCounsellingStatus(actionList, details, context);
-        evaluateHIVAIDSGeneralInformation(actionList, lastMenstrualPeriod, memberObject, context);
+        evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);
+        evaluateKkBreastFeeding(actionList, details, memberObject, context);
 
         /*
         evaluatePregnancyRisk(actionList, details, context);
@@ -108,10 +109,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluateBirthPreparedness(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                             Map<String, List<VisitDetail>> details,
-                                             final MemberObject memberObject,
-                                             Map<Integer, LocalDate> dateMap,
-                                             final Context context) throws BaseAncHomeVisitAction.ValidationException {
+                                           Map<String, List<VisitDetail>> details,
+                                           final MemberObject memberObject,
+                                           Map<Integer, LocalDate> dateMap,
+                                           final Context context) throws BaseAncHomeVisitAction.ValidationException {
         String visit_title = MessageFormat.format("Birth Preparedness", memberObject.getConfirmedContacts() + 1);
         BaseAncHomeVisitAction facility_visit = new BaseAncHomeVisitAction.Builder(context, visit_title)
                 .withOptional(false)
@@ -123,12 +124,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         actionList.put(visit_title, facility_visit);
     }
 
-    private void evaluateHIVAIDSGeneralInformation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                                   LocalDate lmp, final MemberObject memberObject,
+    private void evaluateHIVAIDSGeneralInformation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList, final MemberObject memberObject,
                                                    final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
-
-        if (isFirstVisit(memberObject, lmp)) {
+        if (isFirstVisit(memberObject)) {
 
             String visit_tittle = context.getString(R.string.hiv_aids_general_info);
 
@@ -141,13 +140,60 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         }
     }
 
-    private boolean isFirstVisit(final MemberObject memberObject, LocalDate lmp) {
-        int gaWeeks = Days.daysBetween(lmp, new LocalDate()).getDays() / 7;
+    private void evaluateKkBreastFeeding(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                         Map<String, List<VisitDetail>> details, final MemberObject memberObject,
+                                         final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        if (isSecondVisit(memberObject) || isThirdVisit(memberObject)) {
+            String action_title = context.getString(R.string.breast_feeding_action_title);
+
+            BaseAncHomeVisitAction bread_feeding_action = new BaseAncHomeVisitAction.Builder(context, action_title)
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withHelper(new BreastFeedingActionHelper())
+                    .withFormName("anc_hv_breastfeeding")
+                    .build();
+
+            actionList.put(action_title, bread_feeding_action);
+        }
+
+    }
+
+    private boolean isFirstVisit(final MemberObject memberObject) {
+        int gaWeeks = memberObject.getGestationAge();
         Visit lastVisit = AncLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT);
         // Assumption 6 months pregnancy is 24 weeks GA
-        boolean isFirst = gaWeeks < 24 && lastVisit == null;
+        return gaWeeks < 24 || lastVisit == null;
+    }
 
-        return isFirst;
+    private boolean isSecondVisit(final MemberObject memberObject) {
+        int gaWeeks = memberObject.getGestationAge();
+        int numPrevVisits = getNumPrevVisits(memberObject);
+        Visit lastVisit = AncLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT);
+
+        LocalDate lastVisitDate = new LocalDate();
+        if (lastVisit != null) {
+            lastVisitDate = DateTimeFormat.forPattern("dd-MM-yyyy").parseLocalDate(lastVisit.getDate().toString());
+            // When there is no visit take the createdDate to be the last visit date
+        } else {
+            lastVisitDate = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parseLocalDate(memberObject.getDateCreated());
+        }
+
+        LocalDate lmp = DateTimeFormat.forPattern("dd-MM-yyyy").parseLocalDate(memberObject.getLastMenstrualPeriod());
+
+        int gaInLastVisit = Days.daysBetween(lmp, lastVisitDate).getDays() / 7;
+        // GA between 6 (24 weeks) months and 8 (32 weeks) months
+        // GA during the last visit was between 24 weeks and 32 weeks then she had the second visit
+        return (gaWeeks >= 24 && gaWeeks < 32) && !(gaInLastVisit >= 24 && gaInLastVisit < 32);
+    }
+
+    private boolean isThirdVisit(final MemberObject memberObject) {
+        int gaWeeks = memberObject.getGestationAge();
+
+        return gaWeeks >= 32;
+    }
+
+    private int getNumPrevVisits(MemberObject memberObject) {
+        return AncLibrary.getInstance().visitRepository().getVisits(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT).size();
     }
 
     private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -417,7 +463,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 int x = 0;
                 while (x < testDoneOptions.length()) {
                     JSONObject testDoneJsonOption = testDoneOptions.getJSONObject(x);
-                    if (!testDoneItems.contains(testDoneJsonOption.getString("text"))){
+                    if (!testDoneItems.contains(testDoneJsonOption.getString("text"))) {
                         jsonArrayItems.put(testDoneJsonOption);
                     }
                     x++;
@@ -431,10 +477,9 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 int i = 0;
                 while (i < immMedicineGivenOptions.length()) {
                     JSONObject immGivenJsonOption = immMedicineGivenOptions.getJSONObject(i);
-                    if(!immGivenJsonOption.getString("text").equalsIgnoreCase(CoreConstants.AncHealthFacilityVisitUtil.TETANUS_TOXOID)){
+                    if (!immGivenJsonOption.getString("text").equalsIgnoreCase(CoreConstants.AncHealthFacilityVisitUtil.TETANUS_TOXOID)) {
                         jsonArray.put(immGivenJsonOption);
-                    }
-                    else if(showTT){
+                    } else if (showTT) {
                         jsonArray.put(immGivenJsonOption);
                     }
                     i++;
@@ -933,6 +978,68 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
             Timber.v("onPayloadReceived");
+        }
+    }
+
+    private class BreastFeedingActionHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+
+        private String preg_woman_other_children;
+
+
+        @Override
+        public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
+
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String s) {
+
+            try {
+                JSONObject jsonObject = new JSONObject(s);
+                preg_woman_other_children = JsonFormUtils.getCheckBoxValue(jsonObject, "preg_woman_other_children");
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String s) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            if (StringUtils.isBlank(preg_woman_other_children)) {
+                return BaseAncHomeVisitAction.Status.PENDING;
+            } else {
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            }
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
+
         }
     }
 }
