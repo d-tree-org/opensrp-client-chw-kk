@@ -154,7 +154,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withOptional(false)
                 .withDetails(details)
                 .withHelper(new NutritionAction())
-                .withFormName("anc_hv_gender_issues")
+                .withFormName("anc_hv_nutrition_counselling")
                 .build();
 
         actionList.put(visit_title, nutrition_counselling);
@@ -766,8 +766,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private class MalariaAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
-        private String fam_llin;
-        private String llin_2days;
+        private String llin_last_night;
         private String llin_condition;
         private Context context;
 
@@ -785,8 +784,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         public void onPayloadReceived(String jsonPayload) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
-                fam_llin = JsonFormUtils.getValue(jsonObject, "fam_llin");
-                llin_2days = JsonFormUtils.getValue(jsonObject, "llin_2days");
+                llin_last_night = JsonFormUtils.getValue(jsonObject, "llin_last_night");
                 llin_condition = JsonFormUtils.getValue(jsonObject, "llin_condition");
             } catch (JSONException e) {
                 Timber.e(e);
@@ -811,25 +809,15 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public String evaluateSubTitle() {
             StringBuilder stringBuilder = new StringBuilder();
-            if (fam_llin.equalsIgnoreCase("No")) {
-                stringBuilder.append(MessageFormat.format("{0}: {1}\n", context.getString(R.string.uses_net), StringUtils.capitalize(fam_llin.trim().toLowerCase())));
-            } else {
-
-                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.uses_net), StringUtils.capitalize(fam_llin.trim().toLowerCase())));
-                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.slept_under_net), StringUtils.capitalize(llin_2days.trim().toLowerCase())));
-                stringBuilder.append(MessageFormat.format("{0}: {1}", context.getString(R.string.net_condition), StringUtils.capitalize(llin_condition.trim().toLowerCase())));
-            }
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.slept_under_net), StringUtils.capitalize(llin_last_night.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1}", context.getString(R.string.net_condition), StringUtils.capitalize(llin_condition.trim().toLowerCase())));
 
             return stringBuilder.toString();
         }
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            if (StringUtils.isBlank(fam_llin)) {
-                return BaseAncHomeVisitAction.Status.PENDING;
-            }
-
-            if (fam_llin.equalsIgnoreCase("Yes") && llin_2days.equalsIgnoreCase("Yes") && llin_condition.equalsIgnoreCase("Okay")) {
+            if (llin_last_night.equalsIgnoreCase("Yes") && llin_condition.equalsIgnoreCase("Okay")) {
                 return BaseAncHomeVisitAction.Status.COMPLETED;
             } else {
                 return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
