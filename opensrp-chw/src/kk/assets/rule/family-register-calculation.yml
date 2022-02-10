@@ -5,7 +5,6 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = step2_same_as_fam_name.contains('same_as_fam_name')? step1_fam_name : step2_surname"
-
 ---
 name: step2_gest_age
 description: Gestational age calculated
@@ -13,7 +12,6 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = (helper.getDifferenceDays(step2_edd != '' ? helper.subtractDuration(step2_edd,'280d')  : step2_last_menstrual_period != '' ? step2_last_menstrual_period : helper.getDateToday())-helper.getDifferenceDays(helper.getDateToday())) /7"
-
 ---
 name: step2_gest_age_note
 description: Gestational age calculated
@@ -21,7 +19,6 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = step2_gest_age + ' ' + step2_weeks"
-
 ---
 name: step2_edd
 description: Edd calculated
@@ -29,7 +26,13 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = step2_last_menstrual_period != '' ?  helper.addDuration(step2_last_menstrual_period,'280d') : ''"
-
+---
+name: step2_edd_note
+description: Edd calculated Note
+priority: 1
+condition: "true"
+actions:
+  - "calculation = step2_edd != '' ? step2_edd  : step2_last_menstrual_period != '' ? helper.addDuration(step2_last_menstrual_period,'280d' : '')"
 ---
 name: step2_gravida
 description: gravida calculated
@@ -37,7 +40,6 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = step2_no_prev_preg + 1"
-
 ---
 name: step2_last_menstrual_period
 description: last_menstrual_period calculated
@@ -45,11 +47,3 @@ priority: 1
 condition: "true"
 actions:
   - "calculation = helper.subtractDuration(step2_edd,'280d')"
-
----
-name: step2_edd_note
-description: Edd calculated
-priority: 1
-condition: "true"
-actions:
-  - "calculation = step2_edd != '' ? step2_edd  : step2_last_menstrual_period != '' ? helper.addDuration(step2_last_menstrual_period,'280d' : '')"
