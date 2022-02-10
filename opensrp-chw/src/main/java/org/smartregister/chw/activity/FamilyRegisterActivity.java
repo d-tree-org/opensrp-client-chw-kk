@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.activity.CoreFamilyRegisterActivity;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
@@ -15,6 +17,7 @@ import org.smartregister.chw.model.FamilyRegisterModel;
 import org.smartregister.chw.presenter.FamilyRegisterPresenter;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.Utils;
+import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
@@ -67,5 +70,29 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
     @Override
     public void startFormActivity(String s, String s1, Map<String, String> map) {
         Timber.v("startFormActivity");
+    }
+
+    @Override
+    protected void onActivityResultExtended(int requestCode, int resultCode, Intent data) {
+        if (requestCode == JsonFormUtils.REQUEST_CODE_GET_JSON && resultCode == RESULT_OK) {
+            try {
+                String jsonString = data.getStringExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON);
+                Timber.d(jsonString);
+                JSONObject form = new JSONObject(jsonString);
+                if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(org.smartregister.family.util.Utils.metadata().familyRegister.registerEventType)) {
+                    JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
+                    JSONObject consentField = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "fam_consent");
+                    assert consentField != null;
+                    JSONArray consent = consentField.getJSONArray("value");
+                    if (consent.get(0).equals("fam_consent_yes")){
+                        presenter().saveForm(jsonString, false);
+                    }else{
+                        finish();
+                    }
+                }
+            } catch (Exception e) {
+                Timber.e(e);
+            }
+        }
     }
 }
