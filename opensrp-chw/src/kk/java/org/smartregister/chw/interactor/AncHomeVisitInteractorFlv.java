@@ -125,11 +125,11 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluateHIVAIDSGeneralInformation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                                   LocalDate lmp, final MemberObject memberObject,
+                                                   final MemberObject memberObject,
                                                    final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
 
-        if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject, lmp)) {
+        if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject)) {
             String visit_tittle = context.getString(R.string.hiv_aids_general_info);
 
             BaseAncHomeVisitAction hiv_aids_general_info = new BaseAncHomeVisitAction.Builder(context, visit_tittle)
@@ -144,7 +144,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private void evaluateKkBreastFeeding(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
                                          Map<String, List<VisitDetail>> details, final MemberObject memberObject,
                                          final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        if (isSecondVisit(memberObject) || isThirdVisit(memberObject)) {
+        if (org.smartregister.chw.util.VisitUtils.isSecondVisit(memberObject) || org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject)) {
             String action_title = context.getString(R.string.breast_feeding_action_title);
 
             BaseAncHomeVisitAction bread_feeding_action = new BaseAncHomeVisitAction.Builder(context, action_title)
@@ -157,44 +157,6 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
             actionList.put(action_title, bread_feeding_action);
         }
 
-    }
-
-    private boolean isFirstVisit(final MemberObject memberObject) {
-        int gaWeeks = memberObject.getGestationAge();
-        Visit lastVisit = AncLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT);
-        // Assumption 6 months pregnancy is 24 weeks GA
-        return gaWeeks < 24 || lastVisit == null;
-    }
-
-    private boolean isSecondVisit(final MemberObject memberObject) {
-        int gaWeeks = memberObject.getGestationAge();
-        int numPrevVisits = getNumPrevVisits(memberObject);
-        Visit lastVisit = AncLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT);
-
-        LocalDate lastVisitDate = new LocalDate();
-        if (lastVisit != null) {
-            lastVisitDate = DateTimeFormat.forPattern("dd-MM-yyyy").parseLocalDate(lastVisit.getDate().toString());
-            // When there is no visit take the createdDate to be the last visit date
-        } else {
-            lastVisitDate = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parseLocalDate(memberObject.getDateCreated());
-        }
-
-        LocalDate lmp = DateTimeFormat.forPattern("dd-MM-yyyy").parseLocalDate(memberObject.getLastMenstrualPeriod());
-
-        int gaInLastVisit = Days.daysBetween(lmp, lastVisitDate).getDays() / 7;
-        // GA between 6 (24 weeks) months and 8 (32 weeks) months
-        // GA during the last visit was between 24 weeks and 32 weeks then she had the second visit
-        return (gaWeeks >= 24 && gaWeeks < 32) && !(gaInLastVisit >= 24 && gaInLastVisit < 32);
-    }
-
-    private boolean isThirdVisit(final MemberObject memberObject) {
-        int gaWeeks = memberObject.getGestationAge();
-
-        return gaWeeks >= 32;
-    }
-
-    private int getNumPrevVisits(MemberObject memberObject) {
-        return AncLibrary.getInstance().visitRepository().getVisits(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT).size();
     }
 
     private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
