@@ -86,8 +86,6 @@ public class FamilyRegisterActivity extends CoreFamilyRegisterActivity {
                     JSONArray consent = consentField.getJSONArray("value");
                     if (consent.get(0).equals("fam_consent_yes")){
                         presenter().saveForm(jsonString, false);
-                    }else{
-                        finish();
                     }
                 }
             } catch (Exception e) {
