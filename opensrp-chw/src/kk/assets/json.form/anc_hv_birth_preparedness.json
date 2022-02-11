@@ -1,0 +1,304 @@
+{
+  "count": "1",
+  "encounter_type": "Home Visit - Birth Preparedness",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{anc_hv_birth_preparedness.step1.title}}",
+    "fields": [
+      {
+        "key": "delivery_preparedness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_birth_preparedness.step1.delivery_preparedness.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "location_nearest_health_facility",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_birth_preparedness.step1.location_nearest_health_facility.hint}}",
+        "values": [
+          "{{anc_hv_birth_preparedness.step1.answer_yes}}",
+          "{{anc_hv_birth_preparedness.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_birth_preparedness.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "location_nearest_health_facility_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_birth_preparedness.step1.location_nearest_health_facility_toaster.text}}",
+        "text_color": "#F91A00",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_birth_preparedness_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "savings_preparedness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_birth_preparedness.step1.savings_preparedness.hint}}",
+        "values": [
+          "{{anc_hv_birth_preparedness.step1.answer_yes}}",
+          "{{anc_hv_birth_preparedness.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_birth_preparedness.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "savings_preparedness_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_birth_preparedness.step1.savings_preparedness_toaster.text}}",
+        "text_color": "#F91A00",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_birth_preparedness_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "birth_companion_preparedness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_birth_preparedness.step1.birth_companion_preparedness.hint}}",
+        "values": [
+          "{{anc_hv_birth_preparedness.step1.answer_yes}}",
+          "{{anc_hv_birth_preparedness.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_birth_preparedness.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "birth_companion_preparedness_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_birth_preparedness.step1.birth_companion_preparedness_toaster.text}}",
+        "text_color": "#F91A00",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_birth_preparedness_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "family_member_individual_stay_home_preparedness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_birth_preparedness.step1.family_member_individual_stay_home_preparedness.hint}}",
+        "values": [
+          "{{anc_hv_birth_preparedness.step1.answer_yes}}",
+          "{{anc_hv_birth_preparedness.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_birth_preparedness.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "family_member_individual_stay_home_preparedness_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_birth_preparedness.step1.family_member_individual_stay_home_preparedness_toaster.text}}",
+        "text_color": "#F91A00",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_birth_preparedness_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "transportation_preparedness",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_birth_preparedness.step1.transportation_preparedness.hint}}",
+        "values": [
+          "{{anc_hv_birth_preparedness.step1.answer_yes}}",
+          "{{anc_hv_birth_preparedness.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_birth_preparedness.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "transportation_preparedness_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_birth_preparedness.step1.transportation_preparedness_toaster.text}}",
+        "text_color": "#F91A00",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_birth_preparedness_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "praise_preparedness_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_birth_preparedness.step1.praise_preparedness_toaster.text}}",
+        "text_color": "#000000",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_birth_preparedness_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "signs_of_labour_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_birth_preparedness.step1.signs_of_labour_title.title}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "labour_signs",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{anc_hv_birth_preparedness.step1.labour_signs.label}}",
+        "label_info_title": "{{anc_hv_birth_preparedness.step1.labour_signs.label_info_title}}",
+        "label_info_text": "{{anc_hv_birth_preparedness.step1.labour_signs.label_info_text}}",
+        "hint": "{{anc_hv_birth_preparedness.step1.labour_signs.hint}}",
+        "values": [
+          "{{anc_hv_birth_preparedness.step1.answer_yes}}",
+          "{{anc_hv_birth_preparedness.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_birth_preparedness.step1.labour_signs.v_required.err}}"
+        }
+      }
+    ]
+  },
+  "properties_file_name": "anc_hv_birth_preparedness"
+}

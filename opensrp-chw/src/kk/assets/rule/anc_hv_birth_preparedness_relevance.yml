@@ -1,0 +1,50 @@
+---
+name: step1_location_nearest_health_facility_toaster
+description: Nearest health facility toaster
+priority: 1
+condition: "step1_location_nearest_health_facility.contains('No')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_savings_preparedness_toaster
+description: Saving preparedness toaster
+priority: 1
+condition: "step1_savings_preparedness.contains('No')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_birth_companion_preparedness_toaster
+description: Birth Companion toaster
+priority: 1
+condition: "step1_birth_companion_preparedness.contains('No')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_family_member_individual_stay_home_preparedness_toaster
+description: A family member to stay at home when the mother has gone to the facility for delivery
+priority: 1
+condition: "step1_family_member_individual_stay_home_preparedness.contains('No')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_transportation_preparedness_toaster
+description: Transportation to take the woman to the facility at the time of delivery
+priority: 1
+condition: "step1_transportation_preparedness.contains('No')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_praise_preparedness_toaster
+description: Praise the woman for having things prepared for delivery
+priority: 1
+condition: "step1_transportation_preparedness.contains('Yes')||step1_family_member_individual_stay_home_preparedness.contains('Yes')
+  ||step1_birth_companion_preparedness.contains('Yes')||step1_savings_preparedness.contains('Yes')||step1_location_nearest_health_facility"
+actions:
+  - "isRelevant = true"
+
+
+
+
+
+
+

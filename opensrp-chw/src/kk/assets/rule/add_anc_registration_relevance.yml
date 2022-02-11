@@ -1,0 +1,147 @@
+---
+name: step1_first_and_middle_name
+description: First and middle name relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_preferred_name
+description: Preferred name relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_dob_unknown
+description: Unknown date of birth relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_phone_number
+description: Phone number relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_phone_number
+description: Phone number relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_edd_present
+description: EDD present relevance
+priority: 1
+condition: "step1_clin_card.contains('clin_card_yes') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_surname
+description: surname relevance
+priority: 1
+condition: "!step1_same_as_fam_name.contains('same_as_fam_name') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_same_as_fam_name
+description: surname relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_dob
+description: dob relevance
+priority: 1
+condition: "!step1_dob_unknown.contains('dob_unknown') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_age
+description: age relevance
+priority: 1
+condition: "step1_dob_unknown.contains('dob_unknown') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_edd
+description: EDD relevance
+priority: 1
+condition: "step1_edd_present.contains('edd_present_yes') && step1_last_menstrual_period_unknown.contains('lmp_unknown') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_lmnp
+description: LNMP Relevance
+priority: 1
+condition: "step1_clin_card.contains('clin_card_no')||step1_edd_present.contains('edd_present_no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_name_person_assist
+description: assist person relevance
+priority: 1
+condition: "step1_person_assist == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_phone_person_assist
+description: assist person phone number relevance
+priority: 1
+condition: "step1_person_assist == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_last_menstrual_period
+description: lmp_entered relevance
+priority: 1
+condition: "!step1_last_menstrual_period_unknown.contains('lmp_unknown') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_last_menstrual_period_unknown
+description: lmp unknown relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_clin_card
+description: Clinic cardrelevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_gest_age_note
+description: Gestetional age relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_edd_note
+description: EDD note relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_gest_age
+description: EDD note relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_consent_notification
+description: Step 2 conset notification relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_no')"
+actions:
+  - "isRelevant = true"

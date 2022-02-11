@@ -1,5 +1,34 @@
 <resources>
-    <string name="app_name">CFC-RTM - Tchad</string>
-    <string name="login_title">Communautés Amies des Enfants Suivi en Temps Réel - Tchad</string>
-    <string name="nav_logo">CFC-RTM - Tchad</string>
+    <string name="app_name">Kizazi Kijacho</string>
+    <string name="login_title">Kizazi Kijacho</string>
+    <string name="nav_logo">Kizazi Kijacho</string>
+
+    <string name="add_care_giver"> Add Caregiver </string>
+
+    <string name="call"> Call </string>
+    <string name="call_no_number_provided"> No number provided </string>
+
+    <string name="add_anc_member">ANC Member</string>
+    <string name="add_care_giver_member">Caregiver</string>
+
+    <!-- home visit strings-->
+    <string name="anc_home_visit_danger_signs">Danger signs</string>
+    <string name="anc_home_visit_facility_visit">ANC {0} health facility visit</string>
+    <string name="anc_home_visit_family_planning">Family planning</string>
+    <string name="anc_home_visit_nutrition_status">Nutrition status</string>
+    <string name="anc_home_visit_counselling_task">Counselling</string>
+    <string name="anc_home_visit_malaria_prevention">Malaria prevention</string>
+    <string name="anc_home_visit_observations_n_illnes">Observations &amp; illness</string>
+    <string name="anc_home_visit_remarks_and_comments">Remarks / Comments</string>
+
+    <string name="anc_home_visit_gender_issues"> Gender Issues</string>
+
+    <string name="anc_home_visit_anc_card_received">ANC card received</string>
+    <string name="anc_home_visit_sleeping_under_llitn_net">Sleeping under a LLITN</string>
+    <string name="anc_home_visit_counseling">ANC counseling</string>
+    <string name="anc_home_visit_tt_immunization">TT {0} immunization</string>
+    <string name="anc_home_visit_iptp_sp">IPTp-SP dose {0}</string>
+    <string name="gest_age">GA: %1$s</string>
+    <string name="gest_age_weeks">weeks</string>
+
 </resources>
