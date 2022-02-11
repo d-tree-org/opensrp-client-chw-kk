@@ -128,8 +128,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                                    final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
 
-        if (isFirstVisit(memberObject, lmp)) {
-
+        if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject, lmp)) {
             String visit_tittle = context.getString(R.string.hiv_aids_general_info);
 
             BaseAncHomeVisitAction hiv_aids_general_info = new BaseAncHomeVisitAction.Builder(context, visit_tittle)
@@ -139,15 +138,6 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
             actionList.put(visit_tittle, hiv_aids_general_info);
         }
-    }
-
-    private boolean isFirstVisit(final MemberObject memberObject, LocalDate lmp) {
-        int gaWeeks = Days.daysBetween(lmp, new LocalDate()).getDays() / 7;
-        Visit lastVisit = AncLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT);
-        // Assumption 6 months pregnancy is 24 weeks GA
-        boolean isFirst = gaWeeks < 24 && lastVisit == null;
-
-        return isFirst;
     }
 
     private void evaluateHealthFacilityVisit(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
