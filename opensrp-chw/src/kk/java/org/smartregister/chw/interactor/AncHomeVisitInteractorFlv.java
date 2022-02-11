@@ -124,11 +124,12 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         actionList.put(visit_title, facility_visit);
     }
 
-    private void evaluateHIVAIDSGeneralInformation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList, final MemberObject memberObject,
+    private void evaluateHIVAIDSGeneralInformation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                                   LocalDate lmp, final MemberObject memberObject,
                                                    final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
-        if (isFirstVisit(memberObject)) {
 
+        if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject, lmp)) {
             String visit_tittle = context.getString(R.string.hiv_aids_general_info);
 
             BaseAncHomeVisitAction hiv_aids_general_info = new BaseAncHomeVisitAction.Builder(context, visit_tittle)
