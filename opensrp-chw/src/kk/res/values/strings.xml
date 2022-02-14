@@ -34,4 +34,7 @@
     <string name="gest_age">GA: %1$s</string>
     <string name="gest_age_weeks">weeks</string>
 
+    <string name="hiv_aids_general_info">HIV/AIDS General Information</string>
+    <string name="breast_feeding_action_title">Breastfeeding </string>
+
 </resources>
