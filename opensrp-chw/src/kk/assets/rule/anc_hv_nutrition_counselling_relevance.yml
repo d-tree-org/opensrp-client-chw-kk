@@ -1,0 +1,28 @@
+---
+name: step1_eaten_unusual_things_note
+description: Eaten unusual things toaster relevance
+priority: 1
+condition: "step1_eaten_unusual_things.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_anaemia_tablets
+description: Advice the woman to get anaemia tablets
+priority: 1
+condition: "step1_anaemia_tablets.contains('No')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_meals_per_day_note
+descriotion: less than three meals per day warning
+priority: 1
+condition: "step1_meals_per_day.contains('two') || step1.meals_per_day.contains('one')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_folic_acid_tablets_note
+description: Advice pregnant woman to get folic acid tablets
+priority: 1
+condition: "step1_folic_acid_tablets.contains('No')"
+actions:
+  - "isRelevant = true"
