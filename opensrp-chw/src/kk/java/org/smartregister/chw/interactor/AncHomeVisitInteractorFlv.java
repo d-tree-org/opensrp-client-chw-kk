@@ -178,7 +178,8 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                              List<Visit> allVisits,
                                              final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
-        if (allVisits.size() > 2)
+        //Check if first and second visit had already been conducted
+        if (org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
             return;
 
         String visit_title = MessageFormat.format("ANC Clinic attendance", allVisits.size() + 1);
@@ -198,7 +199,8 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                              List<Visit> allVisits,
                                              final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
-        if (allVisits.size() > 2)
+        //Check if first and second visit had already been conducted
+        if (org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
             return;
 
         String visit_title = MessageFormat.format("Nutrition Counselling", allVisits.size() + 1);
