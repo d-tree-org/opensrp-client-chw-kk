@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.ANCCounselingAction;
 import org.smartregister.chw.actionhelper.HealthFacilityVisitAction;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
@@ -85,7 +86,6 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
-        evaluateCounsellingStatus(actionList, details, context);
         evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);
         evaluateKkBreastFeeding(actionList, details, memberObject, context);
         evaluateAncClinicAttendance(actionList, details, memberObject, allAncVisits, context);
@@ -106,6 +106,19 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withHelper(new DangerSignsAction())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
+    }
+
+
+    private void evaluateCounsellingStatus(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                     Map<String, List<VisitDetail>> details,
+                                     final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction counselling_status = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_visit_counselling))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getAncCounseling())
+                .withHelper(new CounsellingStatusAction())
+                .build();
+        actionList.put(context.getString(R.string.anc_visit_counselling), counselling_status);
     }
 
     private void evaluateBirthPreparedness(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -205,18 +218,16 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                             List<Visit> allAncVisits,
                                            final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
-        //Check if visit 1 had already been conducted
-        if (allAncVisits.size() != 0)
-            return;
-
-        String visit_title = MessageFormat.format("Gender Issues", "");
-        BaseAncHomeVisitAction gender_issues_counselling = new BaseAncHomeVisitAction.Builder(context, visit_title)
-                .withOptional(false)
-                .withDetails(details)
-                .withFormName("anc_hv_gender_issues")
-                .withHelper(new GenderIssuesAction())
-                .build();
-        actionList.put(context.getString(R.string.anc_home_visit_gender_issues), gender_issues_counselling);
+        if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject)){
+            String visit_title = MessageFormat.format("Gender Issues", "");
+            BaseAncHomeVisitAction gender_issues_counselling = new BaseAncHomeVisitAction.Builder(context, visit_title)
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withFormName("anc_hv_gender_issues")
+                    .withHelper(new GenderIssuesAction())
+                    .build();
+            actionList.put(context.getString(R.string.anc_home_visit_gender_issues), gender_issues_counselling);
+        }
     }
 
     private void evaluateMalaria(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
