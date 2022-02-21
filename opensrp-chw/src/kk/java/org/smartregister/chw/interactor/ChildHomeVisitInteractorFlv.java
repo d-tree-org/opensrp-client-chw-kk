@@ -59,6 +59,14 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         malariaPrevention()
          */
 
+        evaluateImmunization();
+        evaluateExclusiveBreastFeeding(serviceWrapperMap);
+        evaluateVitaminA(serviceWrapperMap);
+        evaluateDeworming(serviceWrapperMap);
+        evaluateMalariaPrevention();
+        evaluateCounselling();
+        evaluateNutritionStatus();
+        evaluateObsAndIllness();
     }
 
     private void evaluateVisit2(Map<String, ServiceWrapper> serviceWrapperMap){
