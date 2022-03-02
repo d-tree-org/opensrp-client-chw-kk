@@ -26,115 +26,19 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
-            if (ChildVisitUtil.isFirstVisit(dob)){
-                evaluateVisit1(serviceWrapperMap);
-            }else if (ChildVisitUtil.isSecondVisit(dob)){
-                evaluateVisit2(serviceWrapperMap);
-            }else if (ChildVisitUtil.isThirdVisit(dob)){
-                evaluateVisit3(serviceWrapperMap);
-            }else if (ChildVisitUtil.isFourthVisit(dob)){
-                evaluateVisit4(serviceWrapperMap);
-            }else if (ChildVisitUtil.isFifthVisit(dob)){
-                evaluateVisit5(serviceWrapperMap);
-            }else {
-                evaluateMonthlyVisit(serviceWrapperMap);
-            }
+            evaluateImmunization();
+            evaluateExclusiveBreastFeeding(serviceWrapperMap);
+            evaluateVitaminA(serviceWrapperMap);
+            evaluateDeworming(serviceWrapperMap);
+            evaluateMalariaPrevention();
+            evaluateCounselling();
+            evaluateNutritionStatus();
+            evaluateObsAndIllness();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
             Timber.e(e);
         }
-    }
-
-    private void evaluateVisit1(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception{
-        /*
-        neonatalDangerSigns()
-        enbcIntro()
-        enbcCordCare()
-        kmcSkinToSkinCounselling()
-        immunizations()
-        ccdIntroduction()
-        ccdPlayAssessment()
-        ccdCareGiverToChildCommunication()
-        malariaPrevention()
-         */
-
-        evaluateImmunization();
-        evaluateExclusiveBreastFeeding(serviceWrapperMap);
-        evaluateVitaminA(serviceWrapperMap);
-        evaluateDeworming(serviceWrapperMap);
-        evaluateMalariaPrevention();
-        evaluateCounselling();
-        evaluateNutritionStatus();
-        evaluateObsAndIllness();
-    }
-
-    private void evaluateVisit2(Map<String, ServiceWrapper> serviceWrapperMap){
-        /*
-        neonatalDangerSigns()
-        enbcIntro()
-        enbcCordCare()
-        kmcSkinToSkinCounselling()
-        immunizations()
-        ccdIntroduction()
-        ccdPlayAssessment()
-        ccdCareGiverToChildCommunication()
-         */
-    }
-
-    private void evaluateVisit3(Map<String, ServiceWrapper> serviceWrapperMap){
-        /*
-        neonatalDangerSigns()
-        enbcIntro()
-        enbcCordCare()
-        immunizations()
-        ccdIntroduction()
-        ccdPlayAssessment()
-        ccdCareGiverToChildCommunication()
-        malariaPrevention()
-         */
-    }
-
-    private void evaluateVisit4(Map<String, ServiceWrapper> serviceWrapperMap){
-        /*
-        neonatalDangerSigns()
-        enbcIntro()
-        immunizations()
-        ccdIntroduction()
-        ccdPlayAssessment()
-        ccdCareGiverToChildCommunication()
-         */
-    }
-
-    private void evaluateVisit5(Map<String, ServiceWrapper> serviceWrapperMap){
-        /*
-        neonatalDangerSigns()
-        enbcIntro()
-        malnutritionScreening()
-        immunizations()
-        ccdIntroduction()
-        ccdPlayAssessment()
-        ccdCareGiverToChildCommunication()
-        malariaPrevention()
-         */
-    }
-
-    private void evaluateMonthlyVisit(Map<String, ServiceWrapper> serviceWrapperMap){
-        /*
-        tolderDangerSigns()
-        enbcBreastFeeding()
-        complementaryFeeding() //MonthSixOnwards
-        immunizations()
-        ccdIntroduction()
-        ccdPlayAssessment()
-        ccdCareGiverToChildCommunication()
-        ccdResponsivenessToChildBehaviour()
-        ccdChildDiscipline()
-        ccdProblemSolving()
-        ccdChildDevelopmentScreening()
-        childSafetyObservation()
-        malariaPrevention()
-         */
     }
 
     protected void evaluateImmunization() throws Exception {
