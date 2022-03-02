@@ -37,4 +37,6 @@
     <string name="hiv_aids_general_info">HIV/AIDS General Information</string>
     <string name="breast_feeding_action_title">Breastfeeding </string>
 
+    <string name="toddler_danger_sign_month">Toddler danger sign %s months</string>
+
 </resources>
