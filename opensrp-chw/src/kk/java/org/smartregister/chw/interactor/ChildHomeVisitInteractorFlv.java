@@ -1,22 +1,33 @@
 package org.smartregister.chw.interactor;
 
+import android.annotation.SuppressLint;
 import android.text.TextUtils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.domain.VisitDetail;
+import org.smartregister.chw.anc.fragment.BaseAncHomeVisitFragment;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.core.model.ChildVisit;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.ChildVisitUtil;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.chw.util.KKConstants;
+import org.smartregister.chw.util.KKCoreConstants;
+import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
+import java.util.List;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -34,6 +45,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCounselling();
             evaluateNutritionStatus();
             evaluateObsAndIllness();
+
+            evaluateToddlerDangerSign(serviceWrapperMap);
+
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -44,6 +58,49 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     protected void evaluateImmunization() throws Exception {
         setVaccinesDefaultChecked(false);
         super.evaluateImmunization();
+    }
+
+    protected void evaluateToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+
+        String title = context.getString(R.string.toddler_danger_sign_month, serviceIteration);
+
+        // alert if overdue after 14 days
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        ToddlerDangerSignAction helper = new ToddlerDangerSignAction(context, alert);
+        @SuppressLint("VisibleForTests")
+        JSONObject jsonObject = getFormJson(KKCoreConstants.CHILD_HV.getToddlerDangerSign(), memberObject.getBaseEntityId());
+
+        Map<String, List<VisitDetail>> details = getDetails(KKConstants.EventType.ChildVisit.TODDLER_DANGER_SIGN);
+
+        if (details != null && details.size() > 0) {
+            org.smartregister.chw.anc.util.JsonFormUtils.populateForm(jsonObject, details);
+        }
+
+        @SuppressLint("VisibleForTests")
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withPayloadDetails(MessageFormat.format("Exclusive_breastfeeding{0}", serviceIteration))
+                .withDestinationFragment(BaseAncHomeVisitFragment.getInstance(view, null, jsonObject, details, serviceIteration))
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .build();
+
+        // don't show if its after now
+        if (!serviceWrapper.getVaccineDate().isAfterNow()) actionList.put(title, action);
     }
 
     private void evaluateMalariaPrevention() throws Exception {
