@@ -449,7 +449,7 @@
     ]
   },
   {
-    "type": "Toddler Danger Signs",
+    "type": "Toddler danger sign",
     "service_logic": "",
     "service_group": "child",
     "openmrs_service_name": {
