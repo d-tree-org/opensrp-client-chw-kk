@@ -16,9 +16,9 @@ import timber.log.Timber;
 
 public class ToddlerDangerSignAction extends HomeVisitActionHelper {
 
-    private Context context;
+    private final Context context;
     private String toddler_danger_sign;
-    private Alert alert;
+    private final Alert alert;
 
     public ToddlerDangerSignAction(Context context, Alert alert){
         this.context = context;
@@ -38,7 +38,7 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            toddler_danger_sign  = JsonFormUtils.getValue(jsonObject, "toddler_danger_sign");
+            toddler_danger_sign  = JsonFormUtils.getValue(jsonObject, "child_danger_signs");
         }catch (JSONException e){
             Timber.e(e);
         }
