@@ -55,9 +55,9 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label_info_image_src": "{{child_hv_toddler_danger_sign.step1.danger_signs_present.label_info_image_src}}",
+        "label_info_image_src": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.label_info_image_src}}",
         "label_info_has_image": true,
-        "label": "{{child_hv_toddler_danger_sign.step1.danger_signs_present.label}}",
+        "label": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.label}}",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
