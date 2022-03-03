@@ -604,5 +604,246 @@
         }
       }
     ]
+  },
+  {
+    "type": "Child standard visit",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "60",
+        "name": "Visit1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "61",
+        "name": "Visit2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "62",
+        "name": "Visit3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "63",
+        "name": "Visit4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "64",
+        "name": "Visit5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "65",
+        "name": "Visit6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+25d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "66",
+        "name": "Visit7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "67",
+        "name": "Visit8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "68",
+        "name": "Visit9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "69",
+        "name": "Visit10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "70",
+        "name": "Visit11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "71",
+        "name": "Visit12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "72",
+        "name": "Visit13",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "73",
+        "name": "Visit14",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "74",
+        "name": "Visit15",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "75",
+        "name": "Visit16",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
   }
 ]
