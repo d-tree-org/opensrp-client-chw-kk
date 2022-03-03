@@ -63,30 +63,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         super.evaluateImmunization();
     }
 
-    private void evaluateDangerSigns(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
-        if (serviceWrapper == null) return;
-
-        Alert alert = serviceWrapper.getAlert();
-        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
-
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
-        String title = context.getString(R.string.toddler_danger_sign_month, serviceIteration);
-
-        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
-        String dueState = !isOverdue ? context.getString(R.string.due): context.getString(R.string.overdue);
-
-        ToddlerDangerSignAction helper = new ToddlerDangerSignAction(context, alert);
-
-        BaseAncHomeVisitAction danger_signs = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_danger_signs))
-                .withOptional(false)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.ANC_HOME_VISIT.getDangerSigns())
-                .withHelper(helper)
-                .build();
-        actionList.put(context.getString(R.string.anc_home_visit_danger_signs), danger_signs);
-    }
-
     protected void evaluateToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
         if (serviceWrapper == null) return;
