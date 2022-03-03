@@ -12,6 +12,8 @@ import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
 
+import java.text.MessageFormat;
+
 import timber.log.Timber;
 
 public class ToddlerDangerSignAction extends HomeVisitActionHelper {
@@ -38,7 +40,7 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            toddler_danger_sign  = JsonFormUtils.getValue(jsonObject, "child_danger_signs");
+            toddler_danger_sign  = JsonFormUtils.getCheckBoxValue(jsonObject, "child_danger_signs");
         }catch (JSONException e){
             Timber.e(e);
         }
@@ -46,24 +48,14 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        if (StringUtils.isBlank(toddler_danger_sign))
-            return "";
-
-        //Check if there are danger signs for the tolder
-        return "No".equalsIgnoreCase(toddler_danger_sign) ? context.getString(R.string.yes) : context.getString(R.string.no);
+        return MessageFormat.format("Danger signs: {0}", toddler_danger_sign);
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
         if (StringUtils.isBlank(toddler_danger_sign))
             return BaseAncHomeVisitAction.Status.PENDING;
-
-        if (toddler_danger_sign.equalsIgnoreCase("Yes")) {
-            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-        } else if (toddler_danger_sign.equalsIgnoreCase("No")) {
+        else
             return BaseAncHomeVisitAction.Status.COMPLETED;
-        } else {
-            return BaseAncHomeVisitAction.Status.PENDING;
-        }
     }
 }
