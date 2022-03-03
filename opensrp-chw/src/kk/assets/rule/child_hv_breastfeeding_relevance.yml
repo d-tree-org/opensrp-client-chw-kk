@@ -1,0 +1,93 @@
+---
+name: step1_breastfed_prev
+description: Breastfeeding progress toaster message
+priority: 1
+condition: "step1_first_visit == 'visit_done'"
+actions:
+  - "isRelevant = false"
+---
+name: step1_time_to_breastfeed
+description: Breastfeeding progress toaster message
+priority: 1
+condition: "step1_first_visit == 'visit_done'"
+actions:
+  - "isRelevant = false"
+---
+name: step1_breastfeed_progress
+description: Breastfeeding progress toaster message
+priority: 1
+condition: "step1_breastfeed_current.contains('Yes') && step1_visit_months.isEmpty()"
+actions:
+  - "isRelevant = true"
+---
+name: step1_challenges_breastfeed
+description: Breastfeeding challenges toaster message
+priority: 1
+condition: "step1_breastfeed_current.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_discuss_breastfeeding_challenges
+description: Breastfeeding challenges toaster message
+priority: 1
+condition: "step1_challenges_breastfeed.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_times_child_breastfeeds
+description: Breastfeeding times toaster message
+priority: 1
+condition: "step1_breastfeed_current.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_times_child_breastfeeds_note
+description: Breastfeeding times toaster message
+priority: 1
+condition: "step1_times_child_breastfeeds.contains('twice_a_day') ||
+            step1_times_child_breastfeeds.contains('three_times_a_day') ||
+            step1_times_child_breastfeeds.contains('four_time_a_day')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_breastfeeding_position_counselling
+description: Breastfeeding counselling toaster message
+priority: 1
+condition: "step1_breastfeed_current.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_breastfeeds_correctly_note
+description: Breastfeeding correct positioning toaster message
+priority: 1
+condition: "step1_breastfeeding_position_counselling.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_breastfeeding_position_demo
+description: Breastfeeding demo toaster message
+priority: 1
+condition: "step1_breastfeeding_position_counselling.contains('No')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_child_suckling_well
+description: Breastfeeding demo toaster message
+priority: 1
+condition: "step1_breastfeed_current.contains('Yes') && step1_visit_months.isEmpty()"
+actions:
+  - "isRelevant = true"
+---
+name: step1_sucks_correctly_note
+description: Breastfeeding demo toaster message
+priority: 1
+condition: "step1_child_suckling_well.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_child_suckling_demo
+description: Breastfeeding demo toaster message
+priority: 1
+condition: "step1_child_suckling_well.contains('No')"
+actions:
+  - "isRelevant = true"
