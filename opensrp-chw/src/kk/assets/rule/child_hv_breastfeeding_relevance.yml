@@ -2,16 +2,16 @@
 name: step1_breastfed_prev
 description: Breastfeeding progress toaster message
 priority: 1
-condition: "step1_first_visit == 'visit_done'"
+condition: "step1_first_visit.isEmpty()"
 actions:
-  - "isRelevant = false"
+  - "isRelevant = true"
 ---
 name: step1_time_to_breastfeed
 description: Breastfeeding progress toaster message
 priority: 1
-condition: "step1_first_visit == 'visit_done'"
+condition: "step1_first_visit.isEmpty()"
 actions:
-  - "isRelevant = false"
+  - "isRelevant = true"
 ---
 name: step1_breastfeed_progress
 description: Breastfeeding progress toaster message
