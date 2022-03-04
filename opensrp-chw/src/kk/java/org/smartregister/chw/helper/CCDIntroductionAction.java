@@ -45,7 +45,7 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Child behaviour and development : ", childDevelopmentCounselling.contains("yes") ? "Yes" : "No");
+        return MessageFormat.format("Child behaviour and development : ", childDevelopmentCounselling.equals("yes") ? "Yes" : "No");
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
         if (childDevelopmentCounselling.contains("yes")){
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }else {
-            return BaseAncHomeVisitAction.Status.PENDING;
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
     }
 }
