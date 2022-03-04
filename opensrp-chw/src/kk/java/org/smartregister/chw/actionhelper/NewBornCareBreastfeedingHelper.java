@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
@@ -27,6 +28,10 @@ public class NewBornCareBreastfeedingHelper extends HomeVisitActionHelper {
     private Map<String, List<VisitDetail>> details;
     private final boolean firstBreastFeedingVisitHappened;
     private String jsonString;
+    private String breastfed_prev;
+    private String time_to_breastfeed;
+    private String breastfeed_current;
+    private String other_food_child_feeds;
     private final ServiceWrapper serviceWrapperMap;
 
     public NewBornCareBreastfeedingHelper(Context context, Alert alert, boolean firstBreastFeedingVisitHappened, ServiceWrapper serviceWrapperMap) {
@@ -72,6 +77,15 @@ public class NewBornCareBreastfeedingHelper extends HomeVisitActionHelper {
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
+        try {
+            JSONObject jsonObject = new JSONObject(jsonPayload);
+            breastfed_prev = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "breastfed_prev");
+            time_to_breastfeed = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "time_to_breastfeed");
+            breastfeed_current = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "breastfeed_current");
+            other_food_child_feeds = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "other_food_child_feeds");
+        } catch (Exception e) {
+            Timber.e(e);
+        }
 
     }
 
@@ -82,7 +96,22 @@ public class NewBornCareBreastfeedingHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        return BaseAncHomeVisitAction.Status.COMPLETED;
+        BaseAncHomeVisitAction.Status status;
+        if (firstBreastFeedingVisitHappened) {
+            if (StringUtils.isBlank(breastfeed_current) || StringUtils.isBlank(other_food_child_feeds)) {
+                status = BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            } else {
+                status = BaseAncHomeVisitAction.Status.COMPLETED;
+            }
+        } else {
+            if (StringUtils.isBlank(breastfed_prev) || StringUtils.isBlank(time_to_breastfeed) ||
+                    StringUtils.isBlank(breastfeed_current) || StringUtils.isBlank(other_food_child_feeds)) {
+                status = BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            } else {
+                status = BaseAncHomeVisitAction.Status.COMPLETED;
+            }
+        }
+        return status;
     }
 
     private String getPeriodNoun(String serviceName) {
