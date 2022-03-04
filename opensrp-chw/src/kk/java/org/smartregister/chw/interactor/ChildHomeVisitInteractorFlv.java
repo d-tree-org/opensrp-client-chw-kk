@@ -24,6 +24,7 @@ import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -69,7 +70,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
             evaluateBreastFeeding(serviceWrapperMap);
-            evaluateECD();
+            //evaluateECD();
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -87,11 +88,20 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        //final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceName = serviceWrapper.getName();
+
+        // Check if it is a dummy -5 weeks service that is there to re-set milestone to 0 before start 1 months recurring
+        if ("Essential care breastfeeding -5 weeks".equalsIgnoreCase(serviceName)) return;
+
+        // Get the very first breastfeeding visit
+        boolean firstBreastFeedingHappened;
+        List<Visit> breastFeedingServiceVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Breastfeeding");
+
+        firstBreastFeedingHappened = breastFeedingServiceVisits.size() > 0;
 
         String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
 
-        NewBornCareBreastfeedingHelper helper = new NewBornCareBreastfeedingHelper(context, alert, serviceWrapper);
+        NewBornCareBreastfeedingHelper helper = new NewBornCareBreastfeedingHelper(context, alert, firstBreastFeedingHappened, serviceWrapper);
         JSONObject jsonObject = getFormJson(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding(), memberObject.getBaseEntityId());
 
         BaseAncHomeVisitAction action = getBuilder(title)
@@ -99,6 +109,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withOptional(false)
                 .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding())
                 .withPayloadDetails(serviceWrapper.getName())
                 .build();
