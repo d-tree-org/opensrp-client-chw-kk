@@ -606,7 +606,7 @@
     ]
   },
   {
-    "type": "Child standard visit",
+    "type": "CCD introduction",
     "service_logic": "",
     "service_group": "child",
     "openmrs_service_name": {
@@ -622,7 +622,7 @@
     "services": [
       {
         "id": "60",
-        "name": "Visit1",
+        "name": "CCD introduction1",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -636,7 +636,7 @@
       },
       {
         "id": "61",
-        "name": "Visit2",
+        "name": "CCD introduction2",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -650,7 +650,7 @@
       },
       {
         "id": "62",
-        "name": "Visit3",
+        "name": "CCD introduction3",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -664,7 +664,7 @@
       },
       {
         "id": "63",
-        "name": "Visit4",
+        "name": "CCD introduction4",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -678,7 +678,7 @@
       },
       {
         "id": "64",
-        "name": "Visit5",
+        "name": "CCD introduction5",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -692,7 +692,7 @@
       },
       {
         "id": "65",
-        "name": "Visit6",
+        "name": "CCD introduction6",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -706,7 +706,7 @@
       },
       {
         "id": "66",
-        "name": "Visit7",
+        "name": "CCD introduction7",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -720,7 +720,7 @@
       },
       {
         "id": "67",
-        "name": "Visit8",
+        "name": "CCD introduction8",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -734,7 +734,7 @@
       },
       {
         "id": "68",
-        "name": "Visit9",
+        "name": "CCD introduction9",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -748,7 +748,7 @@
       },
       {
         "id": "69",
-        "name": "Visit10",
+        "name": "CCD introduction10",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -762,7 +762,7 @@
       },
       {
         "id": "70",
-        "name": "Visit11",
+        "name": "CCD introduction11",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -776,7 +776,7 @@
       },
       {
         "id": "71",
-        "name": "Visit12",
+        "name": "CCD introduction12",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -790,7 +790,7 @@
       },
       {
         "id": "72",
-        "name": "Visit13",
+        "name": "CCD introduction13",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -804,7 +804,7 @@
       },
       {
         "id": "73",
-        "name": "Visit14",
+        "name": "CCD introduction14",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -818,7 +818,7 @@
       },
       {
         "id": "74",
-        "name": "Visit15",
+        "name": "CCD introduction15",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -832,7 +832,7 @@
       },
       {
         "id": "75",
-        "name": "Visit16",
+        "name": "CCD introduction16",
         "schedule": {
           "due": {
             "reference": "dob",
