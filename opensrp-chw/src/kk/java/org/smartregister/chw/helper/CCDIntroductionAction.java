@@ -1,8 +1,9 @@
 package org.smartregister.chw.helper;
 
+import android.content.Context;
+
 import org.joda.time.LocalDate;
 import org.json.JSONObject;
-import org.smartregister.Context;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.domain.Alert;
