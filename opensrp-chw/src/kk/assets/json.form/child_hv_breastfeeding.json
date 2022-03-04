@@ -103,6 +103,10 @@
               "rules-file": "child_hv_breastfeeding_relevance.yml"
             }
           }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_breastfeeding.step1.breastfed_prev.v_required.err}}"
         }
       },
       {
@@ -137,6 +141,10 @@
               "rules-file": "child_hv_breastfeeding_relevance.yml"
             }
           }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_breastfeeding.step1.time_to_breastfeed.v_required.err}}"
         }
       },
       {
@@ -158,6 +166,10 @@
         "openmrs_choice_ids": {
           "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_breastfeeding.step1.breastfeed_current.v_required.err}}"
         }
       },
       {
@@ -294,7 +306,11 @@
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           }
-        ]
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_breastfeeding.step1.other_food_child_feeds.v_required.err}}"
+        }
       },
       {
         "key": "child_exclusive_breastfeeds",
@@ -532,6 +548,19 @@
             }
           }
         }
+      },
+      {
+        "key": "breastfeding_outro",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "label",
+        "text": "{{child_hv_breastfeeding.step1.breastfeding_outro.text}}",
+        "label_text_size": "18sp",
+        "label_text_style": "italic",
+        "label_text_color": "#000000",
+        "has_bg": true
       }
     ]
   },
