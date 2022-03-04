@@ -103,7 +103,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length(), -1);
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
         String title = context.getString(R.string.ccd_introduction, serviceIteration);
 
         // alert if overdue after 14 days
