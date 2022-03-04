@@ -16,6 +16,7 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.dao.FamilyDao;
 import org.smartregister.chw.fp.dao.FpDao;
 import org.smartregister.chw.malaria.dao.MalariaDao;
+import org.smartregister.chw.util.KkChildDBConstants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.family.util.Utils;
@@ -96,7 +97,7 @@ public class FamilyRegisterProvider extends CoreRegisterProvider {
           return org.smartregister.chw.util.ChildDBConstants.childDueVaccinesFilterForChildrenBelowTwoAndGirlsAgeNineToEleven();
         }
         else {
-            return ChildDBConstants.childAgeLimitFilter();
+            return KkChildDBConstants.childAgeLimitFilter();
         }
     }
 
