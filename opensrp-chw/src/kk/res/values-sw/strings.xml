@@ -17,7 +17,7 @@
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
 
-    <string name="toddler_danger_sign_month">Dalili za hatari za mtoto : Tembeleo la %s</string>
+    <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> Care for child development : Introduction %s </string>
 
 </resources>
