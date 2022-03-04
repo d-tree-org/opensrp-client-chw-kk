@@ -67,6 +67,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     protected void evaluateToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
+
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
@@ -98,6 +99,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateCCDIntro(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD introduction");
+
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
