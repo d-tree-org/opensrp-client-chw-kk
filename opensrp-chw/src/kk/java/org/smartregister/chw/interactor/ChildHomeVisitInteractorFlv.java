@@ -97,7 +97,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateCCDIntro(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Child standard visit");
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD introduction");
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
