@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Home Visit - Toddler Danger signs",
+  "encounter_type": "Home Visit - CCD Introduction",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -47,7 +47,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "{{child_hv_toddler_danger_sign.step1.title}}",
+    "title": "{{child_hv_ccd_introduction.step1.title}}",
     "fields": [
       {
         "key": "ccd_intro_note_1",
@@ -56,7 +56,9 @@
         "openmrs_entity_id": "",
         "type": "label",
         "text": "{{child_hv_ccd_introduction.step1.ccd_intro_note_1.text}}",
-        "text_color": "#000000"
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
       },
       {
         "key": "ccd_development_education",
