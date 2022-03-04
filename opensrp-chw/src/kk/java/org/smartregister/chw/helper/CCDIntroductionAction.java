@@ -6,7 +6,10 @@ import org.joda.time.LocalDate;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
+
+import java.text.MessageFormat;
 
 import timber.log.Timber;
 
@@ -14,6 +17,7 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
 
     private final Context context;
     private final Alert alert;
+    private String childDevelopmentCounselling;
 
     public CCDIntroductionAction(Context mContext, Alert mAlert){
         this.alert = mAlert;
@@ -33,6 +37,7 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
     public void onPayloadReceived(String jsonPayload) {
         try{
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            childDevelopmentCounselling = JsonFormUtils.getValue(jsonObject, "ccd_development_education");
         }catch (Exception e){
             Timber.e(e);
         }
@@ -40,11 +45,15 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return null;
+        return MessageFormat.format("Child behaviour and development : ", childDevelopmentCounselling.contains("yes") ? "Yes" : "No");
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        return null;
+        if (childDevelopmentCounselling.contains("yes")){
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }else {
+            return BaseAncHomeVisitAction.Status.PENDING;
+        }
     }
 }
