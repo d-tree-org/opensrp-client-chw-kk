@@ -57,6 +57,27 @@
         "type": "label",
         "text": "{{child_hv_ccd_introduction.step1.ccd_intro_note_1.text}}",
         "text_color": "#000000"
+      },
+      {
+        "key": "ccd_development_education",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_introduction.step1.ccd_development_education.hint}}",
+        "values": [
+          "{{child_hv_introduction.step1.answer_yes}}",
+          "{{child_hv_introduction.step1.answer_no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_introduction.step1.v_required.err}}"
+        }
       }
     ]
   },
