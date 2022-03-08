@@ -28,12 +28,12 @@ public class PncRegisterPresenter extends BaseAncRegisterPresenter {
 
         JSONObject jsonObject = JsonFormUtils.toJSONObject(jsonString);
         JSONArray fields = JsonFormUtils.fields(jsonObject);
-        getMiscarriageDateFromDays(fields);
-
+        updateMiscarriageDateFromDays(fields);
+        updateDeliveryDateFromDays(fields);
         super.saveForm(jsonObject.toString(), isEditMode, table);
     }
 
-    private void getMiscarriageDateFromDays(JSONArray fields) {
+    private void updateMiscarriageDateFromDays(JSONArray fields) {
         try {
             JSONObject miscarriageUnknownObject = JsonFormUtils.getFieldJSONObject(fields, "miscarriage_date_unknown");
             JSONArray options = JsonFormUtils.getJSONArray(miscarriageUnknownObject, "options");
@@ -45,6 +45,26 @@ public class PncRegisterPresenter extends BaseAncRegisterPresenter {
                     int miscarriageDays = Integer.parseInt(miscarriageDaysString);
                     JSONObject miscarriageDateJson = JsonFormUtils.getFieldJSONObject(fields, "miscarriage_date");
                     miscarriageDateJson.put("value", getDate(miscarriageDays, DateUtil.DATE_FORMAT_FOR_TIMELINE_EVENT));
+                }
+            }
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+
+    }
+
+    private void updateDeliveryDateFromDays(JSONArray fields) {
+        try {
+            JSONObject deliveryDateUnknownChkBox = JsonFormUtils.getFieldJSONObject(fields, "delivery_date_unknown_chk_box");
+            JSONArray options = JsonFormUtils.getJSONArray(deliveryDateUnknownChkBox, "options");
+            JSONObject option = JsonFormUtils.getJSONObject(options, 0);
+            String deliveryDateUnknownChkBoxString = option != null ? option.getString("value") : null;
+            if (StringUtils.isNotBlank(deliveryDateUnknownChkBoxString) && Boolean.parseBoolean(deliveryDateUnknownChkBoxString)) {
+                String deliveryDateUnknownString = JsonFormUtils.getFieldValue(fields, "delivery_date_unknown");
+                if (StringUtils.isNotBlank(deliveryDateUnknownString) && NumberUtils.isNumber(deliveryDateUnknownString)) {
+                    int daysPassedAfterDelivery = Integer.parseInt(deliveryDateUnknownString);
+                    JSONObject deliveryDateJSONObject = JsonFormUtils.getFieldJSONObject(fields, "delivery_date");
+                    deliveryDateJSONObject.put("value", getDate(daysPassedAfterDelivery, DateUtil.DATE_FORMAT_FOR_TIMELINE_EVENT));
                 }
             }
         } catch (JSONException e) {
