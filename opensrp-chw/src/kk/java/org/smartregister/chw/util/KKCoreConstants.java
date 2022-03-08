@@ -14,4 +14,13 @@ public class KKCoreConstants extends CoreConstants {
 
     }
 
+    public static final class ANC_PREGNANCY_OUTCOME {
+        public static final String KK_ANC_PREGNANCY_OUTCOME = "kk_anc_pregnancy_outcome";
+
+        public static String getPregnancyOutcome() {
+            return Utils.getLocalForm(KK_ANC_PREGNANCY_OUTCOME, JSON_FORM.locale, JSON_FORM.assetManager);
+        }
+
+    }
+
 }
