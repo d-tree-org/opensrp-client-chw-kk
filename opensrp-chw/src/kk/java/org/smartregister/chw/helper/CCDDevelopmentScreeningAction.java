@@ -27,6 +27,11 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
     }
 
     @Override
+    public String getPreProcessed() {
+        return null;
+    }
+
+    @Override
     public void onPayloadReceived(String jsonPayload) {
         try{
             JSONObject jsonObject = new JSONObject(jsonPayload);
