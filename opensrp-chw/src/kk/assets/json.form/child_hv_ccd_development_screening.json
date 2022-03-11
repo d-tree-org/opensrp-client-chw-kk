@@ -125,12 +125,10 @@
         "text_color": "#F91A00",
         "toaster_type": "problem",
         "relevance": {
-          "step1:child_development_issues": {
-            "ex-checkbox": [
-              {
-                "not": ["chk_none"]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_development_screening_relevance.yml"
+            }
           }
         }
       }
