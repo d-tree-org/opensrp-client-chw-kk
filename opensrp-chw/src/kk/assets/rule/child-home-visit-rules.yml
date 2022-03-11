@@ -1,0 +1,51 @@
+---
+name: expiry
+description: expire dob greter then 5 yr
+priority: 1
+condition: "visitAlertRule.isExpiry(5)"
+actions:
+  - "visitAlertRule.buttonStatus = 'EXPIRY'"
+---
+name: visit_twenty_four
+description: visit within twenty four hours
+priority: 2
+condition: "visitAlertRule.isVisitWithinTwentyFour()"
+actions:
+  - "visitAlertRule.buttonStatus = 'LESS_TWENTY_FOUR'"
+---
+name: after_three
+description: after three days
+priority: 1
+condition: "visitAlertRule.isVisitValid(3,4,8)"
+actions:
+  - "visitAlertRule.setVisitId('3')"
+---
+name: after_eight_days
+description: after eight days
+priority: 1
+condition: "visitAlertRule.isVisitValid(8,9,21)"
+actions:
+  - "visitAlertRule.setVisitId('8')"
+---
+name: after_twenty_one_days
+description: after twenty one days
+priority: 1
+condition: "visitAlertRule.isVisitValid(21,22,35)"
+actions:
+  - "visitAlertRule.setVisitId('21')"
+---
+name: after_thirty_five_days
+description: after thirty five days
+priority: 1
+condition: "visitAlertRule.isVisitValid(35,36,60)"
+actions:
+  - "visitAlertRule.setVisitId('35')"
+---
+name: follow_up_visit_this_month
+description: followup visit within this month
+priority: 3
+condition: "visitAlertRule.isFollowUpWithinMonth(60, 12)"
+actions:
+  - "visitAlertRule.buttonStatus = 'MONTHLY_FOLLOW_UP_DUE'"
+
+
