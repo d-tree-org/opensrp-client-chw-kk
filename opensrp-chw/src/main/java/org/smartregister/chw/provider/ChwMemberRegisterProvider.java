@@ -338,7 +338,7 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
         private UpdateAsyncTask(RegisterViewHolder viewHolder, CommonPersonObjectClient pc) {
             this.viewHolder = viewHolder;
             this.pc = pc;
-            this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.HOME_VISIT);
+            this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.CHILD_HOME_VISIT);
         }
 
         @Override

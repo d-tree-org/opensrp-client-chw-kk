@@ -1,5 +1,7 @@
 package org.smartregister.chw.provider;
 
+import static org.smartregister.chw.core.utils.Utils.getDuration;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -8,6 +10,7 @@ import android.view.View;
 
 import org.jeasy.rules.api.Rules;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.model.ChildVisit;
 import org.smartregister.chw.core.provider.CoreRegisterProvider;
 import org.smartregister.chw.core.utils.ChildDBConstants;
@@ -25,8 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static org.smartregister.chw.core.utils.Utils.getDuration;
 
 public class ChwRegisterProvider extends CoreRegisterProvider {
 
@@ -48,7 +49,8 @@ public class ChwRegisterProvider extends CoreRegisterProvider {
     public void updateDueColumn(Context context, RegisterViewHolder viewHolder, ChildVisit childVisit) {
         if (childVisit != null) {
             viewHolder.dueButton.setVisibility(View.VISIBLE);
-            if (childVisit.getVisitStatus().equalsIgnoreCase(ChildProfileInteractor.VisitType.DUE.name())) {
+            if (childVisit.getVisitStatus().equalsIgnoreCase(ChildProfileInteractor.VisitType.DUE.name()) ||
+                    childVisit.getVisitStatus().equalsIgnoreCase(CoreChildProfileInteractor.VisitType.MONTHLY_FOLLOW_UP_DUE.name())) {
                 setVisitButtonDueStatus(context, viewHolder.dueButton);
             } else if (childVisit.getVisitStatus().equalsIgnoreCase(ChildProfileInteractor.VisitType.OVERDUE.name())) {
                 setVisitButtonOverdueStatus(context, viewHolder.dueButton, childVisit.getNoOfMonthDue());
@@ -159,7 +161,7 @@ public class ChwRegisterProvider extends CoreRegisterProvider {
             this.context = context;
             this.viewHolder = viewHolder;
             this.familyBaseEntityId = familyBaseEntityId;
-            this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.HOME_VISIT);
+            this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.CHILD_HOME_VISIT);
         }
 
         @Override
