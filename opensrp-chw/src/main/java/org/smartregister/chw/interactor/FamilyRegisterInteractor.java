@@ -45,17 +45,12 @@ public class FamilyRegisterInteractor extends org.smartregister.family.interacto
                     //Only store client information when the conset has been given
                     if (consent.get(0).equals("fam_consent_yes")){
                         final boolean isSaved = FamilyRegisterInteractor.this.saveRegistration(familyEventClientList, jsonString, isEditMode);
-                        String clientBaseEntityId = "";
-                        String relationalId = "";
-                        for (FamilyEventClient ec : familyEventClientList){
-                            if (null==ec.getClient().getClientType()){
-                                clientBaseEntityId = ec.getClient().getBaseEntityId();
-                            }else {
-                                relationalId = ec.getClient().getBaseEntityId();
+
+                        FamilyRegisterInteractor.this.appExecutors.mainThread().execute(new Runnable() {
+                            public void run() {
+                                callBack.onRegistrationSaved(isEditMode, false, familyEventClientList);
                             }
-                        }
-                        //Before returning to the presenter save the ANC information of this client then return
-                        saveANCClient(jsonString, isEditMode, clientBaseEntityId, relationalId, isSaved, familyEventClientList, callBack);
+                        });
                     }else {
                         FamilyRegisterInteractor.this.appExecutors.mainThread().execute(new Runnable() {
                             public void run() {
