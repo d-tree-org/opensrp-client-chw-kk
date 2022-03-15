@@ -66,11 +66,9 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
                         String clientBaseEntityId = "";
                         String relationalId = "";
                         for (FamilyEventClient ec : familyEventClientList){
-                            if (null==ec.getClient().getClientType()){
-                                clientBaseEntityId = ec.getClient().getBaseEntityId();
-                            }else {
+                            if (ec.getClient().getClientType() != null && ec.getClient().getClientType().equals("Family"))
                                 relationalId = ec.getClient().getBaseEntityId();
-                            }
+                            clientBaseEntityId = ec.getClient().getBaseEntityId();
                         }
 
                         JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
