@@ -121,24 +121,100 @@ actions:
 name: step2_is_primarycaregiver_other
 description: is_primarycaregiver_other relevance
 priority: 1
-condition: "step2_is_primarycaregiver.contains('Other') && (step1_preg_outcome == 'Child was born alive' ||
-            step1_preg_outcome == 'Child was born alive, but has a problem')"
+condition: "step2_is_primarycaregiver.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_care_giver_label
+description: care_giver_label relevance
+priority: 1
+condition: "step2_is_primarycaregiver.contains('Aunt') ||
+            step2_is_primarycaregiver.contains('Grandmother') ||
+            step2_is_primarycaregiver.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_consent
+description: primary_caregiver_consent relevance
+priority: 1
+condition: "step2_is_primarycaregiver.contains('Aunt') ||
+            step2_is_primarycaregiver.contains('Grandmother') ||
+            step2_is_primarycaregiver.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_caregiver_surname
+description: caregiver_surname relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes') &&
+            !step2_primary_caregiver_same_as_fam_name.contains('same_as_fam_name')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_same_as_fam_name
+description: caregiver_surname relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_caregiver_first_name
+description: caregiver_first_name relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_caregiver_middle_name
+description: caregiver_middle_name relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_dob
+description: primary_caregiver_dob relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes') &&
+            !step2_dob_unknown.contains('dob_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_dob_unknown
+description: dob_unknown relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_age
+description: age relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes') &&
+            step2_dob_unknown.contains('dob_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_sex
+description: primary_caregiver_sex relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step2_child_intervention_assent
 description: child_intervention_assent relevance
 priority: 1
-condition: "step1_preg_outcome == 'Child was born alive' ||
-            step1_preg_outcome == 'Child was born alive, but has a problem'"
+condition: "step2_is_primarycaregiver.contains('Mother') ||
+            step2_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step2_baby_label
 description: baby_label relevance
 priority: 1
-condition: "step1_preg_outcome == 'Child was born alive' ||
-            step1_preg_outcome == 'Child was born alive, but has a problem'"
+condition: "step2_is_primarycaregiver.contains('Mother') ||
+            step2_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
