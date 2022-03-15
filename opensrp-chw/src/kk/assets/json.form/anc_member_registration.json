@@ -87,15 +87,10 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
         "openmrs_entity_id": "opensrp_id",
-        "type": "barcode",
+        "type": "hidden",
         "hint": "{{anc_member_registration.step1.unique_id.hint}}",
-        "scanButtonText": "{{anc_member_registration.step1.unique_id.scanButtonText}}",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{anc_member_registration.step1.unique_id.v_numeric.err}}"
-        },
-        "hidden": "true",
-        "barcode_type": "qrcode"
+        "read_only": "true",
+        "value": "0"
       },
       {
         "key": "last_menstrual_period",
