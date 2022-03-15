@@ -1543,6 +1543,23 @@
             }
           }
         ]
+      },
+      {
+        "key": "no_child_to_register",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_pregnancy_outcome.step2.no_child_to_register.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
       }
     ]
   },

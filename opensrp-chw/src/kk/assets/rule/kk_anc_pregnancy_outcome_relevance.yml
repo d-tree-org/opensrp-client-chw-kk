@@ -301,3 +301,11 @@ priority: 1
 condition: "step2_father_employment.contains('other')"
 actions:
   - "isRelevant = true"
+---
+name: step2_no_child_to_register
+description: no_child_to_register relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn'"
+actions:
+  - "isRelevant = true"
