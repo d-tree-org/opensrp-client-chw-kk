@@ -26,6 +26,7 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.core.utils.FormUtils;
 import org.smartregister.chw.fragment.PncRegisterFragment;
+import org.smartregister.chw.interactor.PncRegisterInteractor;
 import org.smartregister.chw.presenter.PncRegisterPresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.family.util.Utils;
@@ -125,7 +126,7 @@ public class PncRegisterActivity extends CorePncRegisterActivity {
 
     @Override
     protected void initializePresenter() {
-        this.presenter = new PncRegisterPresenter(this, new BaseAncRegisterModel(), new BaseAncRegisterInteractor());
+        this.presenter = new PncRegisterPresenter(this, new BaseAncRegisterModel(), new PncRegisterInteractor(this), familyBaseEntityId);
     }
 
     @Override
