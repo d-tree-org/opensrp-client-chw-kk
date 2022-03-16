@@ -5,6 +5,7 @@ import android.content.Context;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hl7.fhir.r4.model.Base;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
@@ -24,7 +25,7 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     private Context context;
     private Alert alert;
-    private String developmentIssues;
+    private String communicatesWithChild;
     private String jsonPayload;
     private int ageInMonth;
 
@@ -63,7 +64,7 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
     public void onPayloadReceived(String jsonPayload) {
         try{
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            //developmentIssues = JsonFormUtils.getCheckBoxValue(jsonObject, "child_development_issues");
+            communicatesWithChild = JsonFormUtils.getValue(jsonObject, "communication_with_child");
         }catch (Exception e){
             Timber.e(e);
         }
@@ -71,15 +72,15 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Communication assessment: {0}", ""/* developmentIssues */);
+        return MessageFormat.format("Mother communicates with child: {0}", communicatesWithChild);
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(developmentIssues)){
-            return BaseAncHomeVisitAction.Status.PENDING;
-        }else {
+        if (communicatesWithChild.equals("yes"))
             return BaseAncHomeVisitAction.Status.COMPLETED;
-        }
+        else if (communicatesWithChild.equals("no"))
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        else return BaseAncHomeVisitAction.Status.PENDING;
     }
 }
