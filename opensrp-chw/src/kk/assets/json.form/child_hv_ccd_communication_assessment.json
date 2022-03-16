@@ -158,6 +158,40 @@
             }
           }
         }
+      },
+      {
+        "key": "child_comm_6_12",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_ccd_communication_assessment.step1.child_comm_6_12.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_child_comm_6_12",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_ccd_communication_assessment.step1.no_child_comm_6_12.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_relevance.yml"
+            }
+          }
+        }
       }
     ]
   },
