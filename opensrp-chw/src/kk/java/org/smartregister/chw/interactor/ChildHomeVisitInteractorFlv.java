@@ -4,6 +4,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -64,7 +65,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
             evaluateBreastFeeding(serviceWrapperMap);
-            //evaluateECD();
+            //
+            evaluateMalariaPrevention(serviceWrapperMap);
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -113,6 +115,36 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
+    protected void evaluateMalariaPrevention(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Malaria Prevention");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceName = serviceWrapper.getName();
+
+        String title = getMalariaPreventionServiceTittle(serviceWrapper.getName());
+
+        MalariaPreventionActionHelper helper = new MalariaPreventionActionHelper(context, alert);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvMalariaPrevention())
+                .withPayloadDetails(serviceWrapper.getName())
+                .build();
+
+        actionList.put(title, action);
+
+    }
+
+
     private String getBreastfeedingServiceTittle(String serviceName) {
 
         String[] serviceNameSplit = serviceName.split(" ");
@@ -120,6 +152,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
 
         return context.getString(R.string.essential_newborn_care_breastfeeding) + getTranslatedPeriod(period, periodNoun);
+    }
+
+    private String getMalariaPreventionServiceTittle(String serviceName) {
+
+        String[] serviceNameSplit = serviceName.split(" ");
+        String period = serviceNameSplit[serviceNameSplit.length - 2];
+        String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
+
+        return context.getString(R.string.malaria_prevention_service) + getTranslatedPeriod(period, periodNoun);
     }
 
     private String getTranslatedPeriod(String period, String periodNoun) {
