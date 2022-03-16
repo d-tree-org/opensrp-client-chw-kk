@@ -10,7 +10,6 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     public boolean hasP2P() {
         return false;
     }
-
     @Override
     public boolean hasWashCheck() {
         return false;
