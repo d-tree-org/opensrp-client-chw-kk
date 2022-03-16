@@ -40,5 +40,6 @@
     <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
     <string name="ccd_introduction"> CCD : Introduction : %s </string>
     <string name="ccd_development_screening"> CCD : Development screening : %s </string>
+    <string name="ccd_communication_assessment"> CCD : Communication assessment : %s </string>
 
 </resources>
