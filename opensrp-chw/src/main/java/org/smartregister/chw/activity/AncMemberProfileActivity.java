@@ -121,11 +121,11 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         String interventionId = client.getIdentifier("intervention_id");
         if (interventionId == null || interventionId.equals("")){
             registrationStatus.setVisibility(View.VISIBLE);
-            registrationStatus.setText("Partially Registered");
+            registrationStatus.setText("Partially Registered"); //TODO: Translations
             registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_orange));
         }else{
             registrationStatus.setVisibility(View.VISIBLE);
-            registrationStatus.setText("Fully Registered");
+            registrationStatus.setText("Fully Registered"); //TODO: Translations
             registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_green));
         }
     }
