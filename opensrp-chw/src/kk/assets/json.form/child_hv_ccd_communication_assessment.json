@@ -49,7 +49,116 @@
   "step1": {
     "title": "{{child_hv_ccd_communication_assessment.step1.title}}",
     "fields": [
-
+      {
+        "key": "communication_with_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_ccd_communication_assessment.step1.communication_with_child.hint}}",
+        "values": [
+          "{{child_hv_ccd_communication_assessment.step1.answer_yes}}",
+          "{{child_hv_ccd_communication_assessment.step1.answer_no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_ccd_communication_assessment.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "child_communication_demo_caregiver",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_ccd_communication_assessment.step1.child_communication_demo_caregiver.label}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "child_age_in_months",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
+        "key": "less_than_six_months",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "child_communication_observation",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_ccd_communication_assessment.step1.child_communication_observation.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "chk_looks_into_eyes",
+            "text": "{{child_hv_ccd_communication_assessment.step1.child_communication_observation.options.chk_looks_into_eyes.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sounds_and_gestures",
+            "text": "{{child_hv_ccd_communication_assessment.step1.child_communication_observation.options.chk_sounds_and_gestures.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_force_smile",
+            "text": "{{child_hv_ccd_communication_assessment.step1.child_communication_observation.options.chk_force_smile.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_ccd_communication_assessment.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "communicates_with_child_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_ccd_communication_assessment.step1.communicates_with_child_note.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_relevance.yml"
+            }
+          }
+        }
+      }
     ]
   },
   "properties_file_name": "child_hv_ccd_communication_assessment"
