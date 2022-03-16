@@ -3,6 +3,7 @@ buildscript {
         google()
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
+        maven { url 'https://jitpack.io' }
     }
     dependencies {
         classpath 'org.apache.commons:commons-lang3:3.10'
