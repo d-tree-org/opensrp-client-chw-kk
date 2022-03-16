@@ -10,11 +10,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.AncLibrary;
@@ -47,7 +49,9 @@ import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
+import org.smartregister.domain.Client;
 import org.smartregister.domain.Task;
+import org.smartregister.family.FamilyLibrary;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.interactor.FamilyProfileInteractor;
 import org.smartregister.family.util.JsonFormUtils;
@@ -58,6 +62,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -75,6 +80,8 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
 
     private List<ReferralTypeModel> referralTypeModels = new ArrayList<>();
     private NotificationListAdapter notificationListAdapter = new NotificationListAdapter();
+
+    private TextView registrationStatus;
 
     public static void startMe(Activity activity, String baseEntityID) {
         Intent intent = new Intent(activity, AncMemberProfileActivity.class);
@@ -106,8 +113,20 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
     @Override
     protected void onCreation() {
         super.onCreation();
+        registrationStatus = findViewById(R.id.anc_registration_status);
         if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
             addAncReferralTypes();
+        }
+        Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(memberObject.getBaseEntityId());
+        String interventionId = client.getIdentifier("intervention_id");
+        if (interventionId == null || interventionId.equals("")){
+            registrationStatus.setVisibility(View.VISIBLE);
+            registrationStatus.setText("Partially Registered");
+            registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_orange));
+        }else{
+            registrationStatus.setVisibility(View.VISIBLE);
+            registrationStatus.setText("Fully Registered");
+            registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_green));
         }
     }
 
@@ -226,6 +245,15 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
                         ContentValues values = new ContentValues();
                         values.put(DBConstants.KEY.PHONE_NUMBER, phoneNumber);
                         CoreChwApplication.getInstance().getRepository().getWritableDatabase().update(CoreConstants.TABLE_NAME.ANC_MEMBER, values, DBConstants.KEY.BASE_ENTITY_ID + " = ?  ", new String[]{baseEntityId});
+                    }
+
+                    //Check if consent was received then add intervention Id to the client
+                    String consent = org.smartregister.util.JsonFormUtils.getFieldJSONObject(field, "intervention_consent").getString(CoreJsonFormUtils.VALUE);
+                    if (consent.contains("intervention_consent_yes")){
+                        Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(memberObject.getBaseEntityId());
+                        client.addIdentifier("intervention_id", UUID.randomUUID().toString());
+                        JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(client);
+                        CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(client.getBaseEntityId(), object);
                     }
 
                 } else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.ANC_REFERRAL)) {
