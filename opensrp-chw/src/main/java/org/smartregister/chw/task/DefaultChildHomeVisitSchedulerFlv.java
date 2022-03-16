@@ -4,7 +4,7 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.ScheduleTask;
 import org.smartregister.chw.core.domain.BaseScheduleTask;
-import org.smartregister.chw.core.rule.VisitAlertRule;
+import org.smartregister.chw.core.rule.ChildVisitAlertRule;
 import org.smartregister.chw.core.utils.ChildHomeVisit;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.dao.PersonDao;
@@ -34,16 +34,16 @@ public class DefaultChildHomeVisitSchedulerFlv implements ChildHomeVisitSchedule
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        VisitAlertRule visitAlertRule = new VisitAlertRule(
+        ChildVisitAlertRule childVisitAlertRule = new ChildVisitAlertRule(
                 ChwApplication.getInstance().getApplicationContext(), dob, lastVisitDate, childHomeVisit.getVisitNotDoneDate());
-        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(visitAlertRule, CoreConstants.RULE_FILE.CHILD_HOME_VISIT);
+        CoreChwApplication.getInstance().getRulesEngineHelper().getButtonAlertStatus(childVisitAlertRule, CoreConstants.RULE_FILE.CHILD_HOME_VISIT);
 
 
-        baseScheduleTask.setScheduleDueDate(visitAlertRule.getDueDate());
-        baseScheduleTask.setScheduleNotDoneDate(visitAlertRule.getNotDoneDate());
-        baseScheduleTask.setScheduleExpiryDate(visitAlertRule.getExpiryDate());
-        baseScheduleTask.setScheduleCompletionDate(visitAlertRule.getCompletionDate());
-        baseScheduleTask.setScheduleOverDueDate(visitAlertRule.getOverDueDate());
+        baseScheduleTask.setScheduleDueDate(childVisitAlertRule.getDueDate());
+        baseScheduleTask.setScheduleNotDoneDate(childVisitAlertRule.getNotDoneDate());
+        baseScheduleTask.setScheduleExpiryDate(childVisitAlertRule.getExpiryDate());
+        baseScheduleTask.setScheduleCompletionDate(childVisitAlertRule.getCompletionDate());
+        baseScheduleTask.setScheduleOverDueDate(childVisitAlertRule.getOverDueDate());
 
         return toScheduleList(baseScheduleTask);
 
