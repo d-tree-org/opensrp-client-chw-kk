@@ -688,5 +688,92 @@
         }
       }
     ]
+  },
+  {
+    "type": "Malaria Prevention",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "100",
+        "name": "Malaria Prevention 3 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "101",
+        "name": "Malaria Prevention 5 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "102",
+        "name": "Malaria Prevention 7 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "103",
+        "name": "Malaria Prevention 10 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "104",
+        "name": "Malaria Prevention 12 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
   }
 ]
