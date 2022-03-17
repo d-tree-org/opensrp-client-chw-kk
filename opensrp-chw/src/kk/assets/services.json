@@ -23,8 +23,12 @@
       },
       {
         "type": "CCD development screening"
-      },{
+      },
+      {
         "type": "CCD communication assessment"
+      },
+      {
+        "type": "CCD child discipline"
       }
     ]
   }
