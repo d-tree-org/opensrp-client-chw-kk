@@ -41,5 +41,6 @@
     <string name="ccd_introduction"> CCD : Introduction : %s </string>
     <string name="ccd_development_screening"> CCD : Development screening : %s </string>
     <string name="ccd_communication_assessment"> CCD : Communication assessment : %s </string>
+    <string name="ccd_child_discipline"> CCD : Child discipline : %s </string>
 
 </resources>

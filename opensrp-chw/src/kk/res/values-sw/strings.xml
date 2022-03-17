@@ -13,7 +13,7 @@
     <string name="switch_environment">Switch Environment</string>
     <string name="switch_environment_message">Unakaribia kubadilisha mazingira ya mfumo kutoka %s. Kitendo hiki kitaondoa taarifa zote zilizohifadhiwa katika simu hii, kabla ya kuendelea mbele tafadhali hakikisha umeoanisha/sinki taarifa zako. Je ungependa kuendelea kubadilisha mazingira ya mfumo?</string>
     <string name="switch_environment_title">Tahadhari! Unabadilisha Mazingira Ya Mfumo</string>
-    <string name="anc_home_visit_gender_issues"> Gender Issues </string>
+    <string name="anc_home_visit_gender_issues"> Matatizo ya kijinsia </string>
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
 
@@ -21,5 +21,6 @@
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
     <string name="ccd_development_screening"> CCD : Maendeleo ya ukuaji : %s </string>
     <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano : %s </string>
+    <string name="ccd_child_discipline"> CCD : Nidhamu ya mtoto : %s </string>
 
 </resources>
