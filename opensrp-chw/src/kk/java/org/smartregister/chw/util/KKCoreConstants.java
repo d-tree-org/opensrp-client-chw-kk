@@ -18,5 +18,6 @@ public class KKCoreConstants extends CoreConstants {
         public static final String TODDLER_DANGER_SIGN = "Toddler danger sign";
         public static final String CCD_INTRODUCTION = "Home Visit - CCD Introduction";
         public static final String CCD_DEVELOPMENT_SCREENING = "Home Visit - CCD Development Screening";
+        public static final String CCD_CHILD_DISCIPLINE = "Home Visit - CCD Child Discipline";
     }
 }
