@@ -206,7 +206,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateCCDChildDiscipline(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
 
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD communication assessment");
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD child discipline");
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
