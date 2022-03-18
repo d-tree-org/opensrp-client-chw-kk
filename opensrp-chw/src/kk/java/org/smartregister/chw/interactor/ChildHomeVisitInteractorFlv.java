@@ -244,7 +244,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateCCDChildSafety(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
 
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD communication assessment");
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Child safety");
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
