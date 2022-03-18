@@ -311,7 +311,7 @@
           },
           {
             "key": "chk_pregnancy_development",
-            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_sugar_level.text}}",
+            "text": "{{anc_hv_clinic_attendance.step1.services_received.options.chk_pregnancy_development.text}}",
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
