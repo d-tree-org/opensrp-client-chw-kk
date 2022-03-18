@@ -23,4 +23,6 @@
     <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano : %s </string>
     <string name="ccd_child_discipline"> CCD : Nidhamu ya mtoto : %s </string>
 
+    <string name="child_safety"> Usalama wa mtoto : %s </string>
+
 </resources>

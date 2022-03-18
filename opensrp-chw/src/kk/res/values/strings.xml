@@ -43,4 +43,6 @@
     <string name="ccd_communication_assessment"> CCD : Communication assessment : %s </string>
     <string name="ccd_child_discipline"> CCD : Child discipline : %s </string>
 
+    <string name="child_safety"> Child Safety : %s </string>
+
 </resources>
