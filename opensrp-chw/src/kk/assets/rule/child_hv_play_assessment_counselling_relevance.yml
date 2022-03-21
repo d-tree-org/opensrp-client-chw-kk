@@ -1,0 +1,29 @@
+---
+name: step1_interacts_with_baby_note
+description: interacts_with_baby_note toaster message
+priority: 1
+condition: "step1_interaction_with_baby.contains('move_baby_arms_legs_stroke_gently') ||
+            step1_interaction_with_baby.contains('get_baby_attention_shaker_toy')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_interaction_note
+description: no_interaction_note toaster message
+priority: 1
+condition: "step1_interaction_with_baby.contains('does_not_play')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_plays_with_child_praise
+description: plays_with_child_praise toaster message
+priority: 1
+condition: "step1_play_with_child == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_not_playing_with_child_note
+description: not_playing_with_child_note toaster message
+priority: 1
+condition: "step1_play_with_child == 'No'"
+actions:
+  - "isRelevant = true"

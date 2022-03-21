@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
+import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
@@ -68,6 +69,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             //
             evaluateMalariaPrevention(serviceWrapperMap);
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
+            evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
+            evaluateECD();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -137,6 +140,39 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvMalariaPrevention())
+                .withPayloadDetails(serviceWrapper.getName())
+                .build();
+
+        actionList.put(title, action);
+
+    }
+
+    protected void evaluateChildPlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Play Assessment and Counselling");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceName = serviceWrapper.getName();
+
+        String[] serviceNameSplit = serviceName.split(" ");
+        String period = serviceNameSplit[serviceNameSplit.length - 2];
+        String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
+
+        String title = context.getString(R.string.child_play_and_assessment_counselling) + getTranslatedPeriod(period, periodNoun);
+
+        PlayAssessmentCounselingActionHelper helper = new PlayAssessmentCounselingActionHelper(context);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvPlayAssessmentCounselling())
                 .withPayloadDetails(serviceWrapper.getName())
                 .build();
 

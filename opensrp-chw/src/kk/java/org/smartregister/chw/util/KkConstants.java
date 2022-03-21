@@ -11,6 +11,7 @@ public class KkConstants extends Constants{
 
             public static final String CHILD_HV_BREASTFEEDING = "child_hv_breastfeeding";
             public static final String CHILD_HV_MALARIA_PREVENTION = "child_hv_malaria_prevention";
+            public static final String CHILD_HV_PLAY_ASSESSMENT_COUNSELLING = "child_hv_play_assessment_counselling";
 
             public static String getChildHvBreastfeeding() {
                 return Utils.getLocalForm(CHILD_HV_BREASTFEEDING);
@@ -18,6 +19,10 @@ public class KkConstants extends Constants{
 
             public static String getChildHvMalariaPrevention() {
                 return Utils.getLocalForm(CHILD_HV_MALARIA_PREVENTION);
+            }
+
+            public static String getChildHvPlayAssessmentCounselling() {
+                return Utils.getLocalForm(CHILD_HV_PLAY_ASSESSMENT_COUNSELLING);
             }
 
         }
