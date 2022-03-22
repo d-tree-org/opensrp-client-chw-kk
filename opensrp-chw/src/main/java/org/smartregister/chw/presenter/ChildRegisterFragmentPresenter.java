@@ -5,6 +5,7 @@ import org.smartregister.chw.core.contract.CoreChildRegisterFragmentContract;
 import org.smartregister.chw.core.presenter.CoreChildRegisterFragmentPresenter;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.ChildDBConstants;
+import org.smartregister.chw.util.KkChildDBConstants;
 import org.smartregister.family.util.DBConstants;
 
 public class ChildRegisterFragmentPresenter extends CoreChildRegisterFragmentPresenter {
@@ -21,7 +22,7 @@ public class ChildRegisterFragmentPresenter extends CoreChildRegisterFragmentPre
     public String getMainCondition() {
         if (ChwApplication.getApplicationFlavor().dueVaccinesFilterInChildRegister())
             return String.format(" %s.%s is null AND %s", CoreConstants.TABLE_NAME.CHILD, DBConstants.KEY.DATE_REMOVED, ChildDBConstants.childDueVaccinesFilterForChildrenBelowTwoAndGirlsAgeNineToEleven());
-        return super.getMainCondition();
+        return String.format(" %s.%s is null AND %s", CoreConstants.TABLE_NAME.CHILD, DBConstants.KEY.DATE_REMOVED, KkChildDBConstants.childAgeLimitFilter());
     }
 
     @Override

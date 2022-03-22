@@ -1,21 +1,27 @@
 package org.smartregister.chw.interactor;
 
+import android.annotation.SuppressLint;
+
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
+import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KkConstants;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,6 +31,7 @@ import java.util.Map;
 import timber.log.Timber;
 
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
+
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
 
     @Override
@@ -60,18 +67,57 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         return actionList;
     }
 
+
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
+
+            evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
-            //evaluateECD();
-            evaluateExclusiveBreastFeeding(serviceWrapperMap);
+
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
             Timber.e(e);
         }
+    }
 
+
+    protected void evaluateToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+
+        String title = context.getString(R.string.toddler_danger_sign_month, serviceIteration);
+
+        // alert if overdue after 14 days
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        ToddlerDangerSignAction helper = new ToddlerDangerSignAction(context, alert);
+        @SuppressLint("VisibleForTests")
+        JSONObject jsonObject = getFormJson("anc_hv_danger_signs", memberObject.getBaseEntityId());
+
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        if (details != null && details.size() > 0) {
+            org.smartregister.chw.anc.util.JsonFormUtils.populateForm(jsonObject, details);
+        }
+
+        BaseAncHomeVisitAction toddler_ds_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.toddler_danger_sign_month, serviceIteration))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_toddler_danger_sign")
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(helper)
+                .build();
+
+        actionList.put(title, toddler_ds_action);
     }
 
     protected void evaluateBreastFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
