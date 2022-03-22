@@ -157,6 +157,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         final String serviceName = serviceWrapper.getName();
 
+        // Check if it is a dummy -5 weeks service that is there to re-set milestone to 0 before start 1 months recurring
+        if ("Play Assessment and Counselling -5 weeks".equalsIgnoreCase(serviceName)) return;
+
         String[] serviceNameSplit = serviceName.split(" ");
         String period = serviceNameSplit[serviceNameSplit.length - 2];
         String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
