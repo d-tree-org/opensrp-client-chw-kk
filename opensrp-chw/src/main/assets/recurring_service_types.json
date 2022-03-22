@@ -816,7 +816,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+21d"
+            "offset": "+8d"
           }
         }
       },
@@ -830,7 +830,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+35d"
+            "offset": "+21d"
           }
         }
       },
