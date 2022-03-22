@@ -50,6 +50,20 @@
     "title": "{{child_hv_play_assessment_counselling.step1.title}}",
     "fields": [
       {
+        "key": "visit_3_visit_5",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
+        "key": "visit_6_visit_12",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "interaction_with_baby",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -89,6 +103,13 @@
         "v_required": {
           "value": "true",
           "err": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -144,6 +165,13 @@
         "v_required": {
           "value": "true",
           "err": "{{child_hv_play_assessment_counselling.step1.play_with_child.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
         }
       },
       {

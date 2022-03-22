@@ -3,11 +3,17 @@ package org.smartregister.chw.actionhelper;
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
+import org.smartregister.immunization.domain.ServiceWrapper;
+
+import java.util.List;
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -19,12 +25,61 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
     private Context context;
     private String interaction_with_baby;
     private String play_with_child;
+    private String jsonString;
+    private ServiceWrapper serviceWrapper;
 
-    public PlayAssessmentCounselingActionHelper(Context context) {
-        this.context = context;
-
+    public PlayAssessmentCounselingActionHelper(ServiceWrapper serviceWrapper) {
+        this.serviceWrapper = serviceWrapper;
     }
 
+    @Override
+    public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
+        this.jsonString = jsonString;
+        this.context = context;
+        super.onJsonFormLoaded(jsonString, context, details);
+    }
+
+    @Override
+    public String getPreProcessed() {
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray fields = JsonFormUtils.fields(jsonObject);
+
+            boolean visit_3_visit_5 =  false;
+            boolean visit_6_visit_12 = false;
+            if (serviceWrapper != null) {
+                String servicePronoun = getPeriodNoun(serviceWrapper.getName());
+                int period = getPeriod(serviceWrapper.getName());
+                if ("days".equalsIgnoreCase(servicePronoun)) {
+                    if (period >= 8) {
+                        visit_3_visit_5 = true;
+                    }
+                } else if ("weeks".equalsIgnoreCase(servicePronoun)) {
+                    if (period <= 5) {
+                        visit_3_visit_5 = true;
+                    }
+                } else if ("months".equalsIgnoreCase(servicePronoun)) {
+                    if (period >= 3) {
+                        visit_6_visit_12 = true;
+                    }
+                }
+            }
+
+            if (visit_3_visit_5) {
+                JsonFormUtils.getFieldJSONObject(fields, "visit_3_visit_5").put("value", "true");
+            }
+
+            if (visit_6_visit_12) {
+                JsonFormUtils.getFieldJSONObject(fields, "visit_6_visit_12").put("value", "true");
+            }
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+        return super.getPreProcessed();
+    }
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
@@ -55,5 +110,17 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
 
+    }
+
+    private String getPeriodNoun(String serviceName) {
+        String[] nameSplit = serviceName.split(" ");
+        return nameSplit[nameSplit.length -1];
+    }
+
+    private int getPeriod(String serviceName) {
+        String[] nameSplit = serviceName.split(" ");
+        String periodString = nameSplit[nameSplit.length -2];
+
+        return Integer.parseInt(periodString);
     }
 }

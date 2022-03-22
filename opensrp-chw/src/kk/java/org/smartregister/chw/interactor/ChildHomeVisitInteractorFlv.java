@@ -166,7 +166,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         String title = context.getString(R.string.child_play_and_assessment_counselling) + getTranslatedPeriod(period, periodNoun);
 
-        PlayAssessmentCounselingActionHelper helper = new PlayAssessmentCounselingActionHelper(context);
+        PlayAssessmentCounselingActionHelper helper = new PlayAssessmentCounselingActionHelper(serviceWrapper);
 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(helper)
