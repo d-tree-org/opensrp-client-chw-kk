@@ -18,6 +18,7 @@ import org.smartregister.chw.anc.fragment.BaseAncHomeVisitFragment;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.core.model.ChildVisit;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.helper.CCDIntroductionAction;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.ChildVisitUtil;
 import org.smartregister.chw.util.Constants;
@@ -41,6 +42,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         try {
 
             evaluateToddlerDangerSign(serviceWrapperMap);
+            evaluateCCDIntro(serviceWrapperMap);
 
             evaluateImmunization();
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
@@ -65,6 +67,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     protected void evaluateToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
+
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
@@ -79,14 +82,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
         ToddlerDangerSignAction helper = new ToddlerDangerSignAction(context, alert);
-        @SuppressLint("VisibleForTests")
-        JSONObject jsonObject = getFormJson("anc_hv_danger_signs", memberObject.getBaseEntityId());
 
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
-
-        if (details != null && details.size() > 0) {
-            org.smartregister.chw.anc.util.JsonFormUtils.populateForm(jsonObject, details);
-        }
 
         BaseAncHomeVisitAction toddler_ds_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.toddler_danger_sign_month, serviceIteration))
                 .withOptional(false)
@@ -98,6 +95,38 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, toddler_ds_action);
+    }
+
+    private void evaluateCCDIntro(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD introduction");
+
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        String title = context.getString(R.string.ccd_introduction, serviceIteration);
+
+        // alert if overdue after 14 days
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        CCDIntroductionAction helper = new CCDIntroductionAction(context, alert);
+
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction ccd_intro_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.ccd_introduction, serviceIteration))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_ccd_introduction")
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(helper)
+                .build();
+
+        actionList.put(title, ccd_intro_action);
+
     }
 
     private void evaluateMalariaPrevention() throws Exception {

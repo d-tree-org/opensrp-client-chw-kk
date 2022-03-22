@@ -604,5 +604,246 @@
         }
       }
     ]
+  },
+  {
+    "type": "CCD introduction",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "60",
+        "name": "CCD introduction1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "61",
+        "name": "CCD introduction2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "62",
+        "name": "CCD introduction3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "63",
+        "name": "CCD introduction4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "64",
+        "name": "CCD introduction5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "65",
+        "name": "CCD introduction6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+25d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "66",
+        "name": "CCD introduction7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "67",
+        "name": "CCD introduction8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "68",
+        "name": "CCD introduction9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "69",
+        "name": "CCD introduction10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "70",
+        "name": "CCD introduction11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "71",
+        "name": "CCD introduction12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "72",
+        "name": "CCD introduction13",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "73",
+        "name": "CCD introduction14",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "74",
+        "name": "CCD introduction15",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "75",
+        "name": "CCD introduction16",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
   }
 ]
