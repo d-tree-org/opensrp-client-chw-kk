@@ -36,5 +36,8 @@
 
     <string name="hiv_aids_general_info">HIV/AIDS General Information</string>
     <string name="breast_feeding_action_title">Breastfeeding </string>
+    <string name="neonatal_danger_signs">Neonatal Danger Signs</string>
+    <string name="neonatal_danger_signs_month">Neonatal danger signs %s months</string>
+
 
 </resources>

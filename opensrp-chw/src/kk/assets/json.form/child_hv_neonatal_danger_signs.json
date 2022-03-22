@@ -1,0 +1,230 @@
+{
+  "count": "1",
+  "encounter_type": "Home Visit - Neonatal Danger Signs",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_neonatal_danger_sign.step1.title}}",
+    "fields": [
+      {
+        "key": "neonate_danger_signs",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label_info_image_src": "",
+        "label_info_has_image": true,
+        "label": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "chk_fever",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_fever.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_hypothermia",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_hypothermia.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_redness_around_cord",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_redness_around_cord.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_discharge",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_discharge.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_skin_rashes",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_skin_rashes.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_unable_to_breastfeed",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_unable_to_breastfeed.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_excessive_crying",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_excessive_crying.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_convulsions",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_convulsions.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_non_response",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_none_response.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_in_drawing",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_in_drawing.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_fast_breathing",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_fast_breathing.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_cyanosis",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_cyanosis.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_failure_urine_stool_for_day",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_failure_urine_stool_for_day.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_eye_discharge",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_eye_discharge.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_excessive_vomiting",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_excessive_vomiting.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_severe_diarrhoea",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_severe_diarrhoea.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_mild_diarrhea",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_mild_diarrhea.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_yellow_pale_palms_soles",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_yellow_pale_palms_soles.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_abdominal_distension",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_abdominal_distension.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_congenital_abnormality",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_congenital_abnormality.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_bulging_anterior_fontanel",
+            "text": "{{child_hv_neonatal_danger_sign.step1.neonate_danger_signs.options.chk_bulging_anterior_fontanel.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_none",
+            "text": "{{child_hv_neonatal_danger_sign.step1.danger_signs_present.options.chk_none.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_neonatal_danger_sign.step1.v_required.err}}"
+        }
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_neonatal_danger_sign"
+}

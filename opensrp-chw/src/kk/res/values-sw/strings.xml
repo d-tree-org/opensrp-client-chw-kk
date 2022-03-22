@@ -16,5 +16,8 @@
     <string name="anc_home_visit_gender_issues"> Gender Issues </string>
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
+    <string name="neonatal_danger_signs">Uchunguzi wa dalili za hatari za mtoto mchanga</string>
+    <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga wa miezi %s</string>
+
 
 </resources>

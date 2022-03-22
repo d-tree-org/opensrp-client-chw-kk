@@ -10,7 +10,6 @@ import android.view.View;
 
 import org.jeasy.rules.api.Rules;
 import org.smartregister.chw.application.ChwApplication;
-import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.model.ChildVisit;
 import org.smartregister.chw.core.provider.CoreRegisterProvider;
 import org.smartregister.chw.core.utils.ChildDBConstants;
@@ -49,8 +48,7 @@ public class ChwRegisterProvider extends CoreRegisterProvider {
     public void updateDueColumn(Context context, RegisterViewHolder viewHolder, ChildVisit childVisit) {
         if (childVisit != null) {
             viewHolder.dueButton.setVisibility(View.VISIBLE);
-            if (childVisit.getVisitStatus().equalsIgnoreCase(ChildProfileInteractor.VisitType.DUE.name()) ||
-                    childVisit.getVisitStatus().equalsIgnoreCase(CoreChildProfileInteractor.VisitType.MONTHLY_FOLLOW_UP_DUE.name())) {
+            if (childVisit.getVisitStatus().equalsIgnoreCase(ChildProfileInteractor.VisitType.DUE.name())) {
                 setVisitButtonDueStatus(context, viewHolder.dueButton);
             } else if (childVisit.getVisitStatus().equalsIgnoreCase(ChildProfileInteractor.VisitType.OVERDUE.name())) {
                 setVisitButtonOverdueStatus(context, viewHolder.dueButton, childVisit.getNoOfMonthDue());

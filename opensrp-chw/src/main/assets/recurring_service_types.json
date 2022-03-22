@@ -447,5 +447,78 @@
         }
       }
     ]
+  },
+  {
+    "type": "Neonatal Danger Signs",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "50",
+        "name": "Neonatal Danger Signs1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+0d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "51",
+        "name": "Neonatal Danger Signs2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "52",
+        "name": "Neonatal Danger Signs3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+6d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "53",
+        "name": "Neonatal Danger Signs4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      }
+    ]
   }
 ]
