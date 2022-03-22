@@ -1,55 +1,79 @@
 package org.smartregister.chw.interactor;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.text.TextUtils;
 
-import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
-import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
+import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
+import org.smartregister.chw.anc.domain.MemberObject;
+import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.domain.VisitDetail;
-import org.smartregister.chw.anc.fragment.BaseAncHomeVisitFragment;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
-import org.smartregister.chw.core.model.ChildVisit;
-import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.anc.util.VisitUtils;
+import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
-import org.smartregister.chw.util.ChildVisitUtil;
 import org.smartregister.chw.util.Constants;
-import org.smartregister.chw.util.JsonFormUtils;
-import org.smartregister.chw.util.KKConstants;
-import org.smartregister.chw.util.KKCoreConstants;
+import org.smartregister.chw.util.KkConstants;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import timber.log.Timber;
 
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+
+    @Override
+    public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
+        actionList = new LinkedHashMap<>();
+        context = view.getContext();
+        this.memberObject = memberObject;
+        editMode = view.getEditMode();
+        try {
+            this.dob = DateTime.parse(memberObject.getDob()).toDate(); //ChildDao.getChild(memberObject.getBaseEntityId()).getDateOfBirth();
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+        this.view = view;
+        // get the preloaded data
+        if (view.getEditMode()) {
+            Visit lastVisit = getVisitRepository().getLatestVisit(memberObject.getBaseEntityId(), Constants.EventType.CHILD_HOME_VISIT);
+            if (lastVisit != null) {
+                details = VisitUtils.getVisitGroups(getVisitDetailsRepository().getVisits(lastVisit.getVisitId()));
+            }
+        }
+
+        Map<String, ServiceWrapper> serviceWrapperMap = getServices();
+
+        try {
+            Constants.JSON_FORM.setLocaleAndAssetManager(ChwApplication.getCurrentLocale(), ChwApplication.getInstance().getApplicationContext().getAssets());
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+
+        bindEvents(serviceWrapperMap);
+
+        return actionList;
+    }
+
+
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
 
             evaluateToddlerDangerSign(serviceWrapperMap);
-
-            evaluateImmunization();
-            evaluateExclusiveBreastFeeding(serviceWrapperMap);
-            evaluateVitaminA(serviceWrapperMap);
-            evaluateDeworming(serviceWrapperMap);
-            evaluateMalariaPrevention();
-            evaluateCounselling();
-            evaluateNutritionStatus();
-            evaluateObsAndIllness();
+            evaluateBreastFeeding(serviceWrapperMap);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -58,10 +82,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         }
     }
 
-    protected void evaluateImmunization() throws Exception {
-        setVaccinesDefaultChecked(false);
-        super.evaluateImmunization();
-    }
 
     protected void evaluateToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
@@ -100,228 +120,66 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, toddler_ds_action);
     }
 
-    private void evaluateMalariaPrevention() throws Exception {
-        HomeVisitActionHelper malariaPreventionHelper = new HomeVisitActionHelper() {
-            private String famllin1m5yr;
-            private String llin2days1m5yr;
-            private String llinCondition1m5yr;
+    protected void evaluateBreastFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
 
-            @Override
-            public void onPayloadReceived(String jsonPayload) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonPayload);
-                    famllin1m5yr = JsonFormUtils.getValue(jsonObject, "fam_llin_1m5yr");
-                    llin2days1m5yr = JsonFormUtils.getValue(jsonObject, "llin_2days_1m5yr");
-                    llinCondition1m5yr = JsonFormUtils.getValue(jsonObject, "llin_condition_1m5yr");
-                } catch (JSONException e) {
-                    Timber.e(e);
-                }
-            }
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Essential care breastfeeding");
+        if (serviceWrapper == null) return;
 
-            @Override
-            public String evaluateSubTitle() {
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-                // Handle translation of drop down values
-                if (!TextUtils.isEmpty(famllin1m5yr) && !TextUtils.isEmpty(llin2days1m5yr)) {
-                    famllin1m5yr = getYesNoTranslation(famllin1m5yr);
-                    llin2days1m5yr = getYesNoTranslation(llin2days1m5yr);
-                }
+        final String serviceName = serviceWrapper.getName();
 
-                if (!TextUtils.isEmpty(llinCondition1m5yr)) {
-                    if ("Okay".equals(llinCondition1m5yr)) {
-                        llinCondition1m5yr = context.getString(R.string.okay);
-                    } else if ("Bad".equals(llinCondition1m5yr)) {
-                        llinCondition1m5yr = context.getString(R.string.bad);
-                    }
-                }
+        // Check if it is a dummy -5 weeks service that is there to re-set milestone to 0 before start 1 months recurring
+        if ("Essential care breastfeeding -5 weeks".equalsIgnoreCase(serviceName)) return;
 
-                StringBuilder stringBuilder = new StringBuilder();
-                if (famllin1m5yr.equalsIgnoreCase(context.getString(R.string.no))) {
-                    stringBuilder.append(MessageFormat.format("{0}: {1}\n", context.getString(R.string.uses_net), StringUtils.capitalize(famllin1m5yr.trim().toLowerCase())));
-                } else {
-                    stringBuilder.append(MessageFormat.format("{0}: {1} · ", context.getString(R.string.uses_net), StringUtils.capitalize(famllin1m5yr.trim().toLowerCase())));
-                    stringBuilder.append(MessageFormat.format("{0}: {1} · ", context.getString(R.string.slept_under_net), StringUtils.capitalize(llin2days1m5yr.trim().toLowerCase())));
-                    stringBuilder.append(MessageFormat.format("{0}: {1}", context.getString(R.string.net_condition), StringUtils.capitalize(llinCondition1m5yr.trim().toLowerCase())));
-                }
-                return stringBuilder.toString();
-            }
+        // Get the very first breastfeeding visit
+        boolean firstBreastFeedingHappened;
+        List<Visit> breastFeedingServiceVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Breastfeeding");
 
-            public String getYesNoTranslation(String subtitleText) {
-                if ("Yes".equals(subtitleText)) {
-                    return context.getString(R.string.yes);
-                } else if ("No".equals(subtitleText)) {
-                    return context.getString(R.string.no);
-                } else {
-                    return subtitleText;
-                }
-            }
+        firstBreastFeedingHappened = breastFeedingServiceVisits.size() > 0;
 
-            @Override
-            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-                if (StringUtils.isBlank(famllin1m5yr)) {
-                    return BaseAncHomeVisitAction.Status.PENDING;
-                }
+        String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
 
-                if (famllin1m5yr.equalsIgnoreCase(context.getString(R.string.yes)) && llin2days1m5yr.equalsIgnoreCase(context.getString(R.string.yes)) && llinCondition1m5yr.equalsIgnoreCase(context.getString(R.string.okay))) {
-                    return BaseAncHomeVisitAction.Status.COMPLETED;
-                } else {
-                    return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-                }
-            }
-        };
+        NewBornCareBreastfeedingHelper helper = new NewBornCareBreastfeedingHelper(context, alert, firstBreastFeedingHappened, serviceWrapper);
+        JSONObject jsonObject = getFormJson(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding(), memberObject.getBaseEntityId());
 
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_malaria_prevention))
-                .withOptional(false)
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
                 .withDetails(details)
-                .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getMalariaPrevention())
-                .withHelper(malariaPreventionHelper)
-                .build();
-        actionList.put(context.getString(R.string.pnc_malaria_prevention), action);
-    }
-
-    private void evaluateCounselling() throws Exception {
-        HomeVisitActionHelper counsellingHelper = new HomeVisitActionHelper() {
-            private String couselling_child;
-
-            @Override
-            public void onPayloadReceived(String jsonPayload) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonPayload);
-                    couselling_child = org.smartregister.chw.util.JsonFormUtils.getCheckBoxValue(jsonObject, "pnc_counselling");
-                } catch (JSONException e) {
-                    Timber.e(e);
-                }
-            }
-
-            @Override
-            public String evaluateSubTitle() {
-                return MessageFormat.format("{0}: {1}", "Counselling", couselling_child);
-            }
-
-            @Override
-            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-                if (StringUtils.isNotBlank(couselling_child)) {
-                    return BaseAncHomeVisitAction.Status.COMPLETED;
-                } else {
-                    return BaseAncHomeVisitAction.Status.PENDING;
-                }
-            }
-        };
-
-        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.pnc_counselling))
                 .withOptional(false)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.PNC_HOME_VISIT.getCOUNSELLING())
-                .withHelper(counsellingHelper)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding())
+                .withPayloadDetails(serviceWrapper.getName())
                 .build();
-        actionList.put(context.getString(R.string.pnc_counselling), action);
+
+        actionList.put(title, action);
+
     }
 
-    @Override
-    protected int immunizationCeiling() {
-        return 60;
+    private String getBreastfeedingServiceTittle(String serviceName) {
+
+        String[] serviceNameSplit = serviceName.split(" ");
+        String period = serviceNameSplit[serviceNameSplit.length - 2];
+        String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
+
+        return context.getString(R.string.essential_newborn_care_breastfeeding) + getTranslatedPeriod(period, periodNoun);
     }
 
-    private void evaluateNutritionStatus() throws BaseAncHomeVisitAction.ValidationException {
-        HomeVisitActionHelper nutritionStatusHelper = new HomeVisitActionHelper() {
-            private String nutritionStatus;
+    private String getTranslatedPeriod(String period, String periodNoun) {
+        String translatedText = "";
 
-            @Override
-            public void onPayloadReceived(String jsonPayload) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonPayload);
-                    nutritionStatus = JsonFormUtils.getValue(jsonObject, "nutrition_status_1m5yr").toLowerCase();
-                } catch (JSONException e) {
-                    Timber.e(e);
-                }
-            }
-
-            @Override
-            public String evaluateSubTitle() {
-                if (!TextUtils.isEmpty(nutritionStatus)) {
-                    switch (nutritionStatus) {
-                        case "normal":
-                            nutritionStatus = context.getString(R.string.normal);
-                            break;
-                        case "moderate":
-                            nutritionStatus = context.getString(R.string.moderate);
-                            break;
-                        case "severe":
-                            nutritionStatus = context.getString(R.string.severe);
-                            break;
-                        default:
-                            return nutritionStatus;
-                    }
-                }
-                return MessageFormat.format("{0}: {1}", context.getString(R.string.nutrition_status), nutritionStatus);
-            }
-
-            @Override
-            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-                if (StringUtils.isBlank(nutritionStatus))
-                    return BaseAncHomeVisitAction.Status.PENDING;
-
-                return BaseAncHomeVisitAction.Status.COMPLETED;
-            }
-        };
-
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_nutrition_status))
-                .withOptional(false)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getNutritionStatus())
-                .withHelper(nutritionStatusHelper)
-                .build();
-        actionList.put(context.getString(R.string.anc_home_visit_nutrition_status), observation);
-    }
-
-    @Override
-    protected void evaluateObsAndIllness() throws BaseAncHomeVisitAction.ValidationException {
-        class ObsIllnessBabyHelper extends HomeVisitActionHelper {
-            private String date_of_illness;
-            private String illness_description;
-            private String action_taken;
-            private LocalDate illnessDate;
-
-            @Override
-            public void onPayloadReceived(String jsonPayload) {
-                try {
-                    JSONObject jsonObject = new JSONObject(jsonPayload);
-                    date_of_illness = JsonFormUtils.getValue(jsonObject, "date_of_illness");
-                    illness_description = JsonFormUtils.getValue(jsonObject, "illness_description");
-                    action_taken = JsonFormUtils.getValue(jsonObject, "action_taken_1m5yr");
-                    illnessDate = DateTimeFormat.forPattern("dd-MM-yyyy").parseLocalDate(date_of_illness);
-                } catch (Exception e) {
-                    Timber.e(e);
-                }
-            }
-
-            @Override
-            public String evaluateSubTitle() {
-                if (illnessDate == null)
-                    return "";
-
-                return MessageFormat.format("{0}: {1}\n {2}: {3}",
-                        DateTimeFormat.forPattern("dd MMM yyyy").print(illnessDate),
-                        illness_description, context.getString(R.string.action_taken), action_taken
-                );
-            }
-
-            @Override
-            public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-                if (StringUtils.isBlank(date_of_illness))
-                    return BaseAncHomeVisitAction.Status.PENDING;
-
-                return BaseAncHomeVisitAction.Status.COMPLETED;
-            }
+        if ("hours".equalsIgnoreCase(periodNoun)) {
+            translatedText = context.getString(R.string.hour_of, period);
+        } else if ("days".equalsIgnoreCase(periodNoun)) {
+            translatedText = context.getString(R.string.day_of, period);
+        } else if ("weeks".equalsIgnoreCase(periodNoun)) {
+            translatedText = context.getString(R.string.week_of, period);
+        } else {
+            translatedText = context.getString(R.string.month_of, period);
         }
-
-        BaseAncHomeVisitAction observation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_observations_n_illnes))
-                .withOptional(true)
-                .withDetails(details)
-                .withFormName(Constants.JSON_FORM.getObsIllness())
-                .withHelper(new ObsIllnessBabyHelper())
-                .build();
-        actionList.put(context.getString(R.string.anc_home_visit_observations_n_illnes), observation);
+        return translatedText;
     }
-
 }
