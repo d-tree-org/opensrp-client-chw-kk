@@ -8,6 +8,8 @@ import android.os.Bundle;
 import org.apache.commons.lang3.EnumUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.smartregister.chw.anc.interactor.BaseAncRegisterInteractor;
+import org.smartregister.chw.anc.model.BaseAncRegisterModel;
 import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 import org.smartregister.chw.application.ChwApplication;
@@ -16,6 +18,7 @@ import org.smartregister.chw.core.activity.CorePncRegisterActivity;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.fragment.PncRegisterFragment;
+import org.smartregister.chw.presenter.PncRegisterPresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.job.SyncServiceJob;
 import org.smartregister.view.fragment.BaseRegisterFragment;
@@ -107,5 +110,10 @@ public class PncRegisterActivity extends CorePncRegisterActivity {
         } else if (resultCode == Activity.RESULT_CANCELED && closeOnCancel) {
             this.finish();
         }
+    }
+
+    @Override
+    protected void initializePresenter() {
+        this.presenter = new PncRegisterPresenter(this, new BaseAncRegisterModel(), new BaseAncRegisterInteractor());
     }
 }

@@ -16,6 +16,15 @@
     <string name="anc_home_visit_gender_issues"> Gender Issues </string>
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
+    <string name="breast_feeding_action_title">Breastfeeding </string>
+    <string name="essential_newborn_care_breastfeeding">Huduma muhimu ya watoto wachanga: Kuhifadhi na kunyonyesha </string>
+    <string name="month_of">" mwezi wa %s"</string>
+    <string name="week_of">" wiki ya %s"</string>
+    <string name="day_of">" siku ya %s"</string>
+    <string name="hour_of">" masaa %s"</string>
+
+
+    <string name="toddler_danger_sign_month">Dalili za hatari za mtoto wa miezi %s </string>
     <string name="neonatal_danger_signs">Uchunguzi wa dalili za hatari za mtoto mchanga</string>
     <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga wa miezi %s</string>
 

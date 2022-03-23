@@ -14,6 +14,15 @@
       },
       {
         "type": "IPTp-SP"
+      },
+      {
+        "type": "Essential care breastfeeding"
+      },
+      {
+        "type": "CCD introduction"
+      },
+      {
+        "type": "Toddler danger sign"
       }
     ]
   }
