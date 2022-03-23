@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.NeonatalDangerSignsAction;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -26,31 +27,6 @@ import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-
-import timber.log.Timber;
-
-import android.annotation.SuppressLint;
-
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.format.DateTimeFormat;
-import org.json.JSONObject;
-import org.smartregister.chw.R;
-import org.smartregister.chw.actionhelper.DangerSignsAction;
-import org.smartregister.chw.actionhelper.NeonatalDangerSignsAction;
-import org.smartregister.chw.anc.domain.VisitDetail;
-import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
-import org.smartregister.chw.core.domain.Person;
-import org.smartregister.chw.core.model.ChildVisit;
-import org.smartregister.chw.core.utils.ChildHomeVisit;
-import org.smartregister.chw.util.ChildUtils;
-import org.smartregister.chw.util.Constants;
-import org.smartregister.domain.Alert;
-import org.smartregister.immunization.domain.ServiceWrapper;
-
-import java.text.MessageFormat;
-import java.util.List;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -95,11 +71,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     @Override
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
-        try {
 
+        try {
             evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
-
+            evaluateNeonatalDangerSigns(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -184,44 +160,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
-    private String getBreastfeedingServiceTittle(String serviceName) {
-
-        String[] serviceNameSplit = serviceName.split(" ");
-        String period = serviceNameSplit[serviceNameSplit.length - 2];
-        String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
-
-        return context.getString(R.string.essential_newborn_care_breastfeeding) + getTranslatedPeriod(period, periodNoun);
-    }
-
-    private String getTranslatedPeriod(String period, String periodNoun) {
-        String translatedText = "";
-
-        if ("hours".equalsIgnoreCase(periodNoun)) {
-            translatedText = context.getString(R.string.hour_of, period);
-        } else if ("days".equalsIgnoreCase(periodNoun)) {
-            translatedText = context.getString(R.string.day_of, period);
-        } else if ("weeks".equalsIgnoreCase(periodNoun)) {
-            translatedText = context.getString(R.string.week_of, period);
-        } else {
-            translatedText = context.getString(R.string.month_of, period);
-        }
-        return translatedText;
-    }
-
-    @Override
-    protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
-        ChildHomeVisit lastHomeVisit = ChildUtils.getLastHomeVisit(Constants.TABLE_NAME.CHILD, memberObject.getDob());
-        final ChildVisit childVisit = ChildUtils.getChildVisitStatus(context, memberObject.getDob(), lastHomeVisit.getLastHomeVisitDate(), lastHomeVisit.getVisitNotDoneDate(), lastHomeVisit.getDateCreated());
-        try {
-            evaluateNeonatalDangerSigns(serviceWrapperMap);
-        } catch (BaseAncHomeVisitAction.ValidationException e) {
-            throw (e);
-        } catch (Exception e) {
-            Timber.e(e);
-        }
-    }
-
-
     private void evaluateNeonatalDangerSigns(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Neonatal Danger Signs");
         if (serviceWrapper == null) return;
@@ -250,5 +188,29 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, neoNatalDangerSignsAction);
+    }
+
+    private String getBreastfeedingServiceTittle(String serviceName) {
+
+        String[] serviceNameSplit = serviceName.split(" ");
+        String period = serviceNameSplit[serviceNameSplit.length - 2];
+        String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
+
+        return context.getString(R.string.essential_newborn_care_breastfeeding) + getTranslatedPeriod(period, periodNoun);
+    }
+
+    private String getTranslatedPeriod(String period, String periodNoun) {
+        String translatedText = "";
+
+        if ("hours".equalsIgnoreCase(periodNoun)) {
+            translatedText = context.getString(R.string.hour_of, period);
+        } else if ("days".equalsIgnoreCase(periodNoun)) {
+            translatedText = context.getString(R.string.day_of, period);
+        } else if ("weeks".equalsIgnoreCase(periodNoun)) {
+            translatedText = context.getString(R.string.week_of, period);
+        } else {
+            translatedText = context.getString(R.string.month_of, period);
+        }
+        return translatedText;
     }
 }
