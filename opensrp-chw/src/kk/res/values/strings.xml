@@ -44,7 +44,7 @@
 
     <string name="toddler_danger_sign_month">Toddler danger sign %s months</string>
     <string name="neonatal_danger_signs">Neonatal Danger Signs</string>
-    <string name="neonatal_danger_signs_month">Neonatal danger signs %s months</string>
+    <string name="neonatal_danger_signs_month">Neonatal danger signs %s</string>
 
 
 </resources>
