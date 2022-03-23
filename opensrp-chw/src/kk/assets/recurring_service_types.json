@@ -1,0 +1,936 @@
+[
+  {
+    "type": "Exclusive breastfeeding",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": "5526AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "1",
+        "name": "Exclusive breastfeeding0",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+0d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+1m"
+          }
+        }
+      },
+      {
+        "id": "2",
+        "name": "Exclusive breastfeeding1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "3",
+        "name": "Exclusive breastfeeding2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "4",
+        "name": "Exclusive breastfeeding3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "5",
+        "name": "Exclusive breastfeeding4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "6",
+        "name": "Exclusive breastfeeding5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Vitamin A",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": "86339AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "13",
+        "name": "Vitamin A1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "14",
+        "name": "Vitamin A2",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Vitamin A1",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "15",
+        "name": "Vitamin A3",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Vitamin A2",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "16",
+        "name": "Vitamin A4",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Vitamin A3",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "17",
+        "name": "Vitamin A5",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Vitamin A4",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "18",
+        "name": "Vitamin A6",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Vitamin A5",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "19",
+        "name": "Vitamin A7",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Vitamin A6",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "20",
+        "name": "Vitamin A8",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Vitamin A7",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "21",
+        "name": "Vitamin A9",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Vitamin A8",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Deworming",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": "159922AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "22",
+        "name": "Deworming 1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1y"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "23",
+        "name": "Deworming 2",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Deworming 1",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "24",
+        "name": "Deworming 3",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Deworming 2",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "25",
+        "name": "Deworming 4",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Deworming 3",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "26",
+        "name": "Deworming 5",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Deworming 4",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "27",
+        "name": "Deworming 6",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Deworming 5",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "28",
+        "name": "Deworming 7",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Deworming 6",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "29",
+        "name": "Deworming 8",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "Deworming 7",
+            "offset": "+6m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "IPTp-SP",
+    "service_logic": "",
+    "service_group": "woman",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": "159922AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "30",
+        "name": "IPTp-SP dose 1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+91d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "31",
+        "name": "IPTp-SP dose 2",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "IPTp-SP dose 1",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      },
+      {
+        "id": "32",
+        "name": "IPTp-SP dose 3",
+        "schedule": {
+          "due": {
+            "reference": "prerequisite",
+            "prerequisite": "IPTp-SP dose 2",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5y"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Essential care breastfeeding",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": "166704AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "33",
+        "name": "Essential care breastfeeding 24 hours",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+0d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "34",
+        "name": "Essential care breastfeeding 3 days",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "35",
+        "name": "Essential care breastfeeding 3 weeks",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+18d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "36",
+        "name": "Essential care breastfeeding 5 weeks",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "37",
+        "name": "Essential care breastfeeding -5 weeks",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "-35d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "38",
+        "name": "Essential care breastfeeding 2 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "39",
+        "name": "Essential care breastfeeding 3 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "40",
+        "name": "Essential care breastfeeding 4 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "41",
+        "name": "Essential care breastfeeding 5 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "42",
+        "name": "Essential care breastfeeding 6 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "43",
+        "name": "Essential care breastfeeding 7 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "44",
+        "name": "Essential care breastfeeding 8 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "45",
+        "name": "Essential care breastfeeding 9 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "46",
+        "name": "Essential care breastfeeding 10 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "47",
+        "name": "Essential care breastfeeding 11 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "48",
+        "name": "Essential care breastfeeding 12 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Toddler danger sign",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "50",
+        "name": "Toddler danger sign1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "51",
+        "name": "Toddler danger sign2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "52",
+        "name": "Toddler danger sign3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "53",
+        "name": "Toddler danger sign4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "54",
+        "name": "Toddler danger sign5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "55",
+        "name": "Toddler danger sign6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "56",
+        "name": "Toddler danger sign7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "57",
+        "name": "Toddler danger sign8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "58",
+        "name": "Toddler danger sign9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "59",
+        "name": "Toddler danger sign10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+  "type": "Malaria Prevention",
+  "service_logic": "",
+  "service_group": "child",
+  "openmrs_service_name": {
+    "parent_entity": "",
+    "entity": "concept",
+    "entity_id": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+  },
+  "openmrs_date": {
+    "parent_entity": "",
+    "entity": "encounter",
+    "entity_id": "encounter_date"
+  },
+  "services": [
+    {
+      "id": "100",
+      "name": "Malaria Prevention 3 months",
+      "schedule": {
+        "due": {
+          "reference": "dob",
+          "offset": "+3m"
+        },
+        "expiry": {
+          "reference": "dob",
+          "offset": "+5m"
+        }
+      }
+    },
+    {
+      "id": "101",
+      "name": "Malaria Prevention 5 months",
+      "schedule": {
+        "due": {
+          "reference": "dob",
+          "offset": "+2m"
+        },
+        "expiry": {
+          "reference": "dob",
+          "offset": "+7m"
+        }
+      }
+    },
+    {
+      "id": "102",
+      "name": "Malaria Prevention 7 months",
+      "schedule": {
+        "due": {
+          "reference": "dob",
+          "offset": "+2m"
+        },
+        "expiry": {
+          "reference": "dob",
+          "offset": "+10m"
+        }
+      }
+    },
+    {
+      "id": "103",
+      "name": "Malaria Prevention 10 months",
+      "schedule": {
+        "due": {
+          "reference": "dob",
+          "offset": "+3m"
+        },
+        "expiry": {
+          "reference": "dob",
+          "offset": "+12m"
+        }
+      }
+    },
+    {
+      "id": "104",
+      "name": "Malaria Prevention 12 months",
+      "schedule": {
+        "due": {
+          "reference": "dob",
+          "offset": "+2m"
+        },
+        "expiry": {
+          "reference": "dob",
+          "offset": "+13m"
+        }
+      }
+    }
+  ]
+}
+]

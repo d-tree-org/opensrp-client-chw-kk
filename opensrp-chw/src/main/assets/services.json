@@ -19,7 +19,14 @@
         "type": "Essential care breastfeeding"
       },
       {
+<<<<<<< HEAD
         "type": "Malaria Prevention"
+=======
+        "type": "CCD introduction"
+      },
+      {
+        "type": "Toddler danger sign"
+>>>>>>> KK-100
       }
     ]
   }
