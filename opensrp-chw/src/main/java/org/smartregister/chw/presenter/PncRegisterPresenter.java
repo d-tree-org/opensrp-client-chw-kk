@@ -1,5 +1,9 @@
 package org.smartregister.chw.presenter;
 
+import static org.smartregister.chw.core.utils.CoreJsonFormUtils.toList;
+
+import android.content.Context;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.json.JSONArray;
@@ -7,8 +11,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.contract.BaseAncRegisterContract;
 import org.smartregister.chw.anc.presenter.BaseAncRegisterPresenter;
+import org.smartregister.chw.core.domain.FamilyMember;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.CoreJsonFormUtils;
+import org.smartregister.chw.interactor.FamilyChangeContractInteractor;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
+import org.smartregister.family.FamilyLibrary;
+import org.smartregister.family.domain.FamilyEventClient;
+import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.util.DateUtil;
 import org.smartregister.util.JsonFormUtils;
+import org.smartregister.view.LocationPickerView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,8 +33,11 @@ import timber.log.Timber;
  * Created by Kassim Sheghembe on 2022-03-07
  */
 public class PncRegisterPresenter extends BaseAncRegisterPresenter {
-    public PncRegisterPresenter(BaseAncRegisterContract.View view, BaseAncRegisterContract.Model model, BaseAncRegisterContract.Interactor interactor) {
+    protected String familyBaseEntityId;
+    public PncRegisterPresenter(BaseAncRegisterContract.View view, BaseAncRegisterContract.Model model, BaseAncRegisterContract.Interactor interactor, String familyBaseEntityId) {
         super(view, model, interactor);
+        this.familyBaseEntityId = familyBaseEntityId;
+        this.interactor = interactor;
     }
 
     @Override
