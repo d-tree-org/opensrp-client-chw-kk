@@ -7,6 +7,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
+import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
@@ -15,6 +16,7 @@ import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KkConstants;
+import org.smartregister.chw.util.Utils;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
@@ -66,11 +68,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
         try {
             evaluateBreastFeeding(serviceWrapperMap);
-            //
             evaluateMalariaPrevention(serviceWrapperMap);
-            evaluateExclusiveBreastFeeding(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
-            evaluateECD();
+            evaluateProblemSolving();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -181,6 +181,27 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         actionList.put(title, action);
 
+    }
+
+    private void evaluateProblemSolving() throws BaseAncHomeVisitAction.ValidationException{
+        int age;
+        if (dob != null) {
+            Utils.getAgeFromDate(dob.toString());
+        }
+        ProblemSolvingActionHelper actionHelper = new ProblemSolvingActionHelper();
+
+        String title = "CCD: Problem Solving";
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvProblemSolving())
+                .build();
+
+        actionList.put(title, action);
     }
 
 
