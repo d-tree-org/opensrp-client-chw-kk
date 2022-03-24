@@ -39,6 +39,7 @@
     <string name="essential_newborn_care_breastfeeding">Essential New Born Care: Breastfeeding</string>
     <string name="malaria_prevention_service">Malaria Prevention</string>
     <string name="child_play_and_assessment_counselling">Play Assessment and Counselling</string>
+    <string name="ccd_problem_solving">CCD: Problem Solving</string>
     <string name="month_of">" %s months"</string>
     <string name="week_of">" %s weeks"</string>
     <string name="day_of">" %s days"</string>
