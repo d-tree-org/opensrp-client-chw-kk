@@ -84,14 +84,17 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         dateMap.putAll(ContactUtil.getContactWeeks(isFirst, lastContact, lastMenstrualPeriod));
 
+        /*
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
-        evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);
-        evaluateKkBreastFeeding(actionList, details, memberObject, context);
+        evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);*/
+        evaluatePMTCT(actionList, details,  memberObject, context);
+        /*evaluateKkBreastFeeding(actionList, details, memberObject, context);
         evaluateAncClinicAttendance(actionList, details, memberObject, allAncVisits, context);
         evaluateNutritionCounselling(actionList, details, memberObject, allAncVisits, context);
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
         evaluateMalaria(actionList, memberObject, details, context, allAncVisits);
+         */
 
         return actionList;
     }
@@ -152,6 +155,24 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
             actionList.put(visit_tittle, hiv_aids_general_info);
         }
+    }
+
+    private void evaluatePMTCT(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                               Map<String, List<VisitDetail>> details,
+                               final MemberObject memberObject,
+                               final Context context) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitTitle  = context.getString(R.string.anc_home_visit_pmtct);
+
+        BaseAncHomeVisitAction pmtctAction = new BaseAncHomeVisitAction.Builder(context, visitTitle)
+                .withOptional(false)
+                .withDetails(details)
+                .withHelper(new PmtctActionHelper())
+                .withFormName("anc_hv_pmctc")
+                .build();
+
+        actionList.put(visitTitle, pmtctAction);
+
     }
 
     private void evaluateKkBreastFeeding(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -350,6 +371,56 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private class BirthPreparednessAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+
+        private Context context;
+
+        @Override
+        public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String jsonPayload) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction ancHomeVisitAction) {
+
+        }
+    }
+
+    private class PmtctActionHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
 
         private Context context;
 
