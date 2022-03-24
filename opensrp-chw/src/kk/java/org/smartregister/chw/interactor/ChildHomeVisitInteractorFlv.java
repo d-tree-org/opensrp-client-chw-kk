@@ -2,6 +2,7 @@ package org.smartregister.chw.interactor;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
@@ -20,6 +21,7 @@ import org.smartregister.chw.util.Utils;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -70,7 +72,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateBreastFeeding(serviceWrapperMap);
             evaluateMalariaPrevention(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
-            evaluateProblemSolving();
+            evaluateProblemSolving(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -183,21 +185,29 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
-    private void evaluateProblemSolving() throws BaseAncHomeVisitAction.ValidationException{
-        int age;
-        if (dob != null) {
-            Utils.getAgeFromDate(dob.toString());
-        }
-        ProblemSolvingActionHelper actionHelper = new ProblemSolvingActionHelper();
+    private void evaluateProblemSolving(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException{
 
-        String title = "CCD: Problem Solving";
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Problem Solving");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        ProblemSolvingActionHelper actionHelper = new ProblemSolvingActionHelper(alert, context);
+
+        String title = context.getString(R.string.ccd_problem_solving);
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(actionHelper)
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withDetails(details)
                 .withOptional(false)
                 .withBaseEntityID(memberObject.getBaseEntityId())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvProblemSolving())
                 .build();
 

@@ -1,5 +1,9 @@
 package org.smartregister.chw.actionhelper;
 
+import android.content.Context;
+
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -7,6 +11,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
+import org.smartregister.domain.Alert;
 
 import timber.log.Timber;
 
@@ -16,6 +21,13 @@ import timber.log.Timber;
 public class ProblemSolvingActionHelper extends HomeVisitActionHelper {
 
     private String experience_challenges_playing_communicating;
+    private Alert alert;
+    private Context context;
+
+    public ProblemSolvingActionHelper(Alert alert, Context context) {
+        this.alert = alert;
+        this.context = context;
+    }
 
     @Override
     public void onPayloadReceived(String jsonString) {
@@ -37,6 +49,17 @@ public class ProblemSolvingActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+        if (StringUtils.isBlank(experience_challenges_playing_communicating))
+            return BaseAncHomeVisitAction.Status.PENDING;
         return experience_challenges_playing_communicating.equalsIgnoreCase("Yes") ? BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED : BaseAncHomeVisitAction.Status.COMPLETED;
+    }
+
+    @Override
+    public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+        return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;
+    }
+
+    private boolean isOverDue() {
+        return new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
     }
 }
