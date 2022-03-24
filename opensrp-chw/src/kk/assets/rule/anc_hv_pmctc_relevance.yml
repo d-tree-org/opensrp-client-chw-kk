@@ -1,8 +1,15 @@
 ---
+name: step1_disclose_status
+description: Show disclose status input only when the clint confirmed they had a test
+priority: 1
+condition: "step1_hiv_test.contains('chk_hiv_test_yes')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_hiv_status
 description: Status of hiv for the client who wants to disclose it
 priority: 1
-condition: "step1_disclose_status.contains('chk_disclose_status_yes')"
+condition: "step1_hiv_test.contains('chk_hiv_test_yes') && step1_disclose_status.contains('chk_disclose_status_yes')"
 actions:
   - "isRelevant = true"
 ---
