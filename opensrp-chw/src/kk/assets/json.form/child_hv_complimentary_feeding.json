@@ -1,0 +1,120 @@
+{
+  "count": "1",
+  "encounter_type": "Child Home Visit - Complimentary Feeding",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_complimentary_feeding.step1.title}}",
+    "fields": [
+      {
+        "key": "comp_feed_counselling_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_complimentary_feeding.step1.comp_feed_counselling_title.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "hygene_while_feeding",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_complimentary_feeding.step1.hygene_while_feeding.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "comp_feed_concerns",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_complimentary_feeding.step1.comp_feed_concerns.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "comp_feed_refer_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_complimentary_feeding.step1.comp_feed_refer_bango_kitita.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": false
+      },
+      {
+        "key": "comp_feed_counselling_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_complimentary_feeding.step1.comp_feed_counselling_status.hint}}",
+        "values": [
+          "{{child_hv_complimentary_feeding.step1.answer_yes}}",
+          "{{child_hv_complimentary_feeding.step1.answer_no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_complimentary_feeding.step1.v_required.err}}"
+        }
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_child_safety"
+}
