@@ -54,6 +54,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
             evaluateCCDChildDiscipline(serviceWrapperMap);
             evaluateCCDChildSafety(serviceWrapperMap);
+            evaluateComplementaryFeeding(serviceWrapperMap);
 
             evaluateImmunization();
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
@@ -245,6 +246,40 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     private void evaluateCCDChildSafety(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
 
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Child safety");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        String title = context.getString(R.string.child_safety, serviceIteration);
+
+        // alert if overdue after 14 days
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        ChildSafetyActionHelper childSafetyActionHelper = new ChildSafetyActionHelper(context, alert);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CHILD_SAFETY);
+
+        BaseAncHomeVisitAction child_safety_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_child_safety")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(childSafetyActionHelper)
+                .build();
+
+        actionList.put(title, child_safety_action);
+
+    }
+
+    private void evaluateComplementaryFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Complementary feeding");
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();

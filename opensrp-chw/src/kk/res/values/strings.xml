@@ -45,4 +45,6 @@
 
     <string name="child_safety"> Child Safety : %s </string>
 
+    <string name="complimentary_feeding"> Complimentary feeding : %s </string>
+
 </resources>
