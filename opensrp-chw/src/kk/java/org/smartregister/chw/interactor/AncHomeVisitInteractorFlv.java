@@ -70,7 +70,6 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
             Timber.e(e);
         }
 
-
         if (StringUtils.isNotBlank(memberObject.getLastContactVisit())) {
             lastContact = DateTimeFormat.forPattern("dd-MM-yyyy").parseLocalDate(memberObject.getLastContactVisit());
         }
@@ -84,17 +83,15 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         dateMap.putAll(ContactUtil.getContactWeeks(isFirst, lastContact, lastMenstrualPeriod));
 
-        /*
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
-        evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);*/
+        evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);
         evaluatePMTCT(actionList, details,  memberObject, context);
-        /*evaluateKkBreastFeeding(actionList, details, memberObject, context);
+        evaluateKkBreastFeeding(actionList, details, memberObject, context);
         evaluateAncClinicAttendance(actionList, details, memberObject, allAncVisits, context);
         evaluateNutritionCounselling(actionList, details, memberObject, allAncVisits, context);
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
         evaluateMalaria(actionList, memberObject, details, context, allAncVisits);
-         */
 
         return actionList;
     }
