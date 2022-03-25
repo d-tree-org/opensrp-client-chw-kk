@@ -17,6 +17,7 @@ import org.smartregister.chw.helper.CCDCommunicationAssessmentAction;
 import org.smartregister.chw.helper.CCDDevelopmentScreeningAction;
 import org.smartregister.chw.helper.CCDIntroductionAction;
 import org.smartregister.chw.helper.ChildSafetyActionHelper;
+import org.smartregister.chw.helper.ComplimentaryFeedingActionHelper;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -55,15 +56,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDChildDiscipline(serviceWrapperMap);
             evaluateCCDChildSafety(serviceWrapperMap);
             evaluateComplementaryFeeding(serviceWrapperMap);
-
-            evaluateImmunization();
-            evaluateExclusiveBreastFeeding(serviceWrapperMap);
-            evaluateVitaminA(serviceWrapperMap);
-            evaluateDeworming(serviceWrapperMap);
-            evaluateMalariaPrevention();
-            evaluateCounselling();
-            evaluateNutritionStatus();
-            evaluateObsAndIllness();
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -279,35 +271,35 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateComplementaryFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
 
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Complementary feeding");
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD communication assessment");
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
-        String title = context.getString(R.string.child_safety, serviceIteration);
+        String title = context.getString(R.string.complimentary_feeding, serviceIteration);
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        ChildSafetyActionHelper childSafetyActionHelper = new ChildSafetyActionHelper(context, alert);
+        ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper(context, alert);
 
-        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CHILD_SAFETY);
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.COMPLIMENTARY_FEEDING);
 
-        BaseAncHomeVisitAction child_safety_action = new BaseAncHomeVisitAction.Builder(context, title)
+        BaseAncHomeVisitAction complementary_feeding = new BaseAncHomeVisitAction.Builder(context, title)
                 .withOptional(false)
                 .withDetails(details)
-                .withFormName("child_hv_child_safety")
+                .withFormName("child_hv_complimentary_feeding")
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .withHelper(childSafetyActionHelper)
+                .withHelper(complimentaryFeedingActionHelper)
                 .build();
 
-        actionList.put(title, child_safety_action);
+        actionList.put(title, complementary_feeding);
 
     }
 
