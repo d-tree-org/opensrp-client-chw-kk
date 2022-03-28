@@ -1185,20 +1185,6 @@
             "offset": "+12m"
           }
         }
-      },
-      {
-        "id": "180",
-        "name": "Problem Solving 12 months",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+1m"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+13m"
-          }
-        }
       }
     ]
   }
