@@ -33,6 +33,6 @@ public class KMCSkinToSkinCounsellingHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        return BaseAncHomeVisitAction.Status.COMPLETED;
     }
 }
