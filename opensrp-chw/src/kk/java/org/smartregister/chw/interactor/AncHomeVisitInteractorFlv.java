@@ -3,6 +3,7 @@ package org.smartregister.chw.interactor;
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hl7.fhir.r4.model.Base;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
@@ -92,6 +93,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateNutritionCounselling(actionList, details, memberObject, allAncVisits, context);
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
         evaluateMalaria(actionList, memberObject, details, context, allAncVisits);
+        evaluatePostpartumPreparations(actionList, memberObject, details, context, allAncVisits);
 
         return actionList;
     }
@@ -249,6 +251,25 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withHelper(new MalariaAction())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_malaria_prevention), malaria_ba);
+    }
+
+    private void evaluatePostpartumPreparations(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                 final MemberObject memberObject,
+                                 Map<String, List<VisitDetail>> details,
+                                 final Context context,
+                                 List<Visit> allAncVisits) throws BaseAncHomeVisitAction.ValidationException {
+
+        //Check if first and second visit had already been conducted
+        if (!org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
+            return;
+
+        BaseAncHomeVisitAction postpartum = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_postpartum_preparation))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("anc_hv_postpartum")
+                .withHelper(new PostpartumPreparationActionHelper())
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_postpartum_preparation), postpartum);
     }
 
     private void evaluateObservation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -873,6 +894,84 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 return BaseAncHomeVisitAction.Status.COMPLETED;
             } else {
                 return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
+            Timber.v("onPayloadReceived");
+        }
+    }
+
+    private class PostpartumPreparationActionHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+
+        private String postpartum_psychological_changes;
+        private String postpartum_danger_sign;
+        private String immediate_newborn_care;
+        private String newborn_danger_sign;
+        private Context context;
+
+        @Override
+        public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                postpartum_psychological_changes = JsonFormUtils.getValue(jsonObject, "postpartum_psychological_changes");
+                postpartum_danger_sign = JsonFormUtils.getValue(jsonObject, "postpartum_danger_signs");
+                immediate_newborn_care = JsonFormUtils.getValue(jsonObject, "immediate_newborn_care");
+                newborn_danger_sign = JsonFormUtils.getValue(jsonObject, "newborn_danger_sign");
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String s) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_psychological_changes), StringUtils.capitalize(postpartum_psychological_changes.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_postpartum_danger_sign), StringUtils.capitalize(postpartum_danger_sign.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_new_born_danger_sign), StringUtils.capitalize(newborn_danger_sign.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_immediate_newborn_care), StringUtils.capitalize(immediate_newborn_care.trim().toLowerCase())));
+
+            return stringBuilder.toString();
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+
+            if (postpartum_psychological_changes.isEmpty() || postpartum_danger_sign.isEmpty()
+                    || immediate_newborn_care.isEmpty() || newborn_danger_sign.isEmpty())
+                return BaseAncHomeVisitAction.Status.PENDING;
+
+            if (postpartum_psychological_changes.equalsIgnoreCase("no") || postpartum_danger_sign.equalsIgnoreCase("no")
+                || immediate_newborn_care.equalsIgnoreCase("no") || newborn_danger_sign.equalsIgnoreCase("no")) {
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            } else {
+                return BaseAncHomeVisitAction.Status.COMPLETED;
             }
         }
 
