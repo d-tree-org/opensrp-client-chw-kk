@@ -187,6 +187,12 @@
     <string name="anc_home_visit_observations_n_illnes">Uchunguzi na ugonjwa</string>
     <string name="anc_home_visit_remarks_and_comments">Maoni</string>
 
+    <string name="anc_home_visit_postpartum_preparation">Maandalizi ya baada ya kujifungua</string>
+    <string name="anc_home_visit_postpartum_preparation_psychological_changes"> 8. Mabadiliko ya kimwili kwa mama aliyejifungua </string>
+    <string name="anc_home_visit_postpartum_preparation_postpartum_danger_sign"> 10. Dalili za hatari mara baada ya kujifungua  </string>
+    <string name="anc_home_visit_postpartum_preparation_new_born_danger_sign"> 14. Dalili za hatari kwa mtoto mchanga </string>
+    <string name="anc_home_visit_postpartum_preparation_immediate_newborn_care"> 11. Huduma kwa mtoto mchanga mara baada ya kuzaliwa </string>
+
     <string name="anc_home_visit_anc_card_received">Amepewa kadi ya kliniki ya mama mjamzito</string>
     <string name="anc_home_visit_delivery_kit_received">Vifaa vya kujifungua vimepokelewa</string>
     <string name="anc_home_visit_sleeping_under_llitn_net">Analala kwenye chandarua chenye viuwatilifu cha muda mrefu</string>

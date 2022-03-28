@@ -24,6 +24,13 @@
     <string name="anc_home_visit_observations_n_illnes">Observations &amp; illness</string>
     <string name="anc_home_visit_remarks_and_comments">Remarks / Comments</string>
 
+    <string name="anc_home_visit_postpartum_preparation">Postpartum preparation</string>
+    <string name="anc_home_visit_postpartum_preparation_psychological_changes"> 8. Postpartum Physiological Changes </string>
+    <string name="anc_home_visit_postpartum_preparation_postpartum_danger_sign"> 10. Postpartum danger signs </string>
+    <string name="anc_home_visit_postpartum_preparation_new_born_danger_sign"> 14. New Born Danger Signs </string>
+    <string name="anc_home_visit_postpartum_preparation_immediate_newborn_care"> 11. Immediate Newborn Care   </string>
+
+
     <string name="anc_home_visit_gender_issues"> Gender Issues</string>
 
     <string name="anc_home_visit_anc_card_received">ANC card received</string>
