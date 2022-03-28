@@ -16,12 +16,12 @@ import java.text.MessageFormat;
 
 import timber.log.Timber;
 
-public class NeonatalDangerSignsAction extends HomeVisitActionHelper {
+public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
     private Context context;
     private String neoNateDangerSigns;
     private Alert alert;
 
-    public NeonatalDangerSignsAction(Context context, Alert alert) {
+    public NeonatalDangerSignsActionHelper(Context context, Alert alert) {
         this.context = context;
         this.alert = alert;
     }

@@ -27,6 +27,6 @@
     <string name="toddler_danger_sign_month">Dalili za hatari za mtoto wa miezi %s </string>
     <string name="neonatal_danger_signs">Uchunguzi wa dalili za hatari za mtoto mchanga</string>
     <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga %s</string>
-
+    <string name="kmc_skin_to_skin_counselling_month">Ushauri juu ya matunzo ya ngozi kwa ngozi (KMC) %s</string>
 
 </resources>

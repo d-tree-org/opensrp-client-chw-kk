@@ -45,6 +45,6 @@
     <string name="toddler_danger_sign_month">Toddler danger sign %s months</string>
     <string name="neonatal_danger_signs">Neonatal Danger Signs</string>
     <string name="neonatal_danger_signs_month">Neonatal danger signs %s</string>
-
+    <string name="kmc_skin_to_skin_counselling_month">KMC Skin-to-skin counselling %s</string>
 
 </resources>
