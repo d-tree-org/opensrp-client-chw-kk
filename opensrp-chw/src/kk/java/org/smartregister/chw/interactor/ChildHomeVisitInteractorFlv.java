@@ -5,6 +5,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
@@ -73,6 +74,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateMalariaPrevention(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
             evaluateProblemSolving(serviceWrapperMap);
+            evaluateCareGiverResponsiveness();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -214,6 +216,27 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, action);
     }
 
+    protected void evaluateCareGiverResponsiveness() throws BaseAncHomeVisitAction.ValidationException {
+
+        CareGiverResponsivenessActionHelper actionHelper = new CareGiverResponsivenessActionHelper();
+
+        String title = "CCD: Caregiver Responsiveness to Child Behavior/Cues";
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelper)
+                //.withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                //.withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvCaregiverResponsiveness())
+                .build();
+
+        actionList.put(title, action);
+
+    }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
 
