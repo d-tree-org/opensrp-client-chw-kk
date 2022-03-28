@@ -1,0 +1,28 @@
+---
+name: step1_caregiver_interaction_praise
+description: caregiver_interaction_praise toaster message
+priority: 1
+condition: "step1_caregiver_interacts_with_child == 'Moves toward and with child, and talks to or makes sounds with child, responds to child'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_caregiver_interaction_advise
+description: caregiver_interaction_advise toaster message
+priority: 1
+condition: "step1_caregiver_interacts_with_child == 'Does not move with child, or controls child’s movements or is not responsive to child'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_is_not_comforting
+description: is_not_comforting toaster message
+priority: 1
+condition: "step1_caregiver_response_cue == 'Is not able to comfort child, and child does not look to caregiver for comfort'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_respond_to_child_cue_note
+description: respond_to_child_cue_note toaster message
+priority: 1
+condition: "step1_caregiver_response_cue == 'Looks into child’s eyes and talks softly to child, gently touches child or holds child closely'"
+actions:
+  - "isRelevant = true"
