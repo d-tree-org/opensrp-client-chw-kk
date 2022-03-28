@@ -59,13 +59,22 @@
         "text_color": "#000000"
       },
       {
+        "key": "postpartum_psychological_changes_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "{{anc_hv_postpartum.step1.postpartum_psychological_changes.label}}",
+        "text_color": "#575757"
+      },
+      {
         "key": "postpartum_psychological_changes",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "label": "{{anc_hv_postpartum.step1.postpartum_psychological_changes.label}}",
         "hint": "{{anc_hv_postpartum.step1.postpartum_psychological_changes.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
@@ -91,13 +100,22 @@
         "text_color": "#000000"
       },
       {
+        "key": "postpartum_danger_signs_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "{{anc_hv_postpartum.step1.postpartum_danger_signs.label}}",
+        "text_color": "#575757"
+      },
+      {
         "key": "postpartum_danger_signs",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "label": "{{anc_hv_postpartum.step1.postpartum_danger_signs.label}}",
         "hint": "{{anc_hv_postpartum.step1.postpartum_danger_signs.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
@@ -112,6 +130,7 @@
           "err": "{{anc_hv_postpartum.step1.v_required.err}}"
         }
       },
+
       {
         "key": "immediate_newborn_care_title",
         "openmrs_entity_parent": "",
@@ -122,13 +141,22 @@
         "text_color": "#000000"
       },
       {
+        "key": "immediate_newborn_care_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "{{anc_hv_postpartum.step1.immediate_newborn_care.label}}",
+        "text_color": "#575757"
+      },
+      {
         "key": "immediate_newborn_care",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "label": "{{anc_hv_postpartum.step1.immediate_newborn_care.label}}",
         "hint": "{{anc_hv_postpartum.step1.immediate_newborn_care.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
@@ -143,6 +171,7 @@
           "err": "{{anc_hv_postpartum.step1.v_required.err}}"
         }
       },
+
       {
         "key": "newborn_danger_sign_title",
         "openmrs_entity_parent": "",
@@ -153,13 +182,22 @@
         "text_color": "#000000"
       },
       {
+        "key": "newborn_danger_sign_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "{{anc_hv_postpartum.step1.newborn_danger_sign.label}}",
+        "text_color": "#575757"
+      },
+      {
         "key": "newborn_danger_sign",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "label": "{{anc_hv_postpartum.step1.newborn_danger_sign.label}}",
         "hint": "{{anc_hv_postpartum.step1.newborn_danger_sign.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
