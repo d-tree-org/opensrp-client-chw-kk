@@ -229,7 +229,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         CareGiverResponsivenessActionHelper actionHelper = new CareGiverResponsivenessActionHelper(alert);
 
-        String title = "CCD: Caregiver Responsiveness to Child Behavior/Cues";
+        String title = context.getString(R.string.ccd_caregiver_responsiveness);
 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(actionHelper)
