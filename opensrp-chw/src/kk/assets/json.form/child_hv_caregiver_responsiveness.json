@@ -61,6 +61,10 @@
           "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.values[0]}}",
           "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.values[1]}}"
         ],
+        "keys": [
+          "Moves toward and with child, and talks to or makes sounds with child, responds to child",
+          "Does not move with child, or controls child’s movements or is not responsive to child"
+        ],
         "openmrs_choice_ids": {
           "responds_to_child": "",
           "not_responsive_to_child": ""
@@ -112,6 +116,10 @@
           "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.values[0]}}",
           "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.values[1]}}"
         ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
         "openmrs_choice_ids": {
           "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -128,6 +136,10 @@
         "values": [
           "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.values[0]}}",
           "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.values[1]}}"
+        ],
+        "keys": [
+          "Looks into child’s eyes and talks softly to child, gently touches child or holds child closely",
+          "Is not able to comfort child, and child does not look to caregiver for comfort"
         ],
         "openmrs_choice_ids": {
           "Looks into child’s eyes and talks softly to child, gently touches child or holds child closely": "",
