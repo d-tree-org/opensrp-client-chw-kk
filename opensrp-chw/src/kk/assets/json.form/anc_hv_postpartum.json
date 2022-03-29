@@ -251,6 +251,86 @@
           "value": "true",
           "err": "{{anc_hv_postpartum.step1.v_required.err}}"
         }
+      },
+      {
+        "key": "lam_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.lam_title.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "lam_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "text": "{{anc_hv_postpartum.step1.lam_description.label}}"
+      },
+      {
+        "key": "lam",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.lam.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "postpartum_family_planning_tittle",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.postpartum_family_planning_tittle.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "postpartum_family_planning_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "text": "{{anc_hv_postpartum.step1.postpartum_family_planning_description.label}}"
+      },
+      {
+        "key": "postpartum_family_planning",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.postpartum_family_planning.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
       }
     ]
   },
