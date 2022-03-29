@@ -61,6 +61,10 @@
           "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.values[0]}}",
           "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.values[1]}}"
         ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
         "openmrs_choice_ids": {
           "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
