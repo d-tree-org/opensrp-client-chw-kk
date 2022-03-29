@@ -171,7 +171,6 @@
           "err": "{{anc_hv_postpartum.step1.v_required.err}}"
         }
       },
-
       {
         "key": "newborn_danger_sign_title",
         "openmrs_entity_parent": "",
@@ -189,7 +188,8 @@
         "type": "label",
         "label_text_style": "italic",
         "text": "{{anc_hv_postpartum.step1.newborn_danger_sign.label}}",
-        "text_color": "#575757"
+        "text_color": "#575757",
+        "has_bg": true
       },
       {
         "key": "newborn_danger_sign",
@@ -199,6 +199,46 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_postpartum.step1.newborn_danger_sign.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "followup_hiv_exposed_infant_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.followup_hiv_exposed_infant_title.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "followup_hiv_exposed_infant_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "text": "{{anc_hv_postpartum.step1.followup_hiv_exposed_infant_description.label}}"
+      },
+      {
+        "key": "followup_hiv_exposed_infant",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.followup_hiv_exposed_infant.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
           "{{anc_hv_postpartum.step1.answer_no}}"
