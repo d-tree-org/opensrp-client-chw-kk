@@ -479,17 +479,10 @@
         ],
         "openmrs_choice_ids": {
           "Married": "",
-          "Co-habitating": "",
+          "Co-Habitating": "",
           "Single": "",
           "Divorced": "",
           "Widowed": ""
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "anc_member_registration_relevance.yml"
-            }
-          }
         }
       },
       {
