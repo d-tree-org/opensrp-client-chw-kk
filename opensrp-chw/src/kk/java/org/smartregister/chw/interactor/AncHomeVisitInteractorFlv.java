@@ -319,7 +319,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         public void onPayloadReceived(String jsonPayload) {
             try{
                 JSONObject jsonObject = new JSONObject(jsonPayload);
-                discussed_bango_kitita = JsonFormUtils.getValue(jsonObject, "labour_signs")
+                discussed_bango_kitita = JsonFormUtils.getValue(jsonObject, "labour_signs");
             }catch (Exception e){
                 Timber.e(e);
             }
@@ -332,7 +332,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String getPreProcessedSubTitle() {
-            return null;
+            return MessageFormat.format(context.getString(R.string.discussed_labour_signs_with_woman)+": {0}", discussed_bango_kitita);
         }
 
         @Override
