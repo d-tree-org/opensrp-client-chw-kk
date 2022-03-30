@@ -303,6 +303,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private class BirthPreparednessAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
 
         private Context context;
+        private String discussed_bango_kitita;
 
         @Override
         public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
@@ -316,7 +317,12 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public void onPayloadReceived(String jsonPayload) {
-
+            try{
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                discussed_bango_kitita = JsonFormUtils.getValue(jsonObject, "labour_signs")
+            }catch (Exception e){
+                Timber.e(e);
+            }
         }
 
         @Override
@@ -341,7 +347,14 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            return BaseAncHomeVisitAction.Status.COMPLETED;
+            if (discussed_bango_kitita.equalsIgnoreCase("yes")){
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            }
+            else if (discussed_bango_kitita.equalsIgnoreCase("No")){
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
+            else
+                return BaseAncHomeVisitAction.Status.PENDING;
         }
 
         @Override
