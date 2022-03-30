@@ -425,7 +425,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
     private class NutritionAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
         private Context context;
-        private String nutrition_status;
+        private String available_foods;
 
         @Override
         public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
@@ -439,12 +439,12 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public void onPayloadReceived(String jsonPayload) {
-            /*try {
+            try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
-                nutrition_status = JsonFormUtils.getValue(jsonObject, "nutrition_status").toLowerCase();
+                available_foods = JsonFormUtils.getCheckBoxValue(jsonObject, "foods_available");
             } catch (JSONException e) {
                 Timber.e(e);
-            }*/
+            }
         }
 
         @Override
@@ -464,12 +464,16 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return MessageFormat.format("{0}: {1}", context.getString(R.string.nutrition_status), "Nutrition counselling complete");
+            return MessageFormat.format("{0}: {1}", context.getString(R.string.foods_available), available_foods);
         }
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            return BaseAncHomeVisitAction.Status.COMPLETED;
+            if (available_foods.isEmpty()){
+                return BaseAncHomeVisitAction.Status.PENDING;
+            }else {
+                return  BaseAncHomeVisitAction.Status.COMPLETED;
+            }
         }
 
         @Override
