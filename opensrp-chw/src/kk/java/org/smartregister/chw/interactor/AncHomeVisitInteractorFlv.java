@@ -909,6 +909,9 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         private String postpartum_danger_sign;
         private String immediate_newborn_care;
         private String newborn_danger_sign;
+        private String followup_hiv_exposed_infant;
+        private String lam;
+        private String postpartum_family_planning;
         private Context context;
 
         @Override
@@ -929,6 +932,9 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 postpartum_danger_sign = JsonFormUtils.getValue(jsonObject, "postpartum_danger_signs");
                 immediate_newborn_care = JsonFormUtils.getValue(jsonObject, "immediate_newborn_care");
                 newborn_danger_sign = JsonFormUtils.getValue(jsonObject, "newborn_danger_sign");
+                followup_hiv_exposed_infant = JsonFormUtils.getValue(jsonObject, "followup_hiv_exposed_infant");
+                lam = JsonFormUtils.getValue(jsonObject, "lam");
+                postpartum_family_planning = JsonFormUtils.getValue(jsonObject, "postpartum_family_planning");
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -956,6 +962,9 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
             stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_postpartum_danger_sign), StringUtils.capitalize(postpartum_danger_sign.trim().toLowerCase())));
             stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_new_born_danger_sign), StringUtils.capitalize(newborn_danger_sign.trim().toLowerCase())));
             stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_immediate_newborn_care), StringUtils.capitalize(immediate_newborn_care.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant), StringUtils.capitalize(followup_hiv_exposed_infant.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_lam), StringUtils.capitalize(lam.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_postpartum_family_planning), StringUtils.capitalize(postpartum_family_planning.trim().toLowerCase())));
 
             return stringBuilder.toString();
         }
@@ -964,11 +973,15 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
 
             if (StringUtils.isBlank(postpartum_psychological_changes) || StringUtils.isBlank(postpartum_danger_sign)
-                    || StringUtils.isBlank(immediate_newborn_care) || StringUtils.isBlank(newborn_danger_sign))
+                    || StringUtils.isBlank(immediate_newborn_care) || StringUtils.isBlank(newborn_danger_sign)
+                    || StringUtils.isBlank(followup_hiv_exposed_infant) || StringUtils.isBlank(lam)
+                    || StringUtils.isBlank(postpartum_family_planning))
                 return BaseAncHomeVisitAction.Status.PENDING;
 
             if (postpartum_psychological_changes.equalsIgnoreCase("no") || postpartum_danger_sign.equalsIgnoreCase("no")
-                || immediate_newborn_care.equalsIgnoreCase("no") || newborn_danger_sign.equalsIgnoreCase("no")) {
+                    || immediate_newborn_care.equalsIgnoreCase("no") || newborn_danger_sign.equalsIgnoreCase("no")
+                    || followup_hiv_exposed_infant.equalsIgnoreCase("no") || lam.equalsIgnoreCase("no")
+                    || postpartum_family_planning.equalsIgnoreCase("no")) {
                 return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             } else {
                 return BaseAncHomeVisitAction.Status.COMPLETED;
