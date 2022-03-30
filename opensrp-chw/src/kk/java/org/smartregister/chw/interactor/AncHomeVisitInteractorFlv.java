@@ -963,8 +963,8 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
 
-            if (postpartum_psychological_changes.isEmpty() || postpartum_danger_sign.isEmpty()
-                    || immediate_newborn_care.isEmpty() || newborn_danger_sign.isEmpty())
+            if (StringUtils.isBlank(postpartum_psychological_changes) || StringUtils.isBlank(postpartum_danger_sign)
+                    || StringUtils.isBlank(immediate_newborn_care) || StringUtils.isBlank(newborn_danger_sign))
                 return BaseAncHomeVisitAction.Status.PENDING;
 
             if (postpartum_psychological_changes.equalsIgnoreCase("no") || postpartum_danger_sign.equalsIgnoreCase("no")
