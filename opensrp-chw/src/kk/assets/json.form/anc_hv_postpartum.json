@@ -66,7 +66,8 @@
         "type": "label",
         "label_text_style": "italic",
         "text": "{{anc_hv_postpartum.step1.postpartum_psychological_changes.label}}",
-        "text_color": "#575757"
+        "text_color": "#575757",
+        "has_bg": true
       },
       {
         "key": "postpartum_psychological_changes",
@@ -107,7 +108,8 @@
         "type": "label",
         "label_text_style": "italic",
         "text": "{{anc_hv_postpartum.step1.postpartum_danger_signs.label}}",
-        "text_color": "#575757"
+        "text_color": "#575757",
+        "has_bg": true
       },
       {
         "key": "postpartum_danger_signs",
@@ -148,7 +150,8 @@
         "type": "label",
         "label_text_style": "italic",
         "text": "{{anc_hv_postpartum.step1.immediate_newborn_care.label}}",
-        "text_color": "#575757"
+        "text_color": "#575757",
+        "has_bg": true
       },
       {
         "key": "immediate_newborn_care",
