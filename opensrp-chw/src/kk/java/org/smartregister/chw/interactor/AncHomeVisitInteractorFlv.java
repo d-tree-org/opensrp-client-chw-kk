@@ -425,7 +425,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
     private class NutritionAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
         private Context context;
-        private String available_foods;
+        private String available_foods = "";
 
         @Override
         public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
@@ -485,7 +485,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private class GenderIssuesAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
 
         Context context;
-        private String counselling_given;
+        private String counselling_given = "";
 
         @Override
         public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
@@ -530,11 +530,18 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            if (counselling_given.contains("yes")){
+
+            if (counselling_given.isEmpty())
+                return BaseAncHomeVisitAction.Status.PENDING;
+
+            if (counselling_given.equalsIgnoreCase("yes"))
                 return BaseAncHomeVisitAction.Status.COMPLETED;
-            }else {
+
+            if (counselling_given.equalsIgnoreCase("no"))
                 return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-            }
+            else
+                return BaseAncHomeVisitAction.Status.PENDING;
+
         }
 
         @Override
