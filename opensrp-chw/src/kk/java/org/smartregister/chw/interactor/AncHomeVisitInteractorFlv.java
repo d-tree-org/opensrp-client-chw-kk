@@ -303,7 +303,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private class BirthPreparednessAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
 
         private Context context;
-        private String discussed_bango_kitita;
+        private String discussed_bango_kitita = "";
 
         @Override
         public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
@@ -332,7 +332,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String getPreProcessedSubTitle() {
-            return MessageFormat.format(context.getString(R.string.discussed_labour_signs_with_woman)+": {0}", discussed_bango_kitita);
+            return null;
         }
 
         @Override
@@ -342,7 +342,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return null;
+            return MessageFormat.format(context.getString(R.string.discussed_labour_signs_with_woman)+": {0}", discussed_bango_kitita);
         }
 
         @Override
