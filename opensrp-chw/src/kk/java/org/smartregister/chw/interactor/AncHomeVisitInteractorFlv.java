@@ -551,8 +551,8 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private class MalariaAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
-        private String llin_last_night;
-        private String llin_condition;
+        private String llin_last_night = "";
+        private String llin_condition = "";
         private Context context;
 
         @Override
@@ -602,6 +602,9 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            if (llin_last_night.isEmpty() || llin_condition.isEmpty())
+                return BaseAncHomeVisitAction.Status.PENDING;
+
             if (llin_last_night.equalsIgnoreCase("Yes") && llin_condition.equalsIgnoreCase("Okay")) {
                 return BaseAncHomeVisitAction.Status.COMPLETED;
             } else {
