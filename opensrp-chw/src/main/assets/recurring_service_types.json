@@ -1344,5 +1344,64 @@
         }
       }
     ]
+  },
+  {
+    "type": "Newborn Cord Care",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "210",
+        "name": "Newborn Cord Care 24 hours",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+0d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "211",
+        "name": "Newborn Cord Care 3 days",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "212",
+        "name": "Newborn Cord Care 8 days",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      }
+    ]
   }
 ]
