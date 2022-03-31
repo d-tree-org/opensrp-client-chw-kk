@@ -76,7 +76,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
             evaluateProblemSolving(serviceWrapperMap);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
-            evaluateNewbornCordCare();
+            evaluateNewbornCordCare(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -249,7 +249,13 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
-    protected void evaluateNewbornCordCare() throws BaseAncHomeVisitAction.ValidationException {
+    protected void evaluateNewbornCordCare(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Newborn Cord Care");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         NewbornCordCareActionHelper actionHelper = new NewbornCordCareActionHelper();
 
