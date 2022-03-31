@@ -659,6 +659,22 @@
         ]
       },
       {
+        "key": "accessibility_issues_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{anc_member_registration.step1.accessibility_issues_other.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "substance_use",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
