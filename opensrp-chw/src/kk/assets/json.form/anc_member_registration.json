@@ -640,9 +640,6 @@
         "openmrs_entity_id": "",
         "type": "check_box",
         "label": "{{anc_member_registration.step1.accessibility_issues.label}}",
-        "exclusive": [
-          "chk_none"
-        ],
         "options": [
           {
             "key": "chk_seeing",
@@ -675,12 +672,28 @@
             "value": "false"
           },
           {
-            "key": "chk_none",
-            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_none.text}}",
+            "key": "chk_other",
+            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_other.text}}",
             "text_size": "18px",
             "value": "false"
           }
         ]
+      },
+      {
+        "key": "accessibility_issue_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{anc_member_registration.step1.accessibility_issue_other.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "substance_use",
