@@ -10,6 +10,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
+import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
@@ -76,6 +77,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         try {
             evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
+            evaluateNewBornCareIntro(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
             evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
@@ -160,6 +162,38 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         actionList.put(title, action);
 
+    }
+
+    private void evaluateNewBornCareIntro(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Essential New Born Care: Introduction");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceName = serviceWrapper.getName();
+
+        // Get the very first visit
+        List<Visit> introductionVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Introduction");
+        boolean firstVisitDone  = introductionVisits.size() > 0;
+
+        String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
+
+        NewBornCareIntroductionHelper newBornIntroHelper = new NewBornCareIntroductionHelper(context, alert, firstVisitDone);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction newBornCareIntroAction = getBuilder(title)
+                .withHelper(newBornIntroHelper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName("child_hv_new_born_care_intro")
+                .withPayloadDetails(serviceWrapper.getName())
+                .build();
+
+        actionList.put(title, newBornCareIntroAction);
     }
 
     private void evaluateNeonatalDangerSigns(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {

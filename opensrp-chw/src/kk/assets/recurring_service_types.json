@@ -977,5 +977,92 @@
         }
       }
     ]
+  },
+  {
+    "type": "Essential New Born Care: Introduction",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "67",
+        "name": "Essential New Born Care: Introduction1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+0d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "68",
+        "name": "Essential New Born Care: Introduction2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "69",
+        "name": "Essential New Born Care: Introduction3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "70",
+        "name": "Essential New Born Care: Introduction4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "71",
+        "name": "Essential New Born Care: Introduction5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      }
+    ]
   }
 ]

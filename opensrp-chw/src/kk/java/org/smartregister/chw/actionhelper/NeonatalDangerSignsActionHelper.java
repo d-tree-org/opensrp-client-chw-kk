@@ -31,7 +31,6 @@ public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
         return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;  // todo -> return null
     }
 
-
     private boolean isOverDue() {
         return new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
     }

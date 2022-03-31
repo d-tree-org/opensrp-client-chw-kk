@@ -28,5 +28,6 @@
     <string name="neonatal_danger_signs">Uchunguzi wa dalili za hatari za mtoto mchanga</string>
     <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga %s</string>
     <string name="kmc_skin_to_skin_counselling_month">Ushauri juu ya matunzo ya ngozi kwa ngozi (KMC) %s</string>
+    <string name="new_born_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi %s</string>
 
 </resources>
