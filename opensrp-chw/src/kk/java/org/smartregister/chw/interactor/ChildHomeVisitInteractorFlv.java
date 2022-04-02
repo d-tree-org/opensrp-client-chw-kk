@@ -76,8 +76,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         try {
             evaluateToddlerDangerSign(serviceWrapperMap);
-            evaluateBreastFeeding(serviceWrapperMap);
             evaluateNewBornCareIntro(serviceWrapperMap);
+            evaluateBreastFeeding(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
             evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
@@ -171,29 +171,30 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceName = serviceWrapper.getName();
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
 
         // Get the very first visit
         List<Visit> introductionVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Introduction");
         boolean firstVisitDone  = introductionVisits.size() > 0;
 
-        String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
+        // Todo?  -> Calculate overdue status
+        //boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
 
-        NewBornCareIntroductionHelper newBornIntroHelper = new NewBornCareIntroductionHelper(context, alert, firstVisitDone);
+        NewBornCareIntroductionHelper newBornIntroHelper = new NewBornCareIntroductionHelper(context, firstVisitDone);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction newBornCareIntroAction = getBuilder(title)
-                .withHelper(newBornIntroHelper)
+        BaseAncHomeVisitAction newBornCareIntroAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.new_born_care_introduction, serviceIteration))
                 .withDetails(details)
+                .withFormName("child_hv_new_born_care_intro")
                 .withOptional(false)
                 .withBaseEntityID(memberObject.getBaseEntityId())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withFormName("child_hv_new_born_care_intro")
-                .withPayloadDetails(serviceWrapper.getName())
+                .withSubtitle(MessageFormat.format("{0}", DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(newBornIntroHelper)
                 .build();
 
-        actionList.put(title, newBornCareIntroAction);
+        actionList.put(context.getString(R.string.new_born_care_introduction), newBornCareIntroAction);
     }
 
     private void evaluateNeonatalDangerSigns(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {

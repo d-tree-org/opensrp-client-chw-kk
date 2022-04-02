@@ -55,7 +55,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "{{child_hv_new_born_care_intro.step1.new_born_care_counselling.text }}",
+        "text": "{{child_hv_new_born_care_intro.step1.new_born_care_counselling.text}}",
         "label_text_style": "normal",
         "toaster_type": "info"
       },
@@ -124,7 +124,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "{{child_hv_new_born_care_intro.step1.new_born_care_counselling_bango_kitita_premature.text }}",
+        "text": "{{child_hv_new_born_care_intro.step1.new_born_care_counselling_bango_kitita_premature.text}}",
         "label_text_style": "normal",
         "toaster_type": "info",
         "relevance": {

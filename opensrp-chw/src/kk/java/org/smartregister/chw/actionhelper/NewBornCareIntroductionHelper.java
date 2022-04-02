@@ -5,7 +5,6 @@ import android.content.Context;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,14 +24,12 @@ import timber.log.Timber;
 public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
 
     private Context context;
-    private Alert alert;
     private String prematureBaby;
     private String jsonString;
     private final boolean firstVisitDone;
 
-    public NewBornCareIntroductionHelper(Context context, Alert alert, boolean firstVisitDone) {
+    public NewBornCareIntroductionHelper(Context context, boolean firstVisitDone) {
         this.context = context;
-        this.alert = alert;
         this.firstVisitDone = firstVisitDone;
     }
 
@@ -61,7 +58,7 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
     public void onPayloadReceived(String s) {
         try {
             JSONObject jsonObject = new JSONObject(prematureBaby);
-            prematureBaby = JsonFormUtils.getCheckBoxValue(jsonObject, "premature_baby");
+            prematureBaby = JsonFormUtils.getValue(jsonObject, "premature_baby");
         } catch (JSONException e) {
             Timber.e(e);
         }
