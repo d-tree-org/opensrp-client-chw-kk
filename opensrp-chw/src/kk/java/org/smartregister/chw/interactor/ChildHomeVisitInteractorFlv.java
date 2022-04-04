@@ -22,6 +22,7 @@ import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KkConstants;
 import org.smartregister.domain.Alert;
+import org.smartregister.domain.AlertStatus;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
@@ -75,9 +76,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     protected void bindEvents(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
 
         try {
-            evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateNewBornCareIntro(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
+            evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
             evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
@@ -174,27 +175,28 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
 
         // Get the very first visit
-        List<Visit> introductionVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Introduction");
-        boolean firstVisitDone  = introductionVisits.size() > 0;
+        List<Visit> introductionVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), KkConstants.EventType.ESSENTIAL_NEW_BORN_CARE_INTRO);
+        boolean firstVisitDone = introductionVisits.size() > 0;
 
-        // Todo?  -> Calculate overdue status
-        //boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        boolean isOverdue = alert.status().equals(AlertStatus.urgent);
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
         NewBornCareIntroductionHelper newBornIntroHelper = new NewBornCareIntroductionHelper(context, firstVisitDone);
-        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+        Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.ESSENTIAL_NEW_BORN_CARE_INTRO);
 
-        BaseAncHomeVisitAction newBornCareIntroAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.new_born_care_introduction, serviceIteration))
-                .withDetails(details)
-                .withFormName("child_hv_new_born_care_intro")
+        BaseAncHomeVisitAction newBornCareIntroAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.new_born_care_introduction_month, serviceIteration))
                 .withOptional(false)
+                .withDetails(details)
                 .withBaseEntityID(memberObject.getBaseEntityId())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withSubtitle(MessageFormat.format("{0}", DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvEssentialCareIntroductionForm())
+                .withScheduleStatus(BaseAncHomeVisitAction.ScheduleStatus.DUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withHelper(newBornIntroHelper)
                 .build();
 
-        actionList.put(context.getString(R.string.new_born_care_introduction), newBornCareIntroAction);
+        actionList.put(context.getString(R.string.new_born_care_introduction_month, serviceIteration), newBornCareIntroAction);
     }
 
     private void evaluateNeonatalDangerSigns(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {

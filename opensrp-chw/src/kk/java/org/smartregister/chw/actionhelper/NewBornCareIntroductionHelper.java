@@ -13,7 +13,6 @@ import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
-import org.smartregister.domain.Alert;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -55,9 +54,9 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
     }
 
     @Override
-    public void onPayloadReceived(String s) {
+    public void onPayloadReceived(String jsonPayload) {
         try {
-            JSONObject jsonObject = new JSONObject(prematureBaby);
+            JSONObject jsonObject = new JSONObject(jsonPayload);
             prematureBaby = JsonFormUtils.getValue(jsonObject, "premature_baby");
         } catch (JSONException e) {
             Timber.e(e);
@@ -66,7 +65,7 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("{0}: {1}", context.getString(R.string.new_born_care_introduction), prematureBaby);
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.is_baby_premature), prematureBaby);
     }
 
     @Override

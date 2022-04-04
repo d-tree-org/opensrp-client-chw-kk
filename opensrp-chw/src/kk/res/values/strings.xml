@@ -46,6 +46,8 @@
     <string name="neonatal_danger_signs">Neonatal Danger Signs</string>
     <string name="neonatal_danger_signs_month">Neonatal danger signs %s</string>
     <string name="kmc_skin_to_skin_counselling_month">KMC Skin-to-skin counselling %s</string>
-    <string name="new_born_care_introduction">Essential New Born Care: Introduction %s</string>
+    <string name="new_born_care_introduction">Essential New Born Care: Introduction</string>
+    <string name="is_baby_premature">Baby pre-mature or born underweight?</string>
+    <string name="new_born_care_introduction_month">Essential New Born Care: Introduction %s</string>
 
 </resources>
