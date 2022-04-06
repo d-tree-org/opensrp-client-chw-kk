@@ -4,15 +4,11 @@ import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.actionhelper.ANCCounselingAction;
-import org.smartregister.chw.actionhelper.HealthFacilityVisitAction;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -20,20 +16,15 @@ import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.VisitUtils;
-import org.smartregister.chw.core.dao.AncDao;
 import org.smartregister.chw.core.utils.CoreConstants;
-import org.smartregister.chw.referral.util.JsonFormConstants;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.ContactUtil;
 import org.smartregister.chw.util.JsonFormUtils;
 
 import java.text.MessageFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import timber.log.Timber;
@@ -92,6 +83,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateNutritionCounselling(actionList, details, memberObject, allAncVisits, context);
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
         evaluateMalaria(actionList, memberObject, details, context, allAncVisits);
+        evaluatePostpartumPreparations(actionList, memberObject, details, context, allAncVisits);
 
         return actionList;
     }
@@ -257,6 +249,24 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         actionList.put(context.getString(R.string.anc_home_visit_malaria_prevention), malaria_ba);
     }
 
+    private void evaluatePostpartumPreparations(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                 final MemberObject memberObject,
+                                 Map<String, List<VisitDetail>> details,
+                                 final Context context,
+                                 List<Visit> allAncVisits) throws BaseAncHomeVisitAction.ValidationException {
+
+        //Check if first and second visit had already been conducted
+        if (!org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
+            return;
+
+        BaseAncHomeVisitAction postpartum = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_postpartum_preparation))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("anc_hv_postpartum")
+                .withHelper(new PostpartumPreparationActionHelper())
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_postpartum_preparation), postpartum);
+    }
 
     private class DangerSignsAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
         private String danger_signs_counseling;
@@ -711,6 +721,97 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 return BaseAncHomeVisitAction.Status.COMPLETED;
             } else {
                 return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
+            Timber.v("onPayloadReceived");
+        }
+    }
+
+    private class PostpartumPreparationActionHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+
+        private String postpartum_psychological_changes;
+        private String postpartum_danger_sign;
+        private String immediate_newborn_care;
+        private String newborn_danger_sign;
+        private String followup_hiv_exposed_infant;
+        private String lam;
+        private String postpartum_family_planning;
+        private Context context;
+
+        @Override
+        public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                postpartum_psychological_changes = JsonFormUtils.getValue(jsonObject, "postpartum_psychological_changes");
+                postpartum_danger_sign = JsonFormUtils.getValue(jsonObject, "postpartum_danger_signs");
+                immediate_newborn_care = JsonFormUtils.getValue(jsonObject, "immediate_newborn_care");
+                newborn_danger_sign = JsonFormUtils.getValue(jsonObject, "newborn_danger_sign");
+                followup_hiv_exposed_infant = JsonFormUtils.getValue(jsonObject, "followup_hiv_exposed_infant");
+                lam = JsonFormUtils.getValue(jsonObject, "lam");
+                postpartum_family_planning = JsonFormUtils.getValue(jsonObject, "postpartum_family_planning");
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String s) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_psychological_changes), StringUtils.capitalize(postpartum_psychological_changes.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_postpartum_danger_sign), StringUtils.capitalize(postpartum_danger_sign.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_new_born_danger_sign), StringUtils.capitalize(newborn_danger_sign.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_immediate_newborn_care), StringUtils.capitalize(immediate_newborn_care.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant), StringUtils.capitalize(followup_hiv_exposed_infant.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_lam), StringUtils.capitalize(lam.trim().toLowerCase())));
+            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_postpartum_family_planning), StringUtils.capitalize(postpartum_family_planning.trim().toLowerCase())));
+
+            return stringBuilder.toString();
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+
+            if (StringUtils.isBlank(postpartum_psychological_changes) || StringUtils.isBlank(postpartum_danger_sign)
+                    || StringUtils.isBlank(immediate_newborn_care) || StringUtils.isBlank(newborn_danger_sign)
+                    || StringUtils.isBlank(followup_hiv_exposed_infant) || StringUtils.isBlank(lam)
+                    || StringUtils.isBlank(postpartum_family_planning))
+                return BaseAncHomeVisitAction.Status.PENDING;
+
+            if (postpartum_psychological_changes.equalsIgnoreCase("no") || postpartum_danger_sign.equalsIgnoreCase("no")
+                    || immediate_newborn_care.equalsIgnoreCase("no") || newborn_danger_sign.equalsIgnoreCase("no")
+                    || followup_hiv_exposed_infant.equalsIgnoreCase("no") || lam.equalsIgnoreCase("no")
+                    || postpartum_family_planning.equalsIgnoreCase("no")) {
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            } else {
+                return BaseAncHomeVisitAction.Status.COMPLETED;
             }
         }
 

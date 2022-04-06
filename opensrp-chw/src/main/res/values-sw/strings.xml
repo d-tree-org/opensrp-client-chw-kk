@@ -187,6 +187,15 @@
     <string name="anc_home_visit_observations_n_illnes">Uchunguzi na ugonjwa</string>
     <string name="anc_home_visit_remarks_and_comments">Maoni</string>
 
+    <string name="anc_home_visit_postpartum_preparation">Maandalizi ya baada ya kujifungua</string>
+    <string name="anc_home_visit_postpartum_preparation_psychological_changes">Mabadiliko ya kimwili kwa mama aliyejifungua </string>
+    <string name="anc_home_visit_postpartum_preparation_postpartum_danger_sign">Dalili za hatari mara baada ya kujifungua  </string>
+    <string name="anc_home_visit_postpartum_preparation_new_born_danger_sign">Dalili za hatari kwa mtoto mchanga </string>
+    <string name="anc_home_visit_postpartum_preparation_immediate_newborn_care">Huduma kwa mtoto mchanga mara baada ya kuzaliwa </string>
+    <string name="anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant">Ufuatiliaji wa mtoto aliyezaliwa na mama mwenye VVU</string>
+    <string name="anc_home_visit_postpartum_preparation_lam">Njia ya uzazi wa mpango kwa unyonyeshaji wa maziwa ya mama pekee chini ya miezi sita (LAM)</string>
+    <string name="anc_home_visit_postpartum_postpartum_family_planning">Uzazi wa Mpango</string>
+
     <string name="anc_home_visit_anc_card_received">Amepewa kadi ya kliniki ya mama mjamzito</string>
     <string name="anc_home_visit_delivery_kit_received">Vifaa vya kujifungua vimepokelewa</string>
     <string name="anc_home_visit_sleeping_under_llitn_net">Analala kwenye chandarua chenye viuwatilifu cha muda mrefu</string>

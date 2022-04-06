@@ -1,0 +1,341 @@
+{
+  "count": "1",
+  "encounter_type": "ANC Home Visit - Postpartum psychological changes",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{anc_hv_postpartum.step1.title.text}}",
+    "fields": [
+      {
+        "key": "postpartum_psychological_changes_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.postpartum_psychological_changes_title.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "postpartum_psychological_changes_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "{{anc_hv_postpartum.step1.postpartum_psychological_changes.label}}",
+        "text_color": "#575757",
+        "has_bg": true
+      },
+      {
+        "key": "postpartum_psychological_changes",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.postpartum_psychological_changes.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      },
+
+      {
+        "key": "postpartum_danger_signs_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.postpartum_danger_signs_title.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "postpartum_danger_signs_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "{{anc_hv_postpartum.step1.postpartum_danger_signs.label}}",
+        "text_color": "#575757",
+        "has_bg": true
+      },
+      {
+        "key": "postpartum_danger_signs",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.postpartum_danger_signs.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      },
+
+      {
+        "key": "immediate_newborn_care_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.immediate_newborn_care_title.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "immediate_newborn_care_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "{{anc_hv_postpartum.step1.immediate_newborn_care.label}}",
+        "text_color": "#575757",
+        "has_bg": true
+      },
+      {
+        "key": "immediate_newborn_care",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.immediate_newborn_care.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "newborn_danger_sign_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.newborn_danger_sign_title.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "newborn_danger_sign_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "text": "{{anc_hv_postpartum.step1.newborn_danger_sign.label}}",
+        "text_color": "#575757",
+        "has_bg": true
+      },
+      {
+        "key": "newborn_danger_sign",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.newborn_danger_sign.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "followup_hiv_exposed_infant_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.followup_hiv_exposed_infant_title.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "followup_hiv_exposed_infant_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "text": "{{anc_hv_postpartum.step1.followup_hiv_exposed_infant_description.label}}"
+      },
+      {
+        "key": "followup_hiv_exposed_infant",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.followup_hiv_exposed_infant.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "lam_title",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.lam_title.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "lam_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "text": "{{anc_hv_postpartum.step1.lam_description.label}}"
+      },
+      {
+        "key": "lam",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.lam.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "postpartum_family_planning_tittle",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_postpartum.step1.postpartum_family_planning_tittle.text}}",
+        "text_color": "#000000"
+      },
+      {
+        "key": "postpartum_family_planning_description",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "text": "{{anc_hv_postpartum.step1.postpartum_family_planning_description.label}}"
+      },
+      {
+        "key": "postpartum_family_planning",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_hv_postpartum.step1.postpartum_family_planning.hint}}",
+        "values": [
+          "{{anc_hv_postpartum.step1.answer_yes}}",
+          "{{anc_hv_postpartum.step1.answer_no}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_postpartum.step1.v_required.err}}"
+        }
+      }
+    ]
+  },
+  "properties_file_name": "anc_hv_postpartum"
+}

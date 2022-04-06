@@ -155,6 +155,8 @@
     <string name="anc_home_visit_observations_n_illnes">En Cas de maladie</string>
     <string name="anc_home_visit_remarks_and_comments">Observations/commentaires</string>
 
+    <string name="anc_home_visit_postpartum_preparation">Postpartum preparation</string>
+
     <string name="anc_home_visit_anc_card_received">Carnet CPN reçu</string>
     <string name="anc_home_visit_sleeping_under_llitn_net">Dors sous un MIILD </string>
     <string name="anc_home_visit_counseling">Conseils CPN</string>
