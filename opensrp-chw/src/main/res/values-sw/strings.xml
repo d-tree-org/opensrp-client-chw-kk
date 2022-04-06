@@ -425,6 +425,10 @@
 
     <!-- warning -->
     <string name="any_changes_you_make">Mabadiliko yoyote uliyofanya yatapotea</string>
+    <string name="anc_partially_registered">Usajili wa awali</string>
+    <string name="anc_fully_registered">Usajili umekamilika</string>
+
     <string name="discussed_labour_signs_with_woman"> Amefanya mazungumzo na mama juu ya dalili za kujifungua </string>
     <string name="foods_available"> Vyakula vinavyopatikana katika eneo hili </string>
+
 </resources>
