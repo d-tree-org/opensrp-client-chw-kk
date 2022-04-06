@@ -1,0 +1,219 @@
+{
+  "count": "1",
+  "encounter_type": "Home Visit - Toddler Danger signs",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_toddler_danger_sign.step1.title}}",
+    "fields": [
+      {
+        "key": "child_danger_signs",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label_info_image_src": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.label_info_image_src}}",
+        "label_info_has_image": true,
+        "label": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "chk_vomit",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_vomit.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_convolutions",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_convulsion.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_unconscious",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_unconscious.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_fever",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_fever.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_fast_breathing",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_fast_breathing.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_mild_diarrhea",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_mild_diarrhea.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_severe_diarrhea",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_severe_diarrhea.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_unable_to_breastfeed",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_unable_to_breastfeed.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_cough",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_cough.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_cold",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_cold.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_skin_boils",
+            "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.options.chk_skin_boils.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_none",
+            "text": "{{child_hv_toddler_danger_sign.step1.danger_signs_present.options.chk_none.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_toddler_danger_sign.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "danger_signs_present_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_toddler_danger_sign.step1.danger_signs_present_toaster.text}}",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_fever",
+                  "chk_bleeding_vaginally",
+                  "chk_server_headache",
+                  "chk_convulsions",
+                  "chk_difficulty_breathing",
+                  "chk_severe_abdominal_pain",
+                  "chk_swollen_face",
+                  "chk_fatigue",
+                  "chk_tinnitus",
+                  "chk_fetal_movement",
+                  "chk_loss_consciousness",
+                  "chk_pallor",
+                  "chk_early_labour_pain",
+                  "chk_vaginal_discharge",
+                  "chk_swollen_face",
+                  "chk_signs_of_malaria",
+                  "chk_severe_frontal_headache",
+                  "chk_dizziness"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "key": "no_danger_sign_toaster",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_toddler_danger_sign.step1.no_danger_sign_toaster.text}}",
+        "text_color": "#00cf71",
+        "toaster_type": "info",
+        "relevance": {
+          "step1:danger_signs_present": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_none"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_toddler_danger_sign"
+}
