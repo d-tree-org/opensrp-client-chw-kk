@@ -416,4 +416,6 @@
 
     <!-- warning -->
     <string name="any_changes_you_make">Mabadiliko yoyote uliyofanya yatapotea</string>
+    <string name="anc_partially_registered">Usajili wa awali</string>
+    <string name="anc_fully_registered">Usajili umekamilika</string>
 </resources>
