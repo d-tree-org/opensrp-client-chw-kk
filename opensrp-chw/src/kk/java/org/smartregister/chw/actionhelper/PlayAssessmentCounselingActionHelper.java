@@ -28,6 +28,9 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
     private String jsonString;
     private ServiceWrapper serviceWrapper;
 
+    private boolean visit_3_visit_5 =  false;
+    private boolean visit_6_visit_12 = false;
+
     public PlayAssessmentCounselingActionHelper(ServiceWrapper serviceWrapper) {
         this.serviceWrapper = serviceWrapper;
     }
@@ -46,8 +49,6 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray fields = JsonFormUtils.fields(jsonObject);
 
-            boolean visit_3_visit_5 =  false;
-            boolean visit_6_visit_12 = false;
             if (serviceWrapper != null) {
                 String servicePronoun = getPeriodNoun(serviceWrapper.getName());
                 int period = getPeriod(serviceWrapper.getName());
@@ -60,7 +61,7 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
                         visit_3_visit_5 = true;
                     }
                 } else if ("months".equalsIgnoreCase(servicePronoun)) {
-                    if (period >= 3) {
+                    if (period >= 2) {
                         visit_6_visit_12 = true;
                     }
                 }
@@ -101,13 +102,24 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(interaction_with_baby) || StringUtils.isBlank(play_with_child)) {
-            return BaseAncHomeVisitAction.Status.PENDING;
-        } else if ((interaction_with_baby.contains("move_baby_arms_legs_stroke_gently") ||
-                interaction_with_baby.contains("get_baby_attention_shaker_toy")) && play_with_child.equalsIgnoreCase("Yes")) {
-            return BaseAncHomeVisitAction.Status.COMPLETED;
+        if (visit_3_visit_5) {
+            if (StringUtils.isBlank(interaction_with_baby)) {
+                return BaseAncHomeVisitAction.Status.PENDING;
+            } else if (interaction_with_baby.contains("move_baby_arms_legs_stroke_gently") || interaction_with_baby.contains("get_baby_attention_shaker_toy")) {
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            } else {
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
+        } else if (visit_6_visit_12) {
+            if (StringUtils.isBlank(play_with_child)) {
+                return BaseAncHomeVisitAction.Status.PENDING;
+            } else if (play_with_child.equalsIgnoreCase("Yes")) {
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            } else {
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
         } else {
-            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            return BaseAncHomeVisitAction.Status.PENDING;
         }
 
     }

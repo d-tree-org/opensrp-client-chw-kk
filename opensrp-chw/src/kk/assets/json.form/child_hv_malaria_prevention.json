@@ -61,6 +61,10 @@
           "{{child_hv_malaria_prevention.step1.llitn_last_night.values[0]}}",
           "{{child_hv_malaria_prevention.step1.llitn_last_night.values[1]}}"
         ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
         "openmrs_choice_ids": {
           "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
@@ -79,6 +83,10 @@
         "values": [
           "{{child_hv_malaria_prevention.step1.llin_condition.values[0]}}",
           "{{child_hv_malaria_prevention.step1.llin_condition.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
         ],
         "openmrs_choice_ids": {
           "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
