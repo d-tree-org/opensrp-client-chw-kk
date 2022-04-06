@@ -86,9 +86,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateProblemSolving(serviceWrapperMap);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateNewbornCordCare(serviceWrapperMap);
-            evaluateExclusiveBreastFeeding(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
-            evaluateECD();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
