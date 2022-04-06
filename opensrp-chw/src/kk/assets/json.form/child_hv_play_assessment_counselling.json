@@ -158,6 +158,10 @@
           "{{child_hv_play_assessment_counselling.step1.play_with_child.values[0]}}",
           "{{child_hv_play_assessment_counselling.step1.play_with_child.values[1]}}"
         ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
         "openmrs_choice_ids": {
           "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"

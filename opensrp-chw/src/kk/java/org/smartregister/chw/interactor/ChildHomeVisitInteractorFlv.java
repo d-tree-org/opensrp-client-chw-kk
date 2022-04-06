@@ -7,8 +7,12 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
+import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
+import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
+import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -20,6 +24,7 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KkConstants;
+import org.smartregister.chw.util.Utils;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
@@ -76,8 +81,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
-            //
             evaluateMalariaPrevention(serviceWrapperMap);
+            evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
+            evaluateProblemSolving(serviceWrapperMap);
+            evaluateCareGiverResponsiveness(serviceWrapperMap);
+            evaluateNewbornCordCare(serviceWrapperMap);
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
             evaluateECD();
@@ -155,7 +163,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withOptional(false)
                 .withBaseEntityID(memberObject.getBaseEntityId())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding())
                 .withPayloadDetails(serviceWrapper.getName())
@@ -184,7 +192,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withOptional(false)
                 .withBaseEntityID(memberObject.getBaseEntityId())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvMalariaPrevention())
                 .withPayloadDetails(serviceWrapper.getName())
@@ -220,7 +228,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withOptional(false)
                 .withBaseEntityID(memberObject.getBaseEntityId())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvPlayAssessmentCounselling())
                 .withPayloadDetails(serviceWrapper.getName())
@@ -230,6 +238,92 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
+
+    private void evaluateProblemSolving(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException{
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Problem Solving");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        ProblemSolvingActionHelper actionHelper = new ProblemSolvingActionHelper(alert, context);
+
+        String title = context.getString(R.string.ccd_problem_solving);
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelper)
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvProblemSolving())
+                .build();
+
+        actionList.put(title, action);
+    }
+
+    protected void evaluateCareGiverResponsiveness(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Caregiver Responsiveness");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        CareGiverResponsivenessActionHelper actionHelper = new CareGiverResponsivenessActionHelper(alert);
+
+        String title = context.getString(R.string.ccd_caregiver_responsiveness);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelper)
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvCaregiverResponsiveness())
+                .build();
+
+        actionList.put(title, action);
+
+    }
+
+    protected void evaluateNewbornCordCare(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Newborn Cord Care");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        NewbornCordCareActionHelper actionHelper = new NewbornCordCareActionHelper();
+
+        String title = context.getString(R.string.newborn_care_cord_care);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvNewbornCordCare())
+                .build();
+
+        actionList.put(title, action);
+
+    }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
 
