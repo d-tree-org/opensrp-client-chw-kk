@@ -25,4 +25,8 @@
 
     <string name="child_safety"> Usalama wa mtoto : %s </string>
 
+    <string name="complimentary_feeding"> Kumlisha mtoto vyakula vya nyongeza : %s </string>
+
+    <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
+
 </resources>
