@@ -1,0 +1,1567 @@
+{
+  "validate_on_submit": true,
+  "show_errors_on_submit": false,
+  "count": "2",
+  "encounter_type": "Pregnancy Outcome",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{anc_pregnancy_outcome.step1.title}}",
+    "fields": [
+      {
+        "key": "relational_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "relational_id",
+        "type": "hidden"
+      },
+      {
+        "key": "fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "fam_name",
+        "type": "hidden"
+      },
+      {
+        "key": "pregnancy_outcome_label",
+        "type": "label",
+        "text": "{{anc_pregnancy_outcome.step1.pregnancy_outcome_label.text}}",
+        "has_bg": true,
+        "left_padding": "20dp",
+        "right_padding": "20dp",
+        "label_text_style": "bold",
+        "text_size": "7sp"
+      },
+      {
+        "key": "preg_outcome",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "161033AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_pregnancy_outcome.step1.preg_outcome.hint}}",
+        "values": [
+          "{{anc_pregnancy_outcome.step1.preg_outcome.values[0]}}",
+          "{{anc_pregnancy_outcome.step1.preg_outcome.values[1]}}",
+          "{{anc_pregnancy_outcome.step1.preg_outcome.values[2]}}",
+          "{{anc_pregnancy_outcome.step1.preg_outcome.values[3]}}",
+          "{{anc_pregnancy_outcome.step1.preg_outcome.values[4]}}",
+          "{{anc_pregnancy_outcome.step1.preg_outcome.values[5]}}"
+        ],
+        "keys": [
+          "Child was born alive",
+          "Child was born alive, but died",
+          "Child was stillborn",
+          "Child was born alive, but has a problem",
+          "Miscarriage",
+          "Mother dead"
+        ],
+        "openmrs_choice_ids": {
+          "Child was born alive": "151849AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Child was born alive, but died": "",
+          "Child was stillborn": "125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Child was born alive, but has a problem": "",
+          "Miscarriage": "48AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Mother dead": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.preg_outcome.v_required.err}}"
+        }
+      },
+      {
+        "key": "miscarriage_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165248AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "{{anc_pregnancy_outcome.step1.miscarriage_date.hint}}",
+        "expanded": false,
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.miscarriage_date.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "miscarriage_date_unknown",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "date_unknown",
+            "text": "{{anc_pregnancy_outcome.step1.miscarriage_date_unknown.options.date_unknown.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "miscarriage_days",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step1.miscarriage_days.hint.text}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.miscarriage_days.v_numeric_integer.err}}"
+        },
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step1.miscarriage_days.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "delivery_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "5599AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "date_picker",
+        "hint": "{{anc_pregnancy_outcome.step1.delivery_date.hint}}",
+        "expanded": false,
+        "max_date": "today",
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.delivery_date.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "delivery_date_unknown",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step1.delivery_date_unknown.hint.text}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.delivery_date_unknown.v_numeric_integer.err}}"
+        },
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step1.delivery_date_unknown.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "delivery_date_unknown_chk_box",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "date_unknown",
+            "text": "{{anc_pregnancy_outcome.step1.delivery_date_unknown_chk_box.options.date_unknown.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "164894AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_pregnancy_outcome.step1.no_children.hint}}",
+        "values": [
+          "{{anc_pregnancy_outcome.step1.no_children.values[0]}}",
+          "{{anc_pregnancy_outcome.step1.no_children.values[1]}}"
+        ],
+        "keys": [
+          "1",
+          "2+"
+        ],
+        "openmrs_choice_ids": {
+          "1": "",
+          "2+": ""
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.no_children.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "delivery_place",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1572AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_pregnancy_outcome.step1.delivery_place.hint}}",
+        "values": [
+          "{{anc_pregnancy_outcome.step1.delivery_place.values[0]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_place.values[1]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_place.values[2]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_place.values[3]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_place.values[4]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_place.values[5]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_place.values[6]}}"
+        ],
+        "keys": [
+          "At home with a doctor/nurse",
+          "At home with a traditional birth attendant",
+          "At home without a doctor or traditional birth attendant",
+          "At a private health facility",
+          "At a public health facility",
+          "On the way to the health facility",
+          "Other"
+        ],
+        "openmrs_choice_ids": {
+          "At home with a doctor/nurse": "",
+          "At home with a traditional birth attendant": "",
+          "At home without a doctor or traditional birth attendant": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "At a private health facility": "",
+          "At a public health facility": "",
+          "On the way to the health facility": "",
+          "Other": ""
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.delivery_place.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "delivery_place_other",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step1.delivery_place_other.hint.text}}",
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step1.delivery_place_other.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "delivery_hf",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{anc_pregnancy_outcome.step1.delivery_hf.hint}}",
+        "values": [
+          "{{anc_pregnancy_outcome.step1.delivery_hf.values[0]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_hf.values[1]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_hf.values[2]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_hf.values[3]}}",
+          "{{anc_pregnancy_outcome.step1.delivery_hf.values[4]}}"
+        ],
+        "keys": [
+          "She gave birth in a health facility, and she was accompanied by family member(s)",
+          "She gave birth in a health facility, and she was accompanied by a traditional midwife",
+          "She gave birth in a health facility, and she came by herself",
+          "She gave birth in a health facility, and she was accompanied by other people",
+          "She gave birth in a health facility, and she was accompanied by the CHW"
+        ],
+        "openmrs_choice_ids": {
+          "She gave birth in a health facility, and she was accompanied by family member(s)": "",
+          "She gave birth in a health facility, and she was accompanied by a traditional midwife": "",
+          "She gave birth in a health facility, and she came by herself": "",
+          "She gave birth in a health facility, and she was accompanied by other people": "",
+          "She gave birth in a health facility, and she was accompanied by the CHW": ""
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.delivery_hf.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "accompanied_relative",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "label": "{{anc_pregnancy_outcome.step1.accompanied_relative.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "father",
+            "text": "{{anc_pregnancy_outcome.step1.accompanied_relative.options.father.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "aunts",
+            "text": "{{anc_pregnancy_outcome.step1.accompanied_relative.options.aunts.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "uncles",
+            "text": "{{anc_pregnancy_outcome.step1.accompanied_relative.options.uncles.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "grandmothers",
+            "text": "{{anc_pregnancy_outcome.step1.accompanied_relative.options.grandmothers.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "grandfathers",
+            "text": "{{anc_pregnancy_outcome.step1.accompanied_relative.options.grandfathers.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "other",
+            "text": "{{anc_pregnancy_outcome.step1.accompanied_relative.options.other.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "symptoms_delivery",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "label": "{{anc_pregnancy_outcome.step1.symptoms_delivery.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "high_blood_pressure",
+            "text": "{{anc_pregnancy_outcome.step1.symptoms_delivery.options.high_blood_pressure.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "low_blood_pressure",
+            "text": "{{anc_pregnancy_outcome.step1.symptoms_delivery.options.low_blood_pressure.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "baby_umblical_cord_tangled",
+            "text": "{{anc_pregnancy_outcome.step1.symptoms_delivery.options.baby_umblical_cord_tangled.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "baby_born_feet_first",
+            "text": "{{anc_pregnancy_outcome.step1.symptoms_delivery.options.baby_born_feet_first.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "other",
+            "text": "{{anc_pregnancy_outcome.step1.symptoms_delivery.options.other.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "{{anc_pregnancy_outcome.step1.symptoms_delivery.options.none.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "symptoms_delivery_other",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step1.symptoms_delivery_other.hint.text}}",
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step1.symptoms_delivery_other.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "care_provider",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "label": "{{anc_pregnancy_outcome.step1.care_provider.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "nurse",
+            "text": "{{anc_pregnancy_outcome.step1.care_provider.options.nurse.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "doctor",
+            "text": "{{anc_pregnancy_outcome.step1.care_provider.options.doctor.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "other",
+            "text": "{{anc_pregnancy_outcome.step1.care_provider.options.other.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "{{anc_pregnancy_outcome.step1.care_provider.options.none.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.care_provider.v_required.err}}"
+        }
+      },
+      {
+        "key": "care_provider_other",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step1.care_provider_other.hint.text}}",
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step1.care_provider_other.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      }
+    ],
+    "next": "step2"
+  },
+  "step2": {
+    "title": "{{anc_pregnancy_outcome.step2.title}}",
+    "fields": [
+      {
+        "key": "is_primarycaregiver",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "spinner",
+        "hint": "{{anc_pregnancy_outcome.step2.is_primarycaregiver.hint}}",
+        "values": [
+          "{{anc_pregnancy_outcome.step2.is_primarycaregiver.values[0]}}",
+          "{{anc_pregnancy_outcome.step2.is_primarycaregiver.values[1]}}",
+          "{{anc_pregnancy_outcome.step2.is_primarycaregiver.values[2]}}",
+          "{{anc_pregnancy_outcome.step2.is_primarycaregiver.values[3]}}"
+        ],
+        "keys": [
+          "Mother",
+          "Aunt",
+          "Grandmother",
+          "Other"
+        ],
+        "openmrs_choice_ids": {
+          "Mother": "",
+          "Aunt": "",
+          "Grandmother": "",
+          "Other": ""
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.is_primarycaregiver.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "is_primarycaregiver_other",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step2.is_primarycaregiver_other.hint.text}}",
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step2.is_primarycaregiver_other.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "care_giver_label",
+        "type": "label",
+        "has_bg": true,
+        "text": "{{anc_pregnancy_outcome.step2.care_giver_label.text}}",
+        "left_padding": "20dp",
+        "right_padding": "20dp",
+        "label_text_style": "bold",
+        "text_size": "7sp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "primary_caregiver_consent",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_pregnancy_outcome.step2.primary_caregiver_consent.label}}",
+        "exclusive": [
+          "intervention_consent_yes",
+          "intervention_consent_no"
+        ],
+        "options": [
+          {
+            "key": "intervention_consent_yes",
+            "text": "{{anc_pregnancy_outcome.step2.primary_caregiver_consent.options.intervention_consent.yes.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "intervention_consent_no",
+            "text": "{{anc_pregnancy_outcome.step2.primary_caregiver_consent.options.intervention_consent.no.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "caregiver_surname",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{anc_pregnancy_outcome.step2.caregiver_surname.hint}}",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "{{anc_pregnancy_outcome.step2.caregiver_surname.v_regex.err}}"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.caregiver_surname.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "primary_caregiver_same_as_fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "text",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "same_as_fam_name",
+            "text": "{{anc_pregnancy_outcome.step2.primary_caregiver_same_as_fam_name.options.same_as_fam_name.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "caregiver_first_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{anc_pregnancy_outcome.step2.caregiver_first_name.hint}}",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "{{anc_pregnancy_outcome.step2.caregiver_first_name.v_regex.err}}"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.caregiver_first_name.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "caregiver_middle_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{anc_pregnancy_outcome.step2.caregiver_middle_name.hint}}",
+        "edit_type": "name",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "{{anc_pregnancy_outcome.step2.caregiver_middle_name.v_regex.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "primary_caregiver_dob",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "birthdate",
+        "type": "date_picker",
+        "hint": "{{anc_pregnancy_outcome.step2.primary_caregiver_dob.hint}}",
+        "expanded": false,
+        "duration": {
+          "label": "{{anc_pregnancy_outcome.step2.primary_caregiver_dob.duration.label}}"
+        },
+        "min_date": "today-120y",
+        "max_date": "today-5y",
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.primary_caregiver_dob.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "dob_unknown",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "birthdateApprox",
+        "type": "check_box",
+        "label": "{{anc_pregnancy_outcome.step2.dob_unknown.label}}",
+        "options": [
+          {
+            "key": "dob_unknown",
+            "text": "{{anc_pregnancy_outcome.step2.dob_unknown.options.dob_unknown.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "primary_caregiver_age",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_attribute",
+        "openmrs_entity_id": "age",
+        "type": "edit_text",
+        "hint": "{{anc_pregnancy_outcome.step2.age.hint}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.age.v_numeric_integer.err}}"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.age.v_numeric.err}}"
+        },
+        "v_min": {
+          "value": "5",
+          "err": "{{anc_pregnancy_outcome.step2.age.v_min.err}}"
+        },
+        "v_max": {
+          "value": "120",
+          "err": "{{anc_pregnancy_outcome.step2.age.v_max.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step2.age.v_required.err}}"
+        }
+      },
+      {
+        "key": "primary_caregiver_sex",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "gender",
+        "type": "spinner",
+        "hint": "{{anc_pregnancy_outcome.step2.sex.hint}}",
+        "values": [
+          "{{anc_pregnancy_outcome.step2.sex.values[0]}}",
+          "{{anc_pregnancy_outcome.step2.sex.values[1]}}"
+        ],
+        "keys": [
+          "Male",
+          "Female"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.sex.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "baby_label",
+        "type": "label",
+        "has_bg": true,
+        "text": "{{anc_pregnancy_outcome.step2.baby_label.text}}",
+        "left_padding": "20dp",
+        "right_padding": "20dp",
+        "label_text_style": "bold",
+        "text_size": "7sp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "child_intervention_assent",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_pregnancy_outcome.step2.child_intervention_assent.label}}",
+        "exclusive": [
+          "intervention_consent_yes",
+          "intervention_consent_no"
+        ],
+        "options": [
+          {
+            "key": "intervention_consent_yes",
+            "text": "{{anc_pregnancy_outcome.step2.child_intervention_assent.options.intervention_consent.yes.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "intervention_consent_no",
+            "text": "{{anc_pregnancy_outcome.step2.child_intervention_assent.options.intervention_consent.no.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_children_no",
+        "type": "repeating_group",
+        "reference_edit_text_hint": "{{anc_pregnancy_outcome.step2.no_children_no.reference_edit_text_hint}}",
+        "repeating_group_label": "Baby Details #",
+        "repeating_group_max": "10",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step2.no_children_no.v_required.err}}"
+        },
+        "value": [
+          {
+            "key": "surname",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "",
+            "type": "edit_text",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.surname.hint}}",
+            "edit_type": "name",
+            "v_regex": {
+              "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.surname.v_regex.err}}"
+            },
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.surname.v_required.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "same_as_fam_name",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "",
+            "openmrs_data_type": "text",
+            "type": "check_box",
+            "options": [
+              {
+                "key": "same_as_fam_name",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.same_as_fam_name.options.same_as_fam_name.text}}",
+                "text_size": "18px",
+                "value": "false"
+              }
+            ]
+          },
+          {
+            "key": "first_name",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "first_name",
+            "type": "edit_text",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.first_name.hint}}",
+            "edit_type": "name",
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.first_name.v_required.err}}"
+            },
+            "v_regex": {
+              "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.first_name.v_regex.err}}"
+            }
+          },
+          {
+            "key": "middle_name",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "middle_name",
+            "type": "edit_text",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.middle_name.hint}}",
+            "edit_type": "name",
+            "v_regex": {
+              "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.middle_name.v_regex.err}}"
+            }
+          },
+          {
+            "key": "dob",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "birthdate",
+            "type": "hidden"
+          },
+          {
+            "key": "gender",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "gender",
+            "type": "spinner",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.gender.hint}}",
+            "values": [
+              "{{anc_pregnancy_outcome.step2.no_children_no.gender.values[0]}}",
+              "{{anc_pregnancy_outcome.step2.no_children_no.gender.values[1]}}"
+            ],
+            "keys": [
+              "Male",
+              "Female"
+            ],
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.gender.v_required.err}}"
+            }
+          },
+          {
+            "key": "disabilities",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "type": "spinner",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.disabilities.hint}}",
+            "values": [
+              "{{anc_pregnancy_outcome.step2.no_children_no.disabilities.values[0]}}",
+              "{{anc_pregnancy_outcome.step2.no_children_no.disabilities.values[1]}}"
+            ],
+            "keys": [
+              "Yes",
+              "No"
+            ],
+            "openmrs_choice_ids": {
+              "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.disabilities.v_required.err}}"
+            }
+          },
+          {
+            "key": "disability_type",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "",
+            "openmrs_data_type": "text",
+            "type": "check_box",
+            "label": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type.label}}",
+            "label_text_style": "normal",
+            "text_color": "#C0C0C0",
+            "exclusive": [
+              "none"
+            ],
+            "options": [
+              {
+                "key": "congenital_heart_disease",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type.options.congenital_heart_disease.text}}",
+                "value": "false",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "neural_tube_defects",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type.options.neural_tube_defects.text}}",
+                "value": "false",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "oralfacial_clefts",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type.options.oralfacial_clefts.text}}",
+                "value": "false",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "limb_reduction_defects",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type.options.limb_reduction_defects.text}}",
+                "value": "false",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "other",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type.options.other.text}}",
+                "value": "false",
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              }
+            ],
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type.v_required.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "disability_type_other",
+            "type": "edit_text",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type_other.hint.text}}",
+            "v_required": {
+              "value": true,
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.disability_type_other.v_required.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "early_bf_1hr",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "161543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "type": "spinner",
+            "hint": "{{anc_pregnancy_outcome.step1.no_children_no.early_bf_1hr.hint}}",
+            "values": [
+              "{{anc_pregnancy_outcome.step1.no_children_no.early_bf_1hr.values[0]}}",
+              "{{anc_pregnancy_outcome.step1.no_children_no.early_bf_1hr.values[1]}}"
+            ],
+            "keys": [
+              "Yes",
+              "No"
+            ],
+            "openmrs_choice_ids": {
+              "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step1.no_children_no.early_bf_1hr.v_required.err}}"
+            }
+          },
+          {
+            "key": "carried_chest",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "type": "spinner",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest.hint}}",
+            "values": [
+              "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest.values[0]}}",
+              "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest.values[1]}}"
+            ],
+            "keys": [
+              "Yes",
+              "No"
+            ],
+            "openmrs_choice_ids": {
+              "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            },
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest.v_required.err}}"
+            }
+          },
+          {
+            "key": "carried_chest_time",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "type": "spinner",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest_time.hint}}",
+            "values": [
+              "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest_time.values[0]}}",
+              "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest_time.values[1]}}",
+              "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest_time.values[2]}}"
+            ],
+            "keys": [
+              "immediately_after_delivery",
+              "within_one_hour",
+              "after_few_hours"
+            ],
+            "openmrs_choice_ids": {
+              "immediately_after_delivery": "",
+              "within_one_hour": "",
+              "after_few_hours": ""
+            },
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.carried_chest_time.v_required.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "vacc_birth",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "essential_newborn_care",
+            "type": "check_box",
+            "label": "{{anc_pregnancy_outcome.step2.no_children_no.vacc_birth.label}}",
+            "label_text_style": "normal",
+            "text_color": "#C0C0C0",
+            "exclusive": [
+              "chk_none"
+            ],
+            "options": [
+              {
+                "key": "chk_none",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.vacc_birth.options.chk_none.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "opv_0",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.vacc_birth.options.opv_0.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "bcg",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.vacc_birth.options.bcg.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              }
+            ]
+          },
+          {
+            "key": "child_weight",
+            "type": "edit_text",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "hint": "{{anc_pregnancy_outcome.step2.child_weight.hint.text}}",
+            "v_numeric_integer": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.child_weight.v_numeric_integer.err}}"
+            },
+            "v_required": {
+              "value": true,
+              "err": "{{anc_pregnancy_outcome.step2.child_weight.v_required.err}}"
+            }
+          },
+          {
+            "key": "father_information",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "type": "spinner",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_information.hint}}",
+            "values": [
+              "{{anc_pregnancy_outcome.step2.no_children_no.father_information.values[0]}}",
+              "{{anc_pregnancy_outcome.step2.no_children_no.father_information.values[1]}}"
+            ],
+            "keys": [
+              "Yes",
+              "No"
+            ],
+            "openmrs_choice_ids": {
+              "Yes": "",
+              "No": ""
+            },
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_information.v_required.err}}"
+            }
+          },
+          {
+            "key": "father_name",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "",
+            "type": "edit_text",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.hint}}",
+            "edit_type": "name",
+            "v_required": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.v_required.err}}"
+            },
+            "v_regex": {
+              "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.v_regex.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "father_number",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "type": "edit_text",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.hint}}",
+            "v_numeric": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.v_numeric.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "father_age",
+            "type": "edit_text",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "hint": "{{anc_pregnancy_outcome.step2.father_age.hint.text}}",
+            "v_numeric_integer": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.father_age.v_numeric_integer.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "father_location",
+            "type": "edit_text",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "hint": "{{anc_pregnancy_outcome.step2.father_location.hint.text}}",
+            "v_regex": {
+              "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_location.v_regex.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "father_education",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "",
+            "type": "check_box",
+            "label": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.label}}",
+            "label_text_style": "normal",
+            "text_color": "#C0C0C0",
+            "exclusive": [
+              "no_formal"
+            ],
+            "options": [
+              {
+                "key": "no_formal",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.no_formal.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "primary",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.primary.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "secondary",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.secondary.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "post_secondary",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.post_secondary.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              }
+            ],
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "father_employment",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "",
+            "type": "check_box",
+            "label": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.label}}",
+            "label_text_style": "normal",
+            "text_color": "#C0C0C0",
+            "exclusive": [
+              "no_formal"
+            ],
+            "options": [
+              {
+                "key": "wage_employment",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.wage_employment.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "family_business",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.family_business.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "farmer",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.farmer.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              },
+              {
+                "key": "other",
+                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.other.text}}",
+                "value": false,
+                "openmrs_entity": "concept",
+                "openmrs_entity_id": ""
+              }
+            ],
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          },
+          {
+            "key": "father_employment_other",
+            "type": "edit_text",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "",
+            "openmrs_entity_id": "",
+            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment_other.hint.text}}",
+            "v_required": {
+              "value": true,
+              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment_other.v_required.err}}"
+            },
+            "relevance": {
+              "rules-engine": {
+                "ex-rules": {
+                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "no_child_to_register",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_pregnancy_outcome.step2.no_child_to_register.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "properties_file_name": "kk_anc_pregnancy_outcome"
+}
