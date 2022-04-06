@@ -1,7 +1,5 @@
 package org.smartregister.chw.interactor;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.text.TextUtils;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,31 +9,22 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.actionhelper.ExclusiveBreastFeedingAction;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
-import org.smartregister.chw.anc.fragment.BaseAncHomeVisitFragment;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
-import org.smartregister.chw.core.model.ChildVisit;
-import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.helper.CCDChildDisciplineActionHelper;
 import org.smartregister.chw.helper.CCDCommunicationAssessmentAction;
 import org.smartregister.chw.helper.CCDDevelopmentScreeningAction;
 import org.smartregister.chw.helper.CCDIntroductionAction;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
-import org.smartregister.chw.util.ChildVisitUtil;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
-import org.smartregister.chw.util.KKConstants;
 import org.smartregister.chw.util.KKCoreConstants;
 import org.smartregister.domain.Alert;
-import org.smartregister.family.util.Utils;
 import org.smartregister.immunization.domain.ServiceWrapper;
-import org.smartregister.simprint.SimPrintsUtils;
 import org.smartregister.util.DateUtil;
-import org.smartregister.util.IntegerUtil;
 
 import java.text.MessageFormat;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +49,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDIntro(serviceWrapperMap);
             evaluateCCDDevelopmentScreening(serviceWrapperMap);
             evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
+            evaluateCCDChildDiscipline(serviceWrapperMap);
 
             evaluateImmunization();
             evaluateExclusiveBreastFeeding(serviceWrapperMap);
@@ -211,6 +201,40 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, ccd_development_screening_action);
+
+    }
+
+    private void evaluateCCDChildDiscipline(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD child discipline");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        String title = context.getString(R.string.ccd_child_discipline, serviceIteration);
+
+        // alert if overdue after 14 days
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        CCDChildDisciplineActionHelper ccdChildDisciplineAction = new CCDChildDisciplineActionHelper(context, alert);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_CHILD_DISCIPLINE);
+
+        BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_ccd_child_discipline")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(ccdChildDisciplineAction)
+                .build();
+
+        actionList.put(title, ccd_child_discipline_action);
 
     }
 
