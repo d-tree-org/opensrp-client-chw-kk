@@ -845,5 +845,487 @@
         }
       }
     ]
+  },
+  {
+    "type": "CCD development screening",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "80",
+        "name": "CCD development screening1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "81",
+        "name": "CCD development screening2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "82",
+        "name": "CCD development screening3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "83",
+        "name": "CCD development screening4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "84",
+        "name": "CCD development screening5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "85",
+        "name": "CCD development screening6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+25d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "86",
+        "name": "CCD development screening7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "87",
+        "name": "CCD development screening8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "88",
+        "name": "CCD development screening9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "89",
+        "name": "CCD development screening10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "90",
+        "name": "CCD development screening11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "91",
+        "name": "CCD development screening12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "92",
+        "name": "CCD development screening13",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "93",
+        "name": "CCD development screening14",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "94",
+        "name": "CCD development screening15",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "(7)5",
+        "name": "CCD development screening16",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "CCD communication assessment",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "110",
+        "name": "CCD communication assessment1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "111",
+        "name": "CCD communication assessment2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "112",
+        "name": "CCD communication assessment3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "113",
+        "name": "CCD communication assessment4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "114",
+        "name": "CCD communication assessment5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "115",
+        "name": "CCD communication assessment6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+25d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "116",
+        "name": "CCD communication assessment7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "117",
+        "name": "CCD communication assessment8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "118",
+        "name": "CCD communication assessment9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "119",
+        "name": "CCD communication assessment10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "120",
+        "name": "CCD communication assessment11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "121",
+        "name": "CCD communication assessment12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "122",
+        "name": "CCD communication assessment13",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "123",
+        "name": "CCD communication assessment14",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "124",
+        "name": "CCD communication assessment15",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "125",
+        "name": "CCD communication assessment16",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
   }
 ]
