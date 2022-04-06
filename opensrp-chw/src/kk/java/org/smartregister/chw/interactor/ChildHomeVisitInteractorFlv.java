@@ -199,7 +199,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
 
-        BaseAncHomeVisitAction ccd_development_screening_action = new BaseAncHomeVisitAction.Builder(context, title)
+        BaseAncHomeVisitAction ccd_communication_assessment = new BaseAncHomeVisitAction.Builder(context, title)
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("child_hv_ccd_communication_assessment")
@@ -210,7 +210,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(ccdCommunicationAssessmentAction)
                 .build();
 
-        actionList.put(title, ccd_development_screening_action);
+        actionList.put(title, ccd_communication_assessment);
 
     }
 
