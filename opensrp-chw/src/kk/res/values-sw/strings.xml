@@ -20,5 +20,6 @@
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
     <string name="ccd_development_screening"> CCD : Maendeleo ya ukuaji : %s </string>
+    <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano : %s </string>
 
 </resources>
