@@ -70,7 +70,6 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
             Timber.e(e);
         }
 
-
         if (StringUtils.isNotBlank(memberObject.getLastContactVisit())) {
             lastContact = DateTimeFormat.forPattern("dd-MM-yyyy").parseLocalDate(memberObject.getLastContactVisit());
         }
@@ -87,6 +86,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
         evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);
+        evaluatePMTCT(actionList, details,  memberObject, context);
         evaluateKkBreastFeeding(actionList, details, memberObject, context);
         evaluateAncClinicAttendance(actionList, details, memberObject, allAncVisits, context);
         evaluateNutritionCounselling(actionList, details, memberObject, allAncVisits, context);
@@ -152,6 +152,24 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
             actionList.put(visit_tittle, hiv_aids_general_info);
         }
+    }
+
+    private void evaluatePMTCT(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                               Map<String, List<VisitDetail>> details,
+                               final MemberObject memberObject,
+                               final Context context) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitTitle  = context.getString(R.string.anc_home_visit_pmtct);
+
+        BaseAncHomeVisitAction pmtctAction = new BaseAncHomeVisitAction.Builder(context, visitTitle)
+                .withOptional(false)
+                .withDetails(details)
+                .withHelper(new PmtctActionHelper())
+                .withFormName("anc_hv_pmctc")
+                .build();
+
+        actionList.put(visitTitle, pmtctAction);
+
     }
 
     private void evaluateKkBreastFeeding(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -391,6 +409,90 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction ancHomeVisitAction) {
+
+        }
+    }
+
+    private class PmtctActionHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+
+        private Context context;
+        String hiv_test;
+        String disclose_status;
+        String taking_art;
+        String hiv_status;
+
+        @Override
+        public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                hiv_test = JsonFormUtils.getValue(jsonObject, "hiv_test").toLowerCase();
+                disclose_status = JsonFormUtils.getValue(jsonObject, "disclose_status").toLowerCase();
+                taking_art = JsonFormUtils.getValue(jsonObject, "taking_art").toLowerCase();
+                hiv_status = JsonFormUtils.getValue(jsonObject, "hiv_status").toLowerCase();
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String jsonPayload) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            return null;
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+
+            if (hiv_test.contains("chk_hiv_test_no")){
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
+
+            if (hiv_test.contains("chk_hiv_test_yes") && disclose_status.contains("chk_disclose_status_no")){
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
+
+            if (hiv_test.contains("chk_hiv_test_yes") && disclose_status.contains("chk_disclose_status_yes") && taking_art.contains("chk_taking_art_no")){
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
+
+            if (hiv_test.contains("chk_hiv_test_yes") && hiv_status.contains("chk_hiv_status_negative")){
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            }
+
+            if (hiv_test.contains("chk_hiv_test_yes") && hiv_status.contains("chk_hiv_status_positive") && taking_art.contains("chk_taking_art_yes")){
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            }
+
+            return BaseAncHomeVisitAction.Status.PENDING;
+
         }
 
         @Override
