@@ -47,4 +47,6 @@
     <string name="day_of">" %s days"</string>
     <string name="hour_of">" %s hours"</string>
 
+    <string name="toddler_danger_sign_month">Toddler danger sign %s months</string>
+
 </resources>

@@ -1,0 +1,135 @@
+---
+name: step1_miscarriage_date
+description: miscarriage_date relevance
+priority: 1
+condition: "step1_preg_outcome == 'Miscarriage' && !step1_miscarriage_date_unknown.contains('date_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_miscarriage_date_unknown
+description: miscarriage_date relevance
+priority: 1
+condition: "step1_preg_outcome == 'Miscarriage'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_miscarriage_days
+description: miscarriage days relevance
+priority: 1
+condition: "step1_miscarriage_date_unknown.contains('date_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_date
+description: miscarriage_date relevance
+priority: 1
+condition: "(step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem') && !step1_delivery_date_unknown_chk_box.contains('date_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_date_unknown_chk_box
+description: delivery date unknown relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_date_unknown
+description: delivery days relevance
+priority: 1
+condition: "step1_delivery_date_unknown_chk_box.contains('date_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_children
+description: no_children relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_place
+description: delivery_place relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_place_other
+description: delivery_place_other relevance
+priority: 1
+condition: "step1_delivery_place.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_hf
+description: delivery_hf relevance
+priority: 1
+condition: "step1_delivery_place.contains('At a private health facility') || step1_delivery_place.contains('At a public health facility')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_accompanied_relative
+description: accompanied_relative relevance
+priority: 1
+condition: "step1_delivery_hf.contains('She gave birth in a health facility, and she was accompanied by family member(s)')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_symptoms_delivery
+description: symptoms_delivery relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_symptoms_delivery_other
+description: symptoms_delivery_other relevance
+priority: 1
+condition: "step1_symptoms_delivery.contains('other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_care_provider_other
+description: care_provider_other relevance
+priority: 1
+condition: "step1_care_provider.contains('other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_baby_label
+description: baby_label relevance
+priority: 1
+condition: "step1_preg_outcome == 'Live birth'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_children_no
+description: no_children_no relevance
+priority: 1
+condition: "step1_preg_outcome == 'Live birth'"
+actions:
+  - "isRelevant = true"
+
+---
+name: step1_surname
+description: surname relevance
+priority: 1
+condition: "!step1_same_as_fam_name.contains('same_as_fam_name')"
+actions:
+  - "isRelevant = true"
