@@ -16,6 +16,8 @@ import org.smartregister.chw.helper.CCDChildDisciplineActionHelper;
 import org.smartregister.chw.helper.CCDCommunicationAssessmentAction;
 import org.smartregister.chw.helper.CCDDevelopmentScreeningAction;
 import org.smartregister.chw.helper.CCDIntroductionAction;
+import org.smartregister.chw.helper.ChildSafetyActionHelper;
+import org.smartregister.chw.helper.ComplimentaryFeedingActionHelper;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -41,8 +43,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             //Get the month part
             if (!childAge.contains("y")){
                 //The child is less than one year
-                String childMonth = childAge.substring(0, childAge.indexOf("m"));
-                childAgeInMonth =  Integer.parseInt(childMonth);
+                if (childAge.contains("m")) {
+                    String childMonth = childAge.substring(0, childAge.indexOf("m"));
+                    childAgeInMonth =  Integer.parseInt(childMonth);
+                }
             }
 
             evaluateToddlerDangerSign(serviceWrapperMap);
@@ -50,15 +54,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDDevelopmentScreening(serviceWrapperMap);
             evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
             evaluateCCDChildDiscipline(serviceWrapperMap);
-
-            evaluateImmunization();
-            evaluateExclusiveBreastFeeding(serviceWrapperMap);
-            evaluateVitaminA(serviceWrapperMap);
-            evaluateDeworming(serviceWrapperMap);
-            evaluateMalariaPrevention();
-            evaluateCounselling();
-            evaluateNutritionStatus();
-            evaluateObsAndIllness();
+            evaluateCCDChildSafety(serviceWrapperMap);
+            evaluateComplementaryFeeding(serviceWrapperMap);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -96,7 +93,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withFormName("child_hv_toddler_danger_sign")
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withHelper(helper)
@@ -128,7 +125,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withFormName("child_hv_ccd_introduction")
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withHelper(helper)
@@ -161,7 +158,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withFormName("child_hv_ccd_development_screening")
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withHelper(ccdDevelopmentScreeningAction)
@@ -194,7 +191,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withFormName("child_hv_ccd_communication_assessment")
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withHelper(ccdCommunicationAssessmentAction)
@@ -228,13 +225,81 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withFormName("child_hv_ccd_child_discipline")
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withHelper(ccdChildDisciplineAction)
                 .build();
 
         actionList.put(title, ccd_child_discipline_action);
+
+    }
+
+    private void evaluateCCDChildSafety(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Child safety");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        String title = context.getString(R.string.child_safety, serviceIteration);
+
+        // alert if overdue after 14 days
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        ChildSafetyActionHelper childSafetyActionHelper = new ChildSafetyActionHelper(context, alert);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CHILD_SAFETY);
+
+        BaseAncHomeVisitAction child_safety_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_child_safety")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(childSafetyActionHelper)
+                .build();
+
+        actionList.put(title, child_safety_action);
+
+    }
+
+    private void evaluateComplementaryFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD communication assessment");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        String title = context.getString(R.string.complimentary_feeding, serviceIteration);
+
+        // alert if overdue after 14 days
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper(context, alert);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.COMPLIMENTARY_FEEDING);
+
+        BaseAncHomeVisitAction complementary_feeding = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_complimentary_feeding")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(complimentaryFeedingActionHelper)
+                .build();
+
+        actionList.put(title, complementary_feeding);
 
     }
 
