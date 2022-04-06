@@ -41,5 +41,11 @@
     <string name="ccd_introduction"> CCD : Introduction : %s </string>
     <string name="ccd_development_screening"> CCD : Development screening : %s </string>
     <string name="ccd_communication_assessment"> CCD : Communication assessment : %s </string>
+    <string name="ccd_child_discipline"> CCD : Child discipline : %s </string>
+
+    <string name="child_safety"> Child Safety : %s </string>
+
+    <string name="complimentary_feeding"> Complimentary feeding : %s </string>
+    <string name="counselled_mother_for_comp_feeding"> Counselled mother for complementary feeding </string>
 
 </resources>
