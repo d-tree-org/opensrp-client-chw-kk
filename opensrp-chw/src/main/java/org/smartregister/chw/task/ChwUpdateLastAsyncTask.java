@@ -17,7 +17,7 @@ public class ChwUpdateLastAsyncTask extends UpdateLastAsyncTask {
     }
 
     private void setDueState() {
-        if (ChwChildDao.hasDueTodayVaccines(baseEntityId)  || ChwChildDao.hasDueAlerts(baseEntityId)) {
+        if (ChwChildDao.hasDueTodayVaccines(baseEntityId) || ChwChildDao.hasDueAlerts(baseEntityId)) {
             setVisitButtonDueStatus(context, viewHolder.dueButton);
         } else {
             setVisitButtonNoDueStatus(viewHolder.dueButton);
@@ -31,7 +31,8 @@ public class ChwUpdateLastAsyncTask extends UpdateLastAsyncTask {
         } else {
             if (commonPersonObject != null) {
                 viewHolder.dueButton.setVisibility(View.VISIBLE);
-                if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.DUE.name())) {
+                if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.DUE.name()) ||
+                        childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.MONTHLY_FOLLOW_UP_DUE.name())) {
                     setDueState();
                 } else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.OVERDUE.name())) {
                     setVisitButtonOverdueStatus(context, viewHolder.dueButton, childVisit.getNoOfMonthDue());
