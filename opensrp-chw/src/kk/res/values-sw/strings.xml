@@ -13,7 +13,7 @@
     <string name="switch_environment">Switch Environment</string>
     <string name="switch_environment_message">Unakaribia kubadilisha mazingira ya mfumo kutoka %s. Kitendo hiki kitaondoa taarifa zote zilizohifadhiwa katika simu hii, kabla ya kuendelea mbele tafadhali hakikisha umeoanisha/sinki taarifa zako. Je ungependa kuendelea kubadilisha mazingira ya mfumo?</string>
     <string name="switch_environment_title">Tahadhari! Unabadilisha Mazingira Ya Mfumo</string>
-    <string name="anc_home_visit_gender_issues"> Gender Issues </string>
+    <string name="anc_home_visit_gender_issues"> Matatizo ya kijinsia </string>
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
     <string name="breast_feeding_action_title">Breastfeeding </string>
@@ -30,7 +30,17 @@
     <string name="hour_of">" masaa %s"</string>
 
 
-    <string name="toddler_danger_sign_month">Dalili za hatari za mtoto wa miezi %s </string>
+    <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
+    <string name="ccd_introduction"> CCD : Mwanzo %s </string>
+    <string name="ccd_development_screening"> CCD : Maendeleo ya ukuaji : %s </string>
+    <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano : %s </string>
+    <string name="ccd_child_discipline"> CCD : Nidhamu ya mtoto : %s </string>
+
+    <string name="child_safety"> Usalama wa mtoto : %s </string>
+
+    <string name="complimentary_feeding"> Kumlisha mtoto vyakula vya nyongeza : %s </string>
+
+    <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
 
     <string name="anc_home_visit_pmtct"> 6. Kuzuia maambukizi ya VVU kutoka kwa mama kwenda kwa mtoto </string>
 

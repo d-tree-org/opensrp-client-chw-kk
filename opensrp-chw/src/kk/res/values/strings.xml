@@ -58,7 +58,16 @@
     <string name="day_of">" %s days"</string>
     <string name="hour_of">" %s hours"</string>
 
-    <string name="toddler_danger_sign_month">Toddler danger sign %s months</string>
+    <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
+    <string name="ccd_introduction"> CCD : Introduction : %s </string>
+    <string name="ccd_development_screening"> CCD : Development screening : %s </string>
+    <string name="ccd_communication_assessment"> CCD : Communication assessment : %s </string>
+    <string name="ccd_child_discipline"> CCD : Child discipline : %s </string>
+
+    <string name="child_safety"> Child Safety : %s </string>
+
+    <string name="complimentary_feeding"> Complimentary feeding : %s </string>
+    <string name="counselled_mother_for_comp_feeding"> Counselled mother for complementary feeding </string>
 
     <string name="anc_home_visit_pmtct"> 6. Prevention of mother-to-child transmission of HIV </string>
 
