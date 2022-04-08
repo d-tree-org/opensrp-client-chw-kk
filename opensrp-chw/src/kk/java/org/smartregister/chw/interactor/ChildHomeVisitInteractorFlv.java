@@ -1,24 +1,16 @@
 package org.smartregister.chw.interactor;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.text.TextUtils;
-
-import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
-import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
@@ -34,10 +26,8 @@ import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.Constants;
-import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.KKCoreConstants;
 import org.smartregister.chw.util.KkConstants;
-import org.smartregister.chw.util.Utils;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 import org.smartregister.util.DateUtil;
@@ -111,7 +101,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateProblemSolving(serviceWrapperMap);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateNewbornCordCare(serviceWrapperMap);
-            evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
             evaluateCCDIntro(serviceWrapperMap);
             evaluateCCDDevelopmentScreening(serviceWrapperMap);
             evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
@@ -162,6 +151,44 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     protected void evaluateBreastFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Essential care breastfeeding");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceName = serviceWrapper.getName();
+
+        // Check if it is a dummy -5 weeks service that is there to re-set milestone to 0 before start 1 months recurring
+        if ("Essential care breastfeeding -5 weeks".equalsIgnoreCase(serviceName)) return;
+
+        // Get the very first breastfeeding visit
+        boolean firstBreastFeedingHappened;
+        List<Visit> breastFeedingServiceVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Breastfeeding");
+
+        firstBreastFeedingHappened = breastFeedingServiceVisits.size() > 0;
+
+        String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
+
+        NewBornCareBreastfeedingHelper helper = new NewBornCareBreastfeedingHelper(context, alert, firstBreastFeedingHappened, serviceWrapper);
+        JSONObject jsonObject = getFormJson(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding(), memberObject.getBaseEntityId());
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding())
+                .withPayloadDetails(serviceWrapper.getName())
+                .build();
+
+        actionList.put(title, action);
+
+    }
+
     private void evaluateCCDIntro(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD introduction");
 
@@ -228,6 +255,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, ccd_development_screening_action);
 
     }
+
     private void evaluateCCDCommunicationAssessment(Map<String, ServiceWrapper> serviceWrapperMap, int childAge) throws Exception {
 
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD communication assessment");
@@ -364,49 +392,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
-    private void evaluateMalariaPrevention() throws Exception {
-        HomeVisitActionHelper malariaPreventionHelper = new HomeVisitActionHelper() {
-            private String famllin1m5yr;
-            private String llin2days1m5yr;
-            private String llinCondition1m5yr;
-
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Essential care breastfeeding");
-        if (serviceWrapper == null) return;
-
-        Alert alert = serviceWrapper.getAlert();
-        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
-
-        final String serviceName = serviceWrapper.getName();
-
-        // Check if it is a dummy -5 weeks service that is there to re-set milestone to 0 before start 1 months recurring
-        if ("Essential care breastfeeding -5 weeks".equalsIgnoreCase(serviceName)) return;
-
-        // Get the very first breastfeeding visit
-        boolean firstBreastFeedingHappened;
-        List<Visit> breastFeedingServiceVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Breastfeeding");
-
-        firstBreastFeedingHappened = breastFeedingServiceVisits.size() > 0;
-
-        String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
-
-        NewBornCareBreastfeedingHelper helper = new NewBornCareBreastfeedingHelper(context, alert, firstBreastFeedingHappened, serviceWrapper);
-        JSONObject jsonObject = getFormJson(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding(), memberObject.getBaseEntityId());
-
-        BaseAncHomeVisitAction action = getBuilder(title)
-                .withHelper(helper)
-                .withDetails(details)
-                .withOptional(false)
-                .withBaseEntityID(memberObject.getBaseEntityId())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvBreastfeeding())
-                .withPayloadDetails(serviceWrapper.getName())
-                .build();
-
-        actionList.put(title, action);
-
-    }
-
     protected void evaluateMalariaPrevention(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
 
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Malaria Prevention");
@@ -424,8 +409,12 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(helper)
                 .withDetails(details)
-                .withFormName(Constants.JSON_FORM.CHILD_HOME_VISIT.getMalariaPrevention())
-                .withHelper(malariaPreventionHelper)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvMalariaPrevention())
+                .withPayloadDetails(serviceWrapper.getName())
                 .build();
 
         actionList.put(title, action);
@@ -467,7 +456,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, action);
 
     }
-
 
     private void evaluateProblemSolving(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException{
 
