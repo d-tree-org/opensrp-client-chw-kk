@@ -1,6 +1,7 @@
 package org.smartregister.chw.model;
 
 import org.apache.commons.lang3.StringUtils;
+import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.family.domain.FamilyEventClient;
@@ -16,11 +17,11 @@ public class FamilyRegisterModel extends BaseFamilyRegisterModel {
     public List<FamilyEventClient> processRegistration(String jsonString) {
         List<FamilyEventClient> familyEventClientList = new ArrayList();
 
-        FamilyEventClient familyEventClient = JsonFormUtils.processFamilyUpdateForm(Utils.context().allSharedPreferences(), jsonString);
+        FamilyEventClient familyEventClient = CoreJsonFormUtils.processFamilyUpdateForm(Utils.context().allSharedPreferences(), jsonString);
         if (familyEventClient == null) {
             return familyEventClientList;
         } else {
-            FamilyEventClient headEventClient = JsonFormUtils.processFamilyHeadRegistrationForm(Utils.context().allSharedPreferences(), jsonString, familyEventClient.getClient().getBaseEntityId());
+            FamilyEventClient headEventClient = CoreJsonFormUtils.processFamilyHeadRegistrationForm(Utils.context().allSharedPreferences(), jsonString, familyEventClient.getClient().getBaseEntityId());
             if (headEventClient == null) {
                 return familyEventClientList;
             } else {
