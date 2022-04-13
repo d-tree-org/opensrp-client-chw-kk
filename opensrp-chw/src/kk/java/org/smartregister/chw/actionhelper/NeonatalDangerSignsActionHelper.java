@@ -16,12 +16,12 @@ import java.text.MessageFormat;
 
 import timber.log.Timber;
 
-public class NeonatalDangerSignsAction extends HomeVisitActionHelper {
+public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
     private Context context;
     private String neoNateDangerSigns;
     private Alert alert;
 
-    public NeonatalDangerSignsAction(Context context, Alert alert) {
+    public NeonatalDangerSignsActionHelper(Context context, Alert alert) {
         this.context = context;
         this.alert = alert;
     }
@@ -30,7 +30,6 @@ public class NeonatalDangerSignsAction extends HomeVisitActionHelper {
     public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
         return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;  // todo -> return null
     }
-
 
     private boolean isOverDue() {
         return new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));

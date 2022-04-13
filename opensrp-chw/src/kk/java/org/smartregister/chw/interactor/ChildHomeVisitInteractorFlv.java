@@ -10,7 +10,10 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsAction;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
+import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
+import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
+import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
@@ -32,6 +35,7 @@ import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KKCoreConstants;
 import org.smartregister.chw.util.KkConstants;
 import org.smartregister.domain.Alert;
+import org.smartregister.domain.AlertStatus;
 import org.smartregister.immunization.domain.ServiceWrapper;
 import org.smartregister.util.DateUtil;
 
@@ -99,6 +103,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             }
 
             evaluateToddlerDangerSign(serviceWrapperMap);
+            evaluateNewBornCareIntro(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
             evaluateMalariaPrevention(serviceWrapperMap);
@@ -113,6 +118,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDChildSafety(serviceWrapperMap);
             evaluateComplementaryFeeding(serviceWrapperMap);
 
+            evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -194,6 +200,40 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
+    private void evaluateNewBornCareIntro(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Essential New Born Care: Introduction");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+
+        // Get the very first visit
+        List<Visit> introductionVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), KkConstants.EventType.ESSENTIAL_NEW_BORN_CARE_INTRO);
+        boolean firstVisitDone = introductionVisits.size() > 0;
+
+        boolean isOverdue = alert.status().equals(AlertStatus.urgent);
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        NewBornCareIntroductionHelper newBornIntroHelper = new NewBornCareIntroductionHelper(context, firstVisitDone);
+        Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.ESSENTIAL_NEW_BORN_CARE_INTRO);
+
+        BaseAncHomeVisitAction newBornCareIntroAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.new_born_care_introduction_month, serviceIteration))
+                .withOptional(false)
+                .withDetails(details)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvEssentialCareIntroductionForm())
+                .withScheduleStatus(BaseAncHomeVisitAction.ScheduleStatus.DUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(newBornIntroHelper)
+                .build();
+
+        actionList.put(context.getString(R.string.new_born_care_introduction_month, serviceIteration), newBornCareIntroAction);
+    }
+
     private void evaluateNeonatalDangerSigns(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Neonatal Danger Signs");
         if (serviceWrapper == null) return;
@@ -203,13 +243,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
 
-        String title = context.getString(R.string.neonatal_danger_signs_month, serviceIteration);
-
         // Todo -> Compute overdue
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        NeonatalDangerSignsAction helper = new NeonatalDangerSignsAction(context, alert);
+        NeonatalDangerSignsActionHelper neonatalDangerSignsActionHelper = new NeonatalDangerSignsActionHelper(context, alert);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
         BaseAncHomeVisitAction neoNatalDangerSignsAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.neonatal_danger_signs_month, serviceIteration))
@@ -218,10 +256,38 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withFormName("child_hv_neonatal_danger_signs")
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
-                .withHelper(helper)
+                .withHelper(neonatalDangerSignsActionHelper)
                 .build();
 
-        actionList.put(title, neoNatalDangerSignsAction);
+        actionList.put(context.getString(R.string.neonatal_danger_signs_month, serviceIteration), neoNatalDangerSignsAction);
+    }
+
+    private void evaluateKMCSkinToSkinCounselling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("KMC skin-to-skin counselling");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+
+        // Todo -> Compute overdue
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        KMCSkinToSkinCounsellingHelper skinToSkinCounsellingHelper = new KMCSkinToSkinCounsellingHelper(alert);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction skinToSkinCounsellingAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.kmc_skin_to_skin_counselling_month, serviceIteration))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_kmc_skin_to_skin_counselling")
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(skinToSkinCounsellingHelper)
+                .build();
+
+        actionList.put(context.getString(R.string.kmc_skin_to_skin_counselling_month, serviceIteration), skinToSkinCounsellingAction);
     }
 
     private void evaluateCCDIntro(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
