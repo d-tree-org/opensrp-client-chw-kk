@@ -493,6 +493,13 @@
           "Single": "",
           "Divorced": "",
           "Widowed": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -641,34 +648,55 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "{{anc_member_registration.step1.accessibility_issues.hint}}",
-        "values": [
-          "{{anc_member_registration.step1.accessibility_issues.values[0]}}",
-          "{{anc_member_registration.step1.accessibility_issues.values[1]}}",
-          "{{anc_member_registration.step1.accessibility_issues.values[2]}}",
-          "{{anc_member_registration.step1.accessibility_issues.values[3]}}",
-          "{{anc_member_registration.step1.accessibility_issues.values[4]}}",
-          "{{anc_member_registration.step1.accessibility_issues.values[5]}}"
-        ],
-        "keys": [
-          "Seeing",
-          "Hearing",
-          "Walking or climbing stairs",
-          "Remembering or concentrating",
-          "Communicating with others",
-          "Other"
+        "type": "check_box",
+        "label": "{{anc_member_registration.step1.accessibility_issues.label}}",
+        "options": [
+          {
+            "key": "chk_seeing",
+            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_seeing.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_hearing",
+            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_hearing.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_walking_or_climbing_stairs",
+            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_walking_or_climbing_stairs.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_remembering_or_concentrating",
+            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_remembering_or_concentrating.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_communicating_with_others",
+            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_communicating_with_others.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_other",
+            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_other.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
         ]
       },
       {
-        "key": "accessibility_issues_other",
+        "key": "accessibility_issue_other",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "edit_text",
         "edit_type": "text",
-        "hint": "{{anc_member_registration.step1.accessibility_issues_other.hint}}",
+        "hint": "{{anc_member_registration.step1.accessibility_issue_other.hint}}",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
