@@ -30,7 +30,7 @@
     <string name="anc_home_visit_postpartum_preparation_new_born_danger_sign">New Born Danger Signs </string>
     <string name="anc_home_visit_postpartum_preparation_immediate_newborn_care">Immediate Newborn Care   </string>
     <string name="anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant">Follow-Up for the HIV-Exposed Infant</string>
-    <string name="anc_home_visit_postpartum_preparation_lam">LAM</string>
+    <string name="anc_home_visit_postpartum_preparation_lam">toddler_danger_sign_monthLAM</string>
     <string name="anc_home_visit_postpartum_postpartum_family_planning">Postpartum Family Planning</string>
 
 
@@ -58,7 +58,6 @@
     <string name="day_of">" %s days"</string>
     <string name="hour_of">" %s hours"</string>
 
-    <string name="toddler_danger_sign_month">Toddler danger sign %s months</string>
     <string name="neonatal_danger_signs">Neonatal Danger Signs</string>
     <string name="neonatal_danger_signs_month">Neonatal danger signs %s</string>
     <string name="kmc_skin_to_skin_counselling_month">KMC Skin-to-skin counselling %s</string>
