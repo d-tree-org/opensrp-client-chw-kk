@@ -138,15 +138,10 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
         "openmrs_entity_id": "opensrp_id",
-        "type": "barcode",
+        "type": "hidden",
         "hint": "{{family_register.step1.unique_id.hint}}",
-        "scanButtonText": "{{family_register.step1.unique_id.scanButtonText}}",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{family_register.step1.unique_id.v_numeric.err}}"
-        },
-        "hidden": "true",
-        "barcode_type": "qrcode"
+        "read_only": "true",
+        "value": "0"
       },
       {
         "key": "village_town",
@@ -235,26 +230,10 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
         "openmrs_entity_id": "opensrp_id",
-        "type": "edit_text",
-        "hint": "{{family_register.step2.unique_id.hint}}",
-        "value": "0",
+        "type": "hidden",
+        "hint": "{{family_register.step1.unique_id.hint}}",
         "read_only": "true",
-        "hidden": true,
-        "v_numeric": {
-          "value": "true",
-          "err": "{{family_register.step2.unique_id.v_numeric.err}}"
-        },
-        "v_required": {
-          "value": "true",
-          "err": "{{family_register.step2.unique_id.v_required.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-register-relevance.yml"
-            }
-          }
-        }
+        "value": "0"
       },
       {
         "key": "relational_id",

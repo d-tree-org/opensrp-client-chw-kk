@@ -24,6 +24,16 @@
     <string name="anc_home_visit_observations_n_illnes">Observations &amp; illness</string>
     <string name="anc_home_visit_remarks_and_comments">Remarks / Comments</string>
 
+    <string name="anc_home_visit_postpartum_preparation">Postpartum preparation</string>
+    <string name="anc_home_visit_postpartum_preparation_psychological_changes">Postpartum Physiological Changes </string>
+    <string name="anc_home_visit_postpartum_preparation_postpartum_danger_sign">Postpartum danger signs </string>
+    <string name="anc_home_visit_postpartum_preparation_new_born_danger_sign">New Born Danger Signs </string>
+    <string name="anc_home_visit_postpartum_preparation_immediate_newborn_care">Immediate Newborn Care   </string>
+    <string name="anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant">Follow-Up for the HIV-Exposed Infant</string>
+    <string name="anc_home_visit_postpartum_preparation_lam">LAM</string>
+    <string name="anc_home_visit_postpartum_postpartum_family_planning">Postpartum Family Planning</string>
+
+
     <string name="anc_home_visit_gender_issues"> Gender Issues</string>
 
     <string name="anc_home_visit_anc_card_received">ANC card received</string>
@@ -37,11 +47,31 @@
     <string name="hiv_aids_general_info">HIV/AIDS General Information</string>
     <string name="breast_feeding_action_title">Breastfeeding </string>
     <string name="essential_newborn_care_breastfeeding">Essential New Born Care: Breastfeeding</string>
+    <string name="malaria_prevention_service">Malaria Prevention</string>
+    <string name="child_play_and_assessment_counselling">Play Assessment and Counselling</string>
+    <string name="ccd_problem_solving">CCD: Problem Solving</string>
+    <string name="ccd_caregiver_responsiveness">CCD: Caregiver Responsiveness to Child Behavior/Cues</string>
+    <string name="newborn_care_cord_care">Essential Newborn Care: Cord Care</string>
+
     <string name="month_of">" %s months"</string>
     <string name="week_of">" %s weeks"</string>
     <string name="day_of">" %s days"</string>
     <string name="hour_of">" %s hours"</string>
 
-    <string name="toddler_danger_sign_month">Toddler danger sign %s months</string>
+    <string name="neonatal_danger_signs">Neonatal Danger Signs</string>
+    <string name="neonatal_danger_signs_month">Neonatal danger signs %s</string>
+
+    <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
+    <string name="ccd_introduction"> CCD : Introduction : %s </string>
+    <string name="ccd_development_screening"> CCD : Development screening : %s </string>
+    <string name="ccd_communication_assessment"> CCD : Communication assessment : %s </string>
+    <string name="ccd_child_discipline"> CCD : Child discipline : %s </string>
+
+    <string name="child_safety"> Child Safety : %s </string>
+
+    <string name="complimentary_feeding"> Complimentary feeding : %s </string>
+    <string name="counselled_mother_for_comp_feeding"> Counselled mother for complementary feeding </string>
+
+    <string name="anc_home_visit_pmtct"> 6. Prevention of mother-to-child transmission of HIV </string>
 
 </resources>

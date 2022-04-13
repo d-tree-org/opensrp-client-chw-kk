@@ -845,5 +845,1858 @@
         }
       }
     ]
+  },
+  {
+    "type": "Neonatal Danger Signs",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "60",
+        "name": "Neonatal Danger Signs1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+0d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "61",
+        "name": "Neonatal Danger Signs2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "62",
+        "name": "Neonatal Danger Signs3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+6d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "63",
+        "name": "Neonatal Danger Signs4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "CCD introduction",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "60",
+        "name": "CCD introduction1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "61",
+        "name": "CCD introduction2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "62",
+        "name": "CCD introduction3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "63",
+        "name": "CCD introduction4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "64",
+        "name": "CCD introduction5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "65",
+        "name": "CCD introduction6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+25d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "66",
+        "name": "CCD introduction7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "67",
+        "name": "CCD introduction8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "68",
+        "name": "CCD introduction9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "69",
+        "name": "CCD introduction10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "70",
+        "name": "CCD introduction11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "71",
+        "name": "CCD introduction12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "72",
+        "name": "CCD introduction13",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "73",
+        "name": "CCD introduction14",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "74",
+        "name": "CCD introduction15",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "75",
+        "name": "CCD introduction16",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "CCD development screening",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "80",
+        "name": "CCD development screening1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "81",
+        "name": "CCD development screening2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "82",
+        "name": "CCD development screening3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "83",
+        "name": "CCD development screening4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "84",
+        "name": "CCD development screening5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "85",
+        "name": "CCD development screening6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+25d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "86",
+        "name": "CCD development screening7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "87",
+        "name": "CCD development screening8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "88",
+        "name": "CCD development screening9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "89",
+        "name": "CCD development screening10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "90",
+        "name": "CCD development screening11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "91",
+        "name": "CCD development screening12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "92",
+        "name": "CCD development screening13",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "93",
+        "name": "CCD development screening14",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "94",
+        "name": "CCD development screening15",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "(7)5",
+        "name": "CCD development screening16",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "CCD communication assessment",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "110",
+        "name": "CCD communication assessment1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "111",
+        "name": "CCD communication assessment2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "112",
+        "name": "CCD communication assessment3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "113",
+        "name": "CCD communication assessment4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "114",
+        "name": "CCD communication assessment5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "115",
+        "name": "CCD communication assessment6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+25d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "116",
+        "name": "CCD communication assessment7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "117",
+        "name": "CCD communication assessment8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "118",
+        "name": "CCD communication assessment9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "119",
+        "name": "CCD communication assessment10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "120",
+        "name": "CCD communication assessment11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "121",
+        "name": "CCD communication assessment12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "122",
+        "name": "CCD communication assessment13",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "123",
+        "name": "CCD communication assessment14",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "124",
+        "name": "CCD communication assessment15",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "125",
+        "name": "CCD communication assessment16",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "CCD child discipline",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "126",
+        "name": "CCD child discipline1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "127",
+        "name": "CCD child discipline2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "128",
+        "name": "CCD child discipline3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "129",
+        "name": "CCD child discipline4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "130",
+        "name": "CCD child discipline5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "131",
+        "name": "CCD child discipline6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "132",
+        "name": "CCD child discipline7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "133",
+        "name": "CCD child discipline8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "134",
+        "name": "CCD child discipline9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "135",
+        "name": "CCD child discipline10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "136",
+        "name": "CCD child discipline11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Child safety",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "160",
+        "name": "Child safety1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "161",
+        "name": "Child safety2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "162",
+        "name": "Child safety3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "163",
+        "name": "Child safety4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "164",
+        "name": "Child safety5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "165",
+        "name": "Child safety6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "166",
+        "name": "Child safety7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "167",
+        "name": "Child safety8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "168",
+        "name": "Child safety9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "169",
+        "name": "Child safety10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "170",
+        "name": "Child safety11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Malaria Prevention",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": "164884AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "100",
+        "name": "Malaria Prevention 3 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "101",
+        "name": "Malaria Prevention 5 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "102",
+        "name": "Malaria Prevention 7 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "103",
+        "name": "Malaria Prevention 10 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "104",
+        "name": "Malaria Prevention 12 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Play Assessment and Counselling",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "140",
+        "name": "Play Assessment and Counselling 24 hours",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+0d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "141",
+        "name": "Play Assessment and Counselling 3 days",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "142",
+        "name": "Play Assessment and Counselling 8 days",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      },
+      {
+        "id": "143",
+        "name": "Play Assessment and Counselling 3 weeks",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+13d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "144",
+        "name": "Play Assessment and Counselling 5 weeks",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "145",
+        "name": "Play Assessment and Counselling -5 weeks",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "-35d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "146",
+        "name": "Play Assessment and Counselling 2 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "147",
+        "name": "Play Assessment and Counselling 3 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "148",
+        "name": "Play Assessment and Counselling 4 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "149",
+        "name": "Play Assessment and Counselling 5 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "150",
+        "name": "Play Assessment and Counselling 6 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "151",
+        "name": "Play Assessment and Counselling 7 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "152",
+        "name": "Play Assessment and Counselling 8 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "153",
+        "name": "Play Assessment and Counselling 9 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "154",
+        "name": "Play Assessment and Counselling 10 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "155",
+        "name": "Play Assessment and Counselling 11 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "156",
+        "name": "Play Assessment and Counselling 12 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Problem Solving",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "170",
+        "name": "Problem Solving 2 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "171",
+        "name": "Problem Solving 3 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "172",
+        "name": "Problem Solving 4 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "173",
+        "name": "Problem Solving 5 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "174",
+        "name": "Problem Solving 6 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "175",
+        "name": "Problem Solving 7 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "176",
+        "name": "Problem Solving 8 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "177",
+        "name": "Problem Solving 9 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "178",
+        "name": "Problem Solving 10 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "179",
+        "name": "Problem Solving 11 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Caregiver Responsiveness",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "190",
+        "name": "Caregiver Responsiveness 2 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+2m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "191",
+        "name": "Caregiver Responsiveness 3 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+4m"
+          }
+        }
+      },
+      {
+        "id": "192",
+        "name": "Caregiver Responsiveness 4 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+5m"
+          }
+        }
+      },
+      {
+        "id": "193",
+        "name": "Caregiver Responsiveness 5 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "194",
+        "name": "Caregiver Responsiveness 6 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "195",
+        "name": "Caregiver Responsiveness 7 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "196",
+        "name": "Caregiver Responsiveness 8 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "197",
+        "name": "Caregiver Responsiveness 9 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "198",
+        "name": "Caregiver Responsiveness 10 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "199",
+        "name": "Caregiver Responsiveness 11 months",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Newborn Cord Care",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "210",
+        "name": "Newborn Cord Care 24 hours",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+0d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+3d"
+          }
+        }
+      },
+      {
+        "id": "211",
+        "name": "Newborn Cord Care 3 days",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+3d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8d"
+          }
+        }
+      },
+      {
+        "id": "212",
+        "name": "Newborn Cord Care 8 days",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+21d"
+          }
+        }
+      }
+    ]
   }
 ]

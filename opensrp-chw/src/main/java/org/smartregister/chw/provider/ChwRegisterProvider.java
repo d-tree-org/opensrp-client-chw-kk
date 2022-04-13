@@ -1,5 +1,7 @@
 package org.smartregister.chw.provider;
 
+import static org.smartregister.chw.core.utils.Utils.getDuration;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -25,8 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import static org.smartregister.chw.core.utils.Utils.getDuration;
 
 public class ChwRegisterProvider extends CoreRegisterProvider {
 
@@ -159,7 +159,7 @@ public class ChwRegisterProvider extends CoreRegisterProvider {
             this.context = context;
             this.viewHolder = viewHolder;
             this.familyBaseEntityId = familyBaseEntityId;
-            this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.HOME_VISIT);
+            this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.CHILD_HOME_VISIT);
         }
 
         @Override

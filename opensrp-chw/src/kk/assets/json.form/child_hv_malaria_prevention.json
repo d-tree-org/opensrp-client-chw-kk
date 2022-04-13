@@ -1,0 +1,130 @@
+{
+  "count": "1",
+  "encounter_type": "Home Visit - Malaria prevention",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_malaria_prevention.step1.title}}",
+    "fields": [
+      {
+        "key": "llin_last_night",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_malaria_prevention.step1.llitn_last_night.hint}}",
+        "values": [
+          "{{child_hv_malaria_prevention.step1.llitn_last_night.values[0]}}",
+          "{{child_hv_malaria_prevention.step1.llitn_last_night.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        }
+      },
+      {
+        "key": "llin_condition",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label_info_text": "{{child_hv_malaria_prevention.step1.llin_condition.label_info_text}}",
+        "label_info_title": "{{child_hv_malaria_prevention.step1.llin_condition.label_info_title}}",
+        "hint": "{{child_hv_malaria_prevention.step1.llin_condition.hint}}",
+        "values": [
+          "{{child_hv_malaria_prevention.step1.llin_condition.values[0]}}",
+          "{{child_hv_malaria_prevention.step1.llin_condition.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        }
+      },
+      {
+        "key": "llin_advice_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_malaria_prevention.step1.llin_advice_note.text}}",
+        "text_color": "#00cf71",
+        "toaster_type": "info"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
+      },
+      {
+        "key": "llin_outro",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "label",
+        "text": "{{child_hv_malaria_prevention.step1.llin_outro.text}}",
+        "label_text_size": "18sp",
+        "label_text_style": "italic",
+        "label_text_color": "#000000",
+        "has_bg": true
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_malaria_prevention"
+}
