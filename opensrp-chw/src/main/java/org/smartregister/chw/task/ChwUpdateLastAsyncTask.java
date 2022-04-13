@@ -31,8 +31,7 @@ public class ChwUpdateLastAsyncTask extends UpdateLastAsyncTask {
         } else {
             if (commonPersonObject != null) {
                 viewHolder.dueButton.setVisibility(View.VISIBLE);
-                if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.DUE.name()) ||
-                        childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.MONTHLY_FOLLOW_UP_DUE.name())) {
+                if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.DUE.name())) {
                     setDueState();
                 } else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.OVERDUE.name())) {
                     setVisitButtonOverdueStatus(context, viewHolder.dueButton, childVisit.getNoOfMonthDue());

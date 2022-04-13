@@ -58,6 +58,9 @@
     <string name="day_of">" %s days"</string>
     <string name="hour_of">" %s hours"</string>
 
+    <string name="neonatal_danger_signs">Neonatal Danger Signs</string>
+    <string name="neonatal_danger_signs_month">Neonatal danger signs %s</string>
+
     <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
     <string name="ccd_introduction"> CCD : Introduction : %s </string>
     <string name="ccd_development_screening"> CCD : Development screening : %s </string>

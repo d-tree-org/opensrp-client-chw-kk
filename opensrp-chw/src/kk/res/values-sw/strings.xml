@@ -10,13 +10,13 @@
 
     <string name="add_anc_member">Mama Mjamzito</string>
     <string name="add_care_giver_member">Msimamizi</string>
-    <string name="switch_environment">Switch Environment</string>
+    <string name="switch_environment">Badili mazingira</string>
     <string name="switch_environment_message">Unakaribia kubadilisha mazingira ya mfumo kutoka %s. Kitendo hiki kitaondoa taarifa zote zilizohifadhiwa katika simu hii, kabla ya kuendelea mbele tafadhali hakikisha umeoanisha/sinki taarifa zako. Je ungependa kuendelea kubadilisha mazingira ya mfumo?</string>
     <string name="switch_environment_title">Tahadhari! Unabadilisha Mazingira Ya Mfumo</string>
     <string name="anc_home_visit_gender_issues"> Matatizo ya kijinsia </string>
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
-    <string name="breast_feeding_action_title">Breastfeeding </string>
+    <string name="breast_feeding_action_title"> Unyonyeshaji </string>
     <string name="essential_newborn_care_breastfeeding">Huduma muhimu ya watoto wachanga: Kuhifadhi na kunyonyesha </string>
     <string name="malaria_prevention_service">Huduma ya Kuzuia Malaria</string>
     <string name="child_play_and_assessment_counselling">Tathmini maendeleo na fundisha kuhusu michezo</string>
@@ -29,6 +29,8 @@
     <string name="day_of">" siku ya %s"</string>
     <string name="hour_of">" masaa %s"</string>
 
+    <string name="neonatal_danger_signs">Uchunguzi wa dalili za hatari za mtoto mchanga</string>
+    <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga %s</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
