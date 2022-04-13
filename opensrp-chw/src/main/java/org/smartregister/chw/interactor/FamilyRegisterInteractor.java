@@ -45,17 +45,12 @@ public class FamilyRegisterInteractor extends org.smartregister.family.interacto
                     //Only store client information when the conset has been given
                     if (consent.get(0).equals("fam_consent_yes")){
                         final boolean isSaved = FamilyRegisterInteractor.this.saveRegistration(familyEventClientList, jsonString, isEditMode);
-                        String clientBaseEntityId = "";
-                        String relationalId = "";
-                        for (FamilyEventClient ec : familyEventClientList){
-                            if (null==ec.getClient().getClientType()){
-                                clientBaseEntityId = ec.getClient().getBaseEntityId();
-                            }else {
-                                relationalId = ec.getClient().getBaseEntityId();
+
+                        FamilyRegisterInteractor.this.appExecutors.mainThread().execute(new Runnable() {
+                            public void run() {
+                                callBack.onRegistrationSaved(isEditMode, false, familyEventClientList);
                             }
-                        }
-                        //Before returning to the presenter save the ANC information of this client then return
-                        saveANCClient(jsonString, isEditMode, clientBaseEntityId, relationalId, isSaved, familyEventClientList, callBack);
+                        });
                     }else {
                         FamilyRegisterInteractor.this.appExecutors.mainThread().execute(new Runnable() {
                             public void run() {
@@ -70,35 +65,6 @@ public class FamilyRegisterInteractor extends org.smartregister.family.interacto
             }
         };
         this.appExecutors.diskIO().execute(runnable);
-    }
-
-    private void saveANCClient(String jsonString, boolean isEditMode, String baseEntityId, String relationalId, boolean isSaved, List<FamilyEventClient> familyEventClientList, FamilyRegisterContract.InteractorCallBack callBack){
-        try {
-            JSONObject form = new JSONObject(jsonString);
-            String encounterType = form.optString(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE);
-
-            JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
-            JSONObject relational = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, DBConstants.KEY.RELATIONAL_ID);
-            assert relational != null;
-            relational.put("value", relationalId);
-            form.put(DBConstants.KEY.RELATIONAL_ID, relational);
-            form.put(Constants.JSON_FORM_EXTRA.ENTITY_TYPE, baseEntityId);
-            form.put(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE, Constants.EVENT_TYPE.ANC_REGISTRATION);
-            form.put("relational_id", relationalId);
-            new BaseAncRegisterInteractor().saveRegistration(form.toString(), false, new BaseAncRegisterContract.InteractorCallBack() {
-                @Override
-                public void onRegistrationSaved(String encounterType, boolean isEdit, boolean hasChildren) {
-                    Timber.d("Registration Saved!");
-                    FamilyRegisterInteractor.this.appExecutors.mainThread().execute(new Runnable() {
-                        public void run() {
-                            callBack.onRegistrationSaved(isEditMode, isSaved, familyEventClientList);
-                        }
-                    });
-                }
-            }, null);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     private boolean saveRegistration(List<FamilyEventClient> familyEventClientList, String jsonString, boolean isEditMode) {

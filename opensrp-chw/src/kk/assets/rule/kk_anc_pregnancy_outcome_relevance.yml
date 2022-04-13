@@ -1,0 +1,311 @@
+---
+name: step1_miscarriage_date
+description: miscarriage_date relevance
+priority: 1
+condition: "step1_preg_outcome == 'Miscarriage' && !step1_miscarriage_date_unknown.contains('date_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_miscarriage_date_unknown
+description: miscarriage_date relevance
+priority: 1
+condition: "step1_preg_outcome == 'Miscarriage'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_miscarriage_days
+description: miscarriage days relevance
+priority: 1
+condition: "step1_miscarriage_date_unknown.contains('date_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_date
+description: miscarriage_date relevance
+priority: 1
+condition: "(step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem') && !step1_delivery_date_unknown_chk_box.contains('date_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_date_unknown_chk_box
+description: delivery date unknown relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_date_unknown
+description: delivery days relevance
+priority: 1
+condition: "step1_delivery_date_unknown_chk_box.contains('date_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_children
+description: no_children relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_place
+description: delivery_place relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_place_other
+description: delivery_place_other relevance
+priority: 1
+condition: "step1_delivery_place.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_hf
+description: delivery_hf relevance
+priority: 1
+condition: "step1_delivery_place.contains('At a private health facility') || step1_delivery_place.contains('At a public health facility')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_accompanied_relative
+description: accompanied_relative relevance
+priority: 1
+condition: "step1_delivery_hf.contains('She gave birth in a health facility, and she was accompanied by family member(s)')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_symptoms_delivery
+description: symptoms_delivery relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_symptoms_delivery_other
+description: symptoms_delivery_other relevance
+priority: 1
+condition: "step1_symptoms_delivery.contains('other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_care_provider_other
+description: care_provider_other relevance
+priority: 1
+condition: "step1_care_provider.contains('other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_is_primarycaregiver
+description: is_primarycaregiver relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive' ||
+            step1_preg_outcome == 'Child was born alive, but has a problem'"
+actions:
+  - "isRelevant = true"
+---
+name: step2_is_primarycaregiver_other
+description: is_primarycaregiver_other relevance
+priority: 1
+condition: "step2_is_primarycaregiver.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_care_giver_label
+description: care_giver_label relevance
+priority: 1
+condition: "step2_is_primarycaregiver.contains('Aunt') ||
+            step2_is_primarycaregiver.contains('Grandmother') ||
+            step2_is_primarycaregiver.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_consent
+description: primary_caregiver_consent relevance
+priority: 1
+condition: "step2_is_primarycaregiver.contains('Aunt') ||
+            step2_is_primarycaregiver.contains('Grandmother') ||
+            step2_is_primarycaregiver.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_caregiver_surname
+description: caregiver_surname relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes') &&
+            !step2_primary_caregiver_same_as_fam_name.contains('same_as_fam_name')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_same_as_fam_name
+description: caregiver_surname relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_caregiver_first_name
+description: caregiver_first_name relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_caregiver_middle_name
+description: caregiver_middle_name relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_dob
+description: primary_caregiver_dob relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes') &&
+            !step2_dob_unknown.contains('dob_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_dob_unknown
+description: dob_unknown relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_age
+description: age relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes') &&
+            step2_dob_unknown.contains('dob_unknown')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_primary_caregiver_sex
+description: primary_caregiver_sex relevance
+priority: 1
+condition: "step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_child_intervention_assent
+description: child_intervention_assent relevance
+priority: 1
+condition: "step2_is_primarycaregiver.contains('Mother') ||
+            step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_baby_label
+description: baby_label relevance
+priority: 1
+condition: "step2_is_primarycaregiver.contains('Mother') ||
+            step2_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_no_children_no
+description: no_children_no relevance
+priority: 1
+condition: "step2_child_intervention_assent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_surname
+description: surname relevance
+priority: 1
+condition: "!step2_same_as_fam_name.contains('same_as_fam_name')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_disability_type
+description: disability_type relevance
+priority: 1
+condition: "step2_disabilities.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_disability_type_other
+description: disability_type_other relevance
+priority: 1
+condition: "step2_disability_type.contains('other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_carried_chest_time
+description: carried_chest_time relevance
+priority: 1
+condition: "step2_carried_chest.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_father_name
+description: father_name relevance
+priority: 1
+condition: "step2_father_information.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_father_number
+description: father_number relevance
+priority: 1
+condition: "step2_father_information.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_father_age
+description: father_age relevance
+priority: 1
+condition: "step2_father_information.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_father_location
+description: father_location relevance
+priority: 1
+condition: "step2_father_information.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_father_education
+description: father_education relevance
+priority: 1
+condition: "step2_father_information.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_father_employment
+description: father_employment relevance
+priority: 1
+condition: "step2_father_information.contains('Yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_father_employment_other
+description: father_employment_other relevance
+priority: 1
+condition: "step2_father_employment.contains('other')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_no_child_to_register
+description: no_child_to_register relevance
+priority: 1
+condition: "step1_preg_outcome == 'Child was born alive, but died' ||
+            step1_preg_outcome == 'Child was stillborn'"
+actions:
+  - "isRelevant = true"

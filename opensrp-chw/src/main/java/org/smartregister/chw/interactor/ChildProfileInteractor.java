@@ -123,7 +123,7 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
         }
         ChildHomeVisit childHomeVisit = ChildUtils.getLastHomeVisit(Constants.TABLE_NAME.CHILD, baseEntityId);
 
-        String dobString = Utils.getDuration(Utils.getValue(getpClient().getColumnmaps(), DBConstants.KEY.DOB, false));
+        String dobString = Utils.getValue(getpClient().getColumnmaps(), DBConstants.KEY.DOB, false);
 
         Visit visit = AncLibrary.getInstance().visitRepository().getLatestVisit(baseEntityId, CoreConstants.EventType.CHILD_VISIT_NOT_DONE);
 

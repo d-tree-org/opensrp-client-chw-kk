@@ -10,11 +10,46 @@
 
     <string name="add_anc_member">Mama Mjamzito</string>
     <string name="add_care_giver_member">Msimamizi</string>
-    <string name="switch_environment">Switch Environment</string>
+    <string name="switch_environment">Badili mazingira</string>
     <string name="switch_environment_message">Unakaribia kubadilisha mazingira ya mfumo kutoka %s. Kitendo hiki kitaondoa taarifa zote zilizohifadhiwa katika simu hii, kabla ya kuendelea mbele tafadhali hakikisha umeoanisha/sinki taarifa zako. Je ungependa kuendelea kubadilisha mazingira ya mfumo?</string>
     <string name="switch_environment_title">Tahadhari! Unabadilisha Mazingira Ya Mfumo</string>
-    <string name="anc_home_visit_gender_issues"> Gender Issues </string>
+    <string name="anc_home_visit_gender_issues"> Matatizo ya kijinsia </string>
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
+    <string name="breast_feeding_action_title"> Unyonyeshaji </string>
+    <string name="essential_newborn_care_breastfeeding">Huduma muhimu ya watoto wachanga: Kuhifadhi na kunyonyesha </string>
+    <string name="malaria_prevention_service">Huduma ya Kuzuia Malaria</string>
+    <string name="child_play_and_assessment_counselling">Tathmini maendeleo na fundisha kuhusu michezo</string>
+    <string name="ccd_problem_solving">CCD: Kutatua Tatizo</string>
+    <string name="ccd_caregiver_responsiveness">CCD: Muitikio wa mlezi kwa ishara na sauti za mtoto </string>
+    <string name="newborn_care_cord_care">Huduma muhimu kwa watoto wachanga: Jinsi ya kukitunza kitovu.</string>
+
+    <string name="month_of">" mwezi wa %s"</string>
+    <string name="week_of">" wiki ya %s"</string>
+    <string name="day_of">" siku ya %s"</string>
+    <string name="hour_of">" masaa %s"</string>
+
+
+    <string name="toddler_danger_sign_month">Dalili za hatari za mtoto wa miezi %s </string>
+    <string name="neonatal_danger_signs">Uchunguzi wa dalili za hatari za mtoto mchanga</string>
+    <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga %s</string>
+    <string name="kmc_skin_to_skin_counselling_month">Ushauri juu ya matunzo ya ngozi kwa ngozi (KMC) %s</string>
+    <string name="new_born_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi</string>
+    <string name="is_baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
+    <string name="new_born_care_introduction_month">Huduma muhimu ya Watoto Wachanga: Utangulizi %s</string>
+
+    <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
+    <string name="ccd_introduction"> CCD : Mwanzo %s </string>
+    <string name="ccd_development_screening"> CCD : Maendeleo ya ukuaji : %s </string>
+    <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano : %s </string>
+    <string name="ccd_child_discipline"> CCD : Nidhamu ya mtoto : %s </string>
+
+    <string name="child_safety"> Usalama wa mtoto : %s </string>
+
+    <string name="complimentary_feeding"> Kumlisha mtoto vyakula vya nyongeza : %s </string>
+
+    <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
+
+    <string name="anc_home_visit_pmtct"> 6. Kuzuia maambukizi ya VVU kutoka kwa mama kwenda kwa mtoto </string>
 
 </resources>

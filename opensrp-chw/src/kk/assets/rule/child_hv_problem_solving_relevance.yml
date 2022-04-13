@@ -1,0 +1,7 @@
+---
+name: step1_challenges_play_communicating
+description: challenges_play_communicating toaster message
+priority: 1
+condition: "step1_experience_challenges_playing_communicating == 'Yes'"
+actions:
+  - "isRelevant = true"

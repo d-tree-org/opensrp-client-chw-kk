@@ -5,4 +5,13 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     public boolean useThinkMd() {
         return false;
     }
+
+    @Override
+    public boolean hasP2P() {
+        return false;
+    }
+    @Override
+    public boolean hasWashCheck() {
+        return false;
+    }
 }

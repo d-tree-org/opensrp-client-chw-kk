@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jeasy.rules.api.Rules;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.R;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.dao.AncDao;
@@ -28,6 +29,7 @@ import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
+import org.smartregister.domain.Client;
 import org.smartregister.family.fragment.BaseFamilyProfileMemberFragment;
 import org.smartregister.family.helper.ImageRenderHelper;
 import org.smartregister.family.provider.FamilyMemberRegisterProvider;
@@ -140,6 +142,18 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
 
             View nextArrow = viewHolder.nextArrow;
             attachNextArrowOnclickListener(nextArrow, client);
+        }
+
+        Client mClient = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(baseEntityId);
+        String interventionId = mClient.getIdentifier("intervention_id");
+        if (interventionId == null || interventionId.equals("")){
+            viewHolder.familyHead.setVisibility(View.VISIBLE);
+            viewHolder.familyHead.setText("Partially Registered");
+            viewHolder.familyHead.setTextColor(context.getResources().getColor(R.color.pie_chart_orange));
+        }else{
+            viewHolder.familyHead.setVisibility(View.VISIBLE);
+            viewHolder.familyHead.setText("Fully Registered");
+            viewHolder.familyHead.setTextColor(context.getResources().getColor(R.color.pie_chart_green));
         }
 
         updateDueColumn(viewHolder, baseEntityId);
@@ -338,7 +352,7 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
         private UpdateAsyncTask(RegisterViewHolder viewHolder, CommonPersonObjectClient pc) {
             this.viewHolder = viewHolder;
             this.pc = pc;
-            this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.HOME_VISIT);
+            this.rules = ChwApplication.getInstance().getRulesEngineHelper().rules(Constants.RULE_FILE.CHILD_HOME_VISIT);
         }
 
         @Override

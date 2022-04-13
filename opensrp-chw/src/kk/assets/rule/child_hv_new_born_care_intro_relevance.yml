@@ -1,0 +1,21 @@
+---
+name: step1_premature_baby
+description: step1_premature_baby
+priority: 1
+condition: "step1_first_visit.isEmpty()"
+actions:
+  - "isRelevant = true"
+---
+name: step1_immediate_new_born_care_counselling_bango_kitita
+description: Refer to topic 11 in Bango Kitita toaster
+priority: 1
+condition: "step1_premature_baby.contains('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_immediate_new_born_care_counselling_bango_kitita_premature
+description: Refer to topic 12 in Bango Kitita toaster
+priority: 1
+condition: "step1_premature_baby.contains('yes')"
+actions:
+  - "isRelevant = true"
