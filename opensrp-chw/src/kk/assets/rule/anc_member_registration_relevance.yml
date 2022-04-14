@@ -75,3 +75,10 @@ priority: 1
 condition: "step1_economic_activities.contains('chk_other')"
 actions:
   - "isRelevant = true"
+---
+name: step1_accessibility_issue_other
+description: Other accessibility issue, specify
+priority: 1
+condition: "step1_accessibility_issues.contains('chk_other')"
+actions:
+  - "isRelevant = true"

@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Recurring Services",
+    "id": "Recurring_Services",
+    "services": [
+      {
+        "type": "Exclusive breastfeeding"
+      },
+      {
+        "type": "Vitamin A"
+      },
+      {
+        "type": "Deworming"
+      },
+      {
+        "type": "IPTp-SP"
+      },
+      {
+        "type": "CCD introduction"
+      },
+      {
+        "type": "Toddler danger sign"
+      },
+      {
+        "type": "CCD development screening"
+      },
+      {
+        "type": "CCD communication assessment"
+      },
+      {
+        "type": "CCD child discipline"
+      },
+      {
+        "type": "Child safety"
+      },
+      {
+        "type": "Essential care breastfeeding"
+      },
+      {
+        "type": "Malaria Prevention"
+      },
+      {
+        "type": "Play Assessment and Counselling"
+      },
+      {
+        "type": "Caregiver Responsiveness"
+      },
+      {
+        "type": "Newborn Cord Care"
+      },
+      {
+        "type": "CCD introduction"
+      },
+      {
+        "type": "Problem Solving"
+      }
+    ]
+  }
+]

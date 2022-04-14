@@ -19,6 +19,18 @@
         "type": "Essential care breastfeeding"
       },
       {
+        "type": "Malaria Prevention"
+      },
+      {
+        "type": "Play Assessment and Counselling"
+      },
+      {
+        "type": "Caregiver Responsiveness"
+      },
+      {
+        "type": "Newborn Cord Care"
+      },
+      {
         "type": "CCD introduction"
       },
       {
@@ -26,6 +38,9 @@
       },
       {
         "type": "Immunizations"
+      },
+      {
+        "type": "Problem Solving"
       }
     ]
   }

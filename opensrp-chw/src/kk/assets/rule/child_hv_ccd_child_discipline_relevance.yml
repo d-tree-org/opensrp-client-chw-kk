@@ -1,0 +1,14 @@
+---
+name: step1_caregiver_corrects_right
+description: Care giver corrects right relevance
+priority: 1
+condition: "step1_caregiver_child_correction.contains('chk_distracts_child')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_caregiver_corrects_wrong
+description: Care giver corrects wrong relevance
+priority: 1
+condition: "step1_caregiver_child_correction.contains('chk_scolds_child')"
+actions:
+  - "isRelevant = true"
