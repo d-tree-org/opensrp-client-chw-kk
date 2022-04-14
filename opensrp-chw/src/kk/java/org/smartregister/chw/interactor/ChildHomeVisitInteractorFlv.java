@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.ImmunizationsHelper;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
@@ -23,6 +24,7 @@ import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KkConstants;
 import org.smartregister.domain.Alert;
 import org.smartregister.domain.AlertStatus;
+import org.smartregister.domain.Immunizations;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
@@ -81,6 +83,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
             evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
+            evaluateImmunizations(serviceWrapperMap);
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -253,6 +256,37 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(context.getString(R.string.kmc_skin_to_skin_counselling_month, serviceIteration), skinToSkinCounsellingAction);
+    }
+
+    private void evaluateImmunizations(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Immunizations");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceName = serviceWrapper.getName();
+
+        String[] serviceNameSplit = serviceName.split(" ");
+        String period = serviceNameSplit[serviceNameSplit.length - 2];
+        String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
+
+        String immunizationsTitle = context.getString(R.string.immunizations) + getTranslatedPeriod(period, periodNoun);
+        Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
+
+        ImmunizationsHelper immunizationsHelper = new ImmunizationsHelper(serviceWrapper);
+
+        BaseAncHomeVisitAction immunizationsAction = getBuilder(immunizationsTitle)
+                .withHelper(immunizationsHelper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvImmunizationsForm())
+                .build();
+
+        actionList.put(immunizationsTitle, immunizationsAction);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {

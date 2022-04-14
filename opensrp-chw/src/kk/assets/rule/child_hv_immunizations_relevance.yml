@@ -1,0 +1,119 @@
+---
+name: step1_received_bcg
+description: Received BCG
+priority: 1
+condition: "step1_visit_0_visit_3.contains('true')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_bopv0
+description: Received BOPV0
+priority: 1
+condition: "step1_visit_0_visit_7 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_bopv1
+description: Received BOPV1
+priority: 1
+condition: "step1_visit_5_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_dtp_hepb_hib1
+description: Received DTP-HepB-Hib 1
+priority: 1
+condition: "step1_visit_5_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_pcvi1
+description: Received PCV1
+priority: 1
+condition: "step1_visit_5_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_rota1
+description: Received Rota 1
+priority: 1
+condition: "step1_visit_5_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_bopv2
+description: Received BOPV2
+priority: 1
+condition: "step1_visit_6_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_dtp_hepb_hib2
+description: Received DTP-HepB-Hib 2
+priority: 1
+condition: "step1_visit_6_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_pcvi2
+description: Received PCV 2
+priority: 1
+condition: "step1_visit_6_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_rota2
+description: Received Rota 2
+priority: 1
+condition: "step1_visit_6_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_bopv3
+description: Received bOPV 3
+priority: 1
+condition: "step1_visit_6_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_pcv3
+description: Received PCV 3
+priority: 1
+condition: "step1_visit_6_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_dtp_hepb_hib3
+description: Received  DTP-HepB-Hib 3
+priority: 1
+condition: "step1_visit_6_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_ipv
+description: Received IPV
+priority: 1
+condition: "step1_vaccines_up_to_date == 'no' && !step1_vaccines_not_up_to_date_note.contains('family refused')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_received_surua_rubella1
+description: Received Rubella 1
+priority: 1
+condition: "step1_visit_13_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_up_to_date_note
+description: Vaccines up to date note
+priority: 1
+condition: "step1_vaccines_up_to_date == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_vaccines_not_up_to_date_note
+description: Vaccines not up to date note
+priority: 1
+condition: "step1_vaccines_up_to_date == 'no'"
+actions:
+  - "isRelevant = true"

@@ -11,6 +11,7 @@ public class KkConstants extends Constants{
 
             public static final String CHILD_HV_BREASTFEEDING = "child_hv_breastfeeding";
             public static final String CHILD_HV_ESSENTIAL_CARE_INTRODUCTION = "child_hv_new_born_care_intro";
+            public static final String CHILD_HV_IMMUNIZATIONS = "child_hv_immunizations";
 
             public static String getChildHvBreastfeeding() {
                 return Utils.getLocalForm(CHILD_HV_BREASTFEEDING);
@@ -19,11 +20,16 @@ public class KkConstants extends Constants{
             public static String getChildHvEssentialCareIntroductionForm() {
                 return Utils.getLocalForm(CHILD_HV_ESSENTIAL_CARE_INTRODUCTION);
             }
+
+            public static String getChildHvImmunizationsForm() {
+                return Utils.getLocalForm(CHILD_HV_IMMUNIZATIONS);
+            }
         }
 
     }
     public static final class EventType {
         public static final String ESSENTIAL_NEW_BORN_CARE_INTRO = "Essential New Born Care: Introduction";
+        public static final String IMMUNIZATIONS = "Immunizations";
     }
 
 }
