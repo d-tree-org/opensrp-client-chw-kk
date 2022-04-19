@@ -145,15 +145,17 @@ public class ChwMemberRegisterProvider extends FamilyMemberRegisterProvider {
         }
 
         Client mClient = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(baseEntityId);
-        String interventionId = mClient.getIdentifier("intervention_id");
-        if (interventionId == null || interventionId.equals("")){
-            viewHolder.familyHead.setVisibility(View.VISIBLE);
-            viewHolder.familyHead.setText("Partially Registered");
-            viewHolder.familyHead.setTextColor(context.getResources().getColor(R.color.pie_chart_orange));
-        }else{
-            viewHolder.familyHead.setVisibility(View.VISIBLE);
-            viewHolder.familyHead.setText("Fully Registered");
-            viewHolder.familyHead.setTextColor(context.getResources().getColor(R.color.pie_chart_green));
+        if (AncDao.isANCMember(baseEntityId)){
+            String interventionId = mClient.getIdentifier("intervention_id");
+            if (interventionId == null || interventionId.equals("")){
+                viewHolder.familyHead.setVisibility(View.VISIBLE);
+                viewHolder.familyHead.setText(R.string.anc_partially_registered);
+                viewHolder.familyHead.setTextColor(context.getResources().getColor(R.color.pie_chart_orange));
+            }else{
+                viewHolder.familyHead.setVisibility(View.VISIBLE);
+                viewHolder.familyHead.setText(R.string.anc_fully_registered);
+                viewHolder.familyHead.setTextColor(context.getResources().getColor(R.color.pie_chart_green));
+            }
         }
 
         updateDueColumn(viewHolder, baseEntityId);

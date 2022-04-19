@@ -29,14 +29,13 @@
     <string name="day_of">" siku ya %s"</string>
     <string name="hour_of">" masaa %s"</string>
 
-
-    <string name="toddler_danger_sign_month">Dalili za hatari za mtoto wa miezi %s </string>
     <string name="neonatal_danger_signs">Uchunguzi wa dalili za hatari za mtoto mchanga</string>
     <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga %s</string>
     <string name="kmc_skin_to_skin_counselling_month">Ushauri juu ya matunzo ya ngozi kwa ngozi (KMC) %s</string>
     <string name="new_born_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi</string>
     <string name="is_baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
     <string name="new_born_care_introduction_month">Huduma muhimu ya Watoto Wachanga: Utangulizi %s</string>
+    <string name="immunizations">Chanjo</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
