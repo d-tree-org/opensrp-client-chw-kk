@@ -64,6 +64,7 @@
     <string name="new_born_care_introduction">Essential New Born Care: Introduction</string>
     <string name="is_baby_premature">Baby pre-mature or born underweight?</string>
     <string name="new_born_care_introduction_month">Essential New Born Care: Introduction %s</string>
+    <string name="immunizations">Immunizations</string>
 
     <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
     <string name="ccd_introduction"> CCD : Introduction : %s </string>

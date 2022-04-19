@@ -35,6 +35,7 @@
     <string name="new_born_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi</string>
     <string name="is_baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
     <string name="new_born_care_introduction_month">Huduma muhimu ya Watoto Wachanga: Utangulizi %s</string>
+    <string name="immunizations">Chanjo</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
