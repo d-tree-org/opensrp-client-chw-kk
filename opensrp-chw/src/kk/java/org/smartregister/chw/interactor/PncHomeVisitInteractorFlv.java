@@ -33,7 +33,8 @@ import timber.log.Timber;
 
 public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv {
 
-    protected Date deliberyDate;
+    protected Date deliveryDate;
+
 
     @Override
     public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
@@ -52,12 +53,12 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
 
         try {
-            this.deliberyDate = DateTime.parse(getPncDeliveryDate().toString()).toDate();
+            this.deliveryDate = DateTime.parse(getPncDeliveryDate().toString()).toDate();
         } catch (Exception e) {
             Timber.e(e);
         }
 
-        deliberyDate = getPncDeliveryDate();
+        deliveryDate = getPncDeliveryDate();
         Map<String, ServiceWrapper> serviceWrapperMap = getServices();
         try {
 
@@ -103,7 +104,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
     private Map<String, ServiceWrapper> getServices() {
         return RecurringServiceUtil.getRecurringServices(
                 memberObject.getBaseEntityId(),
-                new DateTime(deliberyDate),
+                new DateTime(deliveryDate),
                 Constants.SERVICE_GROUPS.PNC
         );
     }
