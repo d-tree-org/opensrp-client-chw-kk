@@ -1,0 +1,355 @@
+{
+  "count": "1",
+  "encounter_type": "Danger signs - Mother",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{kk_pnc_hv_danger_signs.step1.title}}",
+    "fields": [
+      {
+        "key": "introduction_danger_sign_screening",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{kk_pnc_hv_danger_signs.step1.introduction_danger_sign_screening.text}}",
+        "text_color": "#2D2E2D",
+        "label_info_title": "{{kk_pnc_hv_danger_signs.step1.introduction_danger_sign_screening.label_info_title}}",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "label_is_dynamic": true,
+        "dynamic_label_info": [
+          {
+            "dynamic_label_title": "{{kk_pnc_hv_danger_signs.step1.introduction_danger_sign_screening.dynamic_label_info[0].dynamic_label_title}}",
+            "dynamic_label_text": "{{kk_pnc_hv_danger_signs.step1.introduction_danger_sign_screening.dynamic_label_info[0].dynamic_label_text}}",
+            "dynamic_label_image_src": "{{kk_pnc_hv_danger_signs.step1.introduction_danger_sign_screening.dynamic_label_info[0].dynamic_label_image_src}}"
+          }
+        ]
+      },
+      {
+        "key": "danger_signs_screening_mama",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label_info_image_src": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.label_info_image_src}}",
+        "label_info_has_image": true,
+        "label": "{{kk_pnc_hv_danger_signs.step1.danger_signs_present.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_none"
+        ],
+        "options": [
+          {
+            "key": "chk_none",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_none.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_vaginal_bleeding",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_vaginal_bleeding.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "150802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_fever",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_fever.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "140238AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_severe_genitalia_pain",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_severe_genitalia_pain.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_severe_abdominal_pain",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_severe_abdominal_pain.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_calf_muscle_pain",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_calf_muscle_pain.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "165271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_difficulty_breathing",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_difficulty_breathing.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_low_urine_output",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_low_urine_output.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "142373AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_severe_headache",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_severe_headache.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_loss_consciousness",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_loss_consciousness.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_abnormal_behaviour",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_abnormal_behaviour.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_pallor",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_pallor.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_painful_red_hot_breast",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_painful_red_hot_breast.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "139081AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_convulsions",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_convulsions.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_dizziness",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_dizziness.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_exhaustion",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_exhaustion.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_vaginal_discharge",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_vaginal_discharge.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_severe_muscle_pain",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_severe_muscle_pain.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{kk_pnc_hv_danger_signs.step1.danger_signs_present.v_required.err}}"
+        }
+      },
+      {
+        "key": "pnc_danger_signs_present_mother",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "label_info_text": "{{kk_pnc_hv_danger_signs.step1.pnc_danger_signs_present_mother.label_info_title}}",
+        "type": "spinner",
+        "hint": "{{kk_pnc_hv_danger_signs.step1.pnc_danger_signs_present_mother.hint}}",
+        "values": [
+          "{{kk_pnc_hv_danger_signs.step1.pnc_danger_signs_present_mother.values[0]}}",
+          "{{kk_pnc_hv_danger_signs.step1.pnc_danger_signs_present_mother.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{kk_pnc_hv_danger_signs.step1.pnc_danger_signs_present_mother.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_pnc_hv_danger_signs_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "discuss_mother_advice_health_facility",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{kk_pnc_hv_danger_signs.step1.discuss_mother_advice_health_facility.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_pnc_hv_danger_signs_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "issue_referral_mother",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{kk_pnc_hv_danger_signs.step1.issue_referral_mother.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_pnc_hv_danger_signs_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "mother_referral_health_facility",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{kk_pnc_hv_danger_signs.step1.mother_referral_health_facility.hint}}",
+        "values": [
+          "{{kk_pnc_hv_danger_signs.step1.mother_referral_health_facility.values[0]}}",
+          "{{kk_pnc_hv_danger_signs.step1.mother_referral_health_facility.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{kk_pnc_hv_danger_signs.step1.mother_referral_health_facility.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_pnc_hv_danger_signs_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "issue_referral_mother_yes",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{kk_pnc_hv_danger_signs.step1.issue_referral_mother.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_pnc_hv_danger_signs_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_issue_referral_mother",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{kk_pnc_hv_danger_signs.step1.no_issue_referral_mother.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_pnc_hv_danger_signs_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "properties_file_name": "kk_pnc_hv_danger_signs"
+}
