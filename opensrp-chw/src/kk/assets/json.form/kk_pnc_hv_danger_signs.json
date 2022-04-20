@@ -289,6 +289,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
+        "label_info_text": "{{kk_pnc_hv_danger_signs.step1.mother_referral_health_facility.label_info_text}}",
         "type": "spinner",
         "hint": "{{kk_pnc_hv_danger_signs.step1.mother_referral_health_facility.hint}}",
         "values": [
