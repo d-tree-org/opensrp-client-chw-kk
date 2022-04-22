@@ -1,9 +1,11 @@
 package org.smartregister.chw.interactor;
 
+import androidx.annotation.Nullable;
+
+import org.jeasy.rules.api.Rules;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.smartregister.chw.R;
-import org.smartregister.chw.actionhelper.DangerSignsAction;
 import org.smartregister.chw.actionhelper.PncDangerSignsActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
@@ -11,16 +13,18 @@ import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.VisitUtils;
+import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.dao.PNCDao;
-import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.rule.PncVisitAlertRule;
+import org.smartregister.chw.core.utils.HomeVisitUtil;
 import org.smartregister.chw.core.utils.RecurringServiceUtil;
-import org.smartregister.chw.dao.ChwPNCDao;
-import org.smartregister.chw.domain.PNCHealthFacilityVisitSummary;
+import org.smartregister.chw.pnc.PncLibrary;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KkConstants;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,6 +38,8 @@ import timber.log.Timber;
 public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv {
 
     protected Date deliveryDate;
+    private Date lastVisitDate;
+    private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
 
 
     @Override
@@ -53,22 +59,46 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
 
         try {
-            this.deliveryDate = DateTime.parse(getPncDeliveryDate().toString()).toDate();
+            this.deliveryDate = DateTime.parse(sdf.format(getPncDeliveryDate())).toDate();
         } catch (Exception e) {
             Timber.e(e);
         }
 
-        deliveryDate = getPncDeliveryDate();
         Map<String, ServiceWrapper> serviceWrapperMap = getServices();
         try {
 
             evaluateDangerSignsMother(serviceWrapperMap);
+            evaluateMaternalNutrition();
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             Timber.e(e);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return actionList;
+    }
+
+    private void evaluateMaternalNutrition() throws BaseAncHomeVisitAction.ValidationException {
+
+        PncVisitAlertRule visitSummary = getVisitSummary(memberObject.getBaseEntityId());
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+
+        if (visitID == null || visitID.equalsIgnoreCase("3") || visitID.equalsIgnoreCase("35")) return;
+
+
+        String title = context.getString(R.string.maternal_nutrition);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvMaternalNutrition())
+                .build();
+
+        actionList.put(title, action);
+
     }
 
     private Date getPncDeliveryDate() {
@@ -98,7 +128,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withHelper(new PncDangerSignsActionHelper())
                 .build();
 
-        actionList.put(context.getString(R.string.pnc_danger_signs_mother), action);
+        actionList.put(title, action);
     }
 
     private Map<String, ServiceWrapper> getServices() {
@@ -107,5 +137,35 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 new DateTime(deliveryDate),
                 Constants.SERVICE_GROUPS.PNC
         );
+    }
+
+    private PncVisitAlertRule getVisitSummary(String motherBaseID) {
+        Rules rules = ChwApplication.getInstance().getRulesEngineHelper().rules(org.smartregister.chw.util.Constants.RULE_FILE.PNC_HOME_VISIT);
+        Date lastVisitDate = getLastDateVisit(motherBaseID);
+
+        return HomeVisitUtil.getPncVisitStatus(rules, lastVisitDate, getPncDeliveryDate());
+    }
+
+    private Date getLastDateVisit(String motherBaseID) {
+        Visit lastVisit = AncLibrary.getInstance().visitRepository().getLatestVisit(motherBaseID, org.smartregister.chw.anc.util.Constants.EVENT_TYPE.PNC_HOME_VISIT);
+        if (lastVisit != null) {
+            lastVisitDate = lastVisit.getDate();
+            return lastVisitDate;
+        } else {
+            return lastVisitDate = getDeliveryDate(motherBaseID);
+        }
+    }
+
+    @Nullable
+    private Date getDeliveryDate(String motherBaseID) {
+        try {
+            String deliveryDateString = PncLibrary.getInstance().profileRepository().getDeliveryDate(motherBaseID);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            return sdf.parse(deliveryDateString);
+
+        } catch (ParseException e) {
+            Timber.e(e);
+        }
+        return null;
     }
 }
