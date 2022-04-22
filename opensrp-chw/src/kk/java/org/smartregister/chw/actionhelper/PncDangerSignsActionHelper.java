@@ -1,14 +1,19 @@
 package org.smartregister.chw.actionhelper;
 
+import android.content.Context;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 
 import java.text.MessageFormat;
+import java.util.List;
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -18,6 +23,18 @@ import timber.log.Timber;
 public class PncDangerSignsActionHelper extends HomeVisitActionHelper {
 
     private String signs_present;
+    private String jsonString;
+    private Map<String, List<VisitDetail>> details;
+
+    public PncDangerSignsActionHelper() {
+    }
+
+    @Override
+    public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
+        this.details = details;
+        this.jsonString = jsonString;
+        this.context = context;
+    }
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
