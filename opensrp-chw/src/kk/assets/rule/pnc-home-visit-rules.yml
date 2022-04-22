@@ -1,41 +1,49 @@
-name: after_two
-description: after two days
+---
+name: after_24_hours
+description: after 24 hours
 priority: 1
-condition: "pncVisitAlertRule.isValid(2,10000,3)"
+condition: "pncVisitAlertRule.isValid(1,2,3)"
 actions:
-  - "pncVisitAlertRule.setVisitID('2')"
+  - "pncVisitAlertRule.setVisitID('0')" # Visit 1
+#---
+#name: after_two
+#description: after two days
+#priority: 1
+#condition: "pncVisitAlertRule.isValid(2,10000,3)"
+#actions:
+#  - "pncVisitAlertRule.setVisitID('2')"
 ---
 name: after_three
 description: after three days
 priority: 1
-condition: "pncVisitAlertRule.isValid(3,4,14)"
+condition: "pncVisitAlertRule.isValid(3,4,8)" # Visit 2
 actions:
   - "pncVisitAlertRule.setVisitID('3')"
 ---
-name: after_fourteen_days
-description: after fourteen days
+name: after_eight_days
+description: after eight days
 priority: 1
-condition: "pncVisitAlertRule.isValid(14,15,21)"
+condition: "pncVisitAlertRule.isValid(8,15,21)" # Visit 3
 actions:
-  - "pncVisitAlertRule.setVisitID('14')"
+  - "pncVisitAlertRule.setVisitID('8')"
 ---
 name: after_twenty_one_days
 description: after twenty one days
 priority: 1
-condition: "pncVisitAlertRule.isValid(21,22,28)"
+condition: "pncVisitAlertRule.isValid(21,28,35)" # Visit 4
 actions:
   - "pncVisitAlertRule.setVisitID('21')"
 ---
-name: after_twenty_eight_days
-description: after twenty eight days
+name: after_five_weeks
+description: after five weeks
 priority: 1
-condition: "pncVisitAlertRule.isValid(28,29,49)"
+condition: "pncVisitAlertRule.isValid(35,42,60)" # Visit 5
 actions:
-  - "pncVisitAlertRule.setVisitID('28')"
----
-name: after_forty_nine_days
-description: after forty nine days
-priority: 1
-condition: "pncVisitAlertRule.isValid(49,50,10000)"
-actions:
-  - "pncVisitAlertRule.setVisitID('49')"
+  - "pncVisitAlertRule.setVisitID('35')"
+#---
+#name: after_forty_nine_days
+#description: after forty nine days
+#priority: 1
+#condition: "pncVisitAlertRule.isValid(49,50,10000)"
+#actions:
+#  - "pncVisitAlertRule.setVisitID('49')"
