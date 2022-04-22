@@ -37,7 +37,6 @@ import timber.log.Timber;
 
 public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv {
 
-    protected Date deliveryDate;
     private Date lastVisitDate;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
 
@@ -59,15 +58,8 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
 
         try {
-            this.deliveryDate = DateTime.parse(sdf.format(getPncDeliveryDate())).toDate();
-        } catch (Exception e) {
-            Timber.e(e);
-        }
 
-        Map<String, ServiceWrapper> serviceWrapperMap = getServices();
-        try {
-
-            evaluateDangerSignsMother(serviceWrapperMap);
+            evaluateDangerSignsMother();
             evaluateMaternalNutrition();
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
@@ -105,19 +97,15 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         return PNCDao.getPNCDeliveryDate(memberObject.getBaseEntityId());
     }
 
-    private void evaluateDangerSignsMother(Map<String, ServiceWrapper> serviceWrapperMap) throws BaseAncHomeVisitAction.ValidationException {
+    private void evaluateDangerSignsMother() throws BaseAncHomeVisitAction.ValidationException {
 
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Pnc Danger Signs");
+        PncVisitAlertRule visitSummary = getVisitSummary(memberObject.getBaseEntityId());
 
-        if (serviceWrapper == null) return;
+        String visitID = visitID = visitSummary.getVisitID();
 
-        Alert alert = serviceWrapper.getAlert();
+        if (visitID == null || visitID.equalsIgnoreCase("21") || visitID.equalsIgnoreCase("35")) return;
 
-        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
-
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
-
-        String title = context.getString(R.string.postpartum_danger_signs, serviceIteration);
+        String title = context.getString(R.string.postpartum_danger_signs);
 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withOptional(false)
@@ -129,14 +117,6 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .build();
 
         actionList.put(title, action);
-    }
-
-    private Map<String, ServiceWrapper> getServices() {
-        return RecurringServiceUtil.getRecurringServices(
-                memberObject.getBaseEntityId(),
-                new DateTime(deliveryDate),
-                Constants.SERVICE_GROUPS.PNC
-        );
     }
 
     private PncVisitAlertRule getVisitSummary(String motherBaseID) {
