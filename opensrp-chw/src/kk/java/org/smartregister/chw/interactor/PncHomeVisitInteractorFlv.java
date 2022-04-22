@@ -57,10 +57,13 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             }
         }
 
+        PncVisitAlertRule visitSummary = getVisitSummary(memberObject.getBaseEntityId());
+
         try {
 
-            evaluateDangerSignsMother();
-            evaluateMaternalNutrition();
+            evaluateDangerSignsMother(visitSummary);
+            evaluateMaternalNutrition(visitSummary);
+            evaluateHIVGeneralInfo(visitSummary);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             Timber.e(e);
@@ -71,9 +74,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         return actionList;
     }
 
-    private void evaluateMaternalNutrition() throws BaseAncHomeVisitAction.ValidationException {
-
-        PncVisitAlertRule visitSummary = getVisitSummary(memberObject.getBaseEntityId());
+    private void evaluateMaternalNutrition(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
 
         String visitID = visitID = visitSummary.getVisitID();
 
@@ -97,9 +98,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         return PNCDao.getPNCDeliveryDate(memberObject.getBaseEntityId());
     }
 
-    private void evaluateDangerSignsMother() throws BaseAncHomeVisitAction.ValidationException {
-
-        PncVisitAlertRule visitSummary = getVisitSummary(memberObject.getBaseEntityId());
+    private void evaluateDangerSignsMother(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
 
         String visitID = visitID = visitSummary.getVisitID();
 
@@ -111,12 +110,30 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvDangerSigns())
-                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withHelper(new PncDangerSignsActionHelper())
                 .build();
 
         actionList.put(title, action);
+    }
+
+    private void evaluateHIVGeneralInfo(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+        if (visitID.equalsIgnoreCase("1")) {
+
+            String title = context.getString(R.string.pnc_hiv_aids_general_info);
+
+            BaseAncHomeVisitAction action = getBuilder(title)
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvHivAidsGeneralInfo())
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                    .build();
+
+            actionList.put(title, action);
+        }
     }
 
     private PncVisitAlertRule getVisitSummary(String motherBaseID) {
