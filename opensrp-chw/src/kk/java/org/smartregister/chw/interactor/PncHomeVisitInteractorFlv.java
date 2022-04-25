@@ -64,6 +64,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateDangerSignsMother(visitSummary);
             evaluateMaternalNutrition(visitSummary);
             evaluateHIVGeneralInfo(visitSummary);
+            evaluateLAM(visitSummary);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             Timber.e(e);
@@ -119,7 +120,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
     private void evaluateHIVGeneralInfo(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
 
-        String visitID = visitID = visitSummary.getVisitID();
+        String visitID  = visitSummary.getVisitID();
 
         if (visitID.equalsIgnoreCase("1")) {
 
@@ -134,6 +135,25 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
             actionList.put(title, action);
         }
+    }
+
+    private void evaluateLAM(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitSummary.getVisitID();
+
+        if (visitID == null || visitID.equalsIgnoreCase("1") ||
+                visitID.equalsIgnoreCase("3") || visitID.equalsIgnoreCase("8")) return;
+
+        String title = context.getString(R.string.pnc_hv_lam);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvLam())
+                .build();
+
+        actionList.put(title, action);
+
     }
 
     private PncVisitAlertRule getVisitSummary(String motherBaseID) {
