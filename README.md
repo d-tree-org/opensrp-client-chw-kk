@@ -28,12 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 -   Child health care
 -   Antenatal care (ANC)
 -   Postnatal care (PNC) 
--   Malaria module
--   Stock Management
--   Service Activity
--   Family Planning
 -   All Families register
--   Peer to peer sync
 
 ## Versioning
 We use SemVer for versioning. For the versions available, see the tags on this repository.
@@ -50,7 +45,7 @@ For more details check out <https://semver.org/>
 Wiki [OpenSRP Documentation](https://smartregister.atlassian.net/wiki/spaces/Documentation)
 
 ## Support
-Email: <mailto:support@ona.io>
+Email: <mailto:techteam@d-tree.org>
 Slack workspace: <opensrp.slack.com>
 
 ## License
