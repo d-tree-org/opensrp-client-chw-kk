@@ -50,7 +50,7 @@
     "title": "{{pnc_hv_postpartum_care_for_mother.step1.title}}",
     "fields": [
       {
-        "key": "family_planning_counselling_LAM",
+        "key": "postpartum_care_mother_counselling",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
@@ -72,5 +72,5 @@
       }
     ]
   },
-  "properties_file_name": "pnc_hv_lam"
+  "properties_file_name": "pnc_hv_postpartum_care_for_mother"
 }
