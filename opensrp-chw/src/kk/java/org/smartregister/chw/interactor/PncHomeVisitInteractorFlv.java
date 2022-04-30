@@ -65,6 +65,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateMaternalNutrition(visitSummary);
             evaluateHIVGeneralInfo(visitSummary);
             evaluateLAM(visitSummary);
+            evaluatePostpartumMotherCare(visitSummary);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             Timber.e(e);
@@ -73,6 +74,25 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
 
         return actionList;
+    }
+
+    private void evaluatePostpartumMotherCare(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+        if (visitID == null || !visitID.equalsIgnoreCase("1") || !visitID.equalsIgnoreCase("3")
+                || !visitID.equalsIgnoreCase("8")) return;
+
+        String title = context.getString(R.string.pnc_postpartum_mother_care);
+
+        BaseAncHomeVisitAction postpartumMotherCareAction = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncMotherCare())
+                .build();
+
+        actionList.put(title, postpartumMotherCareAction);
+
     }
 
     private void evaluateMaternalNutrition(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
