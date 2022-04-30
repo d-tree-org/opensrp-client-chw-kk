@@ -52,6 +52,7 @@ public class KkConstants extends Constants{
             public static final String PNC_HV_HIV_AIDS_GENERAL_INFO = "pnc_hv_hiv_aids_general_info";
             public static final String PNC_HV_LAM = "pnc_hv_lam";
             public static final String PNC_MOTHER_CARE = "pnc_hv_postpartum_care_for_mother";
+            public static final String PNC_HV_POSTPARTUM_FAMILY_PLANNING = "pnc_hv_postpartum_family_planning";
 
             public static String getPncHvDangerSigns() {
                 return Utils.getLocalForm(PNC_HV_DANGER_SIGNS);
@@ -71,6 +72,10 @@ public class KkConstants extends Constants{
 
             public static String getPncMotherCare(){
                 return Utils.getLocalForm(PNC_MOTHER_CARE);
+            }
+
+            public static String getPncHvPostpartumFamilyPlanning(){
+                return Utils.getLocalForm(PNC_HV_POSTPARTUM_FAMILY_PLANNING);
             }
 
         }
