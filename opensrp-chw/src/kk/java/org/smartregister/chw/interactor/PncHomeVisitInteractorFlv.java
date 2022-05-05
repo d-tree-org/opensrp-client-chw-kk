@@ -67,7 +67,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateLAM(visitSummary);
             evaluatePostpartumMotherCare(visitSummary);
             evaluatePostpartumFamilyPlanning(visitSummary);
-            evaluateFollowupHivExposedInfant(visitSummary);
+            evaluateFollowupHEI(visitSummary);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             Timber.e(e);
@@ -78,7 +78,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         return actionList;
     }
 
-    private void evaluateFollowupHivExposedInfant(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+    private void evaluateFollowupHEI(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
 
         String visitID = visitID = visitSummary.getVisitID();
 
