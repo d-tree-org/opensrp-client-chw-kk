@@ -68,6 +68,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluatePostpartumMotherCare(visitSummary);
             evaluatePostpartumFamilyPlanning(visitSummary);
             evaluateFollowupHEI(visitSummary);
+            evaluatePostpartumPhysiologicalChanges(visitSummary);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             Timber.e(e);
@@ -76,6 +77,25 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
 
         return actionList;
+    }
+
+    private void evaluatePostpartumPhysiologicalChanges(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+        if (visitID == null || !visitID.equalsIgnoreCase("1")
+                || !visitID.equalsIgnoreCase("3") ) return;
+
+        String title = context.getString(R.string.postpartum_psychological_changes);
+
+        BaseAncHomeVisitAction ppPhysiologicalChangesAction = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvPostpartumPhysiologicalChanges())
+                .build();
+
+        actionList.put(title, ppPhysiologicalChangesAction);
+
     }
 
     private void evaluateFollowupHEI(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
