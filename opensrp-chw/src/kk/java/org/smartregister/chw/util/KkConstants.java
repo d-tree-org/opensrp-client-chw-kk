@@ -89,6 +89,10 @@ public class KkConstants extends Constants{
                 return Utils.getLocalForm(PNC_HV_POSTPARTUM_PHYSIOLOGICAL_CHANGES);
             }
 
+            public static String getPncHvInfectionPreventionControl(){
+                return Utils.getLocalForm(PNC_HV_INFECTION_PREVENTION_CONTROL);
+            }
+
         }
     }
 
