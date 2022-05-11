@@ -55,6 +55,7 @@ public class KkConstants extends Constants{
             public static final String PNC_HV_POSTPARTUM_FAMILY_PLANNING = "pnc_hv_postpartum_family_planning";
             public static final String FOLLOW_UP_HIV_EXPOSED_INFANT = "pnc_hv_hiv_exposed_infant";
             public static final String PNC_HV_POSTPARTUM_PHYSIOLOGICAL_CHANGES = "pnc_hv_postpartum_psychological_changes";
+            public static final String PNC_HV_INFECTION_PREVENTION_CONTROL = "pnc_hv_infection_prevention_control";
 
             public static String getPncHvDangerSigns() {
                 return Utils.getLocalForm(PNC_HV_DANGER_SIGNS);
