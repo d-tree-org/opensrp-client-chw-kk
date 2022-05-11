@@ -69,6 +69,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluatePostpartumFamilyPlanning(visitSummary);
             evaluateFollowupHEI(visitSummary);
             evaluatePostpartumPhysiologicalChanges(visitSummary);
+            evaluateInfectionPreventionControl(visitSummary);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             Timber.e(e);
@@ -77,6 +78,24 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
 
         return actionList;
+    }
+
+    private void evaluateInfectionPreventionControl(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+        if (visitID == null || !visitID.equalsIgnoreCase("1")) return;
+
+        String title = context.getString(R.string.infection_prevention_control);
+
+        BaseAncHomeVisitAction infectionPreventionControlAction = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvInfectionPreventionControl())
+                .build();
+
+        actionList.put(title, infectionPreventionControlAction);
+
     }
 
     private void evaluatePostpartumPhysiologicalChanges(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
