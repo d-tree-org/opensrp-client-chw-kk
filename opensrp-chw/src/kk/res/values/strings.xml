@@ -86,5 +86,6 @@
     <string name="pnc_postpartum_family_planning">18. Postpartum family planning</string>
     <string name="follow_up_hiv_exposed_infant"> 15.Follow-Up for the HIV-Exposed Infant </string>
     <string name="postpartum_psychological_changes"> 8.Postpartum Physiological Changes </string>
+    <string name="infection_prevention_control"> 24. Infection Prevention and Control </string>
 
 </resources>
