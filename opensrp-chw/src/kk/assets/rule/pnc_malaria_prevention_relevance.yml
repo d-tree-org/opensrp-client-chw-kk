@@ -1,0 +1,40 @@
+---
+name: step1_malaria_protective_measures_other
+description: pnc_malaria_prevention relevance
+priority: 1
+condition: "step1_malaria_protective_measures.contains('other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_praise_malaria_protective_measures
+description: praise_malaria_protective_measures relevance
+priority: 1
+condition: "step1_malaria_protective_measures.contains('llin') ||
+            step1_malaria_protective_measures.contains('intermittent_preventive_treatment') ||
+            step1_malaria_protective_measures.contains('household_spraying_insecticide') ||
+            step1_malaria_protective_measures.contains('covering_doors_windows_with_mesh') ||
+            step1_malaria_protective_measures.contains('destroying_mosquito_breeding_grounds') ||
+            step1_malaria_protective_measures.contains('other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_malaria_protective_measures_none
+description: malaria_protective_measures_none relevance
+priority: 1
+condition: "step1_malaria_protective_measures.contains('none')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_llin_last_night
+description: llin_last_night relevance
+priority: 1
+condition: "step1_malaria_protective_measures.contains('llin')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_LLIN_condition
+description: LLIN_condition relevance
+priority: 1
+condition: "step1_malaria_protective_measures.contains('llin')"
+actions:
+  - "isRelevant = true"
