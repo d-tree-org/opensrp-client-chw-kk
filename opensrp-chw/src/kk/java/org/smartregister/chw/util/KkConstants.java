@@ -49,10 +49,23 @@ public class KkConstants extends Constants{
                 return Utils.getLocalForm(CHILD_HV_NEWBORN_CORD_CARE);
             }
 
-
         }
 
+        public static class KK_PNC_HOME_VISIT {
+            public static final String PNC_HV_DANGER_SIGNS = "kk_pnc_hv_danger_signs";
+            public static final String PNC_HV_MATERNAL_NUTRITION = "pnc_hv_maternal_nutrition";
+
+            public static String getPncHvDangerSigns() {
+                return Utils.getLocalForm(PNC_HV_DANGER_SIGNS);
+            }
+
+            public static String getPncHvMaternalNutrition() {
+                return Utils.getLocalForm(PNC_HV_MATERNAL_NUTRITION);
+            }
+
+        }
     }
+
     public static final class EventType {
         public static final String ESSENTIAL_NEW_BORN_CARE_INTRO = "Essential New Born Care: Introduction";
         public static final String IMMUNIZATIONS = "Immunizations";
