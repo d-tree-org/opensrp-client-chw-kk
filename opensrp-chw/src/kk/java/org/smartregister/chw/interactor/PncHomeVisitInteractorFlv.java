@@ -65,6 +65,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateMaternalNutrition(visitSummary);
             evaluateHIVGeneralInfo(visitSummary);
             evaluateLAM(visitSummary);
+            evaluateMalariaPrevention(visitSummary);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             Timber.e(e);
@@ -150,6 +151,24 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvLam())
+                .build();
+
+        actionList.put(title, action);
+
+    }
+
+    private void evaluateMalariaPrevention(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitSummary.getVisitID();
+
+        if (visitID == null || visitID.equalsIgnoreCase("3") ||
+                visitID.equalsIgnoreCase("21")) return;
+
+        String title = context.getString(R.string.pnc_hv_malaria_prevention_action_title);
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncMalariaPrevention())
                 .build();
 
         actionList.put(title, action);
