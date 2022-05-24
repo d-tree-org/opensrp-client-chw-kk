@@ -1,5 +1,10 @@
 package org.smartregister.chw.activity;
 
+import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
+import static org.smartregister.chw.malaria.util.DBConstants.KEY.GEST_AGE;
+import static org.smartregister.chw.util.NotificationsUtil.handleNotificationRowClick;
+import static org.smartregister.chw.util.NotificationsUtil.handleReceivedNotifications;
+
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -10,9 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +60,6 @@ import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.Client;
 import org.smartregister.domain.Task;
-import org.smartregister.family.FamilyLibrary;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.interactor.FamilyProfileInteractor;
 import org.smartregister.family.util.JsonFormUtils;
@@ -71,11 +78,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
-
-import static org.smartregister.chw.core.utils.Utils.passToolbarTitle;
-import static org.smartregister.chw.malaria.util.DBConstants.KEY.GEST_AGE;
-import static org.smartregister.chw.util.NotificationsUtil.handleNotificationRowClick;
-import static org.smartregister.chw.util.NotificationsUtil.handleReceivedNotifications;
 
 public class AncMemberProfileActivity extends CoreAncMemberProfileActivity implements AncMemberProfileContract.View {
 
@@ -120,11 +122,11 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         }
         Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(memberObject.getBaseEntityId());
         String interventionId = client.getIdentifier("intervention_id");
-        if (interventionId == null || interventionId.equals("")){
+        if (interventionId == null || interventionId.equals("")) {
             registrationStatus.setVisibility(View.VISIBLE);
             registrationStatus.setText(R.string.anc_partially_registered);
             registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_orange));
-        }else{
+        } else {
             registrationStatus.setVisibility(View.VISIBLE);
             registrationStatus.setText(R.string.anc_fully_registered);
             registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_green));
@@ -251,7 +253,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
                     //Check if consent was received then add intervention Id to the client
                     String consent = org.smartregister.util.JsonFormUtils.getFieldJSONObject(field, "intervention_consent").getString(CoreJsonFormUtils.VALUE);
                     Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(memberObject.getBaseEntityId());
-                    if (consent.contains("intervention_consent_yes")){
+                    if (consent.contains("intervention_consent_yes")) {
                         client.addIdentifier("intervention_id", UUID.randomUUID().toString());
                         JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(client);
                         CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(client.getBaseEntityId(), object);
@@ -275,13 +277,13 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         }
     }
 
-    private void refreshInterventionStatus(Client client){
+    private void refreshInterventionStatus(Client client) {
         String interventionId = client.getIdentifier("intervention_id");
-        if (interventionId == null || interventionId.equals("")){
+        if (interventionId == null || interventionId.equals("")) {
             registrationStatus.setVisibility(View.VISIBLE);
             registrationStatus.setText(R.string.anc_partially_registered);
             registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_orange));
-        }else{
+        } else {
             registrationStatus.setVisibility(View.VISIBLE);
             registrationStatus.setText(R.string.anc_fully_registered);
             registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_green));
@@ -384,19 +386,43 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
             AncHomeVisitActivity.startMe(this, memberObject.getBaseEntityId(), false);
         } else if (id == R.id.textview_edit) {
             AncHomeVisitActivity.startMe(this, memberObject.getBaseEntityId(), true);
+        } else if (id == R.id.referral_row) {
+            Task task = (Task) view.getTag();
+            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), memberObject.getBaseEntityId());
         }
+
         handleNotificationRowClick(this, view, notificationListAdapter, memberObject.getBaseEntityId());
     }
 
     @Override
     public void setClientTasks(Set<Task> taskList) {
-        //overridden
+        boolean isReferralFollowDue = false;
+
+        for (Task task : taskList) {
+            int days = Math.abs(Days.daysBetween(task.getAuthoredOn(), DateTime.now()).getDays());
+            if ((days >= 1 && task.getPriority() == Task.TaskPriority.ROUTINE) || days >= 3) {
+                isReferralFollowDue = true;
+                break;
+            }
+        }
+
+        RelativeLayout layoutReferralRow = findViewById(R.id.referral_row);
+        if (isReferralFollowDue) {
+            layoutReferralRow.setOnClickListener(this);
+            layoutReferralRow.setVisibility(View.VISIBLE);
+            findViewById(R.id.view_referral_row).setVisibility(View.VISIBLE);
+            layoutReferralRow.setTag(taskList.iterator().next());
+        } else {
+            layoutReferralRow.setVisibility(View.GONE);
+            findViewById(R.id.view_referral_row).setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onMemberDetailsReloaded(MemberObject memberObject) {
         this.memberObject = memberObject;
         super.onMemberDetailsReloaded(memberObject);
+        this.ancMemberProfilePresenter().fetchTasks();
     }
 
     private void refreshViewOnHomeVisitResult() {
