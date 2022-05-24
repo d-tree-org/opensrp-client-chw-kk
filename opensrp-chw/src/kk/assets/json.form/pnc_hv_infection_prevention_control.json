@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "PNC Home Visit - Infection Preventio Control",
+  "encounter_type": "PNC Home Visit - Infection Prevention Control",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -636,7 +636,7 @@
           "{{pnc_hv_infection_prevention_control.step1.roof_type.wood}}",
           "{{pnc_hv_infection_prevention_control.step1.roof_type.iron_sheet}}",
           "{{pnc_hv_infection_prevention_control.step1.roof_type.concrete_cement}}",
-          "{{pnc_hv_infection_prevention_control.step1.roof_type.obsesto_sheets}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.asbestos_sheets}}",
           "{{pnc_hv_infection_prevention_control.step1.roof_type.tiles}}",
           "{{pnc_hv_infection_prevention_control.step1.roof_type.other}}"
         ],
@@ -768,5 +768,5 @@
       }
     ]
   },
-  "properties_file_name": "pnc_hv_postpartum_physiological_changes"
+  "properties_file_name": "pnc_hv_infection_prevention_control"
 }
