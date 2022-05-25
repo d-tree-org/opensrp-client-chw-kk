@@ -33,6 +33,7 @@ import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.ChildProfilePresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.Task;
 import org.smartregister.family.util.Constants;
 
 import java.util.ArrayList;
@@ -115,6 +116,9 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
             openFamilyDueTab();
         } else if (i == R.id.textview_edit) {
             openVisitHomeScreen(true);
+        }else if(i == R.id.referral_row) {
+            Task task = (Task) view.getTag();
+            ReferralFollowupActivity.startReferralFollowupActivity(this, task.getIdentifier(), childBaseEntityId);
         }
         if (i == R.id.textview_visit_not) {
             presenter().updateVisitNotDone(System.currentTimeMillis());
@@ -123,6 +127,7 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
         } else if (i == R.id.textview_undo) {
             presenter().updateVisitNotDone(0);
         }
+
         handleNotificationRowClick(this, view, notificationListAdapter, childBaseEntityId);
     }
 
