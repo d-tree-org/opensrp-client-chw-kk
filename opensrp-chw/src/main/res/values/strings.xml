@@ -452,5 +452,6 @@
   
       <string name="anc_partially_registered">Partially Registered</string>
     <string name="anc_fully_registered">Fully Registered</string>
-  
+    <string name="pnc_hv_malaria_prevention_action_title">Malaria Prevention</string>
+
 </resources>

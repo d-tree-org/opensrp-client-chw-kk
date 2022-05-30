@@ -276,6 +276,7 @@
         "type": "check_box",
         "label": "{{anc_hv_clinic_attendance.step1.services_received.label}}",
         "label_text_style": "normal",
+        "label_info_text": "{{anc_hv_clinic_attendance.step1.services_received.label_info_text}}",
         "text_color": "#C0C0C0",
         "exclusive": [
           "chk_none"
