@@ -55,12 +55,22 @@
     "title": "{{family_register.step1.title}}",
     "fields": [
       {
+        "key": "fam_consent_first_paragraph",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "label",
+        "text": "{{family_register.step1.fam_consent_first_paragraph.label}}",
+        "label_text_color": "#000000"
+      },
+      {
         "key": "fam_consent",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "{{family_register.step1.fam_consent.label}}",
+        "label": "{{family_register.step1.fam_consent_second_paragraph.label}}",
         "exclusive": [
           "fam_consent_yes",
           "fam_consent_no"
