@@ -23,7 +23,7 @@ actions:
 name: step1_other_floor_type
 description: Other floor type prompt
 priority: 1
-condition: "step1_floor_type == 'chk_other'"
+condition: "step1_floor_type.contains('chk_other')"
 actions:
   - "isRelevant = true"
 ---
