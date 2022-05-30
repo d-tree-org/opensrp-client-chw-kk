@@ -17,7 +17,7 @@
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
     <string name="breast_feeding_action_title"> Unyonyeshaji </string>
-    <string name="essential_newborn_care_breastfeeding">Huduma muhimu ya watoto wachanga: Kuhifadhi na kunyonyesha </string>
+    <string name="essential_newborn_care_breastfeeding">Huduma muhimu ya watoto wachanga: Unyonyeshaji wa maziwa ya mama </string>
     <string name="malaria_prevention_service">Huduma ya Kuzuia Malaria</string>
     <string name="child_play_and_assessment_counselling">Tathmini maendeleo na fundisha kuhusu michezo</string>
     <string name="ccd_problem_solving">CCD: Kutatua Tatizo</string>
@@ -50,6 +50,10 @@
     <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
 
     <string name="anc_home_visit_pmtct"> 6. Kuzuia maambukizi ya VVU kutoka kwa mama kwenda kwa mtoto </string>
+    <string name="postpartum_danger_signs">Dalili za hatari mara baada ya kujifungua</string>
+    <string name="maternal_nutrition">Lishe ya Mama baada ya kujifungua</string>
+    <string name="pnc_hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
+    <string name="pnc_hv_lam">Njia ya uzazi wa mpango kwa unyonyeshaji wa maziwa ya mama pekee chini ya miezi sita (LAM)</string>
 
     <string name="child_hf_referral_text">Mtoto - Rufaa kwenda kituoni</string>
     <string name="child_addo_linkage_text">Mtoto - Ushauri kwenda DLDM</string>
