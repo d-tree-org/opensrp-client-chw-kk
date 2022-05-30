@@ -7,6 +7,7 @@ import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.PncDangerSignsActionHelper;
+import org.smartregister.chw.actionhelper.PncInfectionPreventionControlActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -91,6 +92,8 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction infectionPreventionControlAction = getBuilder(title)
                 .withOptional(false)
                 .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(new PncInfectionPreventionControlActionHelper())
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvInfectionPreventionControl())
                 .build();
 
@@ -110,6 +113,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction ppPhysiologicalChangesAction = getBuilder(title)
                 .withOptional(false)
                 .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvPostpartumPhysiologicalChanges())
                 .build();
 
@@ -129,6 +133,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction followupHivExposedInfantAction = getBuilder(title)
                 .withOptional(false)
                 .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getFollowUpHivExposedInfant())
                 .build();
 
@@ -147,6 +152,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction postpartumFamilyPlanning = getBuilder(title)
                 .withOptional(false)
                 .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvPostpartumFamilyPlanning())
                 .build();
 
@@ -166,6 +172,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             BaseAncHomeVisitAction postpartumMotherCareAction = getBuilder(title)
                     .withOptional(false)
                     .withDetails(details)
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                     .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncMotherCare())
                     .build();
 
@@ -186,6 +193,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withOptional(false)
                 .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvMaternalNutrition())
                 .build();
 
@@ -247,6 +255,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withOptional(false)
                 .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvLam())
                 .build();
 
