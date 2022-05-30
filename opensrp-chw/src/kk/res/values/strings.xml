@@ -87,5 +87,7 @@
     <string name="follow_up_hiv_exposed_infant"> 15.Follow-Up for the HIV-Exposed Infant </string>
     <string name="postpartum_psychological_changes"> 8.Postpartum Physiological Changes </string>
     <string name="infection_prevention_control"> 24. Infection Prevention and Control </string>
+    <string name="pnc_hv_ipc_has_latrine">Has Latrine %s</string>
+    <string name="pnc_hv_ipc_has_electricity">Has Electricity %s</string>
 
 </resources>
