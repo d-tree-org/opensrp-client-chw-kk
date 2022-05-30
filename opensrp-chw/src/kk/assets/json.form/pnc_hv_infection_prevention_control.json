@@ -64,18 +64,29 @@
         "key": "latrine_household",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
         "label": "{{pnc_hv_infection_prevention_control.step1.latrine_household.label}}",
-        "hint": "{{pnc_hv_infection_prevention_control.step1.latrine_household.label}}",
-        "values": [
-          "{{pnc_hv_infection_prevention_control.step1.answer_yes}}",
-          "{{pnc_hv_infection_prevention_control.step1.answer_no}}"
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_yes"
         ],
-        "keys": [
-          "yes",
-          "no"
+        "options": [
+          {
+            "key": "chk_yes",
+            "text": "{{pnc_hv_infection_prevention_control.step1.answer_yes}}",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_no",
+            "text": "{{pnc_hv_infection_prevention_control.step1.answer_no}}",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
         ],
         "v_required": {
           "value": "true",
@@ -106,6 +117,26 @@
         "v_required": {
           "value": "true",
           "err": "{{pnc_hv_infection_prevention_control.step1.labour_signs.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_latrine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.other_latrine.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.other_latrine_required.v_required.err}}"
         },
         "relevance": {
           "rules-engine": {
@@ -174,6 +205,9 @@
         "label": "{{pnc_hv_infection_prevention_control.step1.water_source.label}}",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_dont_know"
+        ],
         "options": [
           {
             "key": "chk_dwelling",
@@ -436,7 +470,7 @@
       {
         "key": "household_washhands",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
+        "openmrs_entity": "",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
@@ -654,13 +688,6 @@
         "v_required": {
           "value": "true",
           "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -716,13 +743,6 @@
         "v_required": {
           "value": "true",
           "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
-            }
-          }
         }
       },
       {
