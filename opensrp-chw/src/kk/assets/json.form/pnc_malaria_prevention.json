@@ -1,0 +1,272 @@
+{
+  "count": "1",
+  "encounter_type": "PNC Malaria Prevention",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{pnc_malaria_prevention.step1.title}}",
+    "fields": [
+      {
+        "key": "malaria_prevention_counselling",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{pnc_malaria_prevention.step1.malaria_prevention_counselling.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "malaria_protective_measures",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "malaria_protective_measures",
+        "type": "check_box",
+        "label": "{{pnc_malaria_prevention.step1.malaria_protective_measures.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "llin",
+            "text": "{{pnc_malaria_prevention.step1.malaria_protective_measures.options.llin.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "intermittent_preventive_treatment",
+            "text": "{{pnc_malaria_prevention.step1.malaria_protective_measures.options.intermittent_preventive_treatment.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "household_spraying_insecticide",
+            "text": "{{pnc_malaria_prevention.step1.malaria_protective_measures.options.household_spraying_insecticide.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "covering_doors_windows_with_mesh",
+            "text": "{{pnc_malaria_prevention.step1.malaria_protective_measures.options.covering_doors_windows_with_mesh.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "destroying_mosquito_breeding_grounds",
+            "text": "{{pnc_malaria_prevention.step1.malaria_protective_measures.options.destroying_mosquito_breeding_grounds.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "other",
+            "text": "{{pnc_malaria_prevention.step1.malaria_protective_measures.options.other.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "{{pnc_malaria_prevention.step1.malaria_protective_measures.options.none.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_malaria_prevention.step1.malaria_protective_measures.v_required.err}}"
+        }
+      },
+      {
+        "key": "malaria_protective_measures_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{pnc_malaria_prevention.step1.malaria_protective_measures_other.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_malaria_prevention_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "praise_malaria_protective_measures",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{pnc_malaria_prevention.step1.praise_malaria_protective_measures.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_malaria_prevention_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "malaria_protective_measures_none",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{pnc_malaria_prevention.step1.malaria_protective_measures_none.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_malaria_prevention_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "llin_last_night",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "llin_last_night",
+        "type": "spinner",
+        "hint": "{{pnc_malaria_prevention.step1.llin_last_night.hint}}",
+        "values": [
+          "{{pnc_malaria_prevention.step1.llin_last_night.values[0]}}",
+          "{{pnc_malaria_prevention.step1.llin_last_night.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "no": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_malaria_prevention_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_malaria_prevention.step1.llin_last_night.v_required.err}}"
+        }
+      },
+      {
+        "key": "LLIN_condition",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "LLIN_condition",
+        "type": "spinner",
+        "hint": "{{pnc_malaria_prevention.step1.LLIN_condition.hint}}",
+        "label_info_text": "{{pnc_malaria_prevention.step1.LLIN_condition.label_info_text}}",
+        "values": [
+          "{{pnc_malaria_prevention.step1.LLIN_condition.values[0]}}",
+          "{{pnc_malaria_prevention.step1.LLIN_condition.values[1]}}",
+          "{{pnc_malaria_prevention.step1.LLIN_condition.values[2]}}"
+        ],
+        "keys": [
+          "Good",
+          "Fair",
+          "Poor"
+        ],
+        "openmrs_choice_ids": {
+          "good": "",
+          "fair": "",
+          "poor": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_malaria_prevention_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_malaria_prevention.step1.llin_last_night.v_required.err}}"
+        }
+      },
+      {
+        "key": "health_facility_testing_treatment_malaria",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{pnc_malaria_prevention.step1.health_facility_testing_treatment_malaria.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "malaria_prevention_counselling_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{pnc_hv_maternal_nutrition.step1.malaria_prevention_counselling_bango_kitita.text}}",
+        "text_color": "#2D2E2D",
+        "has_bg": true
+      }
+    ]
+  },
+  "properties_file_name": "pnc_malaria_prevention"
+}
