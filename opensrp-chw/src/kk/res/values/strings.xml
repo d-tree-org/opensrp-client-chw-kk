@@ -16,6 +16,7 @@
     <string name="switch_environment_title">Alert! Switching Environment</string>
 
     <string name="anc_home_visit_danger_signs">Danger signs</string>
+    <string name="danger_sign_evaluate_sub_title">Danger signs: {0}</string>
     <string name="anc_home_visit_facility_visit">ANC {0} health facility visit</string>
     <string name="anc_home_visit_family_planning">Family planning</string>
     <string name="anc_home_visit_nutrition_status">Nutrition status</string>

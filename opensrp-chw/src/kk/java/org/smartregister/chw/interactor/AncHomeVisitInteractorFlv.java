@@ -310,7 +310,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return MessageFormat.format("Danger signs: {0}", danger_signs_present);
+            return MessageFormat.format(context.getString(R.string.danger_sign_evaluate_sub_title), danger_signs_present);
         }
 
         @Override
