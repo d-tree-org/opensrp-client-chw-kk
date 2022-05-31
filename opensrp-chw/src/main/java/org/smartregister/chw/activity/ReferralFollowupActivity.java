@@ -43,9 +43,6 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
         intent.putExtra(CoreConstants.ACTIVITY_PAYLOAD.REFERRAL_FOLLOWUP_FORM_NAME, getReferralFollowupForm(referralType));
         intent.putExtra(Constants.ActivityPayload.JSON_FORM, getReferralFollowupForm(referralType));
         intent.putExtra(TASK_IDENTIFIER, taskIdentifier);
-        if (activity.getClass() == KKReferralDetailsViewActivity.class)
-            intent.putExtra(IS_COMING_FROM_REFERRAL_DETAILS, true);
-
         intent.putExtra(Constants.ActivityPayload.ACTION, CoreConstants.ACTIVITY_PAYLOAD.FOLLOW_UP_VISIT);
         activity.startActivity(intent);
     }

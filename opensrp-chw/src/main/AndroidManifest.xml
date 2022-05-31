@@ -277,6 +277,8 @@
 
         <activity
             android:name=".activity.ReferralWizardFormActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:theme="@style/FamilyTheme.NoActionBar" />
 
         <activity
