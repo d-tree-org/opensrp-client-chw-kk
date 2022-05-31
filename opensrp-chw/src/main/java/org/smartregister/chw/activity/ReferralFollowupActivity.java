@@ -79,9 +79,9 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
                 JSONArray fields = registrationFormParams.getRight();
 
                 JSONObject wantToComplete = getFieldJSONObject(fields, "complete_referral");
-                JSONObject visit_hf_object = getFieldJSONObject(fields, "visit_hf");
-                if (visit_hf_object != null && "Yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) ||
-                        wantToComplete != null && "No".equalsIgnoreCase(wantToComplete.optString(VALUE))) {
+                JSONObject visit_hf_object = getFieldJSONObject(fields, "did_go_health_facility");
+                if (visit_hf_object != null && "yes".equalsIgnoreCase(visit_hf_object.optString(VALUE)) ||
+                        wantToComplete != null && "no".equalsIgnoreCase(wantToComplete.optString(VALUE))) {
                     // update task
                     TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
                     Task task = taskRepository.getTaskByIdentifier(getTaskIdentifier());
