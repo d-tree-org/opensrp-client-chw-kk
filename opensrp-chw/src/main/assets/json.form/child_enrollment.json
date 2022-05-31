@@ -74,6 +74,7 @@
         },
         "read_only": "true",
         "value": "0",
+        "hidden": "true",
         "v_numeric": {
           "value": "true",
           "err": "{{child_enrollment.step1.unique_id.v_numeric.err}}"
