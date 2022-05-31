@@ -77,10 +77,12 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (communicatesWithChild.equals("yes"))
-            return BaseAncHomeVisitAction.Status.COMPLETED;
-        else if (communicatesWithChild.equals("no"))
-            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-        else return BaseAncHomeVisitAction.Status.PENDING;
+        if(!StringUtils.isEmpty(communicatesWithChild))
+            if (communicatesWithChild.equals("yes"))
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            else
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        else
+            return BaseAncHomeVisitAction.Status.PENDING;
     }
 }
