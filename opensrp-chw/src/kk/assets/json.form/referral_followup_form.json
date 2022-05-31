@@ -237,7 +237,6 @@
         "type": "check_box",
         "label": "{{referral_followup.step1.did_not_services_health_facility.label}}",
         "label_text_style": "normal",
-        "text_color": "#C0C0C0",
         "options": [
           {
             "key": "check_many_people",
