@@ -1,0 +1,58 @@
+---
+name: step1_pnc_danger_signs_present_mother
+description: pnc_danger_signs_present_mother relevance
+priority: 1
+condition: "step1_danger_signs_screening_mama.contains('chk_vaginal_bleeding') ||
+            step1_danger_signs_screening_mama.contains('chk_fever') ||
+            step1_danger_signs_screening_mama.contains('chk_severe_genitalia_pain') ||
+            step1_danger_signs_screening_mama.contains('chk_severe_abdominal_pain') ||
+            step1_danger_signs_screening_mama.contains('chk_calf_muscle_pain') ||
+            step1_danger_signs_screening_mama.contains('chk_difficulty_breathing') ||
+            step1_danger_signs_screening_mama.contains('chk_low_urine_output') ||
+            step1_danger_signs_screening_mama.contains('chk_severe_headache') ||
+            step1_danger_signs_screening_mama.contains('chk_loss_consciousness') ||
+            step1_danger_signs_screening_mama.contains('chk_abnormal_behaviour') ||
+            step1_danger_signs_screening_mama.contains('chk_pallor') ||
+            step1_danger_signs_screening_mama.contains('chk_painful_red_hot_breast') ||
+            step1_danger_signs_screening_mama.contains('chk_convulsions') ||
+            step1_danger_signs_screening_mama.contains('chk_dizziness') ||
+            step1_danger_signs_screening_mama.contains('chk_exhaustion') ||
+            step1_danger_signs_screening_mama.contains('chk_vaginal_discharge') ||
+            step1_danger_signs_screening_mama.contains('chk_severe_muscle_pain')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_discuss_mother_advice_health_facility
+description: discuss_mother_advice_health_facility relevance
+priority: 1
+condition: "step1_pnc_danger_signs_present_mother == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_issue_referral_mother
+description: issue_referral_mother relevance
+priority: 1
+condition: "step1_pnc_danger_signs_present_mother == 'No'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_mother_referral_health_facility
+description: mother_referral_health_facility relevance
+priority: 1
+condition: "step1_pnc_danger_signs_present_mother == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_issue_referral_mother_yes
+description: issue_referral_mother_yes relevance
+priority: 1
+condition: "step1_mother_referral_health_facility == 'Yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_issue_referral_mother
+description: no_issue_referral_mother relevance
+priority: 1
+condition: "step1_mother_referral_health_facility == 'No'"
+actions:
+  - "isRelevant = true"

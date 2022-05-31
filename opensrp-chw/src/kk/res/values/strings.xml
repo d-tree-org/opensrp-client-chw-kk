@@ -88,5 +88,9 @@
     <string name="pnc_hf_referral_text">PNC - HF Referral</string>
     <string name="pnc_addo_linkage_text">PNC - ADDO Linkage</string>
     <string name="followup">FOLLOW UP</string>
+    <string name="postpartum_danger_signs">Postpartum Danger Signs</string>
+    <string name="maternal_nutrition">Maternal Nutrition</string>
+    <string name="pnc_hiv_aids_general_info">HIV/AIDS General Information</string>
+    <string name="pnc_hv_lam">LAM</string>
 
 </resources>
