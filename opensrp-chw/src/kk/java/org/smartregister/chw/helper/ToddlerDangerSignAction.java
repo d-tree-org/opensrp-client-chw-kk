@@ -48,7 +48,7 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Danger signs: {0}", toddler_danger_sign);
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.ccd_toddler_danger_signs_subtitle), toddler_danger_sign);
     }
 
     @Override
