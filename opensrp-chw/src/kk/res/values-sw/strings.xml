@@ -41,6 +41,7 @@
     <string name="ccd_development_screening_subtitle">Maendeleo ya mtoto</string>
     <string name="ccd_toddler_danger_signs_subtitle">Dalili za hatari za mtoto</string>
     <string name="ccd_child_safety_subtitle">Mama ameelimishwa juu ya usalama wa mtoto</string>
+    <string name="ccd_child_discipline_subtitle">Mama anavyomrekebisha mtoto</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
