@@ -164,6 +164,12 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
     }
 
     @Override
+    protected void onResumption() {
+        super.onResumption();
+        fetchProfileData();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_malaria_registration:

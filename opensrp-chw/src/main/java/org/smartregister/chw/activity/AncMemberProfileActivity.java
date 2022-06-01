@@ -169,6 +169,7 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
     @Override
     protected void onResumption() {
         super.onResumption();
+        ancMemberProfilePresenter().fetchTasks();
     }
 
     private void addAncReferralTypes() {
