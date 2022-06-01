@@ -84,4 +84,8 @@
     <string name="pnc_hiv_aids_general_info">HIV/AIDS General Information</string>
     <string name="pnc_hv_lam">LAM</string>
 
+    <string name="ccd_communication_assessment_subtitle">Mother communicates with child</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

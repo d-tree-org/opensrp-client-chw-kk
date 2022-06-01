@@ -55,4 +55,8 @@
     <string name="pnc_hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
     <string name="pnc_hv_lam">Njia ya uzazi wa mpango kwa unyonyeshaji wa maziwa ya mama pekee chini ya miezi sita (LAM)</string>
 
+    <string name="ccd_communication_assessment_subtitle">Mama anawasiliana na mtoto</string>
+
+    <string name="yes">Ndio</string>
+    <string name="no">Hapana</string>
 </resources>

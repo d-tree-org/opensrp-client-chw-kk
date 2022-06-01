@@ -5,13 +5,12 @@ import android.content.Context;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.apache.commons.lang3.StringUtils;
-import org.hl7.fhir.r4.model.Base;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
-import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
 
@@ -24,12 +23,12 @@ import timber.log.Timber;
 public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     private Context context;
-    private Alert alert;
+    private final Alert alert;
     private String communicatesWithChild;
     private String jsonPayload;
-    private int ageInMonth;
+    private final int ageInMonth;
 
-    public CCDCommunicationAssessmentAction(Context context, Alert alert, int ageInMonth){
+    public CCDCommunicationAssessmentAction(Context context, Alert alert, int ageInMonth) {
         this.alert = alert;
         this.context = context;
         this.ageInMonth = ageInMonth;
@@ -43,7 +42,7 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     @Override
     public String getPreProcessed() {
-        try{
+        try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             JSONArray fields = JsonFormUtils.fields(jsonObject);
 
@@ -54,7 +53,7 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
             return jsonObject.toString();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Timber.e(e);
         }
         return null;
@@ -62,22 +61,22 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
-        try{
+        try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             communicatesWithChild = JsonFormUtils.getValue(jsonObject, "communication_with_child");
-        }catch (Exception e){
+        } catch (Exception e) {
             Timber.e(e);
         }
     }
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Mother communicates with child: {0}", communicatesWithChild);
+        return MessageFormat.format("{0}: {1}",context.getString(R.string.ccd_communication_assessment_subtitle),communicatesWithChild.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if(!StringUtils.isEmpty(communicatesWithChild))
+        if (!StringUtils.isEmpty(communicatesWithChild))
             if (communicatesWithChild.equals("yes"))
                 return BaseAncHomeVisitAction.Status.COMPLETED;
             else
