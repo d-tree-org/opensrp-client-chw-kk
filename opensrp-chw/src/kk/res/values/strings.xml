@@ -65,6 +65,9 @@
     <string name="is_baby_premature">Baby pre-mature or born underweight?</string>
     <string name="new_born_care_introduction_month">Essential New Born Care: Introduction %s</string>
     <string name="immunizations">Immunizations</string>
+    <string name="ccd_communication_assessment_subtitle">Mother communicates with child</string>
+    <string name="ccd_introduction_subtitle">Child behaviour and development</string>
+    <string name="ccd_development_screening_subtitle">Development issues</string>
 
     <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
     <string name="ccd_introduction"> CCD : Introduction : %s </string>
@@ -83,8 +86,6 @@
     <string name="maternal_nutrition">Maternal Nutrition</string>
     <string name="pnc_hiv_aids_general_info">HIV/AIDS General Information</string>
     <string name="pnc_hv_lam">LAM</string>
-
-    <string name="ccd_communication_assessment_subtitle">Mother communicates with child</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>

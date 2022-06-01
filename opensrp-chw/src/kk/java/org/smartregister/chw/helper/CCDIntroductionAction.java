@@ -5,6 +5,7 @@ import android.content.Context;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 import org.json.JSONObject;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -46,7 +47,7 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Child behaviour and development : ", childDevelopmentCounselling.equals("yes") ? "Yes" : "No");
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.ccd_introduction_subtitle), childDevelopmentCounselling.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
     @Override
