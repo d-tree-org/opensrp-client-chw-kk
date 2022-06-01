@@ -169,42 +169,6 @@
           "value": "true",
           "err": "{{pnc_danger_signs_mother.step1.danger_signs_counseling.v_required.err}}"
         }
-      },
-      {
-        "key": "spacer",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "spacer",
-        "type": "spacer",
-        "spacer_height": "20dp"
-      },
-      {
-        "key": "save_n_refer",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "button",
-        "hint": "Save and Refer to Health Facility",
-        "btn_bg_color": "#CF0800",
-        "action": {
-          "behaviour": "refer"
-        },
-        "relevance": {
-          "step1:danger_signs_present": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "chk_fever",
-                  "chk_prolonged_bleeding",
-                  "chk_severe_headache",
-                  "chk_convulsions",
-                  "chk_difficulty_breathing",
-                  "chk_severe_abdominal_pain"
-                ]
-              }
-            ]
-          }
-        }
       }
     ]
   },
