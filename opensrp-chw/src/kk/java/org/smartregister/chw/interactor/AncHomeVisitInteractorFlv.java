@@ -106,7 +106,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                            final MemberObject memberObject,
                                            Map<Integer, LocalDate> dateMap,
                                            final Context context) throws BaseAncHomeVisitAction.ValidationException {
-        String visit_title = MessageFormat.format("Birth Preparedness", memberObject.getConfirmedContacts() + 1);
+        String visit_title = MessageFormat.format(context.getString(R.string.anc_home_visit_birth_preparedness), memberObject.getConfirmedContacts() + 1);
         BaseAncHomeVisitAction birth_preparedness = new BaseAncHomeVisitAction.Builder(context, visit_title)
                 .withOptional(false)
                 .withDetails(details)
@@ -180,7 +180,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         if (org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
             return;
 
-        String visit_title = MessageFormat.format("ANC Clinic attendance", allVisits.size() + 1);
+        String visit_title = MessageFormat.format(context.getString(R.string.anc_hv_clinic_attendance), allVisits.size() + 1);
         BaseAncHomeVisitAction anc_clinic_attendance = new BaseAncHomeVisitAction.Builder(context, visit_title)
                 .withOptional(false)
                 .withDetails(details)
@@ -201,7 +201,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         if (org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
             return;
 
-        String visit_title = MessageFormat.format("Nutrition Counselling", allVisits.size() + 1);
+        String visit_title = MessageFormat.format(context.getString(R.string.anc_hv_nutrition_counselling), allVisits.size() + 1);
         BaseAncHomeVisitAction nutrition_counselling = new BaseAncHomeVisitAction.Builder(context, visit_title)
                 .withOptional(false)
                 .withDetails(details)
@@ -219,7 +219,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                                            final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
         if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject)){
-            String visit_title = MessageFormat.format("Gender Issues", "");
+            String visit_title = MessageFormat.format(context.getString(R.string.anc_home_visit_gender_issues), "");
             BaseAncHomeVisitAction gender_issues_counselling = new BaseAncHomeVisitAction.Builder(context, visit_title)
                     .withOptional(false)
                     .withDetails(details)
@@ -310,7 +310,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return MessageFormat.format("Danger signs: {0}", danger_signs_present);
+            return MessageFormat.format(context.getString(R.string.danger_sign_evaluate_sub_title), danger_signs_present);
         }
 
         @Override
