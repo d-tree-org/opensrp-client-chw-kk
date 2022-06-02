@@ -49,12 +49,16 @@
 
     <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
 
-    <string name="anc_home_visit_pmtct"> 6. Kuzuia maambukizi ya VVU kutoka kwa mama kwenda kwa mtoto </string>
+    <string name="anc_home_visit_pmtct"> Kuzuia maambukizi ya VVU kutoka kwa mama kwenda kwa mtoto </string>
     <string name="postpartum_danger_signs">Dalili za hatari mara baada ya kujifungua</string>
     <string name="maternal_nutrition">Lishe ya Mama baada ya kujifungua</string>
     <string name="pnc_hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
     <string name="pnc_hv_lam">Njia ya uzazi wa mpango kwa unyonyeshaji wa maziwa ya mama pekee chini ya miezi sita (LAM)</string>
 
     <string name="danger_sign_evaluate_sub_title">Dalali za hatari: {0}</string>
+    <string name="anc_home_visit_birth_preparedness">Mpango binafsi wa Kujifungua</string>
+    <string name="anc_hv_clinic_attendance">Kuhudhuria Kliniki kwa wajawazito mapema</string>
+    <string name="anc_hv_nutrition_counselling">Lishe ya Mama wakati wa ujauzito na kunyonyesha</string>
+    <string name="anc_hv_gender_issues">Jinsia</string>
 
 </resources>
