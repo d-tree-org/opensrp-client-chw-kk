@@ -1,0 +1,7 @@
+---
+name: step1_kind_latrine_text
+description: value calculation
+priority: 1
+condition: true
+actions:
+  - "calculation = step1_latrine_household"

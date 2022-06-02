@@ -17,7 +17,7 @@
 
     <string name="hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
     <string name="breast_feeding_action_title"> Unyonyeshaji </string>
-    <string name="essential_newborn_care_breastfeeding">Huduma muhimu ya watoto wachanga: Kuhifadhi na kunyonyesha </string>
+    <string name="essential_newborn_care_breastfeeding">Huduma muhimu ya watoto wachanga: Unyonyeshaji wa maziwa ya mama </string>
     <string name="malaria_prevention_service">Huduma ya Kuzuia Malaria</string>
     <string name="child_play_and_assessment_counselling">Tathmini maendeleo na fundisha kuhusu michezo</string>
     <string name="ccd_problem_solving">CCD: Kutatua Tatizo</string>
@@ -50,5 +50,16 @@
     <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
 
     <string name="anc_home_visit_pmtct"> 6. Kuzuia maambukizi ya VVU kutoka kwa mama kwenda kwa mtoto </string>
+    <string name="postpartum_danger_signs">Dalili za hatari mara baada ya kujifungua</string>
+    <string name="maternal_nutrition">Lishe ya Mama baada ya kujifungua</string>
+    <string name="pnc_hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
+    <string name="pnc_hv_lam">Njia ya uzazi wa mpango kwa unyonyeshaji wa maziwa ya mama pekee chini ya miezi sita (LAM)</string>
+    <string name="pnc_postpartum_mother_care">9. Huduma ya mama baada ya kujifungua</string>
+    <string name="pnc_postpartum_family_planning">18. Uzazi wa Mpango</string>
+    <string name="follow_up_hiv_exposed_infant"> 15. Ufuatiliaji wa mtoto aliyezaliwa na mama mwenye VVU </string>
+    <string name="postpartum_psychological_changes"> 8. Mabadiliko ya kimwili kwa mama aliyejifungua </string>
+    <string name="infection_prevention_control"> 24. Kuzuia maambukizi katika jamii </string>
+    <string name="pnc_hv_ipc_has_latrine">Ana Choo </string>
+    <string name="pnc_hv_ipc_has_electricity">Ana Umeme </string>
 
 </resources>

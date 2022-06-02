@@ -146,7 +146,7 @@
         "openmrs_entity_id": "5596AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "date_picker",
         "hint": "{{anc_member_registration.step1.edd.hint}}",
-        "max_date": "today+50w",
+        "max_date": "today+40w",
         "min_date": "today",
         "calculation": {
           "rules-engine": {
@@ -493,13 +493,6 @@
           "Single": "",
           "Divorced": "",
           "Widowed": ""
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "anc_member_registration_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -576,7 +569,10 @@
           "{{anc_member_registration.step1.person_assist_child_relationship.values[1]}}",
           "{{anc_member_registration.step1.person_assist_child_relationship.values[2]}}",
           "{{anc_member_registration.step1.person_assist_child_relationship.values[3]}}",
-          "{{anc_member_registration.step1.person_assist_child_relationship.values[4]}}"
+          "{{anc_member_registration.step1.person_assist_child_relationship.values[4]}}",
+          "{{anc_member_registration.step1.person_assist_child_relationship.values[5]}}",
+          "{{anc_member_registration.step1.person_assist_child_relationship.values[6]}}",
+          "{{anc_member_registration.step1.person_assist_child_relationship.values[7]}}"
         ],
         "keys": [
           "Father",
@@ -584,6 +580,8 @@
           "Uncle(s)",
           "Grandmother(s)",
           "Grandfather(s)",
+          "Sister(s)",
+          "Brother(s)",
           "Other"
         ],
         "openmrs_choice_ids": {
@@ -592,8 +590,26 @@
           "Uncle(s)": "",
           "Grandmother(s)": "",
           "Grandfather(s)": "",
+          "Brother(s)": "",
+          "Sister(s)": "",
           "Other": ""
         },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "person_assist_child_relationship_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{anc_member_registration.step1.person_assist_child_relationship_other.hint}}",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
