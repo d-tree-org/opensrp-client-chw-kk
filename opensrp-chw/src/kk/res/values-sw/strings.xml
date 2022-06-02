@@ -67,6 +67,7 @@
     <string name="infection_prevention_control"> 24. Kuzuia maambukizi katika jamii </string>
     <string name="pnc_hv_ipc_has_latrine">Ana Choo </string>
     <string name="pnc_hv_ipc_has_electricity">Ana Umeme </string>
+    <string name="pnc_hv_malaria_prevention_action_title">Kuzuia Malaria</string>
 
     <string name="danger_sign_evaluate_sub_title">Dalali za hatari: {0}</string>
     <string name="anc_home_visit_birth_preparedness">Mpango binafsi wa Kujifungua</string>
