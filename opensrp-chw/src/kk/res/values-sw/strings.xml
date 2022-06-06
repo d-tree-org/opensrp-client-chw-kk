@@ -60,13 +60,14 @@
     <string name="maternal_nutrition">Lishe ya Mama baada ya kujifungua</string>
     <string name="pnc_hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
     <string name="pnc_hv_lam">Njia ya uzazi wa mpango kwa unyonyeshaji wa maziwa ya mama pekee chini ya miezi sita (LAM)</string>
-    <string name="pnc_postpartum_mother_care">9. Huduma ya mama baada ya kujifungua</string>
-    <string name="pnc_postpartum_family_planning">18. Uzazi wa Mpango</string>
-    <string name="follow_up_hiv_exposed_infant"> 15. Ufuatiliaji wa mtoto aliyezaliwa na mama mwenye VVU </string>
-    <string name="postpartum_psychological_changes"> 8. Mabadiliko ya kimwili kwa mama aliyejifungua </string>
-    <string name="infection_prevention_control"> 24. Kuzuia maambukizi katika jamii </string>
+    <string name="pnc_postpartum_mother_care">Huduma ya mama baada ya kujifungua</string>
+    <string name="pnc_postpartum_family_planning">Uzazi wa Mpango</string>
+    <string name="follow_up_hiv_exposed_infant">Ufuatiliaji wa mtoto aliyezaliwa na mama mwenye VVU </string>
+    <string name="postpartum_psychological_changes">Mabadiliko ya kimwili kwa mama aliyejifungua </string>
+    <string name="infection_prevention_control">Kuzuia maambukizi katika jamii </string>
     <string name="pnc_hv_ipc_has_latrine">Ana Choo </string>
     <string name="pnc_hv_ipc_has_electricity">Ana Umeme </string>
+    <string name="pnc_hv_malaria_prevention_action_title">Kuzuia Malaria</string>
 
     <string name="danger_sign_evaluate_sub_title">Dalali za hatari: {0}</string>
     <string name="anc_home_visit_birth_preparedness">Mpango binafsi wa Kujifungua</string>
