@@ -14,7 +14,6 @@
         android:background="#F6F6F6"
         android:paddingBottom="@dimen/login_bottom_margin">
 
-
         <!-- Top section -->
         <LinearLayout
             android:id="@+id/top_section"
@@ -161,8 +160,8 @@
                 android:textSize="18sp" />
 
         </LinearLayout>
-        <!-- Bottom section -->
 
+        <!-- Bottom section -->
         <LinearLayout
             android:id="@+id/bottom_section"
             android:layout_width="match_parent"
@@ -184,5 +183,44 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_opensrp_logo_round" />
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:id="@+id/environment_indicator"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/ic_bookmark" />
+
+                <TextView
+                    android:id="@+id/version_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="24dp"
+                    android:rotation="90"
+                    android:text="Test"
+                    android:fontFamily="@font/google_sans_bold"
+                    android:textColor="@color/black_text_color"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
     </RelativeLayout>
 </ScrollView>

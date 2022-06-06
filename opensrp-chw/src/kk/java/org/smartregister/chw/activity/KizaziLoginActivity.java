@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.smartregister.AllConstants;
@@ -105,10 +107,8 @@ public class KizaziLoginActivity extends LoginActivity{
     }
 
     private void setTestEnvironmentIndicator() {
-
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.top_section);
-        linearLayout.setBackgroundColor(getColor(R.color.translucent_yellow));
-
+        RelativeLayout environmentIndicator = findViewById(R.id.environment_indicator);
+        environmentIndicator.setVisibility(View.VISIBLE);
     }
 
 }
