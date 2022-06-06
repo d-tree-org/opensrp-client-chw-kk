@@ -2,8 +2,10 @@ package org.smartregister.chw.helper;
 
 import android.content.Context;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
 import org.json.JSONObject;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -19,7 +21,7 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
     private final Alert alert;
     private String childDevelopmentCounselling;
 
-    public CCDIntroductionAction(Context mContext, Alert mAlert){
+    public CCDIntroductionAction(Context mContext, Alert mAlert) {
         this.alert = mAlert;
         this.context = mContext;
     }
@@ -29,31 +31,34 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
         return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;
     }
 
-    private boolean isOverDue(){
+    private boolean isOverDue() {
         return new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
     }
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
-        try{
+        try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             childDevelopmentCounselling = JsonFormUtils.getValue(jsonObject, "ccd_development_education");
-        }catch (Exception e){
+        } catch (Exception e) {
             Timber.e(e);
         }
     }
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Child behaviour and development : ", childDevelopmentCounselling.equals("yes") ? "Yes" : "No");
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.ccd_introduction_subtitle), childDevelopmentCounselling.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (childDevelopmentCounselling.contains("yes")){
-            return BaseAncHomeVisitAction.Status.COMPLETED;
-        }else {
-            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-        }
+        if(!StringUtils.isEmpty(childDevelopmentCounselling))
+            if (childDevelopmentCounselling.contains("yes")) {
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            } else {
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            }
+        else
+            return BaseAncHomeVisitAction.Status.PENDING;
     }
 }

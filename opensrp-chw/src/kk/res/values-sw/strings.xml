@@ -36,6 +36,12 @@
     <string name="is_baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
     <string name="new_born_care_introduction_month">Huduma muhimu ya Watoto Wachanga: Utangulizi %s</string>
     <string name="immunizations">Chanjo</string>
+    <string name="ccd_communication_assessment_subtitle">Mama anawasiliana na mtoto</string>
+    <string name="ccd_introduction_subtitle">Tabia na maendeleo ya mtoto</string>
+    <string name="ccd_development_screening_subtitle">Maendeleo ya mtoto</string>
+    <string name="ccd_toddler_danger_signs_subtitle">Dalili za hatari za mtoto</string>
+    <string name="ccd_child_safety_subtitle">Mama ameelimishwa juu ya usalama wa mtoto</string>
+    <string name="ccd_child_discipline_subtitle">Mama anavyomrekebisha mtoto</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
@@ -68,4 +74,6 @@
     <string name="anc_hv_nutrition_counselling">Lishe ya Mama wakati wa ujauzito na kunyonyesha</string>
     <string name="anc_hv_gender_issues">Jinsia</string>
 
+    <string name="yes">Ndio</string>
+    <string name="no">Hapana</string>
 </resources>
