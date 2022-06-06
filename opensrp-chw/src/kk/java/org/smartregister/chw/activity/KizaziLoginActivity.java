@@ -65,9 +65,10 @@ public class KizaziLoginActivity extends LoginActivity{
             if (!sharedPreferences.getPreference(KkSwitchConstants.KIZAZI_ENVIRONMENT).isEmpty()) {
                 if (sharedPreferences.getBooleanPreference("enable_production")) {
                     updateEnvironmentUrl(BuildConfig.opensrp_url_production);
+                    setTestEnvironmentIndicator(false);
                 } else {
                     updateEnvironmentUrl(BuildConfig.opensrp_url_debug);
-                    setTestEnvironmentIndicator();
+                    setTestEnvironmentIndicator(true);
                 }
             } else {
                 EnvironmentSelectDialogFragment switchFrag = new EnvironmentSelectDialogFragment();
@@ -106,9 +107,12 @@ public class KizaziLoginActivity extends LoginActivity{
         }
     }
 
-    private void setTestEnvironmentIndicator() {
+    private void setTestEnvironmentIndicator(boolean isTest) {
         RelativeLayout environmentIndicator = findViewById(R.id.environment_indicator);
-        environmentIndicator.setVisibility(View.VISIBLE);
+        if (isTest)
+            environmentIndicator.setVisibility(View.VISIBLE);
+        else
+            environmentIndicator.setVisibility(View.GONE);
     }
 
 }
