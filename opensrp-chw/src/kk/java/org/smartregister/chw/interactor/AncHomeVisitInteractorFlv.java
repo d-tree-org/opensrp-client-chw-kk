@@ -194,10 +194,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluateNutritionCounselling(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                             Map<String, List<VisitDetail>> details,
-                                             final MemberObject memberObject,
-                                             List<Visit> allVisits,
-                                             final Context context) throws BaseAncHomeVisitAction.ValidationException {
+                                              Map<String, List<VisitDetail>> details,
+                                              final MemberObject memberObject,
+                                              List<Visit> allVisits,
+                                              final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
         //Check if first and second visit had already been conducted
         if (org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
@@ -215,10 +215,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluateGenderIssues(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                           Map<String, List<VisitDetail>> details,
-                                            final MemberObject memberObject,
-                                            List<Visit> allAncVisits,
-                                           final Context context) throws BaseAncHomeVisitAction.ValidationException {
+                                      Map<String, List<VisitDetail>> details,
+                                      final MemberObject memberObject,
+                                      List<Visit> allAncVisits,
+                                      final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
         if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject)){
             String visit_title = MessageFormat.format(context.getString(R.string.anc_home_visit_gender_issues), "");
@@ -252,10 +252,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluatePostpartumPreparations(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                 final MemberObject memberObject,
-                                 Map<String, List<VisitDetail>> details,
-                                 final Context context,
-                                 List<Visit> allAncVisits) throws BaseAncHomeVisitAction.ValidationException {
+                                                final MemberObject memberObject,
+                                                Map<String, List<VisitDetail>> details,
+                                                final Context context,
+                                                List<Visit> allAncVisits) throws BaseAncHomeVisitAction.ValidationException {
 
         //Check if first and second visit had already been conducted
         if (!org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
@@ -955,7 +955,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
             if (!StringUtils.isBlank(partner_presence))
-                if(partner_presence.equalsIgnoreCase("yes")){
+                if(partner_presence.equalsIgnoreCase("yes") || partner_presence.equalsIgnoreCase("ndio")){
                     return BaseAncHomeVisitAction.Status.COMPLETED;
                 }else{
                     return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
