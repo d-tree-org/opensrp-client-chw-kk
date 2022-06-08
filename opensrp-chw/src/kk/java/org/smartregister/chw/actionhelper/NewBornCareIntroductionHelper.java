@@ -70,10 +70,14 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(prematureBaby)) {
-            return BaseAncHomeVisitAction.Status.PENDING;
-        } else {
-            return BaseAncHomeVisitAction.Status.COMPLETED;
+        if (!firstVisitDone) {
+            if (StringUtils.isBlank(prematureBaby)) {
+                return BaseAncHomeVisitAction.Status.PENDING;
+            } else {
+                return BaseAncHomeVisitAction.Status.COMPLETED;
+            }
         }
+        // Fix None first visit is not saving
+        return BaseAncHomeVisitAction.Status.COMPLETED;
     }
 }
