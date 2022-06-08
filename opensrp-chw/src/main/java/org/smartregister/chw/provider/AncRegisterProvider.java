@@ -22,7 +22,6 @@ import java.util.Set;
  */
 public class AncRegisterProvider extends ChwAncRegisterProvider {
 
-    private CommonPersonObjectClient client;
     private View.OnClickListener onClickListener;
 
     public AncRegisterProvider(Context context, CommonRepository commonRepository, Set visibleColumns, View.OnClickListener onClickListener, View.OnClickListener paginationClickListener) {
@@ -33,9 +32,6 @@ public class AncRegisterProvider extends ChwAncRegisterProvider {
     @Override
     public void getView(Cursor cursor, SmartRegisterClient client, RegisterViewHolder viewHolder) {
         super.getView(cursor, client, viewHolder);
-
-        client = (CommonPersonObjectClient) client;
-
     }
 
     @Override
