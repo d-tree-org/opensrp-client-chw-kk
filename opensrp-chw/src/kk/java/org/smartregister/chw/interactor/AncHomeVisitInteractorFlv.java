@@ -84,6 +84,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
         evaluateMalaria(actionList, memberObject, details, context, allAncVisits);
         evaluatePostpartumPreparations(actionList, memberObject, details, context, allAncVisits);
+        evaluateEarlyStimulation(actionList, details, context);
 
         return actionList;
     }
@@ -266,6 +267,17 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withHelper(new PostpartumPreparationActionHelper())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_postpartum_preparation), postpartum);
+    }
+
+    private void evaluateEarlyStimulation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                     Map<String, List<VisitDetail>> details,
+                                     final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction earlyStimulation = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_early_stimulation))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("anc_hv_early_stimulation")
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_early_stimulation), earlyStimulation);
     }
 
     private class DangerSignsAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
