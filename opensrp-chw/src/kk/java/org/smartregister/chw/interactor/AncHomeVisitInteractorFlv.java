@@ -84,6 +84,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
         evaluateMalaria(actionList, memberObject, details, context, allAncVisits);
         evaluatePostpartumPreparations(actionList, memberObject, details, context, allAncVisits);
+        evaluatePartnerEngagement(actionList, details, context);
         evaluateEarlyStimulation(actionList, details, context);
 
         return actionList;
@@ -193,10 +194,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluateNutritionCounselling(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                             Map<String, List<VisitDetail>> details,
-                                             final MemberObject memberObject,
-                                             List<Visit> allVisits,
-                                             final Context context) throws BaseAncHomeVisitAction.ValidationException {
+                                              Map<String, List<VisitDetail>> details,
+                                              final MemberObject memberObject,
+                                              List<Visit> allVisits,
+                                              final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
         //Check if first and second visit had already been conducted
         if (org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
@@ -214,10 +215,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluateGenderIssues(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                           Map<String, List<VisitDetail>> details,
-                                            final MemberObject memberObject,
-                                            List<Visit> allAncVisits,
-                                           final Context context) throws BaseAncHomeVisitAction.ValidationException {
+                                      Map<String, List<VisitDetail>> details,
+                                      final MemberObject memberObject,
+                                      List<Visit> allAncVisits,
+                                      final Context context) throws BaseAncHomeVisitAction.ValidationException {
 
         if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject)){
             String visit_title = MessageFormat.format(context.getString(R.string.anc_home_visit_gender_issues), "");
@@ -251,10 +252,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     }
 
     private void evaluatePostpartumPreparations(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
-                                 final MemberObject memberObject,
-                                 Map<String, List<VisitDetail>> details,
-                                 final Context context,
-                                 List<Visit> allAncVisits) throws BaseAncHomeVisitAction.ValidationException {
+                                                final MemberObject memberObject,
+                                                Map<String, List<VisitDetail>> details,
+                                                final Context context,
+                                                List<Visit> allAncVisits) throws BaseAncHomeVisitAction.ValidationException {
 
         //Check if first and second visit had already been conducted
         if (!org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject))
@@ -267,6 +268,18 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withHelper(new PostpartumPreparationActionHelper())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_postpartum_preparation), postpartum);
+    }
+
+    private void evaluatePartnerEngagement(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                           Map<String, List<VisitDetail>> details,
+                                           final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction partner_engagement = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_partner_engagement))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("anc_hv_partner_engagement")
+                .withHelper(new PartnerEngagementAction())
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_partner_engagement), partner_engagement);
     }
 
     private void evaluateEarlyStimulation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
@@ -892,6 +905,68 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
 
+        }
+    }
+
+    private class PartnerEngagementAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+        private String partner_presence;
+        private Context context;
+
+        @Override
+        public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                partner_presence = JsonFormUtils.getCheckBoxValue(jsonObject, "partner_head_of_household");
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String s) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            return MessageFormat.format(context.getString(R.string.partner_engagement_evaluate_sub_title), partner_presence);
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            if (!StringUtils.isBlank(partner_presence))
+                if(partner_presence.equalsIgnoreCase("yes") || partner_presence.equalsIgnoreCase("ndio")){
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                }else{
+                    return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+                }
+            else
+                return BaseAncHomeVisitAction.Status.PENDING;
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
+            Timber.v("onPayloadReceived");
         }
     }
 }
