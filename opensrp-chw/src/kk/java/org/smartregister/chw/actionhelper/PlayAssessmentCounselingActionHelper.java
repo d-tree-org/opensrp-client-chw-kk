@@ -119,7 +119,7 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
                 return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             }
         } else {
-            return BaseAncHomeVisitAction.Status.PENDING;
+            return BaseAncHomeVisitAction.Status.COMPLETED;
         }
 
     }
