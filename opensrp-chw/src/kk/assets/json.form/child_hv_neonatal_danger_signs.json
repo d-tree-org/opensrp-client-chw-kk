@@ -221,6 +221,57 @@
           "value": "true",
           "err": "{{child_hv_neonatal_danger_sign.step1.v_required.err}}"
         }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save and Refer to Health Facility",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "refer"
+        },
+        "relevance": {
+          "step1:neonate_danger_signs": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_fever",
+                  "chk_hypothermia",
+                  "chk_redness_around_cord",
+                  "chk_discharge",
+                  "chk_skin_rashes",
+                  "chk_unable_to_breastfeed",
+                  "chk_excessive_crying",
+                  "chk_convulsions",
+                  "chk_non_response",
+                  "chk_in_drawing",
+                  "chk_fast_breathing",
+                  "chk_cyanosis",
+                  "chk_failure_urine_stool_for_day",
+                  "chk_eye_discharge",
+                  "chk_excessive_vomiting",
+                  "chk_severe_diarrhoea",
+                  "chk_mild_diarrhea",
+                  "chk_yellow_pale_palms_soles",
+                  "chk_abdominal_distension",
+                  "chk_congenital_abnormality",
+                  "chk_bulging_anterior_fontanel"
+                ]
+              }
+            ]
+          }
+        }
       }
     ]
   },

@@ -1,0 +1,77 @@
+---
+name: step1_did_not_go_health_facility
+description: Why did they not go to the health facility
+priority: 1
+condition: "step1_did_go_health_facility.contains('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_reason_no_visit
+description: Other reason for not visiting HF
+priority: 1
+condition: "step1_did_not_go_health_facility.contains('chk_other_reason')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_congratulate_visit_health_facility
+description: Show congratulation note
+priority: 1
+condition: "step1_did_go_health_facility.contains('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_advice_toaster
+description: Show advice note
+priority: 1
+condition: "step1_did_go_health_facility.contains('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_did_get_services
+description: Were services received
+priority: 1
+condition: "step1_did_go_health_facility.contains('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_did_not_services_health_facility
+description: Why services not received
+priority: 1
+condition: "step1_did_go_health_facility.contains('yes') && step1_did_get_services.contains('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_reason_did_not_services
+description: Other reason for no services
+priority: 1
+condition: "step1_did_go_health_facility.contains('yes') && step1_did_get_services.contains('no') && step1_did_not_services_health_facility.contains('chk_other_reason')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_reasons_referral_completion
+description: Discuss reasons note
+priority: 1
+condition: "step1_did_go_health_facility.contains('yes') && step1_did_get_services.contains('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_complete_referral
+description: Should referral be completed
+priority: 1
+condition: "(step1_did_go_health_facility.contains('yes') && step1_did_get_services.contains('no')) || step1_did_go_health_facility.contains('no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_complete_referral_yes
+description: Will complete note
+priority: 1
+condition: "step1_complete_referral.contains('yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_report_nearest_health_facility
+description: Report to HF note
+priority: 1
+condition: "step1_complete_referral.contains('yes')"
+actions:
+  - "isRelevant = true"

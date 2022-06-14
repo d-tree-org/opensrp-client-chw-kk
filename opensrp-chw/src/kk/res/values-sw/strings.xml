@@ -69,6 +69,16 @@
     <string name="pnc_hv_ipc_has_electricity">Ana Umeme </string>
     <string name="pnc_hv_malaria_prevention_action_title">Kuzuia Malaria</string>
 
+    <string name="child_hf_referral_text">Mtoto - Rufaa kwenda kituoni</string>
+    <string name="child_addo_linkage_text">Mtoto - Ushauri kwenda DLDM</string>
+    <string name="anc_hf_referral_text">Mjamzito - Rufaa kwenda kituoni</string>
+    <string name="anc_addo_linkage_text">Mjamzito - Ushauri kwenda DLDM</string>
+    <string name="adolescent_hf_referral_text">Kijana balehe - Rufaa kwenda kituoni</string>
+    <string name="adolescent_addo_linkage_text">Kijana balehe - Ushauri kwenda DLDM</string>
+    <string name="pnc_hf_referral_text">Aliyejifungua - Rufaa kwenda kituoni</string>
+    <string name="pnc_addo_linkage_text">Aliyejifungua - Ushauri kwenda DLDM</string>
+    <string name="followup">FUATILIA</string>
+
     <string name="danger_sign_evaluate_sub_title">Dalali za hatari: {0}</string>
     <string name="anc_home_visit_birth_preparedness">Mpango binafsi wa Kujifungua</string>
     <string name="anc_hv_clinic_attendance">Kuhudhuria Kliniki kwa wajawazito mapema</string>
@@ -80,4 +90,5 @@
 
     <string name="yes">Ndio</string>
     <string name="no">Hapana</string>
+
 </resources>

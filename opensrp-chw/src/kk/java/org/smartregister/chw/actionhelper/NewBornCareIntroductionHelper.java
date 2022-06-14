@@ -70,7 +70,7 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(prematureBaby)) {
+        if (!firstVisitDone && StringUtils.isEmpty(prematureBaby)) {
             return BaseAncHomeVisitAction.Status.PENDING;
         } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
