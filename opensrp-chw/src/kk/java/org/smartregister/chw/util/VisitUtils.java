@@ -22,7 +22,7 @@ public class VisitUtils {
 
         LocalDate lastVisitDate = new LocalDate();
         if (lastVisit != null) {
-            lastVisitDate = DateTimeFormat.forPattern("dd-MM-yyyy").parseLocalDate(lastVisit.getDate().toString());
+            lastVisitDate = DateTimeFormat.forPattern("yyyy-MM-dd").parseLocalDate(new LocalDate(lastVisit.getDate()).toString());
             // When there is no visit take the createdDate to be the last visit date
         } else {
             lastVisitDate = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ").parseLocalDate(memberObject.getDateCreated());

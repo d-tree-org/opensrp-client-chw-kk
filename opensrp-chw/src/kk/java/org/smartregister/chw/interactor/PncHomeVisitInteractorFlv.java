@@ -29,6 +29,8 @@ import org.smartregister.chw.core.utils.RecurringServiceUtil;
 import org.smartregister.chw.pnc.PncLibrary;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KkConstants;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.domain.Alert;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
@@ -48,6 +50,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
     private Date lastVisitDate;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+    private PncVisitAlertRule visitSummary;
 
 
     @Override
@@ -66,7 +69,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             }
         }
 
-        PncVisitAlertRule visitSummary = getVisitSummary(memberObject.getBaseEntityId());
+        visitSummary = getVisitSummary(memberObject.getBaseEntityId());
 
         try {
 
@@ -88,6 +91,42 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         }
 
         return actionList;
+    }
+
+    @Override
+    public void addExtraObs(Event baseEvent) {
+        try {
+            String visitNumber = getPncVisitNumber(visitSummary.getVisitID());
+            if (visitNumber != null) {
+                List<Object> visitNumberObsValue = new ArrayList<>();
+                visitNumberObsValue.add(visitNumber);
+                baseEvent.addObs(new Obs("concept", "text", "visit_number", "",
+                        visitNumberObsValue, new ArrayList<>(), null, "visit_number"));
+            }
+
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private String getPncVisitNumber(String visitID) {
+
+        switch (visitID) {
+
+            case "1":
+                return "1";
+            case "3":
+                return "2";
+            case "8":
+                return "3";
+            case "21":
+                return "4";
+            case "35":
+                return "5";
+            default:
+                return null;
+        }
+
     }
 
     private void evaluateInfectionPreventionControl(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {

@@ -20,6 +20,8 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.ContactUtil;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -31,11 +33,14 @@ import timber.log.Timber;
 
 public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor {
 
+    private MemberObject memberObject;
+
     @Override
     public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
         LinkedHashMap<String, BaseAncHomeVisitAction> actionList = new LinkedHashMap<>();
 
         Context context = view.getContext();
+        this.memberObject = memberObject;
 
         Map<String, List<VisitDetail>> details = null;
 
@@ -88,6 +93,36 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateEarlyStimulation(actionList, details, context);
 
         return actionList;
+    }
+
+    @Override
+    public void addExtraObs(Event event) {
+        try {
+            String visit_number = getAncVisitNumber(memberObject);
+            List<Object> visitNumberObsValue = new ArrayList<>();
+            visitNumberObsValue.add(visit_number);
+
+            event.addObs(new Obs("concept", "text", "visit_number", "",
+                    visitNumberObsValue, new ArrayList<>(), null, "visit_number"));
+
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    private String getAncVisitNumber(MemberObject memberObject) {
+        String visit_number = null;
+        if (org.smartregister.chw.util.VisitUtils.isFirstVisit(memberObject)) {
+            visit_number = "1";
+        } else if (org.smartregister.chw.util.VisitUtils.isSecondVisit(memberObject)) {
+            visit_number = "2";
+        } else if (org.smartregister.chw.util.VisitUtils.isThirdVisit(memberObject)) {
+            visit_number = "3";
+        } else {
+            visit_number = "followup_visit";
+        }
+
+        return visit_number;
     }
 
     private void evaluateDangerSigns(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
