@@ -247,38 +247,6 @@
         }
       },
       {
-        "key": "no_children",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "164894AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "{{anc_pregnancy_outcome.step1.no_children.hint}}",
-        "values": [
-          "{{anc_pregnancy_outcome.step1.no_children.values[0]}}",
-          "{{anc_pregnancy_outcome.step1.no_children.values[1]}}"
-        ],
-        "keys": [
-          "1",
-          "2+"
-        ],
-        "openmrs_choice_ids": {
-          "1": "",
-          "2+": ""
-        },
-        "v_required": {
-          "value": "true",
-          "err": "{{anc_pregnancy_outcome.step1.no_children.v_required.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "delivery_place",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -965,7 +933,7 @@
         "key": "no_children_no",
         "type": "repeating_group",
         "reference_edit_text_hint": "{{anc_pregnancy_outcome.step2.no_children_no.reference_edit_text_hint}}",
-        "repeating_group_label": "Baby Details #",
+        "repeating_group_label": "{{anc_pregnancy_outcome.step2.no_children_no.repeating_group_label}}",
         "repeating_group_max": "10",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",

@@ -14,4 +14,9 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     public boolean hasWashCheck() {
         return false;
     }
+
+    @Override
+    public boolean hasJobAids() {
+        return false;
+    }
 }

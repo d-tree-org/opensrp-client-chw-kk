@@ -36,6 +36,12 @@
     <string name="is_baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
     <string name="new_born_care_introduction_month">Huduma muhimu ya Watoto Wachanga: Utangulizi %s</string>
     <string name="immunizations">Chanjo</string>
+    <string name="ccd_communication_assessment_subtitle">Mama anawasiliana na mtoto</string>
+    <string name="ccd_introduction_subtitle">Tabia na maendeleo ya mtoto</string>
+    <string name="ccd_development_screening_subtitle">Maendeleo ya mtoto</string>
+    <string name="ccd_toddler_danger_signs_subtitle">Dalili za hatari za mtoto</string>
+    <string name="ccd_child_safety_subtitle">Mama ameelimishwa juu ya usalama wa mtoto</string>
+    <string name="ccd_child_discipline_subtitle">Mama anavyomrekebisha mtoto</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
@@ -49,11 +55,19 @@
 
     <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
 
-    <string name="anc_home_visit_pmtct"> 6. Kuzuia maambukizi ya VVU kutoka kwa mama kwenda kwa mtoto </string>
+    <string name="anc_home_visit_pmtct"> Kuzuia maambukizi ya VVU kutoka kwa mama kwenda kwa mtoto </string>
     <string name="postpartum_danger_signs">Dalili za hatari mara baada ya kujifungua</string>
     <string name="maternal_nutrition">Lishe ya Mama baada ya kujifungua</string>
     <string name="pnc_hiv_aids_general_info">Umuhimu wa kupata ushauri nasaha na kupima VVU</string>
     <string name="pnc_hv_lam">Njia ya uzazi wa mpango kwa unyonyeshaji wa maziwa ya mama pekee chini ya miezi sita (LAM)</string>
+    <string name="pnc_postpartum_mother_care">Huduma ya mama baada ya kujifungua</string>
+    <string name="pnc_postpartum_family_planning">Uzazi wa Mpango</string>
+    <string name="follow_up_hiv_exposed_infant">Ufuatiliaji wa mtoto aliyezaliwa na mama mwenye VVU </string>
+    <string name="postpartum_psychological_changes">Mabadiliko ya kimwili kwa mama aliyejifungua </string>
+    <string name="infection_prevention_control">Kuzuia maambukizi katika jamii </string>
+    <string name="pnc_hv_ipc_has_latrine">Ana Choo </string>
+    <string name="pnc_hv_ipc_has_electricity">Ana Umeme </string>
+    <string name="pnc_hv_malaria_prevention_action_title">Kuzuia Malaria</string>
 
     <string name="child_hf_referral_text">Mtoto - Rufaa kwenda kituoni</string>
     <string name="child_addo_linkage_text">Mtoto - Ushauri kwenda DLDM</string>
@@ -64,5 +78,17 @@
     <string name="pnc_hf_referral_text">Aliyejifungua - Rufaa kwenda kituoni</string>
     <string name="pnc_addo_linkage_text">Aliyejifungua - Ushauri kwenda DLDM</string>
     <string name="followup">FUATILIA</string>
+
+    <string name="danger_sign_evaluate_sub_title">Dalali za hatari: {0}</string>
+    <string name="anc_home_visit_birth_preparedness">Mpango binafsi wa Kujifungua</string>
+    <string name="anc_hv_clinic_attendance">Kuhudhuria Kliniki kwa wajawazito mapema</string>
+    <string name="anc_hv_nutrition_counselling">Lishe ya Mama wakati wa ujauzito na kunyonyesha</string>
+    <string name="anc_hv_gender_issues">Jinsia</string>
+    <string name="anc_home_visit_partner_engagement">Ushiriki wa Mwenza</string>
+    <string name="partner_engagement_evaluate_sub_title">Uwepo wa mwenza: {0}</string>
+    <string name="anc_home_visit_early_stimulation">Mawasiliano na mtoto akiwa tumboni</string>
+
+    <string name="yes">Ndio</string>
+    <string name="no">Hapana</string>
 
 </resources>

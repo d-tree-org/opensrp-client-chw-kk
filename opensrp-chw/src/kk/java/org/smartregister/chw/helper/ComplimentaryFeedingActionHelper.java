@@ -51,7 +51,7 @@ public class ComplimentaryFeedingActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format(context.getString(R.string.counselled_mother_for_comp_feeding)+" : {0}", complementaryFeedingCounselling);
+        return MessageFormat.format(context.getString(R.string.counselled_mother_for_comp_feeding)+" : {0}", complementaryFeedingCounselling.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
     @Override

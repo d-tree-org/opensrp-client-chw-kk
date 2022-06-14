@@ -493,13 +493,6 @@
           "Single": "",
           "Divorced": "",
           "Widowed": ""
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "anc_member_registration_relevance.yml"
-            }
-          }
         }
       },
       {

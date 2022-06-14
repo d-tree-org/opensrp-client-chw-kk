@@ -89,40 +89,6 @@
           "value": "true",
           "err": "{{child_hv_ccd_child_discipline.step1.v_required.err}}"
         }
-      },
-      {
-        "key": "caregiver_corrects_right",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{child_hv_ccd_child_discipline.step1.caregiver_corrects_right.text}}",
-        "text_color": "#000000",
-        "toaster_type": "info",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_ccd_child_discipline_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "caregiver_corrects_wrong",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{child_hv_ccd_child_discipline.step1.caregiver_corrects_wrong.text}}",
-        "text_color": "#000000",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_ccd_child_discipline_relevance.yml"
-            }
-          }
-        }
       }
     ]
   },

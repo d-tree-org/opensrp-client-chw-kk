@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.PncDangerSignsActionHelper;
+import org.smartregister.chw.actionhelper.PncInfectionPreventionControlActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -73,6 +74,11 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
             evaluateMaternalNutrition(visitSummary);
             evaluateHIVGeneralInfo(visitSummary);
             evaluateLAM(visitSummary);
+            evaluatePostpartumMotherCare(visitSummary);
+            evaluatePostpartumFamilyPlanning(visitSummary);
+            evaluateFollowupHEI(visitSummary);
+            evaluatePostpartumPhysiologicalChanges(visitSummary);
+            evaluateInfectionPreventionControl(visitSummary);
             evaluateMalariaPrevention(visitSummary);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
@@ -83,6 +89,105 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         return actionList;
     }
+
+    private void evaluateInfectionPreventionControl(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+        if (visitID == null || !visitID.equalsIgnoreCase("1")) return;
+
+        String title = context.getString(R.string.infection_prevention_control);
+
+        BaseAncHomeVisitAction infectionPreventionControlAction = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(new PncInfectionPreventionControlActionHelper())
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvInfectionPreventionControl())
+                .build();
+
+        actionList.put(title, infectionPreventionControlAction);
+
+    }
+
+    private void evaluatePostpartumPhysiologicalChanges(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+        if (visitID == null || !visitID.equalsIgnoreCase("1")
+                || !visitID.equalsIgnoreCase("3") ) return;
+
+        String title = context.getString(R.string.postpartum_psychological_changes);
+
+        BaseAncHomeVisitAction ppPhysiologicalChangesAction = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvPostpartumPhysiologicalChanges())
+                .build();
+
+        actionList.put(title, ppPhysiologicalChangesAction);
+
+    }
+
+    private void evaluateFollowupHEI(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+        if (visitID == null || !visitID.equalsIgnoreCase("3")
+                || !visitID.equalsIgnoreCase("21") || !visitID.equalsIgnoreCase("35")) return;
+
+        String title = context.getString(R.string.follow_up_hiv_exposed_infant);
+
+        BaseAncHomeVisitAction followupHivExposedInfantAction = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getFollowUpHivExposedInfant())
+                .build();
+
+        actionList.put(title, followupHivExposedInfantAction);
+
+    }
+
+    private void evaluatePostpartumFamilyPlanning(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+        String visitID = visitID = visitSummary.getVisitID();
+
+        if (visitID == null || !visitID.equalsIgnoreCase("21") || !visitID.equalsIgnoreCase("35")) return;
+
+        String title = context.getString(R.string.pnc_postpartum_family_planning);
+
+        BaseAncHomeVisitAction postpartumFamilyPlanning = getBuilder(title)
+                .withOptional(false)
+                .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvPostpartumFamilyPlanning())
+                .build();
+
+        actionList.put(title, postpartumFamilyPlanning);
+
+    }
+
+    private void evaluatePostpartumMotherCare(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
+
+            String visitID = visitID = visitSummary.getVisitID();
+
+            if (visitID == null || !visitID.equalsIgnoreCase("1") || !visitID.equalsIgnoreCase("3")
+                    || !visitID.equalsIgnoreCase("8")) return;
+
+            String title = context.getString(R.string.pnc_postpartum_mother_care);
+
+            BaseAncHomeVisitAction postpartumMotherCareAction = getBuilder(title)
+                    .withOptional(false)
+                    .withDetails(details)
+                    .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                    .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncMotherCare())
+                    .build();
+
+            actionList.put(title, postpartumMotherCareAction);
+
+        }
 
     private void evaluateMaternalNutrition(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
 
@@ -97,6 +202,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withOptional(false)
                 .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvMaternalNutrition())
                 .build();
 
@@ -158,6 +264,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withOptional(false)
                 .withDetails(details)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KK_PNC_HOME_VISIT.getPncHvLam())
                 .build();
 
