@@ -15,6 +15,7 @@ import org.smartregister.chw.anc.model.BaseUpcomingService;
 import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.PncMemberProfileContract;
+import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.core.interactor.CorePncMemberProfileInteractor;
 import org.smartregister.chw.core.rule.PncVisitAlertRule;
@@ -28,6 +29,7 @@ import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.dao.AbstractDao;
 import org.smartregister.domain.Alert;
 import org.smartregister.domain.AlertStatus;
+import org.smartregister.domain.Task;
 import org.smartregister.repository.AllSharedPreferences;
 
 import java.text.ParseException;
@@ -38,6 +40,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import timber.log.Timber;
 
@@ -170,5 +173,14 @@ public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor i
     @Override
     public void createReferralEvent(AllSharedPreferences allSharedPreferences, String jsonString, String entityID) throws Exception {
         CoreReferralUtils.createReferralEvent(allSharedPreferences, jsonString, CoreConstants.TABLE_NAME.PNC_REFERRAL, entityID);
+    }
+
+    @Override
+    public void getClientTasks(String planId, String baseEntityId, PncMemberProfileContract.InteractorCallBack callback) {
+        Set<Task> taskList = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.READY);
+        Set<Task> inProgressTasks = CoreChwApplication.getInstance().getTaskRepository().getTasksByEntityAndStatus(planId, baseEntityId, Task.TaskStatus.IN_PROGRESS);
+        taskList.addAll(inProgressTasks);
+
+        callback.setClientTasks(taskList);
     }
 }

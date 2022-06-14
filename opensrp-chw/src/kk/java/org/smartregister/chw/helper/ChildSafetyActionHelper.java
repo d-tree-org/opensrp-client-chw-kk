@@ -3,6 +3,7 @@ package org.smartregister.chw.helper;
 import android.content.Context;
 
 import org.json.JSONObject;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
@@ -50,7 +51,7 @@ public class ChildSafetyActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Counselled mother for child safety : {0}", childSafetyCounselling);
+        return MessageFormat.format("{0} : {1}", context.getString(R.string.ccd_child_safety_subtitle),childSafetyCounselling.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
     @Override

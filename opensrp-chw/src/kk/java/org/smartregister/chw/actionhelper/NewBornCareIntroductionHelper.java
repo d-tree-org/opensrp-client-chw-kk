@@ -65,12 +65,12 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("{0}: {1}", context.getString(R.string.is_baby_premature), prematureBaby);
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.is_baby_premature), prematureBaby.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(prematureBaby)) {
+        if (!firstVisitDone && StringUtils.isEmpty(prematureBaby)) {
             return BaseAncHomeVisitAction.Status.PENDING;
         } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;

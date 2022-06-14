@@ -59,6 +59,18 @@
         "text_color": "#000000"
       },
       {
+        "key": "sleep_under_mosquito_net",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{anc_hv_malaria.step1.sleep_under_mosquito_net.text}}",
+        "label_info_text": "{{anc_hv_malaria.step1.malaria_cause.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
         "key": "malaria_protective_measures",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

@@ -82,3 +82,18 @@ priority: 1
 condition: "step1_accessibility_issues.contains('chk_other')"
 actions:
   - "isRelevant = true"
+
+---
+name: step1_person_assist_child_relationship_other
+description: Other relationship to the child, specify
+priority: 1
+condition: "step1_person_assist_child_relationship.contains('Other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_breastfeed_children
+description: Breastfeed children
+priority: 1
+condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != ''"
+actions:
+  - "isRelevant = true"

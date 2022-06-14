@@ -49,10 +49,63 @@ public class KkConstants extends Constants{
                 return Utils.getLocalForm(CHILD_HV_NEWBORN_CORD_CARE);
             }
 
-
         }
 
+        public static class KK_PNC_HOME_VISIT {
+            public static final String PNC_HV_DANGER_SIGNS = "kk_pnc_hv_danger_signs";
+            public static final String PNC_HV_MATERNAL_NUTRITION = "pnc_hv_maternal_nutrition";
+            public static final String PNC_HV_HIV_AIDS_GENERAL_INFO = "pnc_hv_hiv_aids_general_info";
+            public static final String PNC_HV_LAM = "pnc_hv_lam";
+            public static final String PNC_MOTHER_CARE = "pnc_hv_postpartum_care_for_mother";
+            public static final String PNC_HV_POSTPARTUM_FAMILY_PLANNING = "pnc_hv_postpartum_family_planning";
+            public static final String FOLLOW_UP_HIV_EXPOSED_INFANT = "pnc_hv_hiv_exposed_infant";
+            public static final String PNC_HV_POSTPARTUM_PHYSIOLOGICAL_CHANGES = "pnc_hv_postpartum_psychological_changes";
+            public static final String PNC_HV_INFECTION_PREVENTION_CONTROL = "pnc_hv_infection_prevention_control";
+            public static final String PNC_MALARIA_PREVENTION = "pnc_malaria_prevention";
+
+            public static String getPncHvDangerSigns() {
+                return Utils.getLocalForm(PNC_HV_DANGER_SIGNS);
+            }
+
+            public static String getPncHvMaternalNutrition() {
+                return Utils.getLocalForm(PNC_HV_MATERNAL_NUTRITION);
+            }
+
+            public static String getPncHvHivAidsGeneralInfo() {
+                return Utils.getLocalForm(PNC_HV_HIV_AIDS_GENERAL_INFO);
+            }
+
+            public static String getPncHvLam() {
+                return Utils.getLocalForm(PNC_HV_LAM);
+            }
+
+            public static String getPncMotherCare(){
+                return Utils.getLocalForm(PNC_MOTHER_CARE);
+            }
+
+            public static String getPncHvPostpartumFamilyPlanning(){
+                return Utils.getLocalForm(PNC_HV_POSTPARTUM_FAMILY_PLANNING);
+            }
+
+            public static String getFollowUpHivExposedInfant(){
+                return Utils.getLocalForm(FOLLOW_UP_HIV_EXPOSED_INFANT);
+            }
+
+            public static String getPncHvPostpartumPhysiologicalChanges(){
+                return Utils.getLocalForm(PNC_HV_POSTPARTUM_PHYSIOLOGICAL_CHANGES);
+            }
+
+            public static String getPncHvInfectionPreventionControl() {
+                return Utils.getLocalForm(PNC_HV_INFECTION_PREVENTION_CONTROL);
+            }
+
+            public static String getPncMalariaPrevention() {
+                return Utils.getLocalForm(PNC_MALARIA_PREVENTION);
+            }
+
+        }
     }
+
     public static final class EventType {
         public static final String ESSENTIAL_NEW_BORN_CARE_INTRO = "Essential New Born Care: Introduction";
         public static final String IMMUNIZATIONS = "Immunizations";

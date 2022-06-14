@@ -95,6 +95,7 @@ public class PncHomeVisitInteractor extends BaseAncHomeVisitInteractor {
             baseEvent.addObs(new Obs("concept", "text", "pnc_visit_date", "",
                     list, new ArrayList<>(), null, "pnc_visit_date"));
         }
+        flavor.addExtraObs(baseEvent);
     }
 
     @Override
@@ -119,5 +120,6 @@ public class PncHomeVisitInteractor extends BaseAncHomeVisitInteractor {
 
     public interface Flavor {
         LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(final BaseAncHomeVisitContract.View view, MemberObject memberObject, final BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException;
+        void addExtraObs(Event baseEvent);
     }
 }

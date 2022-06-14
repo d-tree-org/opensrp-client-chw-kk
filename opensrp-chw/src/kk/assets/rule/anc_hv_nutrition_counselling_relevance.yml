@@ -16,7 +16,7 @@ actions:
 name: step1_meals_per_day_note
 descriotion: less than three meals per day warning
 priority: 1
-condition: "step1_meals_per_day.contains('two') || step1.meals_per_day.contains('one')"
+condition: "step1_meals_per_day.contains('two') || step1_meals_per_day.contains('one')"
 actions:
   - "isRelevant = true"
 ---
