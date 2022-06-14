@@ -75,7 +75,5 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
         } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
-        // Fix None first visit is not saving
-        return BaseAncHomeVisitAction.Status.COMPLETED;
     }
 }
