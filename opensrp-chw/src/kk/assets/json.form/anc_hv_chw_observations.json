@@ -1,0 +1,141 @@
+{
+  "count": "1",
+  "encounter_type": "Home Visit - CHW Observations",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{anc_hv_chw_observations.step1.title}}",
+    "fields": [
+      {
+        "key": "anyone_present",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_hv_chw_observations.step1.anyone_present.label}}",
+        "text_color": "#000000",
+        "exclusive": [
+          "anyone_present_yes",
+          "anyone_present_no"
+        ],
+        "options": [
+          {
+            "key": "anyone_present_yes",
+            "text": "{{anc_hv_chw_observations.step1.anyone_present.options.anyone_present_yes.yes.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "anyone_present_no",
+            "text": "{{anc_hv_chw_observations.step1.anyone_present.options.anyone_present_no.no.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_chw_observations.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "who_present",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_hv_chw_observations.step1.who_present.label}}",
+        "text_color": "#000000",
+        "options": [
+          {
+            "key": "chk_children_below_eighteen",
+            "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_children_below_eighteen.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_blood_relatives",
+            "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_blood_relatives.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_elderly_living",
+            "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_elderly_living.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "chk_people_outside",
+            "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_people_outside.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_chw_observations.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_hv_chw_observations_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "particular_observations_chw",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{particular_observations_chw.step1.particular_observations_chw.toaster_notes.text}}",
+        "toaster_type": "info"
+      }
+    ]
+  },
+  "properties_file_name": "anc_hv_chw_observations"
+}

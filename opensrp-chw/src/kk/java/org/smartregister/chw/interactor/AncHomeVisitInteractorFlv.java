@@ -92,6 +92,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluatePartnerEngagement(actionList, details, context);
         evaluateEarlyStimulation(actionList, details, context);
         evaluateHarmfulHabits(actionList, details, context);
+        evaluateChwObservation(actionList, details, context);
 
         return actionList;
     }
@@ -339,6 +340,18 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_harmful_habits), harmful_habits);
+    }
+
+    private void evaluateChwObservation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                          Map<String, List<VisitDetail>> details,
+                                          final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction chw_observations = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_chw_observations))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("anc_hv_chw_observations")
+                .withHelper(new ChwObservationsAction())
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_chw_observations), chw_observations);
     }
 
     private class DangerSignsAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
@@ -1008,6 +1021,75 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 }else{
                     return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
                 }
+            else
+                return BaseAncHomeVisitAction.Status.PENDING;
+        }
+
+        @Override
+        public void onPayloadReceived(BaseAncHomeVisitAction baseAncHomeVisitAction) {
+            Timber.v("onPayloadReceived");
+        }
+    }
+
+    private class ChwObservationsAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
+        private String value = "";
+        private String anyone_presence = "";
+        private Context context;
+
+        @Override
+        public void onJsonFormLoaded(String s, Context context, Map<String, List<VisitDetail>> map) {
+            this.context = context;
+        }
+
+        @Override
+        public String getPreProcessed() {
+            return null;
+        }
+
+        @Override
+        public void onPayloadReceived(String jsonPayload) {
+            try {
+                JSONObject jsonObject = new JSONObject(jsonPayload);
+                value = JsonFormUtils.getCheckBoxValue(jsonObject, "anyone_present");
+                anyone_presence = JsonFormUtils.getValue(jsonObject, "anyone_present");
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
+            return null;
+        }
+
+        @Override
+        public String getPreProcessedSubTitle() {
+            return null;
+        }
+
+        @Override
+        public String postProcess(String s) {
+            return null;
+        }
+
+        @Override
+        public String evaluateSubTitle() {
+            if(!value.isEmpty()){
+                return MessageFormat.format(context.getString(R.string.chw_observations_evaluate_sub_title), value);
+            }else{
+                return value;
+            }
+        }
+
+        @Override
+        public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+            if(!anyone_presence.isEmpty()){
+                if(anyone_presence.contains("anyone_present_yes")){
+                    return BaseAncHomeVisitAction.Status.COMPLETED;
+                }else{
+                    return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+                }
+            }
             else
                 return BaseAncHomeVisitAction.Status.PENDING;
         }
