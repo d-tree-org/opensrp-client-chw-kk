@@ -16,6 +16,10 @@
     <string name="switch_environment_title">Alert! Switching Environment</string>
 
     <string name="anc_home_visit_danger_signs">Danger signs</string>
+    <string name="anc_home_visit_birth_preparedness">Birth Preparedness</string>
+    <string name="anc_hv_clinic_attendance">ANC Clinic attendance</string>
+    <string name="anc_hv_nutrition_counselling">Nutrition Counselling</string>
+    <string name="danger_sign_evaluate_sub_title">Danger signs: {0}</string>
     <string name="anc_home_visit_facility_visit">ANC {0} health facility visit</string>
     <string name="anc_home_visit_family_planning">Family planning</string>
     <string name="anc_home_visit_nutrition_status">Nutrition status</string>
@@ -32,6 +36,9 @@
     <string name="anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant">Follow-Up for the HIV-Exposed Infant</string>
     <string name="anc_home_visit_postpartum_preparation_lam">toddler_danger_sign_monthLAM</string>
     <string name="anc_home_visit_postpartum_postpartum_family_planning">Postpartum Family Planning</string>
+    <string name="anc_home_visit_partner_engagement">Partner engagement</string>
+    <string name="partner_engagement_evaluate_sub_title">Partner presence: {0}</string>
+    <string name="anc_home_visit_early_stimulation">Early stimulation</string>
 
 
     <string name="anc_home_visit_gender_issues"> Gender Issues</string>
@@ -65,6 +72,12 @@
     <string name="is_baby_premature">Baby pre-mature or born underweight?</string>
     <string name="new_born_care_introduction_month">Essential New Born Care: Introduction %s</string>
     <string name="immunizations">Immunizations</string>
+    <string name="ccd_communication_assessment_subtitle">Mother communicates with child</string>
+    <string name="ccd_introduction_subtitle">Child behaviour and development</string>
+    <string name="ccd_development_screening_subtitle">Development issues</string>
+    <string name="ccd_toddler_danger_signs_subtitle">Danger signs</string>
+    <string name="ccd_child_safety_subtitle">Counselled mother for child safety</string>
+    <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
 
     <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
     <string name="ccd_introduction"> CCD : Introduction : %s </string>
@@ -77,7 +90,7 @@
     <string name="complimentary_feeding"> Complimentary feeding : %s </string>
     <string name="counselled_mother_for_comp_feeding"> Counselled mother for complementary feeding </string>
 
-    <string name="anc_home_visit_pmtct"> 6. Prevention of mother-to-child transmission of HIV </string>
+    <string name="anc_home_visit_pmtct">Prevention of mother-to-child transmission of HIV </string>
 
     <string name="child_hf_referral_text">Child - HF Referral</string>
     <string name="child_addo_linkage_text">Child - ADDO Linkage</string>
@@ -92,5 +105,15 @@
     <string name="maternal_nutrition">Maternal Nutrition</string>
     <string name="pnc_hiv_aids_general_info">HIV/AIDS General Information</string>
     <string name="pnc_hv_lam">LAM</string>
+    <string name="pnc_postpartum_mother_care">Postpartum Care for Mother</string>
+    <string name="pnc_postpartum_family_planning">Postpartum family planning</string>
+    <string name="follow_up_hiv_exposed_infant">Follow-Up for the HIV-Exposed Infant </string>
+    <string name="postpartum_psychological_changes">Postpartum Physiological Changes </string>
+    <string name="infection_prevention_control">Infection Prevention and Control </string>
+    <string name="pnc_hv_ipc_has_latrine">Has Latrine </string>
+    <string name="pnc_hv_ipc_has_electricity">Has Electricity </string>
+    <string name="pnc_hv_malaria_prevention_action_title">Malaria Prevention</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

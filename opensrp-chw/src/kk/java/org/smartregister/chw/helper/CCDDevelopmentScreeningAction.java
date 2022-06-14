@@ -6,6 +6,7 @@ import androidx.room.util.StringUtil;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -43,7 +44,7 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Development issues: {0}", developmentIssues);
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.ccd_development_screening_subtitle), developmentIssues);
     }
 
     @Override

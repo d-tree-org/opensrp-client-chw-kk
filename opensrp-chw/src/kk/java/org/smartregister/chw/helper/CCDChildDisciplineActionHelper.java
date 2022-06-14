@@ -6,6 +6,7 @@ import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
@@ -53,7 +54,7 @@ public class CCDChildDisciplineActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("Mother corrects child: {0}", correctingChild);
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.ccd_child_discipline_subtitle),correctingChild);
     }
 
     @Override

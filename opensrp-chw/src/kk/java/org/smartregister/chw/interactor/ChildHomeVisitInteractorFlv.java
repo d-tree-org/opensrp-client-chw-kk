@@ -1,7 +1,5 @@
 package org.smartregister.chw.interactor;
 
-import android.annotation.SuppressLint;
-
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -9,8 +7,8 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
-import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
+import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
@@ -22,26 +20,28 @@ import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
+import org.smartregister.chw.anc.util.VisitUtils;
+import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.helper.CCDChildDisciplineActionHelper;
 import org.smartregister.chw.helper.CCDCommunicationAssessmentAction;
 import org.smartregister.chw.helper.CCDDevelopmentScreeningAction;
 import org.smartregister.chw.helper.CCDIntroductionAction;
 import org.smartregister.chw.helper.ChildSafetyActionHelper;
 import org.smartregister.chw.helper.ComplimentaryFeedingActionHelper;
-import org.smartregister.chw.anc.util.VisitUtils;
-import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KKCoreConstants;
 import org.smartregister.chw.util.KkConstants;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.domain.Alert;
 import org.smartregister.domain.AlertStatus;
-import org.smartregister.domain.Immunizations;
 import org.smartregister.immunization.domain.ServiceWrapper;
 import org.smartregister.util.DateUtil;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -52,6 +52,7 @@ import timber.log.Timber;
 public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractorFlv {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+    private String visitNumber;
 
     @Override
     public LinkedHashMap<String, BaseAncHomeVisitAction> calculateActions(BaseAncHomeVisitContract.View view, MemberObject memberObject, BaseAncHomeVisitContract.InteractorCallBack callBack) throws BaseAncHomeVisitAction.ValidationException {
@@ -76,6 +77,19 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Map<String, ServiceWrapper> serviceWrapperMap = getServices();
 
         try {
+            // We are using CCD Communication Assessment Service Wrapper as this module is available in all of the visits
+            if (serviceWrapperMap != null) {
+                ServiceWrapper communicationAssessmentServiceWrapper = serviceWrapperMap.get("CCD communication assessment");
+                if (communicationAssessmentServiceWrapper != null) {
+                    String communicationAssessmentModuleName = communicationAssessmentServiceWrapper.getName();
+                    visitNumber = communicationAssessmentModuleName.substring(communicationAssessmentModuleName.length() - 1);
+                }
+            }
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+
+        try {
             Constants.JSON_FORM.setLocaleAndAssetManager(ChwApplication.getCurrentLocale(), ChwApplication.getInstance().getApplicationContext().getAssets());
         } catch (Exception e) {
             Timber.e(e);
@@ -84,6 +98,18 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         bindEvents(serviceWrapperMap);
 
         return actionList;
+    }
+
+    // I am including this implementation here because I think this is where we would probably capture and add visit duration
+    @Override
+    public void addObsToBaseEvent(Event event) {
+        if (event != null) {
+            List<Object> visitNumberObsValue = new ArrayList<>();
+            visitNumberObsValue.add(visitNumber);
+            event.addObs(new Obs("concept", "text", "visit_number", "",
+                    visitNumberObsValue, new ArrayList<>(), null, "visit_number"));
+
+        }
     }
 
 
@@ -225,7 +251,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withOptional(false)
                 .withDetails(details)
                 .withBaseEntityID(memberObject.getBaseEntityId())
-                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.SEPARATE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
                 .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvEssentialCareIntroductionForm())
                 .withScheduleStatus(BaseAncHomeVisitAction.ScheduleStatus.DUE)

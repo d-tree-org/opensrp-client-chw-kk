@@ -65,10 +65,7 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        if (!firstVisitDone)
-            return MessageFormat.format("{0}: {1}", context.getString(R.string.is_baby_premature), prematureBaby);
-
-        return "";
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.is_baby_premature), prematureBaby.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
     @Override
@@ -78,5 +75,7 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
         } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
+        // Fix None first visit is not saving
+        return BaseAncHomeVisitAction.Status.COMPLETED;
     }
 }

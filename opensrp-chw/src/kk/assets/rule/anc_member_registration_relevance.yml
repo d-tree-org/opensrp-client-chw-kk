@@ -90,3 +90,10 @@ priority: 1
 condition: "step1_person_assist_child_relationship.contains('Other')"
 actions:
   - "isRelevant = true"
+---
+name: step1_breastfeed_children
+description: Breastfeed children
+priority: 1
+condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != ''"
+actions:
+  - "isRelevant = true"

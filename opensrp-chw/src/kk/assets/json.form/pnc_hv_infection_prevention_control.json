@@ -1,0 +1,792 @@
+{
+  "count": "1",
+  "encounter_type": "PNC Home Visit - Infection Prevention Control",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{pnc_hv_infection_prevention_control.step1.title}}",
+    "fields": [
+      {
+        "key": "child_defecate",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{pnc_hv_infection_prevention_control.step1.child_defecate.text}}",
+        "text_color": "#2D2E2D",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "latrine_household",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "{{pnc_hv_infection_prevention_control.step1.latrine_household.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_yes"
+        ],
+        "options": [
+          {
+            "key": "chk_yes",
+            "text": "{{pnc_hv_infection_prevention_control.step1.answer_yes}}",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_no",
+            "text": "{{pnc_hv_infection_prevention_control.step1.answer_no}}",
+            "value": false,
+            "openmrs_entity": "",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.labour_signs.v_required.err}}"
+        }
+      },
+      {
+        "key": "kind_latrine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{pnc_hv_infection_prevention_control.step1.kind_latrine.label}}",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.kind_latrine.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.kind_latrine.option.pit}}",
+          "{{pnc_hv_infection_prevention_control.step1.kind_latrine.option.vip}}",
+          "{{pnc_hv_infection_prevention_control.step1.kind_latrine.option.flush}}",
+          "{{pnc_hv_infection_prevention_control.step1.kind_latrine.option.other}}"
+        ],
+        "keys": [
+          "pit",
+          "vip",
+          "flush",
+          "other_kind"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.labour_signs.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_latrine",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.other_latrine.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.other_latrine_required.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_latrine_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_note",
+        "toaster_type": "danger",
+        "text": "{{pnc_hv_infection_prevention_control.step1.no_latrine_note.text}}",
+        "text_color": "#2D2E2D",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "danger_child_stool_safe_disposal",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{pnc_hv_infection_prevention_control.step1.danger_child_stool_safe_disposal.text}}",
+        "text_color": "#2D2E2D",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "electricity_home",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{pnc_hv_infection_prevention_control.step1.electricity_home.label}}",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.electricity_home.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.answer_yes}}",
+          "{{pnc_hv_infection_prevention_control.step1.answer_no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.labour_signs.v_required.err}}"
+        }
+      },
+      {
+        "key": "water_source",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "{{pnc_hv_infection_prevention_control.step1.water_source.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_dont_know"
+        ],
+        "options": [
+          {
+            "key": "chk_dwelling",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.dwelling}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_piped_yard",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.piped_yard}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_piped_neighbour",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.piped_neighbour}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_public_standpipe",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.public_standpipe}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_tube_borehole",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.tube_borehole}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_protected_well",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.protected_well}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_unprotected_well",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.unprotected_well}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_protected_spring",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.protected_spring}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_unprotected_spring",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.unprotected_spring}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_rain_water",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.rain_water}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_tanker_truck",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.tanker_truck}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_cart_small_tank",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.cart_small_tank}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_water_kiosk",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.water_kiosk}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_surface_water",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.surface_water}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_bottled_water",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.bottled_water}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sachet_water",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.sachet_water}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_dont_know",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.dont_know}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_other",
+            "text": "{{pnc_hv_infection_prevention_control.step1.water_source.option.other}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_danger_signs.step1.danger_signs_present.v_required.err}}"
+        }
+      },
+      {
+        "key": "other_water_source",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.other_water_source.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.other_water_source.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "floor_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "{{pnc_hv_infection_prevention_control.step1.floor_type.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "chk_tiles",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.tiles}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_cement",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.cement}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_stone",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.stone}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_mud",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.mud}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_raw_wood",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.raw_wood}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_polished_wood",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.polished_wood}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_vinyl",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.vinyl}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_palm_bamboo",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.palm_bamboo}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_rug",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.rug}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_other",
+            "text": "{{pnc_hv_infection_prevention_control.step1.floor_type.option.other}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_hv_danger_signs.step1.danger_signs_present.v_required.err}}"
+        }
+      },
+      {
+        "key": "other_floor_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.other_floor_type.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.other_floor_type.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "household_washhands",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{pnc_hv_infection_prevention_control.step1.household_washhands.label}}",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.household_washhands.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.household_washhands.sink}}",
+          "{{pnc_hv_infection_prevention_control.step1.household_washhands.dwelling}}",
+          "{{pnc_hv_infection_prevention_control.step1.household_washhands.yard}}",
+          "{{pnc_hv_infection_prevention_control.step1.household_washhands.mobile_object}}",
+          "{{pnc_hv_infection_prevention_control.step1.household_washhands.no_handwashing_place}}",
+          "{{pnc_hv_infection_prevention_control.step1.household_washhands.no_permission_to_see}}",
+          "{{pnc_hv_infection_prevention_control.step1.household_washhands.other_reasons}}"
+        ],
+        "keys": [
+          "sink",
+          "dwelling",
+          "yard",
+          "mobile_object",
+          "no_handwashing_place",
+          "no_permission_to_see",
+          "other"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "other_hand_washing",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.other_hand_washing.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.other_hand_washing.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "water_availability",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.water_availability.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.water_availability.available}}",
+          "{{pnc_hv_infection_prevention_control.step1.water_availability.not_available}}"
+        ],
+        "keys": [
+          "water_available",
+          "water_not_available"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "soap_availability",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.soap_availability.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.option_answer.yes}}",
+          "{{pnc_hv_infection_prevention_control.step1.option_answer.no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "soap_availability_observe",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.soap_availability_observe.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.option_answer.yes}}",
+          "{{pnc_hv_infection_prevention_control.step1.option_answer.no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "soap_observed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.soap_observed.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.soap_observed.bar_or_liquid}}",
+          "{{pnc_hv_infection_prevention_control.step1.soap_observed.detergent}}",
+          "{{pnc_hv_infection_prevention_control.step1.soap_observed.ash_mud_or_sand}}",
+          "{{pnc_hv_infection_prevention_control.step1.soap_observed.other}}"
+        ],
+        "keys": [
+          "bar_or_liquid",
+          "detergent",
+          "ash_mud_or_sand",
+          "other"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_soap",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.other_soap.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.other_soap.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "roof_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.roof_type.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.no_roof}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.leaves}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.mud_and_grass}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.wood}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.iron_sheet}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.concrete_cement}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.asbestos_sheets}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.tiles}}",
+          "{{pnc_hv_infection_prevention_control.step1.roof_type.other}}"
+        ],
+        "keys": [
+          "no_roof",
+          "grass_leaves_bamboos",
+          "mud_and_grass",
+          "wood",
+          "iron_sheets",
+          "concrete_cement",
+          "obsesto_sheets",
+          "tiles",
+          "other"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "other_roof_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.other_roof_type.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.other_roof_type.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "wall_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.wall_type.label}}",
+        "values": [
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.no_walls}}",
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.mud_or_mud_bricks}}",
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.stone}}",
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.burnt_bricks}}",
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.concrete_cement}}",
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.wood_bamboo}}",
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.iron_sheet}}",
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.card_body}}",
+          "{{pnc_hv_infection_prevention_control.step1.wall_type.other}}"
+        ],
+        "keys": [
+          "no_roof",
+          "grass_leaves_bamboos",
+          "mud_and_grass",
+          "wood",
+          "iron_sheets",
+          "concrete_cement",
+          "obsesto_sheets",
+          "tiles",
+          "other"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "other_wall_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{pnc_hv_infection_prevention_control.step1.other_wall_type.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{pnc_hv_infection_prevention_control.step1.other_wall_type.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "pnc_hv_infection_prevention_control_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "general_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{pnc_hv_infection_prevention_control.step1.general_note.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "infection_prevention_control_counselling_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{pnc_hv_infection_prevention_control.step1.infection_prevention_control_counselling_bango_kitita.text}}",
+        "text_color": "#2D2E2D",
+        "label_text_style": "italic",
+        "has_bg": true
+      }
+    ]
+  },
+  "properties_file_name": "pnc_hv_infection_prevention_control"
+}
