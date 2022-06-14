@@ -36,6 +36,9 @@
     <string name="anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant">Follow-Up for the HIV-Exposed Infant</string>
     <string name="anc_home_visit_postpartum_preparation_lam">toddler_danger_sign_monthLAM</string>
     <string name="anc_home_visit_postpartum_postpartum_family_planning">Postpartum Family Planning</string>
+    <string name="anc_home_visit_partner_engagement">Partner engagement</string>
+    <string name="partner_engagement_evaluate_sub_title">Partner presence: {0}</string>
+    <string name="anc_home_visit_early_stimulation">Early stimulation</string>
 
 
     <string name="anc_home_visit_gender_issues"> Gender Issues</string>
@@ -89,6 +92,15 @@
 
     <string name="anc_home_visit_pmtct">Prevention of mother-to-child transmission of HIV </string>
 
+    <string name="child_hf_referral_text">Child - HF Referral</string>
+    <string name="child_addo_linkage_text">Child - ADDO Linkage</string>
+    <string name="anc_hf_referral_text">ANC - HF Referral</string>
+    <string name="anc_addo_linkage_text">ANC - ADDO Linkage</string>
+    <string name="adolescent_hf_referral_text">Adolescent - HF Referral</string>
+    <string name="adolescent_addo_linkage_text">Adolescent - ADDO Linkage</string>
+    <string name="pnc_hf_referral_text">PNC - HF Referral</string>
+    <string name="pnc_addo_linkage_text">PNC - ADDO Linkage</string>
+    <string name="followup">FOLLOW UP</string>
     <string name="postpartum_danger_signs">Postpartum Danger Signs</string>
     <string name="maternal_nutrition">Maternal Nutrition</string>
     <string name="pnc_hiv_aids_general_info">HIV/AIDS General Information</string>

@@ -349,6 +349,53 @@
             }
           }
         }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
+      },
+      {
+        "key": "save_n_refer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "button",
+        "hint": "Save and Refer to Health Facility",
+        "btn_bg_color": "#CF0800",
+        "action": {
+          "behaviour": "refer"
+        },
+        "relevance": {
+          "step1:danger_signs_screening_mama": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "chk_vaginal_bleeding",
+                  "chk_fever",
+                  "chk_severe_genitalia_pain",
+                  "chk_severe_abdominal_pain",
+                  "chk_calf_muscle_pain",
+                  "chk_difficulty_breathing",
+                  "chk_low_urine_output",
+                  "chk_severe_headache",
+                  "chk_loss_consciousness",
+                  "chk_abnormal_behaviour",
+                  "chk_pallor",
+                  "chk_painful_red_hot_breast",
+                  "chk_convulsions",
+                  "chk_dizziness",
+                  "chk_exhaustion",
+                  "chk_vaginal_discharge",
+                  "chk_severe_muscle_pain"
+                ]
+              }
+            ]
+          }
+        }
       }
     ]
   },
