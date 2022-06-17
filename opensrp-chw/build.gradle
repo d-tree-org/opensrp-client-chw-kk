@@ -74,6 +74,18 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    // Instead, use the bundle block to control which types of configuration APKs
+    // you want your app bundle to support.
+    bundle {
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = false
+        }
+    }
+
     defaultConfig {
         applicationId "org.smartregister.chw"
         minSdkVersion androidMinSdkVersion
@@ -301,8 +313,8 @@ android {
             getIsDefault().set(true)
             dimension = 'baseDimension'
             applicationIdSuffix ".kk"
-            versionCode 1
-            versionName "0.0.1"
+            versionCode 7
+            versionName "0.3.2"
             buildConfigField "String", 'opensrp_url', '"https://kizazi-kijacho.smartregister.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/chad/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-proto.d-tree.org/opensrp/"'
