@@ -65,6 +65,7 @@ public class NewBornCareIntroductionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
+        // Need to fix this
         return MessageFormat.format("{0}: {1}", context.getString(R.string.is_baby_premature), prematureBaby.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
