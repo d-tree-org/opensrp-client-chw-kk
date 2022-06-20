@@ -19,7 +19,7 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
 
     private final Context context;
     private final Alert alert;
-    private String childDevelopmentCounselling;
+    private String childDevelopmentCounselling = "";
 
     public CCDIntroductionAction(Context mContext, Alert mAlert) {
         this.alert = mAlert;
@@ -47,6 +47,7 @@ public class CCDIntroductionAction extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
+        if (childDevelopmentCounselling.isEmpty()) return "";
         return MessageFormat.format("{0}: {1}", context.getString(R.string.ccd_introduction_subtitle), childDevelopmentCounselling.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 
