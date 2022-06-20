@@ -23,6 +23,7 @@ import org.smartregister.family.util.Constants;
 import org.smartregister.family.util.JsonFormUtils;
 
 import java.util.Date;
+import java.util.UUID;
 
 import timber.log.Timber;
 
@@ -95,9 +96,16 @@ public class ChildHomeVisitActivity extends CoreChildHomeVisitActivity {
                         String entityID = baseEntityID != null ? baseEntityID : memberObject.getBaseEntityId();
                         String businessStatus = buttonAction.equalsIgnoreCase("refer") ? CoreConstants.BUSINESS_STATUS.REFERRED : CoreConstants.BUSINESS_STATUS.LINKED;
                         if (!CoreReferralUtils.hasReferralTask(entityID, businessStatus)) {
+
+                            //Update encounter information to referral
+                            JSONObject jsonForm = new JSONObject(jsonString);
+                            jsonForm.put(CoreJsonFormUtils.ENCOUNTER_TYPE, CoreConstants.EventType.CHILD_REFERRAL);
+                            String referralTaskId = UUID.randomUUID().toString();
+                            jsonForm.put(org.smartregister.chw.util.Constants.JSON_FORM_CONSTANT.REFERRAL_TASK_ID, referralTaskId);
+
                             //refer
-                            CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                    jsonString, CoreConstants.TABLE_NAME.CHILD_REFERRAL, entityID);
+                            CoreReferralUtils.createReferralEvent(referralTaskId, ChwApplication.getInstance().getContext().allSharedPreferences(),
+                                    jsonForm.toString(), CoreConstants.TABLE_NAME.CHILD_REFERRAL, entityID);
 
                             //add referral schedule
                             ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.CHILD_REFERRAL, new Date());
