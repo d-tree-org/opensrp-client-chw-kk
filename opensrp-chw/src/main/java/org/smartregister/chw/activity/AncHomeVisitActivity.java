@@ -16,6 +16,7 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.R;
 import org.smartregister.chw.core.task.RunnableTask;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.interactor.AncHomeVisitInteractor;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
@@ -24,6 +25,7 @@ import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 
 import java.util.Date;
+import java.util.UUID;
 
 import timber.log.Timber;
 
@@ -92,9 +94,15 @@ public class AncHomeVisitActivity extends BaseAncHomeVisitActivity {
                         String entityID = baseEntityID != null ? baseEntityID : memberObject.getBaseEntityId();
                         String businessStatus = buttonAction.equalsIgnoreCase("refer") ? CoreConstants.BUSINESS_STATUS.REFERRED : CoreConstants.BUSINESS_STATUS.LINKED;
                         if (!CoreReferralUtils.hasReferralTask(entityID, businessStatus)) {
+                            //Update encounter information to referral
+                            JSONObject jsonForm = new JSONObject(jsonString);
+                            jsonForm.put(CoreJsonFormUtils.ENCOUNTER_TYPE, CoreConstants.EventType.ANC_REFERRAL);
+                            String referralTaskId = UUID.randomUUID().toString();
+                            jsonForm.put(org.smartregister.chw.util.Constants.JSON_FORM_CONSTANT.REFERRAL_TASK_ID, referralTaskId);
+
                             //refer
-                            CoreReferralUtils.createReferralEvent(ChwApplication.getInstance().getContext().allSharedPreferences(),
-                                    jsonString, CoreConstants.TABLE_NAME.ANC_REFERRAL, entityID);
+                            CoreReferralUtils.createReferralEvent(referralTaskId, ChwApplication.getInstance().getContext().allSharedPreferences(),
+                                    jsonForm.toString(), CoreConstants.TABLE_NAME.ANC_REFERRAL, entityID);
 
                             //add referral schedule
                             ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_REFERRAL, new Date());
