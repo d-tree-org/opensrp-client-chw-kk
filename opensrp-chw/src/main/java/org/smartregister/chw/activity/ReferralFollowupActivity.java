@@ -1,5 +1,6 @@
 package org.smartregister.chw.activity;
 
+import static org.smartregister.chw.core.utils.CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_ID;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getReferralFollowupForm;
 import static org.smartregister.chw.core.utils.CoreReferralUtils.setEntityId;
 import static org.smartregister.chw.malaria.util.MalariaJsonFormUtils.validateParameters;
@@ -95,12 +96,8 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
                     task.setStatus(Task.TaskStatus.COMPLETED);
                     taskRepository.addOrUpdate(task);
 
-                    //Update Event to track the task that has been closed
-                    JSONObject jsonObject = new JSONObject(jsonString);
-                    jsonObject.put(org.smartregister.chw.util.Constants.JSON_FORM_CONSTANT.REFERRAL_TASK_ID, task.getIdentifier());
-
                     //Create event
-                    createReferralFollowupEvent(jsonObject.toString(), context().allSharedPreferences(), baseEntityId);
+                    createReferralFollowupEvent(jsonString, task.getIdentifier(), context().allSharedPreferences(), baseEntityId);
 
                 }
             }
@@ -120,8 +117,9 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
         }
     }
 
-    private void createReferralFollowupEvent(String jsonString, AllSharedPreferences allSharedPreferences, String entityId) throws Exception {
+    private void createReferralFollowupEvent(String jsonString, String referralTaskId, AllSharedPreferences allSharedPreferences, String entityId) throws Exception {
         final Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, setEntityId(jsonString, entityId), CoreConstants.TABLE_NAME.REFERRAL_FOLLOW_UP);
+        baseEvent.addIdentifier(REFERRAL_TASK_ID, referralTaskId);
         NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
     }
 
