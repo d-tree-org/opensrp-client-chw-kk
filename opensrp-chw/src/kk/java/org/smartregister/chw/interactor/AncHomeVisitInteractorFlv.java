@@ -349,6 +349,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("anc_hv_chw_observations")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withHelper(new ChwObservationsAction())
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_chw_observations), chw_observations);

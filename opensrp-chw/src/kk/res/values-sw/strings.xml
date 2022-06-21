@@ -87,10 +87,7 @@
     <string name="anc_home_visit_partner_engagement">Ushiriki wa Mwenza</string>
     <string name="partner_engagement_evaluate_sub_title">Uwepo wa mwenza: {0}</string>
     <string name="anc_home_visit_early_stimulation">Mawasiliano na mtoto akiwa tumboni</string>
-<<<<<<< HEAD
     <string name="anc_home_visit_harmful_habits">Tabia Hatarishi</string>
-=======
->>>>>>> add swahili translations
     <string name="anc_home_visit_chw_observations">Uchunguzi wa mhudumu wa afya ngazi ya jamii (MJAA)</string>
     <string name="chw_observations_evaluate_sub_title">Uwepo wa mtu yeyote: {0}</string>
 
