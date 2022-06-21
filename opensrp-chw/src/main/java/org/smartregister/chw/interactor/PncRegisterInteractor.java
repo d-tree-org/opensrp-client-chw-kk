@@ -2,9 +2,7 @@ package org.smartregister.chw.interactor;
 
 import static org.smartregister.chw.anc.util.DBConstants.KEY.DOB;
 import static org.smartregister.chw.anc.util.DBConstants.KEY.FIRST_NAME;
-import static org.smartregister.chw.anc.util.DBConstants.KEY.LAST_NAME;
 import static org.smartregister.chw.anc.util.DBConstants.KEY.MIDDLE_NAME;
-import static org.smartregister.chw.anc.util.DBConstants.KEY.MOTHER_ENTITY_ID;
 import static org.smartregister.chw.anc.util.DBConstants.KEY.RELATIONAL_ID;
 import static org.smartregister.chw.anc.util.DBConstants.KEY.SUR_NAME;
 import static org.smartregister.chw.anc.util.DBConstants.KEY.UNIQUE_ID;
@@ -12,37 +10,30 @@ import static org.smartregister.chw.anc.util.DBConstants.KEY.UNIQUE_ID;
 import android.content.Context;
 import android.util.Pair;
 
-import com.vijay.jsonwizard.constants.JsonFormConstants;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncRegisterContract;
 import org.smartregister.chw.anc.interactor.BaseAncRegisterInteractor;
-import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.anc.util.DBConstants;
-import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.domain.FamilyMember;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
-import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.db.EventClient;
 import org.smartregister.family.FamilyLibrary;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 import org.smartregister.repository.AllSharedPreferences;
-import org.smartregister.repository.BaseRepository;
 import org.smartregister.repository.UniqueIdRepository;
 import org.smartregister.sync.ClientProcessorForJava;
 import org.smartregister.sync.helper.ECSyncHelper;
 import org.smartregister.util.DateUtil;
 
-import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;

@@ -24,7 +24,7 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     private Context context;
     private final Alert alert;
-    private String communicatesWithChild;
+    private String communicatesWithChild = "";
     private String jsonPayload;
     private final int ageInMonth;
 
@@ -71,6 +71,7 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
+        if (communicatesWithChild.isEmpty()) return "";
         return MessageFormat.format("{0}: {1}",context.getString(R.string.ccd_communication_assessment_subtitle),communicatesWithChild.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
     }
 

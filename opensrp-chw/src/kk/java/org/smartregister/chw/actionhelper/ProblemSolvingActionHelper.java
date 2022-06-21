@@ -20,7 +20,7 @@ import timber.log.Timber;
  */
 public class ProblemSolvingActionHelper extends HomeVisitActionHelper {
 
-    private String experience_challenges_playing_communicating;
+    private String experience_challenges_playing_communicating = "";
     private Alert alert;
     private Context context;
 
@@ -44,6 +44,7 @@ public class ProblemSolvingActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
+        if (experience_challenges_playing_communicating.isEmpty()) return "";
         return experience_challenges_playing_communicating.equalsIgnoreCase("Yes") ? getContext().getString(R.string.yes) : getContext().getString(R.string.no) ;
     }
 
