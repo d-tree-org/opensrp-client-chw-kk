@@ -72,9 +72,16 @@ actions:
 name: step1_edd
 description: EDD relevance
 priority: 1
-condition: "step1_edd_present.contains('edd_present_yes') && step1_last_menstrual_period_unknown.contains('lmp_unknown') && step1_member_consent.contains('member_consent_yes')"
+condition: "step1_member_consent.contains('member_consent_yes') && step1_edd_present.contains('edd_present_yes') && step1_last_menstrual_period_unknown.contains('lmp_unknown')"
 actions:
   - "isRelevant = true"
+---
+name: step1_edd
+description: EDD calculation
+priority: 2
+condition: "true"
+actions:
+  - "calculation = step1_last_menstrual_period != '' ?  helper.addDuration(step1_last_menstrual_period,'280d') : ''"
 ---
 name: step1_lmnp
 description: LNMP Relevance
@@ -104,6 +111,13 @@ condition: "!step1_last_menstrual_period_unknown.contains('lmp_unknown') && step
 actions:
   - "isRelevant = true"
 ---
+name: step1_last_menstrual_period
+description: lmp_entered calculations
+priority: 2
+condition: "true"
+actions:
+  - "calculation = helper.subtractDuration(step1_edd,'280d')"
+---
 name: step1_last_menstrual_period_unknown
 description: lmp unknown relevance
 priority: 1
@@ -118,13 +132,6 @@ condition: "step1_member_consent.contains('member_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step1_gest_age_note
-description: Gestetional age relevance
-priority: 1
-condition: "step1_member_consent.contains('member_consent_yes')"
-actions:
-  - "isRelevant = true"
----
 name: step1_edd_note
 description: EDD note relevance
 priority: 1
@@ -133,11 +140,19 @@ actions:
   - "isRelevant = true"
 ---
 name: step1_gest_age
-description: EDD note relevance
+description: Gestation age relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes') && step1_edd_note != ''"
+actions:
+  - "calculation = (helper.getDifferenceDays(helper.subtractDuration(step1_edd_note,'280d')) -helper.getDifferenceDays(helper.getDateToday()))/7"
+---
+name: step1_gest_age_note
+description: Gestetional age relevance
 priority: 1
 condition: "step1_member_consent.contains('member_consent_yes')"
 actions:
   - "isRelevant = true"
+  - "calculation = step1_gest_age + ' ' + step1_weeks"
 ---
 name: step1_consent_notification
 description: Step 2 conset notification relevance
