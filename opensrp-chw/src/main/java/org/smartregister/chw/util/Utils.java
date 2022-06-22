@@ -9,6 +9,7 @@ import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.joda.time.DateTime;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.ClientReferralActivity;
@@ -18,6 +19,7 @@ import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.growthmonitoring.domain.ZScore;
 import org.smartregister.growthmonitoring.repository.WeightForHeightRepository;
 import org.smartregister.helper.BottomNavigationHelper;
+import org.smartregister.util.DateUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,12 +28,25 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Utils extends org.smartregister.chw.core.utils.Utils {
 
     public static final String dd_MMM_yyyy = "dd MMM yyyy";
+
+    public static long getTaskDuration(DateTime authoredOn){
+        DateTime now = new DateTime();
+
+        long taskAuthoredOnMillis =  DateUtil.getMillis(authoredOn);
+        long todayMillis = DateUtil.getMillis(now);
+
+        long duration = todayMillis - taskAuthoredOnMillis;
+        long days = (int) TimeUnit.MILLISECONDS.toDays(duration);
+
+        return days;
+    }
 
     public static void launchClientReferralActivity(Activity activity, List<ReferralTypeModel> referralTypeModels, String baseEntityId) {
         Bundle bundle = new Bundle();

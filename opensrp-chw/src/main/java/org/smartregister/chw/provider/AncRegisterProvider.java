@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.view.View;
 import android.widget.Button;
 
+import org.hl7.fhir.utilities.DateTimeUtil;
+import org.joda.time.DateTime;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.AncRegisterActivity;
 import org.smartregister.chw.activity.ChildRegisterActivity;
@@ -12,15 +14,17 @@ import org.smartregister.chw.activity.ReferralFollowupActivity;
 import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.provider.ChwAncRegisterProvider;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
-import org.smartregister.chw.core.utils.Utils;
 import org.smartregister.chw.core.utils.VisitSummary;
 import org.smartregister.chw.util.TaskUtils;
+import org.smartregister.chw.util.Utils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.Task;
+import org.smartregister.util.DateUtil;
 import org.smartregister.view.contract.SmartRegisterClient;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author issyzac 6/8/22
@@ -46,8 +50,12 @@ public class AncRegisterProvider extends ChwAncRegisterProvider {
 
         //Check if user has a referral task open
         Task task = CoreReferralUtils.getTaskForEntity(baseEntityId, true);
-        if (task != null && task.getStatus() == Task.TaskStatus.READY){
-            setReferralDueButton(context, viewHolder.dueButton, baseEntityId);
+        if (task != null){
+            DateTime taskAuthoredOn = task.getAuthoredOn();
+            long days = Utils.getTaskDuration(taskAuthoredOn);
+            if (task.getStatus() == Task.TaskStatus.READY && days >= 3){
+                setReferralDueButton(context, viewHolder.dueButton, baseEntityId);
+            }
         }
 
     }
