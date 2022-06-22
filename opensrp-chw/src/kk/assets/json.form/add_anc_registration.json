@@ -65,27 +65,13 @@
             "key": "member_consent_yes",
             "text": "{{add_anc_registration.step1.member_consent.options.member_consent.yes.text}}",
             "text_size": "18px",
-            "value": "false",
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-file": "add_anc_registration_relevance.yml"
-                }
-              }
-            }
+            "value": "false"
           },
           {
             "key": "member_consent_no",
             "text": "{{add_anc_registration.step1.member_consent.options.member_consent.no.text}}",
             "text_size": "18px",
-            "value": "false",
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-file": "add_anc_registration_relevance.yml"
-                }
-              }
-            }
+            "value": "false"
           }
         ]
       },
@@ -205,6 +191,16 @@
             }
           }
         }
+      },
+      {
+        "key": "fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "fam_name",
+        "type": "edit_text",
+        "hidden": true,
+        "hint": "",
+        "edit_type": "name"
       },
       {
         "key": "surname_calculation",
@@ -366,7 +362,7 @@
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "add_anc_registration_calculation.yml"
+              "rules-file": "add_anc_registration_relevance.yml"
             }
           }
         },
@@ -479,7 +475,7 @@
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "add_anc_registration_calculation.yml"
+              "rules-file": "add_anc_registration_relevance.yml"
             }
           }
         },
@@ -496,21 +492,12 @@
         }
       },
       {
-        "key": "gest_age_note",
+        "key": "gest_age",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "{{add_anc_registration.step1.gest_age_note.hint}}",
-        "read_only": true,
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "hidden",
         "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "add_anc_registration_calculation.yml"
-            }
-          }
-        },
-        "relevance": {
           "rules-engine": {
             "ex-rules": {
               "rules-file": "add_anc_registration_relevance.yml"
@@ -550,15 +537,17 @@
         }
       },
       {
-        "key": "gest_age",
+        "key": "gest_age_note",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "1438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "hidden",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{add_anc_registration.step1.gest_age_note.hint}}",
+        "read_only": true,
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "add_anc_registration_calculation.yml"
+              "rules-file": "add_anc_registration_relevance.yml"
             }
           }
         },
