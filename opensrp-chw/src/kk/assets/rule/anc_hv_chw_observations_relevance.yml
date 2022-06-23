@@ -1,0 +1,7 @@
+---
+name: step1_who_present
+description: Who is present
+priority: 1
+condition: "step1_anyone_present.contains('anyone_present_yes')"
+actions:
+  - "isRelevant = true"
