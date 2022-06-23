@@ -91,6 +91,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluatePostpartumPreparations(actionList, memberObject, details, context, allAncVisits);
         evaluatePartnerEngagement(actionList, details, context);
         evaluateEarlyStimulation(actionList, details, context);
+        evaluateHarmfulHabits(actionList, details, context);
 
         return actionList;
     }
@@ -326,6 +327,18 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withFormName("anc_hv_early_stimulation")
                 .build();
         actionList.put(context.getString(R.string.anc_home_visit_early_stimulation), earlyStimulation);
+    }
+
+    private void evaluateHarmfulHabits(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                       Map<String, List<VisitDetail>> details,
+                                       final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction harmful_habits = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.anc_home_visit_harmful_habits))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("anc_hv_harmful_habits")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.anc_home_visit_harmful_habits), harmful_habits);
     }
 
     private class DangerSignsAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {

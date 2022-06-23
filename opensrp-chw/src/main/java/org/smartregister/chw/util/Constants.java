@@ -59,6 +59,7 @@ public class Constants extends CoreConstants {
     public static class JSON_FORM_CONSTANT {
 
         public static final String ANC_MOTHER_REGISTRATION = "add_anc_registration";
+        public static final String REFERRAL_TASK_ID = "referral_task_id";
 
         public static String getAncMotherRegistration(){
             return ANC_MOTHER_REGISTRATION;

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.smartregister.AllConstants;
@@ -63,9 +65,10 @@ public class KizaziLoginActivity extends LoginActivity{
             if (!sharedPreferences.getPreference(KkSwitchConstants.KIZAZI_ENVIRONMENT).isEmpty()) {
                 if (sharedPreferences.getBooleanPreference("enable_production")) {
                     updateEnvironmentUrl(BuildConfig.opensrp_url_production);
+                    setTestEnvironmentIndicator(false);
                 } else {
                     updateEnvironmentUrl(BuildConfig.opensrp_url_debug);
-                    setTestEnvironmentIndicator();
+                    setTestEnvironmentIndicator(true);
                 }
             } else {
                 EnvironmentSelectDialogFragment switchFrag = new EnvironmentSelectDialogFragment();
@@ -104,11 +107,12 @@ public class KizaziLoginActivity extends LoginActivity{
         }
     }
 
-    private void setTestEnvironmentIndicator() {
-
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.top_section);
-        linearLayout.setBackgroundColor(getColor(R.color.translucent_yellow));
-
+    private void setTestEnvironmentIndicator(boolean isTest) {
+        RelativeLayout environmentIndicator = findViewById(R.id.environment_indicator);
+        if (isTest)
+            environmentIndicator.setVisibility(View.VISIBLE);
+        else
+            environmentIndicator.setVisibility(View.GONE);
     }
 
 }

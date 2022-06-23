@@ -129,10 +129,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 }
             }
 
-            evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateNewBornCareIntro(serviceWrapperMap);
+            evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
+            evaluateImmunizations(serviceWrapperMap);
             evaluateMalariaPrevention(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
             evaluateProblemSolving(serviceWrapperMap);
@@ -144,9 +145,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDChildDiscipline(serviceWrapperMap);
             evaluateCCDChildSafety(serviceWrapperMap);
             evaluateComplementaryFeeding(serviceWrapperMap);
-            evaluateImmunizations(serviceWrapperMap);
-
             evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
+
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {

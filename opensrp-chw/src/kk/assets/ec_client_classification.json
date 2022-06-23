@@ -181,7 +181,7 @@
           },
           {
             "field": "eventType",
-            "field_value": "Referral Followup Registration",
+            "field_value": "Referral Follow-up Visit",
             "creates_case": [
               "ec_referral_followup"
             ]

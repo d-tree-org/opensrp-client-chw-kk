@@ -1,6 +1,8 @@
 package org.smartregister.chw.activity;
 
+import static org.smartregister.chw.core.utils.CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_ID;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getReferralFollowupForm;
+import static org.smartregister.chw.core.utils.CoreReferralUtils.setEntityId;
 import static org.smartregister.chw.malaria.util.MalariaJsonFormUtils.validateParameters;
 import static org.smartregister.chw.util.JsonFormUtils.ENCOUNTER_TYPE;
 import static org.smartregister.util.JsonFormUtils.VALUE;
@@ -9,6 +11,7 @@ import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -16,12 +19,15 @@ import org.apache.commons.lang3.tuple.Triple;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.referral.util.Constants;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.domain.Task;
+import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.TaskRepository;
 import org.smartregister.util.LangUtils;
 
@@ -75,6 +81,8 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
             JSONObject jsonForm = registrationFormParams.getMiddle();
             String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
 
+            String baseEntityId = jsonForm.optString(CoreConstants.ENTITY_ID);
+
             if (CoreConstants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || CoreConstants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
                 JSONArray fields = registrationFormParams.getRight();
 
@@ -85,22 +93,16 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
                     // update task
                     TaskRepository taskRepository = ChwApplication.getInstance().getTaskRepository();
                     Task task = taskRepository.getTaskByIdentifier(getTaskIdentifier());
-
-                    //Get task status before updating
-                    Task.TaskStatus status = task.getStatus();
-                    if (status.equals(Task.TaskStatus.IN_PROGRESS)){ //Task was attended at the facility/Addo
-                        task.setBusinessStatus(org.smartregister.chw.util.Constants.TaskBusinessStatus.ATTENDED);
-                    }else if (status.equals(Task.TaskStatus.READY)){ //Task was not attended at the facility/Addo
-                        task.setBusinessStatus(org.smartregister.chw.util.Constants.TaskBusinessStatus.UNATTENDED);
-                    }
-
                     task.setStatus(Task.TaskStatus.COMPLETED);
                     taskRepository.addOrUpdate(task);
+
+                    //Create event
+                    createReferralFollowupEvent(jsonString, task.getIdentifier(), context().allSharedPreferences(), baseEntityId);
+
                 }
             }
 
             // update schedule
-            String baseEntityId = jsonForm.optString(CoreConstants.ENTITY_ID);
             updateReferralFollowUpVisitSchedule(baseEntityId);
             if (isComingFromReferralDetails) {
                 Intent intent = new Intent(this, ReferralRegisterActivity.class);
@@ -110,9 +112,15 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
 
             finish();
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Timber.e(e);
         }
+    }
+
+    private void createReferralFollowupEvent(String jsonString, String referralTaskId, AllSharedPreferences allSharedPreferences, String entityId) throws Exception {
+        final Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, setEntityId(jsonString, entityId), CoreConstants.TABLE_NAME.REFERRAL_FOLLOW_UP);
+        baseEvent.addIdentifier(REFERRAL_TASK_ID, referralTaskId);
+        NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
     }
 
     private void updateReferralFollowUpVisitSchedule(String baseEntityId) {

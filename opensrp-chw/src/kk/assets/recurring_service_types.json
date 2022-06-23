@@ -1914,7 +1914,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+4m"
+            "offset": "+5m"
           }
         }
       },
@@ -1928,7 +1928,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+5m"
+            "offset": "+6m"
           }
         }
       },
@@ -1942,7 +1942,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+6m"
+            "offset": "+7m"
           }
         }
       },
@@ -1956,7 +1956,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+7m"
+            "offset": "+8m"
           }
         }
       },
@@ -1970,7 +1970,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+8m"
+            "offset": "+9m"
           }
         }
       },
@@ -1984,7 +1984,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+9m"
+            "offset": "+10m"
           }
         }
       },
@@ -1998,7 +1998,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+10m"
+            "offset": "+11m"
           }
         }
       },
@@ -2012,27 +2012,13 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+11m"
+            "offset": "+12m"
           }
         }
       },
       {
         "id": "135",
         "name": "CCD child discipline10",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+1m"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+12m"
-          }
-        }
-      },
-      {
-        "id": "136",
-        "name": "CCD child discipline11",
         "schedule": {
           "due": {
             "reference": "dob",

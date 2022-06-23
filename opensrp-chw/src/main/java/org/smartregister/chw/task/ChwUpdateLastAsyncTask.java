@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 
+import org.joda.time.DateTime;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.ChildRegisterActivity;
 import org.smartregister.chw.activity.ReferralFollowupActivity;
@@ -14,6 +15,7 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.dao.ChwChildDao;
 import org.smartregister.chw.util.TaskUtils;
+import org.smartregister.chw.util.Utils;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.Task;
 
@@ -56,8 +58,12 @@ public class ChwUpdateLastAsyncTask extends UpdateLastAsyncTask {
 
         // Set the referral due button if the child has a referral due
         Task task = CoreReferralUtils.getTaskForEntity(baseEntityId, true);
-        if (task != null && task.getStatus() == Task.TaskStatus.READY){
-            setReferralDueButton(context, viewHolder.dueButton);
+        if (task != null){
+            DateTime taskAuthoredOn = task.getAuthoredOn();
+            long days = Utils.getTaskDuration(taskAuthoredOn);
+            if (task.getStatus() == Task.TaskStatus.READY && days >= 3){
+                setReferralDueButton(context, viewHolder.dueButton);
+            }
         }
 
     }
