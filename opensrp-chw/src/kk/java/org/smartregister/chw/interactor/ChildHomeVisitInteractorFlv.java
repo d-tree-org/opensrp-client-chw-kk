@@ -9,6 +9,7 @@ import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
+import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
@@ -146,6 +147,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDChildSafety(serviceWrapperMap);
             evaluateComplementaryFeeding(serviceWrapperMap);
             evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
+            evaluateMalnutritionScreening(serviceWrapperMap);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -701,6 +703,34 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(immunizationsTitle, immunizationsAction);
+    }
+
+    private void evaluateMalnutritionScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("KMC skin-to-skin counselling");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+
+        // Todo -> Compute overdue
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.malnutrition_screening, serviceIteration))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_malnutrition_screening")
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(malnutritionScreeningActionHelper)
+                .build();
+
+        actionList.put(context.getString(R.string.malnutrition_screening, serviceIteration), malnutritionScreeningAction);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {

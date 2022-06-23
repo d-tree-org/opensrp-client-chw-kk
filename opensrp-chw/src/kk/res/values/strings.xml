@@ -78,6 +78,7 @@
     <string name="ccd_toddler_danger_signs_subtitle">Danger signs</string>
     <string name="ccd_child_safety_subtitle">Counselled mother for child safety</string>
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
+    <string name="malnutrition_screening">Malnutrition/Anemia screening %s</string>
 
     <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
     <string name="ccd_introduction"> CCD : Introduction : %s </string>
