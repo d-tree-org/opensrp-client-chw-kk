@@ -706,7 +706,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateMalnutritionScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("KMC skin-to-skin counselling");
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Malnutrition Screening");
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
