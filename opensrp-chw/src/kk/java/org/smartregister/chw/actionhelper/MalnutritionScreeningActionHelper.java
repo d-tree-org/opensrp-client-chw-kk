@@ -15,6 +15,7 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
 
     String growthMonitoringSelectedKey = "";
     String growthMonitoringSelectedValue = "";
+    String palmPallorValue = "";
 
     @Override
     public void onPayloadReceived(String jsonString) {
@@ -22,6 +23,7 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
             JSONObject jsonObject = new JSONObject(jsonString);
             growthMonitoringSelectedKey = JsonFormUtils.getValue(jsonObject, "growth_monitoring");
             growthMonitoringSelectedValue = JsonFormUtils.getCheckBoxValue(jsonObject, "growth_monitoring");
+            palmPallorValue = JsonFormUtils.getValue(jsonObject, "palm_pallor");
         }catch (JSONException e){
             Timber.e(e);
         }
@@ -29,15 +31,21 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        if (growthMonitoringSelectedKey.equalsIgnoreCase("")) return "";
-        return MessageFormat.format(getContext().getString(R.string.growth_monitoring_subtitle), growthMonitoringSelectedValue);
+        if (growthMonitoringSelectedKey.isEmpty()) return "";
+        return getContext().getString(R.string.growth_monitoring_subtitle) +" "+ growthMonitoringSelectedValue;
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (growthMonitoringSelectedKey.equalsIgnoreCase("")) return BaseAncHomeVisitAction.Status.PENDING;
-        if (growthMonitoringSelectedKey.equalsIgnoreCase("growth_monitoring_no")) return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-        else if (growthMonitoringSelectedKey.equalsIgnoreCase("growth_monitoring_yes")) return BaseAncHomeVisitAction.Status.COMPLETED;
-        return BaseAncHomeVisitAction.Status.PENDING;
+        if (growthMonitoringSelectedKey.isEmpty() || palmPallorValue.isEmpty())
+            return BaseAncHomeVisitAction.Status.PENDING;
+
+        if (growthMonitoringSelectedKey.contains("growth_monitoring_no"))
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+
+        else if (growthMonitoringSelectedKey.contains("growth_monitoring_yes"))
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+
+        return BaseAncHomeVisitAction.Status.COMPLETED;
     }
 }
