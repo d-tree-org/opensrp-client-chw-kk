@@ -127,10 +127,11 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "toaster_notes",
+        "type": "label",
         "text": "{{child_hv_immunization.step1.has_clinic_card_note.text}}",
-        "label_text_style": "normal",
-        "toaster_type": "info",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true,
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -595,41 +596,6 @@
         }
       },
       {
-        "key": "received_ipv",
-        "type": "native_radio",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "label": "{{child_hv_immunization.step1.received_ipv.label}}",
-        "options": [
-          {
-            "key": "yes",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": "",
-            "text": "{{child_hv_immunization.step1.options.yes.text}}"
-          },
-          {
-            "key": "no",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": "",
-            "text": "{{child_hv_immunization.step1.options.no.text}}"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "{{child_hv_immunization.step1.v_required.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_immunizations_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "received_surua_rubella1",
         "type": "native_radio",
         "openmrs_entity_parent": "",
@@ -745,6 +711,42 @@
         "v_required": {
           "value": "true",
           "err": "{{child_hv_immunization.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "received_ipv",
+        "type": "native_radio",
+        "hidden": true,
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.received_ipv.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
         }
       }
     ]
