@@ -89,10 +89,19 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{child_hv_immunization.step1.wash_hands.text}}",
-        "label_text_style": "normal",
-        "toaster_type": "info"
+        "type": "label",
+        "has_bg": true,
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "text": "{{child_hv_immunization.step1.wash_hands.text}}"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "16dp"
       },
       {
         "key": "clinic_card",
@@ -139,6 +148,14 @@
             }
           }
         }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "16dp"
       },
       {
         "key": "received_bcg",
