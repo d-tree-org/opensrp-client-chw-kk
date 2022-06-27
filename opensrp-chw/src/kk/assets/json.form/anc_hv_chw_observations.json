@@ -66,13 +66,17 @@
             "key": "anyone_present_yes",
             "text": "{{anc_hv_chw_observations.step1.anyone_present.options.anyone_present_yes.yes.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           },
           {
             "key": "anyone_present_no",
             "text": "{{anc_hv_chw_observations.step1.anyone_present.options.anyone_present_no.no.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           }
         ],
         "v_required": {
@@ -93,25 +97,33 @@
             "key": "chk_children_below_eighteen",
             "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_children_below_eighteen.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_blood_relatives",
             "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_blood_relatives.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_elderly_living",
             "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_elderly_living.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           },
           {
             "key": "chk_people_outside",
             "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_people_outside.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           }
         ],
         "v_required": {
