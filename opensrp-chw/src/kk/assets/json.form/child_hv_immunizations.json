@@ -123,6 +123,23 @@
         }
       },
       {
+        "key": "has_clinic_card_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_immunization.step1.has_clinic_card_note.text}}",
+        "label_text_style": "normal",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "received_bcg",
         "type": "native_radio",
         "openmrs_entity_parent": "",
@@ -699,8 +716,6 @@
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "label_info_title": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.label_info_title}}",
-        "label_info_text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.label_info_title}}",
         "hint": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.hint}}",
         "values": [
           "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.values[0]}}",
