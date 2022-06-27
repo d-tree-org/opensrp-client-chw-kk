@@ -891,13 +891,20 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         @Override
         public String evaluateSubTitle() {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_psychological_changes), StringUtils.capitalize(postpartum_psychological_changes.trim().toLowerCase())));
-            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_postpartum_danger_sign), StringUtils.capitalize(postpartum_danger_sign.trim().toLowerCase())));
-            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_new_born_danger_sign), StringUtils.capitalize(newborn_danger_sign.trim().toLowerCase())));
-            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_immediate_newborn_care), StringUtils.capitalize(immediate_newborn_care.trim().toLowerCase())));
-            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant), StringUtils.capitalize(followup_hiv_exposed_infant.trim().toLowerCase())));
-            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_lam), StringUtils.capitalize(lam.trim().toLowerCase())));
-            stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_postpartum_family_planning), StringUtils.capitalize(postpartum_family_planning.trim().toLowerCase())));
+            if (StringUtils.isNotBlank(postpartum_psychological_changes))
+                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_psychological_changes), StringUtils.capitalize(postpartum_psychological_changes.trim().toLowerCase())));
+            if (StringUtils.isNotBlank(postpartum_danger_sign))
+                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_postpartum_danger_sign), StringUtils.capitalize(postpartum_danger_sign.trim().toLowerCase())));
+            if (StringUtils.isNotBlank(newborn_danger_sign))
+                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_new_born_danger_sign), StringUtils.capitalize(newborn_danger_sign.trim().toLowerCase())));
+            if (StringUtils.isNotBlank(immediate_newborn_care))
+                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_immediate_newborn_care), StringUtils.capitalize(immediate_newborn_care.trim().toLowerCase())));
+            if (StringUtils.isNotBlank(followup_hiv_exposed_infant))
+                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_followup_hiv_exposed_infant), StringUtils.capitalize(followup_hiv_exposed_infant.trim().toLowerCase())));
+            if (StringUtils.isNotBlank(lam))
+                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_preparation_lam), StringUtils.capitalize(lam.trim().toLowerCase())));
+            if (StringUtils.isNotBlank(postpartum_family_planning))
+                stringBuilder.append(MessageFormat.format("{0}: {1} \n", context.getString(R.string.anc_home_visit_postpartum_postpartum_family_planning), StringUtils.capitalize(postpartum_family_planning.trim().toLowerCase())));
 
             return stringBuilder.toString();
         }
