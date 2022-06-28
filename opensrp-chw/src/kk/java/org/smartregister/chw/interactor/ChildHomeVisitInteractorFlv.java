@@ -1,5 +1,6 @@
 package org.smartregister.chw.interactor;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -203,11 +204,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if ("Essential care breastfeeding -5 weeks".equalsIgnoreCase(serviceName)) return;
 
         // Get the very first breastfeeding visit
-        boolean firstBreastFeedingHappened;
-        List<Visit> breastFeedingServiceVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Breastfeeding");
+        boolean firstBreastFeedingHappened = false;
 
-        firstBreastFeedingHappened = breastFeedingServiceVisits.size() > 0;
-
+        if (StringUtils.isNotBlank(visitNumber)) {
+            firstBreastFeedingHappened = Integer.parseInt(visitNumber) > 1;
+        }
         String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
 
         NewBornCareBreastfeedingHelper helper = new NewBornCareBreastfeedingHelper(context, alert, firstBreastFeedingHappened, serviceWrapper);
