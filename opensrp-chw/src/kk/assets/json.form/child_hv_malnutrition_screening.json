@@ -52,7 +52,7 @@
       {
         "key": "child_growth_graph",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "label",
         "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.label}}",
@@ -63,7 +63,7 @@
       {
         "key": "growth_monitoring",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "label": "{{child_hv_malnutrition_screening.step1.growth_monitoring.label}}",
@@ -77,13 +77,17 @@
             "key": "growth_monitoring_yes",
             "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.options.growth_monitoring_yes.yes.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "growth_monitoring_yes"
           },
           {
             "key": "growth_monitoring_no",
             "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.options.growth_monitoring_no.no.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "growth_monitoring_no"
           }
         ],
         "v_required": {
@@ -94,7 +98,7 @@
       {
         "key": "advice_clinic_growth_monitoring",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "{{child_hv_malnutrition_screening.step1.advice_clinic_growth_monitoring.toaster_notes.text}}",
@@ -143,7 +147,7 @@
       {
         "key": "child_underweight",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "{{child_hv_malnutrition_screening.step1.child_underweight.toaster_notes.text}}",
@@ -183,7 +187,7 @@
       {
         "key": "praise_caregiver",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "{{child_hv_malnutrition_screening.step1.praise_caregiver.toaster_notes.text}}",
@@ -200,7 +204,7 @@
       {
         "key": "risk_malnutrition",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "{{child_hv_malnutrition_screening.step1.risk_malnutrition.toaster_notes.text}}",
@@ -217,7 +221,7 @@
       {
         "key": "muac_severely_malnurished",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "{{child_hv_malnutrition_screening.step1.muac_severely_malnurished.toaster_notes.text}}",
@@ -242,7 +246,7 @@
       {
         "key": "dont_touch_child_palm",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "label",
         "text": "{{child_hv_malnutrition_screening.step1.dont_touch_child_palm.label.text}}",
@@ -253,7 +257,7 @@
       {
         "key": "palm_pallor",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "label": "{{child_hv_malnutrition_screening.step1.palm_pallor.label}}",
@@ -267,13 +271,17 @@
             "key": "palm_pallor_yes",
             "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.options.palm_pallor_yes.yes.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "palm_pallor_yes"
           },
           {
             "key": "palm_pallor_no",
             "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.options.palm_pallor_no.no.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "palm_pallor_no"
           }
         ],
         "v_required": {
@@ -284,7 +292,7 @@
       {
         "key": "palm_pallor_referral",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
         "text": "{{child_hv_malnutrition_screening.step1.palm_pallor_referral.toaster_notes.text}}",
