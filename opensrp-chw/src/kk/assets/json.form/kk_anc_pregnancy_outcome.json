@@ -1277,7 +1277,7 @@
             "openmrs_entity": "",
             "openmrs_entity_id": "",
             "hint": "{{anc_pregnancy_outcome.step2.child_weight.hint.text}}",
-            "v_numeric_integer": {
+            "v_numeric": {
               "value": "true",
               "err": "{{anc_pregnancy_outcome.step2.child_weight.v_numeric_integer.err}}"
             },

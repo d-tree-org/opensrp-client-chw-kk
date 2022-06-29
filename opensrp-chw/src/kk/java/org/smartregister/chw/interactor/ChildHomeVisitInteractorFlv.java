@@ -1,5 +1,6 @@
 package org.smartregister.chw.interactor;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -46,6 +47,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import timber.log.Timber;
 
@@ -82,7 +85,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 ServiceWrapper communicationAssessmentServiceWrapper = serviceWrapperMap.get("CCD communication assessment");
                 if (communicationAssessmentServiceWrapper != null) {
                     String communicationAssessmentModuleName = communicationAssessmentServiceWrapper.getName();
-                    visitNumber = communicationAssessmentModuleName.substring(communicationAssessmentModuleName.length() - 1);
+                    visitNumber = getVisitNumberFromServiceName(communicationAssessmentModuleName);
                 }
             }
         } catch (Exception e) {
@@ -203,11 +206,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if ("Essential care breastfeeding -5 weeks".equalsIgnoreCase(serviceName)) return;
 
         // Get the very first breastfeeding visit
-        boolean firstBreastFeedingHappened;
-        List<Visit> breastFeedingServiceVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Breastfeeding");
+        boolean firstBreastFeedingHappened = false;
 
-        firstBreastFeedingHappened = breastFeedingServiceVisits.size() > 0;
-
+        if (StringUtils.isNotBlank(visitNumber)) {
+            firstBreastFeedingHappened = Integer.parseInt(visitNumber) > 1;
+        }
         String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
 
         NewBornCareBreastfeedingHelper helper = new NewBornCareBreastfeedingHelper(context, alert, firstBreastFeedingHappened, serviceWrapper);
@@ -326,7 +329,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.ccd_introduction, serviceIteration);
 
         // alert if overdue after 14 days
@@ -359,7 +362,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.ccd_development_screening, serviceIteration);
 
         // alert if overdue after 14 days
@@ -393,7 +396,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.ccd_communication_assessment, serviceIteration);
 
         // alert if overdue after 14 days
@@ -495,7 +498,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.complimentary_feeding, serviceIteration);
 
         // alert if overdue after 14 days
@@ -734,5 +737,16 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             translatedText = context.getString(R.string.month_of, period);
         }
         return translatedText;
+    }
+
+    private String getVisitNumberFromServiceName(String serviceName) {
+        final Pattern lastIntPattern = Pattern.compile("[^0-9]+([0-9]+)$");
+        Matcher matcher = lastIntPattern.matcher(serviceName);
+        if (matcher.find()) {
+            String someNumberStr = matcher.group(1);
+            assert someNumberStr != null;
+            return someNumberStr;
+        }
+        return "0";
     }
 }
