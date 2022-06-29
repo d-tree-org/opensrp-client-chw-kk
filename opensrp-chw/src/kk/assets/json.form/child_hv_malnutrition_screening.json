@@ -1,0 +1,312 @@
+{
+  "count": "1",
+  "encounter_type": "Home Visit - Malnutrition/Anemia screening",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_malnutrition_screening.step1.title}}",
+    "fields": [
+      {
+        "key": "child_growth_graph",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.label}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "growth_monitoring",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_malnutrition_screening.step1.growth_monitoring.label}}",
+        "text_color": "#000000",
+        "exclusive": [
+          "growth_monitoring_yes",
+          "growth_monitoring_no"
+        ],
+        "options": [
+          {
+            "key": "growth_monitoring_yes",
+            "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.options.growth_monitoring_yes.yes.text}}",
+            "text_size": "18px",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "growth_monitoring_yes"
+          },
+          {
+            "key": "growth_monitoring_no",
+            "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.options.growth_monitoring_no.no.text}}",
+            "text_size": "18px",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "growth_monitoring_no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_malnutrition_screening.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "advice_clinic_growth_monitoring",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_malnutrition_screening.step1.advice_clinic_growth_monitoring.toaster_notes.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_malnutrition_screening_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "range_graph",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_malnutrition_screening.step1.range_graph.hint}}",
+        "values": [
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[0]}}",
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[1]}}",
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[2]}}",
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[3]}}"
+        ],
+        "keys": [
+          "Above 2",
+          "Between 2 and -2",
+          "Between -2 and -3",
+          "Below -3"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_malnutrition_screening.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_malnutrition_screening_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "child_underweight",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_malnutrition_screening.step1.child_underweight.toaster_notes.text}}",
+        "text_color": "#000000",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_malnutrition_screening_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "child_growth_muac",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_malnutrition_screening.step1.child_growth_muac.hint}}",
+        "values": [
+          "{{child_hv_malnutrition_screening.step1.child_growth_muac.value[0]}}",
+          "{{child_hv_malnutrition_screening.step1.child_growth_muac.value[1]}}",
+          "{{child_hv_malnutrition_screening.step1.child_growth_muac.value[2]}}"
+        ],
+        "keys": [
+          "Green",
+          "Yellow",
+          "Red"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_malnutrition_screening.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "praise_caregiver",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_malnutrition_screening.step1.praise_caregiver.toaster_notes.text}}",
+        "text_color": "#000000",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_malnutrition_screening_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "risk_malnutrition",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_malnutrition_screening.step1.risk_malnutrition.toaster_notes.text}}",
+        "text_color": "#000000",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_malnutrition_screening_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "muac_severely_malnurished",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_malnutrition_screening.step1.muac_severely_malnurished.toaster_notes.text}}",
+        "text_color": "#000000",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_malnutrition_screening_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "16dp"
+      },
+      {
+        "key": "dont_touch_child_palm",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_malnutrition_screening.step1.dont_touch_child_palm.label.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "palm_pallor",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_malnutrition_screening.step1.palm_pallor.label}}",
+        "text_color": "#000000",
+        "exclusive": [
+          "palm_pallor_yes",
+          "palm_pallor_no"
+        ],
+        "options": [
+          {
+            "key": "palm_pallor_yes",
+            "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.options.palm_pallor_yes.yes.text}}",
+            "text_size": "18px",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "palm_pallor_yes"
+          },
+          {
+            "key": "palm_pallor_no",
+            "text": "{{child_hv_malnutrition_screening.step1.child_growth_graph.options.palm_pallor_no.no.text}}",
+            "text_size": "18px",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "palm_pallor_no"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_malnutrition_screening.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "palm_pallor_referral",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_malnutrition_screening.step1.palm_pallor_referral.toaster_notes.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_malnutrition_screening_relevance.yml"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_malnutrition_screening"
+}
