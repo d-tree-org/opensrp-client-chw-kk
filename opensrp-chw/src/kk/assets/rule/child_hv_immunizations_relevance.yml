@@ -93,7 +93,7 @@ actions:
 name: step1_received_ipv
 description: Received IPV
 priority: 1
-condition: "step1_vaccines_up_to_date == 'no' && !step1_vaccines_not_up_to_date_note.contains('family refused')"
+condition: "step1_received_pcv3 == 'no' && step1_vaccines_not_up_to_date_note != 'family refused'"
 actions:
   - "isRelevant = true"
 ---
@@ -115,5 +115,12 @@ name: step1_vaccines_not_up_to_date_note
 description: Vaccines not up to date note
 priority: 1
 condition: "step1_vaccines_up_to_date == 'no'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_has_clinic_card_note
+description: Has clinic card note
+priority: 1
+condition: "step1_clinic_card == 'yes'"
 actions:
   - "isRelevant = true"
