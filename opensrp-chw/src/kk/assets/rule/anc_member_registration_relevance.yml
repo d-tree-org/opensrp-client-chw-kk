@@ -2,16 +2,59 @@
 name: step1_last_menstrual_period
 description: lmp_entered relevance
 priority: 1
-condition: "!step1_last_menstrual_period_unknown.contains('lmp_unknown')"
+condition: "!step1_last_menstrual_period_unknown.contains('lmp_unknown') && !step1_intervention_consent.contains('intervention_consent_no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_last_menstrual_period
+description: lmp_entered calculated
+priority: 2
+condition: "true"
+actions:
+  - "calculation = helper.subtractDuration(step1_edd,'280d')"
+---
+name: step1_last_menstrual_period_unknown
+description: lmp unknown relevance
+priority: 1
+condition: "!step1_intervention_consent.contains('intervention_consent_no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_gest_age
+description: Gestation age relevance
+priority: 1
+condition: "!step1_intervention_consent.contains('intervention_consent_no') && step1_edd_note != ''"
+actions:
+  - "calculation = (helper.getDifferenceDays(helper.subtractDuration(step1_edd_note,'280d')) -helper.getDifferenceDays(helper.getDateToday()))/7"
+---
+name: step1_gest_age_note
+description: Gestetional age relevance
+priority: 1
+condition: "!step1_intervention_consent.contains('intervention_consent_no')"
+actions:
+  - "isRelevant = true"
+  - "calculation = step1_gest_age + ' ' + step1_weeks"
+---
+name: step1_edd_note
+description: EDD Note relevance
+priority: 1
+condition: "!step1_intervention_consent.contains('intervention_consent_no')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_edd
-description: edd relevance
+description: EDD relevance
 priority: 1
-condition: "step1_last_menstrual_period_unknown.contains('lmp_unknown')"
+condition: "!step1_intervention_consent.contains('intervention_consent_no') && step1_last_menstrual_period_unknown.contains('lmp_unknown')"
 actions:
   - "isRelevant = true"
+---
+name: step1_edd
+description: EDD calculation
+priority: 2
+condition: "true"
+actions:
+  - "calculation = step1_last_menstrual_period != '' ?  helper.addDuration(step1_last_menstrual_period,'280d') : ''"
 ---
 name: step1_no_surv_children
 description: no of surviving children
