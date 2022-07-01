@@ -1,4 +1,11 @@
 ---
+name: step1_edi_id
+description: EDI ID RELEVANCE
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_first_and_middle_name
 description: First and middle name relevance
 priority: 1

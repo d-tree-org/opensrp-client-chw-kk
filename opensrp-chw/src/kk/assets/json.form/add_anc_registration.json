@@ -100,6 +100,13 @@
         "v_regex": {
           "value": "^[0-9]{1,6}$",
           "err": "{{add_anc_registration.step1.ediid.v_max.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
         }
       },
       {
