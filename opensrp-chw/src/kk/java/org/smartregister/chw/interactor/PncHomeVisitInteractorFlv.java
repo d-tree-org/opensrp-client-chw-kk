@@ -73,7 +73,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         visitSummary = getVisitSummary(memberObject.getBaseEntityId());
 
         try {
-            evaluateLocation();
+            evaluateVisitLocation();
             evaluateDangerSignsMother(visitSummary);
             evaluateMaternalNutrition(visitSummary);
             evaluateHIVGeneralInfo(visitSummary);
@@ -130,7 +130,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
     }
 
-    private void evaluateLocation() throws BaseAncHomeVisitAction.ValidationException {
+    private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.visit_location))
                 .withOptional(false)
                 .withFormName("hv_visit_location")
