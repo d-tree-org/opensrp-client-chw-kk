@@ -9,6 +9,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -79,6 +80,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         dateMap.putAll(ContactUtil.getContactWeeks(isFirst, lastContact, lastMenstrualPeriod));
 
+        evaluateLocation(actionList, details, context);
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
         evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);
@@ -125,6 +127,19 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         }
 
         return visit_number;
+    }
+
+    private void evaluateLocation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                  Map<String, List<VisitDetail>> details,
+                                  final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.visit_location))
+                .withDetails(details)
+                .withOptional(false)
+                .withFormName("hv_visit_location")
+                .withHelper(new VisitLocationActionHelper(context))
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.visit_location), action);
     }
 
     private void evaluateDangerSigns(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,

@@ -97,6 +97,9 @@
 
     <string name="growth_monitoring_subtitle">Ufuatiliaji wa makuzi</string>
 
+    <string name="visit_location"> Eneo la tembeleo </string>
+    <string name="location_captured"> Eneo la tembeleo limeshachukuliwa </string>
+
     <string name="menu_pnc">Waliojifungua</string>
 
 </resources>

@@ -17,6 +17,7 @@ import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
+import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
@@ -132,7 +133,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                     childAgeInMonth =  Integer.parseInt(childMonth);
                 }
             }
-
+            evaluateVisitLocation();
             evaluateNewBornCareIntro(serviceWrapperMap);
             evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
@@ -159,6 +160,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         }
     }
 
+    private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.visit_location))
+                .withOptional(false)
+                .withFormName("hv_visit_location")
+                .withHelper(new VisitLocationActionHelper(context))
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.visit_location), action);
+    }
 
     protected void evaluateToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
