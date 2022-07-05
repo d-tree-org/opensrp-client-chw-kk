@@ -9,6 +9,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -135,6 +136,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
                 .withDetails(details)
                 .withOptional(false)
                 .withFormName("hv_visit_location")
+                .withHelper(new VisitLocationActionHelper(context))
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .build();
         actionList.put(context.getString(R.string.visit_location), action);

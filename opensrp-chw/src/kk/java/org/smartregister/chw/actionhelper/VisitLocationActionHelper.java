@@ -36,8 +36,11 @@ public class VisitLocationActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        if (gpsLocation.isEmpty()) return "";
-        return getContext().getString(R.string.location_captured) ;
+        if (gpsLocation != null && !gpsLocation.isEmpty()) {
+            return context.getString(R.string.location_captured);
+        }else{
+            return "";
+        }
     }
 
     @Override
@@ -46,4 +49,5 @@ public class VisitLocationActionHelper extends HomeVisitActionHelper {
             return BaseAncHomeVisitAction.Status.PENDING;
         return BaseAncHomeVisitAction.Status.COMPLETED;
     }
+
 }
