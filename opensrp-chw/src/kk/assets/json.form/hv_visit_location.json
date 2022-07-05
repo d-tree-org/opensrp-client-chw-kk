@@ -74,7 +74,11 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "163277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "gps",
-        "openmrs_data_type": "text"
+        "openmrs_data_type": "text",
+        "v_required": {
+          "value": "true",
+          "err": "{{hv_visit_location.step1.v_required.err}}"
+        }
       }
     ]
   },
