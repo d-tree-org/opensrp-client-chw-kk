@@ -2,6 +2,7 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
@@ -46,9 +47,12 @@ public class PncInfectionPreventionControlActionHelper extends HomeVisitActionHe
 
     @Override
     public String evaluateSubTitle() {
-        String electricityStatus = MessageFormat.format("{0}: {1}", context.getString(R.string.pnc_hv_ipc_has_electricity), hasElectricity.equalsIgnoreCase("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
-        String latrineStatus = MessageFormat.format("{0}: {1}", context.getString(R.string.pnc_hv_ipc_has_latrine), hasLatrine);;
-        return MessageFormat.format("{0} \n{1}", electricityStatus, latrineStatus);
+        if (StringUtils.isNotBlank(hasElectricity)) {
+            String electricityStatus = MessageFormat.format("{0}: {1}", context.getString(R.string.pnc_hv_ipc_has_electricity), hasElectricity.equalsIgnoreCase("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
+            String latrineStatus = MessageFormat.format("{0}: {1}", context.getString(R.string.pnc_hv_ipc_has_latrine), hasLatrine);
+            return MessageFormat.format("{0} \n{1}", electricityStatus, latrineStatus);
+        }
+        return null;
     }
 
     @Override

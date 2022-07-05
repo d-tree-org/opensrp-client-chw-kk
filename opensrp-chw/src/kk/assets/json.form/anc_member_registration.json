@@ -111,7 +111,7 @@
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "anc_member_registration_calculation.yml"
+              "rules-file": "anc_member_registration_relevance.yml"
             }
           }
         },
@@ -137,7 +137,14 @@
             "text_size": "18px",
             "value": "false"
           }
-        ]
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "edd",
@@ -151,7 +158,7 @@
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "anc_member_registration_calculation.yml"
+              "rules-file": "intervention_consent_nointervention_consent_no.yml"
             }
           }
         },
@@ -181,6 +188,13 @@
               "rules-file": "anc_member_registration_calculation.yml"
             }
           }
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -205,6 +219,13 @@
               "rules-file": "anc_member_registration_calculation.yml"
             }
           }
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -216,7 +237,7 @@
         "calculation": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "anc_member_registration_calculation.yml"
+              "rules-file": "anc_member_registration_relevance.yml"
             }
           }
         }
@@ -244,6 +265,13 @@
         "v_max": {
           "value": "45",
           "err": "{{anc_member_registration.step1.no_prev_preg.v_max.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -493,6 +521,13 @@
           "Single": "",
           "Divorced": "",
           "Widowed": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -509,6 +544,13 @@
         "v_required": {
           "value": false,
           "err": "{{anc_member_registration.step1.phone_number.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -534,6 +576,13 @@
         "openmrs_choice_ids": {
           "Yes": "",
           "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -657,6 +706,13 @@
         "openmrs_choice_ids": {
           "Yes": "",
           "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -703,7 +759,14 @@
             "text_size": "18px",
             "value": "false"
           }
-        ]
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "accessibility_issue_other",
@@ -740,6 +803,13 @@
         "openmrs_choice_ids": {
           "Yes": "",
           "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -815,7 +885,14 @@
             "text_size": "18px",
             "value": "false"
           }
-        ]
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "anc_member_registration_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "economic_activity_other",

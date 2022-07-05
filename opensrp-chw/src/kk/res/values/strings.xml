@@ -126,4 +126,6 @@
     <string name="visit_location"> Visit Location </string>
     <string name="location_captured"> Visit location has been captured </string>
 
+    <string name="menu_pnc">PNC</string>
+
 </resources>
