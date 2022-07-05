@@ -44,7 +44,7 @@ actions:
 name: step1_water_availability
 description: Chw confirms if water is available
 priority: 1
-condition: "ste1_household_washhands == 'sink' || ste1_household_washhands == 'dwelling' || ste1_household_washhands == 'yard' || ste1_household_washhands == 'mobile_object' || ste1_household_washhands == 'other'"
+condition: "step1_household_washhands == 'sink' || step1_household_washhands == 'dwelling' || step1_household_washhands == 'yard' || step1_household_washhands == 'mobile_object' || step1_household_washhands == 'other'"
 actions:
   - "isRelevant = true"
 ---
