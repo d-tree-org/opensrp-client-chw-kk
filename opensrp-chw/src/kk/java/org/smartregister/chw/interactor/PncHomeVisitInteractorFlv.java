@@ -153,8 +153,8 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         String visitID = visitID = visitSummary.getVisitID();
 
-        if (visitID == null || !visitID.equalsIgnoreCase("1")
-                || !visitID.equalsIgnoreCase("3") ) return;
+        if (visitID == null || visitID.equalsIgnoreCase("8") || visitID.equalsIgnoreCase("21")
+                || visitID.equalsIgnoreCase("35") ) return;
 
         String title = context.getString(R.string.postpartum_psychological_changes);
 
