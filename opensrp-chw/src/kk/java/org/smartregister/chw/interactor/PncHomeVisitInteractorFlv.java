@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.PncDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.PncInfectionPreventionControlActionHelper;
+import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -72,7 +73,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         visitSummary = getVisitSummary(memberObject.getBaseEntityId());
 
         try {
-
+            evaluateLocation();
             evaluateDangerSignsMother(visitSummary);
             evaluateMaternalNutrition(visitSummary);
             evaluateHIVGeneralInfo(visitSummary);
@@ -127,6 +128,16 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
                 return null;
         }
 
+    }
+
+    private void evaluateLocation() throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.visit_location))
+                .withOptional(false)
+                .withFormName("hv_visit_location")
+                .withHelper(new VisitLocationActionHelper(context))
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.visit_location), action);
     }
 
     private void evaluateInfectionPreventionControl(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
