@@ -65,7 +65,7 @@ actions:
 name: step1_soap_observed
 description: What type of soap did the chw observe
 priority: 1
-condition: "step1_soap_availability_observe = 'yes'"
+condition: "step1_soap_availability_observe == 'yes'"
 actions:
   - "isRelevant = true"
 ---
