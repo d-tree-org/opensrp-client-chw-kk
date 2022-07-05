@@ -79,6 +79,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         dateMap.putAll(ContactUtil.getContactWeeks(isFirst, lastContact, lastMenstrualPeriod));
 
+        evaluateLocation(actionList, details, context);
         evaluateDangerSigns(actionList, details, context);
         evaluateBirthPreparedness(actionList, details, memberObject, dateMap, context);
         evaluateHIVAIDSGeneralInformation(actionList, memberObject, context);
@@ -125,6 +126,18 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         }
 
         return visit_number;
+    }
+
+    private void evaluateLocation(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
+                                  Map<String, List<VisitDetail>> details,
+                                  final Context context) throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.visit_location))
+                .withDetails(details)
+                .withOptional(false)
+                .withFormName("hv_visit_location")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.visit_location), action);
     }
 
     private void evaluateDangerSigns(LinkedHashMap<String, BaseAncHomeVisitAction> actionList,
