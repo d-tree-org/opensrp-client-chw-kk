@@ -254,7 +254,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "165310AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "button",
-        "hint": "Save and Refer to Health Facility",
+        "hint": "{{anc_hv_danger_signs.step1.save_n_refer.hint}}",
         "btn_bg_color": "#CF0800",
         "action": {
           "behaviour": "refer"
