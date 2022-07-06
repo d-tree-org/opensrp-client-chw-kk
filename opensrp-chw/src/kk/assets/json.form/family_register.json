@@ -707,7 +707,8 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "1438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "hidden",
+        "type": "edit_text",
+        "hidden": "true",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
