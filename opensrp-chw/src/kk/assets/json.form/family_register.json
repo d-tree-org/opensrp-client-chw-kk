@@ -209,23 +209,6 @@
         "openmrs_entity_id": "",
         "type": "spacer",
         "spacer_height": "15dp"
-      },
-      {
-        "key": "no_consent_note",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "{{family_register.step1.no_consent.hint}}",
-        "read_only": true,
-        "danger": true,
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-register-relevance.yml"
-            }
-          }
-        }
       }
     ],
     "next": "step2"
@@ -260,6 +243,13 @@
         "v_regex": {
           "value": "^[0-9]{1,6}$",
           "err": "{{family_register.step2.ediid.v_max.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
         }
       },
       {
@@ -717,7 +707,8 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "1438AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "hidden",
+        "type": "edit_text",
+        "hidden": "true",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
@@ -738,9 +729,10 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
         "openmrs_entity_id": "",
-        "type": "edit_text",
-        "hint": "{{family_register.step2.consent_notification.hint}}",
-        "read_only": true,
+        "type": "toaster_notes",
+        "text": "{{family_register.step2.consent_notification.hint}}",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
         "relevance": {
           "rules-engine": {
             "ex-rules": {

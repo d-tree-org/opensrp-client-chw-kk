@@ -187,3 +187,10 @@ priority: 1
 condition: "step1_fam_consent.contains('fam_consent_no')"
 actions:
   - "isRelevant = true"
+---
+name: step2_edi_id
+description: Identification id
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
