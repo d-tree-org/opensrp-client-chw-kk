@@ -47,7 +47,7 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "{{pnc_hv_postpartum_physiological_changes.step1.title}}",
+    "title": "{{pnc_hv_postpartum_psychological_changes.step1.title}}",
     "fields": [
       {
         "key": "postpartum_physiological_changes_counselling",

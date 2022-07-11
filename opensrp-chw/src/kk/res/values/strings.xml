@@ -127,5 +127,5 @@
     <string name="location_captured"> Visit location has been captured </string>
 
     <string name="menu_pnc">PNC</string>
-
+    <string name="edit_anc_registration_form_title">ECD intervention</string>
 </resources>
