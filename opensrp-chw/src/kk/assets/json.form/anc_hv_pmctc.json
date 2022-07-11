@@ -287,11 +287,13 @@
         "key": "pmtct_bango_kitita_reference",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "pmtct_bango_kitita_reference",
         "type": "label",
+        "has_bg": true,
         "text": "{{anc_hv_pmctc.step1.pmtct_bango_kitita_reference.text}}",
-        "label_text_style": "italic",
-        "text_color": "#C0C0C0"
+        "bg_color": "#f595df",
+        "text_color": "#000000",
+        "label_text_style": "italic"
       },
       {
         "key": "hiv_positive_women_support_group_note",

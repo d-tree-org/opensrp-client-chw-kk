@@ -406,11 +406,13 @@
         "key": "continue_bango_kitita",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
+        "openmrs_entity_id": "continue_bango_kitita",
         "text": "{{anc_hv_nutrition_counselling.step1.continue_bango_kitita.toaster}}",
-        "text_color": "#2C0000",
-        "toaster_type": "warning"
+        "type": "label",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "text_color": "#000000",
+        "label_text_style": "italic"
       }
     ]
   },

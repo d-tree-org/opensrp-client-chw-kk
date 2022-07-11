@@ -53,10 +53,13 @@
         "key": "malaria_bango_kitita_reference",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "malaria_bango_kitita_reference",
         "type": "label",
         "text": "{{anc_hv_malaria.step1.malaria_heading.text}}",
-        "text_color": "#000000"
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
       },
       {
         "key": "sleep_under_mosquito_net",
