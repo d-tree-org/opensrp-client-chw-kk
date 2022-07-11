@@ -779,12 +779,13 @@
         "key": "infection_prevention_control_counselling_bango_kitita",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "infection_prevention_control_counselling_bango_kitita",
         "type": "label",
         "text": "{{pnc_hv_infection_prevention_control.step1.infection_prevention_control_counselling_bango_kitita.text}}",
-        "text_color": "#2D2E2D",
-        "label_text_style": "italic",
-        "has_bg": true
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "text_color": "#000000",
+        "label_text_style": "italic"
       }
     ]
   },
