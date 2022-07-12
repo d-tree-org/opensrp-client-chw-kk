@@ -105,11 +105,13 @@
         "key": "immediate_new_born_care_counselling_bango_kitita",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
+        "openmrs_entity_id": "immediate_new_born_care_counselling_bango_kitita",
         "text": "{{child_hv_new_born_care_intro.step1.new_born_care_counselling_bango_kitita.text}}",
-        "label_text_style": "normal",
-        "toaster_type": "info",
+        "type": "label",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "text_color": "#000000",
+        "label_text_style": "italic",
         "relevance": {
           "rules-engine": {
             "ex-rules": {

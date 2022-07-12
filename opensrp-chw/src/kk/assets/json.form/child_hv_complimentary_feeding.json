@@ -86,12 +86,13 @@
         "key": "comp_feed_refer_bango_kitita",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "comp_feed_refer_bango_kitita",
         "type": "label",
         "text": "{{child_hv_complimentary_feeding.step1.comp_feed_refer_bango_kitita.text}}",
         "text_color": "#000000",
         "label_text_style": "italic",
-        "has_bg": false
+        "has_bg": true,
+        "bg_color": "#f595df"
       },
       {
         "key": "comp_feed_counselling_status",
