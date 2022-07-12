@@ -13,13 +13,6 @@ condition: "step1_member_consent.contains('member_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step1_preferred_name
-description: Preferred name relevance
-priority: 1
-condition: "step1_member_consent.contains('member_consent_yes')"
-actions:
-  - "isRelevant = true"
----
 name: step1_dob_unknown
 description: Unknown date of birth relevance
 priority: 1
