@@ -1,5 +1,6 @@
 package org.smartregister.chw.interactor;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -9,12 +10,14 @@ import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
+import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
+import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
@@ -46,6 +49,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import timber.log.Timber;
 
@@ -82,7 +87,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 ServiceWrapper communicationAssessmentServiceWrapper = serviceWrapperMap.get("CCD communication assessment");
                 if (communicationAssessmentServiceWrapper != null) {
                     String communicationAssessmentModuleName = communicationAssessmentServiceWrapper.getName();
-                    visitNumber = communicationAssessmentModuleName.substring(communicationAssessmentModuleName.length() - 1);
+                    visitNumber = getVisitNumberFromServiceName(communicationAssessmentModuleName);
                 }
             }
         } catch (Exception e) {
@@ -128,7 +133,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                     childAgeInMonth =  Integer.parseInt(childMonth);
                 }
             }
-
+            evaluateVisitLocation();
             evaluateNewBornCareIntro(serviceWrapperMap);
             evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
@@ -146,6 +151,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDChildSafety(serviceWrapperMap);
             evaluateComplementaryFeeding(serviceWrapperMap);
             evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
+            evaluateMalnutritionScreening(serviceWrapperMap);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -154,6 +160,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         }
     }
 
+    private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.visit_location))
+                .withOptional(false)
+                .withFormName("hv_visit_location")
+                .withHelper(new VisitLocationActionHelper(context))
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.visit_location), action);
+    }
 
     protected void evaluateToddlerDangerSign(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Toddler danger sign");
@@ -203,11 +218,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if ("Essential care breastfeeding -5 weeks".equalsIgnoreCase(serviceName)) return;
 
         // Get the very first breastfeeding visit
-        boolean firstBreastFeedingHappened;
-        List<Visit> breastFeedingServiceVisits = getVisitRepository().getVisits(memberObject.getBaseEntityId(), "Essential New Born Care: Breastfeeding");
+        boolean firstBreastFeedingHappened = false;
 
-        firstBreastFeedingHappened = breastFeedingServiceVisits.size() > 0;
-
+        if (StringUtils.isNotBlank(visitNumber)) {
+            firstBreastFeedingHappened = Integer.parseInt(visitNumber) > 1;
+        }
         String title = getBreastfeedingServiceTittle(serviceWrapper.getName());
 
         NewBornCareBreastfeedingHelper helper = new NewBornCareBreastfeedingHelper(context, alert, firstBreastFeedingHappened, serviceWrapper);
@@ -283,6 +298,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withFormName("child_hv_neonatal_danger_signs")
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withHelper(neonatalDangerSignsActionHelper)
                 .build();
@@ -311,6 +327,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withDetails(details)
                 .withFormName("child_hv_kmc_skin_to_skin_counselling")
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
                 .withHelper(skinToSkinCounsellingHelper)
                 .build();
@@ -326,7 +343,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.ccd_introduction, serviceIteration);
 
         // alert if overdue after 14 days
@@ -359,7 +376,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.ccd_development_screening, serviceIteration);
 
         // alert if overdue after 14 days
@@ -393,7 +410,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.ccd_communication_assessment, serviceIteration);
 
         // alert if overdue after 14 days
@@ -495,7 +512,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.complimentary_feeding, serviceIteration);
 
         // alert if overdue after 14 days
@@ -681,6 +698,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         final String serviceName = serviceWrapper.getName();
 
+        // Check if it is a dummy -5 weeks service that is there to re-set milestone to 0 before start 1 months recurring
+        if ("Immunizations  -5 weeks".equalsIgnoreCase(serviceName)) return;
+
         String[] serviceNameSplit = serviceName.split(" ");
         String period = serviceNameSplit[serviceNameSplit.length - 2];
         String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
@@ -701,6 +721,35 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(immunizationsTitle, immunizationsAction);
+    }
+
+    private void evaluateMalnutritionScreening(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Malnutrition Screening");
+        if (serviceWrapper == null) return;
+
+        Alert alert = serviceWrapper.getAlert();
+        if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
+
+        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+
+        // Todo -> Compute overdue
+        boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
+
+        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.malnutrition_screening, serviceIteration))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_malnutrition_screening")
+                .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(malnutritionScreeningActionHelper)
+                .build();
+
+        actionList.put(context.getString(R.string.malnutrition_screening, serviceIteration), malnutritionScreeningAction);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
@@ -734,5 +783,16 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             translatedText = context.getString(R.string.month_of, period);
         }
         return translatedText;
+    }
+
+    private String getVisitNumberFromServiceName(String serviceName) {
+        final Pattern lastIntPattern = Pattern.compile("[^0-9]+([0-9]+)$");
+        Matcher matcher = lastIntPattern.matcher(serviceName);
+        if (matcher.find()) {
+            String someNumberStr = matcher.group(1);
+            assert someNumberStr != null;
+            return someNumberStr;
+        }
+        return "0";
     }
 }

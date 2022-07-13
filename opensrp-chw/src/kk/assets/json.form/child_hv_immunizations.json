@@ -89,10 +89,19 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{child_hv_immunization.step1.wash_hands.text}}",
-        "label_text_style": "normal",
-        "toaster_type": "info"
+        "type": "label",
+        "has_bg": true,
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "text": "{{child_hv_immunization.step1.wash_hands.text}}"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "16dp"
       },
       {
         "key": "clinic_card",
@@ -121,6 +130,32 @@
           "value": "true",
           "err": "{{child_hv_immunization.step1.v_required.err}}"
         }
+      },
+      {
+        "key": "has_clinic_card_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_immunization.step1.has_clinic_card_note.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "16dp"
       },
       {
         "key": "received_bcg",
@@ -578,41 +613,6 @@
         }
       },
       {
-        "key": "received_ipv",
-        "type": "native_radio",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "label": "{{child_hv_immunization.step1.received_ipv.label}}",
-        "options": [
-          {
-            "key": "yes",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": "",
-            "text": "{{child_hv_immunization.step1.options.yes.text}}"
-          },
-          {
-            "key": "no",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "openmrs_entity_parent": "",
-            "text": "{{child_hv_immunization.step1.options.no.text}}"
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "{{child_hv_immunization.step1.v_required.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_immunizations_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "received_surua_rubella1",
         "type": "native_radio",
         "openmrs_entity_parent": "",
@@ -699,8 +699,6 @@
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "label_info_title": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.label_info_title}}",
-        "label_info_text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.label_info_title}}",
         "hint": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.hint}}",
         "values": [
           "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.values[0]}}",
@@ -730,6 +728,42 @@
         "v_required": {
           "value": "true",
           "err": "{{child_hv_immunization.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "received_ipv",
+        "type": "native_radio",
+        "hidden": true,
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.received_ipv.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
         }
       }
     ]

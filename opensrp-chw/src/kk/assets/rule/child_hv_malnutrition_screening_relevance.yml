@@ -1,0 +1,49 @@
+---
+name: step1_advice_clinic_growth_monitoring
+description: Advice clinic growth monitoring
+priority: 1
+condition: "step1_growth_monitoring.contains('growth_monitoring_no')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_range_graph
+description: Range graph
+priority: 1
+condition: "step1_growth_monitoring.contains('growth_monitoring_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_child_underweight
+description: Child underweight
+priority: 1
+condition: "step1_range_graph == 'Between -2 and -3' || step1_range_graph == 'Below -3'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_praise_caregiver
+description: Praise caregiver
+priority: 1
+condition: "step1_child_growth_muac == 'Green'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_risk_malnutrition
+description: Risk malnutrition
+priority: 1
+condition: "step1_child_growth_muac == 'Yellow'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_muac_severely_malnurished
+description: Muac severely malnurished
+priority: 1
+condition: "step1_child_growth_muac == 'Red'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_palm_pallor_referral
+description: Palm pallor referral
+priority: 1
+condition: "step1_palm_pallor.contains('palm_pallor_yes')"
+actions:
+  - "isRelevant = true"

@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Postpartum care for mother",
+  "encounter_type": "Home Visit - Location",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -47,31 +47,36 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "{{pnc_hv_postpartum_care_for_mother.step1.title}}",
+    "title": "{{hv_visit_location.step1.title}}",
     "fields": [
       {
-        "key": "postpartum_care_mother_counselling",
+        "key": "capture_location_message ",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{pnc_hv_postpartum_care_for_mother.step1.postpartum_care_mother_counselling.text}}",
-        "text_color": "#2D2E2D",
-        "toaster_type": "info"
+        "type": "label",
+        "has_bg": true,
+        "text": "{{hv_visit_location.step1.capture_location_message.text}}",
+        "text_color": "#000000"
       },
+
       {
-        "key": "postpartum_care_mother_counselling_bango_kitita",
+        "key": "spacer",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "postpartum_care_mother_counselling_bango_kitita",
-        "type": "label",
-        "text": "{{pnc_hv_postpartum_care_for_mother.step1.postpartum_care_mother_counselling_bango_kitita.text}}",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "text_color": "#000000",
-        "label_text_style": "italic"
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
+        "key": "gps",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "163277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "gps",
+        "openmrs_data_type": "text"
       }
     ]
   },
-  "properties_file_name": "pnc_hv_postpartum_care_for_mother"
+  "properties_file_name": "hv_visit_location"
 }

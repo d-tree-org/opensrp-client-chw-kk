@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.PncDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.PncInfectionPreventionControlActionHelper;
+import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -72,7 +73,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         visitSummary = getVisitSummary(memberObject.getBaseEntityId());
 
         try {
-
+            evaluateVisitLocation();
             evaluateDangerSignsMother(visitSummary);
             evaluateMaternalNutrition(visitSummary);
             evaluateHIVGeneralInfo(visitSummary);
@@ -129,11 +130,22 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
     }
 
+    private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.visit_location))
+                .withOptional(false)
+                .withFormName("hv_visit_location")
+                .withHelper(new VisitLocationActionHelper(context))
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.visit_location), action);
+    }
+
     private void evaluateInfectionPreventionControl(PncVisitAlertRule visitSummary) throws BaseAncHomeVisitAction.ValidationException {
 
         String visitID = visitID = visitSummary.getVisitID();
 
-        if (visitID == null || !visitID.equalsIgnoreCase("1")) return;
+        if (visitID == null || visitID.equalsIgnoreCase("3") || visitID.equalsIgnoreCase("8") ||
+                visitID.equalsIgnoreCase("21")) return;
 
         String title = context.getString(R.string.infection_prevention_control);
 
@@ -153,8 +165,8 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         String visitID = visitID = visitSummary.getVisitID();
 
-        if (visitID == null || !visitID.equalsIgnoreCase("1")
-                || !visitID.equalsIgnoreCase("3") ) return;
+        if (visitID == null || visitID.equalsIgnoreCase("8") || visitID.equalsIgnoreCase("21")
+                || visitID.equalsIgnoreCase("35") ) return;
 
         String title = context.getString(R.string.postpartum_psychological_changes);
 
@@ -173,8 +185,8 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         String visitID = visitID = visitSummary.getVisitID();
 
-        if (visitID == null || !visitID.equalsIgnoreCase("3")
-                || !visitID.equalsIgnoreCase("21") || !visitID.equalsIgnoreCase("35")) return;
+        if (visitID == null || visitID.equalsIgnoreCase("1")
+                || visitID.equalsIgnoreCase("8")) return;
 
         String title = context.getString(R.string.follow_up_hiv_exposed_infant);
 
@@ -193,7 +205,8 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         String visitID = visitID = visitSummary.getVisitID();
 
-        if (visitID == null || !visitID.equalsIgnoreCase("21") || !visitID.equalsIgnoreCase("35")) return;
+        if (visitID == null || visitID.equalsIgnoreCase("1") || visitID.equalsIgnoreCase("3") ||
+                visitID.equalsIgnoreCase("8")) return;
 
         String title = context.getString(R.string.pnc_postpartum_family_planning);
 
@@ -212,8 +225,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
             String visitID = visitID = visitSummary.getVisitID();
 
-            if (visitID == null || !visitID.equalsIgnoreCase("1") || !visitID.equalsIgnoreCase("3")
-                    || !visitID.equalsIgnoreCase("8")) return;
+            if (visitID == null || visitID.equalsIgnoreCase("21") || visitID.equalsIgnoreCase("35")) return;
 
             String title = context.getString(R.string.pnc_postpartum_mother_care);
 

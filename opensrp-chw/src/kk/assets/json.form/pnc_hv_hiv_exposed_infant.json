@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "PNC Home Visit - Postpartum Psychological Changes",
+  "encounter_type": "PNC Home Visit - Follow up for HIV exposed Infant",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -47,30 +47,31 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "{{pnc_hv_postpartum_physiological_changes.step1.title}}",
+    "title": "{{pnc_hv_hiv_exposed_infant.step1.title}}",
     "fields": [
       {
-        "key": "postpartum_physiological_changes_counselling",
+        "key": "follow_up_hiv_exposed_infant_counseling",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "{{pnc_hv_postpartum_physiological_changes.step1.postpartum_physiological_changes_counselling.text}}",
+        "text": "{{pnc_hv_hiv_exposed_infant.step1.follow_up_hiv_exposed_infant_counseling.text}}",
         "text_color": "#2D2E2D",
         "toaster_type": "info"
       },
       {
-        "key": "postpartum_physiological_changes_counselling_bango_kitita",
+        "key": "follow_up_hiv_exposed_infant_counseling_bango_kitita",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "follow_up_hiv_exposed_infant_counseling_bango_kitita",
         "type": "label",
-        "text": "{{pnc_hv_postpartum_physiological_changes.step1.postpartum_physiological_changes_counselling_bango_kitita.text}}",
-        "text_color": "#2D2E2D",
-        "label_text_style": "italic",
-        "has_bg": true
+        "text": "{{pnc_hv_hiv_exposed_infant.step1.follow_up_hiv_exposed_infant_counseling_bango_kitita.text}}",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "text_color": "#000000",
+        "label_text_style": "italic"
       }
     ]
   },
-  "properties_file_name": "pnc_hv_postpartum_physiological_changes"
+  "properties_file_name": "pnc_hv_hiv_exposed_infant"
 }

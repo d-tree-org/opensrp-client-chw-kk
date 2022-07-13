@@ -42,6 +42,7 @@
     <string name="ccd_toddler_danger_signs_subtitle">Dalili za hatari za mtoto</string>
     <string name="ccd_child_safety_subtitle">Mama ameelimishwa juu ya usalama wa mtoto</string>
     <string name="ccd_child_discipline_subtitle">Mama anavyomrekebisha mtoto</string>
+    <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu %s</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
     <string name="ccd_introduction"> CCD : Mwanzo %s </string>
@@ -88,8 +89,17 @@
     <string name="partner_engagement_evaluate_sub_title">Uwepo wa mwenza: {0}</string>
     <string name="anc_home_visit_early_stimulation">Mawasiliano na mtoto akiwa tumboni</string>
     <string name="anc_home_visit_harmful_habits">Tabia Hatarishi</string>
+    <string name="anc_home_visit_chw_observations">Uchunguzi wa mhudumu wa afya ngazi ya jamii (MJAA)</string>
+    <string name="chw_observations_evaluate_sub_title">Uwepo wa mtu yeyote: {0}</string>
 
     <string name="yes">Ndio</string>
     <string name="no">Hapana</string>
 
+    <string name="growth_monitoring_subtitle">Ufuatiliaji wa makuzi</string>
+
+    <string name="visit_location"> Eneo la tembeleo </string>
+    <string name="location_captured"> Eneo la tembeleo limeshachukuliwa </string>
+
+    <string name="menu_pnc">Waliojifungua</string>
+    <string name="edit_anc_registration_form_title">Afua ya Malezi, Makuzi, na Maendeleo Ya Awali ya Mtoto</string>
 </resources>

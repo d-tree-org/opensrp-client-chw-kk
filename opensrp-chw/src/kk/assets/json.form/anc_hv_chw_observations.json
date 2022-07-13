@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Home Visit - Partner Engagement",
+  "encounter_type": "Home Visit - CHW Observations",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -47,32 +47,32 @@
     "encounter_location": ""
   },
   "step1": {
-    "title": "{{anc_hv_partner_engagement.step1.title}}",
+    "title": "{{anc_hv_chw_observations.step1.title}}",
     "fields": [
       {
-        "key": "partner_head_of_household",
+        "key": "anyone_present",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "{{anc_hv_partner_engagement.step1.partner_head_of_household.label}}",
+        "label": "{{anc_hv_chw_observations.step1.anyone_present.label}}",
         "text_color": "#000000",
         "exclusive": [
-          "partner_head_of_household_yes",
-          "partner_head_of_household_no"
+          "anyone_present_yes",
+          "anyone_present_no"
         ],
         "options": [
           {
-            "key": "partner_head_of_household_yes",
-            "text": "{{anc_hv_partner_engagement.step1.partner_head_of_household.options.partner_head_of_household_yes.yes.text}}",
+            "key": "anyone_present_yes",
+            "text": "{{anc_hv_chw_observations.step1.anyone_present.options.anyone_present_yes.yes.text}}",
             "text_size": "18px",
             "value": "false",
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
-            "key": "partner_head_of_household_no",
-            "text": "{{anc_hv_partner_engagement.step1.partner_head_of_household.options.partner_head_of_household_no.no.text}}",
+            "key": "anyone_present_no",
+            "text": "{{anc_hv_chw_observations.step1.anyone_present.options.anyone_present_no.no.text}}",
             "text_size": "18px",
             "value": "false",
             "openmrs_entity": "concept",
@@ -81,33 +81,45 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "{{anc_hv_partner_engagement.step1.v_required.err}}"
+          "err": "{{anc_hv_chw_observations.step1.v_required.err}}"
         }
       },
       {
-        "key": "partner_head_of_household_stay_visit",
+        "key": "who_present",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "{{anc_hv_partner_engagement.step1.partner_head_of_household_stay_visit.label}}",
+        "label": "{{anc_hv_chw_observations.step1.who_present.label}}",
         "text_color": "#000000",
-        "exclusive": [
-          "partner_head_of_household_yes",
-          "partner_head_of_household_no"
-        ],
         "options": [
           {
-            "key": "partner_head_of_household_yes",
-            "text": "{{anc_hv_partner_engagement.step1.partner_head_of_household.options.partner_head_of_household_stay_visit.yes.text}}",
+            "key": "chk_children_below_eighteen",
+            "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_children_below_eighteen.text}}",
             "text_size": "18px",
             "value": "false",
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
           },
           {
-            "key": "partner_head_of_household_no",
-            "text": "{{anc_hv_partner_engagement.step1.partner_head_of_household.options.partner_head_of_household_stay_visit.no.text}}",
+            "key": "chk_blood_relatives",
+            "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_blood_relatives.text}}",
+            "text_size": "18px",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_elderly_living",
+            "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_elderly_living.text}}",
+            "text_size": "18px",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_people_outside",
+            "text": "{{anc_hv_chw_observations.step1.who_present.options.chk_people_outside.text}}",
             "text_size": "18px",
             "value": "false",
             "openmrs_entity": "concept",
@@ -116,68 +128,26 @@
         ],
         "v_required": {
           "value": "true",
-          "err": "anc_hv_partner_engagement.step1.v_required.err"
+          "err": "{{anc_hv_chw_observations.step1.v_required.err}}"
         },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-file": "anc_hv_partner_engagement_relevance.yml"
+              "rules-file": "anc_hv_chw_observations_relevance.yml"
             }
           }
         }
       },
       {
-        "key": "partner_head_of_households_interaction",
+        "key": "particular_observations_chw",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "check_box",
-        "label": "{{anc_hv_partner_engagement.step1.partner_head_of_households_interaction.label}}",
-        "text_color": "#000000",
-        "exclusive": [
-          "chk_frustrated",
-          "chk_minimal_questions",
-          "chk_many_questions"
-        ],
-        "options": [
-          {
-            "key": "chk_frustrated",
-            "text": "{{anc_hv_partner_engagement.step1.partner_head_of_households_interaction.options.chk_frustrated.text}}",
-            "text_size": "18px",
-            "value": "false",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_minimal_questions",
-            "text": "{{anc_hv_partner_engagement.step1.partner_head_of_households_interaction.options.chk_minimal_questions.text}}",
-            "text_size": "18px",
-            "value": "false",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          },
-          {
-            "key": "chk_many_questions",
-            "text": "{{anc_hv_partner_engagement.step1.partner_head_of_households_interaction.options.chk_many_questions.text}}",
-            "text_size": "18px",
-            "value": "false",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
-          }
-        ],
-        "v_required": {
-          "value": "true",
-          "err": "anc_hv_partner_engagement.step1.v_required.err"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "anc_hv_partner_engagement_relevance.yml"
-            }
-          }
-        }
+        "type": "toaster_notes",
+        "text": "{{particular_observations_chw.step1.particular_observations_chw.toaster_notes.text}}",
+        "toaster_type": "info"
       }
     ]
   },
-  "properties_file_name": "anc_hv_partner_engagement"
+  "properties_file_name": "anc_hv_chw_observations"
 }

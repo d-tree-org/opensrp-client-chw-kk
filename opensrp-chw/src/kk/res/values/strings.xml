@@ -40,6 +40,8 @@
     <string name="partner_engagement_evaluate_sub_title">Partner presence: {0}</string>
     <string name="anc_home_visit_early_stimulation">Early stimulation</string>
     <string name="anc_home_visit_harmful_habits">Harmful habits</string>
+    <string name="anc_home_visit_chw_observations">Community Health Worker (CHW) Observations</string>
+    <string name="chw_observations_evaluate_sub_title">Anyone presence: {0}</string>
 
 
     <string name="anc_home_visit_gender_issues"> Gender Issues</string>
@@ -79,6 +81,7 @@
     <string name="ccd_toddler_danger_signs_subtitle">Danger signs</string>
     <string name="ccd_child_safety_subtitle">Counselled mother for child safety</string>
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
+    <string name="malnutrition_screening">Malnutrition/Anemia screening %s</string>
 
     <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
     <string name="ccd_introduction"> CCD : Introduction : %s </string>
@@ -117,4 +120,12 @@
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
+
+    <string name="growth_monitoring_subtitle">Growth Monitoring conducted : </string>
+
+    <string name="visit_location"> Visit Location </string>
+    <string name="location_captured"> Visit location has been captured </string>
+
+    <string name="menu_pnc">PNC</string>
+    <string name="edit_anc_registration_form_title">ECD intervention</string>
 </resources>
