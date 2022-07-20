@@ -629,13 +629,6 @@
         "hint": "{{family_register.step2.edd.hint}}",
         "max_date": "today+40w",
         "min_date": "today",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-register-calculation.yml"
-            }
-          }
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
