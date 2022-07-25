@@ -8,8 +8,14 @@ import org.smartregister.chw.anc.contract.BaseAncRegisterContract;
 import org.smartregister.chw.anc.interactor.BaseAncRegisterInteractor;
 import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.anc.util.DBConstants;
+import org.smartregister.chw.anc.util.NCUtils;
+import org.smartregister.chw.core.application.CoreChwApplication;
+import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.interactor.FamilyRegisterInteractor;
 import org.smartregister.chw.model.FamilyRegisterModel;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.contract.FamilyRegisterContract.Interactor;
 import org.smartregister.family.contract.FamilyRegisterContract.InteractorCallBack;
@@ -18,6 +24,7 @@ import org.smartregister.family.contract.FamilyRegisterContract.Presenter;
 import org.smartregister.family.contract.FamilyRegisterContract.View;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.presenter.BaseFamilyRegisterPresenter;
+import org.smartregister.repository.AllSharedPreferences;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -80,6 +87,7 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
                         form.put(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE, Constants.EVENT_TYPE.ANC_REGISTRATION);
                         form.put("relational_id", relationalId);
                         new BaseAncRegisterInteractor().saveRegistration(form.toString(), isEditMode, FamilyRegisterPresenter.this, null);
+                        updateAncDetails(form);
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -100,6 +108,19 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
         if (getView() != null) {
             getView().refreshList(FetchStatus.fetched);
             getView().hideProgressDialog();
+        }
+    }
+
+    private void updateAncDetails(JSONObject form){
+        try{
+            form.put(org.smartregister.family.util.JsonFormUtils.ENCOUNTER_TYPE, CoreConstants.EventType.UPDATE_ANC_REGISTRATION);
+            String jsonString = form.toString();
+            AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+            Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, jsonString, Constants.TABLES.ANC_MEMBERS);
+            NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
+            AllCommonsRepository commonsRepository = CoreChwApplication.getInstance().getAllCommonsRepository(CoreConstants.TABLE_NAME.ANC_MEMBER);
+        }catch (Exception e){
+            Timber.e(e);
         }
     }
 }
