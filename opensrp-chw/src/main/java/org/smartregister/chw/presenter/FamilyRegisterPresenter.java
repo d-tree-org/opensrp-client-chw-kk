@@ -3,6 +3,7 @@ package org.smartregister.chw.presenter;
 import org.apache.commons.lang3.tuple.Triple;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.contract.BaseAncRegisterContract;
 import org.smartregister.chw.anc.interactor.BaseAncRegisterInteractor;
@@ -16,6 +17,7 @@ import org.smartregister.chw.interactor.FamilyRegisterInteractor;
 import org.smartregister.chw.model.FamilyRegisterModel;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.AllCommonsRepository;
+import org.smartregister.domain.Client;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.contract.FamilyRegisterContract.Interactor;
 import org.smartregister.family.contract.FamilyRegisterContract.InteractorCallBack;
@@ -28,6 +30,7 @@ import org.smartregister.repository.AllSharedPreferences;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.UUID;
 
 import timber.log.Timber;
 
@@ -87,6 +90,9 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
                         form.put(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE, Constants.EVENT_TYPE.ANC_REGISTRATION);
                         form.put("relational_id", relationalId);
                         new BaseAncRegisterInteractor().saveRegistration(form.toString(), isEditMode, FamilyRegisterPresenter.this, null);
+
+                        addInterventionId(clientBaseEntityId);
+
                         updateAncDetails(form);
                     }catch (Exception e){
                         e.printStackTrace();
@@ -122,5 +128,12 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
         }catch (Exception e){
             Timber.e(e);
         }
+    }
+
+    private void addInterventionId(String clientBaseEntityId){
+        Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(clientBaseEntityId);
+        client.addIdentifier("intervention_id", UUID.randomUUID().toString());
+        JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(client);
+        CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(client.getBaseEntityId(), object);
     }
 }
