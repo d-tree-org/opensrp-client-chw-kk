@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.core.form_data.NativeFormsDataLoader;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.dao.ChwANCDao;
@@ -50,7 +51,7 @@ public class AncMemberDataLoader extends NativeFormsDataLoader {
     protected List<String> getEventTypes() {
         List<String> res = new ArrayList<>();
         res.add(CoreConstants.EventType.UPDATE_ANC_REGISTRATION);
-        res.add(CoreConstants.EventType.ANC_REGISTRATION);
+        res.add(Constants.EVENT_TYPE.ANC_REGISTRATION);
         return res;
     }
 

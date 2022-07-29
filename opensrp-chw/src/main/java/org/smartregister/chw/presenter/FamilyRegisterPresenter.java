@@ -9,26 +9,15 @@ import org.smartregister.chw.anc.contract.BaseAncRegisterContract;
 import org.smartregister.chw.anc.interactor.BaseAncRegisterInteractor;
 import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.anc.util.DBConstants;
-import org.smartregister.chw.anc.util.NCUtils;
-import org.smartregister.chw.core.application.CoreChwApplication;
-import org.smartregister.chw.core.utils.CoreConstants;
-import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.interactor.FamilyRegisterInteractor;
-import org.smartregister.chw.model.FamilyRegisterModel;
-import org.smartregister.clientandeventmodel.Event;
-import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.domain.Client;
 import org.smartregister.domain.FetchStatus;
-import org.smartregister.family.contract.FamilyRegisterContract.Interactor;
 import org.smartregister.family.contract.FamilyRegisterContract.InteractorCallBack;
 import org.smartregister.family.contract.FamilyRegisterContract.Model;
-import org.smartregister.family.contract.FamilyRegisterContract.Presenter;
 import org.smartregister.family.contract.FamilyRegisterContract.View;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.presenter.BaseFamilyRegisterPresenter;
-import org.smartregister.repository.AllSharedPreferences;
 
-import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,7 +25,7 @@ import timber.log.Timber;
 
 public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter implements BaseAncRegisterContract.InteractorCallBack {
 
-    public FamilyRegisterPresenter(View view, Model model){
+    public FamilyRegisterPresenter(View view, Model model) {
         super(view, model);
         this.interactor = new FamilyRegisterInteractor();
     }
@@ -75,7 +64,7 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
 
                         String clientBaseEntityId = "";
                         String relationalId = "";
-                        for (FamilyEventClient ec : familyEventClientList){
+                        for (FamilyEventClient ec : familyEventClientList) {
                             if (ec.getClient().getClientType() != null && ec.getClient().getClientType().equals("Family"))
                                 relationalId = ec.getClient().getBaseEntityId();
                             clientBaseEntityId = ec.getClient().getBaseEntityId();
@@ -92,9 +81,7 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
                         new BaseAncRegisterInteractor().saveRegistration(form.toString(), isEditMode, FamilyRegisterPresenter.this, null);
 
                         addInterventionId(clientBaseEntityId);
-
-                        updateAncDetails(form);
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
@@ -105,8 +92,8 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
         }
     }
 
-    private View getView(){
-        return viewReference != null ? (View) viewReference.get() : null;
+    private View getView() {
+        return viewReference != null ? viewReference.get() : null;
     }
 
     @Override
@@ -117,20 +104,7 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
         }
     }
 
-    private void updateAncDetails(JSONObject form){
-        try{
-            form.put(org.smartregister.family.util.JsonFormUtils.ENCOUNTER_TYPE, CoreConstants.EventType.UPDATE_ANC_REGISTRATION);
-            String jsonString = form.toString();
-            AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
-            Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, jsonString, Constants.TABLES.ANC_MEMBERS);
-            NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
-            AllCommonsRepository commonsRepository = CoreChwApplication.getInstance().getAllCommonsRepository(CoreConstants.TABLE_NAME.ANC_MEMBER);
-        }catch (Exception e){
-            Timber.e(e);
-        }
-    }
-
-    private void addInterventionId(String clientBaseEntityId){
+    private void addInterventionId(String clientBaseEntityId) {
         Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(clientBaseEntityId);
         client.addIdentifier("intervention_id", UUID.randomUUID().toString());
         JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(client);
