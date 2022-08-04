@@ -202,7 +202,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "{{anc_hv_breastfeeding.step1.breastfeeding_counselling.text}}",
+        "text": "{{anc_hv_breastfeeding.step1.establishing_good_breastfeeding_practices.text}}",
         "text_color": "#000000",
         "toaster_type": "info"
       },
