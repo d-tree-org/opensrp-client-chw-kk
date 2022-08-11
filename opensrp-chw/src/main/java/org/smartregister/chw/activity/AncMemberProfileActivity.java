@@ -30,6 +30,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.anc.AncLibrary;
 import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.Visit;
+import org.smartregister.chw.anc.interactor.BaseAncRegisterInteractor;
 import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.anc.util.NCUtils;
@@ -51,6 +52,7 @@ import org.smartregister.chw.malaria.dao.MalariaDao;
 import org.smartregister.chw.model.FamilyProfileModel;
 import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.AncMemberProfilePresenter;
+import org.smartregister.chw.presenter.FamilyRegisterPresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.chw.util.KKCoreConstants;
 import org.smartregister.clientandeventmodel.Event;
@@ -238,30 +240,12 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
                     AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
                     Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, jsonString, Constants.TABLES.ANC_MEMBERS);
                     NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
-                    AllCommonsRepository commonsRepository = CoreChwApplication.getInstance().getAllCommonsRepository(CoreConstants.TABLE_NAME.ANC_MEMBER);
 
                     JSONArray field = org.smartregister.util.JsonFormUtils.fields(form);
-                    String phoneNumber = org.smartregister.util.JsonFormUtils.getFieldJSONObject(field, DBConstants.KEY.PHONE_NUMBER).getString(CoreJsonFormUtils.VALUE);
                     String gestAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(field, GEST_AGE).getString(CoreJsonFormUtils.VALUE);
                     this.setMemberGA(gestAge);
-                    String baseEntityId = baseEvent.getBaseEntityId();
-                    if (commonsRepository != null) {
-                        ContentValues values = new ContentValues();
-                        values.put(DBConstants.KEY.PHONE_NUMBER, phoneNumber);
-                        CoreChwApplication.getInstance().getRepository().getWritableDatabase().update(CoreConstants.TABLE_NAME.ANC_MEMBER, values, DBConstants.KEY.BASE_ENTITY_ID + " = ?  ", new String[]{baseEntityId});
-                    }
-
-                    //Check if consent was received then add intervention Id to the client
-                    String consent = org.smartregister.util.JsonFormUtils.getFieldJSONObject(field, "intervention_consent").getString(CoreJsonFormUtils.VALUE);
-                    Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(memberObject.getBaseEntityId());
-                    if (consent.contains("intervention_consent_yes")) {
-                        client.addIdentifier("intervention_id", UUID.randomUUID().toString());
-                        JSONObject object = CoreLibrary.getInstance().context().getEventClientRepository().convertToJson(client);
-                        CoreLibrary.getInstance().context().getEventClientRepository().addorUpdateClient(client.getBaseEntityId(), object);
-                    }
-
-                    refreshInterventionStatus(client);
-
+                    form.put(JsonFormUtils.ENCOUNTER_TYPE, CoreConstants.EventType.ANC_REGISTRATION);
+                    new BaseAncRegisterInteractor().saveRegistration(form.toString(), false, null, null);
                 } else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.ANC_REFERRAL)) {
                     ancMemberProfilePresenter().createReferralEvent(Utils.getAllSharedPreferences(), jsonString);
                     showToast(this.getString(R.string.referral_submitted));
@@ -275,19 +259,6 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         } else if (requestCode == CoreConstants.ProfileActivityResults.CHANGE_COMPLETED) {
             ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT, new Date());
             finish();
-        }
-    }
-
-    private void refreshInterventionStatus(Client client) {
-        String interventionId = client.getIdentifier("intervention_id");
-        if (interventionId == null || interventionId.equals("")) {
-            registrationStatus.setVisibility(View.VISIBLE);
-            registrationStatus.setText(R.string.anc_partially_registered);
-            registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_orange));
-        } else {
-            registrationStatus.setVisibility(View.VISIBLE);
-            registrationStatus.setText(R.string.anc_fully_registered);
-            registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_green));
         }
     }
 
