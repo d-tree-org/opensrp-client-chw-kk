@@ -69,4 +69,16 @@ public class ScheduleDao extends AbstractDao {
         DataMap<String> dataMap = c -> getCursorValue(c, "base_entity_id");
         return AbstractDao.readData(sql, dataMap);
     }
+
+    public static @Nullable Integer getDueServicesCount(String familyBaseEntityId) {
+        String sql = "SELECT COUNT(*) count FROM schedule_service " +
+                "LEFT JOIN ec_family_member ON  ec_family_member.base_entity_id = schedule_service.base_entity_id COLLATE NOCASE  " +
+                "LEFT JOIN ec_family ON  ec_family.base_entity_id = schedule_service.base_entity_id COLLATE NOCASE  " +
+                "LEFT JOIN ec_child ON  ec_child.base_entity_id = schedule_service.base_entity_id COLLATE NOCASE  " +
+                "WHERE  ( ec_family_member.relational_id = '"+ familyBaseEntityId +"' or ec_family.base_entity_id = '" + familyBaseEntityId +"' ) " +
+                "AND  (ifnull(schedule_service.completion_date,'') = '' and schedule_service.expiry_date >= strftime('%Y-%m-%d') and schedule_service.due_date <= strftime('%Y-%m-%d') and ifnull(schedule_service.not_done_date,'') = '' )";
+        DataMap<Integer> dataMap = cursor -> getCursorIntValue(cursor, "count");
+        List<Integer> res = AbstractDao.readData(sql, dataMap);
+        return res.get(0);
+    }
 }
