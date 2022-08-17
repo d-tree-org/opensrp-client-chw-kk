@@ -56,7 +56,7 @@ condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != ''"
 actions:
   - "isRelevant = true"
 ---
-name: step1_delivery_method
+name: step1_method_of_delivery
 description: Delivery Method
 priority: 1
 condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != ''"
