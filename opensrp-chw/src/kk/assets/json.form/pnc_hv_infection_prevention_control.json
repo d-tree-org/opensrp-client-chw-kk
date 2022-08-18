@@ -101,6 +101,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "label": "{{pnc_hv_infection_prevention_control.step1.kind_latrine.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.kind_latrine.label}}",
         "hint": "{{pnc_hv_infection_prevention_control.step1.kind_latrine.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.kind_latrine.option.pit}}",
@@ -183,6 +184,7 @@
         "type": "spinner",
         "label": "{{pnc_hv_infection_prevention_control.step1.electricity_home.label}}",
         "hint": "{{pnc_hv_infection_prevention_control.step1.electricity_home.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.electricity_home.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.answer_yes}}",
           "{{pnc_hv_infection_prevention_control.step1.answer_no}}"
@@ -476,6 +478,7 @@
         "type": "spinner",
         "label": "{{pnc_hv_infection_prevention_control.step1.household_washhands.label}}",
         "hint": "{{pnc_hv_infection_prevention_control.step1.household_washhands.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.household_washhands.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.household_washhands.sink}}",
           "{{pnc_hv_infection_prevention_control.step1.household_washhands.dwelling}}",
@@ -527,6 +530,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{pnc_hv_infection_prevention_control.step1.water_availability.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.water_availability.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.water_availability.available}}",
           "{{pnc_hv_infection_prevention_control.step1.water_availability.not_available}}"
@@ -555,6 +559,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{pnc_hv_infection_prevention_control.step1.soap_availability.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.soap_availability.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.option_answer.yes}}",
           "{{pnc_hv_infection_prevention_control.step1.option_answer.no}}"
@@ -583,6 +588,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{pnc_hv_infection_prevention_control.step1.soap_availability_observe.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.soap_availability_observe.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.option_answer.yes}}",
           "{{pnc_hv_infection_prevention_control.step1.option_answer.no}}"
@@ -611,6 +617,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{pnc_hv_infection_prevention_control.step1.soap_observed.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.soap_observed.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.soap_observed.bar_or_liquid}}",
           "{{pnc_hv_infection_prevention_control.step1.soap_observed.detergent}}",
@@ -663,6 +670,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{pnc_hv_infection_prevention_control.step1.roof_type.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.roof_type.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.roof_type.no_roof}}",
           "{{pnc_hv_infection_prevention_control.step1.roof_type.leaves}}",
@@ -718,6 +726,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{pnc_hv_infection_prevention_control.step1.wall_type.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.wall_type.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.wall_type.no_walls}}",
           "{{pnc_hv_infection_prevention_control.step1.wall_type.mud_or_mud_bricks}}",
