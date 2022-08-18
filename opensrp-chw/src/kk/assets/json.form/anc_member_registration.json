@@ -422,6 +422,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_member_registration.step1.breastfeed_children.hint}}",
+        "label_info_text": "{{anc_member_registration.step1.breastfeed_children.hint}}",
         "v_required": {
           "value": "true",
           "err": "{{anc_member_registration.step1.breastfeed_children.v_required.err}}"
@@ -454,6 +455,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_member_registration.step1.marital_status.hint}}",
+        "label_info_text": "{{anc_member_registration.step1.marital_status.hint}}",
         "values": [
           "{{anc_member_registration.step1.marital_status.values[0]}}",
           "{{anc_member_registration.step1.marital_status.values[1]}}",
@@ -500,6 +502,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_member_registration.step1.person_assist.hint}}",
+        "label_info_text": "{{anc_member_registration.step1.person_assist.hint}}",
         "v_required": {
           "value": "true",
           "err": "{{anc_member_registration.step1.person_assist.v_required.err}}"
@@ -541,6 +544,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_member_registration.step1.person_assist_child_relationship.hint}}",
+        "label_info_text": "{{anc_member_registration.step1.person_assist_child_relationship.hint}}",
         "v_required": {
           "value": "true",
           "err": "{{anc_member_registration.step1.person_assist_child_relationship.v_required.err}}"
@@ -627,6 +631,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_member_registration.step1.health_insurance.hint}}",
+        "label_info_text": "{{anc_member_registration.step1.health_insurance.hint}}",
         "values": [
           "{{anc_member_registration.step1.health_insurance.values[0]}}",
           "{{anc_member_registration.step1.health_insurance.values[1]}}"
@@ -710,6 +715,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_member_registration.step1.substance_use.hint}}",
+        "label_info_text": "{{anc_member_registration.step1.substance_use.hint}}",
         "values": [
           "{{anc_member_registration.step1.substance_use.values[0]}}",
           "{{anc_member_registration.step1.substance_use.values[1]}}"
@@ -731,6 +737,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_member_registration.step1.substance_use_current.hint}}",
+        "label_info_text": "{{anc_member_registration.step1.substance_use_current.hint}}",
         "values": [
           "{{anc_member_registration.step1.substance_use_current.values[0]}}",
           "{{anc_member_registration.step1.substance_use_current.values[1]}}"
