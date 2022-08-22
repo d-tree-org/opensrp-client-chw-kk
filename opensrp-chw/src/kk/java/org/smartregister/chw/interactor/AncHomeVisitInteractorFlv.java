@@ -91,9 +91,9 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
         evaluateMalaria(actionList, memberObject, details, context, allAncVisits);
         evaluatePostpartumPreparations(actionList, memberObject, details, context, allAncVisits);
-        evaluatePartnerEngagement(actionList, details, context);
         evaluateEarlyStimulation(actionList, details, context);
         evaluateHarmfulHabits(actionList, details, context);
+        evaluatePartnerEngagement(actionList, details, context);
         evaluateChwObservation(actionList, details, context);
 
         return actionList;
