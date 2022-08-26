@@ -128,4 +128,6 @@
 
     <string name="menu_pnc">PNC</string>
     <string name="edit_anc_registration_form_title">Edit ANC member</string>
+
+    <string name="nav_sync">Sync</string>
 </resources>

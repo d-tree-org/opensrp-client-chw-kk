@@ -102,4 +102,6 @@
 
     <string name="menu_pnc">Waliojifungua</string>
     <string name="edit_anc_registration_form_title">Sahihisha usajili wa mama mjamzito</string>
+
+    <string name="nav_sync">oanisha</string>
 </resources>
