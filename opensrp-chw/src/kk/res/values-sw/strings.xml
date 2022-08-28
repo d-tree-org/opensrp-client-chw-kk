@@ -83,6 +83,7 @@
     <string name="danger_sign_evaluate_sub_title">Dalali za hatari: {0}</string>
     <string name="anc_home_visit_birth_preparedness">Mpango binafsi wa Kujifungua</string>
     <string name="anc_hv_clinic_attendance">Kuhudhuria Kliniki kwa wajawazito mapema</string>
+    <string name="anc_hv_clinic_attendance_sub_title">Idadi ya mahudhurio ya kliniki</string>
     <string name="anc_hv_nutrition_counselling">Lishe ya Mama wakati wa ujauzito na kunyonyesha</string>
     <string name="anc_hv_gender_issues">Jinsia</string>
     <string name="anc_home_visit_partner_engagement">Ushiriki wa Mwenza</string>
@@ -104,4 +105,8 @@
     <string name="edit_anc_registration_form_title">Sahihisha usajili wa mama mjamzito</string>
 
     <string name="nav_sync">oanisha</string>
+    <string name="existing_referral_dialog_message">Mteja huyu tayari ana rufaa kwa {0}, ungependa kufunga rufaa hii na kufungua mpya?</string>
+    <string name="existing_referral_dialog_title">Rufaa Iliyopo</string>
+    <string name="referred_to_text_value_health_facility">Kituo cha Afya</string>
+    <string name="referred_to_text_value_addo">DLDM</string>
 </resources>
