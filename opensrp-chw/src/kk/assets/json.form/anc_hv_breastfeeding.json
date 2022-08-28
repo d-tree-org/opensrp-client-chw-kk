@@ -50,16 +50,6 @@
     "title": "{{anc_hv_breastfeeding.step1.title}}",
     "fields": [
       {
-        "key": "breastfeeding_counselling",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{anc_hv_breastfeeding.step1.breastfeeding_counselling.text}}",
-        "text_color": "#000000",
-        "toaster_type": "info"
-      },
-      {
         "key": "breastfeeding_counselling_one",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -185,6 +175,16 @@
             ]
           }
         }
+      },
+      {
+        "key": "breastfeeding_counselling",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{anc_hv_breastfeeding.step1.breastfeeding_counselling.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info"
       },
       {
         "key": "early_initiation_breastfeeding",
