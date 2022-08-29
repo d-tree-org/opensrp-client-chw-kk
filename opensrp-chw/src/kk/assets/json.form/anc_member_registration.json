@@ -286,11 +286,10 @@
         }
       },
       {
-        "key": "delivery_method",
+        "key": "method_of_delivery",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "openmrs_data_type": "text",
+        "openmrs_entity_id": "method_of_delivery",
         "label": "{{anc_member_registration.step1.delivery_method.label}}",
         "type": "check_box",
         "options": [
@@ -298,19 +297,25 @@
             "key": "chk_vaginally",
             "text": "{{anc_member_registration.step1.delivery_method.options.chk_vaginally.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginally"
           },
           {
             "key": "chk_caesarian",
             "text": "{{anc_member_registration.step1.delivery_method.options.chk_caesarian.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_caesarian"
           },
           {
             "key": "chk_miscarriage",
             "text": "{{anc_member_registration.step1.delivery_method.options.chk_miscarriage.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_miscarriage"
           }
         ],
         "relevance": {
@@ -325,85 +330,113 @@
         "key": "symptoms_prev_preg",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "openmrs_data_type": "text",
+        "openmrs_entity_id": "symptoms_prev_preg",
         "label": "{{anc_member_registration.step1.symptoms_prev_preg.label}}",
         "type": "check_box",
         "options": [
           {
             "key": "chk_vaginal_bleeding",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_vaginal_bleeding.text}}",
-            "text_size": "18px"
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginal_bleeding"
           },
           {
             "key": "chk_swelling",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_swelling.text}}",
-            "text_size": "18px"
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_swelling"
           },
           {
             "key": "chk_high_blood_pressure",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_high_blood_pressure.text}}",
-            "text_size": "18px"
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_high_blood_pressure"
           },
           {
             "key": "chk_red_eyes",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_red_eyes.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_red_eyes"
           },
           {
             "key": "chk_frequent_headaches",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_frequent_headaches.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_frequent_headaches"
           },
           {
             "key": "chk_high_blood_sugar",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_high_blood_sugar.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_high_blood_sugar"
           },
           {
             "key": "chk_kidney_infection",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_kidney_infection.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_kidney_infection"
           },
           {
             "key": "chk_fluid_with_abnormal_smell",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_fluid_with_abnormal_smell.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_fluid_with_abnormal_smell"
           },
           {
             "key": "chk_threatened_preterm_labor",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_threatened_preterm_labor.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_threatened_preterm_labor"
           },
           {
             "key": "chk_threatened_miscarriage",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_threatened_miscarriage.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_threatened_miscarriage"
           },
           {
             "key": "chk_vaginal_infection",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_vaginal_infection.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginal_infection"
           },
           {
             "key": "chk_premature_water_breakage",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_premature_water_breakage.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_premature_water_breakage"
           },
           {
             "key": "chk_children_born_three_weeks_early",
             "text": "{{anc_member_registration.step1.symptoms_prev_preg.options.chk_children_born_three_weeks_early.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_children_born_three_weeks_early"
           }
         ],
         "relevance": {
@@ -649,45 +682,66 @@
         "key": "accessibility_issues",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "accessibility_issues",
         "type": "check_box",
+        "exclusive": ["chk_none"],
         "label": "{{anc_member_registration.step1.accessibility_issues.label}}",
         "options": [
           {
             "key": "chk_seeing",
             "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_seeing.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_seeing"
           },
           {
             "key": "chk_hearing",
             "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_hearing.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_hearing"
           },
           {
             "key": "chk_walking_or_climbing_stairs",
             "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_walking_or_climbing_stairs.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_walking_or_climbing_stairs"
           },
           {
             "key": "chk_remembering_or_concentrating",
             "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_remembering_or_concentrating.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_remembering_or_concentrating"
           },
           {
             "key": "chk_communicating_with_others",
             "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_communicating_with_others.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_communicating_with_others"
           },
           {
             "key": "chk_other",
             "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_other.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_other"
+          },
+          {
+            "key": "chk_none",
+            "text": "{{anc_member_registration.step1.accessibility_issues.options.chk_none.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_none"
           }
         ]
       },
@@ -762,7 +816,7 @@
         "key": "economic_activities",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "economic_activities",
         "openmrs_data_type": "text",
         "label": "{{anc_member_registration.step1.economic_activities.label}}",
         "type": "check_box",
@@ -771,37 +825,49 @@
             "key": "chk_wage_employment",
             "text": "{{anc_member_registration.step1.economic_activities.options.chk_wage_employment.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_wage_employment"
           },
           {
             "key": "chk_family_business",
             "text": "{{anc_member_registration.step1.economic_activities.options.chk_family_business.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_family_business"
           },
           {
             "key": "chk_family_farm",
             "text": "{{anc_member_registration.step1.economic_activities.options.chk_family_farm.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_family_farm"
           },
           {
             "key": "chk_paid_work_inside_home",
             "text": "{{anc_member_registration.step1.economic_activities.options.chk_paid_work_inside_home.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_paid_work_inside_home"
           },
           {
             "key": "chk_caring",
             "text": "{{anc_member_registration.step1.economic_activities.options.chk_caring.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_caring"
           },
           {
             "key": "chk_other",
             "text": "{{anc_member_registration.step1.economic_activities.options.chk_other.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_other"
           }
         ]
       },

@@ -91,9 +91,9 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         evaluateGenderIssues(actionList, details, memberObject, allAncVisits, context);
         evaluateMalaria(actionList, memberObject, details, context, allAncVisits);
         evaluatePostpartumPreparations(actionList, memberObject, details, context, allAncVisits);
-        evaluatePartnerEngagement(actionList, details, context);
         evaluateEarlyStimulation(actionList, details, context);
         evaluateHarmfulHabits(actionList, details, context);
+        evaluatePartnerEngagement(actionList, details, context);
         evaluateChwObservation(actionList, details, context);
 
         return actionList;
@@ -631,7 +631,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public String evaluateSubTitle() {
-            return MessageFormat.format("{0}: {1}", "Number of clinic attendance", clinic_attendance );
+            return MessageFormat.format("{0}: {1}", context.getString(R.string.anc_hv_clinic_attendance_sub_title), clinic_attendance);
         }
 
         @Override
