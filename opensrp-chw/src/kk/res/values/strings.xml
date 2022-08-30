@@ -18,6 +18,7 @@
     <string name="anc_home_visit_danger_signs">Danger signs</string>
     <string name="anc_home_visit_birth_preparedness">Birth Preparedness</string>
     <string name="anc_hv_clinic_attendance">ANC Clinic attendance</string>
+    <string name="anc_hv_clinic_attendance_sub_title">Number of clinic attendance</string>
     <string name="anc_hv_nutrition_counselling">Nutrition Counselling</string>
     <string name="danger_sign_evaluate_sub_title">Danger signs: {0}</string>
     <string name="anc_home_visit_facility_visit">ANC {0} health facility visit</string>
@@ -127,5 +128,11 @@
     <string name="location_captured"> Visit location has been captured </string>
 
     <string name="menu_pnc">PNC</string>
-    <string name="edit_anc_registration_form_title">ECD intervention</string>
+    <string name="edit_anc_registration_form_title">Edit ANC member</string>
+    
+    <string name="nav_sync">Sync</string>
+    <string name="existing_referral_dialog_message">This client already has a referral to the {0}, do you want to close this referral and open a new one?</string>
+    <string name="existing_referral_dialog_title">Existing Referral</string>
+    <string name="referred_to_text_value_health_facility">Health Facility</string>
+    <string name="referred_to_text_value_addo">Addo</string>
 </resources>

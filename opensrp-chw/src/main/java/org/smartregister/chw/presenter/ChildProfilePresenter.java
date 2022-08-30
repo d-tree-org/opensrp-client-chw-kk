@@ -14,6 +14,7 @@ import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.ChildProfileActivity;
 import org.smartregister.chw.activity.ReferralRegistrationActivity;
+import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.core.model.ChildVisit;
@@ -22,6 +23,7 @@ import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.CoreChildService;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.dao.ChwChildDao;
+import org.smartregister.chw.dao.ScheduleDao;
 import org.smartregister.chw.interactor.ChildProfileInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
 import org.smartregister.chw.model.ChildRegisterModel;
@@ -205,6 +207,18 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
     }
 
     @Override
+    public void updateVisitNotDone() {
+        super.updateVisitNotDone();
+        fetchUpcomingServiceAndFamilyDue(childBaseEntityId);
+    }
+
+    @Override
+    public void undoVisitNotDone() {
+        super.undoVisitNotDone();
+        fetchUpcomingServiceAndFamilyDue(childBaseEntityId);
+    }
+
+    @Override
     public void updateFamilyMemberServiceDue(String serviceDueStatus) {
         if (ChwApplication.getApplicationFlavor().includeCurrentChild()) {
             super.updateFamilyMemberServiceDue(serviceDueStatus);
@@ -221,7 +235,7 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
                 }
             }
         }
-
+        checkDueCount();
     }
 
     @Override
@@ -254,7 +268,15 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
                 }
             }
         }
-
     }
 
+    public void checkDueCount()
+    {
+        Integer dueServiceCount = ScheduleDao.getDueServicesCount(familyID);
+        if(dueServiceCount != null){
+            if (dueServiceCount == 0) {
+                getView().setFamilyHasNothingDue();
+            }
+        }
+    }
 }

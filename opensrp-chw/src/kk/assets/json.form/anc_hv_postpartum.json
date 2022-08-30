@@ -76,6 +76,7 @@
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
+        "label_info_text": "{{anc_hv_postpartum.step1.postpartum_psychological_changes.hint}}",
         "hint": "{{anc_hv_postpartum.step1.postpartum_psychological_changes.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
@@ -119,6 +120,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_postpartum.step1.postpartum_danger_signs.hint}}",
+        "label_info_text": "{{anc_hv_postpartum.step1.postpartum_danger_signs.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
           "{{anc_hv_postpartum.step1.answer_no}}"
@@ -161,6 +163,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_postpartum.step1.immediate_newborn_care.hint}}",
+        "label_info_text": "{{anc_hv_postpartum.step1.immediate_newborn_care.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
           "{{anc_hv_postpartum.step1.answer_no}}"
@@ -202,6 +205,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_postpartum.step1.newborn_danger_sign.hint}}",
+        "label_info_text": "{{anc_hv_postpartum.step1.newborn_danger_sign.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
           "{{anc_hv_postpartum.step1.answer_no}}"
@@ -242,6 +246,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_postpartum.step1.followup_hiv_exposed_infant.hint}}",
+        "label_info_text": "{{anc_hv_postpartum.step1.followup_hiv_exposed_infant.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
           "{{anc_hv_postpartum.step1.answer_no}}"
@@ -282,6 +287,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_postpartum.step1.lam.hint}}",
+        "label_info_text": "{{anc_hv_postpartum.step1.lam.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
           "{{anc_hv_postpartum.step1.answer_no}}"
@@ -322,6 +328,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_postpartum.step1.postpartum_family_planning.hint}}",
+        "label_info_text": "{{anc_hv_postpartum.step1.postpartum_family_planning.hint}}",
         "values": [
           "{{anc_hv_postpartum.step1.answer_yes}}",
           "{{anc_hv_postpartum.step1.answer_no}}"

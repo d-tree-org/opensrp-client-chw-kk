@@ -68,7 +68,7 @@
         "key": "fam_consent",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "fam_consent",
         "type": "check_box",
         "label": "{{family_register.step1.fam_consent_second_paragraph.label}}",
         "exclusive": [
@@ -80,7 +80,9 @@
             "key": "fam_consent_yes",
             "text": "{{family_register.step1.fam_consent.options.fam_consent.yes.text}}",
             "text_size": "18px",
-            "value": "false",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fam_consent_yes",
             "relevance": {
               "rules-engine": {
                 "ex-rules": {
@@ -93,7 +95,9 @@
             "key": "fam_consent_no",
             "text": "{{family_register.step1.fam_consent.options.fam_consent.no.text}}",
             "text_size": "18px",
-            "value": "false",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "fam_consent_no",
             "relevance": {
               "rules-engine": {
                 "ex-rules": {
@@ -194,6 +198,639 @@
         "openmrs_entity_id": "163277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "gps",
         "openmrs_data_type": "text",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "electricity_home",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{family_register.step1.electricity_home.label}}",
+        "hint": "{{family_register.step1.electricity_home.label}}",
+        "values": [
+          "{{family_register.step1.answer_yes}}",
+          "{{family_register.step1.answer_no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.labour_signs.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "water_source",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "{{family_register.step1.water_source.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_dont_know"
+        ],
+        "options": [
+          {
+            "key": "chk_dwelling",
+            "text": "{{family_register.step1.water_source.option.dwelling}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_piped_yard",
+            "text": "{{family_register.step1.water_source.option.piped_yard}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_piped_neighbour",
+            "text": "{{family_register.step1.water_source.option.piped_neighbour}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_public_standpipe",
+            "text": "{{family_register.step1.water_source.option.public_standpipe}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_tube_borehole",
+            "text": "{{family_register.step1.water_source.option.tube_borehole}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_protected_well",
+            "text": "{{family_register.step1.water_source.option.protected_well}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_unprotected_well",
+            "text": "{{family_register.step1.water_source.option.unprotected_well}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_protected_spring",
+            "text": "{{family_register.step1.water_source.option.protected_spring}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_unprotected_spring",
+            "text": "{{family_register.step1.water_source.option.unprotected_spring}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_rain_water",
+            "text": "{{family_register.step1.water_source.option.rain_water}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_tanker_truck",
+            "text": "{{family_register.step1.water_source.option.tanker_truck}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_cart_small_tank",
+            "text": "{{family_register.step1.water_source.option.cart_small_tank}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_water_kiosk",
+            "text": "{{family_register.step1.water_source.option.water_kiosk}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_surface_water",
+            "text": "{{family_register.step1.water_source.option.surface_water}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_bottled_water",
+            "text": "{{family_register.step1.water_source.option.bottled_water}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_sachet_water",
+            "text": "{{family_register.step1.water_source.option.sachet_water}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_dont_know",
+            "text": "{{family_register.step1.water_source.option.dont_know}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_other",
+            "text": "{{family_register.step1.water_source.option.other}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.danger_signs_present.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_water_source",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{family_register.step1.other_water_source.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.other_water_source.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "floor_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "160939AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "check_box",
+        "label": "{{family_register.step1.floor_type.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "chk_tiles",
+            "text": "{{family_register.step1.floor_type.option.tiles}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_cement",
+            "text": "{{family_register.step1.floor_type.option.cement}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_stone",
+            "text": "{{family_register.step1.floor_type.option.stone}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_mud",
+            "text": "{{family_register.step1.floor_type.option.mud}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_raw_wood",
+            "text": "{{family_register.step1.floor_type.option.raw_wood}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_polished_wood",
+            "text": "{{family_register.step1.floor_type.option.polished_wood}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_vinyl",
+            "text": "{{family_register.step1.floor_type.option.vinyl}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_palm_bamboo",
+            "text": "{{family_register.step1.floor_type.option.palm_bamboo}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_rug",
+            "text": "{{family_register.step1.floor_type.option.rug}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_other",
+            "text": "{{family_register.step1.floor_type.option.other}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.danger_signs_present.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_floor_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{family_register.step1.other_floor_type.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.other_floor_type.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "household_washhands",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "label": "{{family_register.step1.household_washhands.label}}",
+        "hint": "{{family_register.step1.household_washhands.label}}",
+        "values": [
+          "{{family_register.step1.household_washhands.sink}}",
+          "{{family_register.step1.household_washhands.dwelling}}",
+          "{{family_register.step1.household_washhands.yard}}",
+          "{{family_register.step1.household_washhands.mobile_object}}",
+          "{{family_register.step1.household_washhands.no_handwashing_place}}",
+          "{{family_register.step1.household_washhands.no_permission_to_see}}",
+          "{{family_register.step1.household_washhands.other_reasons}}"
+        ],
+        "keys": [
+          "sink",
+          "dwelling",
+          "yard",
+          "mobile_object",
+          "no_handwashing_place",
+          "no_permission_to_see",
+          "other"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_hand_washing",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{family_register.step1.other_hand_washing.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.other_hand_washing.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "water_availability",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step1.water_availability.label}}",
+        "values": [
+          "{{family_register.step1.water_availability.available}}",
+          "{{family_register.step1.water_availability.not_available}}"
+        ],
+        "keys": [
+          "water_available",
+          "water_not_available"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "soap_availability",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step1.soap_availability.label}}",
+        "values": [
+          "{{family_register.step1.option_answer.yes}}",
+          "{{family_register.step1.option_answer.no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "soap_availability_observe",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step1.soap_availability_observe.label}}",
+        "values": [
+          "{{family_register.step1.option_answer.yes}}",
+          "{{family_register.step1.option_answer.no}}"
+        ],
+        "keys": [
+          "yes",
+          "no"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "soap_observed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step1.soap_observed.label}}",
+        "values": [
+          "{{family_register.step1.soap_observed.bar_or_liquid}}",
+          "{{family_register.step1.soap_observed.detergent}}",
+          "{{family_register.step1.soap_observed.ash_mud_or_sand}}",
+          "{{family_register.step1.soap_observed.other}}"
+        ],
+        "keys": [
+          "bar_or_liquid",
+          "detergent",
+          "ash_mud_or_sand",
+          "other"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_soap",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{family_register.step1.other_soap.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.other_soap.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "roof_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step1.roof_type.label}}",
+        "values": [
+          "{{family_register.step1.roof_type.no_roof}}",
+          "{{family_register.step1.roof_type.leaves}}",
+          "{{family_register.step1.roof_type.mud_and_grass}}",
+          "{{family_register.step1.roof_type.wood}}",
+          "{{family_register.step1.roof_type.iron_sheet}}",
+          "{{family_register.step1.roof_type.concrete_cement}}",
+          "{{family_register.step1.roof_type.asbestos_sheets}}",
+          "{{family_register.step1.roof_type.tiles}}",
+          "{{family_register.step1.roof_type.other}}"
+        ],
+        "keys": [
+          "no_roof",
+          "grass_leaves_bamboos",
+          "mud_and_grass",
+          "wood",
+          "iron_sheets",
+          "concrete_cement",
+          "obsesto_sheets",
+          "tiles",
+          "other"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_roof_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{family_register.step1.other_roof_type.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.other_roof_type.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "wall_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step1.wall_type.label}}",
+        "values": [
+          "{{family_register.step1.wall_type.no_walls}}",
+          "{{family_register.step1.wall_type.mud_or_mud_bricks}}",
+          "{{family_register.step1.wall_type.stone}}",
+          "{{family_register.step1.wall_type.burnt_bricks}}",
+          "{{family_register.step1.wall_type.concrete_cement}}",
+          "{{family_register.step1.wall_type.wood_bamboo}}",
+          "{{family_register.step1.wall_type.iron_sheet}}",
+          "{{family_register.step1.wall_type.card_body}}",
+          "{{family_register.step1.wall_type.other}}"
+        ],
+        "keys": [
+          "no_roof",
+          "grass_leaves_bamboos",
+          "mud_and_grass",
+          "wood",
+          "iron_sheets",
+          "concrete_cement",
+          "obsesto_sheets",
+          "tiles",
+          "other"
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_wall_type",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{family_register.step1.other_wall_type.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.other_wall_type.v_required.err}}"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -339,7 +976,7 @@
         "key": "same_as_fam_name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "same_as_fam_name",
         "type": "check_box",
         "label": "{{family_register.step2.same_as_fam_name.label}}",
         "options": [
@@ -347,9 +984,10 @@
             "key": "same_as_fam_name",
             "text": "{{family_register.step2.same_as_fam_name.options.same_as_fam_name.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "same_as_fam_name"
           }
-
         ],
         "relevance": {
           "rules-engine": {
@@ -419,7 +1057,9 @@
             "key": "dob_unknown",
             "text": "{{family_register.step2.dob_unknown.options.dob_unknown.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "dob_unknown"
           }
         ]
       },
@@ -536,14 +1176,15 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "last_menstrual_period_unknown",
-        "openmrs_data_type": "text",
         "type": "check_box",
         "options": [
           {
             "key": "lmp_unknown",
             "text": "{{family_register.step2.last_menstrual_period_unknown.options.lmp_unknown.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "lmp_unknown"
           }
         ],
         "relevance": {
@@ -558,7 +1199,7 @@
         "key": "clin_card",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "clin_card",
         "type": "check_box",
         "label": "{{family_register.step2.clin_card.label}}",
         "exclusive": [
@@ -577,13 +1218,17 @@
             "key": "clin_card_yes",
             "text": "{{family_register.step2.clin_card.options.clin_card.yes.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "clin_card_yes"
           },
           {
             "key": "clin_card_no",
             "text": "{{family_register.step2.clin_card.options.clin_card.no.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "clin_card_no"
           }
         ]
       },
@@ -591,7 +1236,7 @@
         "key": "edd_present",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "edd_present",
         "type": "check_box",
         "label": "{{family_register.step2.edd_present.label}}",
         "exclusive": [
@@ -610,13 +1255,17 @@
             "key": "edd_present_yes",
             "text": "{{family_register.step2.edd_present.options.edd_present.yes.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "edd_present_yes"
           },
           {
             "key": "edd_present_no",
             "text": "{{family_register.step2.edd_present.options.edd_present.no.text}}",
             "text_size": "18px",
-            "value": "false"
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "edd_present_no"
           }
         ]
       },
@@ -629,13 +1278,6 @@
         "hint": "{{family_register.step2.edd.hint}}",
         "max_date": "today+40w",
         "min_date": "today",
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-register-calculation.yml"
-            }
-          }
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -694,6 +1336,716 @@
             }
           }
         },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_prev_preg",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "no_prev_preg",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "{{family_register.step2.no_prev_preg.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step2.no_prev_preg.v_required.err}}"
+        },
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{family_register.step2.no_prev_preg.v_numeric_integer.err}}"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "{{family_register.step2.no_prev_preg.v_min.err}}"
+        },
+        "v_max": {
+          "value": "45",
+          "err": "{{family_register.step2.no_prev_preg.v_max.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "gravida",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "5624AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_surv_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "164894AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "{{family_register.step2.no_surv_children.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step2.no_surv_children.v_required.err}}"
+        },
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{family_register.step2.no_surv_children.v_numeric_integer.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_misscarriage",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "164894AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "{{family_register.step2.no_misscarriage.hint}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{family_register.step2.no_misscarriage.v_numeric_integer.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "delivery_method",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "delivery_method",
+        "label": "{{family_register.step2.delivery_method.label}}",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "chk_vaginally",
+            "text": "{{family_register.step2.delivery_method.options.chk_vaginally.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginally"
+          },
+          {
+            "key": "chk_caesarian",
+            "text": "{{family_register.step2.delivery_method.options.chk_caesarian.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_caesarian"
+          },
+          {
+            "key": "chk_miscarriage",
+            "text": "{{family_register.step2.delivery_method.options.chk_miscarriage.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_miscarriage"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "symptoms_prev_preg",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "symptoms_prev_preg",
+        "label": "{{family_register.step2.symptoms_prev_preg.label}}",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "chk_vaginal_bleeding",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_vaginal_bleeding.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginal_bleeding"
+          },
+          {
+            "key": "chk_swelling",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_swelling.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_swelling"
+          },
+          {
+            "key": "chk_high_blood_pressure",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_high_blood_pressure.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_high_blood_pressure"
+          },
+          {
+            "key": "chk_red_eyes",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_red_eyes.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_red_eyes"
+          },
+          {
+            "key": "chk_frequent_headaches",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_frequent_headaches.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_frequent_headaches"
+          },
+          {
+            "key": "chk_high_blood_sugar",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_high_blood_sugar.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_high_blood_sugar"
+          },
+          {
+            "key": "chk_kidney_infection",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_kidney_infection.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_kidney_infection"
+          },
+          {
+            "key": "chk_fluid_with_abnormal_smell",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_fluid_with_abnormal_smell.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_fluid_with_abnormal_smell"
+          },
+          {
+            "key": "chk_threatened_preterm_labor",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_threatened_preterm_labor.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_threatened_preterm_labor"
+          },
+          {
+            "key": "chk_threatened_miscarriage",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_threatened_miscarriage.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_threatened_miscarriage"
+          },
+          {
+            "key": "chk_vaginal_infection",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_vaginal_infection.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginal_infection"
+          },
+          {
+            "key": "chk_premature_water_breakage",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_premature_water_breakage.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_premature_water_breakage"
+          },
+          {
+            "key": "chk_children_born_three_weeks_early",
+            "text": "{{family_register.step2.symptoms_prev_preg.options.chk_children_born_three_weeks_early.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_children_born_three_weeks_early"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "breastfeed_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step2.breastfeed_children.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step2.breastfeed_children.v_required.err}}"
+        },
+        "values": [
+          "{{family_register.step2.breastfeed_children.values[0]}}",
+          "{{family_register.step2.breastfeed_children.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "marital_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step2.marital_status.hint}}",
+        "values": [
+          "{{family_register.step2.marital_status.values[0]}}",
+          "{{family_register.step2.marital_status.values[1]}}",
+          "{{family_register.step2.marital_status.values[2]}}",
+          "{{family_register.step2.marital_status.values[3]}}",
+          "{{family_register.step2.marital_status.values[4]}}"
+        ],
+        "keys": [
+          "Married",
+          "Co-Habitating",
+          "Single",
+          "Divorced",
+          "Widowed"
+        ],
+        "openmrs_choice_ids": {
+          "Married": "",
+          "Co-Habitating": "",
+          "Single": "",
+          "Divorced": "",
+          "Widowed": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "person_assist",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step2.person_assist.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step2.person_assist.v_required.err}}"
+        },
+        "values": [
+          "{{family_register.step2.person_assist.values[0]}}",
+          "{{family_register.step2.person_assist.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "name_person_assist",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{family_register.step2.name_person_assist.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "person_assist_child_relationship",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step2.person_assist_child_relationship.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step2.person_assist_child_relationship.v_required.err}}"
+        },
+        "values": [
+          "{{family_register.step2.person_assist_child_relationship.values[0]}}",
+          "{{family_register.step2.person_assist_child_relationship.values[1]}}",
+          "{{family_register.step2.person_assist_child_relationship.values[2]}}",
+          "{{family_register.step2.person_assist_child_relationship.values[3]}}",
+          "{{family_register.step2.person_assist_child_relationship.values[4]}}",
+          "{{family_register.step2.person_assist_child_relationship.values[5]}}",
+          "{{family_register.step2.person_assist_child_relationship.values[6]}}",
+          "{{family_register.step2.person_assist_child_relationship.values[7]}}"
+        ],
+        "keys": [
+          "Father",
+          "Aunt(s)",
+          "Uncle(s)",
+          "Grandmother(s)",
+          "Grandfather(s)",
+          "Sister(s)",
+          "Brother(s)",
+          "Other"
+        ],
+        "openmrs_choice_ids": {
+          "Father": "",
+          "Aunt(s)": "",
+          "Uncle(s)": "",
+          "Grandmother(s)": "",
+          "Grandfather(s)": "",
+          "Brother(s)": "",
+          "Sister(s)": "",
+          "Other": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "person_assist_child_relationship_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{family_register.step2.person_assist_child_relationship_other.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "phone_person_assist",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{family_register.step2.phone_person_assist.hint}}",
+        "v_numeric": {
+          "value": "true",
+          "err": "{{family_register.step2.phone_person_assist.v_numeric.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "health_insurance",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step2.health_insurance.hint}}",
+        "values": [
+          "{{family_register.step2.health_insurance.values[0]}}",
+          "{{family_register.step2.health_insurance.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "accessibility_issues",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "exclusive": ["chk_none"],
+        "label": "{{family_register.step2.accessibility_issues.label}}",
+        "options": [
+          {
+            "key": "chk_seeing",
+            "text": "{{family_register.step2.accessibility_issues.options.chk_seeing.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_seeing"
+          },
+          {
+            "key": "chk_hearing",
+            "text": "{{family_register.step2.accessibility_issues.options.chk_hearing.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_hearing"
+          },
+          {
+            "key": "chk_walking_or_climbing_stairs",
+            "text": "{{family_register.step2.accessibility_issues.options.chk_walking_or_climbing_stairs.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_walking_or_climbing_stairs"
+          },
+          {
+            "key": "chk_remembering_or_concentrating",
+            "text": "{{family_register.step2.accessibility_issues.options.chk_remembering_or_concentrating.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_remembering_or_concentrating"
+          },
+          {
+            "key": "chk_communicating_with_others",
+            "text": "{{family_register.step2.accessibility_issues.options.chk_communicating_with_others.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_communicating_with_others"
+          },
+          {
+            "key": "chk_other",
+            "text": "{{family_register.step2.accessibility_issues.options.chk_other.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_other"
+          },
+          {
+            "key": "chk_none",
+            "text": "{{family_register.step2.accessibility_issues.options.chk_none.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_none"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "accessibility_issue_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{family_register.step2.accessibility_issue_other.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "substance_use",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step2.substance_use.hint}}",
+        "values": [
+          "{{family_register.step2.substance_use.values[0]}}",
+          "{{family_register.step2.substance_use.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "substance_use_current",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{family_register.step2.substance_use_current.hint}}",
+        "values": [
+          "{{family_register.step2.substance_use_current.values[0]}}",
+          "{{family_register.step2.substance_use_current.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "economic_activities",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "economic_activities",
+        "label": "{{family_register.step2.economic_activities.label}}",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "chk_wage_employment",
+            "text": "{{family_register.step2.economic_activities.options.chk_wage_employment.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_wage_employment"
+          },
+          {
+            "key": "chk_family_business",
+            "text": "{{family_register.step2.economic_activities.options.chk_family_business.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_family_business"
+          },
+          {
+            "key": "chk_family_farm",
+            "text": "{{family_register.step2.economic_activities.options.chk_family_farm.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_family_farm"
+          },
+          {
+            "key": "chk_paid_work_inside_home",
+            "text": "{{family_register.step2.economic_activities.options.chk_paid_work_inside_home.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_paid_work_inside_home"
+          },
+          {
+            "key": "chk_caring",
+            "text": "{{family_register.step2.economic_activities.options.chk_caring.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_caring"
+          },
+          {
+            "key": "chk_other",
+            "text": "{{family_register.step2.economic_activities.options.chk_other.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-register-relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "economic_activity_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{family_register.step2.economic_activity_other.hint}}",
         "relevance": {
           "rules-engine": {
             "ex-rules": {

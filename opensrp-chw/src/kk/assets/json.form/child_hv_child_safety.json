@@ -68,6 +68,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_child_safety.step1.child_safety_counselled.hint}}",
+        "label_info_text": "{{child_hv_child_safety.step1.child_safety_counselled.hint}}",
         "values": [
           "{{child_hv_child_safety.step1.answer_yes}}",
           "{{child_hv_child_safety.step1.answer_no}}"
