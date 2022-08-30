@@ -101,6 +101,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "label": "{{pnc_hv_infection_prevention_control.step1.kind_latrine.label}}",
+        "label_info_text": "{{pnc_hv_infection_prevention_control.step1.kind_latrine.label}}",
         "hint": "{{pnc_hv_infection_prevention_control.step1.kind_latrine.label}}",
         "values": [
           "{{pnc_hv_infection_prevention_control.step1.kind_latrine.option.pit}}",

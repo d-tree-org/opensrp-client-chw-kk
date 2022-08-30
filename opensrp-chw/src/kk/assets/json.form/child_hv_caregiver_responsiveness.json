@@ -57,6 +57,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.hint}}",
+        "label_info_text": "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.hint}}",
         "values": [
           "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.values[0]}}",
           "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.values[1]}}"
@@ -112,6 +113,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.hint}}",
+        "label_info_text": "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.hint}}",
         "values": [
           "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.values[0]}}",
           "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.values[1]}}"
@@ -133,6 +135,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.hint}}",
+        "label_info_text": "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.hint}}",
         "values": [
           "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.values[0]}}",
           "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.values[1]}}"

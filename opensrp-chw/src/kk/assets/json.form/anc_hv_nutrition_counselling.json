@@ -178,6 +178,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "label": "{{anc_hv_nutrition_counselling.step1.nutrition_restrictions.hint}}",
+        "label_info_text": "{{anc_hv_nutrition_counselling.step1.nutrition_restrictions.hint}}",
         "hint": "{{anc_hv_nutrition_counselling.step1.nutrition_restrictions.hint}}",
         "values": [
           "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
@@ -200,6 +201,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "label": "{{anc_hv_nutrition_counselling.step1.unusual_things_crave.hint}}",
+        "label_info_text": "{{anc_hv_nutrition_counselling.step1.unusual_things_crave.hint}}",
         "hint": "{{anc_hv_nutrition_counselling.step1.unusual_things_crave.hint}}",
         "values": [
           "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
@@ -222,6 +224,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "label": "{{anc_hv_nutrition_counselling.step1.eaten_unusual_things.hint}}",
+        "label_info_text": "{{anc_hv_nutrition_counselling.step1.eaten_unusual_things.hint}}",
         "hint": "{{anc_hv_nutrition_counselling.step1.eaten_unusual_things.hint}}",
         "values": [
           "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
@@ -271,6 +274,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "label": "{{anc_hv_nutrition_counselling.step1.anaemia_tablets.hint}}",
+        "label_info_text": "{{anc_hv_nutrition_counselling.step1.anaemia_tablets.hint}}",
         "hint": "{{anc_hv_nutrition_counselling.step1.anaemia_tablets.hint}}",
         "values": [
           "{{anc_hv_nutrition_counselling.step1.answer_yes}}",
@@ -310,6 +314,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "label": "{{anc_hv_nutrition_counselling.step1.meals_per_day.hint}}",
+        "label_info_text": "{{anc_hv_nutrition_counselling.step1.meals_per_day.hint}}",
         "hint": "{{anc_hv_nutrition_counselling.step1.meals_per_day.hint}}",
         "values": [
           "{{anc_hv_nutrition_counselling.step1.meals_per_day.value[0].text}}",
@@ -351,6 +356,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "label": "{{anc_hv_nutrition_counselling.step1.folic_acid_tablets.hint}}",
+        "label_info_text": "{{anc_hv_nutrition_counselling.step1.folic_acid_tablets.hint}}",
         "hint": "{{anc_hv_nutrition_counselling.step1.folic_acid_tablets.hint}}",
         "values": [
           "{{anc_hv_nutrition_counselling.step1.answer_yes}}",

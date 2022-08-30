@@ -120,6 +120,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_malnutrition_screening.step1.range_graph.hint}}",
+        "label_info_text": "{{child_hv_malnutrition_screening.step1.range_graph.hint}}",
         "values": [
           "{{child_hv_malnutrition_screening.step1.range_graph.value[0]}}",
           "{{child_hv_malnutrition_screening.step1.range_graph.value[1]}}",
@@ -169,6 +170,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_malnutrition_screening.step1.child_growth_muac.hint}}",
+        "label_info_text": "{{child_hv_malnutrition_screening.step1.child_growth_muac.hint}}",
         "values": [
           "{{child_hv_malnutrition_screening.step1.child_growth_muac.value[0]}}",
           "{{child_hv_malnutrition_screening.step1.child_growth_muac.value[1]}}",
