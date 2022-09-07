@@ -206,6 +206,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_malaria.step1.llin_last_night.hint}}",
+        "label_info_text": "{{anc_hv_malaria.step1.llin_last_night.hint}}",
         "values": [
           "{{anc_hv_malaria.step1.llin_last_night.values[0]}}",
           "{{anc_hv_malaria.step1.llin_last_night.values[1]}}"
@@ -238,6 +239,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_malaria.step1.llin_condition.hint}}",
+        "label_info_text": "{{anc_hv_malaria.step1.llin_condition.hint}}",
         "values": [
           "{{anc_hv_malaria.step1.llin_condition.values[0]}}",
           "{{anc_hv_malaria.step1.llin_condition.values[1]}}"

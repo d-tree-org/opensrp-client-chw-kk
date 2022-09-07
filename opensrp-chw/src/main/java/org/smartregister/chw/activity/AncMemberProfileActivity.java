@@ -45,6 +45,7 @@ import org.smartregister.chw.core.utils.ChwNotificationUtil;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.custom_view.AncFloatingMenu;
+import org.smartregister.chw.dao.ScheduleDao;
 import org.smartregister.chw.dataloader.AncMemberDataLoader;
 import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
 import org.smartregister.chw.interactor.AncMemberProfileInteractor;
@@ -60,6 +61,7 @@ import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
+import org.smartregister.domain.AlertStatus;
 import org.smartregister.domain.Client;
 import org.smartregister.domain.Task;
 import org.smartregister.family.domain.FamilyEventClient;
@@ -87,6 +89,8 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
     private NotificationListAdapter notificationListAdapter = new NotificationListAdapter();
 
     private TextView registrationStatus;
+
+    private AlertStatus alertStatus;
 
     public static void startMe(Activity activity, String baseEntityID) {
         Intent intent = new Intent(activity, AncMemberProfileActivity.class);
@@ -336,6 +340,31 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
 
         intent.putExtra(CoreConstants.INTENT_KEY.SERVICE_DUE, hasDueServices);
         startActivity(intent);
+    }
+
+    @Override
+    public void setVisitNotDoneThisMonth() {
+        super.setVisitNotDoneThisMonth();
+        setFamilyStatus(alertStatus);
+    }
+
+    @Override
+    public void updateVisitNotDone(long value) {
+        super.updateVisitNotDone(value);
+        setFamilyStatus(alertStatus);
+    }
+
+    @Override
+    public void setFamilyStatus(AlertStatus status) {
+        super.setFamilyStatus(status);
+        alertStatus=status;
+        TextView tvFamilyStatus=findViewById(R.id.textview_family_has);
+        Integer dueServiceCount = ScheduleDao.getDueServicesCount(memberObject.getFamilyBaseEntityId());
+        if(dueServiceCount != null){
+            if (dueServiceCount == 0) {
+                tvFamilyStatus.setText(NCUtils.fromHtml(getString(R.string.family_has_nothing_due)));
+            }
+        }
     }
 
     @Override

@@ -15,6 +15,8 @@ import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.presenter.ReferralJsonWizardFormFragmentPresenter;
 
+import java.text.MessageFormat;
+
 public class ReferralJsonWizardFormFragment extends JsonWizardFormFragment {
 
     public static ReferralJsonWizardFormFragment getFormFragment(String stepName) {
@@ -30,12 +32,12 @@ public class ReferralJsonWizardFormFragment extends JsonWizardFormFragment {
         // check if referral exist
         String businessStatus = behaviour.equalsIgnoreCase("refer") ? CoreConstants.BUSINESS_STATUS.REFERRED : CoreConstants.BUSINESS_STATUS.LINKED;
         String baseEntityID = ((ReferralWizardFormActivity) getActivity()).getBaseEntityID();
-        String referredTo = behaviour.equalsIgnoreCase("refer") ? "Health Facility" : "Addo";
+        String referredTo = behaviour.equalsIgnoreCase("refer") ? context.getString(R.string.referred_to_text_value_health_facility) : context.getString(R.string.referred_to_text_value_addo);
 
         if (CoreReferralUtils.hasReferralTask(baseEntityID, businessStatus) && !behaviour.equalsIgnoreCase("save")) {
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setMessage("This client already has a referral to the "+ referredTo +", do you want to close this referral and open a new one?")
-                    .setTitle("Existing Referral")
+                    .setMessage(MessageFormat.format(context.getString(R.string.existing_referral_dialog_message), referredTo))
+                    .setTitle(context.getString(R.string.existing_referral_dialog_title))
                     .setCancelable(false)
                     .setPositiveButton(R.string.no_button_label,
                             (dialog1, whichButton) -> {

@@ -3,18 +3,21 @@ package org.smartregister.chw.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.view.Menu;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.activity.CoreFamilyOtherMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.form_data.NativeFormsDataBinder;
 import org.smartregister.chw.core.listener.OnClickFloatingMenu;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.custom_view.FamilyMemberFloatingMenu;
+import org.smartregister.chw.dao.ScheduleDao;
 import org.smartregister.chw.dataloader.FamilyMemberDataLoader;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.fragment.FamilyOtherMemberProfileFragment;
@@ -166,6 +169,18 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
         viewPager.setAdapter(adapter);
 
         return viewPager;
+    }
+
+    @Override
+    public void setFamilyServiceStatus(String status) {
+        super.setFamilyServiceStatus(status);
+        TextView textViewFamilyHas = findViewById(R.id.textview_family_has);
+        Integer dueServiceCount = ScheduleDao.getDueServicesCount(familyBaseEntityId);
+        if(dueServiceCount != null){
+            if (dueServiceCount == 0) {
+                textViewFamilyHas.setText(getString(R.string.family_has_nothing_due));
+            }
+        }
     }
 
     @Override

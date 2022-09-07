@@ -57,6 +57,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_nutrition_status.step1.nutrition_status_1m5yr.hint}}",
+        "label_info_text": "{{child_hv_nutrition_status.step1.nutrition_status_1m5yr.hint}}",
         "values": [
           "{{child_hv_nutrition_status.step1.nutrition_status_1m5yr.values[0]}}",
           "{{child_hv_nutrition_status.step1.nutrition_status_1m5yr.values[1]}}",

@@ -67,7 +67,7 @@
     <string name="age">Umri</string>
     <string name="edit_anc_registration_form_title">Sahihisha usajili wa mama mjamzito</string>
     <string name="anc_registration_form_title">Usajili wa mama mjamzito</string>
-    <string name="anc_pregnancy_outcome_form_title">Matokeo ya mimba</string>
+    <string name="anc_pregnancy_outcome_form_title">Matokeo ya ujauzito</string>
 
     <string name="birth_cert_value">Je, mtoto ana cheti cha kuzaliwa? %s</string>
     <string name="birth_cert_date">Tarehe ya kutolewa kwa cheti cha kuzaliwa: %s</string>
@@ -86,7 +86,7 @@
     <string name="set">Seti</string>
     <string name="highest_education_level">Kiwango cha juu kabisa cha elimu</string>
     <string name="anc_registration_info">Taarifa za usajili wa mama mjamzito</string>
-    <string name="anc_pregnancy_out_come">Matokeo ya mimba</string>
+    <string name="anc_pregnancy_out_come">Matokeo ya ujauzito</string>
 
     <string name="job_aids">Vitendea kazi</string>
     <string name="refresh_indicators">Refreshi viashiria</string>

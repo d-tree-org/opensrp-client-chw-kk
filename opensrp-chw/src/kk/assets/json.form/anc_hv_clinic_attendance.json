@@ -227,6 +227,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{anc_hv_clinic_attendance.step1.last_clinic_visit.hint}}",
+        "label_info_text": "{{anc_hv_clinic_attendance.step1.last_clinic_visit.hint}}",
         "values": [
           "{{anc_hv_clinic_attendance.step1.last_clinic_visit.value[0]}}",
           "{{anc_hv_clinic_attendance.step1.last_clinic_visit.value[1]}}",

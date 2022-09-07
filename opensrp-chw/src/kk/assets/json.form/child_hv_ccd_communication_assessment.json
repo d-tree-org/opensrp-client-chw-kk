@@ -57,6 +57,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_ccd_communication_assessment.step1.communication_with_child.hint}}",
+        "label_info_text": "{{child_hv_ccd_communication_assessment.step1.communication_with_child.hint}}",
         "values": [
           "{{child_hv_ccd_communication_assessment.step1.answer_yes}}",
           "{{child_hv_ccd_communication_assessment.step1.answer_no}}"
