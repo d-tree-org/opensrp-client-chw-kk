@@ -186,6 +186,7 @@
         "openmrs_data_type": "llin_last_night",
         "type": "spinner",
         "hint": "{{pnc_malaria_prevention.step1.llin_last_night.hint}}",
+        "label_info_text": "{{pnc_malaria_prevention.step1.llin_last_night.hint}}",
         "values": [
           "{{pnc_malaria_prevention.step1.llin_last_night.values[0]}}",
           "{{pnc_malaria_prevention.step1.llin_last_night.values[1]}}"

@@ -85,6 +85,7 @@
         "type": "spinner",
         "text_color": "#000000",
         "hint": "{{child_hv_breastfeeding.step1.breastfed_prev.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.breastfed_prev.hint}}",
         "values": [
           "{{child_hv_breastfeeding.step1.breastfed_prev.values[0]}}",
           "{{child_hv_breastfeeding.step1.breastfed_prev.values[1]}}"
@@ -117,6 +118,7 @@
         "openmrs_data_type": "time_to_breastfeed",
         "type": "spinner",
         "hint": "{{child_hv_breastfeeding.step1.time_to_breastfeed.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.time_to_breastfeed.hint}}",
         "values": [
           "{{child_hv_breastfeeding.step1.time_to_breastfeed.values[0]}}",
           "{{child_hv_breastfeeding.step1.time_to_breastfeed.values[1]}}",
@@ -155,6 +157,7 @@
         "openmrs_data_type": "breastfeed_current",
         "type": "spinner",
         "hint": "{{child_hv_breastfeeding.step1.breastfeed_current.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.breastfeed_current.hint}}",
         "values": [
           "{{child_hv_breastfeeding.step1.breastfeed_current.values[0]}}",
           "{{child_hv_breastfeeding.step1.breastfeed_current.values[1]}}"
@@ -199,6 +202,7 @@
         "openmrs_data_type": "challenges_breastfeed",
         "type": "spinner",
         "hint": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint}}",
         "values": [
           "{{child_hv_breastfeeding.step1.challenges_breastfeed.values[0]}}",
           "{{child_hv_breastfeeding.step1.challenges_breastfeed.values[1]}}"
@@ -368,6 +372,7 @@
         "openmrs_data_type": "times_child_breastfeeds",
         "type": "spinner",
         "hint": "{{child_hv_breastfeeding.step1.times_child_breastfeeds.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.times_child_breastfeeds.hint}}",
         "values": [
           "{{child_hv_breastfeeding.step1.times_child_breastfeeds.values[0]}}",
           "{{child_hv_breastfeeding.step1.times_child_breastfeeds.values[1]}}",
@@ -493,6 +498,7 @@
         "openmrs_data_type": "challenges_breastfeed",
         "type": "spinner",
         "hint": "{{child_hv_breastfeeding.step1.child_suckling_well.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.child_suckling_well.hint}}",
         "values": [
           "{{child_hv_breastfeeding.step1.child_suckling_well.values[0]}}",
           "{{child_hv_breastfeeding.step1.child_suckling_well.values[1]}}"

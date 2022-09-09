@@ -308,7 +308,7 @@
           "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         },
         "v_required": {
-          "value": "vrai",
+          "value": "true",
           "err": "{{child_enrollment.step1.early_bf_1hr.v_required.err}}"
         },
         "relevance": {

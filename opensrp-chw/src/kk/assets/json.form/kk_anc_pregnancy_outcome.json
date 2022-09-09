@@ -1043,6 +1043,13 @@
             "type": "hidden"
           },
           {
+            "key": "mother_base_entity_id",
+            "openmrs_entity_parent": "",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "mother_base_entity_id",
+            "type": "hidden"
+          },
+          {
             "key": "gender",
             "openmrs_entity_parent": "",
             "openmrs_entity": "person",

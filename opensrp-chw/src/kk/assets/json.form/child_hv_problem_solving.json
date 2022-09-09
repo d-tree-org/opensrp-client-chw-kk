@@ -57,6 +57,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.hint}}",
+        "label_info_text": "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.hint}}",
         "values": [
           "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.values[0]}}",
           "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.values[1]}}"

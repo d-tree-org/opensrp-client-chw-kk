@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
@@ -136,6 +137,8 @@ public class PncRegisterActivity extends CorePncRegisterActivity {
             JSONObject stepOne = jsonForm.getJSONObject(org.smartregister.family.util.JsonFormUtils.STEP1);
             JSONArray jsonArray = stepOne.getJSONArray(org.smartregister.family.util.JsonFormUtils.FIELDS);
 
+            String motherEntityId = jsonForm.getString("entity_id");
+
             Map<String, String> values = new HashMap<>();
 
             values.put(DBConstants.KEY.TEMP_UNIQUE_ID, unique_id);
@@ -143,6 +146,19 @@ public class PncRegisterActivity extends CorePncRegisterActivity {
             values.put(CoreConstants.JsonAssets.FAMILY_MEMBER.PHONE_NUMBER, phone_number);
             values.put(org.smartregister.family.util.DBConstants.KEY.RELATIONAL_ID, familyBaseEntityId);
             values.put(DBConstants.KEY.LAST_MENSTRUAL_PERIOD, lastMenstrualPeriod);
+
+            JSONObject stepTwo = jsonForm.getJSONObject(org.smartregister.family.util.JsonFormUtils.STEP2);
+            JSONArray stepTwoFields = stepTwo.getJSONArray(org.smartregister.family.util.JsonFormUtils.FIELDS);
+
+            JSONObject noChildrenNo = JsonFormUtils.getFieldJSONObject(stepTwoFields, "no_children_no");
+            if (noChildrenNo != null){
+                JSONArray noChildrenArray = noChildrenNo.getJSONArray("value");
+                JSONObject motherBaseEntityIdObject = JsonFormUtils.getFieldJSONObject(noChildrenArray, "mother_base_entity_id");
+
+                //Attach mother entiry baseEntityId to child obs
+                motherBaseEntityIdObject.put("value", motherEntityId);
+            }
+
             try {
                 JSONObject min_date = CoreJsonFormUtils.getFieldJSONObject(jsonArray, "delivery_date");
                 min_date.put("min_date", lastMenstrualPeriod);

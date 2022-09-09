@@ -41,6 +41,118 @@ condition: "step1_fam_consent.contains('fam_consent_no')"
 actions:
   - "isRelevant = true"
 ---
+name: step1_electricity_home
+description: Electricity home
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_water_source
+description: Water source
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_water_source
+description: Other water source that user uses
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_water_source.contains('chk_other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_floor_type
+description: Floor type
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_floor_type
+description: Other floor type prompt
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_floor_type.contains('chk_other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_household_washhands
+description: Household washhands
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_hand_washing
+description: Specify other hand washing available
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_household_washhands == 'other'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_water_availability
+description: Chw confirms if water is available
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && (step1_household_washhands == 'sink' || step1_household_washhands == 'dwelling' || step1_household_washhands == 'yard' || step1_household_washhands == 'mobile_object' || step1_household_washhands == 'other')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_soap_availability
+description: Does the household have a soap
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_water_availability == 'water_available'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_soap_availability_observe
+description: Can chw observe the spap
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_soap_availability == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_soap_observed
+description: What type of soap did the chw observe
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_soap_availability_observe == 'yes'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_soap
+description: specify the other soap type observed
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_soap_observed == 'other'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_roof_type
+description: Roof type
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_roof_type
+description: specify other roof type used
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_roof_type == 'other'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_wall_type
+description: Wall type
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_wall_type
+description: specify other wall type observed
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes') && step1_wall_type == 'other'"
+actions:
+  - "isRelevant = true"
+---
 name: step2_first_and_middle_name
 description: First and middle name relevance
 priority: 1
@@ -192,5 +304,138 @@ name: step2_edi_id
 description: Identification id
 priority: 1
 condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_no_prev_preg
+description: No of previous pregnancies relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_no_surv_children
+description: no of surviving children
+priority: 1
+condition: "step2_no_prev_preg > 0 && step2_no_prev_preg != '' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_no_misscarriage
+description: no of misscarriages
+priority: 1
+condition: "step2_no_prev_preg > 0 && step2_no_prev_preg != '' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_delivery_method
+description: Delivery Method
+priority: 1
+condition: "step2_no_prev_preg > 0 && step2_no_prev_preg != '' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_symptoms_prev_preg
+description: Simptoms in previous pregnancies
+priority: 1
+condition: "step2_no_prev_preg > 0 && step2_no_prev_preg != '' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_breastfeed_children
+description: Breastfeed children
+priority: 1
+condition: "step2_no_prev_preg > 0 && step2_no_prev_preg != '' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_marital_status
+description: Marital status relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_person_assist
+description: Person assist relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_name_person_assist
+description: Name the person to assist the pregnant woman
+priority: 1
+condition: "step2_person_assist == 'Yes' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_person_assist_child_relationship
+description: Name the person to assist the pregnant woman
+priority: 1
+condition: "step2_person_assist == 'Yes' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_person_assist_child_relationship_other
+description: Other relationship to the child, specify
+priority: 1
+condition: "step2_person_assist_child_relationship.contains('Other') && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_phone_person_assist
+description: assist person phone number relevance
+priority: 1
+condition: "step2_person_assist == 'Yes' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_health_insurance
+description: Health insurance relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_accessibility_issues
+description: Accessibility issues relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_accessibility_issue_other
+description: Other accessibility issue, specify
+priority: 1
+condition: "step2_accessibility_issues.contains('chk_other') && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_substance_use
+description: Substance use relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_substance_use_current
+description: assist person phone number relevance
+priority: 1
+condition: "step2_substance_use == 'Yes' && step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_economic_activities
+description: Economic activities relevance
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step2_economic_activity_other
+description: Other economic activity, specify
+priority: 1
+condition: "step2_economic_activities.contains('chk_other') && step1_fam_consent.contains('fam_consent_yes')"
 actions:
   - "isRelevant = true"
