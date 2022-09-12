@@ -313,8 +313,8 @@ android {
             getIsDefault().set(true)
             dimension = 'baseDimension'
             applicationIdSuffix ".kk"
-            versionCode 9
-            versionName "0.5.0"
+            versionCode 11
+            versionName "0.6.1"
             buildConfigField "String", 'opensrp_url', '"https://kizazi-kijacho.smartregister.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/chad/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-proto.d-tree.org/opensrp/"'
