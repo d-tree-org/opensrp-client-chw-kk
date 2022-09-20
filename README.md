@@ -15,7 +15,43 @@ These instructions will get you a copy of the project up and running on your loc
 ## Development setup
 
 ### Steps to set up
-[OpenSRP android client app build](https://smartregister.atlassian.net/wiki/spaces/Documentation/pages/6619236/OpenSRP+App+Build)
+
+Clone OpenSRP CHW Client Kizazi Kijacho
+```
+git clone https://github.com/d-tree-org/opensrp-client-chw-kk.git
+```
+
+Clone OpenSRP client chw core module library
+```
+git clone https://github.com/d-tree-org/opensrp-client-chw-core.git
+```
+
+Publish OpenSRP client chw core module library locally in your machine
+```
+./gradlew uploadArchives -PmavenLocal=true
+```
+
+Clone OpenSRP Client Family Library
+```
+git clone https://github.com/d-tree-org/opensrp-client-family.git
+```
+
+Publish OpenSRP Client Family Library locally in your machine
+```
+./gradlew uploadArchives -PmavenLocal=true
+```
+
+Create a github.properties file in a project root directory and add your github username and authentication key
+```
+gpr.usr=
+gpr.key=
+```
+
+Add the provided credentials to your `local.properties` file of your OpenSRP CHW Client Kizazi Kijacho app
+
+Enable Google Services Plugin by adding `google-services.json` file into module (app-level) directory of your OpenSRP CHW Client Kizazi Kijacho app
+
+Finally build and run the app from your IDE. Visit [OpenSRP android client app build](https://smartregister.atlassian.net/wiki/spaces/Documentation/pages/6619236/OpenSRP+android+client+app+build) for more information
 
 ### Running the tests
 
