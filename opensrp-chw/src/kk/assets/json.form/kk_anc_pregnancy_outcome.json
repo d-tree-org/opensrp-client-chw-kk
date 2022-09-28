@@ -772,8 +772,8 @@
       {
         "key": "primary_caregiver_dob",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person",
-        "openmrs_entity_id": "birthdate",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
         "type": "date_picker",
         "hint": "{{anc_pregnancy_outcome.step2.primary_caregiver_dob.hint}}",
         "expanded": false,
@@ -797,8 +797,8 @@
       {
         "key": "dob_unknown",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person",
-        "openmrs_entity_id": "birthdateApprox",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
         "type": "check_box",
         "label": "{{anc_pregnancy_outcome.step2.dob_unknown.label}}",
         "options": [
@@ -820,8 +820,8 @@
       {
         "key": "primary_caregiver_age",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_attribute",
-        "openmrs_entity_id": "age",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
         "type": "edit_text",
         "hint": "{{anc_pregnancy_outcome.step2.age.hint}}",
         "v_numeric_integer": {
@@ -855,8 +855,8 @@
       {
         "key": "primary_caregiver_sex",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person",
-        "openmrs_entity_id": "gender",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
         "type": "spinner",
         "hint": "{{anc_pregnancy_outcome.step2.sex.hint}}",
         "values": [
@@ -1008,8 +1008,8 @@
           {
             "key": "first_name",
             "openmrs_entity_parent": "",
-            "openmrs_entity": "person",
-            "openmrs_entity_id": "first_name",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "161543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "type": "edit_text",
             "hint": "{{anc_pregnancy_outcome.step2.no_children_no.first_name.hint}}",
             "edit_type": "name",
@@ -1025,8 +1025,8 @@
           {
             "key": "middle_name",
             "openmrs_entity_parent": "",
-            "openmrs_entity": "person",
-            "openmrs_entity_id": "middle_name",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "",
             "type": "edit_text",
             "hint": "{{anc_pregnancy_outcome.step2.no_children_no.middle_name.hint}}",
             "edit_type": "name",
@@ -1052,8 +1052,8 @@
           {
             "key": "gender",
             "openmrs_entity_parent": "",
-            "openmrs_entity": "person",
-            "openmrs_entity_id": "gender",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "161543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
             "type": "spinner",
             "hint": "{{anc_pregnancy_outcome.step2.no_children_no.gender.hint}}",
             "values": [
