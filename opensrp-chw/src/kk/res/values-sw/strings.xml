@@ -30,11 +30,11 @@
     <string name="hour_of">" masaa %s"</string>
 
     <string name="neonatal_danger_signs">Uchunguzi wa dalili za hatari za mtoto mchanga</string>
-    <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga %s</string>
-    <string name="kmc_skin_to_skin_counselling_month">Ushauri juu ya matunzo ya ngozi kwa ngozi (KMC) %s</string>
+    <string name="neonatal_danger_signs_month">Uchunguzi wa dalili za hatari za mtoto mchanga </string>
+    <string name="kmc_skin_to_skin_counselling_month">Ushauri juu ya matunzo ya ngozi kwa ngozi (KMC) </string>
     <string name="new_born_care_introduction">Huduma muhimu ya Watoto Wachanga: Utangulizi</string>
     <string name="is_baby_premature">Mtoto ni njiti au ana uzito pungufu</string>
-    <string name="new_born_care_introduction_month">Huduma muhimu ya Watoto Wachanga: Utangulizi %s</string>
+    <string name="new_born_care_introduction_month">Huduma muhimu ya Watoto Wachanga: Utangulizi </string>
     <string name="immunizations">Chanjo</string>
     <string name="ccd_communication_assessment_subtitle">Mama anawasiliana na mtoto</string>
     <string name="ccd_introduction_subtitle">Tabia na maendeleo ya mtoto</string>
@@ -44,15 +44,15 @@
     <string name="ccd_child_discipline_subtitle">Mama anavyomrekebisha mtoto</string>
     <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu %s</string>
 
-    <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto : Tembeleo la %s </string>
-    <string name="ccd_introduction"> CCD : Mwanzo %s </string>
-    <string name="ccd_development_screening"> CCD : Maendeleo ya ukuaji : %s </string>
-    <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano : %s </string>
-    <string name="ccd_child_discipline"> CCD : Nidhamu ya mtoto : %s </string>
+    <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto </string>
+    <string name="ccd_introduction"> CCD : Mwanzo </string>
+    <string name="ccd_development_screening"> CCD : Maendeleo ya ukuaji </string>
+    <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano </string>
+    <string name="ccd_child_discipline"> CCD : Nidhamu ya mtoto </string>
 
-    <string name="child_safety"> Usalama wa mtoto : %s </string>
+    <string name="child_safety"> Usalama wa mtoto </string>
 
-    <string name="complimentary_feeding"> Kumlisha mtoto vyakula vya nyongeza : %s </string>
+    <string name="complimentary_feeding"> Kumlisha mtoto vyakula vya nyongeza </string>
 
     <string name="counselled_mother_for_comp_feeding"> Mama ameshauriwa juu ya vyakula vya nyongeza </string>
 
