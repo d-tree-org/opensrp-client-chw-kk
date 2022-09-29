@@ -135,4 +135,9 @@
     <string name="existing_referral_dialog_title">Existing Referral</string>
     <string name="referred_to_text_value_health_facility">Health Facility</string>
     <string name="referred_to_text_value_addo">Addo</string>
+
+    <string name="device_data_synced">Device data synced</string>
+    <string name="device_data_not_synced">Device data not synced</string>
+    <string name="progressBarLabel">Syncing %s : %d%% </string>
+
 </resources>
