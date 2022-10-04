@@ -134,10 +134,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 }
             }
             evaluateVisitLocation();
-            evaluateNewBornCareIntro(serviceWrapperMap);
             evaluateToddlerDangerSign(serviceWrapperMap);
-            evaluateBreastFeeding(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
+            evaluateNewBornCareIntro(serviceWrapperMap);
+            evaluateBreastFeeding(serviceWrapperMap);
             evaluateImmunizations(serviceWrapperMap);
             evaluateMalariaPrevention(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
