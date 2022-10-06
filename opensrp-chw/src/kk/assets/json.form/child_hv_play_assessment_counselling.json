@@ -222,61 +222,6 @@
         "spacer_height": "20dp"
       },
       {
-        "key": "child_play_demo_0_days_12_months",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "label",
-        "text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.text}}",
-        "text_color": "#2D2E2D",
-        "label_info_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.label_info_title}}",
-        "label_text_style": "italic",
-        "has_bg": true,
-        "dynamic_label_info": [
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[0].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[0].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[0].dynamic_label_image_src}}"
-          },
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[1].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[1].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[1].dynamic_label_image_src}}"
-          },
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[2].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[2].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[2].dynamic_label_image_src}}"
-          },
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[3].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[3].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[3].dynamic_label_image_src}}"
-          },
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[4].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[4].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[4].dynamic_label_image_src}}"
-          },
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[5].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[5].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[5].dynamic_label_image_src}}"
-          },
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[6].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[6].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[6].dynamic_label_image_src}}"
-          },
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[7].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[7].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.child_play_demo_0_days_12_months.dynamic_label_info[7].dynamic_label_image_src}}"
-          }
-        ],
-        "label_is_dynamic": true
-      },
-      {
         "key": "corona_reminder_message",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
