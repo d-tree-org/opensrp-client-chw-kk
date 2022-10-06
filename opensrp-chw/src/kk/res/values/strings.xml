@@ -70,11 +70,11 @@
     <string name="hour_of">" %s hours"</string>
 
     <string name="neonatal_danger_signs">Neonatal Danger Signs</string>
-    <string name="neonatal_danger_signs_month">Neonatal danger signs %s</string>
-    <string name="kmc_skin_to_skin_counselling_month">KMC Skin-to-skin counselling %s</string>
+    <string name="neonatal_danger_signs_month">Neonatal danger signs </string>
+    <string name="kmc_skin_to_skin_counselling_month">KMC Skin-to-skin counselling </string>
     <string name="new_born_care_introduction">Essential New Born Care: Introduction</string>
     <string name="is_baby_premature">Baby pre-mature or born underweight?</string>
-    <string name="new_born_care_introduction_month">Essential New Born Care: Introduction %s</string>
+    <string name="new_born_care_introduction_month">Essential New Born Care: Introduction</string>
     <string name="immunizations">Immunizations</string>
     <string name="ccd_communication_assessment_subtitle">Mother communicates with child</string>
     <string name="ccd_introduction_subtitle">Child behaviour and development</string>
@@ -84,15 +84,15 @@
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
     <string name="malnutrition_screening">Malnutrition/Anemia screening %s</string>
 
-    <string name="toddler_danger_sign_month"> Toddler danger sign : Visit %s </string>
-    <string name="ccd_introduction"> CCD : Introduction : %s </string>
-    <string name="ccd_development_screening"> CCD : Development screening : %s </string>
-    <string name="ccd_communication_assessment"> CCD : Communication assessment : %s </string>
-    <string name="ccd_child_discipline"> CCD : Child discipline : %s </string>
+    <string name="toddler_danger_sign_month"> Toddler danger sign </string>
+    <string name="ccd_introduction"> CCD : Introduction</string>
+    <string name="ccd_development_screening"> CCD : Development screening </string>
+    <string name="ccd_communication_assessment"> CCD : Communication assessment </string>
+    <string name="ccd_child_discipline"> CCD : Child discipline</string>
 
-    <string name="child_safety"> Child Safety : %s </string>
+    <string name="child_safety"> Child Safety </string>
 
-    <string name="complimentary_feeding"> Complimentary feeding : %s </string>
+    <string name="complimentary_feeding"> Complimentary feeding </string>
     <string name="counselled_mother_for_comp_feeding"> Counselled mother for complementary feeding </string>
 
     <string name="anc_home_visit_pmtct">Prevention of mother-to-child transmission of HIV </string>
