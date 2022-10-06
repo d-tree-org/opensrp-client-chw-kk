@@ -122,20 +122,8 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
     @Override
     protected void onCreation() {
         super.onCreation();
-        registrationStatus = findViewById(R.id.anc_registration_status);
         if (((ChwApplication) ChwApplication.getInstance()).hasReferrals()) {
             addAncReferralTypes();
-        }
-        Client client = CoreLibrary.getInstance().context().getEventClientRepository().fetchClientByBaseEntityId(memberObject.getBaseEntityId());
-        String interventionId = client.getIdentifier("intervention_id");
-        if (interventionId == null || interventionId.equals("")) {
-            registrationStatus.setVisibility(View.VISIBLE);
-            registrationStatus.setText(R.string.anc_partially_registered);
-            registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_orange));
-        } else {
-            registrationStatus.setVisibility(View.VISIBLE);
-            registrationStatus.setText(R.string.anc_fully_registered);
-            registrationStatus.setTextColor(getResources().getColor(R.color.pie_chart_green));
         }
     }
 

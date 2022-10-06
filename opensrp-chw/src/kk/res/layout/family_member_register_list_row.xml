@@ -45,14 +45,14 @@
         android:id="@+id/patient_column"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/register_list_item_end_margin"
-        android:layout_marginLeft="@dimen/register_list_item_margin"
-        android:layout_marginRight="@dimen/register_list_item_end_margin"
         android:layout_marginStart="@dimen/register_list_item_margin"
-        android:layout_toEndOf="@+id/profile"
-        android:layout_toLeftOf="@+id/next_arrow_column"
-        android:layout_toRightOf="@+id/profile"
+        android:layout_marginLeft="@dimen/register_list_item_margin"
+        android:layout_marginEnd="@dimen/register_list_item_end_margin"
+        android:layout_marginRight="@dimen/register_list_item_end_margin"
         android:layout_toStartOf="@+id/next_arrow_column"
+        android:layout_toLeftOf="@+id/next_arrow_column"
+        android:layout_toEndOf="@+id/profile"
+        android:layout_toRightOf="@+id/profile"
         android:orientation="vertical">
 
         <org.smartregister.view.customcontrols.CustomFontTextView
@@ -63,8 +63,8 @@
             android:layout_alignParentTop="true"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingLeft="0dp"
             android:paddingStart="0dp"
+            android:paddingLeft="0dp"
             android:singleLine="true"
             android:text="Patient Name, Age"
             android:textColor="@color/text_black"
@@ -97,16 +97,6 @@
                 android:textColor="@color/light_grey_text"
                 android:textSize="@dimen/register_list_desc_size"
                 android:visibility="gone" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:id="@+id/intervention_status"
-                android:text="Partially Registered"
-                android:visibility="gone"
-                android:textColor="@color/pie_chart_orange"
-                android:fontFamily="@font/google_sans_medium"/>
 
         </RelativeLayout>
 
