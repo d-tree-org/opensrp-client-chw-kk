@@ -1,10 +1,12 @@
 package org.smartregister.chw.activity;
 
+import static com.vijay.jsonwizard.constants.JsonFormConstants.JSON_FORM_KEY.JSON;
 import static org.smartregister.chw.core.utils.CoreConstants.FORM_CONSTANTS.FORM_SUBMISSION_FIELD.REFERRAL_TASK_ID;
 import static org.smartregister.chw.core.utils.CoreConstants.JSON_FORM.getReferralFollowupForm;
 import static org.smartregister.chw.core.utils.CoreReferralUtils.setEntityId;
 import static org.smartregister.chw.malaria.util.MalariaJsonFormUtils.validateParameters;
 import static org.smartregister.chw.util.JsonFormUtils.ENCOUNTER_TYPE;
+import static org.smartregister.chw.util.JsonFormUtils.REQUEST_CODE_GET_JSON;
 import static org.smartregister.util.JsonFormUtils.VALUE;
 import static org.smartregister.util.JsonFormUtils.getFieldJSONObject;
 
@@ -23,6 +25,7 @@ import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
+import org.smartregister.chw.malaria.util.MalariaJsonFormUtils;
 import org.smartregister.chw.referral.util.Constants;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
 import org.smartregister.clientandeventmodel.Event;
@@ -41,6 +44,8 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
     private String taskId = "";
     private static final String TASK_IDENTIFIER = "taskIdentifier";
 
+    public static final int REQUEST_CODE_REFERRAL_FOLLOWUP = 1205;
+
     public static void startReferralFollowupActivity(Activity activity, String taskIdentifier, String baseEntityId) {
         Intent intent = new Intent(activity, ReferralFollowupActivity.class);
         intent.putExtra(Constants.ActivityPayload.BASE_ENTITY_ID, baseEntityId);
@@ -50,7 +55,7 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
         intent.putExtra(Constants.ActivityPayload.JSON_FORM, getReferralFollowupForm(referralType));
         intent.putExtra(TASK_IDENTIFIER, taskIdentifier);
         intent.putExtra(Constants.ActivityPayload.ACTION, CoreConstants.ACTIVITY_PAYLOAD.FOLLOW_UP_VISIT);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, REQUEST_CODE_REFERRAL_FOLLOWUP);
     }
 
     @Override
@@ -74,6 +79,26 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_REFERRAL_FOLLOWUP) {
+            String jsonString = data.getStringExtra(JSON);
+            try {
+                JSONObject form = new JSONObject(jsonString);
+                Triple<Boolean, JSONObject, JSONArray> registrationFormParams = validateParameters(form.toString());
+                JSONObject jsonForm = registrationFormParams.getMiddle();
+                String encounter_type = jsonForm.optString(ENCOUNTER_TYPE);
+
+                if (CoreConstants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type)) {
+                    completeReferralTask(jsonString);
+                }
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
+    }
+
+    @Override
     protected void completeReferralTask(String jsonString) {
         try {
             JSONObject form = new JSONObject(jsonString);
@@ -83,7 +108,7 @@ public class ReferralFollowupActivity extends BaseReferralFollowupActivity {
 
             String baseEntityId = jsonForm.optString(CoreConstants.ENTITY_ID);
 
-            if (CoreConstants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type) || CoreConstants.EncounterType.LINKAGE_FOLLOW_UP_VISIT.equals(encounter_type)) {
+            if (CoreConstants.EncounterType.REFERRAL_FOLLOW_UP_VISIT.equals(encounter_type)){
                 JSONArray fields = registrationFormParams.getRight();
 
                 JSONObject wantToComplete = getFieldJSONObject(fields, "complete_referral");
