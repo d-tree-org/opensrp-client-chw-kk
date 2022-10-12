@@ -110,10 +110,13 @@
     <string name="referred_to_text_value_health_facility">Kituo cha Afya</string>
     <string name="referred_to_text_value_addo">DLDM</string>
 
-    <string name="device_data_synced_">Taarifa zimeoanishwa</string>
+    <string name="device_data_synced">Taarifa zimeoanishwa</string>
     <string name="device_data_not_synced">Taarifa hazijaoanishwa</string>
     <string name="progressBarLabel">Inaoanisha %s : %d%% </string>
 
     <string name="anc_pregnancy_out_come"> Matokeo ya Ujauzito </string>
+
+    <string name="data_synced_kk">Taarifa zimeoanishwa</string>
+    <string name="data_not_synced_kk">Taarifa hazijaoanishwa</string>
 
 </resources>

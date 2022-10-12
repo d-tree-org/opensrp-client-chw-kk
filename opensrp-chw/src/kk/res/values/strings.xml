@@ -136,8 +136,11 @@
     <string name="referred_to_text_value_health_facility">Health Facility</string>
     <string name="referred_to_text_value_addo">Addo</string>
 
-    <string name="device_data_synced_">Taarifa zimeoanishwa</string>
+    <string name="device_data_synced">Taarifa zimeoanishwa</string>
     <string name="device_data_not_synced">Taarifa hazijaoanishwa</string>
     <string name="progressBarLabel">Syncing %s : %d%% </string>
+
+    <string name="data_synced_kk">Taarifa zimeoanishwa</string>
+    <string name="data_not_synced_kk">Taarifa hazijaoanishwa</string>
 
 </resources>
