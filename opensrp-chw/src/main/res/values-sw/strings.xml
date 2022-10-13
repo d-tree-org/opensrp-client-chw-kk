@@ -431,4 +431,8 @@
     <string name="discussed_labour_signs_with_woman"> Amefanya mazungumzo na mama juu ya dalili za kujifungua </string>
     <string name="foods_available"> Vyakula vinavyopatikana katika eneo hili </string>
 
+    <string name="device_data_synced">Taarifa zimeoanishwa</string>
+    <string name="device_data_not_synced">Taarifa hazijaoanishwa</string>
+    <string name="progressBarLabel">Inaoanisha %s : %d%% </string>
+
 </resources>

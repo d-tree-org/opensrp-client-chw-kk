@@ -85,13 +85,6 @@
         ],
         "options": [
           {
-            "key": "chk_none",
-            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_none.text}}",
-            "value": false,
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-          },
-          {
             "key": "chk_vaginal_bleeding",
             "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_vaginal_bleeding.text}}",
             "value": false,
@@ -209,6 +202,13 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": "164483AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          },
+          {
+            "key": "chk_none",
+            "text": "{{kk_pnc_hv_danger_signs.step1.danger_signs_screening_mama.options.chk_none.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
           }
         ],
         "v_required": {
