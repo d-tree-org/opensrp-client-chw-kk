@@ -126,7 +126,7 @@
       {
         "key": "fam_name",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "first_name",
         "type": "edit_text",
         "hint": "{{family_register.step1.fam_name.hint}}",
@@ -869,7 +869,7 @@
         "key": "edi_id",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
-        "openmrs_entity_id": "edi_id",
+          "openmrs_entity_id": "edi_id",
         "type": "edit_text",
         "edit_type": "number",
         "hint": "{{family_register.step1.ediid.hint}}",
