@@ -160,3 +160,137 @@ priority: 1
 condition: "step1_member_consent.contains('member_consent_no')"
 actions:
   - "isRelevant = true"
+---
+name: step1_no_prev_preg
+description: No of previous pregnancies relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_surv_children
+description: no of surviving children
+priority: 1
+condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != '' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_no_misscarriage
+description: no of misscarriages
+priority: 1
+condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != '' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_delivery_method
+description: Delivery Method
+priority: 1
+condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != '' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_symptoms_prev_preg
+description: Simptoms in previous pregnancies
+priority: 1
+condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != '' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_breastfeed_children
+description: Breastfeed children
+priority: 1
+condition: "step1_no_prev_preg > 0 && step1_no_prev_preg != '' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_marital_status
+description: Breastfeed children
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_person_assist
+description: Breastfeed children
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_name_person_assist
+description: Breastfeed children
+priority: 1
+condition: "step1_person_assist == 'Yes' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_person_assist_child_relationship
+description: Breastfeed children
+priority: 1
+condition: "step1_person_assist == 'Yes' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_person_assist_child_relationship_other
+description: Other relationship to the child, specify
+priority: 1
+condition: "step1_person_assist_child_relationship.contains('Other') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_phone_person_assist
+description: assist person phone number relevance
+priority: 1
+condition: "step1_person_assist == 'Yes' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_health_insurance
+description: Health insurance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_accessibility_issues
+description: Accessibility issues
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_accessibility_issue_other
+description: Other accessibility issue, specify
+priority: 1
+condition: "step1_accessibility_issues.contains('chk_other') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_substance_use
+description: Substance use relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_substance_use_current
+description: assist person phone number relevance
+priority: 1
+condition: "step1_substance_use == 'Yes' && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_economic_activities
+description: Economic activities relevance
+priority: 1
+condition: "step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_economic_activity_other
+description: Other economic activity, specify
+priority: 1
+condition: "step1_economic_activities.contains('chk_other') && step1_member_consent.contains('member_consent_yes')"
+actions:
+  - "isRelevant = true"
+
