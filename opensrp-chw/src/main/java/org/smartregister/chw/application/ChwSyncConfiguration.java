@@ -26,7 +26,7 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getSyncFilterParam() {
-        return SyncFilter.LOCATION;
+        return SyncFilter.PROVIDER;
     }
 
     @Override
