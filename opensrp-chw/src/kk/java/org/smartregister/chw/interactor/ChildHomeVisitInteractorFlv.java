@@ -134,24 +134,26 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 }
             }
             evaluateVisitLocation();
-            evaluateNewBornCareIntro(serviceWrapperMap);
             evaluateToddlerDangerSign(serviceWrapperMap);
-            evaluateBreastFeeding(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
+            evaluateNewBornCareIntro(serviceWrapperMap);
+            evaluateBreastFeeding(serviceWrapperMap);
             evaluateImmunizations(serviceWrapperMap);
             evaluateMalariaPrevention(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
             evaluateProblemSolving(serviceWrapperMap);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateNewbornCordCare(serviceWrapperMap);
-            evaluateCCDIntro(serviceWrapperMap);
-            evaluateCCDDevelopmentScreening(serviceWrapperMap);
-            evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
-            evaluateCCDChildDiscipline(serviceWrapperMap);
-            evaluateCCDChildSafety(serviceWrapperMap);
             evaluateComplementaryFeeding(serviceWrapperMap);
             evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
             evaluateMalnutritionScreening(serviceWrapperMap);
+
+            evaluateCCDIntro(serviceWrapperMap);
+            evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
+            evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
+            evaluateCCDChildDiscipline(serviceWrapperMap);
+            evaluateCCDChildSafety(serviceWrapperMap);
+            evaluateCCDDevelopmentScreening(serviceWrapperMap);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -180,7 +182,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
 
-        String title = context.getString(R.string.toddler_danger_sign_month, serviceIteration);
+        String title = context.getString(R.string.toddler_danger_sign_month);
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
@@ -274,7 +276,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(newBornIntroHelper)
                 .build();
 
-        actionList.put(context.getString(R.string.new_born_care_introduction_month, serviceIteration), newBornCareIntroAction);
+        actionList.put(context.getString(R.string.new_born_care_introduction_month), newBornCareIntroAction);
     }
 
     private void evaluateNeonatalDangerSigns(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
@@ -303,7 +305,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(neonatalDangerSignsActionHelper)
                 .build();
 
-        actionList.put(context.getString(R.string.neonatal_danger_signs_month, serviceIteration), neoNatalDangerSignsAction);
+        actionList.put(context.getString(R.string.neonatal_danger_signs_month), neoNatalDangerSignsAction);
     }
 
     private void evaluateKMCSkinToSkinCounselling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
@@ -332,7 +334,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(skinToSkinCounsellingHelper)
                 .build();
 
-        actionList.put(context.getString(R.string.kmc_skin_to_skin_counselling_month, serviceIteration), skinToSkinCounsellingAction);
+        actionList.put(context.getString(R.string.kmc_skin_to_skin_counselling_month), skinToSkinCounsellingAction);
     }
 
     private void evaluateCCDIntro(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
@@ -584,7 +586,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String period = serviceNameSplit[serviceNameSplit.length - 2];
         String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
 
-        String title = context.getString(R.string.child_play_and_assessment_counselling) + getTranslatedPeriod(period, periodNoun);
+        String title = context.getString(R.string.child_play_and_assessment_counselling);
 
         PlayAssessmentCounselingActionHelper helper = new PlayAssessmentCounselingActionHelper(serviceWrapper);
 
@@ -705,7 +707,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String period = serviceNameSplit[serviceNameSplit.length - 2];
         String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
 
-        String immunizationsTitle = context.getString(R.string.immunizations) + getTranslatedPeriod(period, periodNoun);
+        String immunizationsTitle = context.getString(R.string.immunizations);
         Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
 
         ImmunizationsHelper immunizationsHelper = new ImmunizationsHelper(serviceWrapper);
@@ -749,7 +751,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(malnutritionScreeningActionHelper)
                 .build();
 
-        actionList.put(context.getString(R.string.malnutrition_screening, serviceIteration), malnutritionScreeningAction);
+        actionList.put(context.getString(R.string.malnutrition_screening), malnutritionScreeningAction);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
@@ -758,7 +760,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String period = serviceNameSplit[serviceNameSplit.length - 2];
         String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
 
-        return context.getString(R.string.essential_newborn_care_breastfeeding) + getTranslatedPeriod(period, periodNoun);
+        return context.getString(R.string.essential_newborn_care_breastfeeding);
     }
 
     private String getMalariaPreventionServiceTittle(String serviceName) {
@@ -767,7 +769,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String period = serviceNameSplit[serviceNameSplit.length - 2];
         String periodNoun = serviceNameSplit[serviceNameSplit.length - 1];
 
-        return context.getString(R.string.malaria_prevention_service) + getTranslatedPeriod(period, periodNoun);
+        return context.getString(R.string.malaria_prevention_service);
     }
 
     private String getTranslatedPeriod(String period, String periodNoun) {

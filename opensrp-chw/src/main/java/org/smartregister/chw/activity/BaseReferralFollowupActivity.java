@@ -31,6 +31,8 @@ import timber.log.Timber;
 
 public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupActivity {
 
+    public static final int REQUEST_CODE_REFERRAL_FOLLOWUP = 1205;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +61,7 @@ public abstract class BaseReferralFollowupActivity extends CoreReferralFollowupA
             form.setPreviousLabel(this.getResources().getString(org.smartregister.chw.core.R.string.back));
         }
         intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
-        startActivityForResult(intent, JsonFormUtils.REQUEST_CODE_GET_JSON);
+        startActivityForResult(intent, REQUEST_CODE_REFERRAL_FOLLOWUP);
     }
 
     @Override

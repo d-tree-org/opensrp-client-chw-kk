@@ -454,4 +454,8 @@
     <string name="anc_fully_registered">Fully Registered</string>
     <string name="pnc_hv_malaria_prevention_action_title">Malaria Prevention</string>
 
+    <string name="device_data_synced">Device data synced</string>
+    <string name="device_data_not_synced">Device data not synced</string>
+    <string name="progressBarLabel">Syncing %s : %d%% </string>
+
 </resources>

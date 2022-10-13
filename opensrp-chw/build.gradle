@@ -1,9 +1,10 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url 'https://maven.fabric.io/public' }
         maven { url 'https://jitpack.io' }
+        jcenter()
     }
     dependencies {
         classpath 'org.apache.commons:commons-lang3:3.10'
@@ -44,6 +45,7 @@ allprojects {
         }
         maven { url 'https://maven.fabric.io/public' }
         mavenLocal()
+        mavenCentral()
     }
 }
 
@@ -93,6 +95,7 @@ android {
         versionCode 1
         versionName "0.2.0"
         multiDexEnabled true
+        resConfigs "en", "sw"
         buildConfigField "long", "MAX_SERVER_TIME_DIFFERENCE", "1800000l"
         buildConfigField "boolean", "TIME_CHECK", "false"
         buildConfigField "String", "SYNC_TYPE", '"teamId"'
@@ -313,8 +316,9 @@ android {
             getIsDefault().set(true)
             dimension = 'baseDimension'
             applicationIdSuffix ".kk"
-            versionCode 10
-            versionName "0.6.0"
+            versionCode 11
+            versionName "0.6.1"
+            resConfigs "en", "sw"
             buildConfigField "String", 'opensrp_url', '"https://kizazi-kijacho.smartregister.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/chad/"'
             buildConfigField "String", 'opensrp_url_debug', '"https://opensrp-proto.d-tree.org/opensrp/"'
@@ -386,7 +390,7 @@ android {
 }
 
 dependencies {
-    implementation('org.smartregister:opensrp-client-chw-core:2.1.3-SNAPSHOT-KK-9@aar') {
+    implementation('org.smartregister:opensrp-client-chw-core:2.1.3-SNAPSHOT-KK-10@aar') {
         transitive = true
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'androidx.legacy', module: 'legacy-support-v4'
