@@ -564,6 +564,716 @@
         }
       },
       {
+        "key": "no_prev_preg",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "no_prev_preg",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "{{add_anc_registration.step1.no_prev_preg.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.no_prev_preg.v_required.err}}"
+        },
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.no_prev_preg.v_numeric_integer.err}}"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "{{add_anc_registration.step1.no_prev_preg.v_min.err}}"
+        },
+        "v_max": {
+          "value": "45",
+          "err": "{{add_anc_registration.step1.no_prev_preg.v_max.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "gravida",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "5624AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "hidden",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_surv_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "164894AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "{{add_anc_registration.step1.no_surv_children.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.no_surv_children.v_required.err}}"
+        },
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.no_surv_children.v_numeric_integer.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_misscarriage",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "164894AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "{{add_anc_registration.step1.no_misscarriage.hint}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.no_misscarriage.v_numeric_integer.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "delivery_method",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "delivery_method",
+        "label": "{{add_anc_registration.step1.delivery_method.label}}",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "chk_vaginally",
+            "text": "{{add_anc_registration.step1.delivery_method.options.chk_vaginally.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginally"
+          },
+          {
+            "key": "chk_caesarian",
+            "text": "{{add_anc_registration.step1.delivery_method.options.chk_caesarian.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_caesarian"
+          },
+          {
+            "key": "chk_miscarriage",
+            "text": "{{add_anc_registration.step1.delivery_method.options.chk_miscarriage.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_miscarriage"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "symptoms_prev_preg",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "symptoms_prev_preg",
+        "label": "{{add_anc_registration.step1.symptoms_prev_preg.label}}",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "chk_vaginal_bleeding",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_vaginal_bleeding.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginal_bleeding"
+          },
+          {
+            "key": "chk_swelling",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_swelling.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_swelling"
+          },
+          {
+            "key": "chk_high_blood_pressure",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_high_blood_pressure.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_high_blood_pressure"
+          },
+          {
+            "key": "chk_red_eyes",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_red_eyes.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_red_eyes"
+          },
+          {
+            "key": "chk_frequent_headaches",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_frequent_headaches.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_frequent_headaches"
+          },
+          {
+            "key": "chk_high_blood_sugar",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_high_blood_sugar.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_high_blood_sugar"
+          },
+          {
+            "key": "chk_kidney_infection",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_kidney_infection.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_kidney_infection"
+          },
+          {
+            "key": "chk_fluid_with_abnormal_smell",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_fluid_with_abnormal_smell.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_fluid_with_abnormal_smell"
+          },
+          {
+            "key": "chk_threatened_preterm_labor",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_threatened_preterm_labor.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_threatened_preterm_labor"
+          },
+          {
+            "key": "chk_threatened_miscarriage",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_threatened_miscarriage.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_threatened_miscarriage"
+          },
+          {
+            "key": "chk_vaginal_infection",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_vaginal_infection.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_vaginal_infection"
+          },
+          {
+            "key": "chk_premature_water_breakage",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_premature_water_breakage.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_premature_water_breakage"
+          },
+          {
+            "key": "chk_children_born_three_weeks_early",
+            "text": "{{add_anc_registration.step1.symptoms_prev_preg.options.chk_children_born_three_weeks_early.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_children_born_three_weeks_early"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "breastfeed_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{add_anc_registration.step1.breastfeed_children.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.breastfeed_children.v_required.err}}"
+        },
+        "values": [
+          "{{add_anc_registration.step1.breastfeed_children.values[0]}}",
+          "{{add_anc_registration.step1.breastfeed_children.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "marital_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{add_anc_registration.step1.marital_status.hint}}",
+        "values": [
+          "{{add_anc_registration.step1.marital_status.values[0]}}",
+          "{{add_anc_registration.step1.marital_status.values[1]}}",
+          "{{add_anc_registration.step1.marital_status.values[2]}}",
+          "{{add_anc_registration.step1.marital_status.values[3]}}",
+          "{{add_anc_registration.step1.marital_status.values[4]}}"
+        ],
+        "keys": [
+          "Married",
+          "Co-Habitating",
+          "Single",
+          "Divorced",
+          "Widowed"
+        ],
+        "openmrs_choice_ids": {
+          "Married": "",
+          "Co-Habitating": "",
+          "Single": "",
+          "Divorced": "",
+          "Widowed": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "person_assist",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{add_anc_registration.step1.person_assist.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.person_assist.v_required.err}}"
+        },
+        "values": [
+          "{{add_anc_registration.step1.person_assist.values[0]}}",
+          "{{add_anc_registration.step1.person_assist.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "name_person_assist",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{add_anc_registration.step1.name_person_assist.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "person_assist_child_relationship",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{add_anc_registration.step1.person_assist_child_relationship.hint}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.person_assist_child_relationship.v_required.err}}"
+        },
+        "values": [
+          "{{add_anc_registration.step1.person_assist_child_relationship.values[0]}}",
+          "{{add_anc_registration.step1.person_assist_child_relationship.values[1]}}",
+          "{{add_anc_registration.step1.person_assist_child_relationship.values[2]}}",
+          "{{add_anc_registration.step1.person_assist_child_relationship.values[3]}}",
+          "{{add_anc_registration.step1.person_assist_child_relationship.values[4]}}",
+          "{{add_anc_registration.step1.person_assist_child_relationship.values[5]}}",
+          "{{add_anc_registration.step1.person_assist_child_relationship.values[6]}}",
+          "{{add_anc_registration.step1.person_assist_child_relationship.values[7]}}"
+        ],
+        "keys": [
+          "Father",
+          "Aunt(s)",
+          "Uncle(s)",
+          "Grandmother(s)",
+          "Grandfather(s)",
+          "Sister(s)",
+          "Brother(s)",
+          "Other"
+        ],
+        "openmrs_choice_ids": {
+          "Father": "",
+          "Aunt(s)": "",
+          "Uncle(s)": "",
+          "Grandmother(s)": "",
+          "Grandfather(s)": "",
+          "Brother(s)": "",
+          "Sister(s)": "",
+          "Other": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "person_assist_child_relationship_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{add_anc_registration.step1.person_assist_child_relationship_other.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "phone_person_assist",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{add_anc_registration.step1.phone_person_assist.hint}}",
+        "v_numeric": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.phone_person_assist.v_numeric.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "health_insurance",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{add_anc_registration.step1.health_insurance.hint}}",
+        "values": [
+          "{{add_anc_registration.step1.health_insurance.values[0]}}",
+          "{{add_anc_registration.step1.health_insurance.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "accessibility_issues",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "exclusive": ["chk_none"],
+        "label": "{{add_anc_registration.step1.accessibility_issues.label}}",
+        "options": [
+          {
+            "key": "chk_seeing",
+            "text": "{{add_anc_registration.step1.accessibility_issues.options.chk_seeing.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_seeing"
+          },
+          {
+            "key": "chk_hearing",
+            "text": "{{add_anc_registration.step1.accessibility_issues.options.chk_hearing.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_hearing"
+          },
+          {
+            "key": "chk_walking_or_climbing_stairs",
+            "text": "{{add_anc_registration.step1.accessibility_issues.options.chk_walking_or_climbing_stairs.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_walking_or_climbing_stairs"
+          },
+          {
+            "key": "chk_remembering_or_concentrating",
+            "text": "{{add_anc_registration.step1.accessibility_issues.options.chk_remembering_or_concentrating.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_remembering_or_concentrating"
+          },
+          {
+            "key": "chk_communicating_with_others",
+            "text": "{{add_anc_registration.step1.accessibility_issues.options.chk_communicating_with_others.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_communicating_with_others"
+          },
+          {
+            "key": "chk_other",
+            "text": "{{add_anc_registration.step1.accessibility_issues.options.chk_other.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_other"
+          },
+          {
+            "key": "chk_none",
+            "text": "{{add_anc_registration.step1.accessibility_issues.options.chk_none.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_none"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "accessibility_issue_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{add_anc_registration.step1.accessibility_issue_other.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "substance_use",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{add_anc_registration.step1.substance_use.hint}}",
+        "values": [
+          "{{add_anc_registration.step1.substance_use.values[0]}}",
+          "{{add_anc_registration.step1.substance_use.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "substance_use_current",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{add_anc_registration.step1.substance_use_current.hint}}",
+        "values": [
+          "{{add_anc_registration.step1.substance_use_current.values[0]}}",
+          "{{add_anc_registration.step1.substance_use_current.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "economic_activities",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "economic_activities",
+        "label": "{{add_anc_registration.step1.economic_activities.label}}",
+        "type": "check_box",
+        "options": [
+          {
+            "key": "chk_wage_employment",
+            "text": "{{add_anc_registration.step1.economic_activities.options.chk_wage_employment.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_wage_employment"
+          },
+          {
+            "key": "chk_family_business",
+            "text": "{{add_anc_registration.step1.economic_activities.options.chk_family_business.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_family_business"
+          },
+          {
+            "key": "chk_family_farm",
+            "text": "{{add_anc_registration.step1.economic_activities.options.chk_family_farm.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_family_farm"
+          },
+          {
+            "key": "chk_paid_work_inside_home",
+            "text": "{{add_anc_registration.step1.economic_activities.options.chk_paid_work_inside_home.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_paid_work_inside_home"
+          },
+          {
+            "key": "chk_caring",
+            "text": "{{add_anc_registration.step1.economic_activities.options.chk_caring.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_caring"
+          },
+          {
+            "key": "chk_other",
+            "text": "{{add_anc_registration.step1.economic_activities.options.chk_other.text}}",
+            "text_size": "18px",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "chk_other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "economic_activity_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "edit_type": "text",
+        "hint": "{{add_anc_registration.step1.economic_activity_other.hint}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "add_anc_registration_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "consent_notification",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
