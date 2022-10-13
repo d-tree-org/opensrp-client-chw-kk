@@ -51,7 +51,7 @@ public class AncMemberDataLoader extends NativeFormsDataLoader {
     protected List<String> getEventTypes() {
         List<String> res = new ArrayList<>();
         res.add(CoreConstants.EventType.UPDATE_ANC_REGISTRATION);
-        res.add(Constants.EVENT_TYPE.ANC_REGISTRATION);
+        res.add(CoreConstants.EventType.ANC_REGISTRATION);
         return res;
     }
 

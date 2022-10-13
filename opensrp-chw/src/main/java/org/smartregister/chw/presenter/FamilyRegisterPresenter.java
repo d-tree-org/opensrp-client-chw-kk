@@ -9,6 +9,7 @@ import org.smartregister.chw.anc.contract.BaseAncRegisterContract;
 import org.smartregister.chw.anc.interactor.BaseAncRegisterInteractor;
 import org.smartregister.chw.anc.util.Constants;
 import org.smartregister.chw.anc.util.DBConstants;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.interactor.FamilyRegisterInteractor;
 import org.smartregister.domain.Client;
 import org.smartregister.domain.FetchStatus;
@@ -76,7 +77,7 @@ public class FamilyRegisterPresenter extends BaseFamilyRegisterPresenter impleme
                         relational.put("value", relationalId);
                         form.put(DBConstants.KEY.RELATIONAL_ID, relational);
                         form.put(Constants.JSON_FORM_EXTRA.ENTITY_TYPE, clientBaseEntityId);
-                        form.put(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE, Constants.EVENT_TYPE.ANC_REGISTRATION);
+                        form.put(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE, CoreConstants.EventType.ANC_REGISTRATION);
                         form.put("relational_id", relationalId);
                         new BaseAncRegisterInteractor().saveRegistration(form.toString(), isEditMode, FamilyRegisterPresenter.this, null);
 
