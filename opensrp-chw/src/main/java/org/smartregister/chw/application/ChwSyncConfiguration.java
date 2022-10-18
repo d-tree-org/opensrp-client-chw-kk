@@ -7,6 +7,8 @@ import org.smartregister.SyncConfiguration;
 import org.smartregister.SyncFilter;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.activity.LoginActivity;
+import org.smartregister.chw.fragment.EnvironmentSelectDialogFragment;
+import org.smartregister.chw.util.KkSwitchConstants;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.view.activity.BaseLoginActivity;
@@ -14,6 +16,8 @@ import org.smartregister.view.activity.BaseLoginActivity;
 import java.util.List;
 
 import static org.smartregister.util.Utils.isEmptyCollection;
+
+import android.widget.Toast;
 
 /**
  * Created by samuelgithengi on 10/19/18.
@@ -105,12 +109,31 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public String getOauthClientId() {
-        return BuildConfig.OAUTH_CLIENT_ID;
+        /**
+         * Check if production, get production client id
+         */
+        AllSharedPreferences sharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+        if (!sharedPreferences.getPreference(KkSwitchConstants.KIZAZI_ENVIRONMENT).isEmpty()) {
+            if (sharedPreferences.getBooleanPreference("enable_production")) {
+                return BuildConfig.OAUTH_CLIENT_ID_PROD;
+            } else {
+                return BuildConfig.OAUTH_CLIENT_ID;
+            }
+        }
+        return BuildConfig.OAUTH_CLIENT_ID_PROD;
     }
 
     @Override
     public String getOauthClientSecret() {
-        return BuildConfig.OAUTH_CLIENT_SECRET;
+        AllSharedPreferences sharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+        if (!sharedPreferences.getPreference(KkSwitchConstants.KIZAZI_ENVIRONMENT).isEmpty()) {
+            if (sharedPreferences.getBooleanPreference("enable_production")) {
+                return BuildConfig.OAUTH_CLIENT_SECRET_PROD;
+            } else {
+                return BuildConfig.OAUTH_CLIENT_SECRET;
+            }
+        }
+        return BuildConfig.OAUTH_CLIENT_SECRET_PROD;
     }
 
     @Override
