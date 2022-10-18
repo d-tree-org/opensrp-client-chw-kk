@@ -7,7 +7,6 @@ import org.smartregister.SyncConfiguration;
 import org.smartregister.SyncFilter;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.activity.LoginActivity;
-import org.smartregister.chw.fragment.EnvironmentSelectDialogFragment;
 import org.smartregister.chw.util.KkSwitchConstants;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
