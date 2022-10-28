@@ -146,6 +146,14 @@
         "type": "toaster_notes",
         "text": "{{particular_observations_chw.step1.particular_observations_chw.toaster_notes.text}}",
         "toaster_type": "info"
+      },
+      {
+        "key": "observation_notes",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "chw_particular_observations",
+        "type": "edit_text",
+        "hint": "{{particular_observations_chw.step1.observation_notes.text}}"
       }
     ]
   },

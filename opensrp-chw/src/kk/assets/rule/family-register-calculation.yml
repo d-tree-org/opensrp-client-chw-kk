@@ -1,4 +1,12 @@
 ---
+name: step1_fam_name
+description: Calculate the fam_name value based on the family_name value
+priority: 1
+condition: "step1_fam_consent.contains('fam_consent_yes')"
+actions:
+  - "calculation = step1_family_name != '' ? step1_family_name : '' "
+
+---
 name: step2_surname_calculation
 description: surname calculation
 priority: 1

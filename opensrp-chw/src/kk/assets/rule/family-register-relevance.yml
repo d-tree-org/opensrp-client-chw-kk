@@ -6,7 +6,7 @@ condition: "step1_fam_consent.contains('fam_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
-name: step1_fam_name
+name: step1_family_name
 description: Family name relevance
 priority: 1
 condition: "step1_fam_consent.contains('fam_consent_yes')"
