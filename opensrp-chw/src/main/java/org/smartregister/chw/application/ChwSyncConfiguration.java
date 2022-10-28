@@ -35,16 +35,7 @@ public class ChwSyncConfiguration extends SyncConfiguration {
     @Override
     public String getSyncFilterValue() {
         String providerId = allSharedPreferences().fetchRegisteredANM();
-        String locationId = allSharedPreferences().fetchDefaultLocalityId(providerId);
-        if(StringUtils.isBlank(locationId)) locationId = allSharedPreferences().fetchUserLocalityId(providerId);
-
-        List<String> locationIds = LocationHelper.getInstance().locationsFromHierarchy(true, null);
-        if (!isEmptyCollection(locationIds)) {
-            int index = locationIds.indexOf(locationId);
-            List<String> subLocationIds = locationIds.subList(index, locationIds.size());
-            return StringUtils.join(subLocationIds, ",");
-        }
-        return locationId;
+        return providerId;
     }
 
     private AllSharedPreferences allSharedPreferences(){
