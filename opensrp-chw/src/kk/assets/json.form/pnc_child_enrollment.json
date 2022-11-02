@@ -62,6 +62,13 @@
         "type": "hidden"
       },
       {
+        "key": "pregnancy_outcome_form_submission_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "entry_point",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
