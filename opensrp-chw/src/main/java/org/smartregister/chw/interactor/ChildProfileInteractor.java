@@ -205,6 +205,59 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
     }
 
     @Override
+    public void refreshProfileView(final String baseEntityId, final boolean isForEdit, final CoreChildProfileContract.InteractorCallBack callback) {
+        Runnable runnable = () -> {
+            // String query = CoreChildUtils.mainSelect(CoreConstants.TABLE_NAME.CHILD, CoreConstants.TABLE_NAME.FAMILY, CoreConstants.TABLE_NAME.FAMILY_MEMBER, baseEntityId);
+
+            Cursor cursor = null;
+            try {
+                cursor = getCommonRepository(CoreConstants.TABLE_NAME.CHILD).rawCustomQueryForAdapter(getQuery(baseEntityId));
+                if (cursor != null && cursor.moveToFirst()) {
+                    CommonPersonObject personObject = getCommonRepository(CoreConstants.TABLE_NAME.CHILD).readAllcommonforCursorAdapter(cursor);
+                    pClient = new CommonPersonObjectClient(personObject.getCaseId(),
+                            personObject.getDetails(), "");
+                    pClient.setColumnmaps(personObject.getColumnmaps());
+                    final String familyId = org.smartregister.chw.core.utils.Utils.getValue(pClient.getColumnmaps(), ChildDBConstants.KEY.RELATIONAL_ID, false);
+
+                    final CommonPersonObject familyPersonObject = getCommonRepository(org.smartregister.chw.core.utils.Utils.metadata().familyRegister.tableName).findByBaseEntityId(familyId);
+                    final CommonPersonObjectClient client = new CommonPersonObjectClient(familyPersonObject.getCaseId(), familyPersonObject.getDetails(), "");
+                    client.setColumnmaps(familyPersonObject.getColumnmaps());
+
+                    final String primaryCaregiverID = org.smartregister.chw.core.utils.Utils.getValue(client.getColumnmaps(), DBConstants.KEY.PRIMARY_CAREGIVER, false);
+                    final String familyHeadID = org.smartregister.chw.core.utils.Utils.getValue(client.getColumnmaps(), DBConstants.KEY.FAMILY_HEAD, false);
+                    final String familyName = org.smartregister.chw.core.utils.Utils.getValue(client.getColumnmaps(), DBConstants.KEY.FIRST_NAME, false);
+
+
+                    appExecutors.mainThread().execute(() -> {
+
+                        callback.setFamilyHeadID(familyHeadID);
+                        callback.setFamilyID(familyId);
+                        callback.setPrimaryCareGiverID(primaryCaregiverID);
+                        callback.setFamilyName(familyName);
+
+                        if (isForEdit) {
+                            callback.startFormForEdit("", pClient);
+                        } else {
+                            CommonPersonObject commonPersonObject = getCommonRepository(org.smartregister.chw.core.utils.Utils.metadata().familyMemberRegister.tableName).findByBaseEntityId(primaryCaregiverID);
+                            callback.refreshProfileTopSection(pClient, commonPersonObject);
+                        }
+                    });
+                }
+            } catch (Exception ex) {
+                Timber.e(ex, "CoreChildProfileInteractor --> refreshProfileView");
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }
+
+
+        };
+
+        appExecutors.diskIO().execute(runnable);
+    }
+
+    @Override
     public void updateChildCommonPerson(String baseEntityId) {
         Cursor cursor = null;
         try {
