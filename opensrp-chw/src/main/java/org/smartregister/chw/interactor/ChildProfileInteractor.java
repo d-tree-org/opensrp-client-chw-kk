@@ -2,6 +2,7 @@ package org.smartregister.chw.interactor;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.util.Pair;
 
 import androidx.annotation.VisibleForTesting;
@@ -18,6 +19,7 @@ import org.smartregister.chw.core.application.CoreChwApplication;
 import org.smartregister.chw.core.contract.CoreChildProfileContract;
 import org.smartregister.chw.core.interactor.CoreChildProfileInteractor;
 import org.smartregister.chw.core.model.ChildVisit;
+import org.smartregister.chw.core.utils.BaChildUtilsFlv;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.core.utils.ChildHomeVisit;
 import org.smartregister.chw.core.utils.CoreChildService;
@@ -31,14 +33,17 @@ import org.smartregister.chw.util.Utils;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.AllCommonsRepository;
+import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.Photo;
+import org.smartregister.domain.db.EventClient;
 import org.smartregister.family.FamilyLibrary;
 import org.smartregister.family.util.AppExecutors;
 import org.smartregister.family.util.DBConstants;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
+import org.smartregister.repository.BaseRepository;
 import org.smartregister.thinkmd.ThinkMDLibrary;
 import org.smartregister.thinkmd.model.FHIRBundleModel;
 import org.smartregister.util.FormUtils;
@@ -47,6 +52,7 @@ import org.smartregister.view.LocationPickerView;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -154,6 +160,76 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
         };
 
         appExecutors.diskIO().execute(runnable);
+    }
+
+    public void saveRegistration(Pair<Client, Event> pair, String jsonString, boolean isEditMode) {
+
+        try {
+
+            Client baseClient = pair.first;
+            Event baseEvent = pair.second;
+
+            if (baseClient != null) {
+                JSONObject clientJson = new JSONObject(JsonFormUtils.gson.toJson(baseClient));
+                if (isEditMode) {
+                    JsonFormUtils.mergeAndSaveClient(getSyncHelper(), baseClient);
+                } else {
+                    getSyncHelper().addClient(baseClient.getBaseEntityId(), clientJson);
+                }
+            }
+
+            if (baseEvent != null) {
+                JSONObject eventJson = new JSONObject(JsonFormUtils.gson.toJson(baseEvent));
+                getSyncHelper().addEvent(baseEvent.getBaseEntityId(), eventJson);
+            }
+
+            if (!isEditMode && baseClient != null) {
+                String opensrpId = baseClient.getIdentifier(org.smartregister.chw.core.utils.Utils.metadata().uniqueIdentifierKey);
+                //mark OPENSRP ID as used
+                getUniqueIdRepository().close(opensrpId);
+            }
+
+            if (baseClient != null || baseEvent != null) {
+                String imageLocation = JsonFormUtils.getFieldValue(jsonString, org.smartregister.family.util.Constants.KEY.PHOTO);
+                JsonFormUtils.saveImage(baseEvent.getProviderId(), baseClient.getBaseEntityId(), imageLocation);
+            }
+
+            long lastSyncTimeStamp = getAllSharedPreferences().fetchLastUpdatedAtDate(0);
+            Date lastSyncDate = new Date(lastSyncTimeStamp);
+            List<EventClient> listEvent= getSyncHelper().getEvents(lastSyncDate, BaseRepository.TYPE_Unprocessed);
+            getClientProcessorForJava().processClient(getSyncHelper().getEvents(lastSyncDate, BaseRepository.TYPE_Unprocessed));
+            getAllSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    @Override
+    public void updateChildCommonPerson(String baseEntityId) {
+        Cursor cursor = null;
+        try {
+            cursor = getCommonRepository(CoreConstants.TABLE_NAME.CHILD).rawCustomQueryForAdapter(getQuery(baseEntityId));
+            if (cursor != null && cursor.moveToFirst()) {
+                CommonPersonObject personObject = getCommonRepository(CoreConstants.TABLE_NAME.CHILD).readAllcommonforCursorAdapter(cursor);
+                pClient = new CommonPersonObjectClient(personObject.getCaseId(),
+                        personObject.getDetails(), "");
+                pClient.setColumnmaps(personObject.getColumnmaps());
+            }
+        } catch (Exception ex) {
+            Timber.e(ex, "CoreChildProfileInteractor --> updateChildCommonPerson");
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+    private String getQuery(String baseEntityId) {
+        if (CoreChwApplication.getInstance().getChildFlavorUtil()) {
+            return BaChildUtilsFlv.mainSelect(CoreConstants.TABLE_NAME.CHILD, CoreConstants.TABLE_NAME.FAMILY, CoreConstants.TABLE_NAME.FAMILY_MEMBER, baseEntityId);
+        } else {
+            return org.smartregister.chw.util.CoreChildUtils.mainSelect(CoreConstants.TABLE_NAME.CHILD, CoreConstants.TABLE_NAME.FAMILY, CoreConstants.TABLE_NAME.FAMILY_MEMBER, baseEntityId);
+        }
     }
 
     @Override
