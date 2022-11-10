@@ -234,7 +234,7 @@
       {
         "key": "llin_condition",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
@@ -242,15 +242,18 @@
         "label_info_text": "{{anc_hv_malaria.step1.llin_condition.hint}}",
         "values": [
           "{{anc_hv_malaria.step1.llin_condition.values[0]}}",
-          "{{anc_hv_malaria.step1.llin_condition.values[1]}}"
+          "{{anc_hv_malaria.step1.llin_condition.values[1]}}",
+          "{{anc_hv_malaria.step1.llin_condition.values[2]}}"
         ],
         "keys": [
-          "Okay",
-          "Bad"
+          "Good",
+          "Fair",
+          "Poor"
         ],
         "openmrs_choice_ids": {
-          "Okay": "159405AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Bad": "159407AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "Good": "",
+          "Fair": "",
+          "Poor": ""
         },
         "v_required": {
           "value": "true",
