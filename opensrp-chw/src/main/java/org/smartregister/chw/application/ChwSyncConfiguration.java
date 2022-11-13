@@ -29,13 +29,14 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getSyncFilterParam() {
-        return SyncFilter.PROVIDER;
+        return isProductionEnvironment() ? SyncFilter.PROVIDER : SyncFilter.TEAM;
     }
 
     @Override
     public String getSyncFilterValue() {
         String providerId = allSharedPreferences().fetchRegisteredANM();
-        return providerId;
+        String teamId = allSharedPreferences().fetchDefaultTeamId(providerId);
+        return isProductionEnvironment() ? providerId : teamId;
     }
 
     private AllSharedPreferences allSharedPreferences(){
@@ -64,7 +65,7 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getEncryptionParam() {
-        return SyncFilter.TEAM_ID;
+        return isProductionEnvironment() ? SyncFilter.PROVIDER : SyncFilter.TEAM_ID;
     }
 
     @Override
@@ -99,31 +100,12 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public String getOauthClientId() {
-        /**
-         * Check if production, get production client id
-         */
-        AllSharedPreferences sharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
-        if (!sharedPreferences.getPreference(KkSwitchConstants.KIZAZI_ENVIRONMENT).isEmpty()) {
-            if (sharedPreferences.getBooleanPreference("enable_production")) {
-                return BuildConfig.OAUTH_CLIENT_ID_PROD;
-            } else {
-                return BuildConfig.OAUTH_CLIENT_ID;
-            }
-        }
-        return BuildConfig.OAUTH_CLIENT_ID_PROD;
+        return isProductionEnvironment() ? BuildConfig.OAUTH_CLIENT_ID_PROD : BuildConfig.OAUTH_CLIENT_ID;
     }
 
     @Override
     public String getOauthClientSecret() {
-        AllSharedPreferences sharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
-        if (!sharedPreferences.getPreference(KkSwitchConstants.KIZAZI_ENVIRONMENT).isEmpty()) {
-            if (sharedPreferences.getBooleanPreference("enable_production")) {
-                return BuildConfig.OAUTH_CLIENT_SECRET_PROD;
-            } else {
-                return BuildConfig.OAUTH_CLIENT_SECRET;
-            }
-        }
-        return BuildConfig.OAUTH_CLIENT_SECRET_PROD;
+        return isProductionEnvironment() ? BuildConfig.OAUTH_CLIENT_SECRET_PROD : BuildConfig.OAUTH_CLIENT_SECRET;
     }
 
     @Override
@@ -145,4 +127,13 @@ public class ChwSyncConfiguration extends SyncConfiguration {
     public boolean validateUserAssignments() {
         return false;
     }
+
+    public boolean isProductionEnvironment(){
+        AllSharedPreferences sharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
+        if (!sharedPreferences.getPreference(KkSwitchConstants.KIZAZI_ENVIRONMENT).isEmpty()) {
+            return sharedPreferences.getBooleanPreference("enable_production");
+        }
+        return false;
+    }
+
 }
