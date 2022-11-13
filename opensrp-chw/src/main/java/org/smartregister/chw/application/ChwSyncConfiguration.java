@@ -2,21 +2,15 @@ package org.smartregister.chw.application;
 
 import com.google.common.collect.ImmutableList;
 
-import org.apache.commons.lang3.StringUtils;
 import org.smartregister.SyncConfiguration;
 import org.smartregister.SyncFilter;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.activity.LoginActivity;
 import org.smartregister.chw.util.KkSwitchConstants;
-import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.view.activity.BaseLoginActivity;
 
 import java.util.List;
-
-import static org.smartregister.util.Utils.isEmptyCollection;
-
-import android.widget.Toast;
 
 /**
  * Created by samuelgithengi on 10/19/18.
