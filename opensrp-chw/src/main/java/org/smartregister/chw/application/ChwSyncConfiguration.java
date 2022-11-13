@@ -29,14 +29,14 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getSyncFilterParam() {
-        return isProductionEnvironment() ? SyncFilter.PROVIDER : SyncFilter.TEAM;
+        return isProductionEnvironment() ? SyncFilter.PROVIDER : SyncFilter.LOCATION;
     }
 
     @Override
     public String getSyncFilterValue() {
         String providerId = allSharedPreferences().fetchRegisteredANM();
-        String teamId = allSharedPreferences().fetchDefaultTeamId(providerId);
-        return isProductionEnvironment() ? providerId : teamId;
+        String location = allSharedPreferences().fetchUserLocalityId(providerId);
+        return isProductionEnvironment() ? providerId : location;
     }
 
     private AllSharedPreferences allSharedPreferences(){
@@ -65,7 +65,7 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getEncryptionParam() {
-        return isProductionEnvironment() ? SyncFilter.PROVIDER : SyncFilter.TEAM_ID;
+        return isProductionEnvironment() ? SyncFilter.PROVIDER : SyncFilter.LOCATION_ID;
     }
 
     @Override
