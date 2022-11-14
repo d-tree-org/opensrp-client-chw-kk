@@ -54,6 +54,13 @@
     "title": "{{child_enrollment.step1.title}}",
     "fields": [
       {
+        "key": "mother_entity_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "mother_entity_id",
+        "type": "hidden"
+      },
+      {
         "key": "photo",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

@@ -124,6 +124,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         try {
 
             String childAge = DateUtil.getDuration(new DateTime(dob));
+            int childAgeInDays = DateUtil.dayDifference(DateUtil.today(), LocalDate.fromDateFields(dob));
             int childAgeInMonth = -1;
             //Get the month part
             if (!childAge.contains("y")){
@@ -136,23 +137,26 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateVisitLocation();
             evaluateToddlerDangerSign(serviceWrapperMap);
             evaluateNeonatalDangerSigns(serviceWrapperMap);
+
+            if (childAgeInDays >= 35 && childAgeInDays < 50) {
+                evaluateNeonatalDangerSigns5W();
+            }
+
             evaluateNewBornCareIntro(serviceWrapperMap);
+            evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
+            evaluateNewbornCordCare(serviceWrapperMap);
+            evaluateMalnutritionScreening(serviceWrapperMap);
             evaluateBreastFeeding(serviceWrapperMap);
+            evaluateComplementaryFeeding(serviceWrapperMap);
             evaluateImmunizations(serviceWrapperMap);
             evaluateMalariaPrevention(serviceWrapperMap);
-            evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
-            evaluateProblemSolving(serviceWrapperMap);
-            evaluateCareGiverResponsiveness(serviceWrapperMap);
-            evaluateNewbornCordCare(serviceWrapperMap);
-            evaluateComplementaryFeeding(serviceWrapperMap);
-            evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
-            evaluateMalnutritionScreening(serviceWrapperMap);
-
+            evaluateCCDChildSafety(serviceWrapperMap);
             evaluateCCDIntro(serviceWrapperMap);
             evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
             evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
+            evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateCCDChildDiscipline(serviceWrapperMap);
-            evaluateCCDChildSafety(serviceWrapperMap);
+            evaluateProblemSolving(serviceWrapperMap);
             evaluateCCDDevelopmentScreening(serviceWrapperMap);
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
@@ -192,7 +196,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.TODDLER_DANGER_SIGN);
 
-        BaseAncHomeVisitAction toddler_ds_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.toddler_danger_sign_month, serviceIteration))
+        BaseAncHomeVisitAction toddler_ds_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.toddler_danger_sign_month))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("child_hv_toddler_danger_sign")
@@ -264,7 +268,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         NewBornCareIntroductionHelper newBornIntroHelper = new NewBornCareIntroductionHelper(context, firstVisitDone);
         Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.ESSENTIAL_NEW_BORN_CARE_INTRO);
 
-        BaseAncHomeVisitAction newBornCareIntroAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.new_born_care_introduction_month, serviceIteration))
+        BaseAncHomeVisitAction newBornCareIntroAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.new_born_care_introduction_month))
                 .withOptional(false)
                 .withDetails(details)
                 .withBaseEntityID(memberObject.getBaseEntityId())
@@ -292,16 +296,32 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        NeonatalDangerSignsActionHelper neonatalDangerSignsActionHelper = new NeonatalDangerSignsActionHelper(context, alert);
+        NeonatalDangerSignsActionHelper neonatalDangerSignsActionHelper = new NeonatalDangerSignsActionHelper(context);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction neoNatalDangerSignsAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.neonatal_danger_signs_month, serviceIteration))
+        BaseAncHomeVisitAction neoNatalDangerSignsAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.neonatal_danger_signs_month))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("child_hv_neonatal_danger_signs")
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(neonatalDangerSignsActionHelper)
+                .build();
+
+        actionList.put(context.getString(R.string.neonatal_danger_signs_month), neoNatalDangerSignsAction);
+    }
+
+    private void evaluateNeonatalDangerSigns5W() throws Exception {
+
+        NeonatalDangerSignsActionHelper neonatalDangerSignsActionHelper = new NeonatalDangerSignsActionHelper(context);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction neoNatalDangerSignsAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.neonatal_danger_signs_month))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_neonatal_danger_signs")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withHelper(neonatalDangerSignsActionHelper)
                 .build();
 
@@ -324,7 +344,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         KMCSkinToSkinCounsellingHelper skinToSkinCounsellingHelper = new KMCSkinToSkinCounsellingHelper(alert);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction skinToSkinCounsellingAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.kmc_skin_to_skin_counselling_month, serviceIteration))
+        BaseAncHomeVisitAction skinToSkinCounsellingAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.kmc_skin_to_skin_counselling_month))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("child_hv_kmc_skin_to_skin_counselling")
@@ -346,7 +366,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
-        String title = context.getString(R.string.ccd_introduction, serviceIteration);
+        String title = context.getString(R.string.ccd_introduction);
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
@@ -356,7 +376,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_INTRODUCTION);
 
-        BaseAncHomeVisitAction ccd_intro_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.ccd_introduction, serviceIteration))
+        BaseAncHomeVisitAction ccd_intro_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.ccd_introduction))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("child_hv_ccd_introduction")
@@ -379,7 +399,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
-        String title = context.getString(R.string.ccd_development_screening, serviceIteration);
+        String title = context.getString(R.string.ccd_development_screening);
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
@@ -389,7 +409,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
 
-        BaseAncHomeVisitAction ccd_development_screening_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.ccd_development_screening, serviceIteration))
+        BaseAncHomeVisitAction ccd_development_screening_action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.ccd_development_screening))
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("child_hv_ccd_development_screening")
@@ -413,7 +433,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
-        String title = context.getString(R.string.ccd_communication_assessment, serviceIteration);
+        String title = context.getString(R.string.ccd_communication_assessment);
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
@@ -447,7 +467,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
-        String title = context.getString(R.string.ccd_child_discipline, serviceIteration);
+        String title = context.getString(R.string.ccd_child_discipline);
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
@@ -481,7 +501,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
-        String title = context.getString(R.string.child_safety, serviceIteration);
+        String title = context.getString(R.string.child_safety);
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
@@ -515,7 +535,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
         final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
-        String title = context.getString(R.string.complimentary_feeding, serviceIteration);
+        String title = context.getString(R.string.complimentary_feeding);
 
         // alert if overdue after 14 days
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
@@ -741,7 +761,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.malnutrition_screening, serviceIteration))
+        String title = context.getString(R.string.malnutrition_screening);
+
+        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, title)
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("child_hv_malnutrition_screening")
@@ -751,7 +773,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(malnutritionScreeningActionHelper)
                 .build();
 
-        actionList.put(context.getString(R.string.malnutrition_screening), malnutritionScreeningAction);
+        actionList.put(title, malnutritionScreeningAction);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {

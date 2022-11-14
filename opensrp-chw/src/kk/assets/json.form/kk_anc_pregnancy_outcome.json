@@ -1008,8 +1008,8 @@
           {
             "key": "first_name",
             "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "161543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "first_name",
             "type": "edit_text",
             "hint": "{{anc_pregnancy_outcome.step2.no_children_no.first_name.hint}}",
             "edit_type": "name",
@@ -1025,8 +1025,8 @@
           {
             "key": "middle_name",
             "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "middle_name",
             "type": "edit_text",
             "hint": "{{anc_pregnancy_outcome.step2.no_children_no.middle_name.hint}}",
             "edit_type": "name",
@@ -1052,8 +1052,8 @@
           {
             "key": "gender",
             "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "161543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity": "person",
+            "openmrs_entity_id": "gender",
             "type": "spinner",
             "hint": "{{anc_pregnancy_outcome.step2.no_children_no.gender.hint}}",
             "values": [
@@ -1385,6 +1385,18 @@
             "v_numeric_integer": {
               "value": "true",
               "err": "{{anc_pregnancy_outcome.step2.father_age.v_numeric_integer.err}}"
+            },
+            "v_numeric": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.age.v_numeric.err}}"
+            },
+            "v_min": {
+              "value": "18",
+              "err": "{{anc_pregnancy_outcome.step2.father_age.v_min.err}}"
+            },
+            "v_max": {
+              "value": "120",
+              "err": "{{anc_pregnancy_outcome.step2.age.v_max.err}}"
             },
             "relevance": {
               "rules-engine": {
