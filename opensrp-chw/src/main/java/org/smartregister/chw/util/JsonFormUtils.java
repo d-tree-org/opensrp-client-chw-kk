@@ -35,6 +35,7 @@ import org.smartregister.immunization.domain.Vaccine;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.sync.helper.ECSyncHelper;
+import org.smartregister.util.AssetHandler;
 import org.smartregister.util.FormUtils;
 import org.smartregister.util.ImageUtils;
 
@@ -204,7 +205,7 @@ public class JsonFormUtils extends CoreJsonFormUtils {
             if (lookUpEntityId.equals("family") && StringUtils.isNotBlank(lookUpBaseEntityId)) {
                 Client ss = new Client(lookUpBaseEntityId);
                 Context context = ChwApplication.getInstance().getContext().applicationContext();
-                addRelationship(context, ss, baseClient);
+                addRelationship(context, ss, baseClient,jsonString);
                 SQLiteDatabase db = ChwApplication.getInstance().getRepository().getReadableDatabase();
                 EventClientRepository eventClientRepository = new EventClientRepository();
                 JSONObject clientjson = eventClientRepository.getClient(db, lookUpBaseEntityId);
@@ -216,6 +217,18 @@ public class JsonFormUtils extends CoreJsonFormUtils {
         } catch (Exception e) {
             Timber.e(e);
             return null;
+        }
+    }
+
+    public static void addRelationship(Context context, Client parent, Client child,String jsonString) {
+        try {
+            JSONObject jsonObject=org.smartregister.util.JsonFormUtils.toJSONObject(jsonString);
+            JSONArray formFields = org.smartregister.util.JsonFormUtils.fields(jsonObject);
+            JSONObject motherEntityId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(formFields,"mother_entity_id");
+            child.addRelationship(org.smartregister.chw.anc.util.Constants.RELATIONSHIP.FAMILY,parent.getBaseEntityId());
+            child.addRelationship(org.smartregister.chw.anc.util.Constants.RELATIONSHIP.MOTHER,getString(motherEntityId, "value"));
+        } catch (Exception e) {
+            Timber.e(e);
         }
     }
 
