@@ -231,9 +231,9 @@
           "Poor"
         ],
         "openmrs_choice_ids": {
-          "good": "",
-          "fair": "",
-          "poor": ""
+          "Good": "",
+          "Fair": "",
+          "Poor": ""
         },
         "relevance": {
           "rules-engine": {

@@ -1386,6 +1386,18 @@
               "value": "true",
               "err": "{{anc_pregnancy_outcome.step2.father_age.v_numeric_integer.err}}"
             },
+            "v_numeric": {
+              "value": "true",
+              "err": "{{anc_pregnancy_outcome.step2.age.v_numeric.err}}"
+            },
+            "v_min": {
+              "value": "18",
+              "err": "{{anc_pregnancy_outcome.step2.father_age.v_min.err}}"
+            },
+            "v_max": {
+              "value": "120",
+              "err": "{{anc_pregnancy_outcome.step2.age.v_max.err}}"
+            },
             "relevance": {
               "rules-engine": {
                 "ex-rules": {
