@@ -741,7 +741,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
-        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.malnutrition_screening, serviceIteration))
+        String title = context.getString(R.string.malnutrition_screening);
+
+        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, title)
                 .withOptional(false)
                 .withDetails(details)
                 .withFormName("child_hv_malnutrition_screening")
@@ -751,7 +753,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(malnutritionScreeningActionHelper)
                 .build();
 
-        actionList.put(context.getString(R.string.malnutrition_screening), malnutritionScreeningAction);
+        actionList.put(title, malnutritionScreeningAction);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {

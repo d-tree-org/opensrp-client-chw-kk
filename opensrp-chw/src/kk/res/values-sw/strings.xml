@@ -42,7 +42,7 @@
     <string name="ccd_toddler_danger_signs_subtitle">Dalili za hatari za mtoto</string>
     <string name="ccd_child_safety_subtitle">Mama ameelimishwa juu ya usalama wa mtoto</string>
     <string name="ccd_child_discipline_subtitle">Mama anavyomrekebisha mtoto</string>
-    <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu %s</string>
+    <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto </string>
     <string name="ccd_introduction"> CCD : Mwanzo </string>
