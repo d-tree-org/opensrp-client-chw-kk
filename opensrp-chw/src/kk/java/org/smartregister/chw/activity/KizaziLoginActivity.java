@@ -66,6 +66,7 @@ public class KizaziLoginActivity extends LoginActivity{
                 if (sharedPreferences.getBooleanPreference("enable_production")) {
                     updateEnvironmentUrl(BuildConfig.opensrp_url_production);
                     setTestEnvironmentIndicator(false);
+                    updateSyncFilter();
                 } else {
                     updateEnvironmentUrl(BuildConfig.opensrp_url_debug);
                     setTestEnvironmentIndicator(true);
@@ -79,6 +80,10 @@ public class KizaziLoginActivity extends LoginActivity{
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void updateSyncFilter(){
 
     }
 
