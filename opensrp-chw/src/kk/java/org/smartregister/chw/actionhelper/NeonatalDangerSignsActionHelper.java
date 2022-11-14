@@ -19,20 +19,14 @@ import timber.log.Timber;
 public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
     private Context context;
     private String neoNateDangerSigns;
-    private Alert alert;
 
-    public NeonatalDangerSignsActionHelper(Context context, Alert alert) {
+    public NeonatalDangerSignsActionHelper(Context context) {
         this.context = context;
-        this.alert = alert;
     }
 
     @Override
     public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
-        return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;  // todo -> return null
-    }
-
-    private boolean isOverDue() {
-        return new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        return null;
     }
 
     @Override
