@@ -23,6 +23,7 @@ import org.smartregister.chw.util.ContactUtil;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.Obs;
+import org.smartregister.util.StringUtil;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -952,6 +953,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private class BreastFeedingActionHelper implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
 
         private String preg_woman_other_children;
+        private String preg_woman_breastfeed;
 
 
         @Override
@@ -969,7 +971,8 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
             try {
                 JSONObject jsonObject = new JSONObject(s);
-                preg_woman_other_children = JsonFormUtils.getCheckBoxValue(jsonObject, "preg_woman_other_children");
+                preg_woman_other_children = JsonFormUtils.getValue(jsonObject, "preg_woman_other_children");
+                preg_woman_breastfeed = JsonFormUtils.getValue(jsonObject, "preg_woman_breastfeed");
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -998,8 +1001,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            if (StringUtils.isBlank(preg_woman_other_children)) {
+            if (StringUtils.isBlank(preg_woman_other_children) || StringUtils.isBlank(preg_woman_breastfeed)) {
                 return BaseAncHomeVisitAction.Status.PENDING;
+            } else if (preg_woman_breastfeed.contains("chk_no")) {
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             } else {
                 return BaseAncHomeVisitAction.Status.COMPLETED;
             }
