@@ -18,7 +18,7 @@ import timber.log.Timber;
 
 public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
     private Context context;
-    private String neoNateDangerSigns;
+    private String neoNateDangerSignsValues, neoNateDangerSignsKeys;
 
     public NeonatalDangerSignsActionHelper(Context context) {
         this.context = context;
@@ -33,7 +33,8 @@ public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            neoNateDangerSigns = JsonFormUtils.getCheckBoxValue(jsonObject, "neonate_danger_signs");
+            neoNateDangerSignsKeys = JsonFormUtils.getValue(jsonObject, "neonate_danger_signs");
+            neoNateDangerSignsValues = JsonFormUtils.getCheckBoxValue(jsonObject, "neonate_danger_signs");
         } catch (JSONException e) {
             Timber.e(e);
         }
@@ -41,15 +42,17 @@ public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("{0}: {1}", context.getString(R.string.neonatal_danger_signs), neoNateDangerSigns);
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.neonatal_danger_signs), neoNateDangerSignsValues);
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(neoNateDangerSigns)) {
+        if (StringUtils.isBlank(neoNateDangerSignsKeys)) {
             return BaseAncHomeVisitAction.Status.PENDING;
-        } else {
+        } else if (neoNateDangerSignsKeys.contains("chk_none")){
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        } else {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
     }
 

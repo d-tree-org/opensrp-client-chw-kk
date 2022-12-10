@@ -145,4 +145,10 @@
 
     <string name="referral_followup">REFERRAL FOLLOWUP</string>
 
+    <string name="malnutrition_screening_subtitle">MUAC: %s Anemia: %s</string>
+
+    <string name="palm_pallor_green">Green</string>
+    <string name="palm_pallor_yellow">Yellow</string>
+    <string name="palm_pallor_red">Red</string>
+
 </resources>

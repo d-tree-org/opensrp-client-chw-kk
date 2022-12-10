@@ -390,7 +390,7 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
         public void onPayloadReceived(String jsonPayload) {
             try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
-                malaria_protective_measures = JsonFormUtils.getCheckBoxValue(jsonObject, "malaria_protective_measures");
+                malaria_protective_measures = JsonFormUtils.getValue(jsonObject, "malaria_protective_measures");
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -419,9 +419,13 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         @Override
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-            if (StringUtils.isNotBlank(malaria_protective_measures))
+            if (StringUtils.isBlank(malaria_protective_measures)) {
+                return BaseAncHomeVisitAction.Status.PENDING;
+            } else if (malaria_protective_measures.contains("none")) {
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+            } else {
                 return BaseAncHomeVisitAction.Status.COMPLETED;
-            return BaseAncHomeVisitAction.Status.PENDING;
+            }
         }
 
         @Override
