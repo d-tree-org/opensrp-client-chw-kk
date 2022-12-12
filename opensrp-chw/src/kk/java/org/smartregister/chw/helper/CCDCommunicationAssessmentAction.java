@@ -25,6 +25,7 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
     private Context context;
     private final Alert alert;
     private String communicatesWithChild = "";
+    private String communicatesWithChildObservation = "";
     private String jsonPayload;
     private final int ageInMonth;
 
@@ -64,6 +65,7 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             communicatesWithChild = JsonFormUtils.getValue(jsonObject, "communication_with_child");
+            communicatesWithChildObservation = JsonFormUtils.getValue(jsonObject, "child_communication_observation");
         } catch (Exception e) {
             Timber.e(e);
         }
@@ -77,12 +79,14 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (!StringUtils.isEmpty(communicatesWithChild))
-            if (communicatesWithChild.equals("yes"))
-                return BaseAncHomeVisitAction.Status.COMPLETED;
-            else
-                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-        else
+
+        if (communicatesWithChild.equalsIgnoreCase("yes") &&
+                communicatesWithChildObservation.contains("chk_force_smile")) {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        } else if (communicatesWithChild.equals("yes") && !StringUtils.isEmpty(communicatesWithChild)) {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        } else {
             return BaseAncHomeVisitAction.Status.PENDING;
+        }
     }
 }
