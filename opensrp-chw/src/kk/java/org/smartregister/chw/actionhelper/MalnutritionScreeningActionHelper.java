@@ -16,6 +16,9 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
     String growthMonitoringSelectedKey = "";
     String growthMonitoringSelectedValue = "";
     String palmPallorValue = "";
+    String palmPallorKey= "";
+    String childGrowthMuacKey = "";
+    String childGrowthMuacValue = "";
 
     @Override
     public void onPayloadReceived(String jsonString) {
@@ -23,7 +26,8 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
             JSONObject jsonObject = new JSONObject(jsonString);
             growthMonitoringSelectedKey = JsonFormUtils.getValue(jsonObject, "growth_monitoring");
             growthMonitoringSelectedValue = JsonFormUtils.getCheckBoxValue(jsonObject, "growth_monitoring");
-            palmPallorValue = JsonFormUtils.getValue(jsonObject, "palm_pallor");
+            palmPallorKey = JsonFormUtils.getValue(jsonObject, "palm_pallor");
+            childGrowthMuacKey = JsonFormUtils.getValue(jsonObject, "child_growth_muac");
         }catch (JSONException e){
             Timber.e(e);
         }
@@ -32,20 +36,39 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
     @Override
     public String evaluateSubTitle() {
         if (growthMonitoringSelectedKey.isEmpty()) return "";
-        return getContext().getString(R.string.growth_monitoring_subtitle) +" "+ growthMonitoringSelectedValue;
+
+        if (palmPallorKey.contains("palm_pallor_no")) {
+            palmPallorValue = context.getString(R.string.no);
+        }
+
+        if (palmPallorKey.contains("palm_pallor_yes")) {
+            palmPallorValue = context.getString(R.string.yes);
+        }
+
+        if (childGrowthMuacKey.contains("Red")) {
+            childGrowthMuacValue = context.getString(R.string.palm_pallor_red);
+        }
+
+        if (childGrowthMuacKey.contains("Green")) {
+            childGrowthMuacValue = context.getString(R.string.palm_pallor_green);
+        }
+
+        if (childGrowthMuacKey.contains("Yellow")) {
+            childGrowthMuacValue = context.getString(R.string.palm_pallor_yellow);
+        }
+
+        return getContext().getString(R.string.malnutrition_screening_subtitle, childGrowthMuacValue, palmPallorValue);
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (growthMonitoringSelectedKey.isEmpty() || palmPallorValue.isEmpty())
+
+        if (growthMonitoringSelectedKey.isEmpty() || palmPallorKey.isEmpty()) {
             return BaseAncHomeVisitAction.Status.PENDING;
-
-        if (growthMonitoringSelectedKey.contains("growth_monitoring_no"))
+        } else if (childGrowthMuacKey.contains("Red") && palmPallorKey.contains("palm_pallor_yes")) {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-
-        else if (growthMonitoringSelectedKey.contains("growth_monitoring_yes"))
+        } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
-
-        return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
     }
 }

@@ -281,6 +281,7 @@ dependencies {
         exclude group: 'com.rengwuxian.materialedittext', module: 'library'
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'com.google.android.gms', module: 'play-services-measurement-base'
+        exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-chw-anc'
     }
 
@@ -321,6 +322,17 @@ dependencies {
     implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
 
     implementation 'com.github.lecho:hellocharts-android:v1.5.8@aar'
+
+    api('org.smartregister:opensrp-client-core:6.0.0-SNAPSHOT@aar') {
+        transitive = true
+        exclude group: 'com.github.bmelnychuk', module: 'atv'
+        exclude group: 'com.google.guava', module: 'guava'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+        exclude group: 'com.rengwuxian.materialedittext', module: 'library'
+        exclude group: 'com.ibm.fhir', module: 'fhir-model'
+    }
 
     testImplementation "org.koin:koin-test:2.0.1"
     testImplementation 'junit:junit:4.13'
