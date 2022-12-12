@@ -82,7 +82,7 @@
     <string name="ccd_toddler_danger_signs_subtitle">Danger signs</string>
     <string name="ccd_child_safety_subtitle">Counselled mother for child safety</string>
     <string name="ccd_child_discipline_subtitle">Mother corrects child</string>
-    <string name="malnutrition_screening">Malnutrition/Anemia screening %s</string>
+    <string name="malnutrition_screening">Malnutrition/Anemia screening</string>
 
     <string name="toddler_danger_sign_month"> Toddler danger sign </string>
     <string name="ccd_introduction"> CCD : Introduction</string>
@@ -142,5 +142,13 @@
 
     <string name="data_synced_kk">Taarifa zimeoanishwa</string>
     <string name="data_not_synced_kk">Taarifa hazijaoanishwa</string>
+
+    <string name="referral_followup">REFERRAL FOLLOWUP</string>
+
+    <string name="malnutrition_screening_subtitle">MUAC: %s Anemia: %s</string>
+
+    <string name="palm_pallor_green">Green</string>
+    <string name="palm_pallor_yellow">Yellow</string>
+    <string name="palm_pallor_red">Red</string>
 
 </resources>

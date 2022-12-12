@@ -20,7 +20,7 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
 
     private Context context;
     private Alert alert;
-    private String developmentIssues;
+    private String developmentIssuesValue, developmentIssuesKeys;
 
     public CCDDevelopmentScreeningAction(Context context, Alert alert){
         this.alert = alert;
@@ -36,7 +36,8 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
     public void onPayloadReceived(String jsonPayload) {
         try{
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            developmentIssues = JsonFormUtils.getCheckBoxValue(jsonObject, "child_development_issues");
+            developmentIssuesValue = JsonFormUtils.getCheckBoxValue(jsonObject, "child_development_issues");
+            developmentIssuesKeys = JsonFormUtils.getValue(jsonObject, "child_development_issues");
         }catch (Exception e){
             Timber.e(e);
         }
@@ -44,14 +45,16 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("{0}: {1}", context.getString(R.string.ccd_development_screening_subtitle), developmentIssues);
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.ccd_development_screening_subtitle), developmentIssuesValue);
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(developmentIssues)){
+        if (StringUtils.isBlank(developmentIssuesKeys)){
             return BaseAncHomeVisitAction.Status.PENDING;
-        }else {
+        } else if (StringUtils.isNotBlank(developmentIssuesKeys) && !developmentIssuesKeys.contains("chk_none")) {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
     }

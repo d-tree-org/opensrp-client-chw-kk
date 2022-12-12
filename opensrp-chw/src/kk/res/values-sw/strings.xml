@@ -42,7 +42,7 @@
     <string name="ccd_toddler_danger_signs_subtitle">Dalili za hatari za mtoto</string>
     <string name="ccd_child_safety_subtitle">Mama ameelimishwa juu ya usalama wa mtoto</string>
     <string name="ccd_child_discipline_subtitle">Mama anavyomrekebisha mtoto</string>
-    <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu %s</string>
+    <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto </string>
     <string name="ccd_introduction"> CCD : Mwanzo </string>
@@ -119,4 +119,11 @@
     <string name="data_synced_kk">Taarifa zimeoanishwa</string>
     <string name="data_not_synced_kk">Taarifa hazijaoanishwa</string>
 
+    <string name="referral_followup">TEMBELEO LA RUFAA</string>
+
+    <string name="malnutrition_screening_subtitle">MUAC: %s Anemia: %s</string>
+
+    <string name="palm_pallor_green">Kijani</string>
+    <string name="palm_pallor_yellow">Njano</string>
+    <string name="palm_pallor_red">Nyekundu</string>
 </resources>

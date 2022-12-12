@@ -83,15 +83,18 @@
         "hint": "{{child_hv_malaria_prevention.step1.llin_condition.hint}}",
         "values": [
           "{{child_hv_malaria_prevention.step1.llin_condition.values[0]}}",
-          "{{child_hv_malaria_prevention.step1.llin_condition.values[1]}}"
+          "{{child_hv_malaria_prevention.step1.llin_condition.values[1]}}",
+          "{{child_hv_malaria_prevention.step1.llin_condition.values[2]}}"
         ],
         "keys": [
-          "Yes",
-          "No"
+          "Good",
+          "Fair",
+          "Poor"
         ],
         "openmrs_choice_ids": {
-          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "Good": "",
+          "Fair": "",
+          "Poor": ""
         }
       },
       {

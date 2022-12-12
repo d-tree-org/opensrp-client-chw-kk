@@ -18,28 +18,23 @@ import timber.log.Timber;
 
 public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
     private Context context;
-    private String neoNateDangerSigns;
-    private Alert alert;
+    private String neoNateDangerSignsValues, neoNateDangerSignsKeys;
 
-    public NeonatalDangerSignsActionHelper(Context context, Alert alert) {
+    public NeonatalDangerSignsActionHelper(Context context) {
         this.context = context;
-        this.alert = alert;
     }
 
     @Override
     public BaseAncHomeVisitAction.ScheduleStatus getPreProcessedStatus() {
-        return isOverDue() ? BaseAncHomeVisitAction.ScheduleStatus.OVERDUE : BaseAncHomeVisitAction.ScheduleStatus.DUE;  // todo -> return null
-    }
-
-    private boolean isOverDue() {
-        return new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        return null;
     }
 
     @Override
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
-            neoNateDangerSigns = JsonFormUtils.getCheckBoxValue(jsonObject, "neonate_danger_signs");
+            neoNateDangerSignsKeys = JsonFormUtils.getValue(jsonObject, "neonate_danger_signs");
+            neoNateDangerSignsValues = JsonFormUtils.getCheckBoxValue(jsonObject, "neonate_danger_signs");
         } catch (JSONException e) {
             Timber.e(e);
         }
@@ -47,15 +42,17 @@ public class NeonatalDangerSignsActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format("{0}: {1}", context.getString(R.string.neonatal_danger_signs), neoNateDangerSigns);
+        return MessageFormat.format("{0}: {1}", context.getString(R.string.neonatal_danger_signs), neoNateDangerSignsValues);
     }
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(neoNateDangerSigns)) {
+        if (StringUtils.isBlank(neoNateDangerSignsKeys)) {
             return BaseAncHomeVisitAction.Status.PENDING;
-        } else {
+        } else if (neoNateDangerSignsKeys.contains("chk_none")){
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        } else {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
     }
 

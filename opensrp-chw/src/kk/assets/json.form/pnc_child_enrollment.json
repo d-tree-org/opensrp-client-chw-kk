@@ -62,6 +62,13 @@
         "type": "hidden"
       },
       {
+        "key": "pregnancy_outcome_form_submission_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "entry_point",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -127,16 +134,17 @@
       {
         "key": "last_name",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "last_name",
         "type": "hidden",
         "hint": "{{pnc_child_enrollment.step1.last_name.hint}}"
       },
       {
         "key": "first_name",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "first_name",
+        "openmrs_data_type": "text",
         "type": "edit_text",
         "hint": "{{pnc_child_enrollment.step1.first_name.hint}}",
         "expanded": false,
@@ -153,8 +161,9 @@
       {
         "key": "middle_name",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "middle_name",
+        "openmrs_data_type": "text",
         "type": "edit_text",
         "hint": "{{pnc_child_enrollment.step1.middle_name.hint}}",
         "expanded": false,
@@ -171,8 +180,8 @@
       {
         "key": "dob",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "birthdate",
         "type": "date_picker",
         "hint": "{{pnc_child_enrollment.step1.dob.hint}}",
         "expanded": false,
@@ -189,8 +198,8 @@
       {
         "key": "gender",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "gender",
         "type": "edit_text",
         "hint": "{{pnc_child_enrollment.step1.gender.hint}}"
       },
