@@ -21,6 +21,9 @@ import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -229,14 +232,10 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
                             new FamilyProfileModel(memberObject.getFamilyName()).processUpdateMemberRegistration(jsonString, memberObject.getBaseEntityId());
                     new FamilyProfileInteractor().saveRegistration(familyEventClient, jsonString, true, ancMemberProfilePresenter());
                 } else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.UPDATE_ANC_REGISTRATION)) {
-                    AllSharedPreferences allSharedPreferences = org.smartregister.util.Utils.getAllSharedPreferences();
-                    Event baseEvent = org.smartregister.chw.anc.util.JsonFormUtils.processJsonForm(allSharedPreferences, jsonString, Constants.TABLES.ANC_MEMBERS);
-                    NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
-
-                    JSONArray field = org.smartregister.util.JsonFormUtils.fields(form);
-                    String gestAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(field, GEST_AGE).getString(CoreJsonFormUtils.VALUE);
+                    JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
+                    updateLmpdFromEdd(fields);
+                    String gestAge = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, GEST_AGE).getString(CoreJsonFormUtils.VALUE);
                     this.setMemberGA(gestAge);
-                    form.put(JsonFormUtils.ENCOUNTER_TYPE, CoreConstants.EventType.ANC_REGISTRATION);
                     new BaseAncRegisterInteractor().saveRegistration(form.toString(), false, null, null);
                 } else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.ANC_REFERRAL)) {
                     ancMemberProfilePresenter().createReferralEvent(Utils.getAllSharedPreferences(), jsonString);
@@ -251,6 +250,19 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
         } else if (requestCode == CoreConstants.ProfileActivityResults.CHANGE_COMPLETED) {
             ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT, new Date());
             finish();
+        }
+    }
+
+    private void updateLmpdFromEdd(JSONArray fields) throws JSONException {
+        JSONObject lmp = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, DBConstants.KEY.LAST_MENSTRUAL_PERIOD);
+        boolean hasLmp = StringUtils.isNotBlank(lmp.optString(org.smartregister.chw.anc.util.JsonFormUtils.VALUE));
+
+        if (!hasLmp) {
+            JSONObject eddJson = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, DBConstants.KEY.EDD);
+            DateTimeFormatter dateTimeFormat = DateTimeFormat.forPattern("dd-MM-yyyy");
+
+            LocalDate lmpDate = dateTimeFormat.parseLocalDate(eddJson.optString(org.smartregister.chw.anc.util.JsonFormUtils.VALUE)).plusDays(-280);
+            lmp.put(org.smartregister.chw.anc.util.JsonFormUtils.VALUE, dateTimeFormat.print(lmpDate));
         }
     }
 
