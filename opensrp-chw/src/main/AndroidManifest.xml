@@ -127,7 +127,8 @@
             android:name=".activity.ChildProfileActivity"
             android:launchMode="singleTop"
             android:label="@string/child_details"
-            android:theme="@style/ChwTheme.NoActionBar">
+            android:theme="@style/ChwTheme.NoActionBar"
+            android:exported="false">
             <intent-filter>
                 <action android:name="org.smartregister.action.THINKMD_ASSESSMENT" />
 

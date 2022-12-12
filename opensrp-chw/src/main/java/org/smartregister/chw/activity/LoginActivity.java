@@ -206,7 +206,8 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
         }
     }
 
-    private class SaveTeamLocationAsync extends AsyncTask<Void, Void, Void> {
+    @SuppressWarnings("deprecation")
+    private static class SaveTeamLocationAsync extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             LocationHelper.getInstance().locationIdsFromHierarchy();
