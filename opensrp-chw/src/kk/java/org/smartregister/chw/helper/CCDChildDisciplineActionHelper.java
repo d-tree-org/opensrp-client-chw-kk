@@ -24,7 +24,9 @@ public class CCDChildDisciplineActionHelper extends HomeVisitActionHelper {
     private Context context;
     private Alert alert;
     private String correctingChild = "";
+    private String correctingChildKeySelected = "";
     private String jsonPayload;
+    String tempCalue = "";
 
     public CCDChildDisciplineActionHelper(Context context, Alert alert){
         this.alert = alert;
@@ -47,6 +49,7 @@ public class CCDChildDisciplineActionHelper extends HomeVisitActionHelper {
         try{
             JSONObject jsonObject = new JSONObject(jsonPayload);
             correctingChild = JsonFormUtils.getCheckBoxValue(jsonObject, "caregiver_child_correction");
+            correctingChildKeySelected = JsonFormUtils.getValue(jsonObject, "caregiver_child_correction");
         }catch (Exception e){
             Timber.e(e);
         }
@@ -59,10 +62,13 @@ public class CCDChildDisciplineActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (correctingChild.isEmpty())
+        if (correctingChild.isEmpty()) {
             return BaseAncHomeVisitAction.Status.PENDING;
-        else
+        } else if (correctingChildKeySelected.contains("chk_scolds_child")) {
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
     }
 
 }

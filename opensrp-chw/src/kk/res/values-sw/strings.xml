@@ -121,4 +121,9 @@
 
     <string name="referral_followup">TEMBELEO LA RUFAA</string>
 
+    <string name="malnutrition_screening_subtitle">MUAC: %s Anemia: %s</string>
+
+    <string name="palm_pallor_green">Kijani</string>
+    <string name="palm_pallor_yellow">Njano</string>
+    <string name="palm_pallor_red">Nyekundu</string>
 </resources>
