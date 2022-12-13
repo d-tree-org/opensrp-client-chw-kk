@@ -471,8 +471,9 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
 
     @Override
     public void openFamilyLocation() {
-        Intent intent = new Intent(this, AncMemberMapActivity.class);
-        this.startActivity(intent);
+        //TODO: Removed in KK until kujaku is resolved
+        //Intent intent = new Intent(this, AncMemberMapActivity.class);
+        //this.startActivity(intent);
     }
 
 
