@@ -10,6 +10,7 @@ import android.os.Build;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.evernote.android.job.JobManager;
+import com.mapbox.mapboxsdk.Mapbox;
 import com.vijay.jsonwizard.NativeFormLibrary;
 import com.vijay.jsonwizard.domain.Form;
 
@@ -93,6 +94,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import io.ona.kujaku.KujakuLibrary;
 import timber.log.Timber;
 
 import static org.koin.core.context.GlobalContext.getOrNull;
@@ -222,17 +224,17 @@ public class ChwApplication extends CoreChwApplication implements SyncStatusBroa
         EventBus.getDefault().register(this);
 
         if (getApplicationFlavor().hasMap()) {
-            //initializeMapBox();
+            initializeMapBox();
         }
 
         reloadLanguage();
     }
 
-//    protected void initializeMapBox() {
-//        // Init Kujaku
-//        Mapbox.getInstance(getApplicationContext(), BuildConfig.MAPBOX_SDK_ACCESS_TOKEN);
-//        KujakuLibrary.init(getApplicationContext());
-//    }
+    protected void initializeMapBox() {
+        // Init Kujaku
+        Mapbox.getInstance(getApplicationContext(), BuildConfig.MAPBOX_SDK_ACCESS_TOKEN);
+        KujakuLibrary.init(getApplicationContext());
+    }
 
     private void initializeLibraries() {
         //Initialize Modules
