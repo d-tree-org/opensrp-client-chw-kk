@@ -31,6 +31,14 @@ allprojects {
             }
         }
         maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/issyzac/kujaku")
+            credentials {
+                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+            }
+        }
+        maven {
             url 'https://api.mapbox.com/downloads/v2/releases/maven'
             authentication {
                 basic(BasicAuthentication)
@@ -301,7 +309,7 @@ dependencies {
 
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.7.1@aar'
 
-    implementation('io.ona.kujaku:library:v0.10.0-ISSY-SNAPSHOT@aar') {
+    implementation('io.ona.kujaku:library:v0.10.0-ISSY-SNAPSHOT') {
         transitive = true
         exclude group: 'com.android.volley', module: 'volley'
         exclude group: 'stax', module: 'stax-api'
