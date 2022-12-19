@@ -7,6 +7,11 @@ public class ChwApplicationFlv extends DefaultChwApplicationFlv {
     }
 
     @Override
+    public boolean hasMap() {
+        return false;
+    }
+
+    @Override
     public boolean hasP2P() {
         return false;
     }
