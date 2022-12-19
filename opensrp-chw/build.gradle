@@ -247,8 +247,8 @@ android {
             getIsDefault().set(true)
             dimension = 'baseDimension'
             applicationIdSuffix ".kk"
-            versionCode 15
-            versionName "0.9.0"
+            versionCode 16
+            versionName "1.0.0"
             resConfigs "en", "sw"
             buildConfigField "String", 'opensrp_url', '"https://kizazi-kijacho.smartregister.org/opensrp/"'
             buildConfigField "String", 'guidebooks_url', '"https://opensrp.s3.amazonaws.com/media/chad/"'
