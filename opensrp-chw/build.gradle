@@ -24,23 +24,25 @@ allprojects {
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         maven {
             name = "GitHubPackages"
-            /*  Configure path to the library hosted on GitHub Package Registry
-             *  Replace UserID with package owner userID and REPOSITORY with the repository name
-             *  e.g. ""https://maven.pkg.github.com/opensrp/opensrp-client-reporting""
-             */
-            url = uri("https://maven.pkg.github.com/onaio/kujaku")
-            credentials {
-                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
-                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
-            }
-
-        }
-        maven {
-            name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/d-tree-org/opensrp-client-chw-core")
             credentials {
                 username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
                 password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+            }
+        }
+        maven {
+            url 'https://api.mapbox.com/downloads/v2/releases/maven'
+            authentication {
+                basic(BasicAuthentication)
+            }
+            Properties lProperties = new Properties()
+            lProperties.load(project.rootProject.file("local.properties").newDataInputStream())
+            credentials {
+                // Do not change the username below.
+                // This should always be `mapbox` (not your username).
+                username = "mapbox"
+                // Use the secret token you stored in gradle.properties as the password
+                password = lProperties['mapbox.repo.token'] ?: ""
             }
         }
         maven { url 'https://maven.fabric.io/public' }
@@ -283,6 +285,7 @@ dependencies {
         exclude group: 'com.google.android.gms', module: 'play-services-measurement-base'
         exclude group: 'org.smartregister', module: 'opensrp-client-core'
         exclude group: 'org.smartregister', module: 'opensrp-client-chw-anc'
+        exclude group: 'io.ona.kujaku', module: 'library'
     }
 
     implementation('org.smartregister:opensrp-client-chw-anc:2.0.9-DTREE-SNAPSHOT-C@aar') {
@@ -294,6 +297,19 @@ dependencies {
         exclude group: 'org.smartregister', module: 'opensrp-client-immunization'
         exclude group: 'org.smartregister', module: 'opensrp-client-family'
         exclude group: 'id.zelory', module: 'compressor'
+    }
+
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.7.1@aar'
+
+    implementation('io.ona.kujaku:library:v0.10.0-ISSY-SNAPSHOT@aar') {
+        transitive = true
+        exclude group: 'com.android.volley', module: 'volley'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.google.android.material', module: 'material'
+        exclude group: 'androidx.legacy', module: 'legacy-support-v4'
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+        exclude group: 'androidx.constraintlayout', module: 'constraintlayout'
     }
 
     //Do not upgrade to 1.1.0 due to compatibility issues
