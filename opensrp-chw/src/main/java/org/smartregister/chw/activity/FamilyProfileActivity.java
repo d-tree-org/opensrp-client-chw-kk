@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -126,6 +128,15 @@ public class FamilyProfileActivity extends CoreFamilyProfileActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuItem changeHead = menu.findItem(R.id.action_change_head);
+        //Removed for KK
+        changeHead.setVisible(false);
+        return true;
     }
 
     @Override

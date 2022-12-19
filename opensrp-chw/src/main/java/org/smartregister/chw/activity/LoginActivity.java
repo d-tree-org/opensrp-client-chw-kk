@@ -3,6 +3,7 @@ package org.smartregister.chw.activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
@@ -21,6 +22,7 @@ import org.smartregister.chw.presenter.LoginPresenter;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.family.util.Constants;
 import org.smartregister.growthmonitoring.service.intent.WeightForHeightIntentService;
+import org.smartregister.location.helper.LocationHelper;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.task.SaveTeamLocationsTask;
 import org.smartregister.util.PermissionUtils;
@@ -154,7 +156,7 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
     @Override
     public void goToHome(boolean remote) {
         if (remote) {
-            Utils.startAsyncTask(new SaveTeamLocationsTask(), null);
+            Utils.startAsyncTask(new SaveTeamLocationAsync(), null);
             processWeightForHeightZscoreCSV();
         }
 
@@ -201,6 +203,15 @@ public class LoginActivity extends BaseLoginActivity implements BaseLoginContrac
         if (ChwApplication.getApplicationFlavor().hasChildSickForm() && !allSharedPreferences.getPreference(WFH_CSV_PARSED).equals("true")) {
             WeightForHeightIntentService.startParseWFHZScores(this);
             allSharedPreferences.savePreference(WFH_CSV_PARSED, "true");
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private static class SaveTeamLocationAsync extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            LocationHelper.getInstance().locationIdsFromHierarchy();
+            return null;
         }
     }
 
