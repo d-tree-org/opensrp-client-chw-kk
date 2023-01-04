@@ -518,8 +518,8 @@
         "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
         "hint": "{{anc_member_registration.step1.phone_number.hint}}",
-        "v_numeric": {
-          "value": "true",
+        "v_regex": {
+          "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{anc_member_registration.step1.phone_number.v_numeric.err}}"
         },
         "v_required": {
@@ -644,8 +644,8 @@
         "type": "edit_text",
         "edit_type": "text",
         "hint": "{{anc_member_registration.step1.phone_person_assist.hint}}",
-        "v_numeric": {
-          "value": "true",
+        "v_regex": {
+          "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{anc_member_registration.step1.phone_person_assist.v_numeric.err}}"
         },
         "relevance": {

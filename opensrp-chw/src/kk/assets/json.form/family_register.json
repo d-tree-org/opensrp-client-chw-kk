@@ -1120,13 +1120,13 @@
         "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
         "hint": "{{family_register.step2.phone_number.hint}}",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{family_register.step2.phone_number.v_numeric.err}}"
-        },
         "v_required": {
           "value": false,
           "err": "{{family_register.step2.phone_number.v_required.err}}"
+        },
+        "v_regex": {
+          "value": "^$|(0[6-7][0-9]{8})",
+          "err": "{{family_register.step2.phone_number.v_numeric.err}}"
         },
         "relevance": {
           "rules-engine": {
@@ -1143,8 +1143,8 @@
         "openmrs_entity_id": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
         "hint": "{{family_register.step2.other_phone_number.hint}}",
-        "v_numeric": {
-          "value": "true",
+        "v_regex": {
+          "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{family_register.step2.other_phone_number.v_numeric.err}}"
         },
         "relevance": {
