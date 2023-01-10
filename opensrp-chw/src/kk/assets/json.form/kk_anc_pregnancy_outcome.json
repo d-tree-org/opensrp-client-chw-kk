@@ -679,6 +679,21 @@
         }
       },
       {
+        "key": "consent_photo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "choose_image",
+        "uploadButtonText": "{{anc_pregnancy_outcome.step2.assent_signature_image.uploadButtonText}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "caregiver_surname",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
