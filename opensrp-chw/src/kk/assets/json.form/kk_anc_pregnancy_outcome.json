@@ -679,7 +679,7 @@
         }
       },
       {
-        "key": "consent_photo",
+        "key": "primary_caregiver_consent_photo",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
