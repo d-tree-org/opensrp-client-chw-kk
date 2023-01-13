@@ -1,5 +1,7 @@
 {
   "count": "2",
+  "validate_on_submit": false,
+  "show_errors_on_submit": false,
   "encounter_type": "Family Registration",
   "entity_id": "",
   "relational_id": "",
@@ -865,8 +867,6 @@
     ],
     "next": "step2"
   },
-  "validate_on_submit": true,
-  "show_errors_on_submit": false,
   "step2": {
     "title": "{{family_register.step2.title}}",
     "fields": [
