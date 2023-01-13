@@ -56,6 +56,7 @@ allprojects {
         maven { url 'https://maven.fabric.io/public' }
         mavenLocal()
         mavenCentral()
+        maven { url 'https://nexus.pentaho.org/content/groups/omni/' }
     }
 }
 
