@@ -1349,6 +1349,13 @@
         "v_required": {
           "value": "true",
           "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_information.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
         }
       },
       {
@@ -1370,7 +1377,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
         }
@@ -1389,7 +1396,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
         }
@@ -1420,7 +1427,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
         }
@@ -1439,7 +1446,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
         }
@@ -1489,7 +1496,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
         }
@@ -1539,7 +1546,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
         }
@@ -1558,7 +1565,7 @@
         "relevance": {
           "rules-engine": {
             "ex-rules": {
-              "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
         }

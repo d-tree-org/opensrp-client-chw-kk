@@ -316,3 +316,10 @@ priority: 1
 condition: "step2_child_intervention_assent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
+---
+name: step2_father_information
+description: father_information relevance
+priority: 1
+condition: "step2_child_intervention_assent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
