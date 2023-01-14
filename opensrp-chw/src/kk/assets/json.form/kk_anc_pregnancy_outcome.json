@@ -1,5 +1,5 @@
 {
-  "validate_on_submit": true,
+  "validate_on_submit": false,
   "show_errors_on_submit": false,
   "count": "2",
   "encounter_type": "Pregnancy Outcome",
@@ -679,6 +679,21 @@
         }
       },
       {
+        "key": "primary_caregiver_consent_photo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "choose_image",
+        "uploadButtonText": "{{anc_pregnancy_outcome.step2.assent_signature_image.uploadButtonText}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "caregiver_surname",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -1303,248 +1318,280 @@
               "value": "true",
               "err": "{{anc_pregnancy_outcome.step2.child_weight.v_numeric_integer.err}}"
             },
+            "v_min": {
+              "value": "0.1",
+              "err": "{{anc_pregnancy_outcome.step2.child_weight.v_min.err}}"
+            },
+            "v_max": {
+              "value": "10",
+              "err": "{{anc_pregnancy_outcome.step2.child_weight.v_max.err}}"
+            },
             "v_required": {
               "value": true,
               "err": "{{anc_pregnancy_outcome.step2.child_weight.v_required.err}}"
             }
-          },
-          {
-            "key": "father_information",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "159522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "type": "spinner",
-            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_information.hint}}",
-            "values": [
-              "{{anc_pregnancy_outcome.step2.no_children_no.father_information.values[0]}}",
-              "{{anc_pregnancy_outcome.step2.no_children_no.father_information.values[1]}}"
-            ],
-            "keys": [
-              "Yes",
-              "No"
-            ],
-            "openmrs_choice_ids": {
-              "Yes": "",
-              "No": ""
-            },
-            "v_required": {
-              "value": "true",
-              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_information.v_required.err}}"
-            }
-          },
-          {
-            "key": "father_name",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "person",
-            "openmrs_entity_id": "",
-            "type": "edit_text",
-            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.hint}}",
-            "edit_type": "name",
-            "v_required": {
-              "value": "true",
-              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.v_required.err}}"
-            },
-            "v_regex": {
-              "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.v_regex.err}}"
-            },
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
-                }
-              }
-            }
-          },
-          {
-            "key": "father_number",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-            "type": "edit_text",
-            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.hint}}",
-            "v_numeric": {
-              "value": "true",
-              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.v_numeric.err}}"
-            },
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
-                }
-              }
-            }
-          },
-          {
-            "key": "father_age",
-            "type": "edit_text",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "",
-            "openmrs_entity_id": "",
-            "hint": "{{anc_pregnancy_outcome.step2.father_age.hint.text}}",
-            "v_numeric_integer": {
-              "value": "true",
-              "err": "{{anc_pregnancy_outcome.step2.father_age.v_numeric_integer.err}}"
-            },
-            "v_numeric": {
-              "value": "true",
-              "err": "{{anc_pregnancy_outcome.step2.age.v_numeric.err}}"
-            },
-            "v_min": {
-              "value": "18",
-              "err": "{{anc_pregnancy_outcome.step2.father_age.v_min.err}}"
-            },
-            "v_max": {
-              "value": "120",
-              "err": "{{anc_pregnancy_outcome.step2.age.v_max.err}}"
-            },
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
-                }
-              }
-            }
-          },
-          {
-            "key": "father_location",
-            "type": "edit_text",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "",
-            "openmrs_entity_id": "",
-            "hint": "{{anc_pregnancy_outcome.step2.father_location.hint.text}}",
-            "v_regex": {
-              "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
-              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_location.v_regex.err}}"
-            },
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
-                }
-              }
-            }
-          },
-          {
-            "key": "father_education",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "",
-            "type": "check_box",
-            "label": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.label}}",
-            "label_text_style": "normal",
-            "text_color": "#C0C0C0",
-            "exclusive": [
-              "no_formal"
-            ],
-            "options": [
-              {
-                "key": "no_formal",
-                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.no_formal.text}}",
-                "value": false,
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": ""
-              },
-              {
-                "key": "primary",
-                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.primary.text}}",
-                "value": false,
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": ""
-              },
-              {
-                "key": "secondary",
-                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.secondary.text}}",
-                "value": false,
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": ""
-              },
-              {
-                "key": "post_secondary",
-                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.post_secondary.text}}",
-                "value": false,
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": ""
-              }
-            ],
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
-                }
-              }
-            }
-          },
-          {
-            "key": "father_employment",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "concept",
-            "openmrs_entity_id": "",
-            "type": "check_box",
-            "label": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.label}}",
-            "label_text_style": "normal",
-            "text_color": "#C0C0C0",
-            "exclusive": [
-              "no_formal"
-            ],
-            "options": [
-              {
-                "key": "wage_employment",
-                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.wage_employment.text}}",
-                "value": false,
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": ""
-              },
-              {
-                "key": "family_business",
-                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.family_business.text}}",
-                "value": false,
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": ""
-              },
-              {
-                "key": "farmer",
-                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.farmer.text}}",
-                "value": false,
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": ""
-              },
-              {
-                "key": "other",
-                "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.other.text}}",
-                "value": false,
-                "openmrs_entity": "concept",
-                "openmrs_entity_id": ""
-              }
-            ],
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
-                }
-              }
-            }
-          },
-          {
-            "key": "father_employment_other",
-            "type": "edit_text",
-            "openmrs_entity_parent": "",
-            "openmrs_entity": "",
-            "openmrs_entity_id": "",
-            "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment_other.hint.text}}",
-            "v_required": {
-              "value": true,
-              "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment_other.v_required.err}}"
-            },
-            "relevance": {
-              "rules-engine": {
-                "ex-rules": {
-                  "rules-dynamic": "kk_anc_pregnancy_outcome_relevance.yml"
-                }
-              }
-            }
           }
         ]
+      },
+      {
+        "key": "father_label",
+        "type": "label",
+        "has_bg": true,
+        "text": "{{anc_pregnancy_outcome.step2.father_label.text}}",
+        "left_padding": "20dp",
+        "right_padding": "20dp",
+        "label_text_style": "bold",
+        "text_size": "7sp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "father_information",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159522AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "spinner",
+        "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_information.hint}}",
+        "values": [
+          "{{anc_pregnancy_outcome.step2.no_children_no.father_information.values[0]}}",
+          "{{anc_pregnancy_outcome.step2.no_children_no.father_information.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "",
+          "No": ""
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_information.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "father_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.hint}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.v_required.err}}"
+        },
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_name.v_regex.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "father_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "type": "edit_text",
+        "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.hint}}",
+        "v_numeric": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.v_numeric.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "father_age",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step2.father_age.hint.text}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.father_age.v_numeric_integer.err}}"
+        },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.age.v_numeric.err}}"
+        },
+        "v_min": {
+          "value": "18",
+          "err": "{{anc_pregnancy_outcome.step2.father_age.v_min.err}}"
+        },
+        "v_max": {
+          "value": "120",
+          "err": "{{anc_pregnancy_outcome.step2.age.v_max.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "father_location",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step2.father_location.hint.text}}",
+        "v_regex": {
+          "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
+          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_location.v_regex.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "father_education",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "no_formal"
+        ],
+        "options": [
+          {
+            "key": "no_formal",
+            "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.no_formal.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "primary",
+            "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.primary.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "secondary",
+            "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.secondary.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "post_secondary",
+            "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_education.options.post_secondary.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "father_employment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "no_formal"
+        ],
+        "options": [
+          {
+            "key": "wage_employment",
+            "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.wage_employment.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "family_business",
+            "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.family_business.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "farmer",
+            "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.farmer.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "other",
+            "text": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment.options.other.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "father_employment_other",
+        "type": "edit_text",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment_other.hint.text}}",
+        "v_required": {
+          "value": true,
+          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_employment_other.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "no_child_to_register",

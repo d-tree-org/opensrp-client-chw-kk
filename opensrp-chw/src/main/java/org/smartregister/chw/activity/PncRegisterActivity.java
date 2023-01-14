@@ -175,6 +175,7 @@ public class PncRegisterActivity extends CorePncRegisterActivity {
             form.setName(getResources().getString(R.string.anc_pregnancy_outcome_form_title));
             form.setActionBarBackground(R.color.family_actionbar);
             form.setNavigationBackground(R.color.family_navigation);
+            form.setGreyOutSaveWhenFormInvalid(true);
             form.setHomeAsUpIndicator(R.mipmap.ic_cross_white);
             form.setPreviousLabel(getResources().getString(R.string.back));
             intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, form);
