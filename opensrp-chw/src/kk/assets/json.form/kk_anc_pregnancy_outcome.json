@@ -1303,6 +1303,10 @@
               "value": "true",
               "err": "{{anc_pregnancy_outcome.step2.child_weight.v_numeric_integer.err}}"
             },
+            "v_min": {
+              "value": "0.1",
+              "err": "{{anc_pregnancy_outcome.step2.child_weight.v_min.err}}"
+            },
             "v_max": {
               "value": "10",
               "err": "{{anc_pregnancy_outcome.step2.child_weight.v_max.err}}"
