@@ -1094,7 +1094,7 @@
           "err": "{{family_register.step2.age.v_numeric.err}}"
         },
         "v_min": {
-          "value": "15",
+          "value": "18",
           "err": "{{family_register.step2.age.v_min.err}}"
         },
         "v_max": {
