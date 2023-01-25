@@ -413,6 +413,10 @@
               "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step1.accompanied_relative.v_required.err}}"
         }
       },
       {
