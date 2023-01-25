@@ -139,6 +139,23 @@
         }
       },
       {
+        "key": "consent_notification",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{family_member_register.step1.consent_notification.hint}}",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "same_as_fam_name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

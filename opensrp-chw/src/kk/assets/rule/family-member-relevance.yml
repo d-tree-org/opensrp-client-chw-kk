@@ -103,3 +103,10 @@ priority: 1
 condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
+---
+name: step1_consent_notification
+description: consent notification
+priority: 1
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_no')"
+actions:
+  - "isRelevant = true"
