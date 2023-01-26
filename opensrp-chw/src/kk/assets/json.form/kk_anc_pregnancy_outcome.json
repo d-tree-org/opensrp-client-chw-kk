@@ -691,6 +691,10 @@
               "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
             }
           }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.caregiver_surname.v_required.err}}"
         }
       },
       {
