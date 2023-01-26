@@ -219,10 +219,6 @@
         "openmrs_entity_id": "163277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "gps",
         "openmrs_data_type": "text",
-        "v_required": {
-          "value": "true",
-          "err": "{{family_register.step1.gps.v_required.err}}"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
