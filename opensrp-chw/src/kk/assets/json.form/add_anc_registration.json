@@ -286,7 +286,7 @@
           "err": "{{add_anc_registration.step1.age.v_numeric.err}}"
         },
         "v_min": {
-          "value": "15",
+          "value": "18",
           "err": "{{add_anc_registration.step1.age.v_min.err}}"
         },
         "v_max": {
