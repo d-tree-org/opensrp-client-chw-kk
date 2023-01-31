@@ -74,6 +74,23 @@
         }
       },
       {
+        "key": "edi_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_identifier",
+        "openmrs_entity_id": "edi_id",
+        "type": "edit_text",
+        "edit_type": "number",
+        "hint": "{{family_member_register.step1.ediid.hint}}",
+        "v_numeric_integer": {
+          "value": "true",
+          "err": "{{family_member_register.step1.ediid.v_numeric_integer.err}}"
+        },
+        "v_regex": {
+          "value": "^[0-9]{1,6}$",
+          "err": "{{family_member_register.step1.ediid.v_max.err}}"
+        }
+      },
+      {
         "key": "surname",
         "type": "edit_text",
         "openmrs_entity_parent": "",
