@@ -257,14 +257,6 @@
           "value": "true",
           "err": "{{anc_member_registration.step1.no_surv_children.v_numeric_integer.err}}"
         },
-        "v_min": {
-          "value": "0",
-          "err": "{{anc_member_registration.step1.no_surv_children.v_min.err}}"
-        },
-        "v_max": {
-          "value": "50",
-          "err": "{{anc_member_registration.step1.no_prev_preg.v_max.err}}"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -284,14 +276,6 @@
         "v_numeric_integer": {
           "value": "true",
           "err": "{{anc_member_registration.step1.no_misscarriage.v_numeric_integer.err}}"
-        },
-        "v_min": {
-          "value": "0",
-          "err": "{{anc_member_registration.step1.no_prev_preg.v_min.err}}"
-        },
-        "v_max": {
-          "value": "45",
-          "err": "{{anc_member_registration.step1.no_prev_preg.v_max.err}}"
         },
         "relevance": {
           "rules-engine": {

@@ -1421,6 +1421,14 @@
           "value": "true",
           "err": "{{family_register.step2.no_surv_children.v_numeric_integer.err}}"
         },
+        "v_min": {
+          "value": "0",
+          "err": "{{family_register.step2.no_surv_children.v_min.err}}"
+        },
+        "v_max": {
+          "value": "50",
+          "err": "{{family_register.step2.no_surv_children.v_max.err}}"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -1440,6 +1448,14 @@
         "v_numeric_integer": {
           "value": "true",
           "err": "{{family_register.step2.no_misscarriage.v_numeric_integer.err}}"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "{{family_register.step2.no_misscarriage.v_min.err}}"
+        },
+        "v_max": {
+          "value": "50",
+          "err": "{{family_register.step2.no_misscarriage.v_max.err}}"
         },
         "relevance": {
           "rules-engine": {
