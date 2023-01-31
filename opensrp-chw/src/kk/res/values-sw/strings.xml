@@ -19,6 +19,11 @@
     <string name="breast_feeding_action_title"> Unyonyeshaji </string>
     <string name="essential_newborn_care_breastfeeding">Huduma muhimu ya watoto wachanga: Unyonyeshaji wa maziwa ya mama </string>
     <string name="malaria_prevention_service">Huduma ya Kuzuia Malaria</string>
+    <string name="llin_last_night_under_net">Mlilala ndani ya chandarua jana usiku</string>
+    <string name="malaria_prevention_llin_condition">Hali ya chandarua</string>
+    <string name="malaria_prevention_llin_condition_poor">Mbaya</string>
+    <string name="malaria_prevention_llin_condition_good">Nzuri</string>
+    <string name="malaria_prevention_llin_condition_fair">Kawaida</string>
     <string name="child_play_and_assessment_counselling">Tathmini maendeleo na fundisha kuhusu michezo</string>
     <string name="ccd_problem_solving">CCD: Kutatua Tatizo</string>
     <string name="ccd_caregiver_responsiveness">CCD: Muitikio wa mlezi kwa ishara na sauti za mtoto </string>
