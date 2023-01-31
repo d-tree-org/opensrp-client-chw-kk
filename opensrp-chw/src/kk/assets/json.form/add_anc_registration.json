@@ -357,8 +357,8 @@
         "label_info_title": "{{add_anc_registration.step1.last_menstrual_period.label_info_title}}",
         "label_info_text": "{{add_anc_registration.step1.last_menstrual_period.label_info_text}}",
         "expanded": false,
-        "max_date": "today",
-        "min_date": "today-50w",
+        "max_date": "today-20w",
+        "min_date": "today-45w",
         "v_required": {
           "value": "true",
           "err": "{{add_anc_registration.step1.last_menstrual_period.v_required.err}}"
