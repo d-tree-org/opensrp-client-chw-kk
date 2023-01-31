@@ -716,6 +716,23 @@ public class JsonFormUtils extends CoreJsonFormUtils {
         return String.format("%s%s%s", regexPrefix, formattedNumbers, regexPostfix);
     }
 
+    public static String getSpinnerFieldValue(String jsonString, String fieldKey) {
+        String hintText = "";
+        String valueText = "";
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray formFields = org.smartregister.util.JsonFormUtils.fields(jsonObject);
+            JSONObject fieldJsonObject = org.smartregister.util.JsonFormUtils.getFieldJSONObject(formFields, fieldKey);
+            if (fieldJsonObject != null) {
+                hintText = fieldJsonObject.getString(JsonFormConstants.HINT);
+                valueText = fieldJsonObject.getString(JsonFormConstants.VALUE);
+            }
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+        return hintText.equalsIgnoreCase(valueText) ? "" : valueText;
+    }
+
     public interface Flavor {
         JSONObject getAutoJsonEditMemberFormString(String title, String formName, Context context, CommonPersonObjectClient client, String eventType, String familyName, boolean isPrimaryCaregiver);
 
