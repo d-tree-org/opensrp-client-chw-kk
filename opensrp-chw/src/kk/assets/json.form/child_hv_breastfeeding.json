@@ -345,7 +345,7 @@
         "type": "toaster_notes",
         "text": "{{child_hv_breastfeeding.step1.child_not_exclusive_breastfeeds.text}}",
         "text_color": "#00cf71",
-        "toaster_type": "info",
+        "toaster_type": "warning",
         "relevance": {
           "step1:other_food_child_feeds": {
             "ex-checkbox": [
