@@ -522,6 +522,10 @@
           "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{anc_member_registration.step1.phone_number.v_numeric.err}}"
         },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{anc_member_registration.step1.phone_number.v_numeric.err}}"
+        },
         "v_required": {
           "value": false,
           "err": "{{anc_member_registration.step1.phone_number.v_required.err}}"

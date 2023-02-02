@@ -301,6 +301,10 @@
           "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{family_member_register.step1.phone_number.v_numeric.err}}"
         },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{family_member_register.step1.phone_number.v_numeric.err}}"
+        },
         "v_required": {
           "value": false,
           "err": "{{family_member_register.step1.phone_number.v_required.err}}"
@@ -321,6 +325,10 @@
         "hint": "{{family_member_register.step1.other_phone_number.hint}}",
         "v_regex": {
           "value": "^$|(0[6-7][0-9]{8})",
+          "err": "{{family_member_register.step1.other_phone_number.v_numeric.err}}"
+        },
+        "v_numeric": {
+          "value": "true",
           "err": "{{family_member_register.step1.other_phone_number.v_numeric.err}}"
         },
         "relevance": {
