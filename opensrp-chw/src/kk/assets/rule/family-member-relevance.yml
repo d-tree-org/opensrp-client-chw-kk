@@ -2,42 +2,42 @@
 name: step1_surname
 description: surname relevance
 priority: 1
-condition: "!step1_same_as_fam_name.contains('same_as_fam_name')"
+condition: "!step1_same_as_fam_name.contains('same_as_fam_name') && step1_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_dob
 description: dob relevance
 priority: 1
-condition: "!step1_dob_unknown.contains('dob_unknown')"
+condition: "!step1_dob_unknown.contains('dob_unknown') && step1_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_age
 description: age relevance
 priority: 1
-condition: "step1_dob_unknown.contains('dob_unknown')"
+condition: "step1_dob_unknown.contains('dob_unknown') && step1_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_phone_number
 description: phone number relevance
 priority: 1
-condition: "step1_primary_caregiver == 'Yes'"
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_other_phone_number
 description: other phone number relevance
 priority: 1
-condition: "step1_primary_caregiver == 'Yes'"
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
 actions:
   - "isRelevant = true"
 ---
 name: step1_highest_edu_level
 description: highest edulevel relevance
 priority: 1
-condition: "step1_primary_caregiver == 'Yes'"
+condition: "step1_primary_caregiver_consent == 'Yes'"
 actions:
   - "isRelevant = true"
 ---
@@ -59,5 +59,54 @@ name: step1_primary_caregiver
 description: member is between 5yrs and 120 yrs
 priority: 1
 condition: " (step1_dob != '' && helper.formatDate(step1_dob,'y') >= 15 && helper.formatDate(step1_dob,'y') <= 120) || (step1_age != '' && step1_age >= 15 && step1_age <= 120)"
+actions:
+  - "isRelevant = true"
+---
+name: step1_primary_caregiver_consent_photo
+description: primary caregiver consent photo
+priority: 1
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_same_as_fam_name
+description: surname
+priority: 1
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_first_name
+description: first name
+priority: 1
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_middle_name
+description: middle name
+priority: 1
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_dob_unknown
+description: dob unknown
+priority: 1
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_sex
+description: sex
+priority: 1
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_yes')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_consent_notification
+description: consent notification
+priority: 1
+condition: "step1_primary_caregiver_consent.contains('intervention_consent_no')"
 actions:
   - "isRelevant = true"
