@@ -1713,22 +1713,6 @@
         }
       },
       {
-        "key": "name_person_assist",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "edit_type": "text",
-        "hint": "{{family_register.step2.name_person_assist.hint}}",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-register-relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "person_assist_child_relationship",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -1786,26 +1770,6 @@
         "type": "edit_text",
         "edit_type": "text",
         "hint": "{{family_register.step2.person_assist_child_relationship_other.hint}}",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-register-relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "phone_person_assist",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "edit_type": "text",
-        "hint": "{{family_register.step2.phone_person_assist.hint}}",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{family_register.step2.phone_person_assist.v_numeric.err}}"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
