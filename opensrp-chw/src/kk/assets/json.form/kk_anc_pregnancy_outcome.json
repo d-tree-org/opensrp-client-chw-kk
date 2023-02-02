@@ -955,6 +955,10 @@
         "openmrs_entity_id": "",
         "type": "choose_image",
         "uploadButtonText": "{{anc_pregnancy_outcome.step2.assent_signature_image.uploadButtonText}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{anc_pregnancy_outcome.step2.caregiver_surname.v_required.err}}"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
