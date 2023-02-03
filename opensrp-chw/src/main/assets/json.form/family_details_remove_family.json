@@ -121,6 +121,8 @@
         },
         "openmrs_choice_ids": {
           "Déménagé": "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Duplicate": "duplicate",
+          "Mistake": "mistake",
           "Autre": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
       },
