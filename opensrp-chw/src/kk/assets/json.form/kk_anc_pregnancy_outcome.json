@@ -694,7 +694,7 @@
         },
         "v_required": {
           "value": "true",
-          "err": "{{anc_pregnancy_outcome.step2.caregiver_surname.v_required.err}}"
+          "err": "{{anc_pregnancy_outcome.step2.primary_caregiver_consent_photo.v_required.err}}"
         }
       },
       {
@@ -957,7 +957,7 @@
         "uploadButtonText": "{{anc_pregnancy_outcome.step2.assent_signature_image.uploadButtonText}}",
         "v_required": {
           "value": "true",
-          "err": "{{anc_pregnancy_outcome.step2.caregiver_surname.v_required.err}}"
+          "err": "{{anc_pregnancy_outcome.step2.assent_signature_image.v_required.err}}"
         },
         "relevance": {
           "rules-engine": {
