@@ -99,7 +99,7 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
                     if (period >= 3) {
                         visitPeriodMap.put(visit_6_visit_15, true);
                     }
-                    if (period >= 7) {
+                    if (period >= 4) {
                         visitPeriodMap.put(visit_7_visit_15, true);
                     }
                     if (period >= 9) {
