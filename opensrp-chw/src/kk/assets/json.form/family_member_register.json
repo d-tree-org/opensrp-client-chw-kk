@@ -261,7 +261,7 @@
           "label": "{{family_member_register.step1.dob.duration.label}}"
         },
         "min_date": "today-120y",
-        "max_date": "today-5y",
+        "max_date": "today-18y",
         "v_required": {
           "value": "true",
           "err": "{{family_member_register.step1.dob.v_required.err}}"

@@ -1040,7 +1040,7 @@
           "label": "{{family_register.step2.dob.duration.label}}"
         },
         "min_date": "today-120y",
-        "max_date": "today-15y",
+        "max_date": "today-18y",
         "v_required": {
           "value": "true",
           "err": "{{family_register.step2.dob.v_required.err}}"
