@@ -69,6 +69,13 @@ condition: "step1_visit_6_visit_15 == 'true'"
 actions:
   - "isRelevant = true"
 ---
+name: step1_received_rota3
+description: Received Rota 2
+priority: 1
+condition: "step1_visit_7_visit_15 == 'true'"
+actions:
+  - "isRelevant = true"
+---
 name: step1_received_bopv3
 description: Received bOPV 3
 priority: 1
