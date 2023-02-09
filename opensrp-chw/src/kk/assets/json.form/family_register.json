@@ -117,6 +117,10 @@
         "openmrs_entity_id": "",
         "type": "choose_image",
         "uploadButtonText": "{{family_register.step1.consent_photo.uploadButtonText}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.consent_photo.v_required.err}}"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
