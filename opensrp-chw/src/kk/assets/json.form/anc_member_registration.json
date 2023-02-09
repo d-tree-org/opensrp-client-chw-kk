@@ -522,6 +522,10 @@
           "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{anc_member_registration.step1.phone_number.v_numeric.err}}"
         },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{anc_member_registration.step1.phone_number.v_numeric.err}}"
+        },
         "v_required": {
           "value": false,
           "err": "{{anc_member_registration.step1.phone_number.v_required.err}}"
@@ -551,22 +555,6 @@
         "openmrs_choice_ids": {
           "Yes": "",
           "No": ""
-        }
-      },
-      {
-        "key": "name_person_assist",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "edit_type": "text",
-        "hint": "{{anc_member_registration.step1.name_person_assist.hint}}",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "anc_member_registration_relevance.yml"
-            }
-          }
         }
       },
       {
@@ -628,26 +616,6 @@
         "type": "edit_text",
         "edit_type": "text",
         "hint": "{{anc_member_registration.step1.person_assist_child_relationship_other.hint}}",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "anc_member_registration_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "phone_person_assist",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "edit_type": "text",
-        "hint": "{{anc_member_registration.step1.phone_person_assist.hint}}",
-        "v_regex": {
-          "value": "^$|(0[6-7][0-9]{8})",
-          "err": "{{anc_member_registration.step1.phone_person_assist.v_numeric.err}}"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {

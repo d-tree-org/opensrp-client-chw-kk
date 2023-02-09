@@ -1424,6 +1424,10 @@
         "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "type": "edit_text",
         "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.hint}}",
+        "v_regex": {
+          "value": "^$|(0[6-7][0-9]{8})",
+          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.v_numeric.err}}"
+        },
         "v_numeric": {
           "value": "true",
           "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.v_numeric.err}}"
