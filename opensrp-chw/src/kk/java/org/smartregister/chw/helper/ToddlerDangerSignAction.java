@@ -20,6 +20,7 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
 
     private final Context context;
     private String toddler_danger_sign;
+    private String toddler_danger_sign_key;
     private final Alert alert;
 
     public ToddlerDangerSignAction(Context context, Alert alert){
@@ -40,6 +41,7 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            toddler_danger_sign_key = JsonFormUtils.getValue(jsonObject, "child_danger_signs");
             toddler_danger_sign  = JsonFormUtils.getCheckBoxValue(jsonObject, "child_danger_signs");
         }catch (JSONException e){
             Timber.e(e);
@@ -53,9 +55,12 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(toddler_danger_sign))
+        if (StringUtils.isBlank(toddler_danger_sign_key)){
             return BaseAncHomeVisitAction.Status.PENDING;
-        else
+        } else if(toddler_danger_sign_key.contains("chk_none")){
             return BaseAncHomeVisitAction.Status.COMPLETED;
+        } else{
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
+        }
     }
 }

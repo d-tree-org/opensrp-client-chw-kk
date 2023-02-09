@@ -23,6 +23,7 @@ import timber.log.Timber;
 public class PncDangerSignsActionHelper extends HomeVisitActionHelper {
 
     private String signs_present;
+    private String signs_present_keys;
     private String jsonString;
     private Map<String, List<VisitDetail>> details;
 
@@ -40,6 +41,7 @@ public class PncDangerSignsActionHelper extends HomeVisitActionHelper {
     public void onPayloadReceived(String jsonPayload) {
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
+            signs_present_keys = JsonFormUtils.getValue(jsonObject, "danger_signs_screening_mama");
             signs_present = JsonFormUtils.getCheckBoxValue(jsonObject, "danger_signs_screening_mama");
         } catch (JSONException e) {
             Timber.e(e);
@@ -55,10 +57,12 @@ public class PncDangerSignsActionHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isBlank(signs_present)) {
+        if (StringUtils.isBlank(signs_present_keys)) {
             return BaseAncHomeVisitAction.Status.PENDING;
+        } else if (signs_present_keys.contains("chk_none")) {
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }else{
+            return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
-
-        return BaseAncHomeVisitAction.Status.COMPLETED;
     }
 }
