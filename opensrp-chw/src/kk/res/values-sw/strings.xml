@@ -141,4 +141,9 @@
     <string name="palm_pallor_green">Kijani</string>
     <string name="palm_pallor_yellow">Njano</string>
     <string name="palm_pallor_red">Nyekundu</string>
+
+    <string name="abbrv_days">sk</string>
+    <string name="abbrv_months">mz</string>
+    <string name="abbrv_weeks">wk</string>
+    <string name="abbrv_years">mk</string>
 </resources>
