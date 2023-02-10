@@ -32,6 +32,7 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
     private String received_dtp_hepb_hib2 = "";
     private String received_pcvi2 = "";
     private String received_rota2 = "";
+    private String received_rota3 = "";
     private String received_bopv3 = "";
     private String received_dtp_hepb_hib3 = "";
     private String received_pcv3 = "";
@@ -48,6 +49,7 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
     private final String visit_0_visit_7 = "visit_0_visit_7";
     private final String visit_5_visit_15 = "visit_5_visit_15";
     private final String visit_6_visit_15 = "visit_6_visit_15";
+    private final String visit_7_visit_15 = "visit_7_visit_15";
     private final String visit_13_visit_15 = "visit_13_visit_15";
 
     public ImmunizationsHelper(ServiceWrapper serviceWrapper) {
@@ -97,6 +99,9 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
                     if (period >= 3) {
                         visitPeriodMap.put(visit_6_visit_15, true);
                     }
+                    if (period >= 4) {
+                        visitPeriodMap.put(visit_7_visit_15, true);
+                    }
                     if (period >= 9) {
                         visitPeriodMap.put(visit_13_visit_15, true);
                     }
@@ -130,6 +135,7 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
             received_dtp_hepb_hib2 = JsonFormUtils.getValue(jsonObject, "received_dtp_hepb_hib2");
             received_pcvi2 = JsonFormUtils.getValue(jsonObject, "received_pcvi2");
             received_rota2 = JsonFormUtils.getValue(jsonObject, "received_rota2");
+            received_rota3 = JsonFormUtils.getValue(jsonObject, "received_rota3");
             received_bopv3 = JsonFormUtils.getValue(jsonObject, "received_bopv3");
             received_dtp_hepb_hib3 = JsonFormUtils.getValue(jsonObject, "received_dtp_hepb_hib3");
             received_pcv3 = JsonFormUtils.getValue(jsonObject, "received_pcv3");
@@ -185,6 +191,10 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
 
             if (received_rota2.equalsIgnoreCase("no")) {
                 subTitle.append("Rota 2 : ").append(context.getString(R.string.no)).append(" ");
+            }
+
+            if (received_rota3.equalsIgnoreCase("no")) {
+                subTitle.append("Rota 3 : ").append(context.getString(R.string.no)).append(" ");
             }
 
             if (received_bopv3.equalsIgnoreCase("no")) {

@@ -78,6 +78,13 @@
         "type": "hidden"
       },
       {
+        "key": "visit_7_visit_15",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "visit_13_visit_15",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -479,6 +486,41 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "label": "{{child_hv_immunization.step1.received_rota2.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "received_rota3",
+        "type": "native_radio",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.received_rota3.label}}",
         "options": [
           {
             "key": "yes",
