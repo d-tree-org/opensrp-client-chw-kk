@@ -105,10 +105,14 @@
         "hint": "{{family_details_remove_family.step1.remove_reason.hint}}",
         "values": [
           "{{family_details_remove_family.step1.remove_reason.values[0]}}",
-          "{{family_details_remove_family.step1.remove_reason.values[1]}}"
+          "{{family_details_remove_family.step1.remove_reason.values[1]}}",
+          "{{family_details_remove_family.step1.remove_reason.values[2]}}",
+          "{{family_details_remove_family.step1.remove_reason.values[3]}}"
         ],
         "keys": [
           "Moved away",
+          "Duplicate",
+          "Mistake entry",
           "Other"
         ],
         "v_required": {
@@ -117,6 +121,8 @@
         },
         "openmrs_choice_ids": {
           "Déménagé": "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Duplicate": "duplicate",
+          "Mistake": "mistake",
           "Autre": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
       },
