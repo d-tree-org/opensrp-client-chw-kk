@@ -1,5 +1,7 @@
 package org.smartregister.chw.presenter;
 
+import static org.smartregister.chw.core.utils.CoreJsonFormUtils.toList;
+
 import android.content.Context;
 
 import org.apache.commons.lang3.StringUtils;
@@ -15,10 +17,13 @@ import org.smartregister.chw.core.contract.FamilyProfileExtendedContract;
 import org.smartregister.chw.core.domain.FamilyMember;
 import org.smartregister.chw.core.model.CoreChildRegisterModel;
 import org.smartregister.chw.core.presenter.CoreFamilyProfilePresenter;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.interactor.FamilyChangeContractInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
 import org.smartregister.chw.model.ChildRegisterModel;
+import org.smartregister.clientandeventmodel.Event;
+import org.smartregister.clientandeventmodel.Obs;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.contract.FamilyProfileContract;
@@ -126,6 +131,33 @@ public class FamilyProfilePresenter extends CoreFamilyProfilePresenter implement
             Timber.e(e);
         }
         return res;
+    }
+
+    @Override
+    public String saveChwFamilyMember(Context context, String jsonString) {
+        try {
+            getView().showProgressDialog(org.smartregister.family.R.string.saving_dialog_title);
+
+            FamilyEventClient familyEventClient = model.processMemberRegistration(jsonString, familyBaseEntityId);
+            if (familyEventClient == null) {
+                return null;
+            }
+            FamilyMember familyMember = CoreJsonFormUtils.getFamilyMemberFromRegistrationForm(jsonString, familyBaseEntityId, familyBaseEntityId);
+            Event eventMember = familyEventClient.getEvent();
+            eventMember.addObs(new Obs("concept", "text", CoreConstants.FORM_CONSTANTS.CHANGE_CARE_GIVER.EverSchool.CODE, "",
+                    toList(CoreJsonFormUtils.getEverSchoolOptions(context).get(familyMember.getEverSchool())), toList(familyMember.getEverSchool()), null, CoreConstants.JsonAssets.FAMILY_MEMBER.EVER_SCHOOL));
+
+            eventMember.addObs(new Obs("concept", "text", CoreConstants.FORM_CONSTANTS.CHANGE_CARE_GIVER.SchoolLevel.CODE, "",
+                    toList(CoreJsonFormUtils.getSchoolLevels(context).get(familyMember.getSchoolLevel())), toList(familyMember.getSchoolLevel()), null, CoreConstants.JsonAssets.FAMILY_MEMBER.SCHOOL_LEVEL));
+
+
+            interactor.saveRegistration(familyEventClient, jsonString, false, this);
+            return familyEventClient.getClient().getBaseEntityId();
+        } catch (Exception e) {
+            getView().hideProgressDialog();
+            Timber.e(e);
+        }
+        return null;
     }
 
     @Override

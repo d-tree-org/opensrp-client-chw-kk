@@ -117,6 +117,10 @@
         "openmrs_entity_id": "",
         "type": "choose_image",
         "uploadButtonText": "{{family_register.step1.consent_photo.uploadButtonText}}",
+        "v_required": {
+          "value": "true",
+          "err": "{{family_register.step1.consent_photo.v_required.err}}"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -1040,7 +1044,7 @@
           "label": "{{family_register.step2.dob.duration.label}}"
         },
         "min_date": "today-120y",
-        "max_date": "today-15y",
+        "max_date": "today-18y",
         "v_required": {
           "value": "true",
           "err": "{{family_register.step2.dob.v_required.err}}"
@@ -1094,7 +1098,7 @@
           "err": "{{family_register.step2.age.v_numeric.err}}"
         },
         "v_min": {
-          "value": "15",
+          "value": "18",
           "err": "{{family_register.step2.age.v_min.err}}"
         },
         "v_max": {
@@ -1128,6 +1132,10 @@
           "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{family_register.step2.phone_number.v_numeric.err}}"
         },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{family_register.step2.phone_number.v_numeric.err}}"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -1145,6 +1153,10 @@
         "hint": "{{family_register.step2.other_phone_number.hint}}",
         "v_regex": {
           "value": "^$|(0[6-7][0-9]{8})",
+          "err": "{{family_register.step2.other_phone_number.v_numeric.err}}"
+        },
+        "v_numeric": {
+          "value": "true",
           "err": "{{family_register.step2.other_phone_number.v_numeric.err}}"
         },
         "relevance": {
@@ -1165,8 +1177,8 @@
         "label_info_title": "{{family_register.step2.last_menstrual_period.label_info_title}}",
         "label_info_text": "{{family_register.step2.last_menstrual_period.label_info_text}}",
         "expanded": false,
-        "max_date": "today",
-        "min_date": "today-50w",
+        "max_date": "today-20w",
+        "min_date": "today-45w",
         "v_required": {
           "value": "true",
           "err": "{{family_register.step2.last_menstrual_period.v_required.err}}"
@@ -1421,6 +1433,14 @@
           "value": "true",
           "err": "{{family_register.step2.no_surv_children.v_numeric_integer.err}}"
         },
+        "v_min": {
+          "value": "0",
+          "err": "{{family_register.step2.no_surv_children.v_min.err}}"
+        },
+        "v_max": {
+          "value": "50",
+          "err": "{{family_register.step2.no_surv_children.v_max.err}}"
+        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -1440,6 +1460,14 @@
         "v_numeric_integer": {
           "value": "true",
           "err": "{{family_register.step2.no_misscarriage.v_numeric_integer.err}}"
+        },
+        "v_min": {
+          "value": "0",
+          "err": "{{family_register.step2.no_misscarriage.v_min.err}}"
+        },
+        "v_max": {
+          "value": "50",
+          "err": "{{family_register.step2.no_misscarriage.v_max.err}}"
         },
         "relevance": {
           "rules-engine": {
@@ -1713,22 +1741,6 @@
         }
       },
       {
-        "key": "name_person_assist",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "edit_type": "text",
-        "hint": "{{family_register.step2.name_person_assist.hint}}",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-register-relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "person_assist_child_relationship",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -1786,26 +1798,6 @@
         "type": "edit_text",
         "edit_type": "text",
         "hint": "{{family_register.step2.person_assist_child_relationship_other.hint}}",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-register-relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "phone_person_assist",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "edit_text",
-        "edit_type": "text",
-        "hint": "{{family_register.step2.phone_person_assist.hint}}",
-        "v_numeric": {
-          "value": "true",
-          "err": "{{family_register.step2.phone_person_assist.v_numeric.err}}"
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {

@@ -78,6 +78,13 @@
         "type": "hidden"
       },
       {
+        "key": "visit_7_visit_15",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "visit_13_visit_15",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -508,6 +515,41 @@
         }
       },
       {
+        "key": "received_rota3",
+        "type": "native_radio",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.received_rota3.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "received_bopv3",
         "type": "native_radio",
         "openmrs_entity_parent": "",
@@ -697,28 +739,54 @@
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "openmrs_data_type": "select one",
-        "type": "spinner",
-        "hint": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.hint}}",
-        "label_info_text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.hint}}",
-        "values": [
-          "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.values[0]}}",
-          "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.values[1]}}",
-          "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.values[2]}}",
-          "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.values[3]}}"
+        "type": "check_box",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "label": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.hint}}",
+        "options": [
+          {
+            "key": "vaccine_not_available",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vaccine_not_available",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.vaccine_not_available.text}}"
+          },
+          {
+            "key": "family_refused",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "family_refused",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.family_refused.text}}"
+          },
+          {
+            "key": "clinic_closed",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "clinic_closed",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.clinic_closed.text}}"
+          },
+          {
+            "key": "return_another_day",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "return_another_day",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.return_another_day.text}}"
+          },
+          {
+            "key": "could_not_go",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "could_not_go",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.could_not_go.text}}"
+          },
+          {
+            "key": "does_not_know",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "does_not_know",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.does_not_know.text}}"
+          }
         ],
-        "keys": [
-          "vaccine not available",
-          "family refused",
-          "clinic closed",
-          "asked to return another day"
-        ],
-        "openmrs_choice_ids": {
-          "accine not available": "",
-          "family refused": "",
-          "clinic closed": "",
-          "asked to return another day": ""
-        },
         "relevance": {
           "rules-engine": {
             "ex-rules": {
