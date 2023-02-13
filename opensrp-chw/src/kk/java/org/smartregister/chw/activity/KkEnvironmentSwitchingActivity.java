@@ -2,6 +2,7 @@ package org.smartregister.chw.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -20,7 +21,6 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.util.FileUtils;
 import org.smartregister.repository.AllSharedPreferences;
-import org.smartregister.simprint.OnDialogButtonClick;
 import org.smartregister.util.LangUtils;
 import org.smartregister.util.Utils;
 
@@ -92,34 +92,34 @@ public class KkEnvironmentSwitchingActivity extends AppCompatActivity implements
             // otherwise you are switching from Production to Test
             String currentEnvironment = (Boolean) newValue ? "Test" : "Production";
             final boolean[] userAgreed = {false};
-            if ((Boolean) newValue) {
-                confirmSwitchingEnvironment(getActivity(), new OnDialogButtonClick() {
+            if ((Boolean) newValue) { //Current environment is test env
+                confirmSwitchingEnvironment(getActivity(), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onOkButtonClick() {
-                        clearApplicationData();
-                        switchPreferenceCompat.setChecked(true);
-                        userAgreed[0] = true;
-                    }
-
-                    @Override
-                    public void onCancelButtonClick() {
-                        switchPreferenceCompat.setChecked(false);
-                        userAgreed[0] = false;
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == -1){
+                            clearApplicationData();
+                            switchPreferenceCompat.setChecked(true);
+                            userAgreed[0] = true;
+                        }else {
+                            switchPreferenceCompat.setChecked(false);
+                            userAgreed[0] = false;
+                            dialogInterface.dismiss();
+                        }
                     }
                 }, currentEnvironment);
-            } else {
-                confirmSwitchingEnvironment(getActivity(), new OnDialogButtonClick() {
+            } else { // Current environment is Production env
+                confirmSwitchingEnvironment(getActivity(), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onOkButtonClick() {
-                        clearApplicationData();
-                        switchPreferenceCompat.setChecked(false);
-                        userAgreed[0] = true;
-                    }
-
-                    @Override
-                    public void onCancelButtonClick() {
-                        switchPreferenceCompat.setChecked(true);
-                        userAgreed[0] = false;
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(i == -1){
+                            clearApplicationData();
+                            switchPreferenceCompat.setChecked(false);
+                            userAgreed[0] = true;
+                        }else{
+                            switchPreferenceCompat.setChecked(true);
+                            userAgreed[0] = false;
+                            dialogInterface.dismiss();
+                        }
                     }
                 }, currentEnvironment);
             }
@@ -127,19 +127,19 @@ public class KkEnvironmentSwitchingActivity extends AppCompatActivity implements
 
         }
 
-        private void confirmSwitchingEnvironment(Context context, final OnDialogButtonClick onDialogButtonClick, String environment) {
+        private void confirmSwitchingEnvironment(Context context, final DialogInterface.OnClickListener onDialogButtonClick, String environment) {
             final Boolean[] userResponse = {false};
             final androidx.appcompat.app.AlertDialog alert = new androidx.appcompat.app.AlertDialog.Builder(context, R.style.SettingsAlertDialog).create();
             View title_view = this.getLayoutInflater().inflate(R.layout.custom_dialog_title, null);
             alert.setCustomTitle(title_view);
             alert.setMessage(String.format(getString(R.string.switch_environment_message), environment));
             alert.setButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE, getString(R.string.yes), (dialog, which) -> {
-                onDialogButtonClick.onOkButtonClick();
+                onDialogButtonClick.onClick(dialog, which);
                 userResponse[0] = true;
                 alert.dismiss();
             });
             alert.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no), (dialog, which) -> {
-                onDialogButtonClick.onCancelButtonClick();
+                onDialogButtonClick.onClick(dialog, which);
                 userResponse[0] = false;
                 alert.dismiss();
             });
