@@ -269,7 +269,8 @@ public class PncHomeVisitInteractorFlv extends DefaultPncHomeVisitInteractorFlv 
 
         String visitID = visitID = visitSummary.getVisitID();
 
-        if (visitID == null || visitID.equalsIgnoreCase("21") || visitID.equalsIgnoreCase("35")) return;
+        // Removed to have danger signs screening throughout the visits
+        //if (visitID == null || visitID.equalsIgnoreCase("21") || visitID.equalsIgnoreCase("35")) return;
 
         String title = context.getString(R.string.postpartum_danger_signs);
 
