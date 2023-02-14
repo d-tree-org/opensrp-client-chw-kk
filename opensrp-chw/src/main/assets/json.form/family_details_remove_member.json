@@ -113,11 +113,11 @@
           "Other"
         ],
         "openmrs_choice_ids": {
-          "Décédé": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-          "Déménagé": "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Died": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Moved away": "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "Duplicate": "duplicate",
           "Mistake": "mistake",
-          "Autre": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "Other": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
       },
       {
