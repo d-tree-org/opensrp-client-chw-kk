@@ -147,11 +147,24 @@ public class NewBornCareBreastfeedingHelper extends HomeVisitActionHelper {
 
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
+
+        //Is child below six months
+        boolean childBelowSixMonths = false;
+        if (serviceWrapperMap != null) {
+            String serviceName = serviceWrapperMap.getName();
+            if ("months".equalsIgnoreCase(getPeriodNoun(serviceName))) {
+                if (getPeriod(serviceName) < 6) {
+                    childBelowSixMonths = true;
+                }
+            }
+        }
+
         BaseAncHomeVisitAction.Status status;
         if (firstBreastFeedingVisitHappened) {
             if (StringUtils.isBlank(breastfeed_current) ||
                     StringUtils.isBlank(other_food_child_feeds) ||
-                    !other_food_child_feeds.equalsIgnoreCase("[\"None\"]") ||
+                    (!other_food_child_feeds.equalsIgnoreCase("[\"None\"]")
+                        && childBelowSixMonths) ||
                     breastfeed_current.equalsIgnoreCase("No")) {
                 status = BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             } else {
@@ -162,7 +175,8 @@ public class NewBornCareBreastfeedingHelper extends HomeVisitActionHelper {
                     StringUtils.isBlank(time_to_breastfeed) ||
                     StringUtils.isBlank(breastfeed_current) ||
                     StringUtils.isBlank(other_food_child_feeds) ||
-                    !other_food_child_feeds.equalsIgnoreCase("[\"None\"]") ||
+                    (!other_food_child_feeds.equalsIgnoreCase("[\"None\"]") &&
+                            childBelowSixMonths) ||
                     breastfeed_current.equalsIgnoreCase("No")) {
                 status = BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             } else {
