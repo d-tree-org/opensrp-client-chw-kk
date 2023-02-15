@@ -1418,29 +1418,6 @@
         }
       },
       {
-        "key": "father_number",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "type": "edit_text",
-        "hint": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.hint}}",
-        "v_regex": {
-          "value": "^$|(0[6-7][0-9]{8})",
-          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.v_numeric.err}}"
-        },
-        "v_numeric": {
-          "value": "true",
-          "err": "{{anc_pregnancy_outcome.step2.no_children_no.father_number.v_numeric.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "kk_anc_pregnancy_outcome_relevance.yml"
-            }
-          }
-        }
-      },
-      {
         "key": "father_age",
         "type": "edit_text",
         "openmrs_entity_parent": "",
