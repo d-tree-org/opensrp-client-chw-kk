@@ -97,11 +97,17 @@
         "values": [
           "{{family_details_remove_child.step1.remove_reason.values[0]}}",
           "{{family_details_remove_child.step1.remove_reason.values[1]}}",
-          "{{family_details_remove_child.step1.remove_reason.values[2]}}"
+          "{{family_details_remove_child.step1.remove_reason.values[2]}}",
+          "{{family_details_remove_child.step1.remove_reason.values[3]}}",
+          "{{family_details_remove_child.step1.remove_reason.values[4]}}",
+          "{{family_details_remove_child.step1.remove_reason.values[5]}}"
         ],
         "keys": [
           "Died",
           "Moved away",
+          "Duplicate",
+          "Mistake entry",
+          "Revoked Consent",
           "Other"
         ],
         "v_required": {
@@ -111,6 +117,9 @@
         "openmrs_choice_ids": {
           "Died": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "Moved away": "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Duplicate": "duplicate",
+          "Mistake": "mistake",
+          "Revoke Consent": "revoked consent",
           "Other": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
       },

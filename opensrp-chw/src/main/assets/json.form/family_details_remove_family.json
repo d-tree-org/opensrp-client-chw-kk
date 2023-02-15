@@ -120,10 +120,10 @@
           "err": "{{family_details_remove_family.step1.remove_reason.v_required.err}}"
         },
         "openmrs_choice_ids": {
-          "Déménagé": "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "Moved away": "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "Duplicate": "duplicate",
           "Mistake": "mistake",
-          "Autre": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+          "Other": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
       },
       {
