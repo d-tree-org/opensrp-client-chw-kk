@@ -152,7 +152,11 @@ public class NewBornCareBreastfeedingHelper extends HomeVisitActionHelper {
         boolean childBelowSixMonths = false;
         if (serviceWrapperMap != null) {
             String serviceName = serviceWrapperMap.getName();
-            if ("months".equalsIgnoreCase(getPeriodNoun(serviceName))) {
+            if ("hours".equalsIgnoreCase(getPeriodNoun(serviceName)) ||
+                    "days".equalsIgnoreCase(getPeriodNoun(serviceName)) ||
+                    "weeks".equalsIgnoreCase(getPeriodNoun(serviceName))){
+                childBelowSixMonths = true;
+            }else if ("months".equalsIgnoreCase(getPeriodNoun(serviceName))) {
                 if (getPeriod(serviceName) < 6) {
                     childBelowSixMonths = true;
                 }
