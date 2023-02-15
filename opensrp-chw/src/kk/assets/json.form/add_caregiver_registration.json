@@ -74,20 +74,44 @@
         }
       },
       {
-        "key": "edi_id",
+        "key": "primary_caregiver_consent",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_identifier",
-        "openmrs_entity_id": "edi_id",
-        "type": "edit_text",
-        "edit_type": "number",
-        "hint": "{{family_member_register.step1.ediid.hint}}",
-        "v_numeric_integer": {
-          "value": "true",
-          "err": "{{family_member_register.step1.ediid.v_numeric_integer.err}}"
-        },
-        "v_regex": {
-          "value": "^[0-9]{1,6}$",
-          "err": "{{family_member_register.step1.ediid.v_max.err}}"
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{family_member_register.step1.primary_caregiver_consent.label}}",
+        "exclusive": [
+          "intervention_consent_yes",
+          "intervention_consent_no"
+        ],
+        "options": [
+          {
+            "key": "intervention_consent_yes",
+            "text": "{{family_member_register.step1.primary_caregiver_consent.options.intervention_consent.yes.text}}",
+            "text_size": "18px",
+            "value": "false"
+          },
+          {
+            "key": "intervention_consent_no",
+            "text": "{{family_member_register.step1.primary_caregiver_consent.options.intervention_consent.no.text}}",
+            "text_size": "18px",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "key": "primary_caregiver_consent_photo",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "choose_image",
+        "uploadButtonText": "{{family_member_register.step1.assent_signature_image.uploadButtonText}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
         }
       },
       {
@@ -115,6 +139,23 @@
         }
       },
       {
+        "key": "consent_notification",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{family_member_register.step1.consent_notification.hint}}",
+        "text_color": "#CF0800",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "same_as_fam_name",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -132,7 +173,14 @@
             "text_size": "18px",
             "value": "false"
           }
-        ]
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "fam_name",
@@ -172,6 +220,13 @@
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
           "err": "{{family_member_register.step1.first_name.v_regex.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
         }
       },
       {
@@ -185,6 +240,13 @@
         "v_regex": {
           "value": "[A-Za-z\\u00C0-\\u017F\\s\\u00C0-\\u017F\\.\\-]*",
           "err": "{{family_member_register.step1.middle_name.v_regex.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
         }
       },
       {
@@ -199,7 +261,7 @@
           "label": "{{family_member_register.step1.dob.duration.label}}"
         },
         "min_date": "today-120y",
-        "max_date": "today-5y",
+        "max_date": "today-18y",
         "v_required": {
           "value": "true",
           "err": "{{family_member_register.step1.dob.v_required.err}}"
@@ -226,7 +288,14 @@
             "text_size": "18px",
             "value": "false"
           }
-        ]
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "age",
@@ -281,6 +350,13 @@
         "v_required": {
           "value": "true",
           "err": "{{family_member_register.step1.sex.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
         }
       },
       {
@@ -318,14 +394,19 @@
           "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{family_member_register.step1.phone_number.v_numeric.err}}"
         },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{family_member_register.step1.phone_number.v_numeric.err}}"
+        },
         "v_required": {
           "value": false,
           "err": "{{family_member_register.step1.phone_number.v_required.err}}"
         },
         "relevance": {
-          "step1:primary_caregiver": {
-            "type": "string",
-            "ex": "equalTo(., \"Yes\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
           }
         }
       },
@@ -340,10 +421,15 @@
           "value": "^$|(0[6-7][0-9]{8})",
           "err": "{{family_member_register.step1.other_phone_number.v_numeric.err}}"
         },
+        "v_numeric": {
+          "value": "true",
+          "err": "{{family_member_register.step1.other_phone_number.v_numeric.err}}"
+        },
         "relevance": {
-          "step1:primary_caregiver": {
-            "type": "string",
-            "ex": "equalTo(., \"Yes\")"
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
           }
         }
       }

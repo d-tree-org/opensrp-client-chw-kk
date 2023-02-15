@@ -56,3 +56,10 @@ priority: 1
 condition: "step1_mother_referral_health_facility == 'No'"
 actions:
   - "isRelevant = true"
+---
+name: step1_save_n_refer
+description: Relevance controlling when the save and refer button should be shown
+priority: 1
+condition: "(step1_pnc_danger_signs_present_mother == 'No' || step1_mother_referral_health_facility == 'Yes')"
+actions:
+  - "isRelevant = true"

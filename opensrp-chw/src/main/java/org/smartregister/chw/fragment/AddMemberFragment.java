@@ -54,7 +54,7 @@ public class AddMemberFragment extends org.smartregister.chw.core.fragment.AddMe
                 dismiss();
             } else if (i == R.id.layout_add_caregiver) {
                 //TODO: Fire up care giver registration form
-                ((CoreFamilyProfileActivity) context).startFormActivity(CoreConstants.JSON_FORM.getFamilyMemberRegister(), null, "");
+                ((CoreFamilyProfileActivity) context).startFormActivity(Constants.JSON_FORM_CONSTANT.getCaregiverRegistration(), null, "");
                 dismiss();
             }
         } catch (Exception e) {
