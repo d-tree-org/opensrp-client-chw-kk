@@ -528,13 +528,12 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateComplementaryFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
 
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD communication assessment");
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Complementary Feeding");
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.complimentary_feeding);
 
         // alert if overdue after 14 days
