@@ -131,6 +131,8 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
         handleNotificationRowClick(this, view, notificationListAdapter, childBaseEntityId);
     }
 
+
+
     @Override
     protected void initializePresenter() {
         String familyName = getIntent().getStringExtra(Constants.INTENT_KEY.FAMILY_NAME);
