@@ -98,6 +98,13 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
+          },
+          {
+            "key": "child_asleep",
+            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.child_asleep.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           }
         ],
         "v_required": {
