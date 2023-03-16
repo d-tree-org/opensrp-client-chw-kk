@@ -751,9 +751,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceName = serviceWrapper.getName();
+        // Check if it is a dummy -5 weeks service that is there to re-set milestone to 0 before start 1 months recurring
+        if ("Malnutrition Screening day-5".equalsIgnoreCase(serviceName)) return;
 
-        // Todo -> Compute overdue
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
