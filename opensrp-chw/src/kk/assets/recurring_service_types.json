@@ -710,11 +710,11 @@
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+3m"
+            "offset": "+2m"
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+4m"
+            "offset": "+3m"
           }
         }
       },
@@ -728,7 +728,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+5m"
+            "offset": "+4m"
           }
         }
       },
@@ -742,7 +742,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+6m"
+            "offset": "+5m"
           }
         }
       },
@@ -756,7 +756,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+7m"
+            "offset": "+6m"
           }
         }
       },
@@ -770,7 +770,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+8m"
+            "offset": "+7m"
           }
         }
       },
@@ -784,7 +784,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+9m"
+            "offset": "+8m"
           }
         }
       },
@@ -798,7 +798,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+10m"
+            "offset": "+9m"
           }
         }
       },
@@ -812,7 +812,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+11m"
+            "offset": "+10m"
           }
         }
       },
@@ -826,13 +826,27 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+12m"
+            "offset": "+11m"
           }
         }
       },
       {
         "id": "52",
         "name": "Toddler danger sign10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "243",
+        "name": "Toddler danger sign11",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -914,6 +928,20 @@
           "expiry": {
             "reference": "dob",
             "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "244",
+        "name": "Neonatal Danger Signs5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
           }
         }
       }
