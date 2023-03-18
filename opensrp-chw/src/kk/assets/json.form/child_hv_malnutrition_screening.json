@@ -125,13 +125,17 @@
           "{{child_hv_malnutrition_screening.step1.range_graph.value[0]}}",
           "{{child_hv_malnutrition_screening.step1.range_graph.value[1]}}",
           "{{child_hv_malnutrition_screening.step1.range_graph.value[2]}}",
-          "{{child_hv_malnutrition_screening.step1.range_graph.value[3]}}"
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[3]}}",
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[4]}}",
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[5]}}"
         ],
         "keys": [
-          "Above 2",
-          "Between 2 and -2",
-          "Between -2 and -3",
-          "Below -3"
+          "Top Red",
+          "White",
+          "Green",
+          "Grey",
+          "Bottom Red",
+          "Card not available"
         ],
         "v_required": {
           "value": "true",
