@@ -91,15 +91,10 @@
         "openmrs_entity": "person_identifier",
         "openmrs_entity_id": "edi_id",
         "type": "edit_text",
-        "edit_type": "number",
         "hint": "{{add_anc_registration.step1.ediid.hint}}",
-        "v_numeric_integer": {
-          "value": "true",
-          "err": "{{add_anc_registration.step1.ediid.v_numeric_integer.err}}"
-        },
         "v_regex": {
-          "value": "^[0-9]{1,6}$",
-          "err": "{{add_anc_registration.step1.ediid.v_max.err}}"
+          "value": "^[A-Za-z0-9]*$",
+          "err": "{{add_anc_registration.step1.ediid.v_regex.err}}"
         },
         "relevance": {
           "rules-engine": {
