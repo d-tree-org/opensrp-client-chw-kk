@@ -386,6 +386,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
     private class DangerSignsAction implements BaseAncHomeVisitAction.AncHomeVisitActionHelper {
         private String danger_signs_counseling;
         private String danger_signs_present;
+        private String danger_signs_present_keys;
         private Context context;
 
         @Override
@@ -403,6 +404,7 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
             try {
                 JSONObject jsonObject = new JSONObject(jsonPayload);
                 danger_signs_present = JsonFormUtils.getCheckBoxValue(jsonObject, "danger_signs_present");
+                danger_signs_present_keys = JsonFormUtils.getValue(jsonObject, "danger_signs_present");
             } catch (JSONException e) {
                 Timber.e(e);
             }
@@ -432,8 +434,10 @@ public class AncHomeVisitInteractorFlv implements AncHomeVisitInteractor.Flavor 
         public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
             if (StringUtils.isBlank(danger_signs_present)) {
                 return BaseAncHomeVisitAction.Status.PENDING;
+            } else if (danger_signs_present_keys.contains("chk_none")){
+              return BaseAncHomeVisitAction.Status.COMPLETED;
             } else {
-                return BaseAncHomeVisitAction.Status.COMPLETED;
+                return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             }
         }
 

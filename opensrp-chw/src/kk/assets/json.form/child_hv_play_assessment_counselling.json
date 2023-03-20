@@ -98,6 +98,13 @@
             "value": false,
             "openmrs_entity": "concept",
             "openmrs_entity_id": ""
+          },
+          {
+            "key": "child_asleep",
+            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.child_asleep.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
           }
         ],
         "v_required": {
@@ -265,6 +272,18 @@
         "text": "{{child_hv_play_assessment_counselling.step1.next_visit_message.text}}",
         "text_color": "#2D2E2D",
         "toaster_type": "info"
+      },
+      {
+        "key": "kk_play_and_communication_flipbook_reference",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "play_and_communication_flipbook_reference",
+        "type": "label",
+        "text": "{{child_hv_play_assessment_counselling.step1.kk_play_and_communication_flipbook_reference.text}}",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
       }
     ]
   },

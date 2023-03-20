@@ -119,19 +119,31 @@
         "openmrs_entity_id": "",
         "openmrs_data_type": "select one",
         "type": "spinner",
+        "label_info_title": "{{child_hv_malnutrition_screening.step1.range_graph.dynamic_label_info[0].dynamic_label_title}}",
+        "dynamic_label_info": [
+          {
+            "dynamic_label_title": "{{child_hv_malnutrition_screening.step1.range_graph.dynamic_label_info[0].dynamic_label_title}}",
+            "dynamic_label_image_src": "{{child_hv_malnutrition_screening.step1.range_graph.dynamic_label_info[0].dynamic_label_image_src}}",
+            "dynamic_label_text": "{{child_hv_malnutrition_screening.step1.range_graph.dynamic_label_info[0].dynamic_label_text}}"
+          }
+        ],
+        "label_is_dynamic": true,
         "hint": "{{child_hv_malnutrition_screening.step1.range_graph.hint}}",
-        "label_info_text": "{{child_hv_malnutrition_screening.step1.range_graph.hint}}",
         "values": [
           "{{child_hv_malnutrition_screening.step1.range_graph.value[0]}}",
           "{{child_hv_malnutrition_screening.step1.range_graph.value[1]}}",
           "{{child_hv_malnutrition_screening.step1.range_graph.value[2]}}",
-          "{{child_hv_malnutrition_screening.step1.range_graph.value[3]}}"
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[3]}}",
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[4]}}",
+          "{{child_hv_malnutrition_screening.step1.range_graph.value[5]}}"
         ],
         "keys": [
-          "Above 2",
-          "Between 2 and -2",
-          "Between -2 and -3",
-          "Below -3"
+          "Top Red",
+          "White",
+          "Green",
+          "Grey",
+          "Bottom Red",
+          "Card not available"
         ],
         "v_required": {
           "value": "true",
@@ -170,7 +182,15 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_malnutrition_screening.step1.child_growth_muac.hint}}",
-        "label_info_text": "{{child_hv_malnutrition_screening.step1.child_growth_muac.hint}}",
+        "label_info_title": "{{child_hv_malnutrition_screening.step1.child_growth_muac.dynamic_label_info[0].dynamic_label_title}}",
+        "dynamic_label_info": [
+          {
+            "dynamic_label_title": "{{child_hv_malnutrition_screening.step1.child_growth_muac.dynamic_label_info[0].dynamic_label_title}}",
+            "dynamic_label_image_src": "{{child_hv_malnutrition_screening.step1.child_growth_muac.dynamic_label_info[0].dynamic_label_image_src}}",
+            "dynamic_label_text": "{{child_hv_malnutrition_screening.step1.child_growth_muac.dynamic_label_info[0].dynamic_label_text}}"
+          }
+        ],
+        "label_is_dynamic": true,
         "values": [
           "{{child_hv_malnutrition_screening.step1.child_growth_muac.value[0]}}",
           "{{child_hv_malnutrition_screening.step1.child_growth_muac.value[1]}}",

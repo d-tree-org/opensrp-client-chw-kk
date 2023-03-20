@@ -131,7 +131,7 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
             received_dtp_hepb_hib1 = JsonFormUtils.getValue(jsonObject, "received_dtp_hepb_hib1");
             received_pcvi1 = JsonFormUtils.getValue(jsonObject, "received_pcvi1");
             received_rota1 = JsonFormUtils.getValue(jsonObject, "received_rota1");
-            received_bopv2 = JsonFormUtils.getValue(jsonObject, "play_with_child");
+            received_bopv2 = JsonFormUtils.getValue(jsonObject, "received_bopv2");
             received_dtp_hepb_hib2 = JsonFormUtils.getValue(jsonObject, "received_dtp_hepb_hib2");
             received_pcvi2 = JsonFormUtils.getValue(jsonObject, "received_pcvi2");
             received_rota2 = JsonFormUtils.getValue(jsonObject, "received_rota2");

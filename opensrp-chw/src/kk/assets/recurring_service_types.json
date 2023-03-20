@@ -710,11 +710,11 @@
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+3m"
+            "offset": "+2m"
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+4m"
+            "offset": "+3m"
           }
         }
       },
@@ -728,7 +728,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+5m"
+            "offset": "+4m"
           }
         }
       },
@@ -742,7 +742,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+6m"
+            "offset": "+5m"
           }
         }
       },
@@ -756,7 +756,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+7m"
+            "offset": "+6m"
           }
         }
       },
@@ -770,7 +770,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+8m"
+            "offset": "+7m"
           }
         }
       },
@@ -784,7 +784,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+9m"
+            "offset": "+8m"
           }
         }
       },
@@ -798,7 +798,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+10m"
+            "offset": "+9m"
           }
         }
       },
@@ -812,7 +812,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+11m"
+            "offset": "+10m"
           }
         }
       },
@@ -826,13 +826,27 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+12m"
+            "offset": "+11m"
           }
         }
       },
       {
         "id": "52",
         "name": "Toddler danger sign10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "243",
+        "name": "Toddler danger sign11",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -914,6 +928,20 @@
           "expiry": {
             "reference": "dob",
             "offset": "+35d"
+          }
+        }
+      },
+      {
+        "id": "244",
+        "name": "Neonatal Danger Signs5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
           }
         }
       }
@@ -3106,7 +3134,7 @@
     "services": [
       {
         "id": "236",
-        "name": "Malnutrition Screening5",
+        "name": "Malnutrition Screening week5",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -3119,26 +3147,26 @@
         }
       },
       {
-        "id": "237",
-        "name": "Malnutrition Screening6",
+        "id": "236",
+        "name": "Malnutrition Screening day-5",
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+2m"
+            "offset": "-35d"
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+3m"
+            "offset": "+0d"
           }
         }
       },
       {
-        "id": "238",
-        "name": "Malnutrition Screening7",
+        "id": "237",
+        "name": "Malnutrition Screening month3",
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+1m"
+            "offset": "+3m"
           },
           "expiry": {
             "reference": "dob",
@@ -3147,8 +3175,8 @@
         }
       },
       {
-        "id": "239",
-        "name": "Malnutrition Screening8",
+        "id": "238",
+        "name": "Malnutrition Screening month4",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -3161,8 +3189,8 @@
         }
       },
       {
-        "id": "240",
-        "name": "Malnutrition Screening9",
+        "id": "239",
+        "name": "Malnutrition Screening month5",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -3175,8 +3203,8 @@
         }
       },
       {
-        "id": "241",
-        "name": "Malnutrition Screening10",
+        "id": "240",
+        "name": "Malnutrition Screening month6",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -3185,6 +3213,219 @@
           "expiry": {
             "reference": "dob",
             "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "241",
+        "name": "Malnutrition Screening month7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "260",
+        "name": "Malnutrition Screening month8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "261",
+        "name": "Malnutrition Screening month9",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "262",
+        "name": "Malnutrition Screening month10",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "263",
+        "name": "Malnutrition Screening month11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "264",
+        "name": "Malnutrition Screening month12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "type": "Complementary Feeding",
+    "service_logic": "",
+    "service_group": "child",
+    "openmrs_service_name": {
+      "parent_entity": "",
+      "entity": "concept",
+      "entity_id": ""
+    },
+    "openmrs_date": {
+      "parent_entity": "",
+      "entity": "encounter",
+      "entity_id": "encounter_date"
+    },
+    "services": [
+      {
+        "id": "250",
+        "name": "Complementary Feeding1",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+5m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+6m"
+          }
+        }
+      },
+      {
+        "id": "251",
+        "name": "Complementary Feeding2",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+7m"
+          }
+        }
+      },
+      {
+        "id": "252",
+        "name": "Complementary Feeding3",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+8m"
+          }
+        }
+      },
+      {
+        "id": "253",
+        "name": "Complementary Feeding4",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+9m"
+          }
+        }
+      },
+      {
+        "id": "254",
+        "name": "Complementary Feeding5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "255",
+        "name": "Complementary Feeding6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "256",
+        "name": "Complementary Feeding7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "257",
+        "name": "Complementary Feeding8",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
           }
         }
       }

@@ -528,13 +528,12 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateComplementaryFeeding(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
 
-        ServiceWrapper serviceWrapper = serviceWrapperMap.get("CCD communication assessment");
+        ServiceWrapper serviceWrapper = serviceWrapperMap.get("Complementary Feeding");
         if (serviceWrapper == null) return;
 
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = getVisitNumberFromServiceName(serviceWrapper.getName());
         String title = context.getString(R.string.complimentary_feeding);
 
         // alert if overdue after 14 days
@@ -752,13 +751,14 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         Alert alert = serviceWrapper.getAlert();
         if (alert == null || new LocalDate().isBefore(new LocalDate(alert.startDate()))) return;
 
-        final String serviceIteration = serviceWrapper.getName().substring(serviceWrapper.getName().length() - 1);
+        final String serviceName = serviceWrapper.getName();
+        // Check if it is a dummy -5 weeks service that is there to re-set milestone to 0 before start 1 months recurring
+        if ("Malnutrition Screening day-5".equalsIgnoreCase(serviceName)) return;
 
-        // Todo -> Compute overdue
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
+        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper(serviceWrapper);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
 
         String title = context.getString(R.string.malnutrition_screening);

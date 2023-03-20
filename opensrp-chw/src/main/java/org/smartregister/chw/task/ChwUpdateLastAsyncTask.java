@@ -35,25 +35,19 @@ public class ChwUpdateLastAsyncTask extends UpdateLastAsyncTask {
 
     @Override
     protected void onPostExecute(Void param) {
-        if (!ChwApplication.getApplicationFlavor().showNoDueVaccineView()) {
-            super.onPostExecute(param);
-        } else {
-            if (commonPersonObject != null) {
-                viewHolder.dueButton.setVisibility(View.VISIBLE);
-                if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.DUE.name())) {
-                    setDueState();
-                } else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.OVERDUE.name())) {
-                    setVisitButtonOverdueStatus(context, viewHolder.dueButton, childVisit.getNoOfMonthDue());
-                } else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.LESS_TWENTY_FOUR.name())) {
-                    setVisitLessTwentyFourView(context, viewHolder.dueButton);
-                } else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.VISIT_THIS_MONTH.name())) {
-                    setVisitAboveTwentyFourView(context, viewHolder.dueButton);
-                } else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VisitType.NOT_VISIT_THIS_MONTH.name())) {
-                    setVisitNotDone(context, viewHolder.dueButton);
-                }
-            } else {
-                viewHolder.dueButton.setVisibility(View.GONE);
+        if (commonPersonObject != null) {
+            viewHolder.dueButton.setVisibility(View.VISIBLE);
+            if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VISIT_STATE.DUE)) {
+                setDueState();
+            } else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VISIT_STATE.OVERDUE)) {
+                setVisitButtonOverdueStatus(context, viewHolder.dueButton, childVisit.getNoOfMonthDue());
+            } else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VISIT_STATE.VISIT_DONE)){
+                setVisitAboveTwentyFourView(context, viewHolder.dueButton);
+            }else if (childVisit.getVisitStatus().equalsIgnoreCase(CoreConstants.VISIT_STATE.EXPIRED)){
+                setVisitButtonExpired(viewHolder.dueButton);
             }
+        } else {
+            viewHolder.dueButton.setVisibility(View.GONE);
         }
 
         // Set the referral due button if the child has a referral due
@@ -66,6 +60,13 @@ public class ChwUpdateLastAsyncTask extends UpdateLastAsyncTask {
             }
         }
 
+    }
+
+    private void setVisitButtonExpired(Button dueButton){
+        dueButton.setTextColor(context.getResources().getColor(R.color.grey));
+        dueButton.setText("-");
+        dueButton.setBackgroundColor(context.getResources().getColor(R.color.transparent));
+        dueButton.setOnClickListener(null);
     }
 
     private void setVisitButtonNoDueStatus(Button dueButton) {
