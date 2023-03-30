@@ -5,14 +5,21 @@ import android.content.Context;
 import androidx.room.util.StringUtil;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.domain.Alert;
+import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -21,15 +28,53 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
     private Context context;
     private Alert alert;
     private String developmentIssuesValue, developmentIssuesKeys;
+    private Map<String, Boolean> visitPeriodMap;
+    private final String visit_8_visit_10_visit_16 = "visit_8_visit_10_visit_16";
 
-    public CCDDevelopmentScreeningAction(Context context, Alert alert){
+    private String jsonString;
+    private ServiceWrapper serviceWrapper;
+    private String serviceIteration;
+
+    public CCDDevelopmentScreeningAction(ServiceWrapper serviceWrapper, Alert alert, String serviceIteration) {
+        this.serviceIteration = serviceIteration;
         this.alert = alert;
+        this.serviceWrapper = serviceWrapper;
+        initVisitPeriodMap();
+    }
+
+    public void initVisitPeriodMap() {
+        visitPeriodMap = new HashMap<>();
+        visitPeriodMap.put(visit_8_visit_10_visit_16, false);
+    }
+
+    @Override
+    public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
+        this.jsonString = jsonString;
         this.context = context;
     }
 
     @Override
     public String getPreProcessed() {
-        return null;
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray fields = org.smartregister.chw.anc.util.JsonFormUtils.fields(jsonObject);
+
+            if (serviceWrapper != null) {
+                if (serviceIteration.equals("8") || serviceIteration.equals("10") ||
+                        serviceIteration.equals("16") ) {
+                    visitPeriodMap.put(visit_8_visit_10_visit_16, true);
+                }
+            }
+            for (Map.Entry<String, Boolean> entry : visitPeriodMap.entrySet()) {
+                if (entry.getValue()) {
+                    org.smartregister.chw.anc.util.JsonFormUtils.getFieldJSONObject(fields, entry.getKey()).put("value", "true");
+                }
+            }
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+        return super.getPreProcessed();
     }
 
     @Override
@@ -57,5 +102,17 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
         } else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
+    }
+
+    private String getPeriodNoun(String serviceName) {
+        String[] nameSplit = serviceName.split(" ");
+        return nameSplit[nameSplit.length - 1];
+    }
+
+    private int getPeriod(String serviceName) {
+        String[] nameSplit = serviceName.split(" ");
+        String periodString = nameSplit[nameSplit.length - 2];
+
+        return Integer.parseInt(periodString);
     }
 }

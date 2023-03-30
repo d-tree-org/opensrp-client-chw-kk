@@ -50,6 +50,13 @@
     "title": "{{child_hv_ccd_development_screening.step1.title}}",
     "fields": [
       {
+        "key": "visit_8_visit_10_visit_16",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "screening_title",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -124,6 +131,44 @@
         "text": "{{child_hv_ccd_development_screening.step1.child_developmental_delays_note.text}}",
         "text_color": "#F91A00",
         "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_development_screening_relevance.yml"
+            }
+          }
+        }
+      },
+
+      {
+        "key": "developmental_milestone_info",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_ccd_development_screening.step1.developmental_milestone_info.label}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_development_screening_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "early_child_development_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "early_child_development_bango_kitita",
+        "type": "label",
+        "text": "{{child_hv_ccd_development_screening.step1.early_child_development_bango_kitita.text}}",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic",
         "relevance": {
           "rules-engine": {
             "ex-rules": {

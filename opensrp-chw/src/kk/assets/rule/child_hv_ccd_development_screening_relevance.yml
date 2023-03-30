@@ -6,3 +6,17 @@ condition: "step1_child_development_issues.contains('chk_hearing_delay') || step
   || step1_child_development_issues.contains('chk_has_fits')"
 actions:
   - "isRelevant = true"
+---
+name: step1_early_child_development_bango_kitita
+description: Development Milestone Bango Kitita Reference
+priority: 1
+condition: "step1_visit_8_visit_10_visit_16 == 'true'"
+actions:
+  - "isRelevant = true"
+---
+name: step1_developmental_milestone_info
+description: Development Milestone info
+priority: 1
+condition: "step1_visit_8_visit_10_visit_16 == 'true'"
+actions:
+  - "isRelevant = true"
