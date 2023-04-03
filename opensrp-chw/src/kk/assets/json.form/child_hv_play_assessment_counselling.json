@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Malaria Prevention",
+  "encounter_type": "Play assessment and counseling",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -62,6 +62,75 @@
         "openmrs_entity": "",
         "openmrs_entity_id": "",
         "type": "hidden"
+      },
+      {
+        "key": "spend_time_with",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "spend_time_with",
+        "type": "check_box",
+        "label": "{{child_hv_play_assessment_counselling.step1.spend_time_with.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "mother",
+            "text": "{{child_hv_play_assessment_counselling.step1.spend_time_with.options.mother.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "mother"
+          },
+          {
+            "key": "father",
+            "text": "{{child_hv_play_assessment_counselling.step1.spend_time_with.options.father.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "father"
+          },
+          {
+            "key": "grand_mother",
+            "text": "{{child_hv_play_assessment_counselling.step1.spend_time_with.options.grand_mother.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "grand_mother"
+          },
+          {
+            "key": "other",
+            "text": "{{child_hv_play_assessment_counselling.step1.spend_time_with.options.other.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_play_assessment_counselling.step1.spend_time_with.v_required.err}}"
+        }
+      },
+      {
+        "key": "spend_time_with_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "spend_time_with_other",
+        "type": "edit_text",
+        "hint": "{{child_hv_play_assessment_counselling.step1.spend_time_with_other.text}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.first_and_middle_name.v_required.err}}"
+        },
+        "relevance": {
+          "step1:spend_time_with": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
+          }
+        }
       },
       {
         "key": "interaction_with_baby",
@@ -161,7 +230,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_play_assessment_counselling.step1.play_with_child.hint}}",
-        "label_info_text": "{{child_hv_play_assessment_counselling.step1.play_with_child.hint}}",
+        "label_info_text": "{{child_hv_play_assessment_counselling.step1.play_with_child.label_info}}",
         "values": [
           "{{child_hv_play_assessment_counselling.step1.play_with_child.values[0]}}",
           "{{child_hv_play_assessment_counselling.step1.play_with_child.values[1]}}"
