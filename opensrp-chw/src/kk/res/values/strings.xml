@@ -165,5 +165,7 @@
     <string name="palm_pallor_green">Green</string>
     <string name="palm_pallor_yellow">Yellow</string>
     <string name="palm_pallor_red">Red</string>
+    <string name="bango_kitita_page_number_one_page">Page %s</string>
+    <string name="bango_kitita_page_number_two_pages">Page %s and Page %s</string>
 
 </resources>
