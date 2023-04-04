@@ -2,6 +2,8 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,12 +29,16 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
     private String play_with_child;
     private String jsonString;
     private ServiceWrapper serviceWrapper;
+    private final String bangoKititaPage;
+    private final int childAgeInMonth;
 
     private boolean visit_3_visit_5 =  false;
     private boolean visit_6_visit_12 = false;
 
-    public PlayAssessmentCounselingActionHelper(ServiceWrapper serviceWrapper) {
+    public PlayAssessmentCounselingActionHelper(ServiceWrapper serviceWrapper, int childAge, String bangoKititaPage) {
         this.serviceWrapper = serviceWrapper;
+        this.bangoKititaPage = bangoKititaPage;
+        this.childAgeInMonth = childAge;
     }
 
     @Override
@@ -73,6 +79,13 @@ public class PlayAssessmentCounselingActionHelper extends HomeVisitActionHelper 
 
             if (visit_6_visit_12) {
                 JsonFormUtils.getFieldJSONObject(fields, "visit_6_visit_12").put("value", "true");
+            }
+
+            if (bangoKititaPage != null) {
+                JSONObject bango_kitita_page_ref = org.smartregister.chw.util.JsonFormUtils.getFieldJSONObject(fields, "bango_kitita_page_ref");
+                assert bango_kitita_page_ref != null;
+                bango_kitita_page_ref.remove(JsonFormConstants.VALUE);
+                bango_kitita_page_ref.put(JsonFormConstants.VALUE, bangoKititaPage);
             }
 
             return jsonObject.toString();

@@ -153,7 +153,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateMalariaPrevention(serviceWrapperMap);
             evaluateCCDChildSafety(serviceWrapperMap);
             evaluateCCDIntro(serviceWrapperMap);
-            evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
+            evaluateChildPlayAssessmentCounseling(serviceWrapperMap, childAgeInMonth);
             evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateCCDChildDiscipline(serviceWrapperMap);
@@ -591,7 +591,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
-    protected void evaluateChildPlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+    protected void evaluateChildPlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap, int childAge) throws Exception {
 
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Play Assessment and Counselling");
         if (serviceWrapper == null) return;
@@ -610,7 +610,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         String title = context.getString(R.string.child_play_and_assessment_counselling);
 
-        PlayAssessmentCounselingActionHelper helper = new PlayAssessmentCounselingActionHelper(serviceWrapper);
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPagePlayAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        PlayAssessmentCounselingActionHelper helper = new PlayAssessmentCounselingActionHelper(serviceWrapper, childAge, bangoKititaPage);
 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(helper)

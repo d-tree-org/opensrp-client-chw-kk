@@ -1,0 +1,7 @@
+---
+name: step1_kk_play_and_communication_flipbook_reference
+description: Flipbook reference calculation
+priority: 1
+condition: "true"
+actions:
+  - "calculation = ['page_reference_number': step1_bango_kitita_page_ref]"

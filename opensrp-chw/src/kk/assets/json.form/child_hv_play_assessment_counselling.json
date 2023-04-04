@@ -363,10 +363,24 @@
         "openmrs_entity_id": "play_and_communication_flipbook_reference",
         "type": "toaster_notes",
         "toaster_type": "info",
-        "text": "{{child_hv_play_assessment_counselling.step1.kk_play_and_communication_flipbook_reference.text}}",
+        "text": "{{child_hv_play_assessment_counselling.step1.kk_play_and_communication_flipbook_reference.text}} <br/><br/> {page_reference_number}",
         "text_color": "#000000",
         "has_bg": true,
-        "label_text_style": "italic"
+        "label_text_style": "italic",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "bango_kitita_page_ref",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
       }
     ]
   },
