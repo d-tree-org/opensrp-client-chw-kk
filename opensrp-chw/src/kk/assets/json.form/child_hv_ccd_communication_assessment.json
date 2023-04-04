@@ -90,6 +90,13 @@
         "type": "hidden"
       },
       {
+        "key": "bango_kitita_page_ref",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
         "key": "less_than_six_months",
         "openmrs_entity_parent": "",
         "openmrs_entity": "",
@@ -113,7 +120,8 @@
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
-          "chk_none"
+          "chk_force_smile",
+          "chk_child_asleep"
         ],
         "options": [
           {
@@ -158,7 +166,24 @@
         "type": "toaster_notes",
         "text": "{{child_hv_ccd_communication_assessment.step1.communicates_with_child_note.text}}",
         "text_color": "#000000",
-        "toaster_type": "info",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "not_communicates_with_child_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_ccd_communication_assessment.step1.not_communicates_with_child_note.text}}",
+        "text_color": "#000000",
+        "toaster_type": "warning",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -175,7 +200,7 @@
         "type": "toaster_notes",
         "text": "{{child_hv_ccd_communication_assessment.step1.child_comm_6_12.text}}",
         "text_color": "#000000",
-        "toaster_type": "info",
+        "toaster_type": "positive",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -192,7 +217,7 @@
         "type": "toaster_notes",
         "text": "{{child_hv_ccd_communication_assessment.step1.no_child_comm_6_12.text}}",
         "text_color": "#000000",
-        "toaster_type": "info",
+        "toaster_type": "warning",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
@@ -202,12 +227,52 @@
         }
       },
       {
+        "key": "communication_counselling_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_ccd_communication_assessment.step1.communication_counselling_note.text}}",
+        "text_color": "#2D2E2D",
+        "label_info_title": "{{child_hv_ccd_communication_assessment.step1.communication_counselling_note.label_info_title}}",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "label_is_dynamic": true,
+        "dynamic_label_info": [
+          {
+            "dynamic_label_title": "{{child_hv_ccd_communication_assessment.step1.communication_counselling_note.dynamic_label_info[0].dynamic_label_title}}",
+            "dynamic_label_text": "{{child_hv_ccd_communication_assessment.step1.communication_counselling_note.dynamic_label_info[0].dynamic_label_text}}",
+            "dynamic_label_image_src": "{{child_hv_ccd_communication_assessment.step1.communication_counselling_note.dynamic_label_info[0].dynamic_label_image_src}}"
+          }
+        ]
+      },
+      {
         "key": "kk_play_and_communication_flipbook_reference",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "play_and_communication_flipbook_reference",
+        "type": "toaster_notes",
+        "toaster_type": "none",
+        "text": "<i> {{child_hv_ccd_communication_assessment.step1.kk_play_and_communication_flipbook_reference.text}} </i> <br /> {page_reference_number}",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "next_visit_message",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "comm_assessment_counselling_next_visit_message",
         "type": "label",
-        "text": "{{child_hv_ccd_communication_assessment.step1.kk_play_and_communication_flipbook_reference.text}}",
+        "text": "{{child_hv_ccd_communication_assessment.step1.comm_assessment_counselling_next_visit_message.text}}",
         "text_color": "#000000",
         "has_bg": true,
         "bg_color": "#f595df",
