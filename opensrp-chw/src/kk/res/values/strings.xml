@@ -102,7 +102,7 @@
     <string name="toddler_danger_sign_month"> Toddler danger sign </string>
     <string name="ccd_introduction"> CCD : Introduction</string>
     <string name="ccd_development_screening"> CCD : Development screening </string>
-    <string name="ccd_communication_assessment"> CCD : Communication assessment </string>
+    <string name="ccd_communication_assessment"> CCD : Communication Assessment and Counselling</string>
     <string name="ccd_child_discipline"> CCD : Child discipline</string>
 
     <string name="child_safety"> Child Safety </string>
@@ -165,5 +165,7 @@
     <string name="palm_pallor_green">Green</string>
     <string name="palm_pallor_yellow">Yellow</string>
     <string name="palm_pallor_red">Red</string>
+    <string name="bango_kitita_page_number_one_page">Page %s</string>
+    <string name="bango_kitita_page_number_two_pages">Page %s and Page %s</string>
 
 </resources>

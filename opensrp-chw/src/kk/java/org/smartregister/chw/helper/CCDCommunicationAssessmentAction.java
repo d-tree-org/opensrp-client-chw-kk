@@ -28,11 +28,13 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
     private String communicatesWithChildObservation = "";
     private String jsonPayload;
     private final int ageInMonth;
+    private final String bangoKititaPage;
 
-    public CCDCommunicationAssessmentAction(Context context, Alert alert, int ageInMonth) {
+    public CCDCommunicationAssessmentAction(Context context, Alert alert, int ageInMonth, String bangoKititaPage) {
         this.alert = alert;
         this.context = context;
         this.ageInMonth = ageInMonth;
+        this.bangoKititaPage = bangoKititaPage;
     }
 
     @Override
@@ -51,6 +53,13 @@ public class CCDCommunicationAssessmentAction extends HomeVisitActionHelper {
             assert child_age_in_month != null;
             child_age_in_month.remove(JsonFormConstants.VALUE);
             child_age_in_month.put(JsonFormConstants.VALUE, ageInMonth);
+
+            if (bangoKititaPage != null) {
+                JSONObject bango_kitita_page_ref = JsonFormUtils.getFieldJSONObject(fields, "bango_kitita_page_ref");
+                assert bango_kitita_page_ref != null;
+                bango_kitita_page_ref.remove(JsonFormConstants.VALUE);
+                bango_kitita_page_ref.put(JsonFormConstants.VALUE, bangoKititaPage);
+            }
 
             return jsonObject.toString();
 

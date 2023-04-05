@@ -29,3 +29,8 @@ opensrp-chw/liberia/
 opensrp-chw/lmh/
 opensrp-chw/google-services.json
 /opensrp-chw/kk/release/
+caches/
+daemon/
+kotlin-profile/
+native/
+wrapper/

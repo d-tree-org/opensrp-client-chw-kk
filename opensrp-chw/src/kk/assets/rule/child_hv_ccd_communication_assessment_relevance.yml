@@ -6,6 +6,13 @@ condition: "(step1_child_communication_observation.contains('chk_sounds_and_gest
 actions:
   - "isRelevant = true"
 ---
+name: step1_not_communicates_with_child_note
+description: Not comunicating with child note toster relevance
+priority: 1
+condition: "step1_child_communication_observation.contains('chk_force_smile') && step1_less_than_six_months == 1"
+actions:
+  - "isRelevant = true"
+---
 name: step1_child_comm_6_12
 description: Communicates with a child who is 6 to 12 months
 priority: 1

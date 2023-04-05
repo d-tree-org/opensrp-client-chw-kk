@@ -32,6 +32,7 @@ import org.smartregister.chw.helper.CCDIntroductionAction;
 import org.smartregister.chw.helper.ChildSafetyActionHelper;
 import org.smartregister.chw.helper.ComplimentaryFeedingActionHelper;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
+import org.smartregister.chw.util.BangoKititaPages;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KKCoreConstants;
 import org.smartregister.chw.util.KkConstants;
@@ -439,7 +440,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        CCDCommunicationAssessmentAction ccdCommunicationAssessmentAction = new CCDCommunicationAssessmentAction(context, alert, childAge);
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPageCommunicatinAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        CCDCommunicationAssessmentAction ccdCommunicationAssessmentAction = new CCDCommunicationAssessmentAction(context, alert, childAge, bangoKititaPage);
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
 

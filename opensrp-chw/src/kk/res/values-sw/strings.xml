@@ -62,7 +62,7 @@
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto </string>
     <string name="ccd_introduction"> CCD : Mwanzo </string>
     <string name="ccd_development_screening"> CCD : Maendeleo ya ukuaji </string>
-    <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano </string>
+    <string name="ccd_communication_assessment"> CCD : Tathmini maendeleo na fundisha kuhusu mawasiliano </string>
     <string name="ccd_child_discipline"> CCD : Nidhamu ya mtoto </string>
 
     <string name="child_safety"> Usalama wa mtoto </string>
@@ -146,4 +146,7 @@
     <string name="abbrv_months">mz</string>
     <string name="abbrv_weeks">wk</string>
     <string name="abbrv_years">mk</string>
+    <string name="bango_kitita_page_number_one_page">Ukurasa wa %s</string>
+    <string name="bango_kitita_page_number_two_pages"> Ukurasa wa %s na Ukurasa wa %s</string>
+
 </resources>
