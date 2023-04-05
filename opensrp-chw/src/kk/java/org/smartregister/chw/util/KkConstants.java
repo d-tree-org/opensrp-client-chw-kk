@@ -111,4 +111,8 @@ public class KkConstants extends Constants{
         public static final String IMMUNIZATIONS = "Immunizations";
     }
 
+    public static final class TABLES {
+        public static final String CHILD_IMMUNIZATIONS = "ec_child_immunizations";
+    }
+
 }
