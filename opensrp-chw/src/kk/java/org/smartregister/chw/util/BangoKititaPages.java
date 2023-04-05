@@ -10,6 +10,8 @@ import java.util.HashMap;
 public class BangoKititaPages {
 
     public static final HashMap<String, String> PAGES_COMMUNICATION_ASSESSMENT = new HashMap<>();
+    public static final HashMap<String, String> PAGES_PLAY_ASSESSMENT = new HashMap<>();
+
     public static final String DAY_8 = "Day 8";
     public static final String WEEK_3 = "Week 3";
     public static final String WEEK_5 = "Week 5";
@@ -44,6 +46,24 @@ public class BangoKititaPages {
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_10, "77,81");
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_11, "83,87");
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_12, "89,91");
+    }
+
+    //Adding Play assessment pages
+    static {
+        PAGES_PLAY_ASSESSMENT.put(DAY_8, "17, 19");
+        PAGES_PLAY_ASSESSMENT.put(WEEK_3, "21");
+        PAGES_PLAY_ASSESSMENT.put(WEEK_5, "27");
+        PAGES_PLAY_ASSESSMENT.put(WEEK_8, "31");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_3, "33, 37");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_4, "39, 43");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_5, "45, 49");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_6, "51,57");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_7, "59, 61");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_8, "65, 67");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_9, "75");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_10, "79");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_11, "85");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_12, "93");
     }
 
     public static String getBangoKititaPageCommunicatinAssessment(String childAge, android.content.Context context) {
@@ -81,6 +101,48 @@ public class BangoKititaPages {
                     int childAgeInDays = Integer.parseInt(dayAge);
                     if (childAgeInDays >= 8 && childAgeInDays < 14) {
                         return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_COMMUNICATION_ASSESSMENT.get(DAY_8));
+                    }
+                }
+            }
+        }
+        return "";
+    }
+
+    public static String getBangoKititaPagePlayAssessment(String childAge, android.content.Context context) {
+        if (childAge != null) {
+            if (!childAge.contains("y")) {
+                if (childAge.contains("m")) {
+                    // For month the difference between two consecutive months is 1 month so child
+                    // age in Month is sufficient to return the page as defined
+                    String monthsAge = "Month " + childAge.substring(0, childAge.indexOf("m"));
+                    String pageReference = PAGES_PLAY_ASSESSMENT.get(monthsAge);
+                    if (pageReference != null) {
+                        String[] pages = pageReference.split(",");
+                        return pages.length == 1 ?
+                                String.format(context.getString(R.string.bango_kitita_page_number_one_page), pages[0]) :
+                                String.format(context.getString(R.string.bango_kitita_page_number_two_pages), pages[0], pages[1]);
+                    }
+                } else if (childAge.contains("w")) {
+                    // For weeks we have to check if it is 3 weeks or 5 weeks or 8 weeks
+                    String weekAge = childAge.substring(0, childAge.indexOf("w"));
+                    int childAgeInWeeks = Integer.parseInt(weekAge);
+                    if (childAgeInWeeks == 2) {
+                        return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_PLAY_ASSESSMENT.get(DAY_8));
+                    }
+
+                    if (childAgeInWeeks >= 3 && childAgeInWeeks < 5) {
+                        // Within the 3 weeks visit range
+                        return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_PLAY_ASSESSMENT.get(WEEK_3));
+                    } else if (childAgeInWeeks >= 5 && childAgeInWeeks < 8) {
+                        return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_PLAY_ASSESSMENT.get(WEEK_5));
+                    } else if (childAgeInWeeks >= 8 && childAgeInWeeks < 14){
+                        return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_PLAY_ASSESSMENT.get(WEEK_8));
+                    }
+                } else if (childAge.contains("d")) {
+                    String dayAge = childAge.substring(0, childAge.indexOf("d"));
+                    int childAgeInDays = Integer.parseInt(dayAge);
+                    if (childAgeInDays >= 8 && childAgeInDays < 14) {
+                        return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_PLAY_ASSESSMENT.get(DAY_8));
                     }
                 }
             }

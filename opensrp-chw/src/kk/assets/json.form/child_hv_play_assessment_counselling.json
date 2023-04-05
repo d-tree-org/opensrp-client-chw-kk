@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Malaria Prevention",
+  "encounter_type": "Play assessment and counseling",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -64,92 +64,71 @@
         "type": "hidden"
       },
       {
-        "key": "interaction_with_baby",
+        "key": "spend_time_with",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "openmrs_data_type": "interaction_with_baby",
+        "openmrs_data_type": "spend_time_with",
         "type": "check_box",
-        "label": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.label}}",
+        "label": "{{child_hv_play_assessment_counselling.step1.spend_time_with.label}}",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
-        "label_info_text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.label_info_text}}",
-        "exclusive": [
-          "does_not_play"
-        ],
         "options": [
           {
-            "key": "move_baby_arms_legs_stroke_gently",
-            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.move_baby_arms_legs_stroke_gently.text}}",
+            "key": "mother",
+            "text": "{{child_hv_play_assessment_counselling.step1.spend_time_with.options.mother.text}}",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "mother"
           },
           {
-            "key": "get_baby_attention_shaker_toy",
-            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.get_baby_attention_shaker_toy.text}}",
+            "key": "father",
+            "text": "{{child_hv_play_assessment_counselling.step1.spend_time_with.options.father.text}}",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "father"
           },
           {
-            "key": "does_not_play",
-            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.does_not_play.text}}",
+            "key": "grand_mother",
+            "text": "{{child_hv_play_assessment_counselling.step1.spend_time_with.options.grand_mother.text}}",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "grand_mother"
           },
           {
-            "key": "child_asleep",
-            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.child_asleep.text}}",
+            "key": "other",
+            "text": "{{child_hv_play_assessment_counselling.step1.spend_time_with.options.other.text}}",
             "value": false,
             "openmrs_entity": "concept",
-            "openmrs_entity_id": ""
+            "openmrs_entity_id": "other"
           }
         ],
         "v_required": {
           "value": "true",
-          "err": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.v_required.err}}"
+          "err": "{{child_hv_play_assessment_counselling.step1.spend_time_with.v_required.err}}"
+        }
+      },
+      {
+        "key": "spend_time_with_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person",
+        "openmrs_entity_id": "spend_time_with_other",
+        "type": "edit_text",
+        "hint": "{{child_hv_play_assessment_counselling.step1.spend_time_with_other.text}}",
+        "edit_type": "name",
+        "v_required": {
+          "value": "true",
+          "err": "{{add_anc_registration.step1.first_and_middle_name.v_required.err}}"
         },
         "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "interacts_with_baby_note",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{child_hv_play_assessment_counselling.step1.interacts_with_baby_note.text}}",
-        "text_color": "#2D2E2D",
-        "toaster_type": "positive",
-        "relevance": {
-        "rules-engine": {
-          "ex-rules": {
-            "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-          }
-        }
-      }
-      },
-      {
-        "key": "no_interaction_note",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{child_hv_play_assessment_counselling.step1.no_interaction_note.text}}",
-        "text_color": "#2D2E2D",
-        "toaster_type": "problem",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
+          "step1:spend_time_with": {
+            "ex-checkbox": [
+              {
+                "or": [
+                  "other"
+                ]
+              }
+            ]
           }
         }
       },
@@ -161,7 +140,7 @@
         "openmrs_data_type": "select one",
         "type": "spinner",
         "hint": "{{child_hv_play_assessment_counselling.step1.play_with_child.hint}}",
-        "label_info_text": "{{child_hv_play_assessment_counselling.step1.play_with_child.hint}}",
+        "label_info_text": "{{child_hv_play_assessment_counselling.step1.play_with_child.label_info}}",
         "values": [
           "{{child_hv_play_assessment_counselling.step1.play_with_child.values[0]}}",
           "{{child_hv_play_assessment_counselling.step1.play_with_child.values[1]}}"
@@ -229,6 +208,97 @@
         "spacer_height": "20dp"
       },
       {
+        "key": "interaction_with_baby",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "interaction_with_baby",
+        "type": "check_box",
+        "label": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "label_info_text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.label_info_text}}",
+        "exclusive": [
+          "does_not_play"
+        ],
+        "options": [
+          {
+            "key": "move_baby_arms_legs_stroke_gently",
+            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.move_baby_arms_legs_stroke_gently.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "get_baby_attention_shaker_toy",
+            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.get_baby_attention_shaker_toy.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "does_not_play",
+            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.does_not_play.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "child_asleep",
+            "text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.options.child_asleep.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.v_required.err}}"
+        }
+      },
+      {
+        "key": "interacts_with_baby_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_play_assessment_counselling.step1.interacts_with_baby_note.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "no_interaction_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_play_assessment_counselling.step1.no_interaction_note.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
+      },
+      {
         "key": "corona_reminder_message",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -239,6 +309,14 @@
         "toaster_type": "problem"
       },
       {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
+      },
+      {
         "key": "practice_play_demo",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -247,43 +325,62 @@
         "text": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.text}}",
         "text_color": "#2D2E2D",
         "label_info_title": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.label_info_title}}",
+        "label_info_text": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.label_info_text}}",
         "label_text_style": "italic",
-        "has_bg": true,
-        "label_is_dynamic": true,
-        "dynamic_label_info": [
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.dynamic_label_info[0].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.dynamic_label_info[0].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.dynamic_label_info[0].dynamic_label_image_src}}"
-          },
-          {
-            "dynamic_label_title": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.dynamic_label_info[1].dynamic_label_title}}",
-            "dynamic_label_text": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.dynamic_label_info[1].dynamic_label_text}}",
-            "dynamic_label_image_src": "{{child_hv_play_assessment_counselling.step1.practice_play_demo.dynamic_label_info[1].dynamic_label_image_src}}"
-          }
-        ]
+        "has_bg": true
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
       },
       {
         "key": "next_visit_message",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
-        "type": "toaster_notes",
+        "type": "label",
         "text": "{{child_hv_play_assessment_counselling.step1.next_visit_message.text}}",
         "text_color": "#2D2E2D",
-        "toaster_type": "info"
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "20dp"
       },
       {
         "key": "kk_play_and_communication_flipbook_reference",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "play_and_communication_flipbook_reference",
-        "type": "label",
-        "text": "{{child_hv_play_assessment_counselling.step1.kk_play_and_communication_flipbook_reference.text}}",
+        "type": "toaster_notes",
+        "toaster_type": "info",
+        "text": "{{child_hv_play_assessment_counselling.step1.kk_play_and_communication_flipbook_reference.text}} <br/><br/> {page_reference_number}",
         "text_color": "#000000",
         "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
+        "label_text_style": "italic",
+        "calculation": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_calculation.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "bango_kitita_page_ref",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
       }
     ]
   },

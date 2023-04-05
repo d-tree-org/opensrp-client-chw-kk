@@ -74,9 +74,9 @@
     <string name="malaria_prevention_llin_condition_poor">Poor</string>
     <string name="malaria_prevention_llin_condition_good">Good</string>
     <string name="malaria_prevention_llin_condition_fair">Fair</string>
-    <string name="child_play_and_assessment_counselling">Play Assessment and Counselling</string>
-    <string name="ccd_problem_solving">CCD: Problem Solving</string>
-    <string name="ccd_caregiver_responsiveness">CCD: Caregiver Responsiveness to Child Behavior/Cues</string>
+    <string name="child_play_and_assessment_counselling"><b>CCD</b>: Play Assessment and Counselling</string>
+    <string name="ccd_problem_solving"><b>CCD</b>: Problem Solving</string>
+    <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues</string>
     <string name="newborn_care_cord_care">Essential Newborn Care: Cord Care</string>
 
     <string name="month_of">" %s months"</string>
@@ -100,10 +100,10 @@
     <string name="malnutrition_screening">Malnutrition/Anemia screening</string>
 
     <string name="toddler_danger_sign_month"> Toddler danger sign </string>
-    <string name="ccd_introduction"> CCD : Introduction</string>
-    <string name="ccd_development_screening"> CCD : Development screening </string>
-    <string name="ccd_communication_assessment"> CCD : Communication Assessment and Counselling</string>
-    <string name="ccd_child_discipline"> CCD : Child discipline</string>
+    <string name="ccd_introduction"> <b>CCD</b>: Introduction</string>
+    <string name="ccd_development_screening"> <b>CCD</b>: Development screening </string>
+    <string name="ccd_communication_assessment"> <b>CCD</b>: Communication assessment </string>
+    <string name="ccd_child_discipline"> <b>CCD</b>: Child discipline</string>
 
     <string name="child_safety"> Child Safety </string>
 
