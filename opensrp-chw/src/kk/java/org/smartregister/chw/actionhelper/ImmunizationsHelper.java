@@ -2,15 +2,19 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.domain.MemberObject;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
+import org.smartregister.chw.dao.ImmunizationDao;
 import org.smartregister.immunization.domain.ServiceWrapper;
 
 import java.util.HashMap;
@@ -43,6 +47,7 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
     private String jsonString;
 
     private ServiceWrapper serviceWrapper;
+    private final MemberObject memberObject;
 
     private Map<String, Boolean> visitPeriodMap;
     private final String visit_0_visit_3 = "visit_0_visit_3";
@@ -52,8 +57,9 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
     private final String visit_7_visit_15 = "visit_7_visit_15";
     private final String visit_13_visit_15 = "visit_13_visit_15";
 
-    public ImmunizationsHelper(ServiceWrapper serviceWrapper) {
+    public ImmunizationsHelper(ServiceWrapper serviceWrapper, MemberObject memberObject) {
         this.serviceWrapper = serviceWrapper;
+        this.memberObject = memberObject;
         initVisitPeriodMap();
     }
 
@@ -112,6 +118,55 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
                     JsonFormUtils.getFieldJSONObject(fields, entry.getKey()).put("value", "true");
                 }
             }
+
+            //Hide already captured previous immunizations
+            if (ImmunizationDao.receivedBCG(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_bcg").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedOPV0(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_bopv0").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedOPV1(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_bopv1").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedHepbHib1(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_dtp_hepb_hib1").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedPcvi1(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_pcvi1").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedRota1(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_rota1").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedBopv2(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_bopv2").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedHepbHib2(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_dtp_hepb_hib2").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedPcvi2(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_pcvi2").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedRota2(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_rota2").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedRota3(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_rota3").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedBopv3(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_bopv3").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedHepbHib3(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_dtp_hepb_hib3").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedPcv3(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_pcv3").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedSuruaRubella1(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_surua_rubella1").put(JsonFormConstants.HIDDEN, true);
+
+            if (ImmunizationDao.receivedIpv(memberObject.getBaseEntityId()) != null)
+                JsonFormUtils.getFieldJSONObject(fields, "received_ipv").put(JsonFormConstants.HIDDEN, true);
 
             return jsonObject.toString();
         } catch (JSONException e) {
@@ -225,42 +280,9 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
 
         if (vaccines_up_to_date.equalsIgnoreCase("no")) {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
-        } else {
-            if (visitPeriodMap.get(visit_0_visit_3)) {
-                if (StringUtils.isBlank(received_bcg)) {
-                    return BaseAncHomeVisitAction.Status.PENDING;
-                }
-            } else if (visitPeriodMap.get(visit_0_visit_7)) {
-                if (StringUtils.isBlank(received_bopv0)) {
-                    return BaseAncHomeVisitAction.Status.PENDING;
-                }
-            } else if (visitPeriodMap.get(visit_5_visit_15)) {
-                String[] keys = new String[]{received_bopv1, received_dtp_hepb_hib1, received_pcvi1, received_rota1};
-                boolean isBlank = false;
-                for (String key: keys) {
-                    if (StringUtils.isBlank(key)) {
-                        isBlank = true;
-                    }
-                }
-                if (isBlank) {
-                    return BaseAncHomeVisitAction.Status.PENDING;
-                }
-            } else if (visitPeriodMap.get(visit_6_visit_15)) {
-                String[] keys = new String[]{received_bopv2, received_pcvi2, received_dtp_hepb_hib2, received_rota2, received_bopv3, received_dtp_hepb_hib3, received_pcv3};
-                boolean isBlank = false;
-                for (String key: keys) {
-                    if (StringUtils.isBlank(key)) {
-                        isBlank = true;
-                    }
-                }
-                if (isBlank) {
-                    return BaseAncHomeVisitAction.Status.PENDING;
-                }
-            }else if (visitPeriodMap.get(visit_13_visit_15)) {
-                if (StringUtils.isBlank(received_surua_rubella1)) {
-                    return BaseAncHomeVisitAction.Status.PENDING;
-                }
-            }
+        } else if (StringUtils.isBlank(vaccines_up_to_date) || (StringUtils.isBlank(clinicCard)) ) {
+            return BaseAncHomeVisitAction.Status.PENDING;
+        }else {
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
     }
@@ -276,4 +298,5 @@ public class ImmunizationsHelper extends HomeVisitActionHelper {
 
         return Integer.parseInt(periodString);
     }
+
 }

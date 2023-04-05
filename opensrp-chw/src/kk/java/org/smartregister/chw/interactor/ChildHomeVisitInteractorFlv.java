@@ -729,7 +729,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String immunizationsTitle = context.getString(R.string.immunizations);
         Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
 
-        ImmunizationsHelper immunizationsHelper = new ImmunizationsHelper(serviceWrapper);
+        ImmunizationsHelper immunizationsHelper = new ImmunizationsHelper(serviceWrapper, memberObject);
 
         BaseAncHomeVisitAction immunizationsAction = getBuilder(immunizationsTitle)
                 .withHelper(immunizationsHelper)
