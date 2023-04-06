@@ -33,10 +33,8 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
 
     private String jsonString;
     private ServiceWrapper serviceWrapper;
-    private String serviceIteration;
 
-    public CCDDevelopmentScreeningAction(ServiceWrapper serviceWrapper, Alert alert, String serviceIteration) {
-        this.serviceIteration = serviceIteration;
+    public CCDDevelopmentScreeningAction(ServiceWrapper serviceWrapper, Alert alert) {
         this.alert = alert;
         this.serviceWrapper = serviceWrapper;
         initVisitPeriodMap();
@@ -59,12 +57,15 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray fields = org.smartregister.chw.anc.util.JsonFormUtils.fields(jsonObject);
 
+            String visitNumber = getVisitNumber(serviceWrapper.getName());
+
             if (serviceWrapper != null) {
-                if (serviceIteration.equals("8") || serviceIteration.equals("10") ||
-                        serviceIteration.equals("16") ) {
+                if (visitNumber.equals("8") || visitNumber.equals("10") ||
+                        visitNumber.equals("16") ) {
                     visitPeriodMap.put(visit_8_visit_10_visit_16, true);
                 }
             }
+
             for (Map.Entry<String, Boolean> entry : visitPeriodMap.entrySet()) {
                 if (entry.getValue()) {
                     org.smartregister.chw.anc.util.JsonFormUtils.getFieldJSONObject(fields, entry.getKey()).put("value", "true");
@@ -104,15 +105,8 @@ public class CCDDevelopmentScreeningAction  extends HomeVisitActionHelper {
         }
     }
 
-    private String getPeriodNoun(String serviceName) {
+    private String getVisitNumber(String serviceName) {
         String[] nameSplit = serviceName.split(" ");
-        return nameSplit[nameSplit.length - 1];
-    }
-
-    private int getPeriod(String serviceName) {
-        String[] nameSplit = serviceName.split(" ");
-        String periodString = nameSplit[nameSplit.length - 2];
-
-        return Integer.parseInt(periodString);
+        return nameSplit[nameSplit.length - 1].substring(9);
     }
 }
