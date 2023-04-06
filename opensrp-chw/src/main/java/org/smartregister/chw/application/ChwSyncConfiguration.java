@@ -62,6 +62,7 @@ public class ChwSyncConfiguration extends SyncConfiguration {
         return SyncFilter.PROVIDER;
     }
 
+
     @Override
     public boolean updateClientDetailsTable() {
         return false;

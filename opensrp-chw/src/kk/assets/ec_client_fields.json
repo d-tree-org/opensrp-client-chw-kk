@@ -572,6 +572,146 @@
       ]
     },
     {
+      "name": "ec_child_immunizations",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Client",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "received_bcg",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.fieldCode",
+            "formSubmissionField": "received_bcg"
+          }
+        },
+        {
+          "column_name": "received_bopv0",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_bopv0"
+          }
+        },
+        {
+          "column_name": "received_bopv1",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_bopv1"
+          }
+        },
+        {
+          "column_name": "received_dtp_hepb_hib1",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_dtp_hepb_hib1"
+          }
+        },
+        {
+          "column_name": "received_pcvi1",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_pcvi1"
+          }
+        },
+        {
+          "column_name": "received_rota1",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_rota1"
+          }
+        },
+        {
+          "column_name": "received_bopv2",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_bopv2"
+          }
+        },
+        {
+          "column_name": "received_dtp_hepb_hib2",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_dtp_hepb_hib2"
+          }
+        },
+        {
+          "column_name": "received_pcvi2",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_pcvi2"
+          }
+        },
+        {
+          "column_name": "received_rota2",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_rota2"
+          }
+        },
+        {
+          "column_name": "received_rota3",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_rota3"
+          }
+        },
+        {
+          "column_name": "received_bopv3",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_bopv3"
+          }
+        },
+        {
+          "column_name": "received_dtp_hepb_hib3",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_dtp_hepb_hib3"
+          }
+        },
+        {
+          "column_name": "received_pcv3",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_pcv3"
+          }
+        },
+        {
+          "column_name": "received_surua_rubella1",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_surua_rubella1"
+          }
+        },
+        {
+          "column_name": "received_ipv",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "formSubmissionField": "received_ipv"
+          }
+        }
+      ]
+    },
+    {
       "name": "ec_anc_register",
       "columns": [
         {
