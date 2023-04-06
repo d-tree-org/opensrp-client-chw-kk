@@ -405,7 +405,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        CCDDevelopmentScreeningAction ccdDevelopmentScreeningAction = new CCDDevelopmentScreeningAction(serviceWrapper, alert, serviceIteration);
+        CCDDevelopmentScreeningAction ccdDevelopmentScreeningAction = new CCDDevelopmentScreeningAction(serviceWrapper, alert);
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
 
