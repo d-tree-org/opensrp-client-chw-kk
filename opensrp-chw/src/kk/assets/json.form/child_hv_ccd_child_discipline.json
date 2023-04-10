@@ -69,6 +69,9 @@
         "label": "{{child_hv_ccd_child_discipline.step1.caregiver_child_correction.label}}",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
+        "exclusive": [
+          "chk_distracts_child"
+        ],
         "options": [
           {
             "key": "chk_distracts_child",
