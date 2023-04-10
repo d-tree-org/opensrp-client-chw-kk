@@ -1896,11 +1896,11 @@
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+3m"
+            "offset": "+21d"
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+4m"
+            "offset": "+34d"
           }
         }
       },
@@ -1910,11 +1910,11 @@
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+1m"
+            "offset": "+14d"
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+5m"
+            "offset": "+2m"
           }
         }
       },
@@ -1924,11 +1924,11 @@
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+1m"
+            "offset": "+21d"
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+6m"
+            "offset": "+3m"
           }
         }
       },
@@ -1942,7 +1942,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+7m"
+            "offset": "+4m"
           }
         }
       },
@@ -1956,7 +1956,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+8m"
+            "offset": "+5m"
           }
         }
       },
@@ -1970,7 +1970,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+9m"
+            "offset": "+6m"
           }
         }
       },
@@ -1984,7 +1984,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+10m"
+            "offset": "+7m"
           }
         }
       },
@@ -1998,7 +1998,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+11m"
+            "offset": "+8m"
           }
         }
       },
@@ -2012,7 +2012,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+12m"
+            "offset": "+9m"
           }
         }
       },
@@ -2026,7 +2026,35 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+13m"
+            "offset": "+10m"
+          }
+        }
+      },
+      {
+        "id": "136",
+        "name": "CCD child discipline11",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+11m"
+          }
+        }
+      },
+      {
+        "id": "137",
+        "name": "CCD child discipline12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
           }
         }
       }
