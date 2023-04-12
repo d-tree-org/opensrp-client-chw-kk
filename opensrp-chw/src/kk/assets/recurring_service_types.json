@@ -1350,40 +1350,12 @@
     },
     "services": [
       {
-        "id": "81",
-        "name": "CCD development screening1",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+1d"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+3d"
-          }
-        }
-      },
-      {
-        "id": "82",
-        "name": "CCD development screening2",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+2d"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+8d"
-          }
-        }
-      },
-      {
         "id": "83",
         "name": "CCD development screening3",
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+5d"
+            "offset": "+8d"
           },
           "expiry": {
             "reference": "dob",
@@ -1892,7 +1864,7 @@
     "services": [
       {
         "id": "126",
-        "name": "CCD child discipline1",
+        "name": "CCD child discipline4",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1906,7 +1878,7 @@
       },
       {
         "id": "127",
-        "name": "CCD child discipline2",
+        "name": "CCD child discipline5",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1920,7 +1892,7 @@
       },
       {
         "id": "128",
-        "name": "CCD child discipline3",
+        "name": "CCD child discipline6",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1934,7 +1906,7 @@
       },
       {
         "id": "129",
-        "name": "CCD child discipline4",
+        "name": "CCD child discipline7",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1948,7 +1920,7 @@
       },
       {
         "id": "130",
-        "name": "CCD child discipline5",
+        "name": "CCD child discipline8",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1962,7 +1934,7 @@
       },
       {
         "id": "131",
-        "name": "CCD child discipline6",
+        "name": "CCD child discipline9",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1976,7 +1948,7 @@
       },
       {
         "id": "132",
-        "name": "CCD child discipline7",
+        "name": "CCD child discipline10",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1990,7 +1962,7 @@
       },
       {
         "id": "133",
-        "name": "CCD child discipline8",
+        "name": "CCD child discipline11",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2004,7 +1976,7 @@
       },
       {
         "id": "134",
-        "name": "CCD child discipline9",
+        "name": "CCD child discipline12",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2018,7 +1990,7 @@
       },
       {
         "id": "135",
-        "name": "CCD child discipline10",
+        "name": "CCD child discipline13",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2032,7 +2004,7 @@
       },
       {
         "id": "136",
-        "name": "CCD child discipline11",
+        "name": "CCD child discipline14",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2046,7 +2018,21 @@
       },
       {
         "id": "137",
-        "name": "CCD child discipline12",
+        "name": "CCD child discipline15",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+12m"
+          }
+        }
+      },
+      {
+        "id": "138",
+        "name": "CCD child discipline16",
         "schedule": {
           "due": {
             "reference": "dob",
