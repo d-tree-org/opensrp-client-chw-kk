@@ -50,6 +50,42 @@
     "title": "{{child_hv_ccd_introduction.step1.title}}",
     "fields": [
       {
+        "key": "chw_information_first_visit",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_ccd_introduction.step1.chw_information_first_visit.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp"
+      },
+      {
+        "key": "chw_information_first_visit_one",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_ccd_introduction.step1.chw_information_first_visit_one.text}}",
+        "text_color": "#000000",
+        "toaster_type": "info"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp"
+      },
+      {
         "key": "ccd_intro_note_1",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -81,6 +117,77 @@
           "value": "true",
           "err": "{{child_hv_introduction.step1.v_required.err}}"
         }
+      },
+      {
+        "key": "topic_twenty_one",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "type": "label",
+        "text": "{{child_hv_introduction.step1.topic_twenty_one.text}}",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
+        "key": "important_activities_child_develop",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_ccd_introduction.step1.important_activities_child_develop.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "page_bango_kitita",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "type": "label",
+        "text": "{{child_hv_introduction.step1.page_bango_kitita.text}}",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
+        "key": "important_things_child_loved",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_ccd_introduction.step1.important_things_child_loved.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true
+      },
+      {
+        "key": "reinforce_activities",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "type": "label",
+        "text": "{{child_hv_introduction.step1.reinforce_activities.text}}",
+        "text_color": "#000000",
+        "has_bg": true,
+        "bg_color": "#f595df",
+        "label_text_style": "italic"
       }
     ]
   },

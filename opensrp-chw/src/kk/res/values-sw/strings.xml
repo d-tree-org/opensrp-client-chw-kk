@@ -34,9 +34,9 @@
     <string name="malaria_prevention_llin_condition_poor">Mbaya</string>
     <string name="malaria_prevention_llin_condition_good">Nzuri</string>
     <string name="malaria_prevention_llin_condition_fair">Kawaida</string>
-    <string name="child_play_and_assessment_counselling">Tathmini maendeleo na fundisha kuhusu michezo</string>
-    <string name="ccd_problem_solving">CCD: Kutatua Tatizo</string>
-    <string name="ccd_caregiver_responsiveness">CCD: Muitikio wa mlezi kwa ishara na sauti za mtoto </string>
+    <string name="child_play_and_assessment_counselling"><b>CCD</b>: Tathmini maendeleo na fundisha kuhusu michezo</string>
+    <string name="ccd_problem_solving"><b>CCD</b>: Kutatua Tatizo</string>
+    <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Muitikio wa mlezi kwa ishara na sauti za mtoto </string>
     <string name="newborn_care_cord_care">Huduma muhimu kwa watoto wachanga: Jinsi ya kukitunza kitovu.</string>
 
     <string name="month_of">" mwezi wa %s"</string>
@@ -60,10 +60,10 @@
     <string name="malnutrition_screening">Kuchunguza utapia mlo na upungufu wa damu</string>
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto </string>
-    <string name="ccd_introduction"> CCD : Mwanzo </string>
-    <string name="ccd_development_screening"> CCD : Maendeleo ya ukuaji </string>
-    <string name="ccd_communication_assessment"> CCD : Hali ya mawasiliano </string>
-    <string name="ccd_child_discipline"> CCD : Nidhamu ya mtoto </string>
+    <string name="ccd_introduction"> <b>CCD</b>: Mwanzo </string>
+    <string name="ccd_development_screening"> <b>CCD</b>: Maendeleo ya ukuaji </string>
+    <string name="ccd_communication_assessment"> <b>CCD</b>: Hali ya mawasiliano </string>
+    <string name="ccd_child_discipline"> <b>CCD</b>: Nidhamu ya mtoto </string>
 
     <string name="child_safety"> Usalama wa mtoto </string>
 
@@ -146,4 +146,7 @@
     <string name="abbrv_months">mz</string>
     <string name="abbrv_weeks">wk</string>
     <string name="abbrv_years">mk</string>
+    <string name="bango_kitita_page_number_one_page">Ukurasa wa %s</string>
+    <string name="bango_kitita_page_number_two_pages"> Ukurasa wa %s na Ukurasa wa %s</string>
+
 </resources>

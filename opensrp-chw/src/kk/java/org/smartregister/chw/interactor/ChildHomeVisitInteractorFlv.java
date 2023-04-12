@@ -32,6 +32,7 @@ import org.smartregister.chw.helper.CCDIntroductionAction;
 import org.smartregister.chw.helper.ChildSafetyActionHelper;
 import org.smartregister.chw.helper.ComplimentaryFeedingActionHelper;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
+import org.smartregister.chw.util.BangoKititaPages;
 import org.smartregister.chw.util.Constants;
 import org.smartregister.chw.util.KKCoreConstants;
 import org.smartregister.chw.util.KkConstants;
@@ -152,7 +153,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateMalariaPrevention(serviceWrapperMap);
             evaluateCCDChildSafety(serviceWrapperMap);
             evaluateCCDIntro(serviceWrapperMap);
-            evaluateChildPlayAssessmentCounseling(serviceWrapperMap);
+            evaluateChildPlayAssessmentCounseling(serviceWrapperMap, childAgeInMonth);
             evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
             evaluateCareGiverResponsiveness(serviceWrapperMap);
             evaluateCCDChildDiscipline(serviceWrapperMap);
@@ -405,7 +406,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        CCDDevelopmentScreeningAction ccdDevelopmentScreeningAction = new CCDDevelopmentScreeningAction(context, alert);
+        CCDDevelopmentScreeningAction ccdDevelopmentScreeningAction = new CCDDevelopmentScreeningAction(serviceWrapper, alert);
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
 
@@ -439,7 +440,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         boolean isOverdue = new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
         String dueState = !isOverdue ? context.getString(R.string.due) : context.getString(R.string.overdue);
 
-        CCDCommunicationAssessmentAction ccdCommunicationAssessmentAction = new CCDCommunicationAssessmentAction(context, alert, childAge);
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPageCommunicatinAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        CCDCommunicationAssessmentAction ccdCommunicationAssessmentAction = new CCDCommunicationAssessmentAction(context, alert, childAge, bangoKititaPage);
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
 
@@ -588,7 +591,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
-    protected void evaluateChildPlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+    protected void evaluateChildPlayAssessmentCounseling(Map<String, ServiceWrapper> serviceWrapperMap, int childAge) throws Exception {
 
         ServiceWrapper serviceWrapper = serviceWrapperMap.get("Play Assessment and Counselling");
         if (serviceWrapper == null) return;
@@ -607,7 +610,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         String title = context.getString(R.string.child_play_and_assessment_counselling);
 
-        PlayAssessmentCounselingActionHelper helper = new PlayAssessmentCounselingActionHelper(serviceWrapper);
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPagePlayAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        PlayAssessmentCounselingActionHelper helper = new PlayAssessmentCounselingActionHelper(serviceWrapper, childAge, bangoKititaPage);
 
         BaseAncHomeVisitAction action = getBuilder(title)
                 .withHelper(helper)
@@ -729,7 +734,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String immunizationsTitle = context.getString(R.string.immunizations);
         Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
 
-        ImmunizationsHelper immunizationsHelper = new ImmunizationsHelper(serviceWrapper);
+        ImmunizationsHelper immunizationsHelper = new ImmunizationsHelper(serviceWrapper, memberObject);
 
         BaseAncHomeVisitAction immunizationsAction = getBuilder(immunizationsTitle)
                 .withHelper(immunizationsHelper)

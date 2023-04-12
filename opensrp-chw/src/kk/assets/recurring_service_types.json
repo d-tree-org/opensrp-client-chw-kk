@@ -1350,40 +1350,12 @@
     },
     "services": [
       {
-        "id": "81",
-        "name": "CCD development screening1",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+1d"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+3d"
-          }
-        }
-      },
-      {
-        "id": "82",
-        "name": "CCD development screening2",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+2d"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+8d"
-          }
-        }
-      },
-      {
         "id": "83",
         "name": "CCD development screening3",
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+5d"
+            "offset": "+8d"
           },
           "expiry": {
             "reference": "dob",
@@ -1679,39 +1651,11 @@
     "services": [
       {
         "id": "110",
-        "name": "CCD communication assessment1",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+1d"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+3d"
-          }
-        }
-      },
-      {
-        "id": "111",
-        "name": "CCD communication assessment2",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+2d"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+8d"
-          }
-        }
-      },
-      {
-        "id": "112",
         "name": "CCD communication assessment3",
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+5d"
+            "offset": "+8d"
           },
           "expiry": {
             "reference": "dob",
@@ -1720,7 +1664,7 @@
         }
       },
       {
-        "id": "113",
+        "id": "111",
         "name": "CCD communication assessment4",
         "schedule": {
           "due": {
@@ -1734,7 +1678,7 @@
         }
       },
       {
-        "id": "114",
+        "id": "112",
         "name": "CCD communication assessment5",
         "schedule": {
           "due": {
@@ -1748,7 +1692,7 @@
         }
       },
       {
-        "id": "115",
+        "id": "113",
         "name": "CCD communication assessment6",
         "schedule": {
           "due": {
@@ -1762,7 +1706,7 @@
         }
       },
       {
-        "id": "116",
+        "id": "114",
         "name": "CCD communication assessment7",
         "schedule": {
           "due": {
@@ -1776,7 +1720,7 @@
         }
       },
       {
-        "id": "117",
+        "id": "115",
         "name": "CCD communication assessment8",
         "schedule": {
           "due": {
@@ -1790,7 +1734,7 @@
         }
       },
       {
-        "id": "118",
+        "id": "116",
         "name": "CCD communication assessment9",
         "schedule": {
           "due": {
@@ -1804,7 +1748,7 @@
         }
       },
       {
-        "id": "119",
+        "id": "117",
         "name": "CCD communication assessment10",
         "schedule": {
           "due": {
@@ -1818,7 +1762,7 @@
         }
       },
       {
-        "id": "120",
+        "id": "118",
         "name": "CCD communication assessment11",
         "schedule": {
           "due": {
@@ -1832,7 +1776,7 @@
         }
       },
       {
-        "id": "121",
+        "id": "119",
         "name": "CCD communication assessment12",
         "schedule": {
           "due": {
@@ -1846,7 +1790,7 @@
         }
       },
       {
-        "id": "122",
+        "id": "120",
         "name": "CCD communication assessment13",
         "schedule": {
           "due": {
@@ -1860,7 +1804,7 @@
         }
       },
       {
-        "id": "123",
+        "id": "121",
         "name": "CCD communication assessment14",
         "schedule": {
           "due": {
@@ -1874,7 +1818,7 @@
         }
       },
       {
-        "id": "124",
+        "id": "122",
         "name": "CCD communication assessment15",
         "schedule": {
           "due": {
@@ -1888,7 +1832,7 @@
         }
       },
       {
-        "id": "125",
+        "id": "123",
         "name": "CCD communication assessment16",
         "schedule": {
           "due": {
@@ -1920,11 +1864,53 @@
     "services": [
       {
         "id": "126",
-        "name": "CCD child discipline1",
+        "name": "CCD child discipline4",
         "schedule": {
           "due": {
             "reference": "dob",
+            "offset": "+21d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+34d"
+          }
+        }
+      },
+      {
+        "id": "127",
+        "name": "CCD child discipline5",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+14d"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+2m"
+          }
+        }
+      },
+      {
+        "id": "128",
+        "name": "CCD child discipline6",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+21d"
+          },
+          "expiry": {
+            "reference": "dob",
             "offset": "+3m"
+          }
+        }
+      },
+      {
+        "id": "129",
+        "name": "CCD child discipline7",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
           },
           "expiry": {
             "reference": "dob",
@@ -1933,8 +1919,8 @@
         }
       },
       {
-        "id": "127",
-        "name": "CCD child discipline2",
+        "id": "130",
+        "name": "CCD child discipline8",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1947,8 +1933,8 @@
         }
       },
       {
-        "id": "128",
-        "name": "CCD child discipline3",
+        "id": "131",
+        "name": "CCD child discipline9",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1961,8 +1947,8 @@
         }
       },
       {
-        "id": "129",
-        "name": "CCD child discipline4",
+        "id": "132",
+        "name": "CCD child discipline10",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1975,8 +1961,8 @@
         }
       },
       {
-        "id": "130",
-        "name": "CCD child discipline5",
+        "id": "133",
+        "name": "CCD child discipline11",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -1989,8 +1975,8 @@
         }
       },
       {
-        "id": "131",
-        "name": "CCD child discipline6",
+        "id": "134",
+        "name": "CCD child discipline12",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2003,8 +1989,8 @@
         }
       },
       {
-        "id": "132",
-        "name": "CCD child discipline7",
+        "id": "135",
+        "name": "CCD child discipline13",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2017,8 +2003,8 @@
         }
       },
       {
-        "id": "133",
-        "name": "CCD child discipline8",
+        "id": "136",
+        "name": "CCD child discipline14",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2031,8 +2017,8 @@
         }
       },
       {
-        "id": "134",
-        "name": "CCD child discipline9",
+        "id": "137",
+        "name": "CCD child discipline15",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2045,8 +2031,8 @@
         }
       },
       {
-        "id": "135",
-        "name": "CCD child discipline10",
+        "id": "138",
+        "name": "CCD child discipline16",
         "schedule": {
           "due": {
             "reference": "dob",
@@ -2054,7 +2040,7 @@
           },
           "expiry": {
             "reference": "dob",
-            "offset": "+13m"
+            "offset": "+12m"
           }
         }
       }
@@ -2076,40 +2062,12 @@
     },
     "services": [
       {
-        "id": "140",
-        "name": "Play Assessment and Counselling 24 hours",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+0d"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+3d"
-          }
-        }
-      },
-      {
-        "id": "141",
-        "name": "Play Assessment and Counselling 3 days",
-        "schedule": {
-          "due": {
-            "reference": "dob",
-            "offset": "+3d"
-          },
-          "expiry": {
-            "reference": "dob",
-            "offset": "+8d"
-          }
-        }
-      },
-      {
         "id": "142",
         "name": "Play Assessment and Counselling 8 days",
         "schedule": {
           "due": {
             "reference": "dob",
-            "offset": "+5d"
+            "offset": "+8d"
           },
           "expiry": {
             "reference": "dob",
@@ -2315,7 +2273,6 @@
       }
     ]
   },
-
   {
     "type": "Child safety",
     "service_logic": "",
@@ -3133,7 +3090,7 @@
     },
     "services": [
       {
-        "id": "236",
+        "id": "237",
         "name": "Malnutrition Screening week5",
         "schedule": {
           "due": {
@@ -3147,7 +3104,7 @@
         }
       },
       {
-        "id": "236",
+        "id": "238",
         "name": "Malnutrition Screening day-5",
         "schedule": {
           "due": {
@@ -3161,7 +3118,7 @@
         }
       },
       {
-        "id": "237",
+        "id": "239",
         "name": "Malnutrition Screening month3",
         "schedule": {
           "due": {
@@ -3175,7 +3132,7 @@
         }
       },
       {
-        "id": "238",
+        "id": "240",
         "name": "Malnutrition Screening month4",
         "schedule": {
           "due": {
@@ -3189,7 +3146,7 @@
         }
       },
       {
-        "id": "239",
+        "id": "241",
         "name": "Malnutrition Screening month5",
         "schedule": {
           "due": {
@@ -3203,7 +3160,7 @@
         }
       },
       {
-        "id": "240",
+        "id": "260",
         "name": "Malnutrition Screening month6",
         "schedule": {
           "due": {
@@ -3217,7 +3174,7 @@
         }
       },
       {
-        "id": "241",
+        "id": "261",
         "name": "Malnutrition Screening month7",
         "schedule": {
           "due": {
@@ -3231,7 +3188,7 @@
         }
       },
       {
-        "id": "260",
+        "id": "262",
         "name": "Malnutrition Screening month8",
         "schedule": {
           "due": {
@@ -3245,7 +3202,7 @@
         }
       },
       {
-        "id": "261",
+        "id": "263",
         "name": "Malnutrition Screening month9",
         "schedule": {
           "due": {
@@ -3259,7 +3216,7 @@
         }
       },
       {
-        "id": "262",
+        "id": "264",
         "name": "Malnutrition Screening month10",
         "schedule": {
           "due": {
@@ -3273,7 +3230,7 @@
         }
       },
       {
-        "id": "263",
+        "id": "265",
         "name": "Malnutrition Screening month11",
         "schedule": {
           "due": {
@@ -3287,7 +3244,7 @@
         }
       },
       {
-        "id": "264",
+        "id": "266",
         "name": "Malnutrition Screening month12",
         "schedule": {
           "due": {

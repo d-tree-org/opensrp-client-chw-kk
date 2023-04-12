@@ -169,7 +169,7 @@
         "type": "native_radio",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "received_bcg",
         "label": "{{child_hv_immunization.step1.received_bcg.label}}",
         "options": [
           {
@@ -204,7 +204,7 @@
         "type": "native_radio",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "received_bopv0",
         "label": "{{child_hv_immunization.step1.received_bopv0.label}}",
         "options": [
           {
