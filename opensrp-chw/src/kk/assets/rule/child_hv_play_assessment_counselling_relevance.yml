@@ -1,23 +1,8 @@
 ---
-name: step1_interacts_with_baby_note
-description: interacts_with_baby_note toaster message
-priority: 1
-condition: "step1_interaction_with_baby.contains('move_baby_arms_legs_stroke_gently') ||
-            step1_interaction_with_baby.contains('get_baby_attention_shaker_toy')"
-actions:
-  - "isRelevant = true"
----
 name: step1_no_interaction_note
 description: no_interaction_note toaster message
 priority: 1
 condition: "step1_interaction_with_baby.contains('does_not_play')"
-actions:
-  - "isRelevant = true"
----
-name: step1_play_with_child
-description: play_with_child toaster message
-priority: 1
-condition: "step1_visit_6_visit_12 == 'true'"
 actions:
   - "isRelevant = true"
 ---
