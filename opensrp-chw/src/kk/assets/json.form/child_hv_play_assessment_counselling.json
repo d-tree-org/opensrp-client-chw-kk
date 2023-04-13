@@ -156,30 +156,6 @@
         "v_required": {
           "value": "true",
           "err": "{{child_hv_play_assessment_counselling.step1.play_with_child.v_required.err}}"
-        },
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
-        }
-      },
-      {
-        "key": "plays_with_child_praise",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "toaster_notes",
-        "text": "{{child_hv_play_assessment_counselling.step1.plays_with_child_praise.text}}",
-        "text_color": "#2D2E2D",
-        "toaster_type": "positive",
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_hv_play_assessment_counselling_relevance.yml"
-            }
-          }
         }
       },
       {

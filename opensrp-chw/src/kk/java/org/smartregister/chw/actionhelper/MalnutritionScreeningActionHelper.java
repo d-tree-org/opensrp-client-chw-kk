@@ -51,12 +51,16 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
             String servicePronoun = getPeriodNoun(serviceWrapper.getName());
             int period = getPeriod(servicePronoun);
 
-            if (servicePronoun.contains("month")) {
+            if (servicePronoun.contains("week")){
+                if (period >= 5){
+                    org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "child_growth_muac").put(JsonFormConstants.HIDDEN, true);
+                }
+            }else if (servicePronoun.contains("month")) {
                 if (period < 6) {
                     org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "child_growth_muac").put(JsonFormConstants.HIDDEN, true);
                 }
             }else{
-                org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "child_growth_muac").put(JsonFormConstants.HIDDEN, true);
+                org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, "child_growth_muac").put(JsonFormConstants.HIDDEN, false);
             }
             return jsonObject.toString();
         }catch (JSONException e){
