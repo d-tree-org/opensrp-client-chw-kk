@@ -61,6 +61,18 @@
         "type": "hidden"
       },
       {
+        "key": "mother_edi_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "person_identifier",
+        "openmrs_entity_id": "mother_edi_id",
+        "type": "edit_text",
+        "hint": "{{child_enrollment.step1.mother_edi_id.hint}}",
+        "v_regex": {
+          "value": "^[A-Za-z0-9]*$",
+          "err": "{{child_enrollment.step1.mother_edi_id.v_regex.err}}"
+        }
+      },
+      {
         "key": "unique_id",
         "openmrs_entity_parent": "",
         "openmrs_entity": "person_identifier",
