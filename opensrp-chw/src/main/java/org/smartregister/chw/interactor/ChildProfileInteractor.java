@@ -380,6 +380,9 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
             case DBConstants.KEY.GPS:
                 jsonObject.put(JsonFormUtils.VALUE, org.smartregister.chw.core.utils.Utils.getValue(client.getColumnmaps(), DBConstants.KEY.GPS, false));
                 break;
+            case Constants.JSON_FORM_CONSTANT.MOTHER_EDI_ID:
+                jsonObject.put(JsonFormUtils.VALUE, "");
+                break;
             default:
                 jsonObject.put(JsonFormUtils.VALUE, org.smartregister.chw.core.utils.Utils.getValue(client.getColumnmaps(), jsonObject.getString(JsonFormUtils.KEY), false));
                 break;

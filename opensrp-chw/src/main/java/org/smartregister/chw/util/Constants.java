@@ -61,6 +61,7 @@ public class Constants extends CoreConstants {
         public static final String ANC_MOTHER_REGISTRATION = "add_anc_registration";
         public static final String REFERRAL_TASK_ID = "referral_task_id";
         public static final String CAREGIVER_REGISTRATION = "add_caregiver_registration";
+        public static final String MOTHER_EDI_ID = "mother_edi_id";
 
         public static String getAncMotherRegistration(){
             return ANC_MOTHER_REGISTRATION;
