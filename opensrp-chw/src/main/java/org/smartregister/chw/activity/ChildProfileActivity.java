@@ -188,6 +188,9 @@ public class ChildProfileActivity extends CoreChildProfileActivity implements On
             case R.id.action_thinkmd_careplan:
                 presenter().showThinkMDCarePlan(getContext());
                 break;
+            case R.id.action_registration:
+                presenter().startFormForEdit(getString(R.string.edit_child_form_title, memberObject.getFirstName()), presenter().getChildClient());
+                break;
             default:
                 break;
         }
