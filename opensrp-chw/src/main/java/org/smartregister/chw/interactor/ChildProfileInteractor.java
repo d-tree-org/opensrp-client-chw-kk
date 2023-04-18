@@ -35,6 +35,7 @@ import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.Photo;
 import org.smartregister.domain.db.EventClient;
 import org.smartregister.family.FamilyLibrary;
@@ -64,6 +65,7 @@ import timber.log.Timber;
 
 import static org.smartregister.chw.core.utils.CoreConstants.ThinkMdConstants.THINKMD_IDENTIFIER_TYPE;
 import static org.smartregister.opd.utils.OpdJsonFormUtils.locationId;
+import static org.smartregister.util.AssetHandler.jsonStringToJava;
 
 public class ChildProfileInteractor extends CoreChildProfileInteractor {
     public static final String TAG = ChildProfileInteractor.class.getName();
@@ -196,7 +198,7 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
 
             long lastSyncTimeStamp = getAllSharedPreferences().fetchLastUpdatedAtDate(0);
             Date lastSyncDate = new Date(lastSyncTimeStamp);
-            List<EventClient> listEvent= getSyncHelper().getEvents(lastSyncDate, BaseRepository.TYPE_Unprocessed);
+            List<EventClient> listEvent = getSyncHelper().getEvents(lastSyncDate, BaseRepository.TYPE_Unprocessed);
             getClientProcessorForJava().processClient(getSyncHelper().getEvents(lastSyncDate, BaseRepository.TYPE_Unprocessed));
             getAllSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
         } catch (Exception e) {
@@ -288,6 +290,9 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
     @Override
     public JSONObject getAutoPopulatedJsonEditFormString(String formName, String title, Context context, CommonPersonObjectClient client) {
         try {
+
+            Client ecClient = getEditClient(client.getCaseId());
+
             JSONObject form = FormUtils.getInstance(context).getFormJson(formName);
             LocationPickerView lpv = new LocationPickerView(context);
             lpv.init();
@@ -311,7 +316,7 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                    processPopulatableFields(client, jsonObject, jsonArray);
+                    processPopulatableFields(client, jsonObject, jsonArray, ecClient);
 
                 }
 
@@ -324,7 +329,27 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
         return null;
     }
 
-    public void processPopulatableFields(CommonPersonObjectClient client, JSONObject jsonObject, JSONArray jsonArray) throws JSONException {
+    private Client getEditClient(String baseEntityID) {
+        Client ecClient = null;
+        String query_client = "select json from client where baseEntityId = ? order by updatedAt desc";
+        try (Cursor cursor =  ChwApplication.getInstance().getRepository().getReadableDatabase().rawQuery(query_client, new String[]{baseEntityID})) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                ecClient = jsonStringToJava(cursor.getString(0), Client.class);
+                cursor.moveToNext();
+            }
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+        return ecClient;
+    }
+
+    public CommonRepository getCommonRepository(String tableName) {
+        return org.smartregister.chw.core.utils.Utils.context().commonrepository(tableName);
+    }
+
+    public void processPopulatableFields(CommonPersonObjectClient client, JSONObject jsonObject, JSONArray jsonArray, Client ecClient) throws JSONException {
 
         switch (jsonObject.getString(JsonFormUtils.KEY).toLowerCase()) {
             case org.smartregister.family.util.Constants.JSON_FORM_KEY.DOB_UNKNOWN:
@@ -381,7 +406,8 @@ public class ChildProfileInteractor extends CoreChildProfileInteractor {
                 jsonObject.put(JsonFormUtils.VALUE, org.smartregister.chw.core.utils.Utils.getValue(client.getColumnmaps(), DBConstants.KEY.GPS, false));
                 break;
             case Constants.JSON_FORM_CONSTANT.MOTHER_EDI_ID:
-                jsonObject.put(JsonFormUtils.VALUE, "");
+                jsonObject.put(JsonFormUtils.VALUE, ecClient.getIdentifier(Constants.JSON_FORM_CONSTANT.MOTHER_EDI_ID) != null ?
+                        ecClient.getIdentifier(Constants.JSON_FORM_CONSTANT.MOTHER_EDI_ID) : "");
                 break;
             default:
                 jsonObject.put(JsonFormUtils.VALUE, org.smartregister.chw.core.utils.Utils.getValue(client.getColumnmaps(), jsonObject.getString(JsonFormUtils.KEY), false));
