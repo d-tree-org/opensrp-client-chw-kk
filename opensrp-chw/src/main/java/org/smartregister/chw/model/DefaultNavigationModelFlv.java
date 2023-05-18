@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class DefaultNavigationModelFlv implements NavigationModel.Flavor {
 
-    private List<NavigationOption> navigationOptions = new ArrayList<>();
+    public List<NavigationOption> navigationOptions = new ArrayList<>();
 
     @Override
     public List<NavigationOption> getNavigationItems() {
