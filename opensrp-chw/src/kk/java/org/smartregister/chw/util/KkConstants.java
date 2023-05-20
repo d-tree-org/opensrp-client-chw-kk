@@ -5,10 +5,6 @@ package org.smartregister.chw.util;
  */
 public class KkConstants extends Constants{
 
-    public static final class KKDrawerMenu {
-        public static final String GROUP_SESSION = "Group Sessions";
-    }
-
     public static class KKJSON_FORM_CONSTANT {
 
         public static class KKCHILD_HOME_VISIT {
