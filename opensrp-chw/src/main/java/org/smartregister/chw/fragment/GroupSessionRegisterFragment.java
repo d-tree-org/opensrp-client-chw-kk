@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -57,12 +58,23 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
         dueOnlyLayout = view.findViewById(R.id.due_only_layout);
         dueOnlyLayout.setVisibility(View.VISIBLE);
         dueOnlyLayout.setOnClickListener(registerActionHandler);
+
+        dueOnlyLayout.setVisibility(View.GONE);
+
+        // Update Search bar
+        View searchBarLayout = view.findViewById(R.id.search_bar_layout);
+        searchBarLayout.setVisibility(View.GONE);
+
     }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_group_session_register;
+    }
 
     @Override
     protected int getToolBarTitle() {
-        return R.string.child_register_title;
+        return R.string.menu_group_sessions;
     }
 
     @Override
@@ -208,24 +220,6 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
          */
     }
 
-    public void toggleFilterSelection(View dueOnlyLayout) {
-        if (dueOnlyLayout != null) {
-            if (dueOnlyLayout.getTag() == null) {
-                dueFilterActive = true;
-                dueFilter(dueOnlyLayout);
-            } else if (dueOnlyLayout.getTag().toString().equals(DUE_FILTER_TAG)) {
-                dueFilterActive = false;
-                normalFilter(dueOnlyLayout);
-            }
-        }
-    }
-
-    private void normalFilter(View dueOnlyLayout) {
-        filter(searchText(), "", presenter().getMainCondition());
-        dueOnlyLayout.setTag(null);
-        switchViews(dueOnlyLayout, false);
-    }
-
     protected String getDueFilterCondition() {
         return presenter().getDueFilterCondition();
     }
@@ -311,25 +305,6 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
             if (dueFilterActive)
                 query = sqb.addCondition(((GroupSessionRegisterFragmentPresenter) presenter()).getDueCondition());
             query = sqb.Endquery(query);
-        } catch (Exception e) {
-            Timber.e(e);
-        }
-
-        return query;
-    }
-
-    private String filterandSortQuery() {
-        SmartRegisterQueryBuilder sqb = new SmartRegisterQueryBuilder(mainSelect);
-
-        String query = "";
-        try {
-            if (StringUtils.isNotBlank(filters))
-                sqb.addCondition(((GroupSessionRegisterFragmentPresenter) presenter()).getFilterString(filters));
-
-            if (dueFilterActive)
-                sqb.addCondition(((GroupSessionRegisterFragmentPresenter) presenter()).getDueCondition());
-            query = sqb.orderbyCondition(Sortqueries);
-            query = sqb.Endquery(sqb.addlimitandOffset(query, clientAdapter.getCurrentlimit(), clientAdapter.getCurrentoffset()));
         } catch (Exception e) {
             Timber.e(e);
         }
