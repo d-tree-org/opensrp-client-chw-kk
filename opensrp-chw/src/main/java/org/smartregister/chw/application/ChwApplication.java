@@ -369,7 +369,7 @@ public class ChwApplication extends CoreChwApplication implements SyncStatusBroa
         }
         registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.FP_REGISTER_ACTIVITY, FpRegisterActivity.class);
         registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.UPDATES_REGISTER_ACTIVITY, UpdatesRegisterActivity.class);
-        registeredActivities.put(KkConstants.REGISTERED_ACTIVITIES.GROUP_SESSION, GroupSessionRegisterActivity.class);
+        registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.GROUP_SESSION_REGISTER_ACTIVITY, GroupSessionRegisterActivity.class);
         return registeredActivities;
     }
 
