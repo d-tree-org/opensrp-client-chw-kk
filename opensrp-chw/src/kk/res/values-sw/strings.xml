@@ -150,5 +150,6 @@
     <string name="bango_kitita_page_number_two_pages"> Ukurasa wa %s na Ukurasa wa %s</string>
 
     <string name="menu_group_sessions"> Mafundisho ya vikundi </string>
+    <string name="new_session"> Mafundisho mapya </string>
 
 </resources>

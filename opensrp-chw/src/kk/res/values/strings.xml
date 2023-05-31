@@ -169,5 +169,6 @@
     <string name="bango_kitita_page_number_two_pages">Page %s and Page %s</string>
 
     <string name="menu_group_sessions"> Group Sessions </string>
+    <string name="new_session"> New Session </string>
 
 </resources>
