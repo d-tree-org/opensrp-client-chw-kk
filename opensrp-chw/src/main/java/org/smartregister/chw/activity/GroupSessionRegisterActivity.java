@@ -77,6 +77,7 @@ public class GroupSessionRegisterActivity extends BaseRegisterActivity implement
 
         if (bottomNavigationView != null) {
             bottomNavigationView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+
             bottomNavigationView.getMenu().removeItem(R.id.action_clients);
             bottomNavigationView.getMenu().removeItem(R.id.action_register);
             bottomNavigationView.getMenu().removeItem(R.id.action_search);
@@ -84,7 +85,7 @@ public class GroupSessionRegisterActivity extends BaseRegisterActivity implement
             bottomNavigationView.getMenu().removeItem(R.id.action_job_aids);
             bottomNavigationView.getMenu().removeItem(R.id.action_scan_qr);
 
-            bottomNavigationView.inflateMenu(R.menu.bottom_nav_family_menu);
+            bottomNavigationView.inflateMenu(R.menu.gc_bottom_nav);
 
             bottomNavigationHelper.disableShiftMode(bottomNavigationView);
 
