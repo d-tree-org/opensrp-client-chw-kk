@@ -1436,28 +1436,32 @@
           "column_name": "session_id",
           "type": "Event",
           "json_mapping": {
-            "field": "session_id"
+            "field": "obs.fieldCode",
+            "concept": "session_id"
           }
         },
         {
           "column_name": "session_date",
           "type": "Event",
           "json_mapping": {
-            "field": "session_date"
+            "field": "obs.fieldCode",
+            "concept": "session_date"
           }
         },
         {
           "column_name": "session_place",
           "type": "Event",
           "json_mapping": {
-            "field": "session_place"
+            "field": "obs.fieldCode",
+            "concept": "session_place"
           }
         },
         {
           "column_name": "session_duration",
           "type": "Event",
           "json_mapping": {
-            "field": "session_duration"
+            "field": "obs.fieldCode",
+            "concept": "session_duration"
           }
         }
       ]
