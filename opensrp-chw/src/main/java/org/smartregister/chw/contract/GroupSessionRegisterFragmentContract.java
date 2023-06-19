@@ -1,12 +1,9 @@
 package org.smartregister.chw.contract;
 
-import org.json.JSONArray;
+import org.smartregister.domain.Event;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
-import org.smartregister.configurableviews.model.View;
 import org.smartregister.configurableviews.model.ViewConfiguration;
-import org.smartregister.domain.Response;
-import org.smartregister.view.contract.BaseRegisterContract;
 import org.smartregister.view.contract.BaseRegisterFragmentContract;
 
 import java.util.List;
@@ -29,11 +26,18 @@ public interface GroupSessionRegisterFragmentContract {
 
         String getDueFilterCondition();
 
+        void fetchSessionDetails();
+
+        void createSessionEvent(String form);
+
     }
 
     public interface View extends BaseRegisterFragmentContract.View {
         void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns);
         Presenter presenter();
+
+        String getSessionDetails();
+
     }
 
     public interface Model {
@@ -54,6 +58,19 @@ public interface GroupSessionRegisterFragmentContract {
 
         //JSONArray getJsonArray(Response<String> response);
 
+    }
+
+    public interface Interactor {
+
+        void createSessionEvent(String json, InteractorCallBack callBack);
+
+        interface InteractorCallBack {
+
+            void onEventCreated(Event baseEvent);
+
+            void onEventFailed(String message);
+
+        }
     }
 
 }

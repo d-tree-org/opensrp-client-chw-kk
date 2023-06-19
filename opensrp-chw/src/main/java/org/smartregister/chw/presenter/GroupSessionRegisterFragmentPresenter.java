@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.smartregister.chw.R;
 import org.smartregister.chw.contract.GroupSessionRegisterFragmentContract;
 import org.smartregister.chw.core.utils.CoreConstants;
+import org.smartregister.chw.interactor.GroupSessionInteractor;
+import org.smartregister.domain.Event;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.View;
@@ -16,14 +18,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import timber.log.Timber;
+
 /**
  * Author issyzac on 20/05/2023
  */
-public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegisterFragmentContract.Presenter {
+public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegisterFragmentContract.Presenter, GroupSessionRegisterFragmentContract.Interactor.InteractorCallBack {
 
     protected Set<View> visibleColumns = new TreeSet<>();
     private WeakReference<GroupSessionRegisterFragmentContract.View> viewReference;
     private GroupSessionRegisterFragmentContract.Model model;
+    private GroupSessionRegisterFragmentContract.Interactor interactor;
     private RegisterConfiguration configuration;
     private String viewConfigurationIdentifier;
 
@@ -33,6 +38,7 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
         this.model = model;
         this.viewConfigurationIdentifier = viewConfrigurationIdentifier;
         this.configuration = model.defaultRegisterConfiguration();
+        this.interactor = new GroupSessionInteractor();
     }
 
     @Override
@@ -51,6 +57,32 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
             getView().updateSearchBarHint(getView().getContext().getString(R.string.search_name_or_id));
         }
 
+    }
+
+    @Override
+    public void fetchSessionDetails() {
+        //Fetch Session From the view
+        String eventDetails = getView().getSessionDetails();
+
+
+        createSessionEvent(eventDetails);
+    }
+
+    @Override
+    public void createSessionEvent(String form) {
+        interactor.createSessionEvent(form, this);
+    }
+
+    //When the event has already been created
+    @Override
+    public void onEventCreated(Event baseEvent) {
+        //todo: Dismiss View loader
+        //Go elsewhere
+    }
+
+    @Override
+    public void onEventFailed(String message) {
+        //todo: Implement event creation failed
     }
 
     private void setVisibleColumns(Set<View> visibleColumns) {

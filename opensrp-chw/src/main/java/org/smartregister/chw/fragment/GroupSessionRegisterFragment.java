@@ -18,28 +18,38 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
 import androidx.loader.content.Loader;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.anc.util.DBConstants;
+import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.GroupSessionRegisterFragmentContract;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.fragment.BaseChwRegisterFragment;
 import org.smartregister.chw.core.provider.CoreChildRegisterProvider;
+import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.model.GroupSessionRegisterFragmentModel;
 import org.smartregister.chw.presenter.GroupSessionRegisterFragmentPresenter;
+import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.chw.util.KkConstants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.fragment.NoMatchDialogFragment;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
+import org.smartregister.util.FormUtils;
 import org.smartregister.util.Utils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
 import java.util.HashMap;
 import java.util.Set;
+import java.util.UUID;
 
 import timber.log.Timber;
 
@@ -56,12 +66,15 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
     protected View dueOnlyLayout;
     protected boolean dueFilterActive = false;
 
+    private MaterialButton nextButton;
 
     //New sessions implementation
     private TextInputEditText etSessionDate;
     private AppCompatSpinner spTypeOfPlace;
     private TextInputLayout etGps;
     private TextInputLayout etDuration;
+
+    private static FormUtils formUtils;
 
     private static final String[] places = {"Session place","Hospital", "Health Center", "School"};
 
@@ -80,6 +93,13 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
             @Override
             public void onClick(View view) {
                 selectSessionDate();
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter().fetchSessionDetails();
             }
         });
 
@@ -106,6 +126,8 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
         spTypeOfPlace = view.findViewById(R.id.spinnerTypeOfPlace);
         etGps = view.findViewById(R.id.editTextGps);
         etDuration = view.findViewById(R.id.editTextDuration);
+
+        nextButton = view.findViewById(R.id.buttonNext);
 
         setupSpinner();
 
@@ -213,6 +235,52 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
     @Override
     public GroupSessionRegisterFragmentContract.Presenter presenter() {
         return (GroupSessionRegisterFragmentContract.Presenter) presenter;
+    }
+
+    @Override
+    public String getSessionDetails(){
+        //Get json form
+        String jsonForm = "";
+        try {
+            JSONObject form = getFormUtils().getFormJson("group_session");
+            JSONArray fields = JsonFormUtils.fields(form);
+
+            JSONObject sessionId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_ID);
+            JSONObject sessionDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_DATE);
+            JSONObject sessionPlace = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_PLACE);
+            JSONObject sessionDuration = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_DURATION);
+
+            //Generate a randomUUID for the form
+            String id = UUID.randomUUID().toString();
+
+            if (sessionId != null)
+                sessionId.put("value", id);
+
+            String sessionDateValue = etSessionDate.toString();
+            if (sessionDate != null)
+                sessionDate.put("value", sessionDateValue);
+
+            String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
+            if (sessionPlace != null)
+                sessionPlace.put("value", sessionPlaceString);
+
+            String sessionDurationString = etDuration.toString();
+            if (sessionDuration != null)
+                sessionDuration.put("value", sessionDurationString);
+
+            jsonForm = form.toString();
+
+        }catch (Exception e){
+            Timber.e(e);
+        }
+        return jsonForm;
+    }
+
+    private static FormUtils getFormUtils() throws Exception {
+        if (formUtils == null){
+            formUtils = FormUtils.getInstance(ChwApplication.getInstance().getApplicationContext());
+        }
+        return formUtils;
     }
 
     @Override
