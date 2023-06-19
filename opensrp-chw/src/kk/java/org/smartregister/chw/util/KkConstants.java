@@ -104,6 +104,14 @@ public class KkConstants extends Constants{
             }
 
         }
+
+        public static class GROUP_SESSION_FORM {
+            public static final String SESSION_ID = "session_id";
+            public static final String SESSION_DATE = "session_date";
+            public static final String SESSION_PLACE = "session_place";
+            public static final String SESSION_DURATION = "session_duration";
+        }
+
     }
 
     public static final class EventType {
@@ -113,6 +121,7 @@ public class KkConstants extends Constants{
 
     public static final class TABLES {
         public static final String CHILD_IMMUNIZATIONS = "ec_child_immunizations";
+        public static final String GROUP_SESSION = "ec_group_session";
     }
 
 }
