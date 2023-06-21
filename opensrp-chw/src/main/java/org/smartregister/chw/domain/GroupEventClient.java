@@ -1,7 +1,8 @@
 package org.smartregister.chw.domain;
 
-import org.smartregister.domain.Client;
-import org.smartregister.domain.Event;
+
+import org.smartregister.clientandeventmodel.Client;
+import org.smartregister.clientandeventmodel.Event;
 
 /**
  * Author issyzac on 15/06/2023

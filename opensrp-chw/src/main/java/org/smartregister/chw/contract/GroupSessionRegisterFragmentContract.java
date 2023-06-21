@@ -1,6 +1,6 @@
 package org.smartregister.chw.contract;
 
-import org.smartregister.domain.Event;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.ViewConfiguration;

@@ -9,13 +9,11 @@ import org.smartregister.chw.contract.GroupSessionRegisterFragmentContract;
 import org.smartregister.chw.domain.GroupEventClient;
 import org.smartregister.chw.util.GroupSessionUtils;
 import org.smartregister.chw.util.KkConstants;
-import org.smartregister.domain.Client;
-import org.smartregister.domain.Event;
+import org.smartregister.clientandeventmodel.Client;
+import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.domain.db.EventClient;
-import org.smartregister.domain.jsonmapping.ClientClassification;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
-import org.smartregister.repository.BaseRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,8 +26,6 @@ import timber.log.Timber;
  * Author issyzac on 12/06/2023
  */
 public class GroupSessionInteractor implements GroupSessionRegisterFragmentContract.Interactor {
-
-    private ClientClassification classification;
 
     @Override
     public void createSessionEvent(String form, GroupSessionRegisterFragmentContract.Interactor.InteractorCallBack callBack) {
@@ -64,9 +60,7 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
 
             long lastSyncTimeStamp = getAllSharedPreferences().fetchLastUpdatedAtDate(0L);
             Date lastSyncDate = new Date(lastSyncTimeStamp);
-            processGroupClient(eventClientList);
-            //TODO: Handle processing
-            //getClientProcessorForJava().processEvent(event, client, );
+            processGroupClient(groupEventJson.toString(), groupClientJson.toString());
             getAllSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
 
             callBack.onEventCreated(event);
@@ -77,10 +71,13 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
         }
     }
 
-    private void processGroupClient(List<GroupEventClient> eventClients){
+    private void processGroupClient(String eventJson, String clientJson){
         try {
+
             List<EventClient> eventClientList = new ArrayList<>();
-            EventClient ec = new EventClient(eventClients.get(0).getEvent(), eventClients.get(0).getClient());
+            org.smartregister.domain.Event domainEvent = JsonFormUtils.gson.fromJson(eventJson, org.smartregister.domain.Event.class);
+            org.smartregister.domain.Client domainClient = JsonFormUtils.gson.fromJson(clientJson, org.smartregister.domain.Client.class);
+            EventClient ec = new EventClient(domainEvent, domainClient);
             eventClientList.add(ec);
             getClientProcessorForJava().processClient(eventClientList);
 
@@ -88,12 +85,5 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
             Timber.e(e);
         }
     }
-    private ClientClassification getClassification() {
-        if (classification == null) {
-            //classification = getClientProcessorForJava().assetJsonToJava("ec_client_classification.json", ClientClassification.class);
-        }
-        return classification;
-    }
-
 
 }
