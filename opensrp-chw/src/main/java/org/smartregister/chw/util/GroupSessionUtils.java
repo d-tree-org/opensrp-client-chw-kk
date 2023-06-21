@@ -55,7 +55,7 @@ public class GroupSessionUtils extends CoreJsonFormUtils {
 
             Client groupClient = createGroupClient(fields, formTag(allSharedPreferences), sessionEntityId);
 
-            eventClient = new GroupEventClient(groupClient, baseEvent);
+ //           eventClient = new GroupEventClient(groupClient, baseEvent);
 
             return eventClient;
 

@@ -26,13 +26,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.anc.util.DBConstants;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.GroupSessionRegisterFragmentContract;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.fragment.BaseChwRegisterFragment;
 import org.smartregister.chw.core.provider.CoreChildRegisterProvider;
-import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.model.GroupSessionRegisterFragmentModel;
 import org.smartregister.chw.presenter.GroupSessionRegisterFragmentPresenter;
 import org.smartregister.chw.util.JsonFormUtils;
@@ -100,6 +98,7 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
             @Override
             public void onClick(View view) {
                 presenter().fetchSessionDetails();
+                ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
             }
         });
 
