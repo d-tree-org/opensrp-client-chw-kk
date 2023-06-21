@@ -54,8 +54,12 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
                 getSyncHelper().addClient(groupClient.getBaseEntityId(), groupClientJson);
             }
 
-            Event event = (Event)JsonFormUtils.gson.fromJson(groupEventJson.toString(), Event.class);
-            Client client = (Client)JsonFormUtils.gson.fromJson(groupClientJson.toString(), Client.class);
+            /**
+             * TODO: Answer if we should process the event here or wait until all the contents have been
+             * added to the event
+             */
+            Event event = JsonFormUtils.gson.fromJson(groupEventJson.toString(), Event.class);
+            Client client = JsonFormUtils.gson.fromJson(groupClientJson.toString(), Client.class);
             eventClientList.add(new GroupEventClient(client, event));
 
             long lastSyncTimeStamp = getAllSharedPreferences().fetchLastUpdatedAtDate(0L);
