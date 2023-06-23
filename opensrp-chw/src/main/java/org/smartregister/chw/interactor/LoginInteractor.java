@@ -1,8 +1,15 @@
 package org.smartregister.chw.interactor;
 
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
+
 import org.smartregister.chw.contract.LoginJobScheduler;
+import org.smartregister.job.DuplicateCleanerWorker;
 import org.smartregister.login.interactor.BaseLoginInteractor;
 import org.smartregister.view.contract.BaseLoginContract;
+
+import java.util.concurrent.TimeUnit;
 
 
 /***
@@ -29,5 +36,10 @@ public class LoginInteractor extends BaseLoginInteractor implements BaseLoginCon
     protected void scheduleJobsImmediately() {
         super.scheduleJobsImmediately();
         scheduler.scheduleJobsImmediately();
+
+
+        // This will schedule clean duplicate id job implemented in client-core
+        String[] eventTypes = new String[]{"Family Member Registration", "Family Registration", "ANC Registration", "PNC Child Registration"};
+        DuplicateCleanerWorker.scheduleJob(this.getApplicationContext(), 15, eventTypes);
     }
 }
