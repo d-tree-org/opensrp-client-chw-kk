@@ -176,6 +176,7 @@ public class PncRegisterInteractor extends BaseAncRegisterInteractor {
             allSharedPreferences, String familyBaseEntityId, String dob, String familyName) {
         String uniqueChildID = AncLibrary.getInstance().getUniqueIdRepository().getNextUniqueId().getOpenmrsId();
 
+        // The Unique id needs to be closed here
         if (StringUtils.isNotBlank(uniqueChildID)) {
             String childBaseEntityId = org.smartregister.chw.anc.util.JsonFormUtils.generateRandomUUIDString();
             try {
