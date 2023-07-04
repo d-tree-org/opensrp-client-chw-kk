@@ -18,6 +18,12 @@ import org.smartregister.chw.R;
 public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     private DialogListener dialogListener;
+    private String selectedChildBaseEntityId;
+
+    public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId) {
+        this.selectedChildBaseEntityId = selectedChildBaseEntityId;
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -27,7 +33,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (dialogListener != null) {
-                    dialogListener.onSelectComeWithPrimaryCareGiver(which == 0);
+                    dialogListener.onSelectComeWithPrimaryCareGiver(which == 0, selectedChildBaseEntityId);
                 }
                 dialog.dismiss();
             }
@@ -48,7 +54,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     }
 
     public interface DialogListener {
-        void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver);
+        void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId);
     }
 
 }

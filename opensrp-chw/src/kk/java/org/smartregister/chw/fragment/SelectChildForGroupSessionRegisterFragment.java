@@ -2,8 +2,6 @@ package org.smartregister.chw.fragment;
 
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
-
 import com.nerdstone.neatformcore.views.widgets.CheckBoxNFormView;
 
 import org.smartregister.chw.R;
@@ -11,7 +9,6 @@ import org.smartregister.chw.adapter.SelectChildAdapterGS;
 import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.chw.provider.SelectChildForGroupSessionFragmentProvider;
 import org.smartregister.configurableviews.model.View;
-import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
 
@@ -41,16 +38,17 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
         if (view.getTag() instanceof org.smartregister.commonregistry.CommonPersonObjectClient
                 && view.getTag(R.id.VIEW_ID) == CLICK_VIEW_DOSAGE_STATUS) {
             CommonPersonObjectClient client = (org.smartregister.commonregistry.CommonPersonObjectClient) view.getTag();
+            String selectedChildBaseEntityId = client.getCaseId();
             boolean isChildSelected = ((CheckBoxNFormView) view).isChecked();
             if (isChildSelected) {
                 ((CheckBoxNFormView) view).setChecked(true);
-                SelectedChildGS selectedChildGS = new SelectedChildGS(client.getCaseId(), SelectedChildGS.ChildStatus.SELECTED, false);
-                childRegisterProvider.addChildToChildSelectedList(client.getCaseId(), selectedChildGS);
+                SelectedChildGS selectedChildGS = new SelectedChildGS(selectedChildBaseEntityId, SelectedChildGS.ChildStatus.SELECTED, false);
+                childRegisterProvider.addChildToChildSelectedList(selectedChildBaseEntityId, selectedChildGS);
                 view.setBackgroundColor(view.getContext().getColor(R.color.white));
-                SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment();
+                SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(selectedChildBaseEntityId);
                 selectChildForGroupSessionDialogFragment.show(getChildFragmentManager(), "SelectChildForGroupSessionDialogFragment");
             } else {
-                childRegisterProvider.removeChildFromChildSelectedList(client.getCaseId());
+                childRegisterProvider.removeChildFromChildSelectedList(selectedChildBaseEntityId);
                 ((CheckBoxNFormView) view).setChecked(false);
             }
         }
@@ -59,7 +57,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
 
 
     @Override
-    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver) {
-        Toast.makeText(getActivity(), "Come with Primary Care Giver: " + isComeWithPrimaryCareGiver, Toast.LENGTH_SHORT).show();
+    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId) {
+        Toast.makeText(getActivity(), "The Child with id " + selectedChildBaseEntityId + " Come with Primary Care Giver: " + isComeWithPrimaryCareGiver, Toast.LENGTH_SHORT).show();
     }
 }
