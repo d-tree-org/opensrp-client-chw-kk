@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
+import org.smartregister.chw.R;
+
 /**
  * Author issyzac on 04/07/2023
  */
@@ -28,7 +30,7 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
     @Override
     protected int getLayout() {
-        return super.getLayout();
+        return R.layout.fragment_group_session_step_three;
     }
 
     @Override

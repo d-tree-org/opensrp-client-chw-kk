@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.fragment.BaseGroupSessionRegisterFragment;
+import org.smartregister.chw.fragment.GcFinalStepFragment;
 import org.smartregister.chw.fragment.GcRegistrationStageFragment;
 import org.smartregister.chw.fragment.SelectChildForGroupSessionRegisterFragment;
 import org.smartregister.chw.presenter.GroupSessionRegisterPresenter;
@@ -52,7 +53,7 @@ public class GroupSessionRegisterActivity extends BaseRegisterActivity implement
     protected Fragment[] getOtherFragments() {
         Fragment[] fragments = new Fragment[2];
         fragments[0] = new SelectChildForGroupSessionRegisterFragment();
-        fragments[1] = new SelectChildForGroupSessionRegisterFragment();
+        fragments[1] = new GcFinalStepFragment();
         return fragments;
     }
 
