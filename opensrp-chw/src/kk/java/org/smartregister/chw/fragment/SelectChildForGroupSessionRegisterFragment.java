@@ -1,7 +1,5 @@
 package org.smartregister.chw.fragment;
 
-import android.widget.Toast;
-
 import com.nerdstone.neatformcore.views.widgets.CheckBoxNFormView;
 
 import org.smartregister.chw.R;
