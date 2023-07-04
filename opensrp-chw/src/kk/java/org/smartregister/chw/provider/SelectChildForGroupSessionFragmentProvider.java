@@ -67,9 +67,9 @@ public class SelectChildForGroupSessionFragmentProvider extends ChildRegisterPro
         return childList;
     }
 
-    public void updateChildSelectionStatus(String baseEntityId, SelectedChildGS.ChildStatus childSelectionStatus) {
+    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver) {
         if (childList.containsKey(baseEntityId)) {
-            Objects.requireNonNull(childList.get(baseEntityId)).setChildSelectionStatus(childSelectionStatus);
+            Objects.requireNonNull(childList.get(baseEntityId)).setCameWithPrimaryCareGiver(cameWithCareGiver);
             ;
         }
     }

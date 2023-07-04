@@ -14,6 +14,8 @@ import org.smartregister.cursoradapter.RecyclerViewProvider;
 
 import java.util.Set;
 
+import timber.log.Timber;
+
 /**
  * Created by Kassim Sheghembe on 2023-06-19
  */
@@ -56,6 +58,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
 
     @Override
     public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId) {
-        Toast.makeText(getActivity(), "The Child with id " + selectedChildBaseEntityId + " Come with Primary Care Giver: " + isComeWithPrimaryCareGiver, Toast.LENGTH_SHORT).show();
+        Timber.d("The Child with id %s Come with Primary Care Giver: %s", selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
+        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
     }
 }
