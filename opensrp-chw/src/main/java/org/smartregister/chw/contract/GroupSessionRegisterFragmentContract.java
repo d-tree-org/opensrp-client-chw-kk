@@ -38,6 +38,10 @@ public interface GroupSessionRegisterFragmentContract {
 
         String getSessionDetails();
 
+        void goToStepTwo();
+
+        void goToFinalStep();
+
     }
 
     public interface Model {

@@ -285,6 +285,16 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
         return jsonForm;
     }
 
+    @Override
+    public void goToStepTwo() {
+        goToFinalStep();
+    }
+
+    @Override
+    public void goToFinalStep() {
+
+    }
+
     private static FormUtils getFormUtils() throws Exception {
         if (formUtils == null){
             formUtils = FormUtils.getInstance(ChwApplication.getInstance().getApplicationContext());
