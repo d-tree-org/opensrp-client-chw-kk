@@ -8,11 +8,10 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.adapter.SelectChildAdapterGS;
 import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.chw.provider.SelectChildForGroupSessionFragmentProvider;
-import org.smartregister.configurableviews.model.View;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
 
-import java.util.HashMap;
 import java.util.Set;
 
 /**
@@ -20,7 +19,6 @@ import java.util.Set;
  */
 public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFragment implements SelectChildForGroupSessionDialogFragment.DialogListener{
 
-    private HashMap<String, Boolean> selectedChildren = new HashMap<>();
     private SelectChildForGroupSessionFragmentProvider childRegisterProvider;
 
 
