@@ -23,6 +23,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -43,6 +44,7 @@ import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.fragment.NoMatchDialogFragment;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
+import org.smartregister.util.DateUtil;
 import org.smartregister.util.FormUtils;
 import org.smartregister.util.Utils;
 import org.smartregister.view.activity.BaseRegisterActivity;
@@ -73,6 +75,9 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
     private AppCompatSpinner spTypeOfPlace;
     private TextInputLayout etGps;
     private TextInputLayout etDuration;
+
+    private String selectedDateString = "";
+    private DateTime selectedDateTime = null;
 
     private static FormUtils formUtils;
 
@@ -137,7 +142,10 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
         DialogFragment newFragment = new DatePickerFragment(this.getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                etSessionDate.setText(i2+"/"+i1+"/"+i);
+                DateTime now = new DateTime();
+                selectedDateTime = new DateTime(i, i1, i2, now.getHourOfDay(), now.getMinuteOfHour());
+                selectedDateString = i2+"/"+i1+"/"+i;
+                etSessionDate.setText(selectedDateString);
             }
         });
         Activity activity = (BaseRegisterActivity) getActivity();
@@ -256,7 +264,8 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
             if (sessionId != null)
                 sessionId.put("value", id);
 
-            String sessionDateValue = etSessionDate.toString();
+            long sessionDateValue = DateUtil.getMillis(selectedDateTime);
+
             if (sessionDate != null)
                 sessionDate.put("value", sessionDateValue);
 
@@ -414,16 +423,6 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        /*if (id == LOADER_ID) {// Returns a new CursorLoader
-            return new CursorLoader(getActivity()) {
-                @Override
-                public Cursor loadInBackground() {
-                    // Count query
-                    String query = filterandSortQuery();
-                    return commonRepository().rawCustomQueryForAdapter(query);
-                }
-            };
-        }*/// An invalid id was passed in
         return null;
     }
 
