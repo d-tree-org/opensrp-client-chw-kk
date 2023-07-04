@@ -94,16 +94,34 @@
         android:paddingTop="@dimen/register_list_top_bottom_padding"
         android:paddingEnd="@dimen/register_list_item_padding"
         android:paddingRight="@dimen/register_list_item_padding"
-        android:paddingBottom="@dimen/register_list_top_bottom_padding">
+        android:paddingBottom="@dimen/register_list_top_bottom_padding"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/due_button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:hapticFeedbackEnabled="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAllCaps="true"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/vaccine_blue_bg_st"
+            android:textSize="15dp"
+            android:typeface="normal"
+            android:visibility="gone" />
 
         <com.nerdstone.neatformcore.views.widgets.CheckBoxNFormView
-            android:id="@+id/due_button"
+            android:id="@+id/chk_select_child"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:background="@color/transparent"
-            android:checked="false"
             android:gravity="center"
             android:hapticFeedbackEnabled="true"
             android:typeface="normal" />
