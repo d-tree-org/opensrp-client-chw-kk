@@ -57,7 +57,7 @@ import timber.log.Timber;
  * Author issyzac on 20/05/2023
  */
 
-public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implements GroupSessionRegisterFragmentContract.View {
+public abstract class BaseGroupSessionRegisterFragment extends BaseChwRegisterFragment implements GroupSessionRegisterFragmentContract.View {
 
     public static final String CLICK_VIEW_NORMAL = "click_view_normal";
     public static final String CLICK_VIEW_DOSAGE_STATUS = "click_view_dosage_status";
@@ -66,48 +66,9 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
     protected View dueOnlyLayout;
     protected boolean dueFilterActive = false;
 
-    private MaterialButton nextButton;
-
-    //New sessions implementation
-    private TextInputEditText etSessionDate;
-    private AppCompatSpinner spTypeOfPlace;
-    private TextInputLayout etGps;
-    private TextInputLayout etDuration;
-
-    private String selectedDateString = "";
-    private DateTime selectedDateTime = null;
-
-    private static FormUtils formUtils;
-
-    private static final String[] places = {"Session place","Hospital", "Health Center", "School"};
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View view = rootView;
-
-        etSessionDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectSessionDate();
-            }
-        });
-
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter().fetchSessionDetails();
-                ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
-            }
-        });
-
-        return view;
     }
 
     @Override
@@ -125,65 +86,6 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
         // Update Search bar
         View searchBarLayout = view.findViewById(R.id.search_bar_layout);
         searchBarLayout.setVisibility(View.GONE);
-
-        etSessionDate = view.findViewById(R.id.editTextSessionDate);
-        spTypeOfPlace = view.findViewById(R.id.spinnerTypeOfPlace);
-        etGps = view.findViewById(R.id.editTextGps);
-        etDuration = view.findViewById(R.id.editTextDuration);
-
-        nextButton = view.findViewById(R.id.buttonNext);
-
-        setupSpinner();
-
-    }
-
-    private void selectSessionDate(){
-        DialogFragment newFragment = new DatePickerFragment(this.getActivity(), new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                DateTime now = new DateTime();
-                selectedDateTime = new DateTime(i, i1, i2, now.getHourOfDay(), now.getMinuteOfHour());
-                selectedDateString = i2+"/"+i1+"/"+i;
-                etSessionDate.setText(selectedDateString);
-            }
-        });
-        Activity activity = (BaseRegisterActivity) getActivity();
-        newFragment.show(activity.getFragmentManager(), "datePicker");
-    }
-
-    private void setupSpinner(){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),
-                android.R.layout.simple_spinner_item, places);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spTypeOfPlace.setAdapter(adapter);
-        spTypeOfPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        // Whatever you want to happen when the first item gets selected
-                        break;
-                    case 1:
-                        // Whatever you want to happen when the second item gets selected
-                        break;
-                    case 2:
-                        // Whatever you want to happen when the thrid item gets selected
-                        break;
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
-
-    @Override
-    protected int getLayout() {
-        return R.layout.fragment_group_session_register;
     }
 
     @Override
@@ -232,7 +134,6 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
 
     @Override
     public void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns) {
-        //todo: change to list the available group sessions
         CoreChildRegisterProvider childRegisterProvider = new CoreChildRegisterProvider(getActivity(), visibleColumns, registerActionHandler, paginationViewHandler);
         clientAdapter = new RecyclerViewPaginatedAdapter(null, childRegisterProvider, context().commonrepository(this.tablename));
         clientAdapter.setCurrentlimit(20);
@@ -244,61 +145,16 @@ public class GroupSessionRegisterFragment extends BaseChwRegisterFragment implem
         return (GroupSessionRegisterFragmentContract.Presenter) presenter;
     }
 
-    @Override
-    public String getSessionDetails(){
-        //Get json form
-        String jsonForm = "";
-        try {
-            JSONObject form = getFormUtils().getFormJson("group_session");
-            JSONArray fields = JsonFormUtils.fields(form);
-
-            JSONObject sessionId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_ID);
-            JSONObject sessionDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_DATE);
-            JSONObject sessionPlace = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_PLACE);
-            JSONObject sessionDuration = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_DURATION);
-
-            //Generate a randomUUID for the form
-            String id = UUID.randomUUID().toString();
-
-            if (sessionId != null)
-                sessionId.put("value", id);
-
-            long sessionDateValue = DateUtil.getMillis(selectedDateTime);
-
-            if (sessionDate != null)
-                sessionDate.put("value", sessionDateValue);
-
-            String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
-            if (sessionPlace != null)
-                sessionPlace.put("value", sessionPlaceString);
-
-            String sessionDurationString = etDuration.toString();
-            if (sessionDuration != null)
-                sessionDuration.put("value", sessionDurationString);
-
-            jsonForm = form.toString();
-
-        }catch (Exception e){
-            Timber.e(e);
-        }
-        return jsonForm;
-    }
+    public abstract String getSessionDetails();
 
     @Override
     public void goToStepTwo() {
-        goToFinalStep();
+        ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
     }
 
     @Override
     public void goToFinalStep() {
-
-    }
-
-    private static FormUtils getFormUtils() throws Exception {
-        if (formUtils == null){
-            formUtils = FormUtils.getInstance(ChwApplication.getInstance().getApplicationContext());
-        }
-        return formUtils;
+        ((BaseRegisterActivity) requireActivity()).switchToFragment(2);
     }
 
     @Override

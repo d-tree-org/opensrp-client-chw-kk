@@ -10,7 +10,8 @@ import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
-import org.smartregister.chw.fragment.GroupSessionRegisterFragment;
+import org.smartregister.chw.fragment.BaseGroupSessionRegisterFragment;
+import org.smartregister.chw.fragment.GcRegistrationStageFragment;
 import org.smartregister.chw.fragment.SelectChildForGroupSessionRegisterFragment;
 import org.smartregister.chw.presenter.GroupSessionRegisterPresenter;
 import org.smartregister.chw.util.Utils;
@@ -44,13 +45,14 @@ public class GroupSessionRegisterActivity extends BaseRegisterActivity implement
 
     @Override
     protected BaseRegisterFragment getRegisterFragment() {
-        return new GroupSessionRegisterFragment();
+        return new GcRegistrationStageFragment();
     }
 
     @Override
     protected Fragment[] getOtherFragments() {
-        Fragment[] fragments = new Fragment[1];
+        Fragment[] fragments = new Fragment[2];
         fragments[0] = new SelectChildForGroupSessionRegisterFragment();
+        fragments[1] = new SelectChildForGroupSessionRegisterFragment();
         return fragments;
     }
 
