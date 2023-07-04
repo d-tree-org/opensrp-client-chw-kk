@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="select_child_option">
+        <item>Ndiyo</item>
+        <item>Hapana</item>
+    </string-array>
+</resources>

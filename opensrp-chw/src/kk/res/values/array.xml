@@ -4,4 +4,8 @@
         <item>Production</item>
         <item>Test</item>
     </string-array>
+    <string-array name="select_child_option">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
 </resources>

@@ -151,5 +151,6 @@
 
     <string name="menu_group_sessions"> Mafundisho ya vikundi </string>
     <string name="new_session"> Mafundisho mapya </string>
+    <string name="primary_care_give_dialog_gs">Je mtoto amekuja na mlezi aliyesajiliwa kwenye mfumo?</string>
 
 </resources>

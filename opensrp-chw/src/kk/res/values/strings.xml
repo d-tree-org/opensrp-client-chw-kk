@@ -170,5 +170,6 @@
 
     <string name="menu_group_sessions"> Group Sessions </string>
     <string name="new_session"> New Session </string>
+    <string name="primary_care_give_dialog_gs">Did the Child Come with a Caregiver?</string>
 
 </resources>
