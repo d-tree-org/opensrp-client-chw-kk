@@ -33,6 +33,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment implem
     CheckBox caregiversBroughtMaterialsYesSome;
     CheckBox caregiversBroughtMaterialsNoneOrFew;
 
+    CheckBox materialsScheduledUsedYes;
+    CheckBox materialsScheduledUsedNo;
+
     CaregiversMaterialsListener caregiversMaterialsListener;
     CaregiversEncouragingListener caregiversEncouragingListener;
 
@@ -50,6 +53,25 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment implem
 
         caregiversMaterialsListener = new CaregiversMaterialsListener(view);
         caregiversEncouragingListener = new CaregiversEncouragingListener(view);
+
+        //Materials used checkboxes
+        materialsScheduledUsedNo = view.findViewById(R.id.teching_materials_used_no);
+        materialsScheduledUsedNo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b)
+                    materialsScheduledUsedYes.setChecked(false);
+            }
+        });
+
+        materialsScheduledUsedYes = view.findViewById(R.id.teching_materials_used_yes);
+        materialsScheduledUsedYes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    if (b)
+                        materialsScheduledUsedNo.setChecked(false);
+            }
+        });
 
         //Caregivers Encouraging Checkboxes
         encouragingCaregiversYesAllActivities = view.findViewById(R.id.yes_all_or_nearly_all);

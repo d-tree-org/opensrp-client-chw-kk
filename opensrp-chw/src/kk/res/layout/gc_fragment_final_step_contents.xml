@@ -124,11 +124,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
+                        android:id="@+id/teching_materials_used_yes"
                         android:text="Yes"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/teching_materials_used_no"
                         android:text="No"/>
 
                 </LinearLayout>
