@@ -156,11 +156,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
+                        android:id="@+id/free_play_most_children"
                         android:text="Most children (more than half) are playing with materials"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/free_play_one_adult_available"
                         android:text="One adult is available for behavior guidance if needed (e.g. sharing, taking turns)"/>
 
                 </LinearLayout>
