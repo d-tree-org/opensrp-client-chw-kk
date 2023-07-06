@@ -40,7 +40,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
             boolean isChildSelected = ((CheckBoxNFormView) view).isChecked();
             if (isChildSelected) {
                 ((CheckBoxNFormView) view).setChecked(true);
-                SelectedChildGS selectedChildGS = new SelectedChildGS(selectedChildBaseEntityId, SelectedChildGS.ChildStatus.SELECTED, false);
+                SelectedChildGS selectedChildGS = new SelectedChildGS(selectedChildBaseEntityId, SelectedChildGS.ChildStatus.SELECTED, false, ".");
                 childRegisterProvider.addChildToChildSelectedList(selectedChildBaseEntityId, selectedChildGS);
                 view.setBackgroundColor(view.getContext().getColor(R.color.white));
                 SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(selectedChildBaseEntityId);
@@ -55,8 +55,8 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
 
 
     @Override
-    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId) {
+    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, String groupPlaced) {
         Timber.d("The Child with id %s Come with Primary Care Giver: %s", selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
-        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
+        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId, isComeWithPrimaryCareGiver, groupPlaced);
     }
 }

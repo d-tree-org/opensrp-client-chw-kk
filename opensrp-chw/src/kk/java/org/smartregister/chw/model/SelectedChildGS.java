@@ -8,11 +8,13 @@ public class SelectedChildGS {
     private String childBaseEntityId;
     private ChildStatus childSelectionStatus;
     private boolean cameWithPrimaryCareGiver;
+    private String groupPlaced;
 
-    public SelectedChildGS(String childBaseEntityId, ChildStatus childSelectionStatus, boolean cameWithPrimaryCareGiver) {
+    public SelectedChildGS(String childBaseEntityId, ChildStatus childSelectionStatus, boolean cameWithPrimaryCareGiver, String groupPlaced) {
         this.childBaseEntityId = childBaseEntityId;
         this.childSelectionStatus = childSelectionStatus;
         this.cameWithPrimaryCareGiver = cameWithPrimaryCareGiver;
+        this.groupPlaced = groupPlaced;
     }
 
     public String getChildBaseEntityId() {
@@ -37,6 +39,14 @@ public class SelectedChildGS {
 
     public void setCameWithPrimaryCareGiver(boolean cameWithPrimaryCareGiver) {
         this.cameWithPrimaryCareGiver = cameWithPrimaryCareGiver;
+    }
+
+    public String getGroupPlaced() {
+        return groupPlaced;
+    }
+
+    public void setGroupPlaced(String groupPlaced) {
+        this.groupPlaced = groupPlaced;
     }
 
 
