@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -109,10 +110,21 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         });
 
         builder.setPositiveButton(R.string.ok, (dialog, which) -> {
+            if (selectedPosition1 == -1) {
+                Toast.makeText(requireContext(), "Select if the child came with primary caregiver or not", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (selectedPosition2 == -1) {
+                Toast.makeText(requireContext(), "Select group", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (dialogListener != null) {
                 dialogListener.onSelectComeWithPrimaryCareGiver(selectedPosition1 == 0, selectedChildBaseEntityId, items2[selectedPosition2]);
+                dialog.dismiss();
             }
-            dialog.dismiss();
+
         });
 
         return builder.create();
