@@ -174,5 +174,7 @@
     <string name="primary_care_give_dialog_gs">Did the Child Come with a Caregiver?</string>
     <string name="select_group_child_gs">Select the group</string>
     <string name="who_came_with_the_child">Who came with the child?</string>
+    <string name="select_child_for_gs">Select Child Present</string>
+    <string name="gs_next_btn">Next</string>
 
 </resources>
