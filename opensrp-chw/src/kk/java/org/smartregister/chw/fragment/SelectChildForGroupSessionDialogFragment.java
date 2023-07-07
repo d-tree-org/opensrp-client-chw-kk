@@ -28,13 +28,11 @@ import org.smartregister.chw.adapter.KKCustomAdapter;
  */
 public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
-    View separator_2;
     private RecyclerView came_with_pc_lv;
     private RecyclerView who_came_with_the_child_lv;
     private RecyclerView selected_group_lv;
 
     private TextView who_came_with_child_tv;
-    private LinearLayout who_came_with_child_ll;
     private KKCustomAdapter came_with_pc_lv_adapter;
     private KKCustomAdapter who_came_with_the_child_lv_adapter;
     private KKCustomAdapter selected_group_lv_adapter;
@@ -59,7 +57,6 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        builder.setTitle(R.string.title_dialog_gs);
        /* builder.setSingleChoiceItems(R.array.select_child_option, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -73,13 +70,10 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.dialog_fragment_childselection, null);
         builder.setView(view);
 
-        separator_2 = view.findViewById(R.id.separator_2);
-
         came_with_pc_lv = view.findViewById(R.id.came_with_pc_lv);
         who_came_with_the_child_lv = view.findViewById(R.id.who_came_with_the_child_lv);
         selected_group_lv = view.findViewById(R.id.selected_group_lv);
         selected_group_lv.setScrollContainer(false);
-        who_came_with_child_ll = view.findViewById(R.id.who_came_with_child_ll);
 
         who_came_with_child_tv = view.findViewById(R.id.who_came_with_child_tv);
 
@@ -145,13 +139,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         if (hide) {
             who_came_with_the_child_lv.setVisibility(View.GONE);
             who_came_with_child_tv.setVisibility(View.GONE);
-            who_came_with_child_ll.setVisibility(View.GONE);
-            separator_2.setVisibility(View.GONE);
         } else {
             who_came_with_the_child_lv.setVisibility(View.VISIBLE);
             who_came_with_child_tv.setVisibility(View.VISIBLE);
-            who_came_with_child_ll.setVisibility(View.VISIBLE);
-            separator_2.setVisibility(View.VISIBLE);
         }
     }
 

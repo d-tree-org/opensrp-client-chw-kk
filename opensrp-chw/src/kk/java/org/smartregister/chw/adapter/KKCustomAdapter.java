@@ -57,7 +57,7 @@ public class KKCustomAdapter extends RecyclerView.Adapter<KKCustomAdapter.ViewHo
         holder.textView.setText(items[position]);
         holder.radioButton.setChecked(position == selectedPosition);
         if (position == selectedPosition) {
-            holder.itemView.setBackgroundColor(context.getColor(R.color.primary_light));
+            holder.itemView.setBackgroundColor(context.getColor(R.color.light_gray));
         } else {
             holder.itemView.setBackgroundColor(Color.TRANSPARENT);
         }

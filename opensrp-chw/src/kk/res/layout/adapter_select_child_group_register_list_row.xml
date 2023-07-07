@@ -13,66 +13,58 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/register_list_item_margin"
         android:layout_marginLeft="@dimen/register_list_item_margin"
-        android:layout_marginTop="@dimen/register_list_top_bottom_margin"
         android:layout_marginEnd="@dimen/register_list_item_margin"
         android:layout_marginRight="@dimen/register_list_item_margin"
-        android:layout_marginBottom="@dimen/register_list_top_bottom_margin"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:layout_toStartOf="@+id/due_button_wrapper"
         android:orientation="vertical">
 
-        <org.smartregister.view.customcontrols.CustomFontTextView
+        <TextView
             android:id="@+id/text_view_child_name"
-            style="@style/CustomFontTextViewStyle.ClientList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingLeft="0dp"
+            android:layout_marginTop="4dp"
             android:text="Patient Name"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/child_register_list_desc_size"
-            android:textStyle="bold" />
+            android:fontFamily="@font/google_sans_medium"
+            android:textColor="@color/black_tranparent_50"
+            android:textSize="18sp" />
 
-        <org.smartregister.view.customcontrols.CustomFontTextView
+        <TextView
             android:id="@+id/text_view_child_age"
-            style="@style/CustomFontTextViewStyle.ClientList.Light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingLeft="0dp"
             android:text="Age: 3"
+            android:fontFamily="@font/google_sans_regular"
             android:textColor="@color/text_black"
-            android:textSize="@dimen/child_register_title_size"
+            android:textSize="16sp"
             android:textStyle="normal"
             android:visibility="gone" />
 
-        <org.smartregister.view.customcontrols.CustomFontTextView
+        <TextView
             android:id="@+id/textview_parent_name"
-            style="@style/CustomFontTextViewStyle.ClientList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:fontFamily="@font/google_sans_regular"
             android:maxLines="1"
-            android:paddingLeft="0dp"
             android:singleLine="true"
             android:text="CG:Parent Name"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/child_register_cg_title_size" />
+            android:textSize="16sp" />
 
-        <org.smartregister.view.customcontrols.CustomFontTextView
+        <TextView
             android:id="@+id/text_view_address_gender"
-            style="@style/CustomFontTextViewStyle.ClientList.Light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|center_horizontal"
-            android:paddingLeft="0dp"
-            android:paddingTop="3dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/google_sans_regular"
             android:text="Kawangare. Male"
             android:textColor="@color/light_grey_text"
-            android:textSize="@dimen/child_register_cg_title_size"
-            android:textStyle="normal" />
+            android:textSize="16sp"/>
 
     </LinearLayout>
 

@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/client_list_header_dark_grey"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/client_list_header_dark_grey">
 
     <include layout="@layout/toolbar_base_register" />
 
@@ -30,8 +30,7 @@
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@drawable/listview_background_rounded">
+        android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
