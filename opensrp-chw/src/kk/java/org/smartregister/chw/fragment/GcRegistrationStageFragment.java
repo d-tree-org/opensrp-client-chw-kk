@@ -70,7 +70,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             @Override
             public void onClick(View view) {
                 presenter().fetchSessionDetails();
-                ((BaseRegisterActivity) requireActivity()).switchToFragment(2);
+                ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
             }
         });
 

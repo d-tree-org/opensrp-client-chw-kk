@@ -17,6 +17,7 @@ import org.smartregister.chw.provider.SelectChildForGroupSessionFragmentProvider
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
+import org.smartregister.view.activity.BaseRegisterActivity;
 
 import java.util.Set;
 
@@ -99,12 +100,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
         nextButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
-                if (childRegisterProvider.getSelectedChildList().size() > 0) {
-                    SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(null);
-                    selectChildForGroupSessionDialogFragment.show(getChildFragmentManager(), "SelectChildForGroupSessionDialogFragment");
-                } else {
-                    displayToast(getString(R.string.select_child_for_gs));
-                }
+                ((BaseRegisterActivity) requireActivity()).switchToFragment(2);
             }
         });
 
