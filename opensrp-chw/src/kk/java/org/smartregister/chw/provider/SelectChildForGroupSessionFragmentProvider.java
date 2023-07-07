@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.nerdstone.neatformcore.views.widgets.CheckBoxNFormView;
 
 import org.apache.commons.lang3.text.WordUtils;
@@ -67,10 +69,10 @@ public class SelectChildForGroupSessionFragmentProvider extends ChildRegisterPro
         return childList;
     }
 
-    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver) {
+    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver, String groupPlaced) {
         if (childList.containsKey(baseEntityId)) {
             Objects.requireNonNull(childList.get(baseEntityId)).setCameWithPrimaryCareGiver(cameWithCareGiver);
-            ;
+            Objects.requireNonNull(childList.get(baseEntityId)).setGroupPlaced(groupPlaced);
         }
     }
 
@@ -116,6 +118,16 @@ public class SelectChildForGroupSessionFragmentProvider extends ChildRegisterPro
 
     private int getChildRegisterLayout() {
         return R.layout.adapter_select_child_group_register_list_row;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder createFooterHolder(ViewGroup parent) {
+        return super.createFooterHolder(parent);
+    }
+
+    @Override
+    public void getFooterView(RecyclerView.ViewHolder viewHolder, int currentPageCount, int totalPageCount, boolean hasNext, boolean hasPrevious) {
+        super.getFooterView(viewHolder, currentPageCount, totalPageCount, hasNext, hasPrevious);
     }
 
     public void addButtonClickListeners(SmartRegisterClient client, SelectChildGSViewHolder viewHolder) {

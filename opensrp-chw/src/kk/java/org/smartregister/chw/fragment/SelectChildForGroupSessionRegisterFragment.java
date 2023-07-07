@@ -1,5 +1,13 @@
 package org.smartregister.chw.fragment;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+
+import com.google.android.material.button.MaterialButton;
 import com.nerdstone.neatformcore.views.widgets.CheckBoxNFormView;
 
 import org.smartregister.chw.R;
@@ -20,6 +28,7 @@ import timber.log.Timber;
 public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFragment implements SelectChildForGroupSessionDialogFragment.DialogListener{
 
     private SelectChildForGroupSessionFragmentProvider childRegisterProvider;
+    private MaterialButton nextButton;
 
 
     @Override
@@ -40,7 +49,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
             boolean isChildSelected = ((CheckBoxNFormView) view).isChecked();
             if (isChildSelected) {
                 ((CheckBoxNFormView) view).setChecked(true);
-                SelectedChildGS selectedChildGS = new SelectedChildGS(selectedChildBaseEntityId, SelectedChildGS.ChildStatus.SELECTED, false);
+                SelectedChildGS selectedChildGS = new SelectedChildGS(selectedChildBaseEntityId, SelectedChildGS.ChildStatus.SELECTED, false, ".");
                 childRegisterProvider.addChildToChildSelectedList(selectedChildBaseEntityId, selectedChildGS);
                 view.setBackgroundColor(view.getContext().getColor(R.color.white));
                 SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(selectedChildBaseEntityId);
@@ -55,8 +64,60 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
 
 
     @Override
-    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId) {
+    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, String groupPlaced) {
         Timber.d("The Child with id %s Come with Primary Care Giver: %s", selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
-        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
+        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId, isComeWithPrimaryCareGiver, groupPlaced);
+    }
+
+    @Override
+    protected int getToolBarTitle() {
+        return R.string.select_child_for_gs;
+    }
+
+    @Override
+    public void setupViews(android.view.View view) {
+        super.setupViews(view);
+
+        this.view = view;
+
+        dueOnlyLayout = view.findViewById(R.id.due_only_layout);
+        dueOnlyLayout.setVisibility(android.view.View.VISIBLE);
+        dueOnlyLayout.setOnClickListener(registerActionHandler);
+
+        dueOnlyLayout.setVisibility(android.view.View.GONE);
+
+        nextButton = view.findViewById(R.id.buttonNext);
+
+    }
+
+    @Nullable
+    @Override
+    public android.view.View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        android.view.View view = rootView;
+
+        nextButton.setOnClickListener(new android.view.View.OnClickListener() {
+            @Override
+            public void onClick(android.view.View v) {
+                if (childRegisterProvider.getSelectedChildList().size() > 0) {
+                    SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(null);
+                    selectChildForGroupSessionDialogFragment.show(getChildFragmentManager(), "SelectChildForGroupSessionDialogFragment");
+                } else {
+                    displayToast(getString(R.string.select_child_for_gs));
+                }
+            }
+        });
+
+        return view;
+
+    }
+
+    private void displayToast(String string) {
+        Toast.makeText(getContext(), string, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_base_select_child_for_gs;
     }
 }

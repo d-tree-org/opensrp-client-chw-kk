@@ -151,6 +151,11 @@
 
     <string name="menu_group_sessions"> Mafundisho ya vikundi </string>
     <string name="new_session"> Mafundisho mapya </string>
+    <string name="title_dialog_gs">Taarifa za mahudhurio ya mtoto kwenye kikundi</string>
     <string name="primary_care_give_dialog_gs">Je mtoto amekuja na mlezi aliyesajiliwa kwenye mfumo?</string>
+    <string name="select_group_child_gs">Je mtoto aliwekwa kwenye grupu gani?</string>
+    <string name="who_came_with_the_child">Mtoto alikuja na nani kati ya wafuatao?</string>
+    <string name="select_child_for_gs">Chagua Mtoto Aliyehudhuria</string>
+    <string name="gs_next_btn">Next</string>
 
 </resources>
