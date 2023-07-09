@@ -425,7 +425,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonNext"
+                    android:id="@+id/buttonSubmit"
                     style="@style/PrimaryFlatButton"
                     android:gravity="center"
                     android:textColor="@color/white"
