@@ -22,6 +22,9 @@ import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import timber.log.Timber;
@@ -37,9 +40,10 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
     private SessionModelUpdatedListener sessionModelUpdatedListener;
     private GroupSessionModel groupSessionModel;
 
-    public SelectChildForGroupSessionRegisterFragment(SessionModelUpdatedListener listener, GroupSessionModel model){
+    List<SelectedChildGS> selectedChildren = new ArrayList<>();
+
+    public SelectChildForGroupSessionRegisterFragment(SessionModelUpdatedListener listener){
         this.sessionModelUpdatedListener = listener;
-        this.groupSessionModel = model;
     }
 
     @Override
@@ -119,8 +123,20 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
         nextButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
+                HashMap<String, SelectedChildGS> childrenList = childRegisterProvider.getSelectedChildList();
+                groupSessionModel = GroupSessionRegisterActivity.getSessionModel();
+                boolean atLeastOneChildSelected = false;
 
-                ((BaseRegisterActivity) requireActivity()).switchToFragment(2);
+                for (SelectedChildGS child : childrenList.values()){
+                    atLeastOneChildSelected = true;
+                    selectedChildren.add(child);
+                }
+
+                if(groupSessionModel != null && atLeastOneChildSelected){
+                    groupSessionModel.setSelectedChildren(selectedChildren);
+                    sessionModelUpdatedListener.onSessionModelUpdated(groupSessionModel);
+                    ((BaseRegisterActivity) requireActivity()).switchToFragment(2);
+                }
             }
         });
 
