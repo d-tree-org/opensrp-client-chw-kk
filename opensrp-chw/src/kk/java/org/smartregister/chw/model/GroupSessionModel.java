@@ -12,11 +12,11 @@ public class GroupSessionModel {
     private String sessionPlace;
     private String sessionDuration;
     private List<SelectedChildGS> selectedChildren;
-    private String activitiesTookPlace;
+    private List<String> activitiesTookPlace;
     private boolean allTeachingLearningMaterialsUsed;
-    private String unguidedFreePlay;
+    private List<String> unguidedFreePlay;
     private boolean anyDifficultActivities;
-    private String listOfDifficultActivities;
+    private List<String> listOfDifficultActivities;
     private String caregiversEncouragingChildren;
     private String caregiversBroughtMaterials;
     private String topicsCovered;
@@ -33,7 +33,7 @@ public class GroupSessionModel {
         return sessionDate;
     }
 
-    public String getActivitiesTookPlace() {
+    public List<String> getActivitiesTookPlace() {
         return activitiesTookPlace;
     }
 
@@ -45,7 +45,7 @@ public class GroupSessionModel {
         return caregiversEncouragingChildren;
     }
 
-    public String getListOfDifficultActivities() {
+    public List<String> getListOfDifficultActivities() {
         return listOfDifficultActivities;
     }
 
@@ -61,11 +61,11 @@ public class GroupSessionModel {
         return topicsCovered;
     }
 
-    public String getUnguidedFreePlay() {
+    public List<String> getUnguidedFreePlay() {
         return unguidedFreePlay;
     }
 
-    public void setActivitiesTookPlace(String activitiesTookPlace) {
+    public void setActivitiesTookPlace(List<String> activitiesTookPlace) {
         this.activitiesTookPlace = activitiesTookPlace;
     }
 
@@ -85,7 +85,7 @@ public class GroupSessionModel {
         this.caregiversEncouragingChildren = caregiversEncouragingChildren;
     }
 
-    public void setListOfDifficultActivities(String listOfDifficultActivities) {
+    public void setListOfDifficultActivities(List<String> listOfDifficultActivities) {
         this.listOfDifficultActivities = listOfDifficultActivities;
     }
 
@@ -113,7 +113,7 @@ public class GroupSessionModel {
         this.topicsCovered = topicsCovered;
     }
 
-    public void setUnguidedFreePlay(String unguidedFreePlay) {
+    public void setUnguidedFreePlay(List<String> unguidedFreePlay) {
         this.unguidedFreePlay = unguidedFreePlay;
     }
 }
