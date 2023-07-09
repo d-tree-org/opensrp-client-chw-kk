@@ -101,30 +101,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editTextDuration"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="Duration"
-                android:textColorHint="?android:attr/textColorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextGps">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/google_sans_regular"
-                    android:textColor="?android:attr/textColorPrimary" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonNext"
                 style="@style/PrimaryFlatButton"
@@ -138,7 +114,7 @@
                 android:text="Next"
                 android:textColorHint="?android:attr/textColorPrimary"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextDuration"/>
+                app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
