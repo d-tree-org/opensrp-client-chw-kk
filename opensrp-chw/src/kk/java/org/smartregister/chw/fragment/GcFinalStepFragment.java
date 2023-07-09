@@ -14,8 +14,10 @@ import androidx.annotation.Nullable;
 import org.apache.commons.io.serialization.ValidatingObjectInputStream;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.listener.CaregiversEncouragingListener;
 import org.smartregister.chw.listener.CaregiversMaterialsListener;
+import org.smartregister.chw.listener.SessionModelUpdatedListener;
 import org.smartregister.chw.model.GroupSessionModel;
 
 import java.util.ArrayList;
@@ -63,8 +65,6 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     CheckBox materialsScheduledUsedYes;
     CheckBox materialsScheduledUsedNo;
 
-    GroupSessionModel sessionModel;
-
     private List<Activities> activitiesTookPlace;
     private boolean teachingLearningMaterialsUsed;
     private List<UnguidedFreePlay> unguidedFreePlay;
@@ -75,6 +75,14 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     private String topicsCovered;
 
     private JSONObject sessionObject;
+
+    private SessionModelUpdatedListener sessionModelUpdatedListener;
+    private GroupSessionModel sessionModel;
+
+    public GcFinalStepFragment(SessionModelUpdatedListener listener, GroupSessionModel model){
+        this.sessionModelUpdatedListener = listener;
+        this.sessionModel = model;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

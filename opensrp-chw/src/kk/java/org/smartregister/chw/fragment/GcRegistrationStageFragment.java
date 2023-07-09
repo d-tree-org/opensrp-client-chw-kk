@@ -22,13 +22,17 @@ import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.listener.SessionModelUpdatedListener;
+import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.chw.util.JsonFormUtils;
 import org.smartregister.chw.util.KkConstants;
 import org.smartregister.util.DateUtil;
 import org.smartregister.util.FormUtils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
+import java.security.acl.Group;
 import java.util.UUID;
 
 import timber.log.Timber;
@@ -51,7 +55,25 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
 
     private static FormUtils formUtils;
 
+    private GroupSessionModel groupSessionModel;
+
     private static final String[] places = {"Session place","Hospital", "Health Center", "School"};
+
+    private SessionModelUpdatedListener nextStepListener;
+    private GroupSessionModel sessionModel;
+
+    public GcRegistrationStageFragment(SessionModelUpdatedListener listener, GroupSessionModel model){
+        this.nextStepListener = listener;
+        this.sessionModel = model;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        groupSessionModel = new GroupSessionModel();
+
+    }
 
     @Nullable
     @Override
@@ -70,12 +92,14 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             @Override
             public void onClick(View view) {
                 presenter().fetchSessionDetails();
+                //Update session model
+                if (groupSessionModel != null){
+                    nextStepListener.onSessionModelUpdated(groupSessionModel);
+                }
                 ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
             }
         });
-
         return view;
-
     }
 
     @Override

@@ -11,7 +11,10 @@ import com.google.android.material.button.MaterialButton;
 import com.nerdstone.neatformcore.views.widgets.CheckBoxNFormView;
 
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.adapter.SelectChildAdapterGS;
+import org.smartregister.chw.listener.SessionModelUpdatedListener;
+import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.chw.provider.SelectChildForGroupSessionFragmentProvider;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
@@ -31,6 +34,13 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
     private SelectChildForGroupSessionFragmentProvider childRegisterProvider;
     private MaterialButton nextButton;
 
+    private SessionModelUpdatedListener sessionModelUpdatedListener;
+    private GroupSessionModel groupSessionModel;
+
+    public SelectChildForGroupSessionRegisterFragment(SessionModelUpdatedListener listener, GroupSessionModel model){
+        this.sessionModelUpdatedListener = listener;
+        this.groupSessionModel = model;
+    }
 
     @Override
     public void initializeAdapter(Set<View> visibleColumns) {
@@ -109,6 +119,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
         nextButton.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View v) {
+
                 ((BaseRegisterActivity) requireActivity()).switchToFragment(2);
             }
         });

@@ -11,10 +11,11 @@ import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
-import org.smartregister.chw.fragment.BaseGroupSessionRegisterFragment;
 import org.smartregister.chw.fragment.GcFinalStepFragment;
 import org.smartregister.chw.fragment.GcRegistrationStageFragment;
 import org.smartregister.chw.fragment.SelectChildForGroupSessionRegisterFragment;
+import org.smartregister.chw.listener.SessionModelUpdatedListener;
+import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.chw.presenter.GroupSessionRegisterPresenter;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.family.listener.FamilyBottomNavigationListener;
@@ -32,11 +33,16 @@ import timber.log.Timber;
 /**
  * Author issyzac on 18/05/2023
  */
-public class GroupSessionRegisterActivity extends BaseRegisterActivity implements BaseRegisterContract.View {
+public class GroupSessionRegisterActivity extends BaseRegisterActivity implements BaseRegisterContract.View, SessionModelUpdatedListener {
+
+    public GroupSessionModel sessionModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sessionModel = new GroupSessionModel();
+
         NavigationMenu.getInstance(this, null, null);
     }
 
@@ -47,15 +53,20 @@ public class GroupSessionRegisterActivity extends BaseRegisterActivity implement
 
     @Override
     protected BaseRegisterFragment getRegisterFragment() {
-        return new GcRegistrationStageFragment();
+        return new GcRegistrationStageFragment(this, sessionModel);
     }
 
     @Override
     protected Fragment[] getOtherFragments() {
         Fragment[] fragments = new Fragment[2];
-        fragments[0] = new SelectChildForGroupSessionRegisterFragment();
-        fragments[1] = new GcFinalStepFragment();
+        fragments[0] = new SelectChildForGroupSessionRegisterFragment(this, sessionModel);
+        fragments[1] = new GcFinalStepFragment(this, sessionModel);
         return fragments;
+    }
+
+    @Override
+    public void onSessionModelUpdated(GroupSessionModel updatedSessionModel) {
+        this.sessionModel = updatedSessionModel;
     }
 
     @Override
@@ -116,4 +127,5 @@ public class GroupSessionRegisterActivity extends BaseRegisterActivity implement
             Timber.e(e);
         }
     }
+
 }
