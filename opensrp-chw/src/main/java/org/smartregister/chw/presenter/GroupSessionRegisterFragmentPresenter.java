@@ -62,10 +62,7 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
     @Override
     public void fetchSessionDetails() {
         //Fetch Session From the view
-        String eventDetails = getView().getSessionDetails();
-
-
-        createSessionEvent(eventDetails);
+        getView().getSessionDetails();
     }
 
     @Override

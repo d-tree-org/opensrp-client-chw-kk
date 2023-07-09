@@ -1,55 +1,32 @@
 package org.smartregister.chw.fragment;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.DialogFragment;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.appcompat.widget.Toolbar;
 import androidx.loader.content.Loader;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.DateTime;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.contract.GroupSessionRegisterFragmentContract;
 import org.smartregister.chw.core.custom_views.NavigationMenu;
 import org.smartregister.chw.core.fragment.BaseChwRegisterFragment;
 import org.smartregister.chw.core.provider.CoreChildRegisterProvider;
 import org.smartregister.chw.model.GroupSessionRegisterFragmentModel;
 import org.smartregister.chw.presenter.GroupSessionRegisterFragmentPresenter;
-import org.smartregister.chw.util.JsonFormUtils;
-import org.smartregister.chw.util.KkConstants;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.cursoradapter.RecyclerViewPaginatedAdapter;
 import org.smartregister.cursoradapter.SmartRegisterQueryBuilder;
 import org.smartregister.domain.FetchStatus;
 import org.smartregister.family.fragment.NoMatchDialogFragment;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;
-import org.smartregister.util.DateUtil;
-import org.smartregister.util.FormUtils;
 import org.smartregister.util.Utils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
 import java.util.HashMap;
 import java.util.Set;
-import java.util.UUID;
 
 import timber.log.Timber;
 
@@ -145,7 +122,7 @@ public abstract class BaseGroupSessionRegisterFragment extends BaseChwRegisterFr
         return (GroupSessionRegisterFragmentContract.Presenter) presenter;
     }
 
-    public abstract String getSessionDetails();
+    public abstract void getSessionDetails();
 
     @Override
     public void goToStepTwo() {

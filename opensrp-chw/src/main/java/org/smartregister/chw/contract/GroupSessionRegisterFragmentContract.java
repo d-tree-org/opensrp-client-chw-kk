@@ -36,7 +36,7 @@ public interface GroupSessionRegisterFragmentContract {
         void initializeAdapter(Set<org.smartregister.configurableviews.model.View> visibleColumns);
         Presenter presenter();
 
-        String getSessionDetails();
+        void getSessionDetails();
 
         void goToStepTwo();
 
