@@ -49,8 +49,11 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     private DialogListener dialogListener;
     private String selectedChildBaseEntityId;
 
-    public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId) {
+    SelectChildForGroupSessionRegisterFragment.DialogDismissListener dialogDismissListener;
+
+    public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId, SelectChildForGroupSessionRegisterFragment.DialogDismissListener listener) {
         this.selectedChildBaseEntityId = selectedChildBaseEntityId;
+        this.dialogDismissListener = listener;
     }
 
     @NonNull
@@ -105,20 +108,28 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
         builder.setPositiveButton(R.string.ok, (dialog, which) -> {
             if (selectedPosition1 == -1) {
-                Toast.makeText(requireContext(), "Select if the child came with primary caregiver or not", Toast.LENGTH_SHORT).show();
-                return;
+                Toast.makeText(requireContext(), "Caregiver information missing", Toast.LENGTH_SHORT).show();
+                dialogDismissListener.onFailure();
+                dialog.dismiss();
             }
 
             if (selectedPosition2 == -1) {
-                Toast.makeText(requireContext(), "Select group", Toast.LENGTH_SHORT).show();
-                return;
+                Toast.makeText(requireContext(), "Child missing the group", Toast.LENGTH_SHORT).show();
+                dialogDismissListener.onFailure();
+                dialog.dismiss();
             }
 
             if (dialogListener != null) {
                 dialogListener.onSelectComeWithPrimaryCareGiver(selectedPosition1 == 0, selectedChildBaseEntityId, items2[selectedPosition2]);
+                dialogDismissListener.onSuccess();
                 dialog.dismiss();
             }
 
+        });
+
+        builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
+            dialogDismissListener.onFailure();
+            dialog.dismiss();
         });
 
         return builder.create();

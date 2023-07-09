@@ -49,11 +49,20 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
             String selectedChildBaseEntityId = client.getCaseId();
             boolean isChildSelected = ((CheckBoxNFormView) view).isChecked();
             if (isChildSelected) {
-                ((CheckBoxNFormView) view).setChecked(true);
                 SelectedChildGS selectedChildGS = new SelectedChildGS(selectedChildBaseEntityId, SelectedChildGS.ChildStatus.SELECTED, false, ".");
                 childRegisterProvider.addChildToChildSelectedList(selectedChildBaseEntityId, selectedChildGS);
                 view.setBackgroundColor(view.getContext().getColor(R.color.white));
-                SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(selectedChildBaseEntityId);
+                SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(selectedChildBaseEntityId, new DialogDismissListener() {
+                    @Override
+                    public void onSuccess() {
+                        ((CheckBoxNFormView) view).setChecked(true);
+                    }
+
+                    @Override
+                    public void onFailure() {
+                        ((CheckBoxNFormView) view).setChecked(false);
+                    }
+                });
                 selectChildForGroupSessionDialogFragment.show(getChildFragmentManager(), "SelectChildForGroupSessionDialogFragment");
             } else {
                 childRegisterProvider.removeChildFromChildSelectedList(selectedChildBaseEntityId);
@@ -116,4 +125,10 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
     protected int getLayout() {
         return R.layout.fragment_base_select_child_for_gs;
     }
+
+    public interface DialogDismissListener {
+        public void onSuccess();
+        public void onFailure();
+    }
+
 }
