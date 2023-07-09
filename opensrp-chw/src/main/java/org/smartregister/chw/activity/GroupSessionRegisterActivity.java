@@ -35,7 +35,7 @@ import timber.log.Timber;
  */
 public class GroupSessionRegisterActivity extends BaseRegisterActivity implements BaseRegisterContract.View, SessionModelUpdatedListener {
 
-    public GroupSessionModel sessionModel;
+    public static GroupSessionModel sessionModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,20 +53,24 @@ public class GroupSessionRegisterActivity extends BaseRegisterActivity implement
 
     @Override
     protected BaseRegisterFragment getRegisterFragment() {
-        return new GcRegistrationStageFragment(this, sessionModel);
+        return new GcRegistrationStageFragment(this);
     }
 
     @Override
     protected Fragment[] getOtherFragments() {
         Fragment[] fragments = new Fragment[2];
-        fragments[0] = new SelectChildForGroupSessionRegisterFragment(this, sessionModel);
-        fragments[1] = new GcFinalStepFragment(this, sessionModel);
+        fragments[0] = new SelectChildForGroupSessionRegisterFragment(this);
+        fragments[1] = new GcFinalStepFragment(this);
         return fragments;
     }
 
     @Override
     public void onSessionModelUpdated(GroupSessionModel updatedSessionModel) {
-        this.sessionModel = updatedSessionModel;
+        sessionModel = updatedSessionModel;
+    }
+
+    public static GroupSessionModel getSessionModel() {
+        return sessionModel;
     }
 
     @Override
