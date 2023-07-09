@@ -19,23 +19,16 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.joda.time.DateTime;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.listener.SessionModelUpdatedListener;
 import org.smartregister.chw.model.GroupSessionModel;
-import org.smartregister.chw.util.JsonFormUtils;
-import org.smartregister.chw.util.KkConstants;
 import org.smartregister.util.DateUtil;
 import org.smartregister.util.FormUtils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
-import java.security.acl.Group;
 import java.util.UUID;
-
-import timber.log.Timber;
 
 /**
  * Author issyzac on 04/07/2023
@@ -55,24 +48,18 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
 
     private static FormUtils formUtils;
 
-    private GroupSessionModel groupSessionModel;
-
     private static final String[] places = {"Session place","Hospital", "Health Center", "School"};
 
     private SessionModelUpdatedListener nextStepListener;
     private GroupSessionModel sessionModel;
 
-    public GcRegistrationStageFragment(SessionModelUpdatedListener listener, GroupSessionModel model){
+    public GcRegistrationStageFragment(SessionModelUpdatedListener listener){
         this.nextStepListener = listener;
-        this.sessionModel = model;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        groupSessionModel = new GroupSessionModel();
-
     }
 
     @Nullable
@@ -93,10 +80,10 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             public void onClick(View view) {
                 presenter().fetchSessionDetails();
                 //Update session model
-                if (groupSessionModel != null){
-                    nextStepListener.onSessionModelUpdated(groupSessionModel);
+                if (sessionModel != null){
+                    nextStepListener.onSessionModelUpdated(sessionModel);
+                    ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
                 }
-                ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
             }
         });
         return view;
@@ -123,43 +110,24 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     }
 
     @Override
-    public String getSessionDetails(){
-        //Get json form
-        String jsonForm = "";
-        try {
-            JSONObject form = getFormUtils().getFormJson("group_session");
-            JSONArray fields = JsonFormUtils.fields(form);
+    public void getSessionDetails(){
 
-            JSONObject sessionId = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_ID);
-            JSONObject sessionDate = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_DATE);
-            JSONObject sessionPlace = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_PLACE);
-            JSONObject sessionDuration = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, KkConstants.KKJSON_FORM_CONSTANT.GROUP_SESSION_FORM.SESSION_DURATION);
+        sessionModel = GroupSessionRegisterActivity.getSessionModel();
 
-            //Generate a randomUUID for the form
-            String id = UUID.randomUUID().toString();
+        if (sessionModel == null)
+            sessionModel = new GroupSessionModel();
 
-            if (sessionId != null)
-                sessionId.put("value", id);
+        //Update the sessionDetails Object
+        //Generate a randomUUID for the form
+        String id = UUID.randomUUID().toString();
+        sessionModel.setSessionId(id);
 
-            long sessionDateValue = DateUtil.getMillis(selectedDateTime);
+        long sessionDateValue = DateUtil.getMillis(selectedDateTime);
+        sessionModel.setSessionDate(sessionDateValue);
 
-            if (sessionDate != null)
-                sessionDate.put("value", sessionDateValue);
+        String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
+        sessionModel.setSessionPlace(sessionPlaceString);
 
-            String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
-            if (sessionPlace != null)
-                sessionPlace.put("value", sessionPlaceString);
-
-            String sessionDurationString = etDuration.toString();
-            if (sessionDuration != null)
-                sessionDuration.put("value", sessionDurationString);
-
-            jsonForm = form.toString();
-
-        }catch (Exception e){
-            Timber.e(e);
-        }
-        return jsonForm;
     }
 
     private void selectSessionDate(){
