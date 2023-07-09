@@ -1,6 +1,15 @@
 package org.smartregister.chw.fragment;
 
-import android.content.Context;
+import static org.smartregister.chw.util.KkConstants.GCActivities.ACTIVITY_1;
+import static org.smartregister.chw.util.KkConstants.GCActivities.ACTIVITY_2;
+import static org.smartregister.chw.util.KkConstants.GCActivities.CLOSING_SONG;
+import static org.smartregister.chw.util.KkConstants.GCActivities.OPENING_SONG;
+import static org.smartregister.chw.util.KkConstants.GCActivities.RECAP_SESSION;
+import static org.smartregister.chw.util.KkConstants.GCActivities.REVIEW_PREVIOUS_WEEK;
+import static org.smartregister.chw.util.KkConstants.GCActivities.WELCOME_AND_FREE_PLAY;
+import static org.smartregister.chw.util.KkConstants.GCUnguidedFreePlay.MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS;
+import static org.smartregister.chw.util.KkConstants.GCUnguidedFreePlay.ONE_ADULT_IS_AVAILABLE;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +20,8 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import org.apache.commons.io.serialization.ValidatingObjectInputStream;
+import com.google.android.material.button.MaterialButton;
+
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.GroupSessionRegisterActivity;
@@ -65,23 +75,24 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     CheckBox materialsScheduledUsedYes;
     CheckBox materialsScheduledUsedNo;
 
-    private List<Activities> activitiesTookPlace;
+    MaterialButton submitButton;
+
+    private List<String> activitiesTookPlace;
     private boolean teachingLearningMaterialsUsed;
-    private List<UnguidedFreePlay> unguidedFreePlay;
+    private List<String> unguidedFreePlay;
     private boolean anyDifficultActivities = false;
-    private List<Activities> listOfDifficultActivities;
+    private List<String> listOfDifficultActivities;
     private String caregiversEncouraging;
     private String caregiversBroughtMaterials;
-    private String topicsCovered;
+    private List<String> topicsCovered;
 
     private JSONObject sessionObject;
 
     private SessionModelUpdatedListener sessionModelUpdatedListener;
     private GroupSessionModel sessionModel;
 
-    public GcFinalStepFragment(SessionModelUpdatedListener listener, GroupSessionModel model){
+    public GcFinalStepFragment(SessionModelUpdatedListener listener){
         this.sessionModelUpdatedListener = listener;
-        this.sessionModel = model;
     }
 
     @Override
@@ -115,9 +126,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    listOfDifficultActivities.add(Activities.WELCOME_AND_FREE_PLAY);
+                    listOfDifficultActivities.add(WELCOME_AND_FREE_PLAY);
                 else
-                    listOfDifficultActivities.remove(Activities.WELCOME_AND_FREE_PLAY);
+                    listOfDifficultActivities.remove(WELCOME_AND_FREE_PLAY);
             }
         });
 
@@ -126,9 +137,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    listOfDifficultActivities.add(Activities.OPENING_SONG);
+                    listOfDifficultActivities.add(OPENING_SONG);
                 else
-                    listOfDifficultActivities.remove(Activities.OPENING_SONG);
+                    listOfDifficultActivities.remove(OPENING_SONG);
             }
         });
 
@@ -137,9 +148,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    listOfDifficultActivities.add(Activities.REVIEW_PREVIOUS_WEEK);
+                    listOfDifficultActivities.add(REVIEW_PREVIOUS_WEEK);
                 else
-                    listOfDifficultActivities.remove(Activities.REVIEW_PREVIOUS_WEEK);
+                    listOfDifficultActivities.remove(REVIEW_PREVIOUS_WEEK);
             }
         });
 
@@ -149,9 +160,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    listOfDifficultActivities.add(Activities.ACTIVITY_1);
+                    listOfDifficultActivities.add(ACTIVITY_1);
                 else
-                    listOfDifficultActivities.remove(Activities.ACTIVITY_1);
+                    listOfDifficultActivities.remove(ACTIVITY_1);
             }
         });
 
@@ -160,9 +171,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    listOfDifficultActivities.add(Activities.ACTIVITY_TWO);
+                    listOfDifficultActivities.add(ACTIVITY_2);
                 else
-                    listOfDifficultActivities.remove(Activities.ACTIVITY_TWO);
+                    listOfDifficultActivities.remove(ACTIVITY_2);
             }
         });
 
@@ -171,9 +182,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    listOfDifficultActivities.add(Activities.RECAP_SESSION);
+                    listOfDifficultActivities.add(RECAP_SESSION);
                 else
-                    listOfDifficultActivities.remove(Activities.RECAP_SESSION);
+                    listOfDifficultActivities.remove(RECAP_SESSION);
             }
         });
 
@@ -182,9 +193,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    listOfDifficultActivities.add(Activities.CLOSING_SONG);
+                    listOfDifficultActivities.add(CLOSING_SONG);
                 else
-                    listOfDifficultActivities.remove(Activities.CLOSING_SONG);
+                    listOfDifficultActivities.remove(CLOSING_SONG);
             }
         });
 
@@ -194,9 +205,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    unguidedFreePlay.add(UnguidedFreePlay.MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS);
+                    unguidedFreePlay.add(MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS);
                 else
-                    unguidedFreePlay.remove(UnguidedFreePlay.MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS);
+                    unguidedFreePlay.remove(MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS);
             }
         });
 
@@ -205,9 +216,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    unguidedFreePlay.add(UnguidedFreePlay.ONE_ADULT_IS_AVAILABLE);
+                    unguidedFreePlay.add(ONE_ADULT_IS_AVAILABLE);
                 else
-                    unguidedFreePlay.remove(UnguidedFreePlay.ONE_ADULT_IS_AVAILABLE);
+                    unguidedFreePlay.remove(ONE_ADULT_IS_AVAILABLE);
             }
         });
 
@@ -240,9 +251,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b){
-                    activitiesTookPlace.add(Activities.WELCOME_AND_FREE_PLAY);
+                    activitiesTookPlace.add(WELCOME_AND_FREE_PLAY);
                 }else{
-                    activitiesTookPlace.remove(Activities.WELCOME_AND_FREE_PLAY);
+                    activitiesTookPlace.remove(WELCOME_AND_FREE_PLAY);
                 }
 
             }
@@ -252,9 +263,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    activitiesTookPlace.add(Activities.OPENING_SONG);
+                    activitiesTookPlace.add(OPENING_SONG);
                 else
-                    activitiesTookPlace.remove(Activities.OPENING_SONG);
+                    activitiesTookPlace.remove(OPENING_SONG);
             }
         });
 
@@ -263,9 +274,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    activitiesTookPlace.add(Activities.REVIEW_PREVIOUS_WEEK);
+                    activitiesTookPlace.add(REVIEW_PREVIOUS_WEEK);
                 else
-                    activitiesTookPlace.remove(Activities.REVIEW_PREVIOUS_WEEK);
+                    activitiesTookPlace.remove(REVIEW_PREVIOUS_WEEK);
             }
         });
 
@@ -274,9 +285,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    activitiesTookPlace.add(Activities.ACTIVITY_1);
+                    activitiesTookPlace.add(ACTIVITY_1);
                 else
-                    activitiesTookPlace.remove(Activities.ACTIVITY_1);
+                    activitiesTookPlace.remove(ACTIVITY_1);
             }
         });
 
@@ -285,9 +296,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    activitiesTookPlace.add(Activities.ACTIVITY_TWO);
+                    activitiesTookPlace.add(ACTIVITY_2);
                 else
-                    activitiesTookPlace.remove(Activities.ACTIVITY_TWO);
+                    activitiesTookPlace.remove(ACTIVITY_2);
             }
         });
 
@@ -296,9 +307,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    activitiesTookPlace.add(Activities.RECAP_SESSION);
+                    activitiesTookPlace.add(RECAP_SESSION);
                 else
-                    activitiesTookPlace.remove(Activities.RECAP_SESSION);
+                    activitiesTookPlace.remove(RECAP_SESSION);
             }
         });
 
@@ -307,9 +318,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b)
-                    activitiesTookPlace.add(Activities.CLOSING_SONG);
+                    activitiesTookPlace.add(CLOSING_SONG);
                 else
-                    activitiesTookPlace.remove(Activities.CLOSING_SONG);
+                    activitiesTookPlace.remove(CLOSING_SONG);
             }
         });
 
@@ -372,6 +383,15 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             }
         });
 
+
+        submitButton = view.findViewById(R.id.buttonSubmit);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter().fetchSessionDetails();
+            }
+        });
+
     }
 
     private void difficultActivitiesLayoutController(boolean isDifficult){
@@ -384,8 +404,21 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     }
 
     @Override
-    public String getSessionDetails() {
-        return null;
+    public void getSessionDetails() {
+
+        sessionModel = GroupSessionRegisterActivity.getSessionModel();
+
+        //Update session Details object with values
+        sessionModel.setActivitiesTookPlace(activitiesTookPlace);
+        sessionModel.setAllTeachingLearningMaterialsUsed(teachingLearningMaterialsUsed);
+        sessionModel.setUnguidedFreePlay(unguidedFreePlay);
+        sessionModel.setAnyDifficultActivities(anyDifficultActivities);
+        if (anyDifficultActivities)
+            sessionModel.setListOfDifficultActivities(listOfDifficultActivities);
+        sessionModel.setCaregiversEncouragingChildren(caregiversEncouraging);
+        sessionModel.setCaregiversBroughtMaterials(caregiversBroughtMaterials);
+        sessionModel.setTopicsCovered(null);
+
     }
 
     private boolean validateFields(){
@@ -398,29 +431,6 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
     public interface SelectedOption {
         void onSelection(String selectedOption);
-    }
-
-    enum Activities {
-        WELCOME_AND_FREE_PLAY,
-        OPENING_SONG,
-        REVIEW_PREVIOUS_WEEK,
-        ACTIVITY_1,
-        ACTIVITY_TWO,
-        RECAP_SESSION,
-        CLOSING_SONG
-    }
-
-    enum UnguidedFreePlay {
-        MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS,
-        ONE_ADULT_IS_AVAILABLE
-    }
-
-    enum CoveredTopics {
-        LANGUAGE,
-        COGNITIVE,
-        SOCIAL_EMOTIONAL,
-        CREATIVITY,
-        FORMAL_TEACHING
     }
 
 }
