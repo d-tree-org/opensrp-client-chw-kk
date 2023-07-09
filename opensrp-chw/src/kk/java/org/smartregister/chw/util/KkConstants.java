@@ -124,4 +124,27 @@ public class KkConstants extends Constants{
         public static final String GROUP_SESSION = "ec_group_session";
     }
 
+    public static class GCActivities {
+        public static final String WELCOME_AND_FREE_PLAY = "opening_and_free_play";
+        public static final String OPENING_SONG = "opening_song";
+        public static final String REVIEW_PREVIOUS_WEEK = "review_of_the_week";
+        public static final String ACTIVITY_1 = "activity_1";
+        public static final String ACTIVITY_2 = "activity_2";
+        public static final String RECAP_SESSION = "recap_session";
+        public static final String CLOSING_SONG = "closing_song";
+    }
+
+    public static class GCUnguidedFreePlay {
+        public static final String MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS = "most_children_are_playing_with_materials";
+        public static final String ONE_ADULT_IS_AVAILABLE = "one_adult_is_available";
+    }
+
+    public static class GCCoveredTopics {
+        public final String LANGUAGE = "language";
+        public final String COGNITIVE = "cognitive";
+        public final String SOCIAL_EMOTIONAL = "social_emotional";
+        public final String CREATIVITY = "creativity";
+        public final String FORMAL_TEACHING = "formal_teaching";
+    }
+
 }
