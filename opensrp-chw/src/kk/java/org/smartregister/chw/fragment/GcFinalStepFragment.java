@@ -18,6 +18,7 @@ import org.smartregister.chw.listener.CaregiversEncouragingListener;
 import org.smartregister.chw.listener.CaregiversMaterialsListener;
 import org.smartregister.chw.model.GroupSessionModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -81,6 +82,10 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
         //todo: to be changed to the same model started on previous steps
         sessionModel = new GroupSessionModel();
+
+        listOfDifficultActivities = new ArrayList<>();
+        activitiesTookPlace = new ArrayList<>();
+        unguidedFreePlay = new ArrayList<>();
 
     }
 

@@ -119,9 +119,13 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                 dialog.dismiss();
             }
 
-            if (dialogListener != null) {
+            if (dialogListener != null && selectedPosition2 != -1 && selectedPosition1 != -1) {
                 dialogListener.onSelectComeWithPrimaryCareGiver(selectedPosition1 == 0, selectedChildBaseEntityId, items2[selectedPosition2]);
                 dialogDismissListener.onSuccess();
+                dialog.dismiss();
+            }else{
+                Toast.makeText(requireContext(), "Missing information for the child", Toast.LENGTH_SHORT).show();
+                dialogDismissListener.onFailure();
                 dialog.dismiss();
             }
 
