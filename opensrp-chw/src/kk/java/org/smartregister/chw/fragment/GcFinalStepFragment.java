@@ -7,6 +7,11 @@ import static org.smartregister.chw.util.KkConstants.GCActivities.OPENING_SONG;
 import static org.smartregister.chw.util.KkConstants.GCActivities.RECAP_SESSION;
 import static org.smartregister.chw.util.KkConstants.GCActivities.REVIEW_PREVIOUS_WEEK;
 import static org.smartregister.chw.util.KkConstants.GCActivities.WELCOME_AND_FREE_PLAY;
+import static org.smartregister.chw.util.KkConstants.GCCoveredTopics.TOPIC_COGNITIVE;
+import static org.smartregister.chw.util.KkConstants.GCCoveredTopics.TOPIC_CREATIVITY;
+import static org.smartregister.chw.util.KkConstants.GCCoveredTopics.TOPIC_FORMAL_TEACHING;
+import static org.smartregister.chw.util.KkConstants.GCCoveredTopics.TOPIC_LANGUAGE;
+import static org.smartregister.chw.util.KkConstants.GCCoveredTopics.TOPIC_SOCIAL_EMOTIONAL;
 import static org.smartregister.chw.util.KkConstants.GCUnguidedFreePlay.MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS;
 import static org.smartregister.chw.util.KkConstants.GCUnguidedFreePlay.ONE_ADULT_IS_AVAILABLE;
 
@@ -17,10 +22,12 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -29,6 +36,7 @@ import org.smartregister.chw.listener.CaregiversEncouragingListener;
 import org.smartregister.chw.listener.CaregiversMaterialsListener;
 import org.smartregister.chw.listener.SessionModelUpdatedListener;
 import org.smartregister.chw.model.GroupSessionModel;
+import org.smartregister.chw.util.KkConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +83,14 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     CheckBox materialsScheduledUsedYes;
     CheckBox materialsScheduledUsedNo;
 
+    CheckBox topicLanguage;
+    CheckBox topicCognitive;
+    CheckBox topicSocialemotional;
+    CheckBox topicCreativity;
+    CheckBox topicFormalTeaching;
+
+    TextInputEditText etDurationInHours;
+
     MaterialButton submitButton;
 
     private List<String> activitiesTookPlace;
@@ -85,6 +101,7 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     private String caregiversEncouraging;
     private String caregiversBroughtMaterials;
     private List<String> topicsCovered;
+    private int durationInHours;
 
     private JSONObject sessionObject;
 
@@ -99,12 +116,10 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //todo: to be changed to the same model started on previous steps
-        sessionModel = new GroupSessionModel();
-
         listOfDifficultActivities = new ArrayList<>();
         activitiesTookPlace = new ArrayList<>();
         unguidedFreePlay = new ArrayList<>();
+        topicsCovered = new ArrayList<>();
 
     }
 
@@ -383,14 +398,86 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             }
         });
 
+        //Topics Covered Checkbox
+        topicLanguage = view.findViewById(R.id.topic_language);
+        topicLanguage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    topicsCovered.add(TOPIC_LANGUAGE);
+                }else{
+                    activitiesTookPlace.remove(TOPIC_LANGUAGE);
+                }
+
+            }
+        });
+        topicCognitive = view.findViewById(R.id.topic_cognitive);
+        topicCognitive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    topicsCovered.add(TOPIC_COGNITIVE);
+                }else{
+                    topicsCovered.remove(TOPIC_COGNITIVE);
+                }
+            }
+        });
+
+        topicSocialemotional = view.findViewById(R.id.topic_socialemotional);
+        topicSocialemotional.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    topicsCovered.add(TOPIC_SOCIAL_EMOTIONAL);
+                }else{
+                    topicsCovered.remove(TOPIC_SOCIAL_EMOTIONAL);
+                }
+            }
+        });
+
+        topicCreativity = view.findViewById(R.id.topic_creativity);
+        topicCreativity.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    topicsCovered.add(TOPIC_CREATIVITY);
+                }else{
+                    topicsCovered.remove(TOPIC_CREATIVITY);
+                }
+            }
+        });
+
+        topicFormalTeaching = view.findViewById(R.id.topic_formal_teaching);
+        topicFormalTeaching.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    topicsCovered.add(TOPIC_FORMAL_TEACHING);
+                }else{
+                    topicsCovered.remove(TOPIC_FORMAL_TEACHING);
+                }
+            }
+        });
 
         submitButton = view.findViewById(R.id.buttonSubmit);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //1 Validate fields
+
+                //2 Reconstruct object
                 presenter().fetchSessionDetails();
+
+                //3 Validate Object
+
+                //4 Process to Event
+
+                //5 Close fragment
             }
         });
+
+        etDurationInHours = view.findViewById(R.id.et_session_duration);
 
     }
 
@@ -417,7 +504,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
             sessionModel.setListOfDifficultActivities(listOfDifficultActivities);
         sessionModel.setCaregiversEncouragingChildren(caregiversEncouraging);
         sessionModel.setCaregiversBroughtMaterials(caregiversBroughtMaterials);
-        sessionModel.setTopicsCovered(null);
+        sessionModel.setTopicsCovered(topicsCovered);
+        sessionModel.setDurationInHours(etDurationInHours != null ? Integer.parseInt(String.valueOf(etDurationInHours.getText())): 0);
+        Toast.makeText(getContext(), "Group Session Information Recorded", Toast.LENGTH_SHORT).show();
 
     }
 

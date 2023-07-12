@@ -19,7 +19,8 @@ public class GroupSessionModel {
     private List<String> listOfDifficultActivities;
     private String caregiversEncouragingChildren;
     private String caregiversBroughtMaterials;
-    private String topicsCovered;
+    private List<String> topicsCovered;
+    private int durationInHours;
 
     public GroupSessionModel(){
 
@@ -57,12 +58,16 @@ public class GroupSessionModel {
         return sessionPlace;
     }
 
-    public String getTopicsCovered() {
+    public List<String> getTopicsCovered() {
         return topicsCovered;
     }
 
     public List<String> getUnguidedFreePlay() {
         return unguidedFreePlay;
+    }
+
+    public int getDurationInHours() {
+        return durationInHours;
     }
 
     public void setActivitiesTookPlace(List<String> activitiesTookPlace) {
@@ -109,11 +114,15 @@ public class GroupSessionModel {
         this.sessionPlace = sessionPlace;
     }
 
-    public void setTopicsCovered(String topicsCovered) {
+    public void setTopicsCovered(List<String> topicsCovered) {
         this.topicsCovered = topicsCovered;
     }
 
     public void setUnguidedFreePlay(List<String> unguidedFreePlay) {
         this.unguidedFreePlay = unguidedFreePlay;
+    }
+
+    public void setDurationInHours(int durationInHours) {
+        this.durationInHours = durationInHours;
     }
 }

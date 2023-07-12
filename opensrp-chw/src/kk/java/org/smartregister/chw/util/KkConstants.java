@@ -140,11 +140,11 @@ public class KkConstants extends Constants{
     }
 
     public static class GCCoveredTopics {
-        public final String LANGUAGE = "language";
-        public final String COGNITIVE = "cognitive";
-        public final String SOCIAL_EMOTIONAL = "social_emotional";
-        public final String CREATIVITY = "creativity";
-        public final String FORMAL_TEACHING = "formal_teaching";
+        public static final String TOPIC_LANGUAGE = "language";
+        public static final String TOPIC_COGNITIVE = "cognitive";
+        public static final String TOPIC_SOCIAL_EMOTIONAL = "social_emotional";
+        public static final String TOPIC_CREATIVITY = "creativity";
+        public static final String TOPIC_FORMAL_TEACHING = "formal_teaching";
     }
 
 }

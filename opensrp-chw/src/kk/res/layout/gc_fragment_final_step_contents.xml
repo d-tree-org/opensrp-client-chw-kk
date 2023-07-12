@@ -371,31 +371,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
-                        android:id="@+id/language"
+                        android:id="@+id/topic_language"
                         android:text="Language (e.g. children’s own experiences, follow-up questions and providing information in response, two-way conversations)"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/cognitive"
+                        android:id="@+id/topic_cognitive"
                         android:text="Cognitive (e.g. identify, match and classify, solving puzzles, concepts like less-more, tall-short, big-small, in-out)"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/socialemotional"
+                        android:id="@+id/topic_socialemotional"
                         android:text="Socioemotional (e.g. share/take turns, empathy) "/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/creativity"
+                        android:id="@+id/topic_creativity"
                         android:text="Creativity (e.g. colouring/painting/drawing, pretend games)"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/formal_teaching"
+                        android:id="@+id/topic_formal_teaching"
                         android:text="Formal teaching (letters and numbers)"/>
 
                 </LinearLayout>
@@ -417,6 +417,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/et_session_duration"
                         android:inputType="number"
                         android:textSize="16sp"
                         android:fontFamily="@font/google_sans_regular"
