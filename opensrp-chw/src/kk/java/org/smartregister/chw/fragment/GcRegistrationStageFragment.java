@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -40,6 +41,10 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     //New sessions implementation
     private TextInputEditText etSessionDate;
     private AppCompatSpinner spTypeOfPlace;
+    private AppCompatSpinner spDidSessionTakePlace;
+    private LinearLayoutCompat llNoSessionContainer;
+    private LinearLayoutCompat llSessionRegistrationContainer;
+    private AppCompatSpinner spNoSessionSpinner;
     private TextInputLayout etGps;
     private TextInputLayout etDuration;
 
@@ -48,7 +53,13 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
 
     private static FormUtils formUtils;
 
-    private static final String[] places = {"Session place","Hospital", "Health Center", "School"};
+    private static final String[] places = { "Session place","Hospital", "Health Center", "School" };
+    private static final String[] sessionTookPlaces = { "Yes", "No" };
+    private static final String[] noSessionReasons = { "CHW(s) incapacitated (sickness, etc.)", "All caregivers unavailable", "All caregivers refused", "All children incapacitated (sickness, etc.)", "Other (Specify)" };
+
+    ArrayAdapter<String> placesAdapter;
+    ArrayAdapter<String> sessionTookPlaceAdapter;
+    ArrayAdapter<String> noSessionReasonAdapter;
 
     private SessionModelUpdatedListener nextStepListener;
     private GroupSessionModel sessionModel;
@@ -60,6 +71,10 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        placesAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, places);
+        sessionTookPlaceAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, sessionTookPlaces);
+        noSessionReasonAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, noSessionReasons);
     }
 
     @Nullable
@@ -97,6 +112,11 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     @Override
     public void setupViews(View view) {
         super.setupViews(view);
+
+        spDidSessionTakePlace = view.findViewById(R.id.sp_session_took_place);
+        llNoSessionContainer = view.findViewById(R.id.ll_no_session_container);
+        llSessionRegistrationContainer = view.findViewById(R.id.ll_start_session_reg);
+        spNoSessionSpinner = view.findViewById(R.id.sp_no_session_reason);
 
         etSessionDate = view.findViewById(R.id.editTextSessionDate);
         spTypeOfPlace = view.findViewById(R.id.spinnerTypeOfPlace);
@@ -145,11 +165,44 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     }
 
     private void setupSpinner(){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),
-                android.R.layout.simple_spinner_item, places);
+        sessionTookPlaceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spDidSessionTakePlace.setAdapter(sessionTookPlaceAdapter);
+        spDidSessionTakePlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0){
+                    //Yes
+                    llNoSessionContainer.setVisibility(View.GONE);
+                    llSessionRegistrationContainer.setVisibility(View.VISIBLE);
+                }else if (i == 1){
+                    //No
+                    llNoSessionContainer.setVisibility(View.VISIBLE);
+                    llSessionRegistrationContainer.setVisibility(View.GONE);
+                }
+            }
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spTypeOfPlace.setAdapter(adapter);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        noSessionReasonAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spNoSessionSpinner.setAdapter(noSessionReasonAdapter);
+        spNoSessionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        placesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spTypeOfPlace.setAdapter(placesAdapter);
         spTypeOfPlace.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
