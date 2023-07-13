@@ -6,10 +6,81 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sessions_took_place_question"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Did the session take place"
+            android:layout_marginTop="24dp"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/google_sans_medium"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_session_took_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_background"
+            android:fontFamily="@font/google_sans_regular"
+            android:paddingLeft="4dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSessionDateLayout"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_no_session_container"
+        app:layout_constraintTop_toBottomOf="@+id/sessions_took_place_question"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Why did it not take place"
+            android:layout_marginTop="24dp"
+            android:textSize="24sp"
+            android:textColor="@color/black_tranparent_50"
+            android:fontFamily="@font/google_sans_medium"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_no_session_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_background"
+            android:fontFamily="@font/google_sans_regular"
+            android:paddingLeft="4dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSessionDateLayout"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/ll_start_session_reg"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/sessions_took_place_question"
         android:orientation="vertical"
         android:background="@color/white"
         android:layout_marginLeft="8dp"
