@@ -13,10 +13,12 @@ import com.nerdstone.neatformcore.views.widgets.CheckBoxNFormView;
 import org.smartregister.chw.R;
 import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.adapter.SelectChildAdapterGS;
+import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.listener.SessionModelUpdatedListener;
 import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.chw.provider.SelectChildForGroupSessionFragmentProvider;
+import org.smartregister.chw.util.Utils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
@@ -66,7 +68,9 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
                 SelectedChildGS selectedChildGS = new SelectedChildGS(selectedChildBaseEntityId, SelectedChildGS.ChildStatus.SELECTED, false, ".");
                 childRegisterProvider.addChildToChildSelectedList(selectedChildBaseEntityId, selectedChildGS);
                 view.setBackgroundColor(view.getContext().getColor(R.color.white));
-                SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(selectedChildBaseEntityId, new DialogDismissListener() {
+                String primaryCareGiverName = getClientCareGiverName(client);
+                SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(selectedChildBaseEntityId,
+                        primaryCareGiverName, new DialogDismissListener() {
                     @Override
                     public void onSuccess() {
                         ((CheckBoxNFormView) view).setChecked(true);
@@ -84,6 +88,16 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
             }
         }
         //super.onViewClicked(view);
+    }
+
+    private String getClientCareGiverName(CommonPersonObjectClient client) {
+
+        String firstName = Utils.getValue(client.getColumnmaps(), ChildDBConstants.KEY.FAMILY_FIRST_NAME, true);
+        String middleName = Utils.getValue(client.getColumnmaps(), ChildDBConstants.KEY.FAMILY_MIDDLE_NAME, true);
+        String lastName = Utils.getValue(client.getColumnmaps(), ChildDBConstants.KEY.FAMILY_LAST_NAME, true);
+
+        return Utils.getClientName(firstName, middleName, lastName);
+
     }
 
 
