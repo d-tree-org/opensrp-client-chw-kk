@@ -7,11 +7,64 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sessions_took_place_question"
-        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="8dp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/ll_sessions_summary">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="Records of sessions this month"
+            android:textSize="16sp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:fontFamily="@font/google_sans_medium"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@color/red_overlay">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="0"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/google_sans_medium"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:id="@+id/summary_separator"
+        app:layout_constraintTop_toBottomOf="@+id/ll_sessions_summary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sessions_took_place_question"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/summary_separator"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
@@ -19,8 +72,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Did the session take place"
-            android:layout_marginTop="24dp"
-            android:textSize="24sp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
             android:textColor="@color/black"
             android:fontFamily="@font/google_sans_medium"/>
 
@@ -54,7 +107,7 @@
             android:layout_height="wrap_content"
             android:text="Why did it not take place"
             android:layout_marginTop="24dp"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/black_tranparent_50"
             android:fontFamily="@font/google_sans_medium"/>
 
@@ -70,6 +123,45 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextSessionDateLayout"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_other_reason"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="Other reason"
+            android:textColorHint="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sp_no_session_reason">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_other_reason_text"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:fontFamily="@font/google_sans_regular"
+                android:textColor="?android:attr/textColorPrimary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_submit_not_done"
+            style="@style/PrimaryFlatButton"
+            android:gravity="center"
+            android:layout_gravity="right"
+            android:textColor="@color/white"
+            android:layout_width="120dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:text="Submit"
+            android:textColorHint="?android:attr/textColorPrimary"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -90,10 +182,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add information about a new session"
-            android:layout_marginLeft="24dp"
+            android:text="Add information about the new session"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="24dp"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textColor="@color/text_black"
             android:fontFamily="@font/google_sans_medium"/>
 

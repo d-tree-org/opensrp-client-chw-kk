@@ -37,6 +37,7 @@ import java.util.UUID;
 public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragment {
 
     private MaterialButton nextButton;
+    private MaterialButton submitNotDoneButton;
 
     //New sessions implementation
     private TextInputEditText etSessionDate;
@@ -45,16 +46,19 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     private LinearLayoutCompat llNoSessionContainer;
     private LinearLayoutCompat llSessionRegistrationContainer;
     private AppCompatSpinner spNoSessionSpinner;
+
     private TextInputLayout etGps;
     private TextInputLayout etDuration;
+    private TextInputEditText etOtherReasonText;
+    private TextInputLayout etOtherReasonLayout;
 
     private String selectedDateString = "";
     private DateTime selectedDateTime = null;
 
     private static FormUtils formUtils;
 
-    private static final String[] places = { "Session place","Hospital", "Health Center", "School" };
-    private static final String[] sessionTookPlaces = { "Yes", "No" };
+    private static final String[] places = { "Session place","Dispensary", "Village Office", "Participant house", "Outreach vaccination point", "Primary School", "Under the tree" };
+    private static final String[] sessionTookPlaces = { "-", "Yes", "No" };
     private static final String[] noSessionReasons = { "CHW(s) incapacitated (sickness, etc.)", "All caregivers unavailable", "All caregivers refused", "All children incapacitated (sickness, etc.)", "Other (Specify)" };
 
     ArrayAdapter<String> placesAdapter;
@@ -113,6 +117,9 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     public void setupViews(View view) {
         super.setupViews(view);
 
+        etOtherReasonText = view.findViewById(R.id.et_other_reason_text);
+        etOtherReasonLayout = view.findViewById(R.id.et_other_reason);
+
         spDidSessionTakePlace = view.findViewById(R.id.sp_session_took_place);
         llNoSessionContainer = view.findViewById(R.id.ll_no_session_container);
         llSessionRegistrationContainer = view.findViewById(R.id.ll_start_session_reg);
@@ -124,6 +131,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         etDuration = view.findViewById(R.id.editTextDuration);
 
         nextButton = view.findViewById(R.id.buttonNext);
+        submitNotDoneButton = view.findViewById(R.id.button_submit_not_done);
 
         setupSpinner();
 
@@ -171,10 +179,15 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0){
+                    //Nothing selected
+                    llNoSessionContainer.setVisibility(View.GONE);
+                    llSessionRegistrationContainer.setVisibility(View.GONE);
+                }
+                else if (i == 1){
                     //Yes
                     llNoSessionContainer.setVisibility(View.GONE);
                     llSessionRegistrationContainer.setVisibility(View.VISIBLE);
-                }else if (i == 1){
+                }else if (i == 2){
                     //No
                     llNoSessionContainer.setVisibility(View.VISIBLE);
                     llSessionRegistrationContainer.setVisibility(View.GONE);
@@ -192,7 +205,11 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         spNoSessionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                if (i == 4){
+                    etOtherReasonLayout.setVisibility(View.VISIBLE);
+                }else{
+                    etOtherReasonLayout.setVisibility(View.GONE);
+                }
             }
 
             @Override
