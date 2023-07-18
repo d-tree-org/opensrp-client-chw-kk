@@ -2,14 +2,9 @@ package org.smartregister.chw.fragment;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,12 +42,14 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     private int selectedPosition3 = -1;
 
     private DialogListener dialogListener;
-    private String selectedChildBaseEntityId;
+    private final String selectedChildBaseEntityId;
+    private final String primaryCareGiverName;
 
     SelectChildForGroupSessionRegisterFragment.DialogDismissListener dialogDismissListener;
 
-    public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId, SelectChildForGroupSessionRegisterFragment.DialogDismissListener listener) {
+    public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId, String primaryCareGiverName, SelectChildForGroupSessionRegisterFragment.DialogDismissListener listener) {
         this.selectedChildBaseEntityId = selectedChildBaseEntityId;
+        this.primaryCareGiverName = primaryCareGiverName;
         this.dialogDismissListener = listener;
     }
 
@@ -71,6 +68,8 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         });*/
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_fragment_childselection, null);
+        TextView came_with_pc_tv = view.findViewById(R.id.came_with_pc);
+        came_with_pc_tv.setText(String.format(getString(R.string.primary_care_give_dialog_gs), primaryCareGiverName));
         builder.setView(view);
 
         came_with_pc_lv = view.findViewById(R.id.came_with_pc_lv);
