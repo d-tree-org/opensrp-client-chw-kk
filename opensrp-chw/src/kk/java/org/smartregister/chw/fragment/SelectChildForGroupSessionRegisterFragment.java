@@ -22,6 +22,7 @@ import org.smartregister.chw.util.Utils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
+import org.smartregister.domain.FetchStatus;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
 import java.util.ArrayList;
@@ -160,6 +161,26 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
 
     private void displayToast(String string) {
         Toast.makeText(getContext(), string, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSyncInProgress(FetchStatus fetchStatus) {
+
+    }
+
+    @Override
+    public void onSyncStart() {
+
+    }
+
+    @Override
+    public void onSyncComplete(FetchStatus fetchStatus) {
+
+    }
+
+    @Override
+    protected void refreshSyncProgressSpinner() {
+        syncButton.setVisibility(android.view.View.GONE);
     }
 
     @Override
