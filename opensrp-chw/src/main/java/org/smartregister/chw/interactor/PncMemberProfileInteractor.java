@@ -22,6 +22,7 @@ import org.smartregister.chw.core.rule.PncVisitAlertRule;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreReferralUtils;
 import org.smartregister.chw.core.utils.HomeVisitUtil;
+import org.smartregister.chw.dao.ChwPNCDao;
 import org.smartregister.chw.dao.FamilyDao;
 import org.smartregister.chw.pnc.PncLibrary;
 import org.smartregister.clientandeventmodel.Client;
@@ -182,5 +183,10 @@ public class PncMemberProfileInteractor extends CorePncMemberProfileInteractor i
         taskList.addAll(inProgressTasks);
 
         callback.setClientTasks(taskList);
+    }
+
+    @Override
+    public MemberObject getMemberClient(String memberID) {
+        return ChwPNCDao.getMember(memberID);
     }
 }

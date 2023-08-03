@@ -33,6 +33,7 @@ import org.smartregister.chw.core.utils.ChwNotificationUtil;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.custom_view.AncFloatingMenu;
+import org.smartregister.chw.dao.ChwPNCDao;
 import org.smartregister.chw.fp.util.FamilyPlanningConstants;
 import org.smartregister.chw.interactor.ChildProfileInteractor;
 import org.smartregister.chw.interactor.FamilyProfileInteractor;
@@ -492,5 +493,10 @@ public class PncMemberProfileActivity extends CorePncMemberProfileActivity imple
     public void onMemberDetailsReloaded(MemberObject memberObject) {
         super.onMemberDetailsReloaded(memberObject);
         ((PncMemberProfileContract.Presenter)presenter).fetchTasks();
+    }
+
+    @Override
+    public MemberObject getMemberObject(String baseEntityID) {
+        return ChwPNCDao.getMember(baseEntityID);
     }
 }
