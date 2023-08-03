@@ -29,6 +29,7 @@ import org.smartregister.view.contract.SmartRegisterClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -69,10 +70,11 @@ public class SelectChildForGroupSessionFragmentProvider extends ChildRegisterPro
         return childList;
     }
 
-    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver, String groupPlaced) {
+    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver, List<String> accompanyingRelatives, String groupPlaced) {
         if (childList.containsKey(baseEntityId)) {
             Objects.requireNonNull(childList.get(baseEntityId)).setCameWithPrimaryCareGiver(cameWithCareGiver);
             Objects.requireNonNull(childList.get(baseEntityId)).setGroupPlaced(groupPlaced);
+            Objects.requireNonNull(childList.get(baseEntityId)).setAccompanyingRelatives(accompanyingRelatives);
         }
     }
 
