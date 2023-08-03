@@ -4,4 +4,15 @@
         <item>Ndiyo</item>
         <item>Hapana</item>
     </string-array>
+    <string-array name="multi_select_accompany_child_option">
+        <item>Baba wa mtoto/Mpenzi wa mama</item>
+        <item>Ndugu wa mtoto (chin ya miaka 5)</item>
+        <item>Ndugu wa mtoto (miaka 5 au zaidi)</item>
+        <item>Bibi wa mtoto</item>
+        <item>Babu wa mtoto</item>
+        <item>Dada yake mama wa damu</item>
+        <item>Kaka yake mama wa damu</item>
+        <item>Rafiki</item>
+        <item>Mwingine</item>
+    </string-array>
 </resources>
