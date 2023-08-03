@@ -16,12 +16,14 @@ import org.smartregister.chw.adapter.SelectChildAdapterGS;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.listener.SessionModelUpdatedListener;
 import org.smartregister.chw.model.GroupSessionModel;
+import org.smartregister.chw.model.MultiSelectListItemModel;
 import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.chw.provider.SelectChildForGroupSessionFragmentProvider;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.cursoradapter.RecyclerViewProvider;
+import org.smartregister.domain.FetchStatus;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
 import java.util.ArrayList;
@@ -102,9 +104,40 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
 
 
     @Override
-    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, String groupPlaced) {
+    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedAccompanyingCaregivers, String groupPlaced) {
         Timber.d("The Child with id %s Come with Primary Care Giver: %s", selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
-        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId, isComeWithPrimaryCareGiver, groupPlaced);
+        List<String> listOfAccompanyingRelatives = new ArrayList<>();
+        for (MultiSelectListItemModel multiSelectListItemModel : selectedAccompanyingCaregivers) {
+            listOfAccompanyingRelatives.add(getTranslatedAccompanyingRelatives(multiSelectListItemModel.getName()));
+        }
+
+        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId, isComeWithPrimaryCareGiver, listOfAccompanyingRelatives, groupPlaced);
+    }
+
+    private String getTranslatedAccompanyingRelatives(String name) {
+
+        switch (name) {
+            case "Baba wa mtoto/Mpenzi wa mama":
+                return "Father of the child/Partner of the mother";
+            case "Ndugu wa mtoto (chin ya miaka 5)":
+                return "Sibling of the child (less than 5 years old)";
+            case "Ndugu wa mtoto (miaka 5 au zaidi)":
+                return "Sibling of the child (5 or more years old)";
+            case "Bibi wa mtoto":
+                return "Grandmother of the child ";
+            case "Babu wa mtoto":
+                return "Grandfather of the child";
+            case "Dada yake mama wa damu":
+                return "Blood-sister of the mother";
+            case "Kaka yake mama wa damu":
+                return "Blood-brother of the mother";
+            case "Rafiki":
+                return "Friend";
+            case "Mwingine":
+                return "Other";
+            default:
+                return name;
+        }
     }
 
     @Override
@@ -160,6 +193,26 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
 
     private void displayToast(String string) {
         Toast.makeText(getContext(), string, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSyncInProgress(FetchStatus fetchStatus) {
+
+    }
+
+    @Override
+    public void onSyncStart() {
+
+    }
+
+    @Override
+    public void onSyncComplete(FetchStatus fetchStatus) {
+
+    }
+
+    @Override
+    protected void refreshSyncProgressSpinner() {
+        syncButton.setVisibility(android.view.View.GONE);
     }
 
     @Override

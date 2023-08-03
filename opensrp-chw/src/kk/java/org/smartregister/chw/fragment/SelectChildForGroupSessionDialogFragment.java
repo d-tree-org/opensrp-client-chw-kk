@@ -17,6 +17,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.smartregister.chw.R;
 import org.smartregister.chw.adapter.KKCustomAdapter;
+import org.smartregister.chw.adapter.KKCustomAdapterMultiSelectList;
+import org.smartregister.chw.model.MultiSelectListItemModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kassim Sheghembe on 2023-06-27
@@ -29,13 +34,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     private TextView who_came_with_child_tv;
     private KKCustomAdapter came_with_pc_lv_adapter;
-    private KKCustomAdapter who_came_with_the_child_lv_adapter;
     private KKCustomAdapter selected_group_lv_adapter;
 
     private final String[] items2 = {"Group 1", "Group 2"};
-    private final String[] items3 = {"Father of the child/Partner of the mother", "Sibling of the child (less than 5 years old)",
-            "Sibling of the child (5 or more years old)", "Grandmother of the child ", "Grandfather of the child",
-            "Blood-sister of the mother", "Blood-brother of the mother", "Friend", "Other"};
 
     private int selectedPosition1 = -1;
     private int selectedPosition2 = -1;
@@ -80,7 +81,11 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         who_came_with_child_tv = view.findViewById(R.id.who_came_with_child_tv);
 
         came_with_pc_lv_adapter = new KKCustomAdapter(getResources().getStringArray(R.array.select_child_option), requireContext());
-        who_came_with_the_child_lv_adapter = new KKCustomAdapter(items3, requireContext());
+        ArrayList<MultiSelectListItemModel> multiSelectListItems = new ArrayList<>();
+        for(String item : getResources().getStringArray(R.array.multi_select_accompany_child_option)){
+            multiSelectListItems.add(new MultiSelectListItemModel(item, false));
+        }
+        KKCustomAdapterMultiSelectList who_came_with_the_child_lv_adapter = new KKCustomAdapterMultiSelectList(multiSelectListItems, requireContext());
         selected_group_lv_adapter = new KKCustomAdapter(items2, requireContext());
 
         came_with_pc_lv.setAdapter(came_with_pc_lv_adapter);
@@ -91,13 +96,15 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         who_came_with_the_child_lv.setLayoutManager(new LinearLayoutManager(requireContext()));
         selected_group_lv.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        came_with_pc_lv_adapter.setOnItemSelectedListener(new KKCustomAdapter.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(int position) {
-                selectedPosition1 = position;
-                hideChildCameWith(position == 0);
-                came_with_pc_lv_adapter.setSelectedPosition(position);
-            }
+        came_with_pc_lv_adapter.setOnItemSelectedListener(position -> {
+            selectedPosition1 = position;
+            hideChildCameWith(position == 0);
+            came_with_pc_lv_adapter.setSelectedPosition(position);
+        });
+
+        who_came_with_the_child_lv_adapter.setOnItemSelectedListener(position -> {
+            selectedPosition3 = position;
+            who_came_with_the_child_lv_adapter.setSelectedPosition(position);
         });
 
         selected_group_lv_adapter.setOnItemSelectedListener(position -> {
@@ -119,7 +126,12 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
             }
 
             if (dialogListener != null && selectedPosition2 != -1 && selectedPosition1 != -1) {
-                dialogListener.onSelectComeWithPrimaryCareGiver(selectedPosition1 == 0, selectedChildBaseEntityId, items2[selectedPosition2]);
+                dialogListener.onSelectComeWithPrimaryCareGiver(
+                        selectedPosition1 == 0,
+                        selectedChildBaseEntityId,
+                        who_came_with_the_child_lv_adapter.getSelectedItems(),
+                        items2[selectedPosition2]
+                );
                 dialogDismissListener.onSuccess();
                 dialog.dismiss();
             }else{
@@ -160,7 +172,10 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     }
 
     public interface DialogListener {
-        void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, String selectedGroup);
+        void onSelectComeWithPrimaryCareGiver(
+                boolean isComeWithPrimaryCareGiver,
+                String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedAccompanyingCaregivers,
+                String selectedGroup);
     }
 
 }
