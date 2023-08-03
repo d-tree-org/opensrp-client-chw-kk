@@ -1,8 +1,11 @@
 package org.smartregister.chw.activity;
 
+import static org.smartregister.chw.core.utils.Utils.updateToolbarTitle;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -10,7 +13,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import org.json.JSONObject;
 import org.smartregister.chw.R;
-import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.activity.CoreFamilyOtherMemberProfileActivity;
 import org.smartregister.chw.core.activity.CoreFamilyProfileActivity;
 import org.smartregister.chw.core.form_data.NativeFormsDataBinder;
@@ -32,8 +34,6 @@ import org.smartregister.view.contract.BaseProfileContract;
 
 import timber.log.Timber;
 
-import static org.smartregister.chw.core.utils.Utils.updateToolbarTitle;
-
 public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfileActivity {
     private FamilyMemberFloatingMenu familyFloatingMenu;
     private Flavor flavor = new FamilyOtherMemberProfileActivityFlv();
@@ -48,11 +48,16 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.kk_other_member_profile_menu, menu);
         String gender = Utils.getValue(commonPersonObject.getColumnmaps(), DBConstants.KEY.GENDER, false);
+        MenuItem pncRegistration = menu.findItem(R.id.action_pnc_enrollment);
         // Check if woman is already registered
-        if (flavor.hasANC() && !presenter().isWomanAlreadyRegisteredOnAnc(commonPersonObject) && flavor.isOfReproductiveAge(commonPersonObject, "Female") &&  gender.equalsIgnoreCase("Female") ) {
+        if (flavor.hasANC() && !presenter().isWomanAlreadyRegisteredOnAnc(commonPersonObject) && flavor.isOfReproductiveAge(commonPersonObject, "Female") && gender.equalsIgnoreCase("Female")) {
             flavor.updateFpMenuItems(baseEntityId, menu);
             menu.findItem(R.id.action_anc_registration).setVisible(true);
+            if (pncRegistration != null) {
+                pncRegistration.setVisible(true);
+            }
         } else {
             menu.findItem(R.id.action_anc_registration).setVisible(false);
         }
@@ -157,7 +162,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
     @Override
     protected void initializePresenter() {
         super.initializePresenter();
-        onClickFloatingMenu = flavor.getOnClickFloatingMenu(this, familyBaseEntityId,baseEntityId);
+        onClickFloatingMenu = flavor.getOnClickFloatingMenu(this, familyBaseEntityId, baseEntityId);
     }
 
     @Override
@@ -176,7 +181,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
         super.setFamilyServiceStatus(status);
         TextView textViewFamilyHas = findViewById(R.id.textview_family_has);
         Integer dueServiceCount = ScheduleDao.getDueServicesCount(familyBaseEntityId);
-        if(dueServiceCount != null){
+        if (dueServiceCount != null) {
             if (dueServiceCount == 0) {
                 textViewFamilyHas.setText(getString(R.string.family_has_nothing_due));
             }
@@ -192,7 +197,7 @@ public class FamilyOtherMemberProfileActivity extends CoreFamilyOtherMemberProfi
      * build implementation differences file
      */
     public interface Flavor {
-        OnClickFloatingMenu getOnClickFloatingMenu(final Activity activity, final String familyBaseEntityId , final String baseEntityId);
+        OnClickFloatingMenu getOnClickFloatingMenu(final Activity activity, final String familyBaseEntityId, final String baseEntityId);
 
         boolean isOfReproductiveAge(CommonPersonObjectClient commonPersonObject, String gender);
 
