@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Remove Child Under 5",
+  "encounter_type": "Remove Family",
   "entity_id": "",
   "relational_id": "",
   "metadata": {
@@ -52,7 +52,7 @@
     }
   },
   "step1": {
-    "title": "{{family_details_remove_child.step1.title}}",
+    "title": "{{family_details_remove_family.step1.title}}",
     "fields": [
       {
         "key": "spacer",
@@ -60,7 +60,16 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "spacer",
-        "spacer_height": "10sp"
+        "spacer_height": "30sp"
+      },
+      {
+        "key": "fam_name",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{family_details_remove_family.step1.fam_name.text}}",
+        "text_size": "25px"
       },
       {
         "key": "details",
@@ -68,7 +77,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "label",
-        "text": "{{family_details_remove_child.step1.details.text}}",
+        "text": "{{family_details_remove_family.step1.details.text}}",
         "text_size": "25px"
       },
       {
@@ -84,7 +93,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "spacer",
-        "spacer_height": "15dp"
+        "spacer_height": "20sp"
       },
       {
         "key": "remove_reason",
@@ -93,45 +102,29 @@
         "openmrs_entity_id": "160417AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "{{family_details_remove_child.step1.remove_reason.hint}}",
+        "hint": "{{family_details_remove_family.step1.remove_reason.hint}}",
         "values": [
-          "{{family_details_remove_child.step1.remove_reason.values[0]}}",
-          "{{family_details_remove_child.step1.remove_reason.values[1]}}",
-          "{{family_details_remove_child.step1.remove_reason.values[2]}}",
-          "{{family_details_remove_child.step1.remove_reason.values[3]}}",
-          "{{family_details_remove_child.step1.remove_reason.values[4]}}",
-          "{{family_details_remove_child.step1.remove_reason.values[5]}}"
+          "{{family_details_remove_family.step1.remove_reason.values[0]}}",
+          "{{family_details_remove_family.step1.remove_reason.values[1]}}",
+          "{{family_details_remove_family.step1.remove_reason.values[2]}}",
+          "{{family_details_remove_family.step1.remove_reason.values[3]}}"
         ],
         "keys": [
-          "Died",
           "Moved away",
           "Duplicate",
           "Mistake entry",
-          "Revoked Consent",
           "Other"
         ],
         "v_required": {
           "value": "true",
-          "err": "{{family_details_remove_child.step1.remove_reason.v_required.err}}"
+          "err": "{{family_details_remove_family.step1.remove_reason.v_required.err}}"
         },
         "openmrs_choice_ids": {
-          "Died": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "Moved away": "160415AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
           "Duplicate": "duplicate",
           "Mistake": "mistake",
-          "Revoke Consent": "revoked consent",
           "Other": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         }
-      },
-      {
-        "key": "dob",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "spacer",
-        "expanded": false,
-        "read_only": "true",
-        "hidden": "false"
       },
       {
         "key": "date_moved",
@@ -140,20 +133,19 @@
         "openmrs_entity_id": "164133AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_data_type": "text",
         "type": "date_picker",
-        "label": "{{family_details_remove_child.step1.date_moved.label}}",
-        "hint": "{{family_details_remove_child.step1.date_moved.hint}}",
+        "label": "{{family_details_remove_family.step1.date_moved.label}}",
+        "hint": "{{family_details_remove_family.step1.date_moved.hint}}",
         "expanded": false,
-        "min_date": "",
+        "min_date": "today-10y",
         "max_date": "today",
         "v_required": {
           "value": "true",
-          "err": "{{family_details_remove_child.step1.date_moved.v_required.err}}"
+          "err": "{{family_details_remove_family.step1.date_moved.v_required.err}}"
         },
         "constraints": [
           {
             "type": "date",
-            "ex": "greaterThanEqualTo(., step1:dob)",
-            "err": "{{family_details_remove_child.step1.date_moved.constraints.err}}"
+            "err": "Date déménagé est avant la date de naissance"
           }
         ],
         "relevance": {
@@ -164,59 +156,26 @@
         }
       },
       {
-        "key": "date_died",
+        "key": "other_remove_reason",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "1543AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_data_type": "text",
-        "type": "date_picker",
-        "label": "{{family_details_remove_child.step1.date_died.label}}",
-        "hint": "{{family_details_remove_child.step1.date_died.hint}}",
-        "expanded": false,
-        "min_date": "",
-        "max_date": "today",
+        "openmrs_entity_id": "",
+        "type": "edit_text",
+        "hint": "{{family_details_remove_member.step1.other_remove_reason.hint}}",
+        "edit_type": "name",
         "v_required": {
           "value": "true",
-          "err": "{{family_details_remove_child.step1.date_died.v_required.err}}"
+          "err": "{{family_details_remove_member.step1.other_remove_reason.v_required.err}}"
         },
-        "constraints": [
-          {
-            "type": "date",
-            "ex": "greaterThanEqualTo(., step1:dob)",
-            "err": "{{family_details_remove_child.step1.date_died.constraints.err}}"
-          }
-        ],
         "relevance": {
           "step1:remove_reason": {
             "type": "string",
-            "ex": "equalTo(., \"Died\")"
-          }
-        }
-      },
-      {
-        "key": "age_at_death",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "label": "{{family_details_remove_child.step1.age_at_death.label}}",
-        "hint": "{{family_details_remove_child.step1.age_at_death.hint}}",
-        "type": "edit_text",
-        "read_only": "true",
-        "relevance": {
-          "step1:remove_reason": {
-            "type": "string",
-            "ex": "equalTo(., \"Died\")"
-          }
-        },
-        "calculation": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "child_remove_calculation.yml"
-            }
+            "ex": "equalTo(., \"Other\")"
           }
         }
       }
     ]
   },
-  "properties_file_name": "family_details_remove_child"
+  "properties_file_name": "family_details_remove_family"
 }
