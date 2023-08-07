@@ -15,4 +15,8 @@
         <item>Rafiki</item>
         <item>Mwingine</item>
     </string-array>
+    <string-array name="group_session_groups">
+        <item>Kundi 1 (kundi la wadogo)</item>
+        <item>Kundi 2 (kundi la wakubwa)</item>
+    </string-array>
 </resources>

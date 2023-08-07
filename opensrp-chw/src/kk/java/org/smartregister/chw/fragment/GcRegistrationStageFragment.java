@@ -46,7 +46,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     private LinearLayoutCompat llNoSessionContainer;
     private LinearLayoutCompat llSessionRegistrationContainer;
     private AppCompatSpinner spNoSessionSpinner;
-
+    private AppCompatSpinner divideChildrenInGroupsSpinner;
     private TextInputLayout etGps;
     private TextInputLayout etDuration;
     private TextInputEditText etOtherReasonText;
@@ -61,10 +61,13 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     private static final String[] sessionTookPlaces = { "-", "Yes", "No" };
     private static final String[] noSessionReasons = { "CHW(s) incapacitated (sickness, etc.)", "All caregivers unavailable", "All caregivers refused", "All children incapacitated (sickness, etc.)", "Other (Specify)" };
 
+    private static final String[] divideChildrenInGroupsKeys = {"Did you divide children into different age groups?", "Yes", "No"};
+
     ArrayAdapter<String> placesAdapter;
     ArrayAdapter<String> sessionTookPlaceAdapter;
     ArrayAdapter<String> noSessionReasonAdapter;
 
+    ArrayAdapter<String> divideChildrenInGroupsAdapter;
     private SessionModelUpdatedListener nextStepListener;
     private GroupSessionModel sessionModel;
 
@@ -79,6 +82,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         placesAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, places);
         sessionTookPlaceAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, sessionTookPlaces);
         noSessionReasonAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, noSessionReasons);
+        divideChildrenInGroupsAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, divideChildrenInGroupsKeys);
     }
 
     @Nullable
@@ -129,6 +133,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         spTypeOfPlace = view.findViewById(R.id.spinnerTypeOfPlace);
         etGps = view.findViewById(R.id.editTextGps);
         etDuration = view.findViewById(R.id.editTextDuration);
+        divideChildrenInGroupsSpinner = view.findViewById(R.id.divide_children_in_groups);
 
         nextButton = view.findViewById(R.id.buttonNext);
         submitNotDoneButton = view.findViewById(R.id.button_submit_not_done);
@@ -155,6 +160,9 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
 
         String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
         sessionModel.setSessionPlace(sessionPlaceString);
+
+        boolean dividedInGroups = divideChildrenInGroupsSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes");
+        sessionModel.setChildrenDividedInGroups(dividedInGroups);
 
     }
 
@@ -242,6 +250,32 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
 
             }
         });
+
+        divideChildrenInGroupsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        divideChildrenInGroupsSpinner.setAdapter(divideChildrenInGroupsAdapter);
+
+        divideChildrenInGroupsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                switch (i) {
+                    case 0:
+                        // Whatever you want to happen when the first item gets selected
+                        break;
+                    case 1:
+                        // Whatever you want to happen when the second item gets selected
+                        break;
+                    case 2:
+                        // Whatever you want to happen when the thrid item gets selected
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private static FormUtils getFormUtils() throws Exception {

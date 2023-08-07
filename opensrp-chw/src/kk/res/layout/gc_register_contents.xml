@@ -205,7 +205,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="Select session date"
+                android:hint="@string/select_session_date"
                 android:textColorHint="?android:attr/textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -264,6 +264,21 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/divide_children_in_groups"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/spinner_background"
+                android:fontFamily="@font/google_sans_regular"
+                android:paddingLeft="4dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonNext"
                 style="@style/PrimaryFlatButton"
@@ -273,11 +288,11 @@
                 android:layout_height="58dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginRight="24dp"
-                android:text="Next"
+                android:layout_marginEnd="24dp"
+                android:text="@string/str_next"
                 android:textColorHint="?android:attr/textColorPrimary"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
+                app:layout_constraintTop_toBottomOf="@+id/divide_children_in_groups"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

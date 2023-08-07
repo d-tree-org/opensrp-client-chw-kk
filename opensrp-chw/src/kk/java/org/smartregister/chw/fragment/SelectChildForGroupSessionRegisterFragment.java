@@ -65,6 +65,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
                 && view.getTag(R.id.VIEW_ID) == CLICK_VIEW_DOSAGE_STATUS) {
             CommonPersonObjectClient client = (org.smartregister.commonregistry.CommonPersonObjectClient) view.getTag();
             String selectedChildBaseEntityId = client.getCaseId();
+            boolean childrenDividedIntoGroups = groupSessionModel.isChildrenDividedInGroups();
             boolean isChildSelected = ((CheckBoxNFormView) view).isChecked();
             if (isChildSelected) {
                 SelectedChildGS selectedChildGS = new SelectedChildGS(selectedChildBaseEntityId, SelectedChildGS.ChildStatus.SELECTED, false, ".");
@@ -72,7 +73,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
                 view.setBackgroundColor(view.getContext().getColor(R.color.white));
                 String primaryCareGiverName = getClientCareGiverName(client);
                 SelectChildForGroupSessionDialogFragment selectChildForGroupSessionDialogFragment = new SelectChildForGroupSessionDialogFragment(selectedChildBaseEntityId,
-                        primaryCareGiverName, new DialogDismissListener() {
+                        primaryCareGiverName, childrenDividedIntoGroups, new DialogDismissListener() {
                     @Override
                     public void onSuccess() {
                         ((CheckBoxNFormView) view).setChecked(true);
@@ -158,6 +159,7 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
         dueOnlyLayout.setVisibility(android.view.View.GONE);
 
         nextButton = view.findViewById(R.id.buttonNext);
+        groupSessionModel = GroupSessionRegisterActivity.getSessionModel();
 
     }
 
@@ -171,7 +173,6 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
             @Override
             public void onClick(android.view.View v) {
                 HashMap<String, SelectedChildGS> childrenList = childRegisterProvider.getSelectedChildList();
-                groupSessionModel = GroupSessionRegisterActivity.getSessionModel();
                 boolean atLeastOneChildSelected = false;
 
                 for (SelectedChildGS child : childrenList.values()){
