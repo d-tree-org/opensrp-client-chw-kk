@@ -221,10 +221,10 @@
         "key": "other_remove_reason",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
+        "openmrs_entity_id": "other_remove_reason",
         "type": "edit_text",
         "hint": "{{family_details_remove_child.step1.other_remove_reason.hint}}",
-        "edit_type": "name",
+        "edit_type": "text",
         "v_required": {
           "value": "true",
           "err": "{{family_details_remove_child.step1.other_remove_reason.v_required.err}}"
