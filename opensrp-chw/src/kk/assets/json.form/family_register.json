@@ -1173,7 +1173,6 @@
         "label_info_text": "{{family_register.step2.last_menstrual_period.label_info_text}}",
         "expanded": false,
         "max_date": "today-20w",
-        "min_date": "today-45w",
         "v_required": {
           "value": "true",
           "err": "{{family_register.step2.last_menstrual_period.v_required.err}}"
