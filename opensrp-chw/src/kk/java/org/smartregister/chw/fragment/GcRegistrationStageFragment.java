@@ -114,6 +114,17 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
                 }
             }
         });
+
+        submitNotDoneButton.setOnClickListener(v -> {
+            presenter().fetchSessionDetails();
+            //Update session model
+            if (sessionModel != null){
+                nextStepListener.onSessionModelUpdated(sessionModel);
+                presenter().saveGroupSession(sessionModel);
+                //requireActivity().finish();
+            }
+        });
+
         return view;
     }
 

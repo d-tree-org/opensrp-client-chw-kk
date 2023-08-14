@@ -14,6 +14,10 @@ import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.domain.db.EventClient;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
+import org.smartregister.location.helper.LocationHelper;
+import org.smartregister.util.AppExecutors;
+import org.smartregister.util.FormUtils;
+import org.smartregister.view.LocationPickerView;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,12 +31,24 @@ import timber.log.Timber;
  */
 public class GroupSessionInteractor implements GroupSessionRegisterFragmentContract.Interactor {
 
+    AppExecutors appExecutors;
+    private static final String GROUP_SESSION_FORM_NAME = "group_session";
+
+    public GroupSessionInteractor() {
+        this(new AppExecutors());
+    }
+
+    public GroupSessionInteractor(AppExecutors appExecutors) {
+        this.appExecutors = appExecutors;
+    }
+
     @Override
-    public void createSessionEvent(String form, GroupSessionRegisterFragmentContract.Interactor.InteractorCallBack callBack) {
+    public void saveSessionEvents(String form, GroupSessionRegisterFragmentContract.Interactor.InteractorCallBack callBack) {
         try {
             List<GroupEventClient> eventClientList = new ArrayList();
 
-            String sessionId = UUID.randomUUID().toString();
+            JSONObject jsonForm = new JSONObject(form);
+            String sessionId = jsonForm.getString("entity_id");
             String table = KkConstants.TABLES.GROUP_SESSION;
 
             GroupEventClient groupEventClient = GroupSessionUtils.processGroupSessionEvent(Utils.context().allSharedPreferences(), form, table, sessionId);

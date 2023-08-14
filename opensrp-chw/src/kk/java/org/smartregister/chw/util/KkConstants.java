@@ -147,4 +147,20 @@ public class KkConstants extends Constants{
         public static final String TOPIC_FORMAL_TEACHING = "formal_teaching";
     }
 
+    public static class GCJsonKeys {
+
+        public static final String GC_SESSION_DATE = "session_date";
+
+        public static final String GC_SESSION_NOT_DONE_REASON = "session_not_done_reason";
+
+        public static final String GC_SESSION_NOT_DONE_OTHER_REASON = "session_not_done_reason_other";
+        public static final String GC_SESSION_ID = "session_id";
+        public static final String GC_SESSION_PLACE = "session_place";
+        public static final String GC_SESSION_DURATION = "session_duration";
+        public static final String GC_CHILD_ID = "child_id";
+        public static final String GC_CHILD_NAME = "child_name";
+
+
+    }
+
 }

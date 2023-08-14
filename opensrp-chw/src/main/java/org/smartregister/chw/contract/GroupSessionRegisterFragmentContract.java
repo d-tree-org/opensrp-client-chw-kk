@@ -1,5 +1,10 @@
 package org.smartregister.chw.contract;
 
+import android.content.Context;
+
+import org.json.JSONObject;
+import org.smartregister.chw.model.GroupSessionModel;
+import org.smartregister.chw.presenter.GroupSessionRegisterFragmentPresenter;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
@@ -30,6 +35,9 @@ public interface GroupSessionRegisterFragmentContract {
 
         void createSessionEvent(String form);
 
+        void saveGroupSession(GroupSessionModel sessionModel);
+
+        void refreshSessionSummaryView();
     }
 
     public interface View extends BaseRegisterFragmentContract.View {
@@ -67,7 +75,10 @@ public interface GroupSessionRegisterFragmentContract {
 
     public interface Interactor {
 
-        void createSessionEvent(String json, InteractorCallBack callBack);
+        void saveSessionEvents(String json, InteractorCallBack callBack);
+        JSONObject getAndPopulateSessionForm(String formName, Context context, GroupSessionModel sessionModel);
+
+        void refreshSessionSummaryView(InteractorCallBack callback);
 
         interface InteractorCallBack {
 

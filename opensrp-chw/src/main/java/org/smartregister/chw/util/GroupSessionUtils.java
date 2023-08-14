@@ -13,12 +13,14 @@ import org.smartregister.chw.anc.util.NCUtils;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.core.utils.CoreJsonFormUtils;
 import org.smartregister.chw.domain.GroupEventClient;
+import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.clientandeventmodel.Address;
 import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.clientandeventmodel.FormEntityConstants;
 import org.smartregister.domain.tag.FormTag;
 import org.smartregister.repository.AllSharedPreferences;
+import org.smartregister.util.FormUtils;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,7 +57,7 @@ public class GroupSessionUtils extends CoreJsonFormUtils {
 
             Client groupClient = createGroupClient(fields, formTag(allSharedPreferences), sessionEntityId);
 
- //           eventClient = new GroupEventClient(groupClient, baseEvent);
+            eventClient = new GroupEventClient(groupClient, baseEvent);
 
             return eventClient;
 

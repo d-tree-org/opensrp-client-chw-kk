@@ -1,10 +1,12 @@
 package org.smartregister.chw.presenter;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.contract.GroupSessionRegisterFragmentContract;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.interactor.GroupSessionInteractor;
+import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
@@ -17,8 +19,6 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
-import timber.log.Timber;
 
 /**
  * Author issyzac on 20/05/2023
@@ -67,7 +67,26 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
 
     @Override
     public void createSessionEvent(String form) {
-        interactor.createSessionEvent(form, this);
+        interactor.saveSessionEvents(form, this);
+    }
+
+    @Override
+    public void saveGroupSession(GroupSessionModel sessionModel) {
+
+       // List<GroupEventClient> groupEventClients = GroupSessionUtils.processGroupSessionEvent(sessionModel);
+        boolean sessionTookPlace = sessionModel.isSessionTookPlace();
+        if (sessionTookPlace) {
+            JSONObject form = interactor.getAndPopulateSessionForm("group_session", getView().getContext(), sessionModel);
+            interactor.saveSessionEvents(form.toString(), this);
+        } else {
+            JSONObject sessionNotTakePlaceForm = interactor.getAndPopulateSessionForm("group_session_not_taken", getView().getContext(), sessionModel);
+            interactor.saveSessionEvents(sessionNotTakePlaceForm.toString(), this);
+        }
+    }
+
+    @Override
+    public void refreshSessionSummaryView() {
+        interactor.refreshSessionSummaryView(this);
     }
 
     //When the event has already been created
