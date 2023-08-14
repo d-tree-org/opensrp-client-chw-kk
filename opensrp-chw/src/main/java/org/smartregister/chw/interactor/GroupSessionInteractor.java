@@ -4,9 +4,15 @@ import static org.smartregister.chw.anc.util.NCUtils.getClientProcessorForJava;
 import static org.smartregister.chw.anc.util.NCUtils.getSyncHelper;
 import static org.smartregister.util.Utils.getAllSharedPreferences;
 
+import android.content.Context;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.contract.GroupSessionRegisterFragmentContract;
+import org.smartregister.chw.dao.GroupCurriculumDao;
 import org.smartregister.chw.domain.GroupEventClient;
+import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.chw.util.GroupSessionUtils;
 import org.smartregister.chw.util.KkConstants;
 import org.smartregister.clientandeventmodel.Client;
@@ -22,7 +28,6 @@ import org.smartregister.view.LocationPickerView;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import timber.log.Timber;
 
@@ -106,4 +111,97 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
         }
     }
 
+    @Override
+    public JSONObject getAndPopulateSessionForm(String formName, Context context, GroupSessionModel sessionModel) {
+
+        try {
+
+            JSONObject form = FormUtils.getInstance(context).getFormJson(formName);
+            LocationPickerView lpv = new LocationPickerView(context);
+            lpv.init();
+
+            if (form != null) {
+                form.put(org.smartregister.chw.util.JsonFormUtils.ENTITY_ID, sessionModel.getSessionId());
+
+                JSONObject metadata = form.getJSONObject(org.smartregister.chw.util.JsonFormUtils.METADATA);
+                String locationId = LocationHelper.getInstance().getOpenMrsLocationId(lpv.getSelectedItem());
+
+                metadata.put(org.smartregister.chw.util.JsonFormUtils.ENCOUNTER_LOCATION, locationId);
+
+                JSONObject stepOne = form.getJSONObject(org.smartregister.chw.util.JsonFormUtils.STEP1);
+
+                JSONArray fields = stepOne.getJSONArray(org.smartregister.chw.util.JsonFormUtils.FIELDS);
+
+                for(int i = 0; i < fields.length(); i++) {
+                    JSONObject field = fields.getJSONObject(i);
+                    if (formName.equalsIgnoreCase(GROUP_SESSION_FORM_NAME)) {
+                        processPopulatableFields(field, sessionModel);
+                    } else {
+                        processGroupSessionNotDoneFields(field, sessionModel);
+                    }
+                }
+
+            }
+
+            return form;
+
+        } catch (Exception e) {
+            Timber.e(e);
+            return null;
+        }
+
+    }
+
+    private void processGroupSessionNotDoneFields(JSONObject field, GroupSessionModel sessionModel) throws JSONException {
+        switch (field.getString(org.smartregister.chw.util.JsonFormUtils.KEY).toLowerCase()) {
+            case KkConstants.GCJsonKeys.GC_SESSION_ID:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getSessionId());
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_NOT_DONE_REASON:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getNoSessionReason());
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_NOT_DONE_OTHER_REASON:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getNoSessionOtherReason());
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void refreshSessionSummaryView(InteractorCallBack callback) {
+
+        Runnable runnable = () -> {
+            try {
+                int numberOfSessions = GroupCurriculumDao.getNumberGroupCurriculumSessions();
+                appExecutors.mainThread().execute(() -> callback.onRefreshSessionSummaryView(numberOfSessions));
+            }catch (Exception e){
+                Timber.e(e);
+            }
+        };
+
+        appExecutors.diskIO().execute(runnable);
+
+    }
+
+    private void processPopulatableFields(JSONObject field, GroupSessionModel sessionModel) throws JSONException {
+
+        switch (field.getString(org.smartregister.chw.util.JsonFormUtils.KEY).toLowerCase()) {
+            case KkConstants.GCJsonKeys.GC_SESSION_DATE:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getSessionDate());
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_ID:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getSessionId());
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_PLACE:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getSessionPlace());
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_DURATION:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getDurationInHours());
+                break;
+            default:
+                break;
+        }
+
+    }
 }
