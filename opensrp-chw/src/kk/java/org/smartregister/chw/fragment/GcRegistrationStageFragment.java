@@ -186,24 +186,53 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         String id = UUID.randomUUID().toString();
         sessionModel.setSessionId(id);
 
-        long sessionDateValue = DateUtil.getMillis(selectedDateTime);
-        sessionModel.setSessionDate(sessionDateValue);
+        boolean sessionTookPlace = spDidSessionTakePlace.getSelectedItem().toString().equalsIgnoreCase("Yes");
+        sessionModel.setSessionTookPlace(sessionTookPlace);
 
-        String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
-        sessionModel.setSessionPlace(sessionPlaceString);
+        if (sessionTookPlace) {
+            //long sessionDateValue = DateUtil.getMillis(selectedDateTime);
+            sessionModel.setSessionDate(getFormattedSessionDate(selectedDateTime));
 
-        boolean dividedInGroups = divideChildrenInGroupsSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes");
-        sessionModel.setChildrenDividedInGroups(dividedInGroups);
+            String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
+            sessionModel.setSessionPlace(sessionPlaceString);
 
+            boolean dividedInGroups = divideChildrenInGroupsSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes");
+            sessionModel.setChildrenDividedInGroups(dividedInGroups);
+        } else {
+            String noSessionReason = spNoSessionSpinner.getSelectedItem().toString();
+            if (noSessionReason.equalsIgnoreCase("Other (Specify)")){
+                String noSessionOtherReason = Objects.requireNonNull(etOtherReasonText.getText()).toString();
+                sessionModel.setNoSessionOtherReason(noSessionOtherReason);
+            }
+            sessionModel.setNoSessionReason(noSessionReason);
+        }
+
+    }
+
+    @Override
+    public void refreshSessionSummaryView(int numberOfSessions) {
+        if (numberOfSessions > 0) {
+            rlSessionSummaryNumberOverlay.setBackgroundColor(getResources().getColor(R.color.alert_complete_green, requireActivity().getTheme()));
+            tvSessionSummaryNumber.setText(String.valueOf(numberOfSessions));
+            tvSessionTookPlaceTitle.setText(R.string.did_another_session_take_place);
+        }
+    }
+
+    private String getFormattedSessionDate(DateTime selectedDateTime) {
+        if (selectedDateTime != null){
+            return selectedDateTime.toString("YYYY-MM-dd");
+        }
+        return "";
     }
 
     private void selectSessionDate(){
         DialogFragment newFragment = new DatePickerFragment(this.getActivity(), new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                int humanReadableMonth = month + 1;
                 DateTime now = new DateTime();
-                selectedDateTime = new DateTime(i, i1, i2, now.getHourOfDay(), now.getMinuteOfHour());
-                selectedDateString = i2+"/"+i1+"/"+i;
+                selectedDateTime = new DateTime(year, humanReadableMonth, dayOfMonth, now.getHourOfDay(), now.getMinuteOfHour());
+                selectedDateString = dayOfMonth+"/"+humanReadableMonth+"/"+year;
                 etSessionDate.setText(selectedDateString);
             }
         });

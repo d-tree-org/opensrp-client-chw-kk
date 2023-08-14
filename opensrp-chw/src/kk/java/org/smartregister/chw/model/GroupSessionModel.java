@@ -34,11 +34,15 @@ public class GroupSessionModel {
 
     }
 
+    public String getSessionId() {
+        return sessionId;
+    }
+
     public List<SelectedChildGS> getSelectedChildren() {
         return selectedChildren;
     }
 
-    public long getSessionDate() {
+    public String getSessionDate() {
         return sessionDate;
     }
 
@@ -106,7 +110,7 @@ public class GroupSessionModel {
         this.selectedChildren = selectedChildren;
     }
 
-    public void setSessionDate(long sessionDate) {
+    public void setSessionDate(String sessionDate) {
         this.sessionDate = sessionDate;
     }
 
