@@ -1,6 +1,6 @@
 {
   "count": "1",
-  "encounter_type": "Group Session",
+  "encounter_type": "Group Session Not Done",
   "entity_id": "",
   "metadata": {
     "start": {
@@ -57,38 +57,17 @@
         "type": "hidden"
       },
       {
-        "key": "session_date",
+        "key": "session_not_done_reason",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "session_date",
+        "openmrs_entity_id": "session_not_done_reason",
         "type": "hidden"
       },
       {
-        "key": "session_place",
+        "key": "session_not_done_reason_other",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "session_place",
-        "type": "hidden"
-      },
-      {
-        "key": "divide_children_different_age_groups",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "session_place",
-        "type": "hidden"
-      },
-      {
-        "key": "activities_took_place",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "session_place",
-        "type": "hidden"
-      },
-      {
-        "key": "session_duration",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "session_duration",
+        "openmrs_entity_id": "session_not_done_reason_other",
         "type": "hidden"
       }
     ]
