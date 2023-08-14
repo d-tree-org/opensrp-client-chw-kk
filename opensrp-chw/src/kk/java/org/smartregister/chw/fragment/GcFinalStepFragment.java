@@ -472,6 +472,7 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
                 //3 Validate Object
 
                 //4 Process to Event
+                saveGroupSession();
 
                 //5 Close fragment
             }
@@ -479,6 +480,10 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
         etDurationInHours = view.findViewById(R.id.et_session_duration);
 
+    }
+
+    private void saveGroupSession() {
+        presenter().saveGroupSession(sessionModel);
     }
 
     private void difficultActivitiesLayoutController(boolean isDifficult){
