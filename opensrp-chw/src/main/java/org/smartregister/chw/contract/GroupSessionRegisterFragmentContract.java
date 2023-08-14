@@ -42,6 +42,7 @@ public interface GroupSessionRegisterFragmentContract {
 
         void goToFinalStep();
 
+        void refreshSessionSummaryView(int numberOfSessions);
     }
 
     public interface Model {
@@ -73,6 +74,8 @@ public interface GroupSessionRegisterFragmentContract {
             void onEventCreated(Event baseEvent);
 
             void onEventFailed(String message);
+
+            void onRefreshSessionSummaryView(int numberOfSessions);
 
         }
     }

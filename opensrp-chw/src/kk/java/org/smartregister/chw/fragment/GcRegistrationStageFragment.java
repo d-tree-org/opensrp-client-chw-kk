@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -25,10 +27,10 @@ import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.listener.SessionModelUpdatedListener;
 import org.smartregister.chw.model.GroupSessionModel;
-import org.smartregister.util.DateUtil;
 import org.smartregister.util.FormUtils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -36,6 +38,9 @@ import java.util.UUID;
  */
 public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragment {
 
+    TextView tvSessionSummaryNumber;
+    TextView tvSessionTookPlaceTitle;
+    RelativeLayout rlSessionSummaryNumberOverlay;
     private MaterialButton nextButton;
     private MaterialButton submitNotDoneButton;
 
@@ -121,6 +126,11 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     public void setupViews(View view) {
         super.setupViews(view);
 
+        tvSessionSummaryNumber = view.findViewById(R.id.tv_sessions_summary_number);
+        rlSessionSummaryNumberOverlay = view.findViewById(R.id.rl_sessions_summary_number);
+
+        setupVisitSummaryThisMonth();
+
         etOtherReasonText = view.findViewById(R.id.et_other_reason_text);
         etOtherReasonLayout = view.findViewById(R.id.et_other_reason);
 
@@ -137,9 +147,19 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
 
         nextButton = view.findViewById(R.id.buttonNext);
         submitNotDoneButton = view.findViewById(R.id.button_submit_not_done);
+        tvSessionTookPlaceTitle = view.findViewById(R.id.tv_session_took_place_title);
 
         setupSpinner();
 
+    }
+
+    private void setupVisitSummaryThisMonth() {
+        presenter().refreshSessionSummaryView();
+    }
+
+    @Override
+    protected void refreshSyncProgressSpinner() {
+        super.refreshSyncProgressSpinner();
     }
 
     @Override

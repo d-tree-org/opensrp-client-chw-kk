@@ -177,5 +177,8 @@
     <string name="select_child_for_gs">Select Child Present</string>
     <string name="did_you_divide_children_age_groups">Did you divide children into different age groups?</string>
     <string name="select_session_date">Select session date</string>
+    <string name="records_of_sessions_this_month">Records of sessions this month</string>
+    <string name="did_the_session_take_place">Did the session take place</string>
+    <string name="did_another_session_take_place">Did another session take place</string>
 
 </resources>

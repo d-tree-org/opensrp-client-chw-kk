@@ -19,22 +19,24 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
-            android:text="Records of sessions this month"
+            android:text="@string/records_of_sessions_this_month"
             android:textSize="16sp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"
             android:fontFamily="@font/google_sans_medium"/>
 
         <RelativeLayout
+            android:id="@+id/rl_sessions_summary_number"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@color/red_overlay">
 
             <TextView
+                android:id="@+id/tv_sessions_summary_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:text="0"
                 android:layout_centerInParent="true"
                 android:gravity="center"
@@ -69,9 +71,10 @@
         android:paddingRight="24dp">
 
         <TextView
+            android:id="@+id/tv_session_took_place_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Did the session take place"
+            android:text="@string/did_the_session_take_place"
             android:layout_marginTop="16dp"
             android:textSize="16sp"
             android:textColor="@color/black"

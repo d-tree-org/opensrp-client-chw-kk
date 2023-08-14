@@ -510,6 +510,11 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
     }
 
+    @Override
+    public void refreshSessionSummaryView(int numberOfSessions) {
+
+    }
+
     private boolean validateFields(){
         return false;
     }

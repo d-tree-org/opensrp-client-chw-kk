@@ -158,5 +158,8 @@
     <string name="select_child_for_gs">Chagua Mtoto Aliyehudhuria</string>
     <string name="did_you_divide_children_age_groups">Je uliwatenganisha watoto kwenye makundi tofauti?</string>
     <string name="select_session_date">Select session date</string>
+    <string name="records_of_sessions_this_month">Mafunzo ya vikundi mwezi huu</string>
+    <string name="did_the_session_take_place">Je kipindi kilitokea?</string>
+    <string name="did_another_session_take_place">Je kipindi kingine kilitokea?</string>
 
 </resources>

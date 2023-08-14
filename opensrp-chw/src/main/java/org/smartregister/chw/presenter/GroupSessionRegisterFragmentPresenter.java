@@ -82,6 +82,13 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
         //todo: Implement event creation failed
     }
 
+    @Override
+    public void onRefreshSessionSummaryView(int numberOfSessions) {
+        if (getView() != null) {
+            getView().refreshSessionSummaryView(numberOfSessions);
+        }
+    }
+
     private void setVisibleColumns(Set<View> visibleColumns) {
         this.visibleColumns = visibleColumns;
     }
