@@ -157,9 +157,13 @@
     <string name="who_came_with_the_child">Ukiachana na mama mzazi wa mtoto, ni walezi gani wengine ambao walihudhuria?</string>
     <string name="select_child_for_gs">Chagua Mtoto Aliyehudhuria</string>
     <string name="did_you_divide_children_age_groups">Je uliwatenganisha watoto kwenye makundi tofauti?</string>
-    <string name="select_session_date">Select session date</string>
+    <string name="select_session_date">Tarehe ya kipindi</string>
     <string name="records_of_sessions_this_month">Mafunzo ya vikundi mwezi huu</string>
     <string name="did_the_session_take_place">Je kipindi kilitokea?</string>
     <string name="did_another_session_take_place">Je kipindi kingine kilitokea?</string>
+    <string name="why_not_take_place">Kwanini kipindi hakikufanyika?</string>
+    <string name="group_session_not_take_place_other_reason">Sababu nyingine</string>
+    <string name="information_about_session_title">Taarifa kuhusu kipindi</string>
+    <string name="session_saved">The group session %s has been saved</string>
 
 </resources>

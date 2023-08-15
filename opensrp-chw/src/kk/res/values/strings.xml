@@ -180,5 +180,9 @@
     <string name="records_of_sessions_this_month">Records of sessions this month</string>
     <string name="did_the_session_take_place">Did the session take place</string>
     <string name="did_another_session_take_place">Did another session take place</string>
+    <string name="why_not_take_place">Why did it not take place</string>
+    <string name="group_session_not_take_place_other_reason">Other reason</string>
+    <string name="information_about_session_title">Add information about the new session</string>
+    <string name="session_saved">The group session %s has been saved</string>
 
 </resources>

@@ -84,6 +84,11 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        String[] sessionTookPlaces = getResources().getStringArray(R.array.group_session_session_took_place_options);
+        String[] noSessionReasons = getResources().getStringArray(R.array.group_session_reason_not_take_place);
+        String[] places = getResources().getStringArray(R.array.session_location_place);
+        String[] divideChildrenInGroupsKeys = getResources().getStringArray(R.array.divided_children_into_groups);
+
         placesAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, places);
         sessionTookPlaceAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, sessionTookPlaces);
         noSessionReasonAdapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, noSessionReasons);
@@ -186,7 +191,8 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         String id = UUID.randomUUID().toString();
         sessionModel.setSessionId(id);
 
-        boolean sessionTookPlace = spDidSessionTakePlace.getSelectedItem().toString().equalsIgnoreCase("Yes");
+        boolean sessionTookPlace = GroupSessionTranslationsUtils.getTranslatedSessionTookPlaceResponse(
+                spDidSessionTakePlace.getSelectedItem().toString()).equalsIgnoreCase("Yes");
         sessionModel.setSessionTookPlace(sessionTookPlace);
 
         if (sessionTookPlace) {
@@ -199,7 +205,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             boolean dividedInGroups = divideChildrenInGroupsSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes");
             sessionModel.setChildrenDividedInGroups(dividedInGroups);
         } else {
-            String noSessionReason = spNoSessionSpinner.getSelectedItem().toString();
+            String noSessionReason = GroupSessionTranslationsUtils.getTranslatedSessionNotTakePlaceReason(spNoSessionSpinner.getSelectedItem().toString());
             if (noSessionReason.equalsIgnoreCase("Other (Specify)")){
                 String noSessionOtherReason = Objects.requireNonNull(etOtherReasonText.getText()).toString();
                 sessionModel.setNoSessionOtherReason(noSessionOtherReason);

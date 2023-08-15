@@ -19,4 +19,30 @@
         <item>Kundi 1 (kundi la wadogo)</item>
         <item>Kundi 2 (kundi la wakubwa)</item>
     </string-array>
+    <string-array name="group_session_session_took_place_options">
+        <item>-</item>
+        <item>Ndiyo</item>
+        <item>Hapana</item>
+    </string-array>
+    <string-array name="group_session_reason_not_take_place">
+        <item>MJA alishindwa kuendesha kipindi (aliumwa, n.k)</item>
+        <item>Walezi wote hawakupatikana au hawakuwepo</item>
+        <item>Walezi wote walikataa</item>
+        <item>Watoto walishindwa kuhudhuria (waliumwa n.k)</item>
+        <item>Sababu nyingine</item>
+    </string-array>
+    <string-array name="session_location_place">
+        <item>Mahali kilipofanyika</item>
+        <item>Zahanati</item>
+        <item>Ofisi ya kijiji</item>
+        <item>Nyumba ya mshiriki</item>
+        <item>Kituo cha uhamasishaji na kutoa huduma za chanjo</item>
+        <item>Shule ya primari</item>
+        <item>Chini ya mti</item>
+    </string-array>
+    <string-array name="divided_children_into_groups">
+        <item>Ugawanywaji wa watoto kwenye makundi</item>
+        <item>Ndiyo</item>
+        <item>Hapana</item>
+    </string-array>
 </resources>

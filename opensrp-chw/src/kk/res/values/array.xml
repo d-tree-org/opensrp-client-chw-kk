@@ -23,4 +23,30 @@
         <item>Group 1 (younger group)</item>
         <item>Group 2 (older group)</item>
     </string-array>
+    <string-array name="group_session_session_took_place_options">
+        <item>-</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="group_session_reason_not_take_place">
+        <item>CHW(s) incapacitated (sickness, etc.)</item>
+        <item>All caregivers unavailable</item>
+        <item>All caregivers refused</item>
+        <item>All children incapacitated (sickness, etc.)</item>
+        <item>Other (Specify)</item>
+    </string-array>
+    <string-array name="session_location_place">
+        <item>Session place</item>
+        <item>Dispensary</item>
+        <item>Village Office</item>
+        <item>Participant house</item>
+        <item>Outreach vaccination point</item>
+        <item>Primary School</item>
+        <item>Under the tree</item>>
+    </string-array>
+    <string-array name="divided_children_into_groups">
+        <item>Divided children into different age groups?</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
 </resources>
