@@ -49,6 +49,17 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
 
     @Override
     public void saveSessionEvents(String form, GroupSessionRegisterFragmentContract.Interactor.InteractorCallBack callBack) {
+
+        Runnable runnable = () -> {
+            Event event =  saveSessionEvents(form);
+            appExecutors.mainThread().execute(() -> callBack.onEventSaved(event));
+        };
+
+        appExecutors.diskIO().execute(runnable);
+
+    }
+
+    private Event saveSessionEvents(String form) {
         try {
             List<GroupEventClient> eventClientList = new ArrayList();
 
@@ -88,11 +99,11 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
             processGroupClient(groupEventJson.toString(), groupClientJson.toString());
             getAllSharedPreferences().saveLastUpdatedAtDate(lastSyncDate.getTime());
 
-            callBack.onEventCreated(event);
+            return event;
 
         }catch (Exception e){
             Timber.e(e);
-            callBack.onEventFailed("Failed creating the event");
+            return null;
         }
     }
 

@@ -51,6 +51,8 @@ public interface GroupSessionRegisterFragmentContract {
         void goToFinalStep();
 
         void refreshSessionSummaryView(int numberOfSessions);
+        void showProgressBar(boolean status);
+        void finishGroupSession();
     }
 
     public interface Model {
@@ -83,6 +85,8 @@ public interface GroupSessionRegisterFragmentContract {
         interface InteractorCallBack {
 
             void onEventCreated(Event baseEvent);
+
+            void onEventSaved(Event baseEvent);
 
             void onEventFailed(String message);
 

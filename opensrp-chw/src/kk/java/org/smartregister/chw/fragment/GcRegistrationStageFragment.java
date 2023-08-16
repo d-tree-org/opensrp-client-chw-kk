@@ -3,6 +3,7 @@ package org.smartregister.chw.fragment;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,10 +25,12 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import org.joda.time.DateTime;
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.listener.SessionModelUpdatedListener;
 import org.smartregister.chw.model.GroupSessionModel;
+import org.smartregister.chw.util.GroupSessionTranslationsUtils;
 import org.smartregister.util.FormUtils;
 import org.smartregister.view.activity.BaseRegisterActivity;
 
@@ -57,17 +61,12 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     private TextInputEditText etOtherReasonText;
     private TextInputLayout etOtherReasonLayout;
 
+    private ProgressBar progressBar;
+
     private String selectedDateString = "";
     private DateTime selectedDateTime = null;
 
     private static FormUtils formUtils;
-
-    private static final String[] places = { "Session place","Dispensary", "Village Office", "Participant house", "Outreach vaccination point", "Primary School", "Under the tree" };
-    private static final String[] sessionTookPlaces = { "-", "Yes", "No" };
-    private static final String[] noSessionReasons = { "CHW(s) incapacitated (sickness, etc.)", "All caregivers unavailable", "All caregivers refused", "All children incapacitated (sickness, etc.)", "Other (Specify)" };
-
-    private static final String[] divideChildrenInGroupsKeys = {"Did you divide children into different age groups?", "Yes", "No"};
-
     ArrayAdapter<String> placesAdapter;
     ArrayAdapter<String> sessionTookPlaceAdapter;
     ArrayAdapter<String> noSessionReasonAdapter;
@@ -165,6 +164,8 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         submitNotDoneButton = view.findViewById(R.id.button_submit_not_done);
         tvSessionTookPlaceTitle = view.findViewById(R.id.tv_session_took_place_title);
 
+        progressBar = view.findViewById(R.id.progress_bar);
+
         setupSpinner();
 
     }
@@ -222,6 +223,22 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             tvSessionSummaryNumber.setText(String.valueOf(numberOfSessions));
             tvSessionTookPlaceTitle.setText(R.string.did_another_session_take_place);
         }
+    }
+
+    @Override
+    public void showProgressBar(boolean status) {
+        if (status){
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void finishGroupSession() {
+        Intent intent = new Intent(requireActivity(), FamilyRegisterActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
     }
 
     private String getFormattedSessionDate(DateTime selectedDateTime) {

@@ -1,5 +1,7 @@
 package org.smartregister.chw.presenter;
 
+import android.widget.Toast;
+
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -74,6 +76,7 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
     public void saveGroupSession(GroupSessionModel sessionModel) {
 
        // List<GroupEventClient> groupEventClients = GroupSessionUtils.processGroupSessionEvent(sessionModel);
+        getView().showProgressBar(true);
         boolean sessionTookPlace = sessionModel.isSessionTookPlace();
         if (sessionTookPlace) {
             JSONObject form = interactor.getAndPopulateSessionForm("group_session", getView().getContext(), sessionModel);
@@ -94,6 +97,18 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
     public void onEventCreated(Event baseEvent) {
         //todo: Dismiss View loader
         //Go elsewhere
+    }
+
+    @Override
+    public void onEventSaved(Event baseEvent) {
+        if (baseEvent != null) {
+            if (getView() != null) {
+                getView().showProgressBar(false);
+                Toast.makeText(getView().getContext(),
+                        String.format(getView().getContext().getString(R.string.session_saved), baseEvent.getBaseEntityId()), Toast.LENGTH_SHORT).show();
+                getView().finishGroupSession();
+            }
+        }
     }
 
     @Override
@@ -194,6 +209,8 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
         //return customFilter.toString();
         return "";
     }
+
+
 
     public void setModel(GroupSessionRegisterFragmentContract.Model model) {
         this.model = model;

@@ -15,6 +15,7 @@ import static org.smartregister.chw.util.KkConstants.GCCoveredTopics.TOPIC_SOCIA
 import static org.smartregister.chw.util.KkConstants.GCUnguidedFreePlay.MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS;
 import static org.smartregister.chw.util.KkConstants.GCUnguidedFreePlay.ONE_ADULT_IS_AVAILABLE;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.listener.CaregiversEncouragingListener;
 import org.smartregister.chw.listener.CaregiversMaterialsListener;
@@ -518,6 +520,18 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     @Override
     public void refreshSessionSummaryView(int numberOfSessions) {
 
+    }
+
+    @Override
+    public void showProgressBar(boolean status) {
+
+    }
+
+    @Override
+    public void finishGroupSession() {
+        Intent intent = new Intent(requireActivity(), FamilyRegisterActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
     }
 
     private boolean validateFields(){
