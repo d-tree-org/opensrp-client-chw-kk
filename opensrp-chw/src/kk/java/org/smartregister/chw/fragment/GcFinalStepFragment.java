@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -93,6 +94,7 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
     TextInputEditText etDurationInHours;
 
+    ProgressBar progressBar;
     MaterialButton submitButton;
 
     private List<String> activitiesTookPlace;
@@ -482,6 +484,8 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
         etDurationInHours = view.findViewById(R.id.et_session_duration);
 
+        progressBar = view.findViewById(R.id.progress_bar);
+
     }
 
     private void saveGroupSession() {
@@ -524,6 +528,12 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
     @Override
     public void showProgressBar(boolean status) {
+
+        if (status) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
 
     }
 
