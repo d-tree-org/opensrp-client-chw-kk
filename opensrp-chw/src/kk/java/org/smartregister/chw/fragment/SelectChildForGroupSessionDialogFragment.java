@@ -98,7 +98,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
         came_with_pc_lv_adapter.setOnItemSelectedListener(position -> {
             selectedPosition1 = position;
-            //hideChildCameWith(position == 0);
+            modifyChildCameWith(position == 0);
             came_with_pc_lv_adapter.setSelectedPosition(position);
         });
 
@@ -161,13 +161,11 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         }
     }
 
-    private void hideChildCameWith(boolean hide) {
+    private void modifyChildCameWith(boolean hide) {
         if (hide) {
-            who_came_with_the_child_lv.setVisibility(View.GONE);
-            who_came_with_child_tv.setVisibility(View.GONE);
+            who_came_with_child_tv.setText(R.string.who_came_with_the_child_yes);
         } else {
-            who_came_with_the_child_lv.setVisibility(View.VISIBLE);
-            who_came_with_child_tv.setVisibility(View.VISIBLE);
+            who_came_with_child_tv.setText(R.string.who_came_with_the_child_no);
         }
     }
 

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import org.json.JSONObject;
 import org.smartregister.chw.model.GroupSessionModel;
-import org.smartregister.chw.presenter.GroupSessionRegisterFragmentPresenter;
+import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
@@ -77,19 +77,18 @@ public interface GroupSessionRegisterFragmentContract {
 
     public interface Interactor {
 
-        void saveSessionEvents(String json, InteractorCallBack callBack);
+        void saveSessionEvent(String json, InteractorCallBack callBack);
+        void saveChildSessionEvents(List<JSONObject> jsonChildForms, InteractorCallBack callBack);
         JSONObject getAndPopulateSessionForm(String formName, Context context, GroupSessionModel sessionModel);
 
         void refreshSessionSummaryView(InteractorCallBack callback);
 
+        JSONObject getAndPopulateChildSessionForm(String group_session_child, Context context, GroupSessionModel sessionModel, SelectedChildGS selectedChildGS);
+
         interface InteractorCallBack {
-
-            void onEventCreated(Event baseEvent);
-
             void onEventSaved(Event baseEvent);
-
-            void onEventFailed(String message);
-
+            void onEventsSaved(List<Event> baseEvent);
+            void onEventSaveError(String message);
             void onRefreshSessionSummaryView(int numberOfSessions);
 
         }

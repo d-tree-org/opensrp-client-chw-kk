@@ -125,7 +125,6 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             if (sessionModel != null){
                 nextStepListener.onSessionModelUpdated(sessionModel);
                 presenter().saveGroupSession(sessionModel);
-                //requireActivity().finish();
             }
         });
 
@@ -203,7 +202,8 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
             sessionModel.setSessionPlace(sessionPlaceString);
 
-            boolean dividedInGroups = divideChildrenInGroupsSpinner.getSelectedItem().toString().equalsIgnoreCase("Yes");
+            boolean dividedInGroups = GroupSessionTranslationsUtils.getTranslatedSessionTookPlaceResponse(
+                    divideChildrenInGroupsSpinner.getSelectedItem().toString()).equalsIgnoreCase("Yes");
             sessionModel.setChildrenDividedInGroups(dividedInGroups);
         } else {
             String noSessionReason = GroupSessionTranslationsUtils.getTranslatedSessionNotTakePlaceReason(spNoSessionSpinner.getSelectedItem().toString());

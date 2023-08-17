@@ -9,6 +9,7 @@ import org.smartregister.chw.contract.GroupSessionRegisterFragmentContract;
 import org.smartregister.chw.core.utils.CoreConstants;
 import org.smartregister.chw.interactor.GroupSessionInteractor;
 import org.smartregister.chw.model.GroupSessionModel;
+import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
@@ -18,6 +19,7 @@ import org.smartregister.family.util.DBConstants;
 
 import java.lang.ref.WeakReference;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -28,14 +30,14 @@ import java.util.TreeSet;
 public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegisterFragmentContract.Presenter, GroupSessionRegisterFragmentContract.Interactor.InteractorCallBack {
 
     protected Set<View> visibleColumns = new TreeSet<>();
-    private WeakReference<GroupSessionRegisterFragmentContract.View> viewReference;
+    private final WeakReference<GroupSessionRegisterFragmentContract.View> viewReference;
     private GroupSessionRegisterFragmentContract.Model model;
-    private GroupSessionRegisterFragmentContract.Interactor interactor;
+    private final GroupSessionRegisterFragmentContract.Interactor interactor;
     private RegisterConfiguration configuration;
-    private String viewConfigurationIdentifier;
+    private final String viewConfigurationIdentifier;
 
     public GroupSessionRegisterFragmentPresenter(GroupSessionRegisterFragmentContract.View view, GroupSessionRegisterFragmentContract.Model model,
-        String viewConfrigurationIdentifier){
+                                                 String viewConfrigurationIdentifier) {
         this.viewReference = new WeakReference<>(view);
         this.model = model;
         this.viewConfigurationIdentifier = viewConfrigurationIdentifier;
@@ -45,7 +47,7 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
 
     @Override
     public void processViewConfigurations() {
-        if (StringUtils.isBlank(viewConfigurationIdentifier)){
+        if (StringUtils.isBlank(viewConfigurationIdentifier)) {
             return;
         }
 
@@ -69,22 +71,54 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
 
     @Override
     public void createSessionEvent(String form) {
-        interactor.saveSessionEvents(form, this);
     }
 
     @Override
     public void saveGroupSession(GroupSessionModel sessionModel) {
 
-       // List<GroupEventClient> groupEventClients = GroupSessionUtils.processGroupSessionEvent(sessionModel);
-        getView().showProgressBar(true);
-        boolean sessionTookPlace = sessionModel.isSessionTookPlace();
-        if (sessionTookPlace) {
-            JSONObject form = interactor.getAndPopulateSessionForm("group_session", getView().getContext(), sessionModel);
-            interactor.saveSessionEvents(form.toString(), this);
-        } else {
-            JSONObject sessionNotTakePlaceForm = interactor.getAndPopulateSessionForm("group_session_not_taken", getView().getContext(), sessionModel);
-            interactor.saveSessionEvents(sessionNotTakePlaceForm.toString(), this);
+        if (getView() != null) {
+            getView().showProgressBar(true);
         }
+        boolean sessionTookPlace = sessionModel.isSessionTookPlace();
+        String sessionEventType = sessionTookPlace ? "group_session" : "group_session_not_taken";
+        JSONObject sessionForm = interactor.getAndPopulateSessionForm(sessionEventType, getView().getContext(), sessionModel);
+
+        // Save the session event
+        interactor.saveSessionEvent(sessionForm.toString(), new GroupSessionRegisterFragmentContract.Interactor.InteractorCallBack() {
+            @Override
+            public void onEventSaved(Event baseEvent) {
+                // Session event saved successfully
+
+                //Save the individual child group session events
+                if (sessionModel.getSelectedChildren() != null && !sessionModel.getSelectedChildren().isEmpty()) {
+                    List<JSONObject> childForms = new ArrayList<>();
+                    for (SelectedChildGS selectedChildGS : sessionModel.getSelectedChildren()) {
+                        JSONObject childForm = interactor.getAndPopulateChildSessionForm("group_session_child_form", getView().getContext(), sessionModel, selectedChildGS);
+                        childForms.add(childForm);
+                    }
+                    interactor.saveChildSessionEvents(childForms, this);
+                } else {
+                    getView().finishGroupSession();
+                }
+
+            }
+
+            @Override
+            public void onEventsSaved(List<Event> baseEvent) {
+                Toast.makeText(getView().getContext(), "Saved Event", Toast.LENGTH_SHORT).show();
+                getView().finishGroupSession();
+            }
+
+            @Override
+            public void onEventSaveError(String message) {
+
+            }
+
+            @Override
+            public void onRefreshSessionSummaryView(int numberOfSessions) {
+            }
+        });
+
     }
 
     @Override
@@ -94,9 +128,11 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
 
     //When the event has already been created
     @Override
-    public void onEventCreated(Event baseEvent) {
-        //todo: Dismiss View loader
-        //Go elsewhere
+    public void onEventsSaved(List<Event> baseEvent) {
+
+        Toast.makeText(getView().getContext(), "Session Saved", Toast.LENGTH_SHORT).show();
+        getView().finishGroupSession();
+
     }
 
     @Override
@@ -112,7 +148,7 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
     }
 
     @Override
-    public void onEventFailed(String message) {
+    public void onEventSaveError(String message) {
         //todo: Implement event creation failed
     }
 
@@ -211,16 +247,14 @@ public class GroupSessionRegisterFragmentPresenter implements GroupSessionRegist
     }
 
 
-
     public void setModel(GroupSessionRegisterFragmentContract.Model model) {
         this.model = model;
     }
 
-    protected GroupSessionRegisterFragmentContract.View getView(){
-        if (viewReference != null){
+    protected GroupSessionRegisterFragmentContract.View getView() {
+        if (viewReference != null) {
             return viewReference.get();
-        }
-        else {
+        } else {
             return null;
         }
     }

@@ -39,9 +39,10 @@ public class GroupSessionUtils extends CoreJsonFormUtils {
         NCUtils.processEvent(baseEvent.getBaseEntityId(), new JSONObject(org.smartregister.chw.anc.util.JsonFormUtils.gson.toJson(baseEvent)));
     }
 
-    public static GroupEventClient processGroupSessionEvent(AllSharedPreferences allSharedPreferences, String jsonString, String table, String sessionEntityId){
 
-        try{
+    public static GroupEventClient processGroupSessionEvent(AllSharedPreferences allSharedPreferences, String jsonString, String table, String sessionEntityId) {
+
+        try {
             GroupEventClient eventClient = null;
 
             Triple<Boolean, JSONObject, JSONArray> registrationFormParams = validateParameters(jsonString);
@@ -61,7 +62,7 @@ public class GroupSessionUtils extends CoreJsonFormUtils {
 
             return eventClient;
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Timber.e(e);
             return null;
         }
@@ -98,4 +99,26 @@ public class GroupSessionUtils extends CoreJsonFormUtils {
 
     }
 
+    public static Event processChildGroupSessionEvent(AllSharedPreferences allSharedPreferences, String jsonString, String table, String childBaseEntityId) {
+
+        try {
+            Triple<Boolean, JSONObject, JSONArray> registrationFormParams = validateParameters(jsonString);
+            if (!registrationFormParams.getLeft()) {
+                return null;
+            }
+
+            JSONObject jsonForm = registrationFormParams.getMiddle();
+            JSONArray fields = registrationFormParams.getRight();
+
+            Event baseEvent = org.smartregister.util.JsonFormUtils.createEvent(fields, getJSONObject(jsonForm, METADATA), formTag(allSharedPreferences), childBaseEntityId, getString(jsonForm, ENCOUNTER_TYPE), table);
+            tagSyncMetadata(allSharedPreferences, baseEvent);
+
+            return baseEvent;
+
+        } catch (Exception e) {
+            Timber.e(e);
+            return null;
+        }
+
+    }
 }

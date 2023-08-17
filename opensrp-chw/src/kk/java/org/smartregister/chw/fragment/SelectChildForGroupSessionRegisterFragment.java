@@ -19,6 +19,7 @@ import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.chw.model.MultiSelectListItemModel;
 import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.chw.provider.SelectChildForGroupSessionFragmentProvider;
+import org.smartregister.chw.util.GroupSessionTranslationsUtils;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.configurableviews.model.View;
@@ -112,7 +113,10 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
             listOfAccompanyingRelatives.add(getTranslatedAccompanyingRelatives(multiSelectListItemModel.getName()));
         }
 
-        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId, isComeWithPrimaryCareGiver, listOfAccompanyingRelatives, groupPlaced);
+        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId,
+                isComeWithPrimaryCareGiver,
+                listOfAccompanyingRelatives,
+                GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced));
     }
 
     private String getTranslatedAccompanyingRelatives(String name) {

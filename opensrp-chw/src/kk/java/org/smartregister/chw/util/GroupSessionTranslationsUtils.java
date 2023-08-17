@@ -33,4 +33,14 @@ public class GroupSessionTranslationsUtils {
         }
     }
 
+    public static String getTranslatedGroupPlaced(String groupPlaced) {
+        switch (groupPlaced) {
+            case "Kundi 1 (kundi la wadogo)":
+                return "Group 1 (younger group)";
+            case "Kundi 2 (kundi la wakubwa)":
+                return "Group 2 (older group)";
+            default:
+                return groupPlaced;
+        }
+    }
 }

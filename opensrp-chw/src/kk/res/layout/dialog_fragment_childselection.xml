@@ -104,7 +104,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="@string/who_came_with_the_child"
+                android:text="@string/who_came_with_the_child_yes"
                 android:textColor="@color/black_tranparent_50"
                 android:textSize="14sp" />
 
