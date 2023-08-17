@@ -120,7 +120,6 @@
         "type": "date_picker",
         "hint": "{{anc_member_registration.step1.edd.hint}}",
         "max_date": "today+40w",
-        "min_date": "today",
         "calculation": {
           "rules-engine": {
             "ex-rules": {
