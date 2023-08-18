@@ -169,4 +169,13 @@ public class GroupSessionModel {
     public String getNoSessionOtherReason() {
         return noSessionOtherReason;
     }
+
+    public boolean isAllTeachingLearningMaterialsUsed() {
+        return allTeachingLearningMaterialsUsed;
+    }
+
+    public boolean isAnyDifficultActivities() {
+        return anyDifficultActivities;
+    }
+
 }

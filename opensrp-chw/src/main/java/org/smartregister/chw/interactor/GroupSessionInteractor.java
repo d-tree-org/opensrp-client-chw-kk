@@ -24,7 +24,6 @@ import org.smartregister.domain.db.EventClient;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
 import org.smartregister.location.helper.LocationHelper;
-import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.util.AppExecutors;
 import org.smartregister.util.FormUtils;
 import org.smartregister.view.LocationPickerView;
@@ -322,8 +321,36 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
             case KkConstants.GCJsonKeys.GC_SESSION_PLACE:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getSessionPlace());
                 break;
+            case KkConstants.GCJsonKeys.GC_DIVIDE_CHILDREN_DIFFERENT_AGE_GROUPS:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.isChildrenDividedInGroups() ? "Yes" : "No");
+                break;
             case KkConstants.GCJsonKeys.GC_SESSION_DURATION:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getDurationInHours());
+                break;
+            case KkConstants.GCJsonKeys.GC_ACTIVITIES_TOOK_PLACE:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getActivitiesTookPlace());
+                break;
+            case KkConstants.GCJsonKeys.GC_TEACHING_MATERIALS_USED:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE,
+                        sessionModel.isAllTeachingLearningMaterialsUsed() ? "Yes" : "No");
+                break;
+            case KkConstants.GCJsonKeys.GC_ACTIVITY_DIFFICULTY:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE,
+                        sessionModel.isAnyDifficultActivities () ? "Yes" : "No");
+                break;
+            case KkConstants.GCJsonKeys.GC_ACTIVITIES_DIFFICULTY_TO_CONDUCT:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getListOfDifficultActivities());
+                break;
+            case KkConstants.GCJsonKeys.GC_CAREGIVERS_ENCOURAGING_PRAISING_CHILDREN:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE,
+                        sessionModel.getCaregiversEncouragingChildren());
+                break;
+            case KkConstants.GCJsonKeys.GC_CAREGIVERS_BRING_MATERIALS_LAST_SESSIONS:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE,
+                        sessionModel.getCaregiversBroughtMaterials());
+                break;
+            case KkConstants.GCJsonKeys.GC_COVER_ANY_FOLLOWING_TOPICS:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getTopicsCovered());
                 break;
             default:
                 break;

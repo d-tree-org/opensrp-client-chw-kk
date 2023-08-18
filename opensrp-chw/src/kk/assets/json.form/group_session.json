@@ -74,14 +74,56 @@
         "key": "divide_children_different_age_groups",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "session_place",
+        "openmrs_entity_id": "divide_children_different_age_groups",
         "type": "hidden"
       },
       {
         "key": "activities_took_place",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
-        "openmrs_entity_id": "session_place",
+        "openmrs_entity_id": "activities_took_place",
+        "type": "hidden"
+      },
+      {
+        "key": "teaching_materials_used",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "teaching_materials_used",
+        "type": "hidden"
+      },
+      {
+        "key": "activity_difficult",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "activity_difficult",
+        "type": "hidden"
+      },
+      {
+        "key": "activities_difficulty_to_conduct",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "activities_difficulty_to_conduct",
+        "type": "hidden"
+      },
+      {
+        "key": "caregivers_encouraging_praising_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "caregivers_encouraging_praising_children",
+        "type": "hidden"
+      },
+      {
+        "key": "caregivers_bring_materials_last_session",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "caregivers_bring_materials_last_session",
+        "type": "hidden"
+      },
+      {
+        "key": "cover_any_following_topics",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "cover_any_following_topics",
         "type": "hidden"
       },
       {

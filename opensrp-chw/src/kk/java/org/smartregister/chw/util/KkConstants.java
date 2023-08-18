@@ -157,13 +157,21 @@ public class KkConstants extends Constants{
         public static final String GC_SESSION_ID = "session_id";
         public static final String GC_SESSION_PLACE = "session_place";
         public static final String GC_SESSION_DURATION = "session_duration";
+        public static final String GC_ACTIVITIES_TOOK_PLACE = "activities_took_place";
+
+        public static final String GC_DIVIDE_CHILDREN_DIFFERENT_AGE_GROUPS = "divide_children_different_age_groups";
+        public static final String GC_TEACHING_MATERIALS_USED = "teaching_materials_used";
+        public static final String GC_ACTIVITY_DIFFICULTY = "activity_difficult";
+        public static final String GC_ACTIVITIES_DIFFICULTY_TO_CONDUCT = "activities_difficulty_to_conduct";
+        public static final String GC_CAREGIVERS_ENCOURAGING_PRAISING_CHILDREN = "caregivers_encouraging_praising_children";
+        public static final String GC_CAREGIVERS_BRING_MATERIALS_LAST_SESSIONS = "caregivers_bring_materials_last_session";
+
+        public static final String GC_COVER_ANY_FOLLOWING_TOPICS = "cover_any_following_topics";
         public static final String GC_CHILD_ID = "child_id";
+
         public static final String GC_CHILD_NAME = "child_name";
-
         public static final String GC_ALL_CAREGIVERS_PRESENT = "all_caregivers_present";
-
         public static final String GC_CHILD_GROUP_PLACED = "child_group_placed";
-
         public static final String GC_CHILD_CAME_WITH_OTHER_PEOPLE = "other_people_present";
 
     }
