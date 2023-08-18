@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Details of how the session went"
+                android:text="@string/add_details_of_how_the_session_went"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="24dp"
                 android:textSize="24sp"
@@ -56,50 +56,56 @@
                         android:textSize="16sp"
                         android:textColor="@color/text_black"
                         android:fontFamily="@font/google_sans_medium"
-                        android:text="What activities took place?"/>
+                        android:text="@string/what_activities_took_place"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:id="@+id/welcome_and_free_play"
-                        android:text="Welcome and Free Play"/>
+                        android:text="@string/welcome_and_free_play"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/opening_song"
-                        android:text="Opening song"/>
+                        android:text="@string/opening_song"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/review_prevous_week"
-                        android:text="Review previous week"/>
+                        android:text="@string/review_previous_week"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/activity_1"
-                        android:text="Activity 1"/>
+                        android:text="@string/activity_1"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/activity_2"
-                        android:text="Activity 2"/>
+                        android:text="@string/activity_2"/>
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/nutrition_activity"
+                        android:text="@string/nutrition_activity"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/recap_session"
-                        android:text="Recap session"/>
+                        android:text="@string/recap_session"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/closing_song"
-                        android:text="Closing song"/>
+                        android:text="@string/closing_song"/>
 
                 </LinearLayout>
 
@@ -118,20 +124,20 @@
                         android:textSize="16sp"
                         android:textColor="@color/text_black"
                         android:fontFamily="@font/google_sans_medium"
-                        android:text="Were all teaching learning materials as per session’s schedule used?"/>
+                        android:text="@string/all_teaching_learning_materials_used"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:id="@+id/teching_materials_used_yes"
-                        android:text="Yes"/>
+                        android:text="@string/yes_all_teaching_materials"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/teching_materials_used_no"
-                        android:text="No"/>
+                        android:text="@string/no_all_teaching_materials"/>
 
                 </LinearLayout>
 
@@ -142,6 +148,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                     <TextView
@@ -182,20 +189,20 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/google_sans_medium"
                         android:textColor="@color/text_black"
-                        android:text="Did you find any activities difficult"/>
+                        android:text="@string/any_activities_difficult"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:id="@+id/difficult_activities_yes"
-                        android:text="Yes"/>
+                        android:text="@string/yes_all_teaching_materials"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/difficult_activities_no"
-                        android:text="No"/>
+                        android:text="@string/no_all_teaching_materials"/>
 
                 </LinearLayout>
 
@@ -215,50 +222,56 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/google_sans_medium"
                         android:textColor="@color/text_black"
-                        android:text="Which ones did you find difficult"/>
+                        android:text="@string/which_ones_find_difficult"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:id="@+id/difficult_welcome_and_free_play"
-                        android:text="Welcome and Free Play"/>
+                        android:text="@string/welcome_and_free_play"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/difficult_opening_song"
-                        android:text="Opening song"/>
+                        android:text="@string/opening_song"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/difficult_review_prevous_week"
-                        android:text="Review previous week"/>
+                        android:text="@string/review_previous_week"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/difficult_activity_1"
-                        android:text="Activity 1"/>
+                        android:text="@string/activity_1"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/difficult_activity_2"
-                        android:text="Activity 2"/>
+                        android:text="@string/activity_2"/>
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/difficult_nutrition_activity"
+                        android:text="@string/nutrition_activity"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/difficult_recap_session"
-                        android:text="Recap session"/>
+                        android:text="@string/recap_session"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/difficult_closing_song"
-                        android:text="Closing song"/>
+                        android:text="@string/closing_song"/>
 
                 </LinearLayout>
 
@@ -277,32 +290,26 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/google_sans_medium"
                         android:textColor="@color/text_black"
-                        android:text="Were the caregivers encouraging/praising the children? (Select One)"/>
+                        android:text="@string/caregivers_encouraging_praising_the_children"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:id="@+id/yes_all_or_nearly_all"
-                        android:text="Yes, in all or nearly all the activities"/>
+                        android:text="@string/yes_in_all_activities"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/yes_most"
-                        android:text="Yes, most activities"/>
-
-                    <CheckBox
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/yes_some"
-                        android:text="Yes, some activities"/>
+                        android:text="@string/yes_most_activities"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/none_or_very_few"
-                        android:text="None or very few activities"/>
+                        android:text="@string/none_or_very_few_activities"/>
 
                 </LinearLayout>
 
@@ -321,32 +328,38 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/google_sans_medium"
                         android:textColor="@color/text_black"
-                        android:text="Did the caregivers bring the materials of last session to demonstrate? (Select One)"/>
+                        android:text="@string/caregivers_bring_materials_last_session_demonstrate"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:id="@+id/materials_yes_all_or_nearly_all"
-                        android:text="Yes, all or nearly all of them"/>
+                        android:text="@string/yes_all_or_nearly_all_of_them"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/materials_yes_most"
-                        android:text="Yes, most of them"/>
+                        android:text="@string/yes_most_of_them"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/materials_yes_some"
-                        android:text="Yes, some of them"/>
+                        android:text="@string/yes_some_of_them_materials"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/materials_none_or_very_few"
-                        android:text="None or very few of them"/>
+                        android:text="@string/none_or_very_few_of_them_materials"/>
+
+                    <CheckBox
+                        android:id="@+id/yes_some"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/yes_some_activities" />
 
                 </LinearLayout>
 
@@ -365,38 +378,38 @@
                         android:textSize="16sp"
                         android:fontFamily="@font/google_sans_medium"
                         android:textColor="@color/text_black"
-                        android:text="Did you cover any of the following (Select multiple)"/>
+                        android:text="@string/cover_any_of_the_following"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="8dp"
                         android:id="@+id/topic_language"
-                        android:text="Language (e.g. children’s own experiences, follow-up questions and providing information in response, two-way conversations)"/>
+                        android:text="@string/topic_covered_language"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/topic_cognitive"
-                        android:text="Cognitive (e.g. identify, match and classify, solving puzzles, concepts like less-more, tall-short, big-small, in-out)"/>
+                        android:text="@string/topic_covered_cognitive"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/topic_socialemotional"
-                        android:text="Socioemotional (e.g. share/take turns, empathy) "/>
+                        android:text="@string/topic_covered_socialemotional"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/topic_creativity"
-                        android:text="Creativity (e.g. colouring/painting/drawing, pretend games)"/>
+                        android:text="@string/topic_covered_creativity"/>
 
                     <CheckBox
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/topic_formal_teaching"
-                        android:text="Formal teaching (letters and numbers)"/>
+                        android:text="@string/topic_covered_formalteaching"/>
 
                 </LinearLayout>
 
@@ -408,7 +421,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="How long did the session take (Hrs)"
+                    android:hint="@string/long_session_take_hrs"
                     android:textColorHint="?android:attr/textColorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -435,7 +448,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginRight="24dp"
-                    android:text="Submit"
+                    android:text="@string/submit"
                     android:textColorHint="?android:attr/textColorPrimary"
                     android:layout_gravity="right"
                     android:layout_marginBottom="24dp"/>
