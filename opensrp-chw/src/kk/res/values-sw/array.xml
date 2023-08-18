@@ -25,6 +25,7 @@
         <item>Hapana</item>
     </string-array>
     <string-array name="group_session_reason_not_take_place">
+        <item>-</item>
         <item>MJA alishindwa kuendesha kipindi (aliumwa, n.k)</item>
         <item>Walezi wote hawakupatikana au hawakuwepo</item>
         <item>Walezi wote walikataa</item>

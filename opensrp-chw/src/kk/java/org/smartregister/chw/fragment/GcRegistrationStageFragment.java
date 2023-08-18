@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
@@ -75,6 +76,8 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     private SessionModelUpdatedListener nextStepListener;
     private GroupSessionModel sessionModel;
 
+    private boolean sessionTookPlace = false;
+
     public GcRegistrationStageFragment(SessionModelUpdatedListener listener){
         this.nextStepListener = listener;
     }
@@ -113,8 +116,10 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
                 presenter().fetchSessionDetails();
                 //Update session model
                 if (sessionModel != null){
-                    nextStepListener.onSessionModelUpdated(sessionModel);
-                    ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
+                    if (validateFirstStepFields()) {
+                        nextStepListener.onSessionModelUpdated(sessionModel);
+                        ((BaseRegisterActivity) requireActivity()).switchToFragment(1);
+                    }
                 }
             }
         });
@@ -123,12 +128,49 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             presenter().fetchSessionDetails();
             //Update session model
             if (sessionModel != null){
-                nextStepListener.onSessionModelUpdated(sessionModel);
-                presenter().saveGroupSession(sessionModel);
+                if (validateFirstStepFields()) {
+                    nextStepListener.onSessionModelUpdated(sessionModel);
+                    presenter().saveGroupSession(sessionModel);
+                }
             }
         });
 
         return view;
+    }
+
+    private boolean validateFirstStepFields() {
+        boolean isStepValid = true;
+        if (sessionTookPlace) {
+            // Validate session date
+            if (selectedDateTime == null) {
+                etSessionDate.setError(getString(R.string.session_date_required));
+                isStepValid = false;
+            } else {
+                etSessionDate.setError(null);
+            }
+
+            // Validate session place
+            if (spTypeOfPlace.getSelectedItemPosition() == 0) {
+                isStepValid = false;
+                Toast.makeText(requireActivity(), getString(R.string.session_place_required), Toast.LENGTH_SHORT).show();
+            }
+
+            // Validate the children divided in group
+            if (divideChildrenInGroupsSpinner.getSelectedItemPosition() == 0) {
+                isStepValid = false;
+                Toast.makeText(requireActivity(), getString(R.string.children_divided_in_groups_required), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+
+            // Validate reason for not session not taking place
+            if (spNoSessionSpinner.getSelectedItemPosition() == 0) {
+                isStepValid = false;
+                Toast.makeText(requireActivity(), getString(R.string.session_not_take_place_reason_required), Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        return isStepValid;
     }
 
     @Override
@@ -191,7 +233,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         String id = UUID.randomUUID().toString();
         sessionModel.setSessionId(id);
 
-        boolean sessionTookPlace = GroupSessionTranslationsUtils.getTranslatedSessionTookPlaceResponse(
+        sessionTookPlace = GroupSessionTranslationsUtils.getTranslatedSessionTookPlaceResponse(
                 spDidSessionTakePlace.getSelectedItem().toString()).equalsIgnoreCase("Yes");
         sessionModel.setSessionTookPlace(sessionTookPlace);
 
