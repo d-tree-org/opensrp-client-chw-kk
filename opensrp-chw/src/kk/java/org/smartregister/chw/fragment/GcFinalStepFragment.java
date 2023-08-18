@@ -474,9 +474,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
                 presenter().fetchSessionDetails();
 
                 //3 Validate Object
-
-                //4 Process to Event
-                saveGroupSession();
+                if (validateFields())
+                    //4 Process to Event
+                    saveGroupSession();
 
                 //5 Close fragment
             }
@@ -516,7 +516,8 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
         sessionModel.setCaregiversEncouragingChildren(caregiversEncouraging);
         sessionModel.setCaregiversBroughtMaterials(caregiversBroughtMaterials);
         sessionModel.setTopicsCovered(topicsCovered);
-        sessionModel.setDurationInHours(etDurationInHours != null ? Integer.parseInt(String.valueOf(etDurationInHours.getText())): 0);
+        String durationString = etDurationInHours != null ? etDurationInHours.getText().toString().trim() : "";
+        sessionModel.setDurationInHours(!durationString.isEmpty() ? Integer.parseInt(durationString): 0);
         Toast.makeText(getContext(), "Group Session Information Recorded", Toast.LENGTH_SHORT).show();
 
     }
@@ -545,7 +546,65 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     }
 
     private boolean validateFields(){
-        return false;
+
+        boolean isValid = true;
+
+        // Validate activities took place
+        if (activitiesTookPlace.isEmpty()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select at least one activity that took place", Toast.LENGTH_SHORT).show();
+        }
+
+        // Validate teaching materials used
+        if (!materialsScheduledUsedYes.isChecked() && !materialsScheduledUsedNo.isChecked()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select whether teaching materials were used", Toast.LENGTH_SHORT).show();
+        }
+
+        // Validate any difficulties encountered
+        if (!activitiesDifficultYes.isChecked() && !activitiesDifficultNo.isChecked()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select whether any difficulties were encountered", Toast.LENGTH_SHORT).show();
+        }
+
+        // Difficult activities list
+        if (activitiesDifficultYes.isChecked() && listOfDifficultActivities.isEmpty()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select at least one activity that was difficult", Toast.LENGTH_SHORT).show();
+        }
+
+        // Care giver encouraging
+        if (caregiversEncouraging == null) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select whether caregivers were encouraging", Toast.LENGTH_SHORT).show();
+        }
+
+        // Topic covered
+        if (topicsCovered.isEmpty()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select at least one topic that was covered", Toast.LENGTH_SHORT).show();
+        }
+
+        // Care giver brought materials
+        if (caregiversBroughtMaterials == null) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select whether caregivers brought materials", Toast.LENGTH_SHORT).show();
+        }
+
+        // Validate session duration
+        String durationString = etDurationInHours.getText().toString().trim();
+        if (durationString.isEmpty()) {
+            isValid = false;
+            etDurationInHours.setError("Please enter session duration");
+        } else {
+            int duration = Integer.parseInt(durationString);
+            if (duration <= 0) {
+                isValid = false;
+                etDurationInHours.setError("Duration must be greater than 0");
+            }
+        }
+
+        return isValid;
     }
 
     private void createSessionObject(){
