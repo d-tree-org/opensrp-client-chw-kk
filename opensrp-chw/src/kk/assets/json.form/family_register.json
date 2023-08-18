@@ -1298,7 +1298,6 @@
         "type": "date_picker",
         "hint": "{{family_register.step2.edd.hint}}",
         "max_date": "today+40w",
-        "min_date": "today",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
