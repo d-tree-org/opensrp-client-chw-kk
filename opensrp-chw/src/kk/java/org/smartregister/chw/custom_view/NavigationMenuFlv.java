@@ -3,6 +3,7 @@ package org.smartregister.chw.custom_view;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,5 +22,12 @@ public class NavigationMenuFlv extends DefaultNavigationMenuFlv {
                 "where m.date_removed is null and m.is_closed = 0 " +
                 "and ((( julianday('now') - julianday(c.dob))/365.25) < 5) and c.is_closed = 0 " +
                 " and (( ( ifnull(entry_point,'') <> 'PNC' ) ) or (ifnull(entry_point,'') = 'PNC' and ( date (c.dob, '+0 days') <= date() and ((SELECT is_closed FROM ec_family_member WHERE base_entity_id = mother_entity_id ) = 0)))  or (ifnull(entry_point,'') = 'PNC'  and (SELECT is_closed FROM ec_family_member WHERE base_entity_id = mother_entity_id ) = 1)) ";
+    }
+
+    @Override
+    public HashMap<String, String> getTableMapValues() {
+        HashMap<String, String> tableMap = new HashMap<>();
+        tableMap.put("Group Sessions", "ec_group_session");
+        return tableMap;
     }
 }

@@ -31,6 +31,7 @@ import org.smartregister.chw.activity.ChildRegisterActivity;
 import org.smartregister.chw.activity.FamilyProfileActivity;
 import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.FpRegisterActivity;
+import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.activity.KizaziLoginActivity;
 import org.smartregister.chw.activity.LoginActivity;
 import org.smartregister.chw.activity.MalariaRegisterActivity;
@@ -64,6 +65,8 @@ import org.smartregister.chw.util.ChwLocationBasedClassifier;
 import org.smartregister.chw.util.FailSafeRecalledID;
 import org.smartregister.chw.util.FileUtils;
 import org.smartregister.chw.util.JsonFormUtils;
+import org.smartregister.chw.util.KKConstants;
+import org.smartregister.chw.util.KkConstants;
 import org.smartregister.chw.util.Utils;
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
@@ -366,6 +369,7 @@ public class ChwApplication extends CoreChwApplication implements SyncStatusBroa
         }
         registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.FP_REGISTER_ACTIVITY, FpRegisterActivity.class);
         registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.UPDATES_REGISTER_ACTIVITY, UpdatesRegisterActivity.class);
+        registeredActivities.put(CoreConstants.REGISTERED_ACTIVITIES.GROUP_SESSION_REGISTER_ACTIVITY, GroupSessionRegisterActivity.class);
         return registeredActivities;
     }
 

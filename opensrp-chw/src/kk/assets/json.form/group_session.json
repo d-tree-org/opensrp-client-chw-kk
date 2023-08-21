@@ -1,0 +1,139 @@
+{
+  "count": "1",
+  "encounter_type": "Group Session",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{group_session.step1.title}}",
+    "fields": [
+      {
+        "key": "session_id",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "session_id",
+        "type": "hidden"
+      },
+      {
+        "key": "session_date",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "session_date",
+        "type": "hidden"
+      },
+      {
+        "key": "session_place",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "session_place",
+        "type": "hidden"
+      },
+      {
+        "key": "divide_children_different_age_groups",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "divide_children_different_age_groups",
+        "type": "hidden"
+      },
+      {
+        "key": "activities_took_place",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "activities_took_place",
+        "type": "hidden"
+      },
+      {
+        "key": "teaching_materials_used",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "teaching_materials_used",
+        "type": "hidden"
+      },
+      {
+        "key": "activity_difficult",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "activity_difficult",
+        "type": "hidden"
+      },
+      {
+        "key": "activities_difficulty_to_conduct",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "activities_difficulty_to_conduct",
+        "type": "hidden"
+      },
+      {
+        "key": "caregivers_encouraging_praising_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "caregivers_encouraging_praising_children",
+        "type": "hidden"
+      },
+      {
+        "key": "caregivers_bring_materials_last_session",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "caregivers_bring_materials_last_session",
+        "type": "hidden"
+      },
+      {
+        "key": "cover_any_following_topics",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "cover_any_following_topics",
+        "type": "hidden"
+      },
+      {
+        "key": "session_duration",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "session_duration",
+        "type": "hidden"
+      }
+    ]
+  },
+  "properties_file_name": "group_session"
+}

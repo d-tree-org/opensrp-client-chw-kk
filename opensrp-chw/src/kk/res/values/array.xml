@@ -4,4 +4,50 @@
         <item>Production</item>
         <item>Test</item>
     </string-array>
+    <string-array name="select_child_option">
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="multi_select_accompany_child_option">
+        <item>Father of the child/Partner of the mother</item>
+        <item>Sibling of the child (less than 5 years old)</item>
+        <item>Sibling of the child (5 or more years old)</item>
+        <item>Grandmother of the child </item>
+        <item>Grandfather of the child</item>
+        <item>Blood-sister of the mother</item>
+        <item>Blood-brother of the mother</item>
+        <item>Friend</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="group_session_groups">
+        <item>Group 1 (younger group)</item>
+        <item>Group 2 (older group)</item>
+    </string-array>
+    <string-array name="group_session_session_took_place_options">
+        <item>-</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="group_session_reason_not_take_place">
+        <item>-</item>
+        <item>CHW(s) incapacitated (sickness, etc.)</item>
+        <item>All caregivers unavailable</item>
+        <item>All caregivers refused</item>
+        <item>All children incapacitated (sickness, etc.)</item>
+        <item>Other (Specify)</item>
+    </string-array>
+    <string-array name="session_location_place">
+        <item>Session place</item>
+        <item>Dispensary</item>
+        <item>Village Office</item>
+        <item>Participant house</item>
+        <item>Outreach vaccination point</item>
+        <item>Primary School</item>
+        <item>Under the tree</item>>
+    </string-array>
+    <string-array name="divided_children_into_groups">
+        <item>Divided children into different age groups?</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
 </resources>
