@@ -361,7 +361,6 @@
         "label_info_text": "{{add_anc_registration.step1.last_menstrual_period.label_info_text}}",
         "expanded": false,
         "max_date": "today-20w",
-        "min_date": "today-45w",
         "v_required": {
           "value": "true",
           "err": "{{add_anc_registration.step1.last_menstrual_period.v_required.err}}"
@@ -478,7 +477,6 @@
         "type": "date_picker",
         "hint": "{{add_anc_registration.step1.edd.hint}}",
         "max_date": "today+40w",
-        "min_date": "today",
         "calculation": {
           "rules-engine": {
             "ex-rules": {

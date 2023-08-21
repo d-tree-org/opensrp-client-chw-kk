@@ -279,30 +279,6 @@
         }
       },
       {
-        "key": "primary_caregiver",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "type": "hidden",
-        "hint": "{{family_member_register.step1.primary_caregiver.hint}}",
-        "values": [
-          "{{family_member_register.step1.primary_caregiver.values[0]}}",
-          "{{family_member_register.step1.primary_caregiver.values[1]}}"
-        ],
-        "keys": [
-          "Yes",
-          "No"
-        ],
-        "relevance": {
-          "rules-engine": {
-            "ex-rules": {
-              "rules-file": "family-member-relevance.yml"
-            }
-          }
-        },
-        "value": "Yes"
-      },
-      {
         "key": "phone_number",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -341,6 +317,30 @@
             "ex": "equalTo(., \"Yes\")"
           }
         }
+      },
+      {
+        "key": "primary_caregiver",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "hint": "{{family_member_register.step1.primary_caregiver.hint}}",
+        "values": [
+          "{{family_member_register.step1.primary_caregiver.values[0]}}",
+          "{{family_member_register.step1.primary_caregiver.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "family-member-relevance.yml"
+            }
+          }
+        },
+        "value": "Yes"
       }
     ]
   },
