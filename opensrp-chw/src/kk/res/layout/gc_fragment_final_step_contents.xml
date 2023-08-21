@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/google_sans_medium"
+                android:text="@string/add_details_of_how_the_session_went"
+                android:textColor="@color/text_black"
+                android:textSize="24sp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/usage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/llactivities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="@string/what_activities_took_place"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/welcome_and_free_play"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/welcome_and_free_play" />
+
+                    <CheckBox
+                        android:id="@+id/opening_song"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/opening_song" />
+
+                    <CheckBox
+                        android:id="@+id/review_prevous_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/review_previous_week" />
+
+                    <CheckBox
+                        android:id="@+id/activity_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/activity_1" />
+
+                    <CheckBox
+                        android:id="@+id/activity_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/activity_2" />
+
+                    <CheckBox
+                        android:id="@+id/nutrition_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/nutrition_activity" />
+
+                    <CheckBox
+                        android:id="@+id/recap_session"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/recap_session" />
+
+                    <CheckBox
+                        android:id="@+id/closing_song"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/closing_song" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llteachingMaterials"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="@string/all_teaching_learning_materials_used"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/teching_materials_used_yes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/yes_all_teaching_materials" />
+
+                    <CheckBox
+                        android:id="@+id/teching_materials_used_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/no_all_teaching_materials" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llUnguidedFreePlay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="Unguided free play"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/free_play_most_children"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:text="Most children (more than half) are playing with materials" />
+
+                    <CheckBox
+                        android:id="@+id/free_play_one_adult_available"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="One adult is available for behavior guidance if needed (e.g. sharing, taking turns)" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDifficultActivitiesAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="@string/any_activities_difficult"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_activities_yes"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/yes_all_teaching_materials" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_activities_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/no_all_teaching_materials" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDifficultActivitiesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="@string/which_ones_find_difficult"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_welcome_and_free_play"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/welcome_and_free_play" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_opening_song"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/opening_song" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_review_prevous_week"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/review_previous_week" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_activity_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/activity_1" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_activity_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/activity_2" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_nutrition_activity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/nutrition_activity" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_recap_session"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/recap_session" />
+
+                    <CheckBox
+                        android:id="@+id/difficult_closing_song"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/closing_song" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCaregiversEncouraging"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="@string/caregivers_encouraging_praising_the_children"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/yes_all_or_nearly_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/yes_in_all_activities" />
+
+                    <CheckBox
+                        android:id="@+id/yes_most"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/yes_most_activities" />
+
+                    <CheckBox
+                        android:id="@+id/none_or_very_few"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/none_or_very_few_activities" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCaregiversBroughtMaterials"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="@string/caregivers_bring_materials_last_session_demonstrate"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/materials_yes_all_or_nearly_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/yes_all_or_nearly_all_of_them" />
+
+                    <CheckBox
+                        android:id="@+id/materials_yes_most"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/yes_most_of_them" />
+
+                    <CheckBox
+                        android:id="@+id/materials_yes_some"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/yes_some_of_them_materials" />
+
+                    <CheckBox
+                        android:id="@+id/materials_none_or_very_few"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/none_or_very_few_of_them_materials" />
+
+                    <CheckBox
+                        android:id="@+id/yes_some"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/yes_some_activities" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCoverage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="@string/cover_any_of_the_following"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <CheckBox
+                        android:id="@+id/topic_language"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/topic_covered_language" />
+
+                    <CheckBox
+                        android:id="@+id/topic_cognitive"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/topic_covered_cognitive" />
+
+                    <CheckBox
+                        android:id="@+id/topic_socialemotional"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/topic_covered_socialemotional" />
+
+                    <CheckBox
+                        android:id="@+id/topic_creativity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/topic_covered_creativity" />
+
+                    <CheckBox
+                        android:id="@+id/topic_formal_teaching"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/topic_covered_formalteaching" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSessionDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/google_sans_medium"
+                        android:text="@string/session_duration_in_hours_and_minutes"
+                        android:textColor="@color/text_black"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editTextDuration"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:hint="@string/long_session_take_hrs"
+                            android:textColorHint="?android:attr/textColorPrimary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/editTextGps">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_session_duration"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/google_sans_regular"
+                                android:inputType="number"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="16sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/editTextDurationMinutes"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:hint="@string/long_session_take_mins"
+                            android:textColorHint="?android:attr/textColorPrimary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/editTextGps">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_session_duration_minutes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/google_sans_regular"
+                                android:inputType="number"
+                                android:textColor="?android:attr/textColorPrimary"
+                                android:textSize="16sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonSubmit"
+                    style="@style/PrimaryFlatButton"
+                    android:layout_width="120dp"
+                    android:layout_height="58dp"
+                    android:layout_gravity="right"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center"
+                    android:text="@string/submit"
+                    android:textColor="@color/white"
+                    android:textColorHint="?android:attr/textColorPrimary" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

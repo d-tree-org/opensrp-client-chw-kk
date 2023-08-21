@@ -1428,6 +1428,50 @@
           }
         }
       ]
+    },
+    {
+      "name": "ec_group_session",
+      "columns": [
+        {
+          "column_name": "base_entity_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "baseEntityId"
+          }
+        },
+        {
+          "column_name": "session_id",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "concept": "session_id"
+          }
+        },
+        {
+          "column_name": "session_date",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "concept": "session_date"
+          }
+        },
+        {
+          "column_name": "session_place",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "concept": "session_place"
+          }
+        },
+        {
+          "column_name": "session_duration",
+          "type": "Event",
+          "json_mapping": {
+            "field": "obs.formSubmissionField",
+            "concept": "session_duration"
+          }
+        }
+      ]
     }
   ]
 }

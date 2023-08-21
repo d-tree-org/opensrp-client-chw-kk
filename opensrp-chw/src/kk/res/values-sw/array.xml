@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="select_child_option">
+        <item>Ndiyo</item>
+        <item>Hapana</item>
+    </string-array>
+    <string-array name="multi_select_accompany_child_option">
+        <item>Baba wa mtoto/Mpenzi wa mama</item>
+        <item>Ndugu wa mtoto (chin ya miaka 5)</item>
+        <item>Ndugu wa mtoto (miaka 5 au zaidi)</item>
+        <item>Bibi wa mtoto</item>
+        <item>Babu wa mtoto</item>
+        <item>Dada yake mama wa damu</item>
+        <item>Kaka yake mama wa damu</item>
+        <item>Rafiki</item>
+        <item>Mwingine</item>
+    </string-array>
+    <string-array name="group_session_groups">
+        <item>Kundi 1 (kundi la wadogo)</item>
+        <item>Kundi 2 (kundi la wakubwa)</item>
+    </string-array>
+    <string-array name="group_session_session_took_place_options">
+        <item>-</item>
+        <item>Ndiyo</item>
+        <item>Hapana</item>
+    </string-array>
+    <string-array name="group_session_reason_not_take_place">
+        <item>-</item>
+        <item>MJA alishindwa kuendesha kipindi (aliumwa, n.k)</item>
+        <item>Walezi wote hawakupatikana au hawakuwepo</item>
+        <item>Walezi wote walikataa</item>
+        <item>Watoto walishindwa kuhudhuria (waliumwa n.k)</item>
+        <item>Sababu nyingine</item>
+    </string-array>
+    <string-array name="session_location_place">
+        <item>Mahali kilipofanyika</item>
+        <item>Zahanati</item>
+        <item>Ofisi ya kijiji</item>
+        <item>Nyumba ya mshiriki</item>
+        <item>Kituo cha uhamasishaji na kutoa huduma za chanjo</item>
+        <item>Shule ya primari</item>
+        <item>Chini ya mti</item>
+    </string-array>
+    <string-array name="divided_children_into_groups">
+        <item>Ugawanywaji wa watoto kwenye makundi</item>
+        <item>Ndiyo</item>
+        <item>Hapana</item>
+    </string-array>
+</resources>

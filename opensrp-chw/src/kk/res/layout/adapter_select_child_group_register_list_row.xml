@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/register_columns"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/select_child_checkbox_background">
+
+    <LinearLayout
+        android:id="@+id/child_column"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/register_list_item_margin"
+        android:layout_marginLeft="@dimen/register_list_item_margin"
+        android:layout_marginEnd="@dimen/register_list_item_margin"
+        android:layout_marginRight="@dimen/register_list_item_margin"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_toStartOf="@+id/due_button_wrapper"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_view_child_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginTop="4dp"
+            android:text="Patient Name"
+            android:fontFamily="@font/google_sans_medium"
+            android:textColor="@color/black_tranparent_50"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/text_view_child_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Age: 3"
+            android:fontFamily="@font/google_sans_regular"
+            android:textColor="@color/text_black"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textview_parent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/google_sans_regular"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="CG:Parent Name"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_view_address_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/google_sans_regular"
+            android:text="Kawangare. Male"
+            android:textColor="@color/light_grey_text"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/due_button_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="6dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/light_gray"
+        android:gravity="center"
+        android:paddingStart="@dimen/register_list_item_margin"
+        android:paddingLeft="@dimen/register_list_item_padding"
+        android:paddingTop="@dimen/register_list_top_bottom_padding"
+        android:paddingEnd="@dimen/register_list_item_padding"
+        android:paddingRight="@dimen/register_list_item_padding"
+        android:paddingBottom="@dimen/register_list_top_bottom_padding"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/due_button"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:hapticFeedbackEnabled="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAllCaps="true"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:textColor="@color/vaccine_blue_bg_st"
+            android:textSize="15dp"
+            android:typeface="normal"
+            android:visibility="gone" />
+
+        <com.nerdstone.neatformcore.views.widgets.CheckBoxNFormView
+            android:id="@+id/chk_select_child"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:hapticFeedbackEnabled="true"
+            android:typeface="normal" />
+
+    </LinearLayout>
+
+</RelativeLayout>

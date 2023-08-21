@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="8dp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/ll_sessions_summary">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="@string/records_of_sessions_this_month"
+            android:textSize="16sp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:fontFamily="@font/google_sans_medium"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_sessions_summary_number"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:background="@color/red_overlay">
+
+            <TextView
+                android:id="@+id/tv_sessions_summary_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="0"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/google_sans_medium"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        android:id="@+id/summary_separator"
+        app:layout_constraintTop_toBottomOf="@+id/ll_sessions_summary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sessions_took_place_question"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/summary_separator"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <TextView
+            android:id="@+id/tv_session_took_place_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/did_the_session_take_place"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/google_sans_medium"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_session_took_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_background"
+            android:fontFamily="@font/google_sans_regular"
+            android:paddingLeft="4dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSessionDateLayout"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_no_session_container"
+        app:layout_constraintTop_toBottomOf="@+id/sessions_took_place_question"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/why_not_take_place"
+            android:layout_marginTop="24dp"
+            android:textSize="16sp"
+            android:textColor="@color/black_tranparent_50"
+            android:fontFamily="@font/google_sans_medium"/>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/sp_no_session_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/spinner_background"
+            android:fontFamily="@font/google_sans_regular"
+            android:paddingLeft="4dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSessionDateLayout"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_other_reason"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/group_session_not_take_place_other_reason"
+            android:textColorHint="?android:attr/textColorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sp_no_session_reason">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_other_reason_text"
+                android:inputType="text"
+                android:textSize="16sp"
+                android:fontFamily="@font/google_sans_regular"
+                android:textColor="?android:attr/textColorPrimary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_submit_not_done"
+            style="@style/PrimaryFlatButton"
+            android:gravity="center"
+            android:layout_gravity="right"
+            android:textColor="@color/white"
+            android:layout_width="120dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:text="@string/submit"
+            android:textColorHint="?android:attr/textColorPrimary"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/ll_start_session_reg"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/sessions_took_place_question"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/information_about_session_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="24dp"
+            android:textSize="16sp"
+            android:textColor="@color/text_black"
+            android:fontFamily="@font/google_sans_medium"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/usage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextSessionDateLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/select_session_date"
+                android:textColorHint="?android:attr/textColorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextSessionDate"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:focusable="false"
+                    android:fontFamily="@font/google_sans_regular"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerTypeOfPlace"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/spinner_background"
+                android:fontFamily="@font/google_sans_regular"
+                android:paddingLeft="4dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextSessionDateLayout"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextGps"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:hint="GPS"
+                android:visibility="gone"
+                android:textColorHint="?android:attr/textColorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerTypeOfPlace">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:enabled="false"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/google_sans_regular"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/divide_children_in_groups"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/spinner_background"
+                android:fontFamily="@font/google_sans_regular"
+                android:paddingLeft="4dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonNext"
+                style="@style/PrimaryFlatButton"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_width="120dp"
+                android:layout_height="58dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:text="@string/str_next"
+                android:textColorHint="?android:attr/textColorPrimary"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divide_children_in_groups"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <FrameLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

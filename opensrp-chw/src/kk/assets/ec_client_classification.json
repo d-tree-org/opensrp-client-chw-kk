@@ -193,6 +193,13 @@
             "creates_case": [
               "ec_anc_register"
             ]
+          },
+          {
+            "field": "eventType",
+            "field_value": "Group Session",
+            "creates_case": [
+              "ec_group_session"
+            ]
           }
         ]
       }

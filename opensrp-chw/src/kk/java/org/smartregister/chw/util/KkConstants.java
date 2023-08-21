@@ -104,6 +104,14 @@ public class KkConstants extends Constants{
             }
 
         }
+
+        public static class GROUP_SESSION_FORM {
+            public static final String SESSION_ID = "session_id";
+            public static final String SESSION_DATE = "session_date";
+            public static final String SESSION_PLACE = "session_place";
+            public static final String SESSION_DURATION = "session_duration";
+        }
+
     }
 
     public static final class EventType {
@@ -113,6 +121,59 @@ public class KkConstants extends Constants{
 
     public static final class TABLES {
         public static final String CHILD_IMMUNIZATIONS = "ec_child_immunizations";
+        public static final String GROUP_SESSION = "ec_group_session";
+    }
+
+    public static class GCActivities {
+        public static final String WELCOME_AND_FREE_PLAY = "opening_and_free_play";
+        public static final String OPENING_SONG = "opening_song";
+        public static final String REVIEW_PREVIOUS_WEEK = "review_of_the_week";
+        public static final String ACTIVITY_1 = "activity_1";
+        public static final String ACTIVITY_2 = "activity_2";
+        public static final String RECAP_SESSION = "recap_session";
+        public static final String CLOSING_SONG = "closing_song";
+    }
+
+    public static class GCUnguidedFreePlay {
+        public static final String MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS = "most_children_are_playing_with_materials";
+        public static final String ONE_ADULT_IS_AVAILABLE = "one_adult_is_available";
+    }
+
+    public static class GCCoveredTopics {
+        public static final String TOPIC_LANGUAGE = "language";
+        public static final String TOPIC_COGNITIVE = "cognitive";
+        public static final String TOPIC_SOCIAL_EMOTIONAL = "social_emotional";
+        public static final String TOPIC_CREATIVITY = "creativity";
+        public static final String TOPIC_FORMAL_TEACHING = "formal_teaching";
+    }
+
+    public static class GCJsonKeys {
+
+        public static final String GC_SESSION_DATE = "session_date";
+
+        public static final String GC_SESSION_NOT_DONE_REASON = "session_not_done_reason";
+
+        public static final String GC_SESSION_NOT_DONE_OTHER_REASON = "session_not_done_reason_other";
+        public static final String GC_SESSION_ID = "session_id";
+        public static final String GC_SESSION_PLACE = "session_place";
+        public static final String GC_SESSION_DURATION = "session_duration";
+        public static final String GC_ACTIVITIES_TOOK_PLACE = "activities_took_place";
+
+        public static final String GC_DIVIDE_CHILDREN_DIFFERENT_AGE_GROUPS = "divide_children_different_age_groups";
+        public static final String GC_TEACHING_MATERIALS_USED = "teaching_materials_used";
+        public static final String GC_ACTIVITY_DIFFICULTY = "activity_difficult";
+        public static final String GC_ACTIVITIES_DIFFICULTY_TO_CONDUCT = "activities_difficulty_to_conduct";
+        public static final String GC_CAREGIVERS_ENCOURAGING_PRAISING_CHILDREN = "caregivers_encouraging_praising_children";
+        public static final String GC_CAREGIVERS_BRING_MATERIALS_LAST_SESSIONS = "caregivers_bring_materials_last_session";
+
+        public static final String GC_COVER_ANY_FOLLOWING_TOPICS = "cover_any_following_topics";
+        public static final String GC_CHILD_ID = "child_id";
+
+        public static final String GC_CHILD_NAME = "child_name";
+        public static final String GC_ALL_CAREGIVERS_PRESENT = "all_caregivers_present";
+        public static final String GC_CHILD_GROUP_PLACED = "child_group_placed";
+        public static final String GC_CHILD_CAME_WITH_OTHER_PEOPLE = "other_people_present";
+
     }
 
 }
