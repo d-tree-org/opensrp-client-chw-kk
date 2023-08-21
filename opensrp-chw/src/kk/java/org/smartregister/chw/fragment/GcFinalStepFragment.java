@@ -518,7 +518,7 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
         sessionModel.setTopicsCovered(topicsCovered);
         String durationString = etDurationInHours != null ? etDurationInHours.getText().toString().trim() : "";
         sessionModel.setDurationInHours(!durationString.isEmpty() ? Integer.parseInt(durationString): 0);
-        Toast.makeText(getContext(), "Group Session Information Recorded", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "Group Session Information Recorded", Toast.LENGTH_SHORT).show();
 
     }
 
