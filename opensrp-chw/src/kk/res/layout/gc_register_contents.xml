@@ -19,22 +19,24 @@
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="wrap_content"
-            android:text="Records of sessions this month"
+            android:text="@string/records_of_sessions_this_month"
             android:textSize="16sp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"
             android:fontFamily="@font/google_sans_medium"/>
 
         <RelativeLayout
+            android:id="@+id/rl_sessions_summary_number"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
             android:background="@color/red_overlay">
 
             <TextView
+                android:id="@+id/tv_sessions_summary_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:text="0"
                 android:layout_centerInParent="true"
                 android:gravity="center"
@@ -69,9 +71,10 @@
         android:paddingRight="24dp">
 
         <TextView
+            android:id="@+id/tv_session_took_place_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Did the session take place"
+            android:text="@string/did_the_session_take_place"
             android:layout_marginTop="16dp"
             android:textSize="16sp"
             android:textColor="@color/black"
@@ -105,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Why did it not take place"
+            android:text="@string/why_not_take_place"
             android:layout_marginTop="24dp"
             android:textSize="16sp"
             android:textColor="@color/black_tranparent_50"
@@ -130,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:hint="Other reason"
+            android:hint="@string/group_session_not_take_place_other_reason"
             android:textColorHint="?android:attr/textColorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,7 +161,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textColorHint="?android:attr/textColorPrimary"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
@@ -182,7 +185,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add information about the new session"
+            android:text="@string/information_about_session_title"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="24dp"
             android:textSize="16sp"
@@ -205,7 +208,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="Select session date"
+                android:hint="@string/select_session_date"
                 android:textColorHint="?android:attr/textColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -264,6 +267,21 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/divide_children_in_groups"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/spinner_background"
+                android:fontFamily="@font/google_sans_regular"
+                android:paddingLeft="4dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonNext"
                 style="@style/PrimaryFlatButton"
@@ -273,14 +291,24 @@
                 android:layout_height="58dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginRight="24dp"
-                android:text="Next"
+                android:layout_marginEnd="24dp"
+                android:text="@string/str_next"
                 android:textColorHint="?android:attr/textColorPrimary"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextGps"/>
+                app:layout_constraintTop_toBottomOf="@+id/divide_children_in_groups"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+    <FrameLayout android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

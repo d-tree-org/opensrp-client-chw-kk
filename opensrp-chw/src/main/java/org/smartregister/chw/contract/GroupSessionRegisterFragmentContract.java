@@ -1,5 +1,10 @@
 package org.smartregister.chw.contract;
 
+import android.content.Context;
+
+import org.json.JSONObject;
+import org.smartregister.chw.model.GroupSessionModel;
+import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.configurableviews.model.Field;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
@@ -30,6 +35,9 @@ public interface GroupSessionRegisterFragmentContract {
 
         void createSessionEvent(String form);
 
+        void saveGroupSession(GroupSessionModel sessionModel);
+
+        void refreshSessionSummaryView();
     }
 
     public interface View extends BaseRegisterFragmentContract.View {
@@ -42,6 +50,9 @@ public interface GroupSessionRegisterFragmentContract {
 
         void goToFinalStep();
 
+        void refreshSessionSummaryView(int numberOfSessions);
+        void showProgressBar(boolean status);
+        void finishGroupSession();
     }
 
     public interface Model {
@@ -66,13 +77,19 @@ public interface GroupSessionRegisterFragmentContract {
 
     public interface Interactor {
 
-        void createSessionEvent(String json, InteractorCallBack callBack);
+        void saveSessionEvent(String json, InteractorCallBack callBack);
+        void saveChildSessionEvents(List<JSONObject> jsonChildForms, InteractorCallBack callBack);
+        JSONObject getAndPopulateSessionForm(String formName, Context context, GroupSessionModel sessionModel);
+
+        void refreshSessionSummaryView(InteractorCallBack callback);
+
+        JSONObject getAndPopulateChildSessionForm(String group_session_child, Context context, GroupSessionModel sessionModel, SelectedChildGS selectedChildGS);
 
         interface InteractorCallBack {
-
-            void onEventCreated(Event baseEvent);
-
-            void onEventFailed(String message);
+            void onEventSaved(Event baseEvent);
+            void onEventsSaved(List<Event> baseEvent);
+            void onEventSaveError(String message);
+            void onRefreshSessionSummaryView(int numberOfSessions);
 
         }
     }

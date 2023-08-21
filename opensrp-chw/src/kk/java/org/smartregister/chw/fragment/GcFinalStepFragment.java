@@ -15,6 +15,7 @@ import static org.smartregister.chw.util.KkConstants.GCCoveredTopics.TOPIC_SOCIA
 import static org.smartregister.chw.util.KkConstants.GCUnguidedFreePlay.MOST_CHILDREN_ARE_PLAYING_WITH_MATERIALS;
 import static org.smartregister.chw.util.KkConstants.GCUnguidedFreePlay.ONE_ADULT_IS_AVAILABLE;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -31,6 +33,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.listener.CaregiversEncouragingListener;
 import org.smartregister.chw.listener.CaregiversMaterialsListener;
@@ -91,6 +94,7 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
     TextInputEditText etDurationInHours;
 
+    ProgressBar progressBar;
     MaterialButton submitButton;
 
     private List<String> activitiesTookPlace;
@@ -470,8 +474,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
                 presenter().fetchSessionDetails();
 
                 //3 Validate Object
-
-                //4 Process to Event
+                if (validateFields())
+                    //4 Process to Event
+                    saveGroupSession();
 
                 //5 Close fragment
             }
@@ -479,6 +484,12 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
         etDurationInHours = view.findViewById(R.id.et_session_duration);
 
+        progressBar = view.findViewById(R.id.progress_bar);
+
+    }
+
+    private void saveGroupSession() {
+        presenter().saveGroupSession(sessionModel);
     }
 
     private void difficultActivitiesLayoutController(boolean isDifficult){
@@ -505,13 +516,95 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
         sessionModel.setCaregiversEncouragingChildren(caregiversEncouraging);
         sessionModel.setCaregiversBroughtMaterials(caregiversBroughtMaterials);
         sessionModel.setTopicsCovered(topicsCovered);
-        sessionModel.setDurationInHours(etDurationInHours != null ? Integer.parseInt(String.valueOf(etDurationInHours.getText())): 0);
-        Toast.makeText(getContext(), "Group Session Information Recorded", Toast.LENGTH_SHORT).show();
+        String durationString = etDurationInHours != null ? etDurationInHours.getText().toString().trim() : "";
+        sessionModel.setDurationInHours(!durationString.isEmpty() ? Integer.parseInt(durationString): 0);
+        //Toast.makeText(getContext(), "Group Session Information Recorded", Toast.LENGTH_SHORT).show();
 
     }
 
+    @Override
+    public void refreshSessionSummaryView(int numberOfSessions) {
+
+    }
+
+    @Override
+    public void showProgressBar(boolean status) {
+
+        if (status) {
+            progressBar.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void finishGroupSession() {
+        Intent intent = new Intent(requireActivity(), FamilyRegisterActivity.class);
+        startActivity(intent);
+        requireActivity().finish();
+    }
+
     private boolean validateFields(){
-        return false;
+
+        boolean isValid = true;
+
+        // Validate activities took place
+        if (activitiesTookPlace.isEmpty()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select at least one activity that took place", Toast.LENGTH_SHORT).show();
+        }
+
+        // Validate teaching materials used
+        if (!materialsScheduledUsedYes.isChecked() && !materialsScheduledUsedNo.isChecked()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select whether teaching materials were used", Toast.LENGTH_SHORT).show();
+        }
+
+        // Validate any difficulties encountered
+        if (!activitiesDifficultYes.isChecked() && !activitiesDifficultNo.isChecked()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select whether any difficulties were encountered", Toast.LENGTH_SHORT).show();
+        }
+
+        // Difficult activities list
+        if (activitiesDifficultYes.isChecked() && listOfDifficultActivities.isEmpty()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select at least one activity that was difficult", Toast.LENGTH_SHORT).show();
+        }
+
+        // Care giver encouraging
+        if (caregiversEncouraging == null) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select whether caregivers were encouraging", Toast.LENGTH_SHORT).show();
+        }
+
+        // Topic covered
+        if (topicsCovered.isEmpty()) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select at least one topic that was covered", Toast.LENGTH_SHORT).show();
+        }
+
+        // Care giver brought materials
+        if (caregiversBroughtMaterials == null) {
+            isValid = false;
+            Toast.makeText(getContext(), "Please select whether caregivers brought materials", Toast.LENGTH_SHORT).show();
+        }
+
+        // Validate session duration
+        String durationString = etDurationInHours.getText().toString().trim();
+        if (durationString.isEmpty()) {
+            isValid = false;
+            etDurationInHours.setError("Please enter session duration");
+        } else {
+            int duration = Integer.parseInt(durationString);
+            if (duration <= 0) {
+                isValid = false;
+                etDurationInHours.setError("Duration must be greater than 0");
+            }
+        }
+
+        return isValid;
     }
 
     private void createSessionObject(){

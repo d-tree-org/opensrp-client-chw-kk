@@ -8,7 +8,13 @@ import java.util.List;
 public class GroupSessionModel {
 
     private String sessionId;
-    private long sessionDate;
+
+    private  boolean sessionTookPlace;
+
+    private String noSessionReason;
+
+    private String noSessionOtherReason;
+    private String sessionDate;
     private String sessionPlace;
     private String sessionDuration;
     private List<SelectedChildGS> selectedChildren;
@@ -22,15 +28,21 @@ public class GroupSessionModel {
     private List<String> topicsCovered;
     private int durationInHours;
 
+    private boolean childrenDividedInGroups;
+
     public GroupSessionModel(){
 
+    }
+
+    public String getSessionId() {
+        return sessionId;
     }
 
     public List<SelectedChildGS> getSelectedChildren() {
         return selectedChildren;
     }
 
-    public long getSessionDate() {
+    public String getSessionDate() {
         return sessionDate;
     }
 
@@ -98,7 +110,7 @@ public class GroupSessionModel {
         this.selectedChildren = selectedChildren;
     }
 
-    public void setSessionDate(long sessionDate) {
+    public void setSessionDate(String sessionDate) {
         this.sessionDate = sessionDate;
     }
 
@@ -125,4 +137,45 @@ public class GroupSessionModel {
     public void setDurationInHours(int durationInHours) {
         this.durationInHours = durationInHours;
     }
+
+    public boolean isChildrenDividedInGroups() {
+        return childrenDividedInGroups;
+    }
+
+    public void setChildrenDividedInGroups(boolean childrenDividedInGroups) {
+        this.childrenDividedInGroups = childrenDividedInGroups;
+    }
+
+    public void setSessionTookPlace(boolean sessionTookPlace) {
+        this.sessionTookPlace = sessionTookPlace;
+    }
+
+    public boolean isSessionTookPlace() {
+        return sessionTookPlace;
+    }
+
+    public void setNoSessionReason(String noSessionReason) {
+        this.noSessionReason = noSessionReason;
+    }
+
+    public String getNoSessionReason() {
+        return noSessionReason;
+    }
+
+    public void setNoSessionOtherReason(String noSessionOtherReason) {
+        this.noSessionOtherReason = noSessionOtherReason;
+    }
+
+    public String getNoSessionOtherReason() {
+        return noSessionOtherReason;
+    }
+
+    public boolean isAllTeachingLearningMaterialsUsed() {
+        return allTeachingLearningMaterialsUsed;
+    }
+
+    public boolean isAnyDifficultActivities() {
+        return anyDifficultActivities;
+    }
+
 }

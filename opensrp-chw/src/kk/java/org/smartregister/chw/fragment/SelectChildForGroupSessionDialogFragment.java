@@ -28,16 +28,11 @@ import java.util.List;
  */
 public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
-    private RecyclerView came_with_pc_lv;
     private RecyclerView who_came_with_the_child_lv;
-    private RecyclerView selected_group_lv;
 
     private TextView who_came_with_child_tv;
     private KKCustomAdapter came_with_pc_lv_adapter;
     private KKCustomAdapter selected_group_lv_adapter;
-
-    private final String[] items2 = {"Group 1", "Group 2"};
-
     private int selectedPosition1 = -1;
     private int selectedPosition2 = -1;
     private int selectedPosition3 = -1;
@@ -46,37 +41,40 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     private final String selectedChildBaseEntityId;
     private final String primaryCareGiverName;
 
+    private final boolean childrenDividedIntoGroups;
+
     SelectChildForGroupSessionRegisterFragment.DialogDismissListener dialogDismissListener;
 
-    public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId, String primaryCareGiverName, SelectChildForGroupSessionRegisterFragment.DialogDismissListener listener) {
+    public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId, String primaryCareGiverName, boolean childrenDividedIntoGroups, SelectChildForGroupSessionRegisterFragment.DialogDismissListener listener) {
         this.selectedChildBaseEntityId = selectedChildBaseEntityId;
         this.primaryCareGiverName = primaryCareGiverName;
         this.dialogDismissListener = listener;
+        this.childrenDividedIntoGroups = childrenDividedIntoGroups;
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-       /* builder.setSingleChoiceItems(R.array.select_child_option, -1, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (dialogListener != null) {
-                    dialogListener.onSelectComeWithPrimaryCareGiver(which == 0, selectedChildBaseEntityId);
-                }
-                dialog.dismiss();
-            }
-        });*/
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_fragment_childselection, null);
         TextView came_with_pc_tv = view.findViewById(R.id.came_with_pc);
         came_with_pc_tv.setText(String.format(getString(R.string.primary_care_give_dialog_gs), primaryCareGiverName));
         builder.setView(view);
 
-        came_with_pc_lv = view.findViewById(R.id.came_with_pc_lv);
+        RecyclerView came_with_pc_lv = view.findViewById(R.id.came_with_pc_lv);
         who_came_with_the_child_lv = view.findViewById(R.id.who_came_with_the_child_lv);
-        selected_group_lv = view.findViewById(R.id.selected_group_lv);
+        TextView selected_group = view.findViewById(R.id.selected_group);
+        RecyclerView selected_group_lv = view.findViewById(R.id.selected_group_lv);
         selected_group_lv.setScrollContainer(false);
+
+        if (childrenDividedIntoGroups) {
+            selected_group_lv.setVisibility(View.VISIBLE);
+            selected_group.setVisibility(View.VISIBLE);
+        } else {
+            selected_group_lv.setVisibility(View.GONE);
+            selected_group.setVisibility(View.GONE);
+        }
 
         who_came_with_child_tv = view.findViewById(R.id.who_came_with_child_tv);
 
@@ -86,7 +84,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
             multiSelectListItems.add(new MultiSelectListItemModel(item, false));
         }
         KKCustomAdapterMultiSelectList who_came_with_the_child_lv_adapter = new KKCustomAdapterMultiSelectList(multiSelectListItems, requireContext());
-        selected_group_lv_adapter = new KKCustomAdapter(items2, requireContext());
+
+        String[] groupItems = getResources().getStringArray(R.array.group_session_groups);
+        selected_group_lv_adapter = new KKCustomAdapter(groupItems, requireContext());
 
         came_with_pc_lv.setAdapter(came_with_pc_lv_adapter);
         who_came_with_the_child_lv.setAdapter(who_came_with_the_child_lv_adapter);
@@ -98,7 +98,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
         came_with_pc_lv_adapter.setOnItemSelectedListener(position -> {
             selectedPosition1 = position;
-            hideChildCameWith(position == 0);
+            modifyChildCameWith(position == 0);
             came_with_pc_lv_adapter.setSelectedPosition(position);
         });
 
@@ -119,18 +119,18 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                 dialog.dismiss();
             }
 
-            if (selectedPosition2 == -1) {
+            if (selectedPosition2 == -1 && childrenDividedIntoGroups) {
                 Toast.makeText(requireContext(), "Child missing the group", Toast.LENGTH_SHORT).show();
                 dialogDismissListener.onFailure();
                 dialog.dismiss();
             }
 
-            if (dialogListener != null && selectedPosition2 != -1 && selectedPosition1 != -1) {
+            if (dialogListener != null && (selectedPosition2 != -1 || !childrenDividedIntoGroups) && selectedPosition1 != -1) {
                 dialogListener.onSelectComeWithPrimaryCareGiver(
                         selectedPosition1 == 0,
                         selectedChildBaseEntityId,
                         who_came_with_the_child_lv_adapter.getSelectedItems(),
-                        items2[selectedPosition2]
+                        !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]
                 );
                 dialogDismissListener.onSuccess();
                 dialog.dismiss();
@@ -161,13 +161,11 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         }
     }
 
-    private void hideChildCameWith(boolean hide) {
+    private void modifyChildCameWith(boolean hide) {
         if (hide) {
-            who_came_with_the_child_lv.setVisibility(View.GONE);
-            who_came_with_child_tv.setVisibility(View.GONE);
+            who_came_with_child_tv.setText(R.string.who_came_with_the_child_yes);
         } else {
-            who_came_with_the_child_lv.setVisibility(View.VISIBLE);
-            who_came_with_child_tv.setVisibility(View.VISIBLE);
+            who_came_with_child_tv.setText(R.string.who_came_with_the_child_no);
         }
     }
 

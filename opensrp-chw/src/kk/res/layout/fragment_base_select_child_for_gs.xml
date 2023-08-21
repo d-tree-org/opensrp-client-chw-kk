@@ -71,7 +71,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:gravity="center"
-            android:text="@string/gs_next_btn"
+            android:text="@string/str_next"
             android:textColor="@color/white"
             android:textColorHint="?android:attr/textColorPrimary" />
     </LinearLayout>
