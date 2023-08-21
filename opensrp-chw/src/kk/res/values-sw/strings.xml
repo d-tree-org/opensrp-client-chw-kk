@@ -195,12 +195,14 @@
     <string name="topic_covered_language">Lugha (kwa mfano, uzoefu wa mtoto, maswali ya ufuatiliaji na kutoa taarifa kwenye majibu, mazungumzo ya njia mbili)</string>
     <string name="topic_covered_cognitive">Utambuzi (kwa mfano, kutambua, kuoanisha na kupanga, kutatua vibao fumbo, kutambua vingi na uchache; urefu na ufupi, ukubwa na udogo, ndani na nje)</string>
     <string name="topic_covered_socialemotional">Kijamii (kwa mfano, kushirikishana/kupeana zamu, kuoneana huruma</string>
-    <string name="topic_covered_creativity">Creativity Ubunifu (kwa mfano, kupaka rangi, kuchora, michezo ya kuigiza)</string>
+    <string name="topic_covered_creativity">Ubunifu (kwa mfano, kupaka rangi, kuchora, michezo ya kuigiza)</string>
     <string name="topic_covered_formalteaching">Elimu rasmi (herufi na namba)</string>
-    <string name="long_session_take_hrs">Kama ndio, kipindi kilikuwa cha mdaa gani?</string>
+    <string name="long_session_take_hrs">Saa</string>
+    <string name="long_session_take_mins">Dakika</string>
     <string name="session_date_required">Tafadhali jaza tarehe ya kipindi</string>
     <string name="session_place_required">Tafadhali jaza eneo la kipindi</string>
     <string name="children_divided_in_groups_required">Tafadhali chagua kama watoto waligawanywa kwenye makundi au la</string>
     <string name="session_not_take_place_reason_required">Tafadhali chagua sababu za kipindi kutokutokea</string>
+    <string name="session_duration_in_hours_and_minutes">Muda wa kipingi kwenye saa na dakika</string>
 
 </resources>

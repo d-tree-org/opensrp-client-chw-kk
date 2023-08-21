@@ -216,10 +216,12 @@
     <string name="topic_covered_socialemotional">Socioemotional (e.g. share/take turns, empathy)</string>
     <string name="topic_covered_creativity">Creativity (e.g. colouring/painting/drawing, pretend games)</string>
     <string name="topic_covered_formalteaching">Formal teaching (letters and numbers)</string>
-    <string name="long_session_take_hrs">How long did the session take (Hrs)</string>
+    <string name="long_session_take_hrs">Hours</string>
+    <string name="long_session_take_mins">Minutes</string>
     <string name="session_date_required">Please enter the session date</string>
     <string name="session_place_required">Please enter session place</string>
     <string name="session_not_take_place_reason_required">Please indicate the reason for the session to not take place</string>
     <string name="children_divided_in_groups_required">Please indicate whether children were divided into groups or not</string>
+    <string name="session_duration_in_hours_and_minutes">Session Duration in Hours and Minutes</string>
 
 </resources>
