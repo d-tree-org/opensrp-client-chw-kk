@@ -28,6 +28,7 @@ public class GroupSessionModel {
     private List<String> topicsCovered;
     private int durationInHours;
 
+    private int durationInMinutes;
     private boolean childrenDividedInGroups;
 
     public GroupSessionModel(){
@@ -178,4 +179,10 @@ public class GroupSessionModel {
         return anyDifficultActivities;
     }
 
+    public void setDurationInMinutes(int minutes) {
+        this.durationInMinutes = minutes;
+    }
+    public int getDurationInMinutes() {
+        return durationInMinutes;
+    }
 }

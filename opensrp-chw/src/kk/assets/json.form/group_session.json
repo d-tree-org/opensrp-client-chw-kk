@@ -132,6 +132,13 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "session_duration",
         "type": "hidden"
+      },
+      {
+        "key": "session_duration_minutes",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "session_duration_minutes",
+        "type": "hidden"
       }
     ]
   },

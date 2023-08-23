@@ -327,6 +327,9 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
             case KkConstants.GCJsonKeys.GC_SESSION_DURATION:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getDurationInHours());
                 break;
+            case KkConstants.GCJsonKeys.GC_SESSION_DURATION_MINUTES:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getDurationInMinutes());
+                break;
             case KkConstants.GCJsonKeys.GC_ACTIVITIES_TOOK_PLACE:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getActivitiesTookPlace());
                 break;
