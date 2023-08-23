@@ -130,6 +130,7 @@ public class KkConstants extends Constants{
         public static final String REVIEW_PREVIOUS_WEEK = "review_of_the_week";
         public static final String ACTIVITY_1 = "activity_1";
         public static final String ACTIVITY_2 = "activity_2";
+        public static final String NUTRITION_ACTIVITY = "nutrition";
         public static final String RECAP_SESSION = "recap_session";
         public static final String CLOSING_SONG = "closing_song";
     }
@@ -157,6 +158,8 @@ public class KkConstants extends Constants{
         public static final String GC_SESSION_ID = "session_id";
         public static final String GC_SESSION_PLACE = "session_place";
         public static final String GC_SESSION_DURATION = "session_duration";
+
+        public static final String GC_SESSION_DURATION_MINUTES = "session_duration_minutes";
         public static final String GC_ACTIVITIES_TOOK_PLACE = "activities_took_place";
 
         public static final String GC_DIVIDE_CHILDREN_DIFFERENT_AGE_GROUPS = "divide_children_different_age_groups";
