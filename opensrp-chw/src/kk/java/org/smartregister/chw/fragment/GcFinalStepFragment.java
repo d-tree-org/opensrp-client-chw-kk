@@ -69,6 +69,8 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     CheckBox activityReview;
     CheckBox activityOne;
     CheckBox activityTwo;
+
+    CheckBox activityNutrition;
     CheckBox activityRecap;
     CheckBox activityClosingSong;
 
@@ -80,6 +82,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     CheckBox difficultReview;
     CheckBox difficultActivity1;
     CheckBox difficultActivity2;
+
+    CheckBox difficultNutrition;
+
     CheckBox difficultRecap;
     CheckBox difficultClosingSong;
 
@@ -93,6 +98,8 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
     CheckBox topicFormalTeaching;
 
     TextInputEditText etDurationInHours;
+
+    TextInputEditText etDurationMinutes;
 
     ProgressBar progressBar;
     MaterialButton submitButton;
@@ -193,6 +200,19 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
                     listOfDifficultActivities.add(ACTIVITY_2);
                 else
                     listOfDifficultActivities.remove(ACTIVITY_2);
+            }
+        });
+
+        difficultNutrition = view.findViewById(R.id.difficult_nutrition_activity);
+
+        difficultNutrition.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                     listOfDifficultActivities.add(KkConstants.GCActivities.NUTRITION_ACTIVITY);
+                }else{
+                    listOfDifficultActivities.remove(KkConstants.GCActivities.NUTRITION_ACTIVITY);
+                }
             }
         });
 
@@ -318,6 +338,19 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
                     activitiesTookPlace.add(ACTIVITY_2);
                 else
                     activitiesTookPlace.remove(ACTIVITY_2);
+            }
+        });
+
+        activityNutrition = view.findViewById(R.id.nutrition_activity);
+
+        activityNutrition.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                     activitiesTookPlace.add(KkConstants.GCActivities.NUTRITION_ACTIVITY);
+                }else{
+                    activitiesTookPlace.remove(KkConstants.GCActivities.NUTRITION_ACTIVITY);
+                }
             }
         });
 
@@ -484,6 +517,8 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
 
         etDurationInHours = view.findViewById(R.id.et_session_duration);
 
+        etDurationMinutes = view.findViewById(R.id.et_session_duration_minutes);
+
         progressBar = view.findViewById(R.id.progress_bar);
 
     }
@@ -517,7 +552,9 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
         sessionModel.setCaregiversBroughtMaterials(caregiversBroughtMaterials);
         sessionModel.setTopicsCovered(topicsCovered);
         String durationString = etDurationInHours != null ? etDurationInHours.getText().toString().trim() : "";
+        String durationMinutesString = etDurationMinutes != null ? etDurationMinutes.getText().toString().trim() : "";
         sessionModel.setDurationInHours(!durationString.isEmpty() ? Integer.parseInt(durationString): 0);
+        sessionModel.setDurationInMinutes(!durationMinutesString.isEmpty() ? Integer.parseInt(durationMinutesString): 0);
         //Toast.makeText(getContext(), "Group Session Information Recorded", Toast.LENGTH_SHORT).show();
 
     }
@@ -596,12 +633,6 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
         if (durationString.isEmpty()) {
             isValid = false;
             etDurationInHours.setError("Please enter session duration");
-        } else {
-            int duration = Integer.parseInt(durationString);
-            if (duration <= 0) {
-                isValid = false;
-                etDurationInHours.setError("Duration must be greater than 0");
-            }
         }
 
         return isValid;
