@@ -43,7 +43,8 @@
         <item>Participant house</item>
         <item>Outreach vaccination point</item>
         <item>Primary School</item>
-        <item>Under the tree</item>>
+        <item>Under the tree</item>
+        <item>Place of worship</item>
     </string-array>
     <string-array name="divided_children_into_groups">
         <item>Divided children into different age groups?</item>
