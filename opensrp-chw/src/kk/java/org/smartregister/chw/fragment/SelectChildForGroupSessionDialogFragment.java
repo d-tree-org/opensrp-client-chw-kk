@@ -1,5 +1,6 @@
 package org.smartregister.chw.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -29,10 +30,16 @@ import java.util.List;
 public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     private RecyclerView who_came_with_the_child_lv;
+    private RecyclerView came_with_pc_lv;
+    private RecyclerView lv_caregiver_representative;
 
     private TextView who_came_with_child_tv;
+    private TextView  tv_caregiver_representative;
+
     private KKCustomAdapter came_with_pc_lv_adapter;
     private KKCustomAdapter selected_group_lv_adapter;
+    private KKCustomAdapter cg_rep_lv_adapter;
+
     private int selectedPosition1 = -1;
     private int selectedPosition2 = -1;
     private int selectedPosition3 = -1;
@@ -58,12 +65,20 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
         LayoutInflater inflater = requireActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_fragment_childselection, null);
+
         TextView came_with_pc_tv = view.findViewById(R.id.came_with_pc);
         came_with_pc_tv.setText(String.format(getString(R.string.primary_care_give_dialog_gs), primaryCareGiverName));
         builder.setView(view);
 
-        RecyclerView came_with_pc_lv = view.findViewById(R.id.came_with_pc_lv);
+        came_with_pc_lv = view.findViewById(R.id.came_with_pc_lv);
         who_came_with_the_child_lv = view.findViewById(R.id.who_came_with_the_child_lv);
+
+        lv_caregiver_representative = view.findViewById(R.id.cg_rep_lv);
+        lv_caregiver_representative.setVisibility(View.GONE);
+        lv_caregiver_representative.setScrollContainer(false);
+        tv_caregiver_representative = view.findViewById(R.id.cg_rep_tv);
+        tv_caregiver_representative.setVisibility(View.GONE);
+
         TextView selected_group = view.findViewById(R.id.selected_group);
         RecyclerView selected_group_lv = view.findViewById(R.id.selected_group_lv);
         selected_group_lv.setScrollContainer(false);
@@ -87,10 +102,14 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
         String[] groupItems = getResources().getStringArray(R.array.group_session_groups);
         selected_group_lv_adapter = new KKCustomAdapter(groupItems, requireContext());
-
         came_with_pc_lv.setAdapter(came_with_pc_lv_adapter);
         who_came_with_the_child_lv.setAdapter(who_came_with_the_child_lv_adapter);
         selected_group_lv.setAdapter(selected_group_lv_adapter);
+
+        String[] representativesList = getResources().getStringArray(R.array.multi_select_accompany_child_option);
+        cg_rep_lv_adapter = new KKCustomAdapter(representativesList, requireContext());
+        lv_caregiver_representative.setAdapter(cg_rep_lv_adapter);
+        lv_caregiver_representative.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         came_with_pc_lv.setLayoutManager(new LinearLayoutManager(requireContext()));
         who_came_with_the_child_lv.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -163,8 +182,14 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     private void modifyChildCameWith(boolean hide) {
         if (hide) {
+            //Child came with the care giver
+            tv_caregiver_representative.setVisibility(View.GONE);
+            lv_caregiver_representative.setVisibility(View.GONE);
             who_came_with_child_tv.setText(R.string.who_came_with_the_child_yes);
         } else {
+            //Child did not come with the caregiver
+            tv_caregiver_representative.setVisibility(View.VISIBLE);
+            lv_caregiver_representative.setVisibility(View.VISIBLE);
             who_came_with_child_tv.setText(R.string.who_came_with_the_child_no);
         }
     }
