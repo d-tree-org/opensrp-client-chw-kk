@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,8 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     private final ArrayList<MultiSelectListItemModel> multiSelectListItems = new ArrayList<>();
 
+    private EditText cg_rep_lv_other;
+
     SelectChildForGroupSessionRegisterFragment.DialogDismissListener dialogDismissListener;
 
     public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId, String primaryCareGiverName, boolean childrenDividedIntoGroups, SelectChildForGroupSessionRegisterFragment.DialogDismissListener listener) {
@@ -85,6 +88,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         RecyclerView selected_group_lv = view.findViewById(R.id.selected_group_lv);
         selected_group_lv.setScrollContainer(false);
 
+        cg_rep_lv_other = view.findViewById(R.id.cg_rep_lv_other);
+        cg_rep_lv_other.setVisibility(View.GONE);
+
         if (childrenDividedIntoGroups) {
             selected_group_lv.setVisibility(View.VISIBLE);
             selected_group.setVisibility(View.VISIBLE);
@@ -96,10 +102,8 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         who_came_with_child_tv = view.findViewById(R.id.who_came_with_child_tv);
 
         came_with_pc_lv_adapter = new KKCustomAdapter(getResources().getStringArray(R.array.select_child_option), requireContext());
-
-        setMultiSelectListItems();
-
-        KKCustomAdapterMultiSelectList who_came_with_the_child_lv_adapter = new KKCustomAdapterMultiSelectList(multiSelectListItems, requireContext());
+        ArrayList<MultiSelectListItemModel> multiSelectListItems = new ArrayList<>();
+        KKCustomAdapterMultiSelectList who_came_with_the_child_lv_adapter = new KKCustomAdapterMultiSelectList(setMultiSelectListItems(multiSelectListItems), requireContext());
 
         String[] groupItems = getResources().getStringArray(R.array.group_session_groups);
         selected_group_lv_adapter = new KKCustomAdapter(groupItems, requireContext());
@@ -107,7 +111,8 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         who_came_with_the_child_lv.setAdapter(who_came_with_the_child_lv_adapter);
         selected_group_lv.setAdapter(selected_group_lv_adapter);
 
-        cg_rep_lv_adapter = new KKCustomAdapterMultiSelectList(multiSelectListItems, requireContext());
+        ArrayList<MultiSelectListItemModel> multiSelectListItems1 = new ArrayList<>();
+        cg_rep_lv_adapter = new KKCustomAdapterMultiSelectList(setMultiSelectListItems(multiSelectListItems1), requireContext());
         lv_caregiver_representative.setAdapter(cg_rep_lv_adapter);
         lv_caregiver_representative.setLayoutManager(new LinearLayoutManager(requireContext()));
 
@@ -124,6 +129,11 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         who_came_with_the_child_lv_adapter.setOnItemSelectedListener(position -> {
             selectedPosition3 = position;
             who_came_with_the_child_lv_adapter.setSelectedPosition(position);
+        });
+
+        cg_rep_lv_adapter.setOnItemSelectedListener(position -> {
+            cg_rep_lv_adapter.setSelectedPosition(position);
+            checkForOtherSelectedItem();
         });
 
         selected_group_lv_adapter.setOnItemSelectedListener(position -> {
@@ -186,11 +196,13 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
             tv_caregiver_representative.setVisibility(View.GONE);
             lv_caregiver_representative.setVisibility(View.GONE);
             who_came_with_child_tv.setText(R.string.who_came_with_the_child_yes);
+            cg_rep_lv_other.setVisibility(View.GONE);
         } else {
             //Child did not come with the caregiver
             tv_caregiver_representative.setVisibility(View.VISIBLE);
             lv_caregiver_representative.setVisibility(View.VISIBLE);
             who_came_with_child_tv.setText(R.string.who_came_with_the_child_no);
+            checkForOtherSelectedItem();
         }
     }
 
@@ -201,10 +213,29 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                 String selectedGroup);
     }
 
-    private void setMultiSelectListItems(){
+    private ArrayList<MultiSelectListItemModel> setMultiSelectListItems(ArrayList<MultiSelectListItemModel> multiSelectListItems){
         for(String item : getResources().getStringArray(R.array.multi_select_accompany_child_option)){
             multiSelectListItems.add(new MultiSelectListItemModel(item, false));
         }
+        return multiSelectListItems;
+    }
+
+    public boolean isOtherItemSelected() {
+        for (MultiSelectListItemModel item : cg_rep_lv_adapter.getSelectedItems()) {
+            if (item.getName().equals(getString(R.string.cg_rep_lv_other)) && item.isSelected()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void checkForOtherSelectedItem(){
+       if(isOtherItemSelected()){
+           cg_rep_lv_other.setVisibility(View.VISIBLE);
+       }else{
+           cg_rep_lv_other.setVisibility(View.GONE);
+           cg_rep_lv_other.getText().clear();
+       }
     }
 
 }

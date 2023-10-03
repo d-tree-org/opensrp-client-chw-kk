@@ -205,5 +205,7 @@
     <string name="children_divided_in_groups_required">Tafadhali chagua kama watoto waligawanywa kwenye makundi au la</string>
     <string name="session_not_take_place_reason_required">Tafadhali chagua sababu za kipindi kutokutokea</string>
     <string name="session_duration_in_hours_and_minutes">Muda wa kipingi kwenye saa na dakika</string>
+    <string name="cg_rep_lv_other">Mwingine</string>
+    <string name="cg_rep_lv_other_hint"> Mlezi mwingine </string>
 
 </resources>
