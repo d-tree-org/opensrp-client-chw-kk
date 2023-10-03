@@ -174,8 +174,8 @@
     <string name="primary_care_give_dialog_gs">Did the child come with their caregiver %s?</string>
     <string name="select_group_child_gs">Select the group</string>
     <string name="who_came_with_the_child_yes">Which other people were present beyond the caregiver?</string>
-    <string name="caregiver_representative">What is the child\' relationship to the adult that came on behalf of primary caregiver</string>
-    <string name="who_came_with_the_child_no">What is the child\' relationship to the adult that came on behalf of primary caregiver</string>
+    <string name="caregiver_representative">What is the child\'s relationship to the adult that came on behalf of primary caregiver</string>
+    <string name="who_came_with_the_child_no">Which other people were present beyond the person who came on behalf of the Primary Care giver?</string>
     <string name="select_child_for_gs">Select Child Present</string>
     <string name="did_you_divide_children_age_groups">Did you divide children into different age groups?</string>
     <string name="select_session_date">Select session date</string>

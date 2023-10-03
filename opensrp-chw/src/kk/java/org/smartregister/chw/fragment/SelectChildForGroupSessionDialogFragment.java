@@ -38,7 +38,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     private KKCustomAdapter came_with_pc_lv_adapter;
     private KKCustomAdapter selected_group_lv_adapter;
-    private KKCustomAdapter cg_rep_lv_adapter;
+    private KKCustomAdapterMultiSelectList cg_rep_lv_adapter;
 
     private int selectedPosition1 = -1;
     private int selectedPosition2 = -1;
@@ -49,6 +49,8 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     private final String primaryCareGiverName;
 
     private final boolean childrenDividedIntoGroups;
+
+    private final ArrayList<MultiSelectListItemModel> multiSelectListItems = new ArrayList<>();
 
     SelectChildForGroupSessionRegisterFragment.DialogDismissListener dialogDismissListener;
 
@@ -94,10 +96,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         who_came_with_child_tv = view.findViewById(R.id.who_came_with_child_tv);
 
         came_with_pc_lv_adapter = new KKCustomAdapter(getResources().getStringArray(R.array.select_child_option), requireContext());
-        ArrayList<MultiSelectListItemModel> multiSelectListItems = new ArrayList<>();
-        for(String item : getResources().getStringArray(R.array.multi_select_accompany_child_option)){
-            multiSelectListItems.add(new MultiSelectListItemModel(item, false));
-        }
+
+        setMultiSelectListItems();
+
         KKCustomAdapterMultiSelectList who_came_with_the_child_lv_adapter = new KKCustomAdapterMultiSelectList(multiSelectListItems, requireContext());
 
         String[] groupItems = getResources().getStringArray(R.array.group_session_groups);
@@ -106,8 +107,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         who_came_with_the_child_lv.setAdapter(who_came_with_the_child_lv_adapter);
         selected_group_lv.setAdapter(selected_group_lv_adapter);
 
-        String[] representativesList = getResources().getStringArray(R.array.multi_select_accompany_child_option);
-        cg_rep_lv_adapter = new KKCustomAdapter(representativesList, requireContext());
+        cg_rep_lv_adapter = new KKCustomAdapterMultiSelectList(multiSelectListItems, requireContext());
         lv_caregiver_representative.setAdapter(cg_rep_lv_adapter);
         lv_caregiver_representative.setLayoutManager(new LinearLayoutManager(requireContext()));
 
@@ -199,6 +199,12 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                 boolean isComeWithPrimaryCareGiver,
                 String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedAccompanyingCaregivers,
                 String selectedGroup);
+    }
+
+    private void setMultiSelectListItems(){
+        for(String item : getResources().getStringArray(R.array.multi_select_accompany_child_option)){
+            multiSelectListItems.add(new MultiSelectListItemModel(item, false));
+        }
     }
 
 }
