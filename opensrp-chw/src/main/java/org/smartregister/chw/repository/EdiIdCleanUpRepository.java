@@ -2,6 +2,7 @@ package org.smartregister.chw.repository;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
+import android.util.Log;
 
 import org.smartregister.repository.BaseRepository;
 
@@ -20,7 +21,7 @@ public class EdiIdCleanUpRepository extends BaseRepository {
     public static final String CLIENTS_WITH_EDI_IDS_SQL = "WITH clients AS (" +
             "SELECT " +
             "baseEntityId, " +
-            "COALESCE(json_extract(json, '$.identifiers.edi_id'), json_extract(json, '$.identifiers.mother_edi_id')) as edi_id as edi_id " +
+            "COALESCE(json_extract(json, '$.identifiers.edi_id'), json_extract(json, '$.identifiers.mother_edi_id')) as edi_id " +
             "FROM client " +
             ")" +
             "select * from clients where edi_id is not null";
@@ -42,6 +43,7 @@ public class EdiIdCleanUpRepository extends BaseRepository {
             }
 
         } catch (Exception e) {
+            Log.e("ERRRRORRRRR", e.getMessage());
             Timber.e(e);
         }
         finally {

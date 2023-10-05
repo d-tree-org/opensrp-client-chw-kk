@@ -69,21 +69,9 @@ public class KKEventClientRepository extends EventClientRepository {
             // Add events to process this
             addorUpdateClient(baseEntityId, clientJson);
 
-            List<String> eventTypesList = new ArrayList<>();
-            eventTypesList.add("Family Member Registration");
-            eventTypesList.add("PNC Child Registration");
 
-            // fetch the registration event for the client (Child/Member)
-            List<EventClient> registrationEvent = getEvents(
-                    Collections.singletonList(baseEntityId),
-                    Collections.singletonList(BaseRepository.TYPE_Synced),
-                    eventTypesList
-            );
-
-            Event event = null;
-            if (!registrationEvent.isEmpty()){
-                event = registrationEvent.get(0).getEvent();
-            }
+            Event event = new Event();
+            event.setBaseEntityId(baseEntityId);
 
             //Add EDI ID as observation to the registration event
             Obs edi_id_obs = new Obs();
@@ -95,14 +83,10 @@ public class KKEventClientRepository extends EventClientRepository {
             edi_id_obs.setFormSubmissionField("edi_id");
             edi_id_obs.setHumanReadableValue(ediID);
 
-            if (event != null)
-                event.addObs(edi_id_obs);
+            event.addObs(edi_id_obs);
 
-            Client client = convert(clientJson, Client.class);
-
-            // reprocess the event
-            DrishtiApplication.getInstance().getClientProcessor().processClient(Collections.singletonList(new EventClient(event, client)));
-            markClientValidationStatus(baseEntityId, false);
+            //Add new Event
+            addEvent(baseEntityId, ;
 
         }
         catch (Exception e){
