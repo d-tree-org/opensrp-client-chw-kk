@@ -1,5 +1,7 @@
 package org.smartregister.chw.repository;
 
+import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.json.JSONObject;
 import org.smartregister.AllConstants;
 import org.smartregister.Context;
@@ -8,8 +10,11 @@ import org.smartregister.domain.Event;
 import org.smartregister.domain.Client;
 import org.smartregister.domain.Obs;
 import org.smartregister.domain.db.EventClient;
+import org.smartregister.family.FamilyLibrary;
+import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.BaseRepository;
 import org.smartregister.repository.EventClientRepository;
+import org.smartregister.util.Utils;
 import org.smartregister.view.activity.DrishtiApplication;
 
 import java.util.ArrayList;
@@ -72,6 +77,8 @@ public class KKEventClientRepository extends EventClientRepository {
 
             Event event = new Event();
             event.setBaseEntityId(baseEntityId);
+            event.setEventDate(new DateTime());
+            event.setEventType("Register Client Edi ID");
 
             //Add EDI ID as observation to the registration event
             Obs edi_id_obs = new Obs();
@@ -85,14 +92,38 @@ public class KKEventClientRepository extends EventClientRepository {
 
             event.addObs(edi_id_obs);
 
-            //Add new Event
-            addEvent(baseEntityId, ;
+            addEvent(baseEntityId, convertToJson(tagSyncMetadata(DrishtiApplication.getInstance().getContext().allSharedPreferences(), event)));
+
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
+    }
+
+    public static Event tagSyncMetadata(AllSharedPreferences allSharedPreferences, Event event) {
+        String providerId = allSharedPreferences.fetchRegisteredANM();
+        event.setProviderId(providerId);
+        event.setLocationId(locationId(allSharedPreferences));
+        event.setChildLocationId(allSharedPreferences.fetchCurrentLocality());
+        event.setTeam(allSharedPreferences.fetchDefaultTeam(providerId));
+        event.setTeamId(allSharedPreferences.fetchDefaultTeamId(providerId));
+
+        event.setClientApplicationVersion(FamilyLibrary.getInstance().getApplicationVersion());
+        event.setClientDatabaseVersion(FamilyLibrary.getInstance().getDatabaseVersion());
+
+        return event;
+    }
+
+    protected static String locationId(AllSharedPreferences allSharedPreferences) {
+        String providerId = allSharedPreferences.fetchRegisteredANM();
+        String userLocationId = allSharedPreferences.fetchUserLocalityId(providerId);
+        if (StringUtils.isBlank(userLocationId)) {
+            userLocationId = allSharedPreferences.fetchDefaultLocalityId(providerId);
+        }
+
+        return userLocationId;
     }
 
 }
