@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 import org.json.JSONObject;
 import org.smartregister.AllConstants;
 import org.smartregister.Context;
+import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.domain.CleanEDIStatus;
 import org.smartregister.domain.Event;
 import org.smartregister.domain.Client;
@@ -14,6 +15,7 @@ import org.smartregister.family.FamilyLibrary;
 import org.smartregister.repository.AllSharedPreferences;
 import org.smartregister.repository.BaseRepository;
 import org.smartregister.repository.EventClientRepository;
+import org.smartregister.util.JsonFormUtils;
 import org.smartregister.util.Utils;
 import org.smartregister.view.activity.DrishtiApplication;
 
@@ -75,10 +77,12 @@ public class KKEventClientRepository extends EventClientRepository {
             addorUpdateClient(baseEntityId, clientJson);
 
 
-            Event event = new Event();
-            event.setBaseEntityId(baseEntityId);
-            event.setEventDate(new DateTime());
-            event.setEventType("Register Client Edi ID");
+            Event event = (new Event())
+                    .withBaseEntityId(baseEntityId)
+                    .withEventType("Register Client Edi ID")
+                    .withEventDate(new DateTime())
+                    .withEntityType("client")
+                    .withFormSubmissionId(JsonFormUtils.generateRandomUUIDString());
 
             //Add EDI ID as observation to the registration event
             Obs edi_id_obs = new Obs();
@@ -94,6 +98,7 @@ public class KKEventClientRepository extends EventClientRepository {
 
             addEvent(baseEntityId, convertToJson(tagSyncMetadata(DrishtiApplication.getInstance().getContext().allSharedPreferences(), event)));
 
+            ChwApplication.getInstance().getClientProcessor().processClient(Collections.singletonList(new EventClient(event, convert(clientJson, Client.class))));
 
         }
         catch (Exception e){
