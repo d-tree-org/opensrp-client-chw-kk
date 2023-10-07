@@ -51,8 +51,6 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     private final boolean childrenDividedIntoGroups;
 
-    private final ArrayList<MultiSelectListItemModel> multiSelectListItems = new ArrayList<>();
-
     private EditText cg_rep_lv_other;
 
     SelectChildForGroupSessionRegisterFragment.DialogDismissListener dialogDismissListener;
