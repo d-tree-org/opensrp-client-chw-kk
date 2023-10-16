@@ -120,8 +120,20 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
     }
 
     @Override
-    public void onSelectComeWithoutPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives, List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives, String selectedGroup) {
-
+    public void onSelectComeWithoutPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives, List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives, String groupPlaced) {
+        List<String> listOfAccompanyingRelatives = new ArrayList<>();
+        List<String> listOfCaregiverRepresentatives = new ArrayList<>();
+        for (MultiSelectListItemModel multiSelectListItemModel : selectedAccompanyingCaregiverRepresentatives) {
+            listOfAccompanyingRelatives.add(getTranslatedAccompanyingRelatives(multiSelectListItemModel.getName()));
+        }
+        for (MultiSelectListItemModel multiSelectListItemModel : selectedCaregiverRepresentatives) {
+            listOfCaregiverRepresentatives.add(getTranslatedAccompanyingRelatives(multiSelectListItemModel.getName()));
+        }
+        childRegisterProvider.updateStatusOfChildWithoutCareGiver(selectedChildBaseEntityId,
+                isComeWithPrimaryCareGiver,
+                listOfCaregiverRepresentatives,
+                listOfAccompanyingRelatives,
+                GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced));
     }
 
     private String getTranslatedAccompanyingRelatives(String name) {

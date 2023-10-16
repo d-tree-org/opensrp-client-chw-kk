@@ -19,6 +19,7 @@ import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.core.holders.RegisterViewHolder;
 import org.smartregister.chw.core.utils.ChildDBConstants;
 import org.smartregister.chw.holders.SelectChildGSViewHolder;
+import org.smartregister.chw.model.MultiSelectListItemModel;
 import org.smartregister.chw.model.SelectedChildGS;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
@@ -75,6 +76,15 @@ public class SelectChildForGroupSessionFragmentProvider extends ChildRegisterPro
             Objects.requireNonNull(childList.get(baseEntityId)).setCameWithPrimaryCareGiver(cameWithCareGiver);
             Objects.requireNonNull(childList.get(baseEntityId)).setGroupPlaced(groupPlaced);
             Objects.requireNonNull(childList.get(baseEntityId)).setAccompanyingRelatives(accompanyingRelatives);
+        }
+    }
+
+    public void updateStatusOfChildWithoutCareGiver(String baseEntityId, boolean cameWithCareGiver, List<String> selectedCaregiverRepresentatives, List<String> selectedAccompanyingCaregiverRepresentatives, String groupPlaced) {
+        if (childList.containsKey(baseEntityId)) {
+            Objects.requireNonNull(childList.get(baseEntityId)).setCameWithPrimaryCareGiver(cameWithCareGiver);
+            Objects.requireNonNull(childList.get(baseEntityId)).setGroupPlaced(groupPlaced);
+            Objects.requireNonNull(childList.get(baseEntityId)).setAccompanyingRelatives(selectedAccompanyingCaregiverRepresentatives);
+            Objects.requireNonNull(childList.get(baseEntityId)).setCareGiverRepresentatives(selectedCaregiverRepresentatives);
         }
     }
 
