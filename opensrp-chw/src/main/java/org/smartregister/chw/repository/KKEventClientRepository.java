@@ -1,5 +1,7 @@
 package org.smartregister.chw.repository;
 
+import static org.smartregister.chw.util.JsonFormUtils.processEdiRegistrationEvent;
+
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.json.JSONObject;
@@ -73,62 +75,17 @@ public class KKEventClientRepository extends EventClientRepository {
         try {
             clientJson.put(AllConstants.IDENTIFIERS, identifiers);
 
-            // Add events to process this
+            // Update client Object
             addorUpdateClient(baseEntityId, clientJson);
 
-
-            Event event = (new Event())
-                    .withBaseEntityId(baseEntityId)
-                    .withEventType("Register Client Edi ID")
-                    .withEventDate(new DateTime())
-                    .withEntityType("client")
-                    .withFormSubmissionId(JsonFormUtils.generateRandomUUIDString());
-
-            //Add EDI ID as observation to the registration event
-            Obs edi_id_obs = new Obs();
-            edi_id_obs.setFieldCode("edi_id");
-            edi_id_obs.setFieldType("concept");
-            edi_id_obs.setFieldDataType("text");
-            edi_id_obs.setParentCode("");
-            edi_id_obs.setValue(ediID);
-            edi_id_obs.setFormSubmissionField("edi_id");
-            edi_id_obs.setHumanReadableValue(ediID);
-
-            event.addObs(edi_id_obs);
-
-            addEvent(baseEntityId, convertToJson(tagSyncMetadata(DrishtiApplication.getInstance().getContext().allSharedPreferences(), event)));
-
-            ChwApplication.getInstance().getClientProcessor().processClient(Collections.singletonList(new EventClient(event, convert(clientJson, Client.class))));
+            //Process new EDI ID registration event
+            processEdiRegistrationEvent(baseEntityId, ediID, clientJson, DrishtiApplication.getInstance().getContext().allSharedPreferences(), false);
 
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-    }
-
-    public static Event tagSyncMetadata(AllSharedPreferences allSharedPreferences, Event event) {
-        String providerId = allSharedPreferences.fetchRegisteredANM();
-        event.setProviderId(providerId);
-        event.setLocationId(locationId(allSharedPreferences));
-        event.setChildLocationId(allSharedPreferences.fetchCurrentLocality());
-        event.setTeam(allSharedPreferences.fetchDefaultTeam(providerId));
-        event.setTeamId(allSharedPreferences.fetchDefaultTeamId(providerId));
-
-        event.setClientApplicationVersion(FamilyLibrary.getInstance().getApplicationVersion());
-        event.setClientDatabaseVersion(FamilyLibrary.getInstance().getDatabaseVersion());
-
-        return event;
-    }
-
-    protected static String locationId(AllSharedPreferences allSharedPreferences) {
-        String providerId = allSharedPreferences.fetchRegisteredANM();
-        String userLocationId = allSharedPreferences.fetchUserLocalityId(providerId);
-        if (StringUtils.isBlank(userLocationId)) {
-            userLocationId = allSharedPreferences.fetchDefaultLocalityId(providerId);
-        }
-
-        return userLocationId;
     }
 
 }
