@@ -3,6 +3,7 @@ package org.smartregister.chw.fragment;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     private KKCustomAdapter came_with_pc_lv_adapter;
     private KKCustomAdapter selected_group_lv_adapter;
     private KKCustomAdapterMultiSelectList cg_rep_lv_adapter;
+    private KKCustomAdapterMultiSelectList who_came_with_the_child_lv_adapter;
 
     private int selectedPosition1 = -1;
     private int selectedPosition2 = -1;
@@ -54,6 +56,8 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     private EditText cg_rep_lv_other;
 
     SelectChildForGroupSessionRegisterFragment.DialogDismissListener dialogDismissListener;
+
+    String[] groupItems;
 
     public SelectChildForGroupSessionDialogFragment(String selectedChildBaseEntityId, String primaryCareGiverName, boolean childrenDividedIntoGroups, SelectChildForGroupSessionRegisterFragment.DialogDismissListener listener) {
         this.selectedChildBaseEntityId = selectedChildBaseEntityId;
@@ -101,9 +105,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
         came_with_pc_lv_adapter = new KKCustomAdapter(getResources().getStringArray(R.array.select_child_option), requireContext());
         ArrayList<MultiSelectListItemModel> multiSelectListItems = new ArrayList<>();
-        KKCustomAdapterMultiSelectList who_came_with_the_child_lv_adapter = new KKCustomAdapterMultiSelectList(setMultiSelectListItems(multiSelectListItems), requireContext());
+         who_came_with_the_child_lv_adapter = new KKCustomAdapterMultiSelectList(setMultiSelectListItems(multiSelectListItems), requireContext());
 
-        String[] groupItems = getResources().getStringArray(R.array.group_session_groups);
+        groupItems = getResources().getStringArray(R.array.group_session_groups);
         selected_group_lv_adapter = new KKCustomAdapter(groupItems, requireContext());
         came_with_pc_lv.setAdapter(came_with_pc_lv_adapter);
         who_came_with_the_child_lv.setAdapter(who_came_with_the_child_lv_adapter);
@@ -144,29 +148,13 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                 Toast.makeText(requireContext(), "Caregiver information missing", Toast.LENGTH_SHORT).show();
                 dialogDismissListener.onFailure();
                 dialog.dismiss();
-            }
-
-            if (selectedPosition2 == -1 && childrenDividedIntoGroups) {
+            }else if (selectedPosition2 == -1 && childrenDividedIntoGroups) {
                 Toast.makeText(requireContext(), "Child missing the group", Toast.LENGTH_SHORT).show();
                 dialogDismissListener.onFailure();
                 dialog.dismiss();
+            }else {
+                handleSuccess(dialog);
             }
-
-            if (dialogListener != null && (selectedPosition2 != -1 || !childrenDividedIntoGroups) && selectedPosition1 != -1) {
-                dialogListener.onSelectComeWithPrimaryCareGiver(
-                        selectedPosition1 == 0,
-                        selectedChildBaseEntityId,
-                        who_came_with_the_child_lv_adapter.getSelectedItems(),
-                        !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]
-                );
-                dialogDismissListener.onSuccess();
-                dialog.dismiss();
-            }else{
-                Toast.makeText(requireContext(), "Missing information for the child", Toast.LENGTH_SHORT).show();
-                dialogDismissListener.onFailure();
-                dialog.dismiss();
-            }
-
         });
 
         builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
@@ -175,6 +163,49 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         });
 
         return builder.create();
+    }
+
+    void handleSuccess(DialogInterface dialogInterface){
+        if(selectedPosition1 == 0){
+            if(who_came_with_the_child_lv_adapter.getSelectedItems().size() > 0){
+                dialogListener.onSelectComeWithPrimaryCareGiver(
+                        true,
+                        selectedChildBaseEntityId,
+                        who_came_with_the_child_lv_adapter.getSelectedItems(),
+                        groupItems[selectedPosition2]
+                );
+                dialogValidationSuccess(dialogInterface);
+            }else{
+                dialogValidationFail(dialogInterface,"The companions of caregiver missing");
+            }
+        }else if(selectedPosition1 == 1){
+            if(cg_rep_lv_adapter.getSelectedItems().size() > 0){
+                if(who_came_with_the_child_lv_adapter.getSelectedItems().size() > 0){
+                    dialogListener.onSelectComeWithoutPrimaryCareGiver(
+                            false,
+                            selectedChildBaseEntityId,
+                            cg_rep_lv_adapter.getSelectedItems(),
+                            who_came_with_the_child_lv_adapter.getSelectedItems(),
+                            groupItems[selectedPosition2]);
+                    dialogValidationSuccess(dialogInterface);
+                }else{
+                    dialogValidationFail(dialogInterface,"The companions of caregiver representative missing");
+                }
+            }else{
+                dialogValidationFail(dialogInterface,"Caregiver representatives missing");
+            }
+        }
+    }
+
+    void dialogValidationFail(DialogInterface dialogInterface,String message){
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+        dialogDismissListener.onFailure();
+        dialogInterface.dismiss();
+    }
+
+    void dialogValidationSuccess(DialogInterface dialogInterface){
+        dialogDismissListener.onSuccess();
+        dialogInterface.dismiss();
     }
 
     @Override
@@ -208,6 +239,12 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         void onSelectComeWithPrimaryCareGiver(
                 boolean isComeWithPrimaryCareGiver,
                 String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedAccompanyingCaregivers,
+                String selectedGroup);
+
+        void onSelectComeWithoutPrimaryCareGiver(
+                boolean isComeWithPrimaryCareGiver,
+                String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives,
+                List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives,
                 String selectedGroup);
     }
 

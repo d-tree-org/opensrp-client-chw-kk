@@ -119,6 +119,11 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
                 GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced));
     }
 
+    @Override
+    public void onSelectComeWithoutPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives, List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives, String selectedGroup) {
+
+    }
+
     private String getTranslatedAccompanyingRelatives(String name) {
 
         switch (name) {
