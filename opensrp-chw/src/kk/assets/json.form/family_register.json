@@ -887,7 +887,7 @@
       {
         "key": "edi_id",
         "openmrs_entity_parent": "",
-        "openmrs_entity": "person_identifier",
+        "openmrs_entity": "concept",
         "openmrs_entity_id": "edi_id",
         "type": "edit_text",
         "hint": "{{family_register.step1.ediid.hint}}",
