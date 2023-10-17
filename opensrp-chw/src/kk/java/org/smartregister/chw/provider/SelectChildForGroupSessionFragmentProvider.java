@@ -71,19 +71,11 @@ public class SelectChildForGroupSessionFragmentProvider extends ChildRegisterPro
         return childList;
     }
 
-    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver, List<String> accompanyingRelatives, String groupPlaced) {
+    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver, List<String> accompanyingRelatives, String groupPlaced, List<String> selectedCaregiverRepresentatives) {
         if (childList.containsKey(baseEntityId)) {
             Objects.requireNonNull(childList.get(baseEntityId)).setCameWithPrimaryCareGiver(cameWithCareGiver);
             Objects.requireNonNull(childList.get(baseEntityId)).setGroupPlaced(groupPlaced);
             Objects.requireNonNull(childList.get(baseEntityId)).setAccompanyingRelatives(accompanyingRelatives);
-        }
-    }
-
-    public void updateStatusOfChildWithoutCareGiver(String baseEntityId, boolean cameWithCareGiver, List<String> selectedCaregiverRepresentatives, List<String> selectedAccompanyingCaregiverRepresentatives, String groupPlaced) {
-        if (childList.containsKey(baseEntityId)) {
-            Objects.requireNonNull(childList.get(baseEntityId)).setCameWithPrimaryCareGiver(cameWithCareGiver);
-            Objects.requireNonNull(childList.get(baseEntityId)).setGroupPlaced(groupPlaced);
-            Objects.requireNonNull(childList.get(baseEntityId)).setAccompanyingRelatives(selectedAccompanyingCaregiverRepresentatives);
             Objects.requireNonNull(childList.get(baseEntityId)).setCareGiverRepresentatives(selectedCaregiverRepresentatives);
         }
     }

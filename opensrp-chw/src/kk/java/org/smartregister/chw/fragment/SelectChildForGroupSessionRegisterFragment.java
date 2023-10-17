@@ -108,32 +108,31 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
     @Override
     public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedAccompanyingCaregivers, String groupPlaced) {
         Timber.d("The Child with id %s Come with Primary Care Giver: %s", selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
-        List<String> listOfAccompanyingRelatives = new ArrayList<>();
-        for (MultiSelectListItemModel multiSelectListItemModel : selectedAccompanyingCaregivers) {
-            listOfAccompanyingRelatives.add(getTranslatedAccompanyingRelatives(multiSelectListItemModel.getName()));
-        }
-
+        List<String> listOfAccompanyingRelatives = getTranslatedNames(selectedAccompanyingCaregivers);
         childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId,
                 isComeWithPrimaryCareGiver,
                 listOfAccompanyingRelatives,
-                GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced));
+                GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced),
+                null);
     }
 
     @Override
     public void onSelectComeWithoutPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives, List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives, String groupPlaced) {
-        List<String> listOfAccompanyingRelatives = new ArrayList<>();
-        List<String> listOfCaregiverRepresentatives = new ArrayList<>();
-        for (MultiSelectListItemModel multiSelectListItemModel : selectedAccompanyingCaregiverRepresentatives) {
-            listOfAccompanyingRelatives.add(getTranslatedAccompanyingRelatives(multiSelectListItemModel.getName()));
-        }
-        for (MultiSelectListItemModel multiSelectListItemModel : selectedCaregiverRepresentatives) {
-            listOfCaregiverRepresentatives.add(getTranslatedAccompanyingRelatives(multiSelectListItemModel.getName()));
-        }
-        childRegisterProvider.updateStatusOfChildWithoutCareGiver(selectedChildBaseEntityId,
+        List<String> listOfAccompanyingRelatives = getTranslatedNames(selectedAccompanyingCaregiverRepresentatives);;
+        List<String> listOfCaregiverRepresentatives = getTranslatedNames(selectedCaregiverRepresentatives);
+        childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId,
                 isComeWithPrimaryCareGiver,
-                listOfCaregiverRepresentatives,
                 listOfAccompanyingRelatives,
-                GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced));
+                GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced),
+                listOfCaregiverRepresentatives);
+    }
+
+    private List<String> getTranslatedNames(List<MultiSelectListItemModel> items) {
+        List<String> translatedNames = new ArrayList<>();
+        for (MultiSelectListItemModel item : items) {
+            translatedNames.add(getTranslatedAccompanyingRelatives(item.getName()));
+        }
+        return translatedNames;
     }
 
     private String getTranslatedAccompanyingRelatives(String name) {
