@@ -208,4 +208,8 @@
     <string name="cg_rep_lv_other">Mwingine</string>
     <string name="cg_rep_lv_other_hint"> Mlezi mwingine </string>
     <string name="who_came_with_the_child_lv_other_hint">Mtu mwingine</string>
+    <string name="cg_rep_lv_error">Tafadhari chagua mtu ambae alikuja kwa niaba ya mlezi wa mtoto</string>
+    <string name="cg_rep_lv_other_error">Tafadhari jaza mtu mwingine ambae alikuja kwa niaba ya mlezi wa mtoto</string>
+    <string name="who_came_with_the_child_lv_error">Tafadhari chagua walezi/watu wengine waliohudhuria</string>
+    <string name="who_came_with_the_child_lv_other_error">Tafadhari jaza mlezi/mtu mwingine aliyehudhuria</string>
 </resources>

@@ -174,9 +174,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         String otherCompanion = who_came_with_the_child_lv_other.getText().toString();
         if(selectedPosition1 == 0){
             if(who_came_with_the_child_lv_adapter.getSelectedItems().isEmpty()){
-                dialogValidationFail(dialogInterface,"The companions of caregiver missing");
+                dialogValidationFail(dialogInterface, getString(R.string.who_came_with_the_child_lv_error));
             }else if(isOtherItemSelected(who_came_with_the_child_lv_adapter.getSelectedItems()) && otherCompanion.isEmpty()){
-                dialogValidationFail(dialogInterface,"Other companion missing");
+                dialogValidationFail(dialogInterface, getString(R.string.who_came_with_the_child_lv_other_error));
             }else{
                 dialogListener.onSelectComeWithPrimaryCareGiver(
                         true,
@@ -190,11 +190,11 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         }else if(selectedPosition1 == 1){
             String otherCaregiverRepresentative = cg_rep_lv_other.getText().toString();
             if(cg_rep_lv_adapter.getSelectedItems().isEmpty()){
-                dialogValidationFail(dialogInterface,"Caregiver representatives missing");
+                dialogValidationFail(dialogInterface, getString(R.string.cg_rep_lv_error));
             }else if(isOtherItemSelected(cg_rep_lv_adapter.getSelectedItems()) && otherCaregiverRepresentative.isEmpty()){
-                dialogValidationFail(dialogInterface,"Other caregiver representative missing");
+                dialogValidationFail(dialogInterface,getString(R.string.cg_rep_lv_other_error));
             }else if(isOtherItemSelected(who_came_with_the_child_lv_adapter.getSelectedItems()) && otherCompanion.isEmpty()){
-                dialogValidationFail(dialogInterface,"Other companion missing");
+                dialogValidationFail(dialogInterface, getString(R.string.who_came_with_the_child_lv_other_error));
             }else{
                 dialogListener.onSelectComeWithoutPrimaryCareGiver(
                         false,

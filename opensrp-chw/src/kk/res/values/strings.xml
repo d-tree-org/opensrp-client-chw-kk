@@ -227,4 +227,8 @@
     <string name="cg_rep_lv_other">Other</string>
     <string name="cg_rep_lv_other_hint">Other caregiver</string>
     <string name="who_came_with_the_child_lv_other_hint">Other companion</string>
+    <string name="cg_rep_lv_error">Caregiver representatives missing</string>
+    <string name="cg_rep_lv_other_error">Other caregiver representative missing</string>
+    <string name="who_came_with_the_child_lv_error">The companions of caregiver missing</string>
+    <string name="who_came_with_the_child_lv_other_error">Other companion of caregiver missing</string>
 </resources>
