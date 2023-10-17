@@ -59,7 +59,7 @@ public class ChwSyncConfiguration extends SyncConfiguration {
 
     @Override
     public SyncFilter getEncryptionParam() {
-        return SyncFilter.TEAM_ID;
+        return isProductionEnvironment() ? SyncFilter.PROVIDER : SyncFilter.LOCATION;
     }
 
 
