@@ -1,6 +1,5 @@
 package org.smartregister.chw.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -55,6 +54,8 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     private EditText cg_rep_lv_other;
 
+    private EditText who_came_with_the_child_lv_other;
+
     SelectChildForGroupSessionRegisterFragment.DialogDismissListener dialogDismissListener;
 
     String[] groupItems;
@@ -92,6 +93,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
         cg_rep_lv_other = view.findViewById(R.id.cg_rep_lv_other);
         cg_rep_lv_other.setVisibility(View.GONE);
+
+        who_came_with_the_child_lv_other = view.findViewById(R.id.who_came_with_the_child_lv_other);
+        who_came_with_the_child_lv_other.setVisibility(View.GONE);
 
         if (childrenDividedIntoGroups) {
             selected_group_lv.setVisibility(View.VISIBLE);
@@ -131,11 +135,12 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         who_came_with_the_child_lv_adapter.setOnItemSelectedListener(position -> {
             selectedPosition3 = position;
             who_came_with_the_child_lv_adapter.setSelectedPosition(position);
+            checkForOtherItemSelected(isOtherItemSelected(who_came_with_the_child_lv_adapter.getSelectedItems()), who_came_with_the_child_lv_other);
         });
 
         cg_rep_lv_adapter.setOnItemSelectedListener(position -> {
             cg_rep_lv_adapter.setSelectedPosition(position);
-            checkForOtherSelectedItem();
+            checkForOtherItemSelected(isOtherItemSelected(cg_rep_lv_adapter.getSelectedItems()), cg_rep_lv_other);
         });
 
         selected_group_lv_adapter.setOnItemSelectedListener(position -> {
@@ -166,9 +171,12 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     }
 
     void handleSuccess(DialogInterface dialogInterface){
+        String otherCompanion = who_came_with_the_child_lv_other.getText().toString();
         if(selectedPosition1 == 0){
             if(who_came_with_the_child_lv_adapter.getSelectedItems().isEmpty()){
                 dialogValidationFail(dialogInterface,"The companions of caregiver missing");
+            }else if(isOtherItemSelected(who_came_with_the_child_lv_adapter.getSelectedItems()) && otherCompanion.isEmpty()){
+                dialogValidationFail(dialogInterface,"Other companion missing");
             }else{
                 dialogListener.onSelectComeWithPrimaryCareGiver(
                         true,
@@ -182,8 +190,10 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
             String otherCaregiverRepresentative = cg_rep_lv_other.getText().toString();
             if(cg_rep_lv_adapter.getSelectedItems().isEmpty()){
                 dialogValidationFail(dialogInterface,"Caregiver representatives missing");
-            }else if(isOtherItemSelected() && otherCaregiverRepresentative.isEmpty()){
+            }else if(isOtherItemSelected(cg_rep_lv_adapter.getSelectedItems()) && otherCaregiverRepresentative.isEmpty()){
                 dialogValidationFail(dialogInterface,"Other caregiver representative missing");
+            }else if(isOtherItemSelected(who_came_with_the_child_lv_adapter.getSelectedItems()) && otherCompanion.isEmpty()){
+                dialogValidationFail(dialogInterface,"Other companion missing");
             }else{
                 dialogListener.onSelectComeWithoutPrimaryCareGiver(
                         false,
@@ -231,7 +241,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
             tv_caregiver_representative.setVisibility(View.VISIBLE);
             lv_caregiver_representative.setVisibility(View.VISIBLE);
             who_came_with_child_tv.setText(R.string.who_came_with_the_child_no);
-            checkForOtherSelectedItem();
+            checkForOtherItemSelected(isOtherItemSelected(cg_rep_lv_adapter.getSelectedItems()), cg_rep_lv_other);
         }
     }
 
@@ -258,8 +268,8 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         return multiSelectListItems;
     }
 
-    public boolean isOtherItemSelected() {
-        for (MultiSelectListItemModel item : cg_rep_lv_adapter.getSelectedItems()) {
+    public boolean isOtherItemSelected(List<MultiSelectListItemModel> list) {
+        for (MultiSelectListItemModel item : list) {
             if (item.getName().equals(getString(R.string.cg_rep_lv_other)) && item.isSelected()) {
                 return true;
             }
@@ -267,13 +277,13 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         return false;
     }
 
-    private void checkForOtherSelectedItem(){
-       if(isOtherItemSelected()){
-           cg_rep_lv_other.setVisibility(View.VISIBLE);
-       }else{
-           cg_rep_lv_other.setVisibility(View.GONE);
-           cg_rep_lv_other.getText().clear();
-       }
+    private void checkForOtherItemSelected(boolean isOtherItemSelected, EditText editText){
+        if(isOtherItemSelected){
+            editText.setVisibility(View.VISIBLE);
+        }else{
+            editText.setVisibility(View.GONE);
+            editText.getText().clear();
+        }
     }
 
 }

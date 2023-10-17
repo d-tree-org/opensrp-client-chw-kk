@@ -152,6 +152,15 @@
 
             </RelativeLayout>
 
+            <EditText
+                android:id = "@+id/who_came_with_the_child_lv_other"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType = "text"
+                android:textSize="14sp"
+                android:hint="@string/who_came_with_the_child_lv_other_hint"
+                android:layout_marginVertical="8dp"/>
+
             <TextView
                 android:id="@+id/selected_group"
                 android:layout_width="match_parent"

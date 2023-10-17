@@ -226,5 +226,5 @@
     <string name="session_duration_in_hours_and_minutes">Session Duration in Hours and Minutes</string>
     <string name="cg_rep_lv_other">Other</string>
     <string name="cg_rep_lv_other_hint">Other caregiver</string>
-
+    <string name="who_came_with_the_child_lv_other_hint">Other companion</string>
 </resources>

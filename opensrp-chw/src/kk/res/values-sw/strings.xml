@@ -207,5 +207,5 @@
     <string name="session_duration_in_hours_and_minutes">Muda wa kipingi kwenye saa na dakika</string>
     <string name="cg_rep_lv_other">Mwingine</string>
     <string name="cg_rep_lv_other_hint"> Mlezi mwingine </string>
-
+    <string name="who_came_with_the_child_lv_other_hint">Mtu mwingine</string>
 </resources>
