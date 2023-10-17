@@ -193,26 +193,20 @@ public class GcFinalStepFragment extends BaseGroupSessionRegisterFragment {
         });
 
         difficultActivity2 = view.findViewById(R.id.difficult_activity_2);
-        difficultActivity2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b)
-                    listOfDifficultActivities.add(ACTIVITY_2);
-                else
-                    listOfDifficultActivities.remove(ACTIVITY_2);
-            }
+        difficultActivity2.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b)
+                listOfDifficultActivities.add(ACTIVITY_2);
+            else
+                listOfDifficultActivities.remove(ACTIVITY_2);
         });
 
         difficultNutrition = view.findViewById(R.id.difficult_nutrition_activity);
 
-        difficultNutrition.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                     listOfDifficultActivities.add(KkConstants.GCActivities.NUTRITION_ACTIVITY);
-                }else{
-                    listOfDifficultActivities.remove(KkConstants.GCActivities.NUTRITION_ACTIVITY);
-                }
+        difficultNutrition.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked){
+                 listOfDifficultActivities.add(KkConstants.GCActivities.NUTRITION_ACTIVITY);
+            } else {
+                listOfDifficultActivities.remove(KkConstants.GCActivities.NUTRITION_ACTIVITY);
             }
         });
 
