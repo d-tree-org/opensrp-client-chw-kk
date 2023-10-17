@@ -180,17 +180,12 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
             }
         }else if(selectedPosition1 == 1){
             if(cg_rep_lv_adapter.getSelectedItems().size() > 0){
-                if(who_came_with_the_child_lv_adapter.getSelectedItems().size() > 0){
-                    dialogListener.onSelectComeWithoutPrimaryCareGiver(
-                            false,
-                            selectedChildBaseEntityId,
-                            cg_rep_lv_adapter.getSelectedItems(),
-                            who_came_with_the_child_lv_adapter.getSelectedItems(),
-                            !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]);
-                    dialogValidationSuccess(dialogInterface);
-                }else{
-                    dialogValidationFail(dialogInterface,"The companions of caregiver representative missing");
-                }
+                dialogListener.onSelectComeWithoutPrimaryCareGiver(
+                        false,
+                        selectedChildBaseEntityId,
+                        cg_rep_lv_adapter.getSelectedItems(),
+                        who_came_with_the_child_lv_adapter.getSelectedItems(),
+                        !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]);
             }else{
                 dialogValidationFail(dialogInterface,"Caregiver representatives missing");
             }
