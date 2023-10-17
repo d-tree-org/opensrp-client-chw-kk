@@ -172,7 +172,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                         true,
                         selectedChildBaseEntityId,
                         who_came_with_the_child_lv_adapter.getSelectedItems(),
-                        groupItems[selectedPosition2]
+                        !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]
                 );
                 dialogValidationSuccess(dialogInterface);
             }else{
@@ -186,7 +186,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                             selectedChildBaseEntityId,
                             cg_rep_lv_adapter.getSelectedItems(),
                             who_came_with_the_child_lv_adapter.getSelectedItems(),
-                            groupItems[selectedPosition2]);
+                            !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]);
                     dialogValidationSuccess(dialogInterface);
                 }else{
                     dialogValidationFail(dialogInterface,"The companions of caregiver representative missing");

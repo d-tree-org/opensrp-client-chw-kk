@@ -83,6 +83,13 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "other_people_present",
         "type": "hidden"
+      },
+      {
+        "key": "care_giver_representatives",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "care_giver_representatives",
+        "type": "hidden"
       }
     ]
   },

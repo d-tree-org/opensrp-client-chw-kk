@@ -176,7 +176,7 @@ public class KkConstants extends Constants{
         public static final String GC_ALL_CAREGIVERS_PRESENT = "all_caregivers_present";
         public static final String GC_CHILD_GROUP_PLACED = "child_group_placed";
         public static final String GC_CHILD_CAME_WITH_OTHER_PEOPLE = "other_people_present";
-
+        public static final String GC_CAREGIVER_REPRESENTATIVES = "care_giver_representatives";
     }
 
 }

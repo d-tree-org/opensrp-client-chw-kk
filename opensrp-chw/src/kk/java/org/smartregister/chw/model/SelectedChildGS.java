@@ -64,7 +64,7 @@ public class SelectedChildGS {
     }
 
     public List<String> getCareGiverRepresentatives() {
-        return accompanyingRelatives;
+        return careGiverRepresentatives;
     }
 
     public void setCareGiverRepresentatives(List<String> careGiverRepresentatives) {
