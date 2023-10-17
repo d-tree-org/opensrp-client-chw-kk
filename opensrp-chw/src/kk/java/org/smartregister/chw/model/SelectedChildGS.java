@@ -16,6 +16,8 @@ public class SelectedChildGS {
 
     private List<String> careGiverRepresentatives;
 
+    private String otherCaregiverRepresentative;
+
     public SelectedChildGS(String childBaseEntityId, ChildStatus childSelectionStatus, boolean cameWithPrimaryCareGiver, String groupPlaced) {
         this.childBaseEntityId = childBaseEntityId;
         this.childSelectionStatus = childSelectionStatus;
@@ -69,6 +71,14 @@ public class SelectedChildGS {
 
     public void setCareGiverRepresentatives(List<String> careGiverRepresentatives) {
         this.careGiverRepresentatives = careGiverRepresentatives;
+    }
+
+    public String getOtherCaregiverRepresentative() {
+        return otherCaregiverRepresentative;
+    }
+
+    public void setOtherCaregiverRepresentative(String otherCaregiverRepresentative) {
+        this.otherCaregiverRepresentative = otherCaregiverRepresentative;
     }
 
     public enum ChildStatus {

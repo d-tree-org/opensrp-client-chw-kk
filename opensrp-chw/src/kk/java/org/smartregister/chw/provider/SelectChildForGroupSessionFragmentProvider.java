@@ -71,12 +71,13 @@ public class SelectChildForGroupSessionFragmentProvider extends ChildRegisterPro
         return childList;
     }
 
-    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver, List<String> accompanyingRelatives, String groupPlaced, List<String> selectedCaregiverRepresentatives) {
+    public void updateChildSelectionStatus(String baseEntityId, boolean cameWithCareGiver, List<String> accompanyingRelatives, String groupPlaced, List<String> selectedCaregiverRepresentatives, String otherCaregiverRepresentative) {
         if (childList.containsKey(baseEntityId)) {
             Objects.requireNonNull(childList.get(baseEntityId)).setCameWithPrimaryCareGiver(cameWithCareGiver);
             Objects.requireNonNull(childList.get(baseEntityId)).setGroupPlaced(groupPlaced);
             Objects.requireNonNull(childList.get(baseEntityId)).setAccompanyingRelatives(accompanyingRelatives);
             Objects.requireNonNull(childList.get(baseEntityId)).setCareGiverRepresentatives(selectedCaregiverRepresentatives);
+            Objects.requireNonNull(childList.get(baseEntityId)).setOtherCaregiverRepresentative(otherCaregiverRepresentative);
         }
     }
 

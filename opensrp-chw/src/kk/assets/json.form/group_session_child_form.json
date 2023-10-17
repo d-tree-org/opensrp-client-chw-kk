@@ -90,6 +90,13 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "care_giver_representatives",
         "type": "hidden"
+      },
+      {
+        "key": "care_giver_representatives_other",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "care_giver_representatives_other",
+        "type": "hidden"
       }
     ]
   },

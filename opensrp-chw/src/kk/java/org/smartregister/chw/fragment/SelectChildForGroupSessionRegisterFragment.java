@@ -113,18 +113,19 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
                 isComeWithPrimaryCareGiver,
                 listOfAccompanyingRelatives,
                 GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced),
-                null);
+                null,null);
     }
 
     @Override
-    public void onSelectComeWithoutPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives, List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives, String groupPlaced) {
+    public void onSelectComeWithoutPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives, String otherCaregiverRepresentative, List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives, String groupPlaced) {
         List<String> listOfAccompanyingRelatives = getTranslatedNames(selectedAccompanyingCaregiverRepresentatives);;
         List<String> listOfCaregiverRepresentatives = getTranslatedNames(selectedCaregiverRepresentatives);
         childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId,
                 isComeWithPrimaryCareGiver,
                 listOfAccompanyingRelatives,
                 GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced),
-                listOfCaregiverRepresentatives);
+                listOfCaregiverRepresentatives,
+                otherCaregiverRepresentative);
     }
 
     private List<String> getTranslatedNames(List<MultiSelectListItemModel> items) {

@@ -167,7 +167,9 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
 
     void handleSuccess(DialogInterface dialogInterface){
         if(selectedPosition1 == 0){
-            if(who_came_with_the_child_lv_adapter.getSelectedItems().size() > 0){
+            if(who_came_with_the_child_lv_adapter.getSelectedItems().isEmpty()){
+                dialogValidationFail(dialogInterface,"The companions of caregiver missing");
+            }else{
                 dialogListener.onSelectComeWithPrimaryCareGiver(
                         true,
                         selectedChildBaseEntityId,
@@ -175,19 +177,22 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                         !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]
                 );
                 dialogValidationSuccess(dialogInterface);
-            }else{
-                dialogValidationFail(dialogInterface,"The companions of caregiver missing");
             }
         }else if(selectedPosition1 == 1){
-            if(cg_rep_lv_adapter.getSelectedItems().size() > 0){
+            String otherCaregiverRepresentative = cg_rep_lv_other.getText().toString();
+            if(cg_rep_lv_adapter.getSelectedItems().isEmpty()){
+                dialogValidationFail(dialogInterface,"Caregiver representatives missing");
+            }else if(isOtherItemSelected() && otherCaregiverRepresentative.isEmpty()){
+                dialogValidationFail(dialogInterface,"Other caregiver representative missing");
+            }else{
                 dialogListener.onSelectComeWithoutPrimaryCareGiver(
                         false,
                         selectedChildBaseEntityId,
                         cg_rep_lv_adapter.getSelectedItems(),
+                        otherCaregiverRepresentative.isEmpty() ? null : otherCaregiverRepresentative,
                         who_came_with_the_child_lv_adapter.getSelectedItems(),
                         !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]);
-            }else{
-                dialogValidationFail(dialogInterface,"Caregiver representatives missing");
+                dialogValidationSuccess(dialogInterface);
             }
         }
     }
@@ -233,12 +238,15 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     public interface DialogListener {
         void onSelectComeWithPrimaryCareGiver(
                 boolean isComeWithPrimaryCareGiver,
-                String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedAccompanyingCaregivers,
+                String selectedChildBaseEntityId,
+                List<MultiSelectListItemModel> selectedAccompanyingCaregivers,
                 String selectedGroup);
 
         void onSelectComeWithoutPrimaryCareGiver(
                 boolean isComeWithPrimaryCareGiver,
-                String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives,
+                String selectedChildBaseEntityId,
+                List<MultiSelectListItemModel> selectedCaregiverRepresentatives,
+                String otherCaregiverRepresentative,
                 List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives,
                 String selectedGroup);
     }
