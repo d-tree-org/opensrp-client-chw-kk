@@ -338,7 +338,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         spNoSessionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 4){
+                if (i == 5){
                     etOtherReasonLayout.setVisibility(View.VISIBLE);
                 }else{
                     etOtherReasonLayout.setVisibility(View.GONE);
