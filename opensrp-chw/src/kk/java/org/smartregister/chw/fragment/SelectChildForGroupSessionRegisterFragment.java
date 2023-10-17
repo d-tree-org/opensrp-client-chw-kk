@@ -106,23 +106,25 @@ public class SelectChildForGroupSessionRegisterFragment extends ChildRegisterFra
 
 
     @Override
-    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedAccompanyingCaregivers, String groupPlaced) {
+    public void onSelectComeWithPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedAccompanyingCaregivers, String otherCompanion, String groupPlaced) {
         Timber.d("The Child with id %s Come with Primary Care Giver: %s", selectedChildBaseEntityId, isComeWithPrimaryCareGiver);
         List<String> listOfAccompanyingRelatives = getTranslatedNames(selectedAccompanyingCaregivers);
         childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId,
                 isComeWithPrimaryCareGiver,
                 listOfAccompanyingRelatives,
+                otherCompanion,
                 GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced),
                 null,null);
     }
 
     @Override
-    public void onSelectComeWithoutPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives, String otherCaregiverRepresentative, List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives, String groupPlaced) {
+    public void onSelectComeWithoutPrimaryCareGiver(boolean isComeWithPrimaryCareGiver, String selectedChildBaseEntityId, List<MultiSelectListItemModel> selectedCaregiverRepresentatives, String otherCaregiverRepresentative, List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives, String otherCompanion, String groupPlaced) {
         List<String> listOfAccompanyingRelatives = getTranslatedNames(selectedAccompanyingCaregiverRepresentatives);;
         List<String> listOfCaregiverRepresentatives = getTranslatedNames(selectedCaregiverRepresentatives);
         childRegisterProvider.updateChildSelectionStatus(selectedChildBaseEntityId,
                 isComeWithPrimaryCareGiver,
                 listOfAccompanyingRelatives,
+                otherCompanion,
                 GroupSessionTranslationsUtils.getTranslatedGroupPlaced(groupPlaced),
                 listOfCaregiverRepresentatives,
                 otherCaregiverRepresentative);

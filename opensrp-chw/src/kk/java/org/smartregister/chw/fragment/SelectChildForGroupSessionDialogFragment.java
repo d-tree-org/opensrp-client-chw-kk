@@ -182,6 +182,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                         true,
                         selectedChildBaseEntityId,
                         who_came_with_the_child_lv_adapter.getSelectedItems(),
+                        otherCompanion.isEmpty() ? null : otherCompanion,
                         !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]
                 );
                 dialogValidationSuccess(dialogInterface);
@@ -201,6 +202,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                         cg_rep_lv_adapter.getSelectedItems(),
                         otherCaregiverRepresentative.isEmpty() ? null : otherCaregiverRepresentative,
                         who_came_with_the_child_lv_adapter.getSelectedItems(),
+                        otherCompanion.isEmpty() ? null : otherCompanion,
                         !childrenDividedIntoGroups ? "Not in groups" : groupItems[selectedPosition2]);
                 dialogValidationSuccess(dialogInterface);
             }
@@ -250,6 +252,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                 boolean isComeWithPrimaryCareGiver,
                 String selectedChildBaseEntityId,
                 List<MultiSelectListItemModel> selectedAccompanyingCaregivers,
+                String otherCompanion,
                 String selectedGroup);
 
         void onSelectComeWithoutPrimaryCareGiver(
@@ -258,6 +261,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
                 List<MultiSelectListItemModel> selectedCaregiverRepresentatives,
                 String otherCaregiverRepresentative,
                 List<MultiSelectListItemModel> selectedAccompanyingCaregiverRepresentatives,
+                String otherCompanion,
                 String selectedGroup);
     }
 

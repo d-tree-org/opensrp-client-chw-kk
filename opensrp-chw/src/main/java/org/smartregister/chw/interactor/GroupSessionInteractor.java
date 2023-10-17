@@ -310,6 +310,9 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
             case KkConstants.GCJsonKeys.GC_CAREGIVER_REPRESENTATIVES_OTHER:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, selectedChildGS.getOtherCaregiverRepresentative());
                 break;
+            case KkConstants.GCJsonKeys.GC_CHILD_CAME_WITH_OTHER_PEOPLE_OTHER:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, selectedChildGS.getOtherCompanion());
+                break;
             default:
                 break;
         }
