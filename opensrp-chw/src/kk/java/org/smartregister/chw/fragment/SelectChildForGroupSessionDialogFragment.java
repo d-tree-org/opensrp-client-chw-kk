@@ -148,19 +148,7 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
             selected_group_lv_adapter.setSelectedPosition(position);
         });
 
-        builder.setPositiveButton(R.string.ok, (dialog, which) -> {
-            if (selectedPosition1 == -1) {
-                Toast.makeText(requireContext(), "Caregiver information missing", Toast.LENGTH_SHORT).show();
-                dialogDismissListener.onFailure();
-                dialog.dismiss();
-            }else if (selectedPosition2 == -1 && childrenDividedIntoGroups) {
-                Toast.makeText(requireContext(), "Child missing the group", Toast.LENGTH_SHORT).show();
-                dialogDismissListener.onFailure();
-                dialog.dismiss();
-            }else {
-                handleSuccess(dialog);
-            }
-        });
+        builder.setPositiveButton(R.string.ok, null);
 
         builder.setNegativeButton(R.string.cancel, (dialog, which) -> {
             dialogDismissListener.onFailure();
@@ -168,6 +156,27 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
         });
 
         return builder.create();
+    }
+
+    @Override
+    public void onResume() {
+        AlertDialog dialog = (AlertDialog) getDialog();
+        assert dialog != null;
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if (selectedPosition1 == -1) {
+                    dialogValidationFail(dialog, getString(R.string.came_with_pc_lv));
+                }else if (selectedPosition2 == -1 && childrenDividedIntoGroups) {
+                    dialogValidationFail(dialog, getString(R.string.selected_group_lv));
+                }else {
+                    handleSuccess(dialog);
+                }
+            }
+        });
+        super.onResume();
     }
 
     void handleSuccess(DialogInterface dialogInterface){
@@ -212,7 +221,6 @@ public class SelectChildForGroupSessionDialogFragment extends DialogFragment {
     void dialogValidationFail(DialogInterface dialogInterface,String message){
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
         dialogDismissListener.onFailure();
-        dialogInterface.dismiss();
     }
 
     void dialogValidationSuccess(DialogInterface dialogInterface){
