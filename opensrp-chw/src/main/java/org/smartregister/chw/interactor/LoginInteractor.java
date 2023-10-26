@@ -1,8 +1,17 @@
 package org.smartregister.chw.interactor;
 
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.WorkRequest;
+
+import org.smartregister.CoreLibrary;
 import org.smartregister.chw.contract.LoginJobScheduler;
+import org.smartregister.chw.job.IdentifierCleanerWorker;
+import org.smartregister.job.DuplicateCleanerWorker;
 import org.smartregister.login.interactor.BaseLoginInteractor;
 import org.smartregister.view.contract.BaseLoginContract;
+
+import java.util.concurrent.TimeUnit;
 
 
 /***
@@ -23,11 +32,22 @@ public class LoginInteractor extends BaseLoginInteractor implements BaseLoginCon
     @Override
     protected void scheduleJobsPeriodically() {
         scheduler.scheduleJobsPeriodically();
+        //Schedule your jobs here
+
     }
 
     @Override
     protected void scheduleJobsImmediately() {
         super.scheduleJobsImmediately();
         scheduler.scheduleJobsImmediately();
+        scheduleIdCleanerWorker();
+
     }
+
+    private void scheduleIdCleanerWorker(){
+        WorkRequest identifierCleaner = new PeriodicWorkRequest.Builder(IdentifierCleanerWorker.class, 1, TimeUnit.MINUTES)
+                .build();
+        WorkManager.getInstance(CoreLibrary.getInstance().context().applicationContext()).enqueue(identifierCleaner);
+    }
+
 }
