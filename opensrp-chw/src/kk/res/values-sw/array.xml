@@ -5,8 +5,8 @@
         <item>Hapana</item>
     </string-array>
     <string-array name="multi_select_accompany_child_option">
-        <item>Baba wa mtoto/Mpenzi wa mama</item>
-        <item>Ndugu wa mtoto (chin ya miaka 5)</item>
+        <item>Baba wa mtoto/Mwenza wa mama</item>
+        <item>Ndugu wa mtoto (chini ya miaka 5)</item>
         <item>Ndugu wa mtoto (miaka 5 au zaidi)</item>
         <item>Bibi wa mtoto</item>
         <item>Babu wa mtoto</item>
@@ -40,6 +40,7 @@
         <item>Kituo cha uhamasishaji na kutoa huduma za chanjo</item>
         <item>Shule ya primari</item>
         <item>Chini ya mti</item>
+        <item>Sehemu ya Ibada</item>
     </string-array>
     <string-array name="divided_children_into_groups">
         <item>Ugawanywaji wa watoto kwenye makundi</item>
