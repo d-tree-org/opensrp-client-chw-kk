@@ -3,58 +3,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/extra_bottom_margin"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal">
+
         <ProgressBar
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:indeterminate="true"
-            android:layout_marginStart="30dp"
-            android:layout_gravity="center_vertical"/>
-        <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/accuracy"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:layout_marginStart="@dimen/inner_components_spacing"
-            android:layout_marginEnd="@dimen/inner_components_spacing"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/accuracy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/default_text_size"
-                android:text="@string/unknown_gps_accuracy" />
-        </LinearLayout>
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/google_sans_medium"
+            android:text="@string/unknown_gps_accuracy" />
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/extra_bottom_margin"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="@dimen/extra_bottom_margin">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.1"/>
 
         <Button
             android:id="@+id/cancel_button"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="7.5dp"
             android:layout_weight="1"
+            android:fontFamily="@font/google_sans_bold"
+            android:background="@drawable/button"
             android:text="@string/cancel" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.1"/>
 
         <Button
             android:id="@+id/ok_button"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="7.5dp"
+            android:background="@drawable/button_bg"
+            android:textColor="@color/white"
+            android:fontFamily="@font/google_sans_bold"
             android:layout_weight="1"
             android:text="@string/ok" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.1"/>
+
     </LinearLayout>
 </LinearLayout>
