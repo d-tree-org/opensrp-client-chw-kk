@@ -53,6 +53,9 @@ public class LoginJobSchedulerProvider implements LoginJobScheduler {
 
         if (BuildConfig.USE_UNIFIED_REFERRAL_APPROACH)
             DocumentConfigurationServiceJob.scheduleJob(DocumentConfigurationServiceJob.TAG,TimeUnit.MINUTES.toMinutes(BuildConfig.DATA_SYNC_DURATION_MINUTES), getFlexValue(BuildConfig.DATA_SYNC_DURATION_MINUTES));
+
+
+
     }
 
     @Override

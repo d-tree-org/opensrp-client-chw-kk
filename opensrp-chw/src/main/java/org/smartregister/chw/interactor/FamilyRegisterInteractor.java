@@ -16,6 +16,7 @@ import org.smartregister.family.contract.FamilyRegisterContract;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.util.JsonFormUtils;
 import org.smartregister.family.util.Utils;
+import org.smartregister.view.activity.DrishtiApplication;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -106,6 +107,20 @@ public class FamilyRegisterInteractor extends org.smartregister.family.interacto
                     if (StringUtils.isNotBlank(imageLocation) && !imageLocation.contains("_family")) {
                         this.getUniqueIdRepository().close(imageLocation);
                     }
+                }
+
+                if (baseClient != null && !baseClient.getClientType().equalsIgnoreCase("Family")){
+
+                    //EDI ID registration fields
+                    JSONObject form = new JSONObject(jsonString);
+                    JSONArray fields = JsonFormUtils.fields(form);
+
+                    String baseEntityId = baseClient.getBaseEntityId();
+                    String ediId = JsonFormUtils.getFieldValue(fields, "edi_id");
+
+                    //Process EDI ID registration event
+                    org.smartregister.chw.util.JsonFormUtils.processEdiRegistrationEvent(baseEntityId, ediId, clientJson,
+                            DrishtiApplication.getInstance().getContext().allSharedPreferences(), isEditMode);
                 }
 
                 if (baseClient != null || baseEvent != null) {

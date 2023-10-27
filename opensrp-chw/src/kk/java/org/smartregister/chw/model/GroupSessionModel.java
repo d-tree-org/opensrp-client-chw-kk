@@ -30,6 +30,7 @@ public class GroupSessionModel {
     private List<String> topicsCovered;
     private int durationInHours;
 
+    private int durationInMinutes;
     private boolean childrenDividedInGroups;
 
     private Location gpsLocation;
@@ -185,5 +186,12 @@ public class GroupSessionModel {
     }
     public Location getGpsLocation() {
         return gpsLocation;
+    }
+
+    public void setDurationInMinutes(int minutes) {
+        this.durationInMinutes = minutes;
+    }
+    public int getDurationInMinutes() {
+        return durationInMinutes;
     }
 }

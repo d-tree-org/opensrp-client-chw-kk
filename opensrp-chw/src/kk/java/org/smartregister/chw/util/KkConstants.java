@@ -130,6 +130,7 @@ public class KkConstants extends Constants{
         public static final String REVIEW_PREVIOUS_WEEK = "review_of_the_week";
         public static final String ACTIVITY_1 = "activity_1";
         public static final String ACTIVITY_2 = "activity_2";
+        public static final String NUTRITION_ACTIVITY = "nutrition";
         public static final String RECAP_SESSION = "recap_session";
         public static final String CLOSING_SONG = "closing_song";
     }
@@ -158,6 +159,8 @@ public class KkConstants extends Constants{
         public static final String GC_SESSION_PLACE = "session_place";
         public static final String GC_SESSION_DURATION = "session_duration";
 
+        public static final String GC_SESSION_DURATION_MINUTES = "session_duration_minutes";
+
         public static final String GC_SESSION_GPS = "gps";
 
         public static final String GC_SESSION_GPS_LAT = "gps_latitude";
@@ -183,7 +186,9 @@ public class KkConstants extends Constants{
         public static final String GC_ALL_CAREGIVERS_PRESENT = "all_caregivers_present";
         public static final String GC_CHILD_GROUP_PLACED = "child_group_placed";
         public static final String GC_CHILD_CAME_WITH_OTHER_PEOPLE = "other_people_present";
-
+        public static final String GC_CHILD_CAME_WITH_OTHER_PEOPLE_OTHER = "other_people_present_other";
+        public static final String GC_CAREGIVER_REPRESENTATIVES = "care_giver_representatives";
+        public static final String GC_CAREGIVER_REPRESENTATIVES_OTHER = "care_giver_representatives_other";
     }
 
 }
