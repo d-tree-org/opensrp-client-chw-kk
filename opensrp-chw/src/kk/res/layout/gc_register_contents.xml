@@ -174,7 +174,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/ll_start_session_reg"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@+id/sessions_took_place_question"
         android:orientation="vertical"
         android:background="@color/white"
