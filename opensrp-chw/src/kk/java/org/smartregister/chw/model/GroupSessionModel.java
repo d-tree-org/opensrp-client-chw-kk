@@ -1,5 +1,7 @@
 package org.smartregister.chw.model;
 
+import android.location.Location;
+
 import java.util.List;
 
 /**
@@ -31,6 +33,7 @@ public class GroupSessionModel {
     private int durationInMinutes;
     private boolean childrenDividedInGroups;
 
+    private Location gpsLocation;
     public GroupSessionModel(){
 
     }
@@ -177,6 +180,12 @@ public class GroupSessionModel {
 
     public boolean isAnyDifficultActivities() {
         return anyDifficultActivities;
+    }
+    public void setGpsLocation(Location gpsLocation) {
+        this.gpsLocation = gpsLocation;
+    }
+    public Location getGpsLocation() {
+        return gpsLocation;
     }
 
     public void setDurationInMinutes(int minutes) {

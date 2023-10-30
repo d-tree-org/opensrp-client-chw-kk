@@ -160,6 +160,16 @@ public class KkConstants extends Constants{
         public static final String GC_SESSION_DURATION = "session_duration";
 
         public static final String GC_SESSION_DURATION_MINUTES = "session_duration_minutes";
+
+        public static final String GC_SESSION_GPS = "gps";
+
+        public static final String GC_SESSION_GPS_LAT = "gps_latitude";
+
+        public static final String GC_SESSION_GPS_LNG = "gps_longitude";
+
+        public static final String GC_SESSION_GPS_ALT = "gps_altitude";
+
+        public static final String GC_SESSION_GPS_ACC = "gps_accuracy";
         public static final String GC_ACTIVITIES_TOOK_PLACE = "activities_took_place";
 
         public static final String GC_DIVIDE_CHILDREN_DIFFERENT_AGE_GROUPS = "divide_children_different_age_groups";

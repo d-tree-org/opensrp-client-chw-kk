@@ -1,12 +1,16 @@
 package org.smartregister.chw.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.LabelVisibilityMode;
+import com.vijay.jsonwizard.utils.PermissionUtils;
 
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -132,4 +136,16 @@ public class GroupSessionRegisterActivity extends BaseRegisterActivity implement
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PermissionUtils.FINE_LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted Continue ", Toast.LENGTH_SHORT).show();
+            } else {
+                // do nothing
+                Toast.makeText(this, "Permission Denied: This will affect location functionality ", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }

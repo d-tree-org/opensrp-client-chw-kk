@@ -29,6 +29,7 @@ import org.smartregister.chw.R;
 import org.smartregister.chw.activity.FamilyRegisterActivity;
 import org.smartregister.chw.activity.GroupSessionRegisterActivity;
 import org.smartregister.chw.application.ChwApplication;
+import org.smartregister.chw.custom_view.GPSLocationView;
 import org.smartregister.chw.listener.SessionModelUpdatedListener;
 import org.smartregister.chw.model.GroupSessionModel;
 import org.smartregister.chw.util.GroupSessionTranslationsUtils;
@@ -67,6 +68,7 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
     private String selectedDateString = "";
     private DateTime selectedDateTime = null;
 
+    private GPSLocationView gpsLocationView;
     private static FormUtils formUtils;
     ArrayAdapter<String> placesAdapter;
     ArrayAdapter<String> sessionTookPlaceAdapter;
@@ -205,6 +207,8 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         submitNotDoneButton = view.findViewById(R.id.button_submit_not_done);
         tvSessionTookPlaceTitle = view.findViewById(R.id.tv_session_took_place_title);
 
+        gpsLocationView = view.findViewById(R.id.gps_location_view);
+
         progressBar = view.findViewById(R.id.progress_bar);
 
         setupSpinner();
@@ -247,6 +251,10 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
             boolean dividedInGroups = GroupSessionTranslationsUtils.getTranslatedSessionTookPlaceResponse(
                     divideChildrenInGroupsSpinner.getSelectedItem().toString()).equalsIgnoreCase("Yes");
             sessionModel.setChildrenDividedInGroups(dividedInGroups);
+
+            if (gpsLocationView.getLocation() != null) {
+                sessionModel.setGpsLocation(gpsLocationView.getLocation());
+            }
         } else {
             String noSessionReason = GroupSessionTranslationsUtils.getTranslatedSessionNotTakePlaceReason(spNoSessionSpinner.getSelectedItem().toString());
             if (noSessionReason.equalsIgnoreCase("Other (Specify)")){
