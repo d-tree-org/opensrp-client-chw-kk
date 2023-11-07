@@ -132,6 +132,48 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "session_duration",
         "type": "hidden"
+      },
+      {
+        "key": "gps",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "gps",
+        "type": "hidden"
+      },
+      {
+        "key": "gps_latitude",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "gps_latitude",
+        "type": "hidden"
+      },
+      {
+        "key": "gps_longitude",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "gps_longitude",
+        "type": "hidden"
+      },
+      {
+        "key": "gps_altitude",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "gps_altitude",
+        "type": "hidden"
+      },
+      {
+        "key": "gps_accuracy",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "gps_accuracy",
+        "type": "hidden"
+      },
+      {
+        "key": "session_duration_minutes",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "session_duration_minutes",
+        "type": "hidden"
       }
     ]
   },

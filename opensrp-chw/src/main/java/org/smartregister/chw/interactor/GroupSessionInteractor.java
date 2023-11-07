@@ -5,6 +5,7 @@ import static org.smartregister.chw.anc.util.NCUtils.getSyncHelper;
 import static org.smartregister.util.Utils.getAllSharedPreferences;
 
 import android.content.Context;
+import android.location.Location;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -304,6 +305,15 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
             case KkConstants.GCJsonKeys.GC_CHILD_CAME_WITH_OTHER_PEOPLE:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, selectedChildGS.getAccompanyingRelatives());
                 break;
+            case KkConstants.GCJsonKeys.GC_CAREGIVER_REPRESENTATIVES:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, selectedChildGS.getCareGiverRepresentatives());
+                break;
+            case KkConstants.GCJsonKeys.GC_CAREGIVER_REPRESENTATIVES_OTHER:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, selectedChildGS.getOtherCaregiverRepresentative());
+                break;
+            case KkConstants.GCJsonKeys.GC_CHILD_CAME_WITH_OTHER_PEOPLE_OTHER:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, selectedChildGS.getOtherCompanion());
+                break;
             default:
                 break;
         }
@@ -326,6 +336,9 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
                 break;
             case KkConstants.GCJsonKeys.GC_SESSION_DURATION:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getDurationInHours());
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_DURATION_MINUTES:
+                field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getDurationInMinutes());
                 break;
             case KkConstants.GCJsonKeys.GC_ACTIVITIES_TOOK_PLACE:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getActivitiesTookPlace());
@@ -351,6 +364,38 @@ public class GroupSessionInteractor implements GroupSessionRegisterFragmentContr
                 break;
             case KkConstants.GCJsonKeys.GC_COVER_ANY_FOLLOWING_TOPICS:
                 field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, sessionModel.getTopicsCovered());
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_GPS:
+                if (sessionModel.getGpsLocation() != null) {
+                    Location location = sessionModel.getGpsLocation();
+                    String gpsInformation = String.format("%s %s %s %s", location.getLatitude(), location.getLongitude(),
+                            location.getAltitude(), location.getAccuracy());
+                    field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, gpsInformation);
+                }
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_GPS_LAT:
+                if (sessionModel.getGpsLocation() != null) {
+                    Location location = sessionModel.getGpsLocation();
+                    field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, location.getLatitude());
+                }
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_GPS_LNG:
+                if (sessionModel.getGpsLocation() != null) {
+                    Location location = sessionModel.getGpsLocation();
+                    field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, location.getLongitude());
+                }
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_GPS_ALT:
+                if (sessionModel.getGpsLocation() != null) {
+                    Location location = sessionModel.getGpsLocation();
+                    field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, location.getAltitude());
+                }
+                break;
+            case KkConstants.GCJsonKeys.GC_SESSION_GPS_ACC:
+                if (sessionModel.getGpsLocation() != null) {
+                    Location location = sessionModel.getGpsLocation();
+                    field.put(org.smartregister.chw.util.JsonFormUtils.VALUE, location.getAccuracy());
+                }
                 break;
             default:
                 break;
