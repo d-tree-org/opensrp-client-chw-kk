@@ -780,6 +780,14 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         actionList.put(title, malnutritionScreeningAction);
     }
+    private void evaluateFamilyMemberInvolvement() throws BaseAncHomeVisitAction.ValidationException {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.family_member_involvement))
+                .withOptional(false)
+                .withFormName("child_hv_family_member_involvement")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.family_member_involvement), action);
+    }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
 
