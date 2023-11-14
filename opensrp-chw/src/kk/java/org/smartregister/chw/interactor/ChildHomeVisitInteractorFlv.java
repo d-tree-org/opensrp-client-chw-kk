@@ -159,7 +159,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             evaluateCCDChildDiscipline(serviceWrapperMap);
             evaluateProblemSolving(serviceWrapperMap);
             evaluateCCDDevelopmentScreening(serviceWrapperMap);
-
+            // Year II Modules
+            evaluateFamilyMemberInvolvement();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
