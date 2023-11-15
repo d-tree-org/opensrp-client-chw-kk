@@ -146,6 +146,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 evaluateYearIIModules();
             }
 
+            evaluateToddlerDangerSignYearII();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -796,6 +797,25 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    protected void evaluateToddlerDangerSignYearII() throws Exception {
+        String title = context.getString(R.string.toddler_danger_sign_month);
+
+        ToddlerDangerSignAction helper = new ToddlerDangerSignAction(context, null);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.TODDLER_DANGER_SIGN);
+
+        BaseAncHomeVisitAction toddler_ds_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_toddler_danger_sign_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(helper)
+                .build();
+
+        actionList.put(title, toddler_ds_action);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
