@@ -1,0 +1,311 @@
+{
+  "count": "1",
+  "encounter_type": "Child Visit PMTCT",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_pmtct.step1.title}}",
+    "fields": [
+      {
+        "key": "test_hiv_past_three_months",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_pmtct.step1.test_hiv_past_three_months.label}}",
+        "exclusive": [
+          "chk_hiv_test_yes"
+        ],
+        "options": [
+          {
+            "key": "chk_hiv_test_yes",
+            "text": "{{child_hv_pmtct.step1.test_hiv_past_three_months.options.chk_hiv_test_yes.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_hiv_test_no",
+            "text": "{{child_hv_pmtct.step1.test_hiv_past_three_months.options.chk_hiv_test_no.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_pmtct.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "advice_hiv_test_soon",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_family_member_involvement.step1.advice_hiv_test_soon.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "comfortable_disclosing_hiv_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_pmtct.step1.comfortable_disclosing_hiv_status.label}}",
+        "exclusive": [
+          "chk_hiv_disclosing_status_yes"
+        ],
+        "options": [
+          {
+            "key": "chk_hiv_disclosing_status_yes",
+            "text": "{{child_hv_pmtct.step1.comfortable_disclosing_hiv_status.options.chk_hiv_disclosing_status_yes.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_hiv_disclosing_status_no",
+            "text": "{{child_hv_pmtct.step1.comfortable_disclosing_hiv_status.options.chk_hiv_disclosing_status_no.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_pmtct.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "hiv_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_pmtct.step1.hiv_status.label}}",
+        "exclusive": [
+          "chk_hiv_test_positive"
+        ],
+        "options": [
+          {
+            "key": "chk_hiv_test_positive",
+            "text": "{{child_hv_pmtct.step1.hiv_status.options.chk_hiv_status_positive.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_hiv_test_negative",
+            "text": "{{child_hv_pmtct.step1.hiv_status.options.chk_hiv_status_negative.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_pmtct.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "advice_mother_next_checkup",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_family_member_involvement.step1.advice_mother_next_checkup.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "safe_sex_practices",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_family_member_involvement.step1.safe_sex_practices.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "already_taking_art",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_pmtct.step1.already_taking_art.label}}",
+        "exclusive": [
+          "chk_taking_art_yes"
+        ],
+        "options": [
+          {
+            "key": "chk_taking_art_yes",
+            "text": "{{child_hv_pmtct.step1.already_taking_art.options.taking_art_yes.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_taking_art_no",
+            "text": "{{child_hv_pmtct.step1.already_taking_art.options.taking_art_no.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_pmtct.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "encourage_mother_continue_treatment",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_family_member_involvement.step1.encourage_mother_continue_treatment.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "nearest_ctc",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_family_member_involvement.step1.nearest_ctc.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "stop_breastfeeding",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_family_member_involvement.step1.stop_breastfeeding.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      },
+      {
+        "key": "comfortable_sharing_child_hiv_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_pmtct.step1.comfortable_sharing_child_hiv_status.label}}",
+        "exclusive": [
+          "chk_hiv_disclosing_status_yes"
+        ],
+        "options": [
+          {
+            "key": "chk_hiv_disclosing_status_yes",
+            "text": "{{child_hv_pmtct.step1.comfortable_sharing_child_hiv_status.options.chk_hiv_disclosing_status_yes.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_hiv_disclosing_status_no",
+            "text": "{{child_hv_pmtct.step1.comfortable_sharing_child_hiv_status.options.chk_hiv_disclosing_status_no.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_pmtct.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "childs_hiv_status",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{child_hv_pmtct.step1.childs_hiv_status.label}}",
+        "exclusive": [
+          "chk_hiv_test_positive"
+        ],
+        "options": [
+          {
+            "key": "chk_hiv_test_positive",
+            "text": "{{child_hv_pmtct.step1.childs_hiv_status.options.chk_hiv_status_positive.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "chk_hiv_test_negative",
+            "text": "{{child_hv_pmtct.step1.childs_hiv_status.options.chk_hiv_status_negative.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_pmtct.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "mother_visits_pmtct_clinic",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_family_member_involvement.step1.mother_visits_pmtct_clinic.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info"
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_pmtct"
+}
