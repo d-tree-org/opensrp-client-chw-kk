@@ -135,36 +135,53 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                     childAgeInMonth =  Integer.parseInt(childMonth);
                 }
             }
-            evaluateVisitLocation();
-            evaluateToddlerDangerSign(serviceWrapperMap);
-            evaluateNeonatalDangerSigns(serviceWrapperMap);
 
-            if (childAgeInDays >= 35 && childAgeInDays < 50) {
-                evaluateNeonatalDangerSigns5W();
+            evaluateVisitLocation( );
+
+            if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
+                evaluateYearIModules(childAgeInDays, childAgeInMonth, serviceWrapperMap);
             }
 
-            evaluateNewBornCareIntro(serviceWrapperMap);
-            evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
-            evaluateNewbornCordCare(serviceWrapperMap);
-            evaluateMalnutritionScreening(serviceWrapperMap);
-            evaluateBreastFeeding(serviceWrapperMap);
-            evaluateComplementaryFeeding(serviceWrapperMap);
-            evaluateImmunizations(serviceWrapperMap);
-            evaluateMalariaPrevention(serviceWrapperMap);
-            evaluateCCDChildSafety(serviceWrapperMap);
-            evaluateCCDIntro(serviceWrapperMap);
-            evaluateChildPlayAssessmentCounseling(serviceWrapperMap, childAgeInMonth);
-            evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
-            evaluateCareGiverResponsiveness(serviceWrapperMap);
-            evaluateCCDChildDiscipline(serviceWrapperMap);
-            evaluateProblemSolving(serviceWrapperMap);
-            evaluateCCDDevelopmentScreening(serviceWrapperMap);
+            if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year II Modules
+                evaluateYearIIModules();
+            }
 
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
             Timber.e(e);
         }
+    }
+
+    private void evaluateYearIModules(int childAgeInDays, int childAgeInMonth,
+                                      Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        evaluateToddlerDangerSign(serviceWrapperMap);
+        evaluateNeonatalDangerSigns(serviceWrapperMap);
+
+        if (childAgeInDays >= 35 && childAgeInDays < 50) {
+            evaluateNeonatalDangerSigns5W();
+        }
+
+        evaluateNewBornCareIntro(serviceWrapperMap);
+        evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
+        evaluateNewbornCordCare(serviceWrapperMap);
+        evaluateMalnutritionScreening(serviceWrapperMap);
+        evaluateBreastFeeding(serviceWrapperMap);
+        evaluateComplementaryFeeding(serviceWrapperMap);
+        evaluateImmunizations(serviceWrapperMap);
+        evaluateMalariaPrevention(serviceWrapperMap);
+        evaluateCCDChildSafety(serviceWrapperMap);
+        evaluateCCDIntro(serviceWrapperMap);
+        evaluateChildPlayAssessmentCounseling(serviceWrapperMap, childAgeInMonth);
+        evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
+        evaluateCareGiverResponsiveness(serviceWrapperMap);
+        evaluateCCDChildDiscipline(serviceWrapperMap);
+        evaluateProblemSolving(serviceWrapperMap);
+        evaluateCCDDevelopmentScreening(serviceWrapperMap);
+    }
+
+    private void evaluateYearIIModules() {
+
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
