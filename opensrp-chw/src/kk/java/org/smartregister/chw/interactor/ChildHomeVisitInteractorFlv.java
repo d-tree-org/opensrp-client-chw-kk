@@ -146,8 +146,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year II Modules
                 evaluateYearIIModules();
             }
-
-            evaluateBreastFeedingYearII();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -183,7 +181,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateYearIIModules() {
-
+        evaluateBreastFeedingYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
