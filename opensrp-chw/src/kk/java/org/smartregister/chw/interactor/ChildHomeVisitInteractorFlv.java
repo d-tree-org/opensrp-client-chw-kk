@@ -13,6 +13,7 @@ import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
+import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelperYearII;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
@@ -146,6 +147,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 evaluateYearIIModules();
             }
 
+            evaluateBreastFeedingYearII();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -796,6 +798,26 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    protected void evaluateBreastFeedingYearII() throws Exception {
+        String title = context.getString(R.string.ccd_breastfeeding);;
+
+        NewBornCareBreastfeedingHelperYearII helper = new NewBornCareBreastfeedingHelperYearII(context);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_BREASTFEEDING);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName("child_hv_breastfeeding_year_ii")
+                .build();
+
+        actionList.put(title, action);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
