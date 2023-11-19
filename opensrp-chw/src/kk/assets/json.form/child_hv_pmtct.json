@@ -88,7 +88,14 @@
         "type": "toaster_notes",
         "text": "{{child_hv_family_member_involvement.step1.advice_hiv_test_soon.text}}",
         "text_color": "#2D2E2D",
-        "toaster_type": "info"
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "comfortable_disclosing_hiv_status",
@@ -116,6 +123,13 @@
             "openmrs_entity_id": ""
           }
         ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        },
         "v_required": {
           "value": "true",
           "err": "{{child_hv_pmtct.step1.v_required.err}}"
@@ -147,6 +161,13 @@
             "openmrs_entity_id": ""
           }
         ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        },
         "v_required": {
           "value": "true",
           "err": "{{child_hv_pmtct.step1.v_required.err}}"
@@ -198,6 +219,13 @@
             "openmrs_entity_id": ""
           }
         ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        },
         "v_required": {
           "value": "true",
           "err": "{{child_hv_pmtct.step1.v_required.err}}"
@@ -211,7 +239,14 @@
         "type": "toaster_notes",
         "text": "{{child_hv_family_member_involvement.step1.encourage_mother_continue_treatment.text}}",
         "text_color": "#2D2E2D",
-        "toaster_type": "info"
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "nearest_ctc",
@@ -221,7 +256,14 @@
         "type": "toaster_notes",
         "text": "{{child_hv_family_member_involvement.step1.nearest_ctc.text}}",
         "text_color": "#2D2E2D",
-        "toaster_type": "info"
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "stop_breastfeeding",
@@ -231,7 +273,14 @@
         "type": "toaster_notes",
         "text": "{{child_hv_family_member_involvement.step1.stop_breastfeeding.text}}",
         "text_color": "#2D2E2D",
-        "toaster_type": "info"
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        }
       },
       {
         "key": "comfortable_sharing_child_hiv_status",
@@ -290,6 +339,13 @@
             "openmrs_entity_id": ""
           }
         ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        },
         "v_required": {
           "value": "true",
           "err": "{{child_hv_pmtct.step1.v_required.err}}"
@@ -303,7 +359,14 @@
         "type": "toaster_notes",
         "text": "{{child_hv_family_member_involvement.step1.mother_visits_pmtct_clinic.text}}",
         "text_color": "#2D2E2D",
-        "toaster_type": "info"
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_pmtct_relevance.yml"
+            }
+          }
+        }
       }
     ]
   },
