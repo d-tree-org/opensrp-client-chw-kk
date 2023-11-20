@@ -145,7 +145,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year II Modules
                 evaluateYearIIModules();
             }
-
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -181,7 +180,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateYearIIModules() {
-
+        evaluateMalnutritionScreeningYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -792,6 +791,24 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(malnutritionScreeningActionHelper)
+                .build();
+
+        actionList.put(title, malnutritionScreeningAction);
+    }
+
+    private void evaluateMalnutritionScreeningYearII () throws Exception {
+        String title = context.getString(R.string.malnutrition_screening);
+
+        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper(null);
+
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_malnutrition_screening_year_ii")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withHelper(malnutritionScreeningActionHelper)
                 .build();
 
