@@ -233,4 +233,5 @@
     <string name="who_came_with_the_child_lv_other_error">Other companion of caregiver missing</string>
     <string name="came_with_pc_lv">Caregiver information missing</string>
     <string name="selected_group_lv">Child missing the group</string>
+    <string name="malaria_prevention">Malaria Prevention</string>
 </resources>
