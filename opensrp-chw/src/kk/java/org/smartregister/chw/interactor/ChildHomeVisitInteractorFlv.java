@@ -145,7 +145,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year II Modules
                 evaluateYearIIModules();
             }
-
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -181,7 +180,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateYearIIModules() {
-
+        evaluateComplementaryFeedingYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -796,6 +795,25 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    private void evaluateComplementaryFeedingYearII() throws Exception {
+        String title = context.getString(R.string.complimentary_feeding_year_ii);
+
+        ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper(context, null);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.COMPLIMENTARY_FEEDING);
+
+        BaseAncHomeVisitAction complementary_feeding = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_complimentary_feeding_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(complimentaryFeedingActionHelper)
+                .build();
+
+        actionList.put(title, complementary_feeding);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
