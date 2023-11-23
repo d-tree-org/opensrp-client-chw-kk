@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
+import org.smartregister.chw.actionhelper.ImmunizationsHelperYearII;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
@@ -180,8 +181,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
 
-    private void evaluateYearIIModules() {
-
+    private void evaluateYearIIModules() throws Exception {
+        evaluateImmunizationsYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -796,6 +797,24 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    private void evaluateImmunizationsYearII() throws Exception {
+        String immunizationsTitle = context.getString(R.string.immunizations);
+        Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
+
+        ImmunizationsHelperYearII immunizationsHelperYearII = new ImmunizationsHelperYearII();
+
+        BaseAncHomeVisitAction immunizationsActionYearII = getBuilder(immunizationsTitle)
+                .withHelper(immunizationsHelperYearII)
+                .withDetails(details)
+                .withOptional(false)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName("child_hv_immunizations_year_ii")
+                .build();
+
+        actionList.put(immunizationsTitle, immunizationsActionYearII);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
