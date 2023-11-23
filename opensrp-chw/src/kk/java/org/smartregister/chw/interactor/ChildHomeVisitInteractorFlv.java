@@ -16,6 +16,7 @@ import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
+import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelperYearII;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
 import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
@@ -145,7 +146,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year II Modules
                 evaluateYearIIModules();
             }
-
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -181,7 +181,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateYearIIModules() {
-
+        evaluateChildPlayAssessmentCounselingYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -796,6 +796,28 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    protected void evaluateChildPlayAssessmentCounselingYearII() throws Exception {
+
+        String title = context.getString(R.string.child_play_and_assessment_counselling);
+
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPagePlayAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        PlayAssessmentCounselingActionHelperYearII helper = new PlayAssessmentCounselingActionHelperYearII(context, bangoKititaPage);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName("child_hv_play_assessment_counselling_year_ii")
+                .build();
+
+        actionList.put(title, action);
+
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
