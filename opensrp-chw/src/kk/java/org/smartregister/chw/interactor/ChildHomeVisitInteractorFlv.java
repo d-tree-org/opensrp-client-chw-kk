@@ -7,6 +7,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
+import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelperYearII;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
@@ -138,7 +139,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             evaluateVisitLocation( );
 
-            if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
+            if (false) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
                 evaluateYearIModules(childAgeInDays, childAgeInMonth, serviceWrapperMap);
             }
 
@@ -180,8 +181,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
 
-    private void evaluateYearIIModules() {
-
+    private void evaluateYearIIModules() throws Exception {
+        evaluateCareGiverResponsivenessYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -796,6 +797,24 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    protected void evaluateCareGiverResponsivenessYearII() throws Exception {
+
+        CareGiverResponsivenessActionHelperYearII actionHelperYearII = new CareGiverResponsivenessActionHelperYearII();
+
+        String title = context.getString(R.string.ccd_caregiver_responsiveness);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelperYearII)
+                .withDetails(details)
+                .withOptional(false)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withFormName("child_hv_caregiver_responsiveness_year_ii")
+                .build();
+
+        actionList.put(title, action);
+
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
