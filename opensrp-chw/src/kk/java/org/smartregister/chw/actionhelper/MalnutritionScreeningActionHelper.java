@@ -32,6 +32,10 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
     String jsonString = "";
     ServiceWrapper serviceWrapper;
 
+    public MalnutritionScreeningActionHelper(){
+        this.serviceWrapper = null;
+    }
+
     public MalnutritionScreeningActionHelper(ServiceWrapper serviceWrapper){
         this.serviceWrapper = serviceWrapper;
     }
@@ -44,6 +48,10 @@ public class MalnutritionScreeningActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String getPreProcessed() {
+
+        if (serviceWrapper == null)
+            return super.getPreProcessed();
+
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray fields = org.smartregister.chw.anc.util.JsonFormUtils.fields(jsonObject);
