@@ -19,6 +19,7 @@ import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelperYearII;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
+import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelperYearII;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelperYearII;
 import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
@@ -185,7 +186,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
-  
+         
     private void evaluateYearIIModules() throws Exception {
         evaluateToddlerDangerSignYearII();
         evaluateProblemSolvingYearII();
@@ -198,6 +199,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateComplementaryFeedingYearII();
         evaluateCCDDevelopmentScreeningYearII();
         evaluateCCDChildSafetyYearII();
+        evaluateChildPlayAssessmentCounselingYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -813,7 +815,29 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         actionList.put(title, malnutritionScreeningAction);
     }
+  
+    protected void evaluateChildPlayAssessmentCounselingYearII() throws Exception {
 
+        String title = context.getString(R.string.child_play_and_assessment_counselling);
+
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPagePlayAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        PlayAssessmentCounselingActionHelperYearII helper = new PlayAssessmentCounselingActionHelperYearII(context, bangoKititaPage);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName("child_hv_play_assessment_counselling_year_ii")
+                .build();
+
+        actionList.put(title, action);
+
+    }
+  
     protected void evaluateToddlerDangerSignYearII() throws Exception {
         String title = context.getString(R.string.toddler_danger_sign_month);
 
@@ -869,6 +893,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         actionList.put(title, ccd_development_screening_action_year_ii);
     }
+  
     private void evaluateFamilyMemberInvolvement() throws Exception {
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.family_member_involvement))
                 .withOptional(false)

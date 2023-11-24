@@ -78,6 +78,7 @@
     <string name="ccd_problem_solving"><b>CCD</b>: Problem Solving</string>
     <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues</string>
     <string name="newborn_care_cord_care">Essential Newborn Care: Cord Care</string>
+    <string name="ccd_play_child">Caregiver play with child</string>
     <string name="ccd_communication_with_child">Communicating with child</string>
 
     <string name="month_of">" %s months"</string>
