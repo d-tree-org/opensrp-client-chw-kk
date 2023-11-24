@@ -6,6 +6,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.CCDCommunicationAssessmentActionYearII;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelperYearII;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
@@ -147,7 +148,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year II Modules
                 evaluateYearIIModules();
             }
-
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -181,10 +181,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
-
+  
     private void evaluateYearIIModules() throws Exception {
         evaluateCareGiverResponsivenessYearII();
         evaluateCCDChildDisciplineYearII();
+        evaluateCCDCommunicationAssessmentYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -816,6 +817,27 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, action);
+    }
+  
+    private void evaluateCCDCommunicationAssessmentYearII() throws Exception {
+        String title = context.getString(R.string.ccd_communication_assessment);
+
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPageCommunicatinAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        CCDCommunicationAssessmentActionYearII ccdCommunicationAssessmentActionYearII = new CCDCommunicationAssessmentActionYearII(context, bangoKititaPage);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
+
+        BaseAncHomeVisitAction ccd_communication_assessment = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_ccd_communication_assessment_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(ccdCommunicationAssessmentActionYearII)
+                .build();
+
+        actionList.put(title, ccd_communication_assessment);
     }
   
     private void evaluateCCDChildDisciplineYearII() throws Exception {
