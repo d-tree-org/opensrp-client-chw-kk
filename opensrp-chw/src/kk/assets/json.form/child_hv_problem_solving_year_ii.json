@@ -1,0 +1,113 @@
+{
+  "count": "1",
+  "encounter_type": "Problem Solving",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_problem_solving.step1.title}}",
+    "fields": [
+      {
+        "key": "experience_challenges_playing_communicating",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.hint_year_ii}}",
+        "label_info_text": "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.hint_year_ii}}",
+        "values": [
+          "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.values[0]}}",
+          "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_problem_solving.step1.experience_challenges_playing_communicating.v_required.err}}"
+        }
+      },
+      {
+        "key": "challenges_play_communicating",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_problem_solving.step1.challenges_play_communicating.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "info",
+        "toaster_info_text": "{{child_hv_problem_solving.step1.challenges_play_communicating.toaster_info_text_year_ii}}",
+        "toaster_info_title": "{{child_hv_problem_solving.step1.challenges_play_communicating.toaster_info_title}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_problem_solving_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "precaution_leaving_baby",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "label",
+        "text": "{{child_hv_problem_solving.step1.precaution_leaving_baby.text_year_ii}}",
+        "label_text_size": "18sp",
+        "label_text_style": "italic",
+        "label_text_color": "#000000",
+        "has_bg": true
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_problem_solving"
+}

@@ -1,0 +1,342 @@
+{
+  "count": "1",
+  "encounter_type": "Essential New Born Care: Breastfeeding",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_breastfeeding.step1.title.year_ii}}",
+    "fields": [
+      {
+        "key": "visit_months",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden"
+      },
+      {
+        "key": "breastfeed_current",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "breastfeed_current",
+        "type": "spinner",
+        "hint": "{{child_hv_breastfeeding.step1.breastfeed_current.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.breastfeed_current.hint}}",
+        "values": [
+          "{{child_hv_breastfeeding.step1.breastfeed_current.values[0]}}",
+          "{{child_hv_breastfeeding.step1.breastfeed_current.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_breastfeeding.step1.breastfeed_current.v_required.err}}"
+        }
+      },
+      {
+        "key": "important_feeding_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "toaster_notes",
+        "toaster_type": "warning",
+        "text_color": "#00cf71",
+        "text": "{{child_hv_breastfeeding.step1.important_feeding_child.text}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "breastfeed_progress",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "toaster_notes",
+        "text_color": "#00cf71",
+        "text": "{{child_hv_breastfeeding.step1.breastfeed_progress.text}}",
+        "toaster_info_text": "{{child_hv_breastfeeding.step1.breastfeed_progress.toaster_info_text.year_ii}}",
+        "toaster_info_title": "{{child_hv_breastfeeding.step1.breastfeed_progress.toaster_info_title}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "challenges_breastfeed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "challenges_breastfeed",
+        "type": "spinner",
+        "hint": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint}}",
+        "values": [
+          "{{child_hv_breastfeeding.step1.challenges_breastfeed.values[0]}}",
+          "{{child_hv_breastfeeding.step1.challenges_breastfeed.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "less_than_an_hour": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "one_to_two_hours": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "discuss_breastfeeding_challenges",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "toaster_notes",
+        "text_color": "#00cf71",
+        "text": "{{child_hv_breastfeeding.step1.discuss_breastfeeding_challenges.text}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "other_food_child_feeds",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "challenges_breastfeed",
+        "type": "check_box",
+        "label": "{{child_hv_breastfeeding.step1.other_food_child_feeds.label}}",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "exclusive": [
+          "none"
+        ],
+        "options": [
+          {
+            "key": "infant_formula",
+            "text": "{{child_hv_breastfeeding.step1.other_food_child_feeds.options.infant_formula.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "plain_water",
+            "text": "{{child_hv_breastfeeding.step1.other_food_child_feeds.options.plain_water.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "juice",
+            "text": "{{child_hv_breastfeeding.step1.other_food_child_feeds.options.juice.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "clear_broth_soup",
+            "text": "{{child_hv_breastfeeding.step1.other_food_child_feeds.options.clear_broth_soup.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "milk_from_other_animals",
+            "text": "{{child_hv_breastfeeding.step1.other_food_child_feeds.options.milk_from_other_animals.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "soft_food",
+            "text": "{{child_hv_breastfeeding.step1.other_food_child_feeds.options.soft_food.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "something_else",
+            "text": "{{child_hv_breastfeeding.step1.other_food_child_feeds.options.something_else.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          },
+          {
+            "key": "none",
+            "text": "{{child_hv_breastfeeding.step1.other_food_child_feeds.options.none.text}}",
+            "value": false,
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": ""
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_breastfeeding.step1.other_food_child_feeds.v_required.err}}"
+        }
+      },
+      {
+        "key": "times_child_breastfeeds",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "times_child_breastfeeds",
+        "type": "spinner",
+        "hint": "{{child_hv_breastfeeding.step1.times_child_breastfeeds.hint.year_ii}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.times_child_breastfeeds.hint.year_ii}}",
+        "values": [
+          "{{child_hv_breastfeeding.step1.times_child_breastfeeds.values[0]}}",
+          "{{child_hv_breastfeeding.step1.times_child_breastfeeds.values[1]}}",
+          "{{child_hv_breastfeeding.step1.times_child_breastfeeds.values[2]}}",
+          "{{child_hv_breastfeeding.step1.times_child_breastfeeds.values[3]}}"
+        ],
+        "keys": [
+          "twice_a_day",
+          "three_times_a_day",
+          "four_time_a_day",
+          "more_than_five_times"
+        ],
+        "openmrs_choice_ids": {
+          "twice_a_day": "",
+          "three_times_a_day": "",
+          "four_time_a_day": "",
+          "more_than_five_times": ""
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "times_child_breastfeeds_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_breastfeeding.step1.times_child_breastfeeds_note.text.year_ii}}",
+        "text_color": "#00cf71",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "times_feed",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "times_feed",
+        "openmrs_data_type": "",
+        "type": "spinner",
+        "hint": "{{child_hv_breastfeeding.step1.times_feed.hint}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.times_feed.hint}}",
+        "values": [
+          "{{child_hv_breastfeeding.step1.times_feed.values[0]}}",
+          "{{child_hv_breastfeeding.step1.times_feed.values[1]}}",
+          "{{child_hv_breastfeeding.step1.times_feed.values[2]}}",
+          "{{child_hv_breastfeeding.step1.times_feed.values[3]}}",
+          "{{child_hv_breastfeeding.step1.times_feed.values[4]}}"
+        ],
+        "keys": [
+          "once",
+          "twice",
+          "three_times",
+          "four_times",
+          "more_than_five_times"
+        ],
+        "openmrs_choice_ids": {
+          "once": "",
+          "twice": "",
+          "three_times": "",
+          "four_times": "",
+          "more_than_five_times": ""
+        }
+      },
+      {
+        "key": "types_food_feed_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "toaster_notes",
+        "text_color": "#00cf71",
+        "text": "{{child_hv_breastfeeding.step1.types_food_feed_child.text}}",
+        "toaster_info_title": "{{child_hv_breastfeeding.step1.remind_mother_caregiver_feeding.toaster_info_title}}",
+        "toaster_info_text": "{{child_hv_breastfeeding.step1.remind_mother_caregiver_feeding.toaster_info_text}}"
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_breastfeeding"
+}
