@@ -6,17 +6,21 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.CCDCommunicationAssessmentActionYearII;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
+import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelperYearII;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
+import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelperYearII;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
+import org.smartregister.chw.actionhelper.ProblemSolvingActionHelperYearII;
 import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -26,6 +30,7 @@ import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.helper.CCDChildDisciplineActionHelper;
+import org.smartregister.chw.helper.CCDChildDisciplineActionHelperYearII;
 import org.smartregister.chw.helper.CCDCommunicationAssessmentAction;
 import org.smartregister.chw.helper.CCDDevelopmentScreeningAction;
 import org.smartregister.chw.helper.CCDIntroductionAction;
@@ -138,7 +143,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             evaluateVisitLocation( );
 
-            if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
+            if (false) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
                 evaluateYearIModules(childAgeInDays, childAgeInMonth, serviceWrapperMap);
             }
 
@@ -178,8 +183,14 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
-
-    private void evaluateYearIIModules() {
+  
+    private void evaluateYearIIModules() throws Exception {
+        evaluateProblemSolvingYearII();
+        evaluateCareGiverResponsivenessYearII();
+        evaluateCCDChildDisciplineYearII();
+        evaluateCCDCommunicationAssessmentYearII();
+        evaluateBreastFeedingYearII();
+        evaluateMalnutritionScreeningYearII();
         evaluateComplementaryFeedingYearII();
     }
 
@@ -791,6 +802,117 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withScheduleStatus(!isOverdue ? BaseAncHomeVisitAction.ScheduleStatus.DUE : BaseAncHomeVisitAction.ScheduleStatus.OVERDUE)
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withSubtitle(MessageFormat.format("{0}{1}", dueState, DateTimeFormat.forPattern("dd MMM yyyy").print(new DateTime(serviceWrapper.getVaccineDate()))))
+                .withHelper(malnutritionScreeningActionHelper)
+                .build();
+
+        actionList.put(title, malnutritionScreeningAction);
+    }
+  
+    protected void evaluateBreastFeedingYearII() throws Exception {
+        String title = context.getString(R.string.ccd_breastfeeding);
+        ;
+
+        NewBornCareBreastfeedingHelperYearII helper = new NewBornCareBreastfeedingHelperYearII(context);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_BREASTFEEDING);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName("child_hv_breastfeeding_year_ii")
+                .build();
+          
+        actionList.put(title, action);
+   }
+  
+    protected void evaluateCareGiverResponsivenessYearII() throws Exception {
+
+        CareGiverResponsivenessActionHelperYearII actionHelperYearII = new CareGiverResponsivenessActionHelperYearII();
+
+        String title = context.getString(R.string.ccd_caregiver_responsiveness);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelperYearII)
+                .withDetails(details)
+                .withOptional(false)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withFormName("child_hv_caregiver_responsiveness_year_ii")
+                .build();
+
+        actionList.put(title, action);
+    }
+  
+    private void evaluateCCDCommunicationAssessmentYearII() throws Exception {
+        String title = context.getString(R.string.ccd_communication_assessment);
+
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPageCommunicatinAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        CCDCommunicationAssessmentActionYearII ccdCommunicationAssessmentActionYearII = new CCDCommunicationAssessmentActionYearII(context, bangoKititaPage);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
+
+        BaseAncHomeVisitAction ccd_communication_assessment = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_ccd_communication_assessment_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(ccdCommunicationAssessmentActionYearII)
+                .build();
+
+        actionList.put(title, ccd_communication_assessment);
+    }
+  
+    private void evaluateCCDChildDisciplineYearII() throws Exception {
+        String title = context.getString(R.string.ccd_child_discipline);
+        CCDChildDisciplineActionHelperYearII ccdChildDisciplineActionHelperYearII = new CCDChildDisciplineActionHelperYearII();
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_CHILD_DISCIPLINE);
+
+        BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_ccd_child_discipline_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(ccdChildDisciplineActionHelperYearII)
+                .build();
+        actionList.put(title, ccd_child_discipline_action);
+    }
+
+    private void evaluateProblemSolvingYearII() throws Exception{
+
+        ProblemSolvingActionHelperYearII actionHelperYearII = new ProblemSolvingActionHelperYearII();
+
+        String title = context.getString(R.string.ccd_problem_solving);
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelperYearII)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvProblemSolving())
+                .build();
+
+        actionList.put(title, action);
+    }
+
+    private void evaluateMalnutritionScreeningYearII () throws Exception {
+        String title = context.getString(R.string.malnutrition_screening);
+
+        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
+
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_malnutrition_screening_year_ii")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withHelper(malnutritionScreeningActionHelper)
                 .build();
 
