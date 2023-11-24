@@ -139,7 +139,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             evaluateVisitLocation( );
 
-            if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
+            if (false) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
                 evaluateYearIModules(childAgeInDays, childAgeInMonth, serviceWrapperMap);
             }
 
@@ -180,7 +180,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
 
-    private void evaluateYearIIModules() {
+    private void evaluateYearIIModules() throws Exception {
         evaluateBreastFeedingYearII();
     }
 
