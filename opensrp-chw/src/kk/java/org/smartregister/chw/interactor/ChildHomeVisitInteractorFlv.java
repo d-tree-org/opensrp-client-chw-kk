@@ -15,6 +15,7 @@ import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
+import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelperYearII;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
@@ -141,7 +142,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             evaluateVisitLocation( );
 
-            if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
+            if (false) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
                 evaluateYearIModules(childAgeInDays, childAgeInMonth, serviceWrapperMap);
             }
 
@@ -181,11 +182,12 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
-  
+
     private void evaluateYearIIModules() throws Exception {
         evaluateCareGiverResponsivenessYearII();
         evaluateCCDChildDisciplineYearII();
         evaluateCCDCommunicationAssessmentYearII();
+        evaluateBreastFeedingYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -801,7 +803,28 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         actionList.put(title, malnutritionScreeningAction);
     }
+  
+    protected void evaluateBreastFeedingYearII() throws Exception {
+        String title = context.getString(R.string.ccd_breastfeeding);
+        ;
 
+        NewBornCareBreastfeedingHelperYearII helper = new NewBornCareBreastfeedingHelperYearII(context);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_BREASTFEEDING);
+
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(helper)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName("child_hv_breastfeeding_year_ii")
+                .build();
+          
+        actionList.put(title, action);
+   }
+  
     protected void evaluateCareGiverResponsivenessYearII() throws Exception {
 
         CareGiverResponsivenessActionHelperYearII actionHelperYearII = new CareGiverResponsivenessActionHelperYearII();
