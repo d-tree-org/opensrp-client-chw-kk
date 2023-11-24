@@ -33,6 +33,7 @@ import org.smartregister.chw.helper.CCDChildDisciplineActionHelper;
 import org.smartregister.chw.helper.CCDChildDisciplineActionHelperYearII;
 import org.smartregister.chw.helper.CCDCommunicationAssessmentAction;
 import org.smartregister.chw.helper.CCDDevelopmentScreeningAction;
+import org.smartregister.chw.helper.CCDDevelopmentScreeningActionYearII;
 import org.smartregister.chw.helper.CCDIntroductionAction;
 import org.smartregister.chw.helper.ChildSafetyActionHelper;
 import org.smartregister.chw.helper.ComplimentaryFeedingActionHelper;
@@ -183,7 +184,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
-  
+
     private void evaluateYearIIModules() throws Exception {
         evaluateProblemSolvingYearII();
         evaluateCareGiverResponsivenessYearII();
@@ -193,6 +194,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateMalnutritionScreeningYearII();
         evaluateFamilyMemberInvolvement();
         evaluateComplementaryFeedingYearII();
+        evaluateCCDDevelopmentScreeningYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -809,6 +811,22 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, malnutritionScreeningAction);
     }
 
+    private void evaluateCCDDevelopmentScreeningYearII() throws Exception {
+        String title = context.getString(R.string.ccd_development_screening);
+        CCDDevelopmentScreeningActionYearII ccdDevelopmentScreeningActionYearII = new CCDDevelopmentScreeningActionYearII();
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
+
+        BaseAncHomeVisitAction ccd_development_screening_action_year_ii = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.ccd_development_screening))
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_ccd_development_screening_year_ii")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(ccdDevelopmentScreeningActionYearII)
+                .build();
+
+        actionList.put(title, ccd_development_screening_action_year_ii);
+    }
     private void evaluateFamilyMemberInvolvement() throws Exception {
         BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.family_member_involvement))
                 .withOptional(false)
