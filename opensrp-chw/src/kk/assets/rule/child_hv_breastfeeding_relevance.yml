@@ -91,3 +91,10 @@ priority: 1
 condition: "step1_child_suckling_well.contains('No')"
 actions:
   - "isRelevant = true"
+---
+name: step1_important_feeding_child
+description: Important feeding child
+priority: 1
+condition: "step1_breastfeed_current.contains('No')"
+actions:
+  - "isRelevant = true"
