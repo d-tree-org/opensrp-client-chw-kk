@@ -36,6 +36,7 @@ import org.smartregister.chw.helper.CCDDevelopmentScreeningAction;
 import org.smartregister.chw.helper.CCDDevelopmentScreeningActionYearII;
 import org.smartregister.chw.helper.CCDIntroductionAction;
 import org.smartregister.chw.helper.ChildSafetyActionHelper;
+import org.smartregister.chw.helper.ChildSafetyActionHelperYearII;
 import org.smartregister.chw.helper.ComplimentaryFeedingActionHelper;
 import org.smartregister.chw.helper.ToddlerDangerSignAction;
 import org.smartregister.chw.util.BangoKititaPages;
@@ -195,6 +196,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateFamilyMemberInvolvement();
         evaluateComplementaryFeedingYearII();
         evaluateCCDDevelopmentScreeningYearII();
+        evaluateCCDChildSafetyYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -809,6 +811,26 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    private void evaluateCCDChildSafetyYearII() throws Exception {
+
+        String title = context.getString(R.string.child_safety_year_ii);
+
+        ChildSafetyActionHelperYearII childSafetyActionHelperYearII = new ChildSafetyActionHelperYearII();
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CHILD_SAFETY);
+
+        BaseAncHomeVisitAction child_safety_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_child_safety_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(childSafetyActionHelperYearII)
+                .build();
+
+        actionList.put(title, child_safety_action);
     }
 
     private void evaluateCCDDevelopmentScreeningYearII() throws Exception {
