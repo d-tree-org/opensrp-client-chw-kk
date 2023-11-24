@@ -23,6 +23,11 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
     private String toddler_danger_sign_key;
     private final Alert alert;
 
+    public ToddlerDangerSignAction(Context context){
+        this.context = context;
+        this.alert = null;
+    }
+
     public ToddlerDangerSignAction(Context context, Alert alert){
         this.context = context;
         this.alert = alert;
@@ -34,7 +39,10 @@ public class ToddlerDangerSignAction extends HomeVisitActionHelper {
     }
 
     private boolean isOverDue() {
-        return new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
+        if (alert == null)
+            return false;
+        else
+            return new LocalDate().isAfter(new LocalDate(alert.startDate()).plusDays(14));
     }
 
     @Override

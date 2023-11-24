@@ -38,6 +38,8 @@
     <string name="ccd_problem_solving"><b>CCD</b>: Kutatua Tatizo</string>
     <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Muitikio wa mlezi kwa ishara na sauti za mtoto </string>
     <string name="newborn_care_cord_care">Huduma muhimu kwa watoto wachanga: Jinsi ya kukitunza kitovu.</string>
+    <string name="ccd_play_child">Mlezi anacheza na mtoto</string>
+    <string name="ccd_communication_with_child">Kuzungumza na mtoto</string>
 
     <string name="month_of">" mwezi wa %s"</string>
     <string name="week_of">" wiki ya %s"</string>
@@ -64,6 +66,8 @@
     <string name="ccd_development_screening"> <b>CCD</b>: Maendeleo ya ukuaji </string>
     <string name="ccd_communication_assessment"> <b>CCD</b>: Hali ya mawasiliano </string>
     <string name="ccd_child_discipline"> <b>CCD</b>: Nidhamu ya mtoto </string>
+    <string name="complimentary_feeding_year_ii">Lishe</string>
+    <string name="ccd_breastfeeding">Unyonyeshaji wa maziwa ya mama</string>
 
     <string name="child_safety"> Usalama wa mtoto </string>
 
@@ -215,4 +219,7 @@
     <string name="came_with_pc_lv">Tafadhari bainisha kama mtoto amekuja na mlezi wake</string>
     <string name="selected_group_lv">Tafadhari chagua kundi la mototo</string>
     <string name="malaria_prevention">Huduma ya kuzuia Malaria</string>
+    <string name="ccd_child_safety_subtitle_year_ii">Mlezi ameelimishwa juu ya usalama wa mtoto</string>
+    <string name="child_safety_year_ii">Usalama wa mtoto: Kuzuia ajali</string>
+    <string name="family_member_involvement">Kuwahusisha wanafamila wengine</string>
 </resources>

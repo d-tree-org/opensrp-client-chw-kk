@@ -78,6 +78,8 @@
     <string name="ccd_problem_solving"><b>CCD</b>: Problem Solving</string>
     <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues</string>
     <string name="newborn_care_cord_care">Essential Newborn Care: Cord Care</string>
+    <string name="ccd_play_child">Caregiver play with child</string>
+    <string name="ccd_communication_with_child">Communicating with child</string>
 
     <string name="month_of">" %s months"</string>
     <string name="week_of">" %s weeks"</string>
@@ -104,6 +106,8 @@
     <string name="ccd_development_screening"> <b>CCD</b>: Development screening </string>
     <string name="ccd_communication_assessment"> <b>CCD</b>: Communication assessment </string>
     <string name="ccd_child_discipline"> <b>CCD</b>: Child discipline</string>
+    <string name="complimentary_feeding_year_ii">Nutrition</string>
+    <string name="ccd_breastfeeding">Breastfeeding</string>
 
     <string name="child_safety"> Child Safety </string>
 
@@ -227,11 +231,14 @@
     <string name="cg_rep_lv_other">Other</string>
     <string name="cg_rep_lv_other_hint">Other caregiver</string>
     <string name="who_came_with_the_child_lv_other_hint">Other companion</string>
-    <string name="cg_rep_lv_error">Caregiver representatives missing</string>
+    <string name="cg_rep_>>>>>>> developmentlv_error">Caregiver representatives missing</string>
     <string name="cg_rep_lv_other_error">Other caregiver representative missing</string>
     <string name="who_came_with_the_child_lv_error">The companions of caregiver missing</string>
     <string name="who_came_with_the_child_lv_other_error">Other companion of caregiver missing</string>
     <string name="came_with_pc_lv">Caregiver information missing</string>
     <string name="selected_group_lv">Child missing the group</string>
     <string name="malaria_prevention">Malaria Prevention</string>
+    <string name="ccd_child_safety_subtitle_year_ii">Counselled caregiver for child safety</string>
+    <string name="child_safety_year_ii">Child safety observation and counselling: Prevention of Accidents</string>
+    <string name="family_member_involvement">Family members involvement</string>
 </resources>
