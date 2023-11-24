@@ -191,6 +191,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDCommunicationAssessmentYearII();
         evaluateBreastFeedingYearII();
         evaluateMalnutritionScreeningYearII();
+        evaluateFamilyMemberInvolvement();
         evaluateComplementaryFeedingYearII();
     }
 
@@ -806,6 +807,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    private void evaluateFamilyMemberInvolvement() throws Exception {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.family_member_involvement))
+                .withOptional(false)
+                .withFormName("child_hv_family_member_involvement")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.family_member_involvement), action);
     }
   
     protected void evaluateBreastFeedingYearII() throws Exception {
