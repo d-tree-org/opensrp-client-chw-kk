@@ -6,6 +6,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
+import org.smartregister.chw.actionhelper.CCDCommunicationAssessmentActionYearII;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
@@ -27,6 +28,7 @@ import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.VisitUtils;
 import org.smartregister.chw.application.ChwApplication;
 import org.smartregister.chw.helper.CCDChildDisciplineActionHelper;
+import org.smartregister.chw.helper.CCDChildDisciplineActionHelperYearII;
 import org.smartregister.chw.helper.CCDCommunicationAssessmentAction;
 import org.smartregister.chw.helper.CCDDevelopmentScreeningAction;
 import org.smartregister.chw.helper.CCDIntroductionAction;
@@ -181,6 +183,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateYearIIModules() throws Exception {
+        evaluateCCDChildDisciplineYearII();
+        evaluateCCDCommunicationAssessmentYearII();
         evaluateBreastFeedingYearII();
     }
 
@@ -799,7 +803,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     protected void evaluateBreastFeedingYearII() throws Exception {
-        String title = context.getString(R.string.ccd_breastfeeding);;
+        String title = context.getString(R.string.ccd_breastfeeding);
+        ;
 
         NewBornCareBreastfeedingHelperYearII helper = new NewBornCareBreastfeedingHelperYearII(context);
 
@@ -816,6 +821,42 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, action);
+    }
+    private void evaluateCCDCommunicationAssessmentYearII() throws Exception {
+        String title = context.getString(R.string.ccd_communication_assessment);
+
+        String bangoKititaPage = BangoKititaPages.getBangoKititaPageCommunicatinAssessment(DateUtil.getDuration(new DateTime(dob)), context);
+
+        CCDCommunicationAssessmentActionYearII ccdCommunicationAssessmentActionYearII = new CCDCommunicationAssessmentActionYearII(context, bangoKititaPage);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_DEVELOPMENT_SCREENING);
+
+        BaseAncHomeVisitAction ccd_communication_assessment = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_ccd_communication_assessment_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(ccdCommunicationAssessmentActionYearII)
+                .build();
+
+        actionList.put(title, ccd_communication_assessment);
+    }
+  
+    private void evaluateCCDChildDisciplineYearII() throws Exception {
+        String title = context.getString(R.string.ccd_child_discipline);
+        CCDChildDisciplineActionHelperYearII ccdChildDisciplineActionHelperYearII = new CCDChildDisciplineActionHelperYearII();
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_CHILD_DISCIPLINE);
+
+        BaseAncHomeVisitAction ccd_child_discipline_action = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_ccd_child_discipline_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(ccdChildDisciplineActionHelperYearII)
+                .build();
+        actionList.put(title, ccd_child_discipline_action);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
