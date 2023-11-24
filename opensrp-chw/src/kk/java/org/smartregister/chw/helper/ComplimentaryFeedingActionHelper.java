@@ -23,6 +23,11 @@ public class ComplimentaryFeedingActionHelper extends HomeVisitActionHelper {
     private String complementaryFeedingCounselling = "";
     private String jsonPayload;
 
+    public ComplimentaryFeedingActionHelper(Context context){
+        this.context = context;
+        this.alert = null;
+    }
+
     public ComplimentaryFeedingActionHelper(Context context, Alert alert){
         this.alert = alert;
         this.context = context;
