@@ -20,6 +20,7 @@ import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
 import org.smartregister.chw.actionhelper.ProblemSolvingActionHelper;
+import org.smartregister.chw.actionhelper.ProblemSolvingActionHelperYearII;
 import org.smartregister.chw.actionhelper.VisitLocationActionHelper;
 import org.smartregister.chw.anc.contract.BaseAncHomeVisitContract;
 import org.smartregister.chw.anc.domain.MemberObject;
@@ -184,6 +185,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     }
 
     private void evaluateYearIIModules() throws Exception {
+        evaluateProblemSolvingYearII();
         evaluateCareGiverResponsivenessYearII();
         evaluateCCDChildDisciplineYearII();
         evaluateCCDCommunicationAssessmentYearII();
@@ -877,6 +879,24 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withHelper(ccdChildDisciplineActionHelperYearII)
                 .build();
         actionList.put(title, ccd_child_discipline_action);
+    }
+
+    private void evaluateProblemSolvingYearII() throws Exception{
+
+        ProblemSolvingActionHelperYearII actionHelperYearII = new ProblemSolvingActionHelperYearII();
+
+        String title = context.getString(R.string.ccd_problem_solving);
+        BaseAncHomeVisitAction action = getBuilder(title)
+                .withHelper(actionHelperYearII)
+                .withDetails(details)
+                .withOptional(false)
+                .withBaseEntityID(memberObject.getBaseEntityId())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvProblemSolving())
+                .build();
+
+        actionList.put(title, action);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
