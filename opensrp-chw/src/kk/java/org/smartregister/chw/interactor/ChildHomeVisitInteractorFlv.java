@@ -183,7 +183,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
-
+  
     private void evaluateYearIIModules() throws Exception {
         evaluateProblemSolvingYearII();
         evaluateCareGiverResponsivenessYearII();
@@ -191,6 +191,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDCommunicationAssessmentYearII();
         evaluateBreastFeedingYearII();
         evaluateMalnutritionScreeningYearII();
+        evaluateComplementaryFeedingYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -916,6 +917,25 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, malnutritionScreeningAction);
+    }
+
+    private void evaluateComplementaryFeedingYearII() throws Exception {
+        String title = context.getString(R.string.complimentary_feeding_year_ii);
+
+        ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper(context);
+
+        Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.COMPLIMENTARY_FEEDING);
+
+        BaseAncHomeVisitAction complementary_feeding = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_complimentary_feeding_year_ii")
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(complimentaryFeedingActionHelper)
+                .build();
+
+        actionList.put(title, complementary_feeding);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
