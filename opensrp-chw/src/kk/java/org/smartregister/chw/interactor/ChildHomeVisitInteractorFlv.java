@@ -800,7 +800,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     protected void evaluateToddlerDangerSignYearII() throws Exception {
         String title = context.getString(R.string.toddler_danger_sign_month);
 
-        ToddlerDangerSignAction helper = new ToddlerDangerSignAction(context, null);
+        ToddlerDangerSignAction helper = new ToddlerDangerSignAction(context);
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.TODDLER_DANGER_SIGN);
 
