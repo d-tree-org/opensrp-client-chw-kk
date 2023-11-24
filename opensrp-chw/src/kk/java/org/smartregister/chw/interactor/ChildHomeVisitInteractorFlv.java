@@ -190,6 +190,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDChildDisciplineYearII();
         evaluateCCDCommunicationAssessmentYearII();
         evaluateBreastFeedingYearII();
+        evaluateMalnutritionScreeningYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -897,6 +898,24 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(title, action);
+    }
+
+    private void evaluateMalnutritionScreeningYearII () throws Exception {
+        String title = context.getString(R.string.malnutrition_screening);
+
+        MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
+
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction malnutritionScreeningAction = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_malnutrition_screening_year_ii")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withHelper(malnutritionScreeningActionHelper)
+                .build();
+
+        actionList.put(title, malnutritionScreeningAction);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
