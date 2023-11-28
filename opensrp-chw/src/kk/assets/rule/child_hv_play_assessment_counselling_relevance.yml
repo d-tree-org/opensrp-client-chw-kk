@@ -1,4 +1,11 @@
 ---
+name: step1_interacts_with_baby_note
+description: Interaction note
+priority: 1
+condition: "step1_interaction_with_baby.contains('move_baby_arms_legs_stroke_gently') || step1_interaction_with_baby.contains('get_baby_attention_shaker_toy')"
+actions:
+  - "isRelevant = true"
+---
 name: step1_no_interaction_note
 description: no_interaction_note toaster message
 priority: 1
