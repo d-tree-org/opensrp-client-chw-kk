@@ -1,5 +1,7 @@
 package org.smartregister.chw.interactor;
 
+import android.content.Context;
+
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -8,6 +10,7 @@ import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.actionhelper.CCDCommunicationAssessmentActionYearII;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
+import org.smartregister.chw.actionhelper.ChildPMTCTActionHelper;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelperYearII;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
 import org.smartregister.chw.actionhelper.ImmunizationsHelperYearII;
@@ -189,7 +192,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
 
-  
     private void evaluateYearIIModules() throws Exception {
         evaluateToddlerDangerSignYearII();
         evaluateProblemSolvingYearII();
@@ -205,6 +207,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateChildPlayAssessmentCounselingYearII();
         evaluateMalariaPreventionYearII();
         evaluateImmunizationsYearII();
+        evaluateChildPMTCT();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -1073,6 +1076,21 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .build();
 
         actionList.put(immunizationsTitle, immunizationsActionYearII);
+    }
+
+    private void evaluateChildPMTCT() throws Exception {
+
+        String title  = context.getString(R.string.child_home_visit_pmtct);
+        Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
+
+        BaseAncHomeVisitAction childPmtctAction = new BaseAncHomeVisitAction.Builder(context, title)
+                .withOptional(false)
+                .withDetails(details)
+                .withFormName("child_hv_pmtct")
+                .withHelper(new ChildPMTCTActionHelper())
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(title, childPmtctAction);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
