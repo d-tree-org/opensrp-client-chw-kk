@@ -151,12 +151,12 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             evaluateVisitLocation( );
 
-            if (false) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year I Modules
+            if (childAgeInMonth <= 12) { //Child is less than one year
                 evaluateYearIModules(childAgeInDays, childAgeInMonth, serviceWrapperMap);
             }
 
-            if (true) {// TODO: 16/11/2023 to replace boolean value with the condition to be met to show Year II Modules
-                evaluateYearIIModules();
+            if (childAgeInMonth > 12) { //Child is more than one year
+                evaluateYearIIModules(childAgeInMonth);
             }
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
@@ -192,22 +192,24 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
 
-    private void evaluateYearIIModules() throws Exception {
-        evaluateToddlerDangerSignYearII();
-        evaluateProblemSolvingYearII();
-        evaluateCareGiverResponsivenessYearII();
-        evaluateCCDChildDisciplineYearII();
-        evaluateCCDCommunicationAssessmentYearII();
-        evaluateBreastFeedingYearII();
-        evaluateMalnutritionScreeningYearII();
-        evaluateFamilyMemberInvolvement();
-        evaluateComplementaryFeedingYearII();
-        evaluateCCDDevelopmentScreeningYearII();
-        evaluateCCDChildSafetyYearII();
-        evaluateChildPlayAssessmentCounselingYearII();
-        evaluateMalariaPreventionYearII();
-        evaluateImmunizationsYearII();
-        evaluateChildPMTCT();
+    private void evaluateYearIIModules(int childAgeInMonth) throws Exception {
+        evaluateFamilyMemberInvolvement(); // All 12 months
+        evaluateToddlerDangerSignYearII(); // All 12 months
+        evaluateBreastFeedingYearII(); // All 12 months
+        evaluateComplementaryFeedingYearII(childAgeInMonth); // Month 16 onwards
+        evaluateMalnutritionScreeningYearII(childAgeInMonth); //15, 18, 21, 24
+        evaluateImmunizationsYearII(childAgeInMonth); //12, 13, 18, 19, 21,
+
+        evaluateChildPlayAssessmentCounselingYearII(); //All 12 months
+        evaluateCCDCommunicationAssessmentYearII(); // All 12 months
+        evaluateCareGiverResponsivenessYearII(); // All 12 months
+        evaluateCCDChildDisciplineYearII(); // All 12 months
+        evaluateProblemSolvingYearII(); // All 12 months
+        evaluateCCDDevelopmentScreeningYearII(); // All 12 months
+
+        evaluateCCDChildSafetyYearII(childAgeInMonth); //12, 15, 18, 21, 24
+        evaluateMalariaPreventionYearII(childAgeInMonth); //12, 15, 18, 21
+        evaluateChildPMTCT(childAgeInMonth); // 15, 18, 21
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -864,8 +866,17 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         actionList.put(title, toddler_ds_action);
     }
-  
-    private void evaluateCCDChildSafetyYearII() throws Exception {
+
+    //12, 15, 18, 21, 24
+    private void evaluateCCDChildSafetyYearII(int childAgeInMonths) throws Exception {
+
+        if (childAgeInMonths != 12 &&
+                childAgeInMonths != 15 &&
+                childAgeInMonths != 18 &&
+                childAgeInMonths != 21 &&
+                childAgeInMonths != 24
+        )
+            return;
 
         String title = context.getString(R.string.child_safety_year_ii);
 
@@ -1004,7 +1015,16 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, action);
     }
 
-    private void evaluateMalnutritionScreeningYearII () throws Exception {
+    //15, 18, 21, 24
+    private void evaluateMalnutritionScreeningYearII (int childAgeInMonths) throws Exception {
+
+        if (childAgeInMonths != 15 &&
+                childAgeInMonths != 18 &&
+                childAgeInMonths != 21 &&
+                childAgeInMonths != 24
+        )
+            return;
+
         String title = context.getString(R.string.malnutrition_screening);
 
         MalnutritionScreeningActionHelper malnutritionScreeningActionHelper = new MalnutritionScreeningActionHelper();
@@ -1022,7 +1042,12 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, malnutritionScreeningAction);
     }
 
-    private void evaluateComplementaryFeedingYearII() throws Exception {
+    //Month 16 onwards
+    private void evaluateComplementaryFeedingYearII(int childAgeInMonths) throws Exception {
+
+        if (childAgeInMonths < 16 || childAgeInMonths > 24)
+            return;
+
         String title = context.getString(R.string.complimentary_feeding_year_ii);
 
         ComplimentaryFeedingActionHelper complimentaryFeedingActionHelper = new ComplimentaryFeedingActionHelper(context);
@@ -1041,7 +1066,16 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, complementary_feeding);
     }
 
-    protected void evaluateMalariaPreventionYearII() throws Exception {
+    //12, 15, 18, 21
+    protected void evaluateMalariaPreventionYearII(int childAgeInMonths) throws Exception {
+
+        if (childAgeInMonths != 12 &&
+                childAgeInMonths != 15 &&
+                childAgeInMonths != 18 &&
+                childAgeInMonths != 21
+        )
+            return;
+
         String title = context.getString(R.string.malaria_prevention);
 
         MalariaPreventionActionHelperYearII helper = new MalariaPreventionActionHelperYearII();
@@ -1060,7 +1094,17 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     }
 
-    private void evaluateImmunizationsYearII() throws Exception {
+    //12, 13, 18, 19, 21,
+    private void evaluateImmunizationsYearII(int childAgeInMonths) throws Exception {
+
+        if (childAgeInMonths != 12 &&
+                childAgeInMonths != 13 &&
+                childAgeInMonths != 28 &&
+                childAgeInMonths != 19 &&
+                childAgeInMonths != 21
+        )
+            return;
+
         String immunizationsTitle = context.getString(R.string.immunizations);
         Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
 
@@ -1078,7 +1122,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(immunizationsTitle, immunizationsActionYearII);
     }
 
-    private void evaluateChildPMTCT() throws Exception {
+
+    //15, 18, 21
+    private void evaluateChildPMTCT(int childAgeInMonths) throws Exception {
+
+        if (childAgeInMonths != 15 &&
+                childAgeInMonths != 18 &&
+                childAgeInMonths != 21
+        )
+            return;
 
         String title  = context.getString(R.string.child_home_visit_pmtct);
         Map<String, List<VisitDetail>> details = getDetails(Constants.EventType.CHILD_HOME_VISIT);
