@@ -10,6 +10,7 @@ import org.smartregister.chw.actionhelper.CCDCommunicationAssessmentActionYearII
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelper;
 import org.smartregister.chw.actionhelper.CareGiverResponsivenessActionHelperYearII;
 import org.smartregister.chw.actionhelper.ImmunizationsHelper;
+import org.smartregister.chw.actionhelper.ImmunizationsHelperYearII;
 import org.smartregister.chw.actionhelper.KMCSkinToSkinCounsellingHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelper;
 import org.smartregister.chw.actionhelper.MalariaPreventionActionHelperYearII;
@@ -187,7 +188,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
     }
-         
+
+  
     private void evaluateYearIIModules() throws Exception {
         evaluateToddlerDangerSignYearII();
         evaluateProblemSolvingYearII();
@@ -202,6 +204,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDChildSafetyYearII();
         evaluateChildPlayAssessmentCounselingYearII();
         evaluateMalariaPreventionYearII();
+        evaluateImmunizationsYearII();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -1052,6 +1055,24 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
         actionList.put(title, action);
 
+    }
+
+    private void evaluateImmunizationsYearII() throws Exception {
+        String immunizationsTitle = context.getString(R.string.immunizations);
+        Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
+
+        ImmunizationsHelperYearII immunizationsHelperYearII = new ImmunizationsHelperYearII();
+
+        BaseAncHomeVisitAction immunizationsActionYearII = getBuilder(immunizationsTitle)
+                .withHelper(immunizationsHelperYearII)
+                .withDetails(details)
+                .withOptional(false)
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
+                .withFormName("child_hv_immunizations_year_ii")
+                .build();
+
+        actionList.put(immunizationsTitle, immunizationsActionYearII);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
