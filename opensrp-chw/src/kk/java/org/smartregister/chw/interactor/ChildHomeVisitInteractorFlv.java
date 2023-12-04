@@ -147,6 +147,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                     String childMonth = childAge.substring(0, childAge.indexOf("m"));
                     childAgeInMonth =  Integer.parseInt(childMonth);
                 }
+            } else {
+                int years = Integer.parseInt(childAge.split("y")[0]); // e.g 1y5m result 1
+                int months = Integer.parseInt((childAge.replaceAll("\\s", "").split("y")[1]).replace("m", "")); // e.g 1y5m  result 5
+                childAgeInMonth = (years * 12) + months;
             }
 
             evaluateVisitLocation( );
@@ -1108,7 +1112,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String immunizationsTitle = context.getString(R.string.immunizations);
         Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
 
-        ImmunizationsHelperYearII immunizationsHelperYearII = new ImmunizationsHelperYearII();
+        ImmunizationsHelperYearII immunizationsHelperYearII = new ImmunizationsHelperYearII(childAgeInMonths);
 
         BaseAncHomeVisitAction immunizationsActionYearII = getBuilder(immunizationsTitle)
                 .withHelper(immunizationsHelperYearII)
