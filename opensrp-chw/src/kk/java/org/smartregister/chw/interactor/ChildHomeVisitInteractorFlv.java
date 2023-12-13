@@ -139,15 +139,9 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
             String childAge = DateUtil.getDuration(new DateTime(dob));
             int childAgeInDays = DateUtil.dayDifference(DateUtil.today(), LocalDate.fromDateFields(dob));
-            int childAgeInMonth = -1;
-            //Get the month part
-            if (!childAge.contains("y")){
-                //The child is less than one year
-                if (childAge.contains("m")) {
-                    String childMonth = childAge.substring(0, childAge.indexOf("m"));
-                    childAgeInMonth =  Integer.parseInt(childMonth);
-                }
-            }
+            int childAgeInMonth;
+
+            childAgeInMonth = convertAgeToMonths(childAge);
 
             evaluateVisitLocation( );
 
@@ -1108,7 +1102,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         String immunizationsTitle = context.getString(R.string.immunizations);
         Map<String, List<VisitDetail>> details = getDetails(KkConstants.EventType.IMMUNIZATIONS);
 
-        ImmunizationsHelperYearII immunizationsHelperYearII = new ImmunizationsHelperYearII();
+        ImmunizationsHelperYearII immunizationsHelperYearII = new ImmunizationsHelperYearII(childAgeInMonths);
 
         BaseAncHomeVisitAction immunizationsActionYearII = getBuilder(immunizationsTitle)
                 .withHelper(immunizationsHelperYearII)
@@ -1188,4 +1182,32 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         }
         return "0";
     }
+
+    public static int convertAgeToMonths(String childAge) {
+        int childAgeInMonths = 0;
+
+        if (!childAge.contains("y")) {
+            // The child is less than one year
+            if (childAge.contains("m")) {
+                childAgeInMonths = Integer.parseInt(childAge.substring(0, childAge.indexOf("m")));
+            }
+        } else {
+            String[] ageParts = childAge.split("y");
+
+            // Handle the case where there might be extra spaces
+            int years = Integer.parseInt(ageParts[0].trim());
+
+            if (ageParts.length > 1) {
+                // Extract months part and remove "m"
+                int months = Integer.parseInt(ageParts[1].replace("m", "").trim());
+                childAgeInMonths = (years * 12) + months;
+            } else {
+                // Only years are provided
+                childAgeInMonths = years * 12;
+            }
+        }
+
+        return childAgeInMonths;
+    }
+
 }

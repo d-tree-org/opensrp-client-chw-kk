@@ -2,7 +2,10 @@ package org.smartregister.chw.actionhelper;
 
 import android.content.Context;
 
+import com.vijay.jsonwizard.constants.JsonFormConstants;
+
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
@@ -10,9 +13,11 @@ import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
 import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
+import org.smartregister.chw.dao.ImmunizationDao;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -25,16 +30,16 @@ public class ImmunizationsHelperYearII extends HomeVisitActionHelper {
     private String received_vitamin_a_droplets= "";
     private String vaccines_up_to_date = "";
     private String jsonString;
+    private int childAgeInMonths;
+
+    public ImmunizationsHelperYearII(int childAgeInMonths) {
+        this.childAgeInMonths = childAgeInMonths;
+    }
 
     @Override
     public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
         this.jsonString = jsonString;
         this.context = context;
-    }
-
-    @Override
-    public String getPreProcessed() {
-        return  null;
     }
 
     @Override
@@ -100,4 +105,28 @@ public class ImmunizationsHelperYearII extends HomeVisitActionHelper {
         return Integer.parseInt(periodString);
     }
 
+    @Override
+    public String getPreProcessed() {
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray fields = JsonFormUtils.fields(jsonObject);
+
+            if (this.childAgeInMonths == 15 || this.childAgeInMonths == 18)
+                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "received_ipv")).put(JsonFormConstants.HIDDEN, false);
+
+            if (this.childAgeInMonths == 18 || this.childAgeInMonths == 19)
+                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "received_surua_rubella2")).put(JsonFormConstants.HIDDEN, false);
+
+            if (this.childAgeInMonths == 12 || this.childAgeInMonths == 18 || this.childAgeInMonths == 24)
+                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "received_vitamin_a_droplets")).put(JsonFormConstants.HIDDEN, false);
+
+            if (this.childAgeInMonths == 12 || this.childAgeInMonths == 13 || this.childAgeInMonths == 18 || this.childAgeInMonths == 24)
+                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "received_deworming_tablets")).put(JsonFormConstants.HIDDEN, false);
+
+            return jsonObject.toString();
+        } catch (JSONException e) {
+            Timber.e(e);
+        }
+        return super.getPreProcessed();
+    }
 }
