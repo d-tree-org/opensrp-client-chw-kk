@@ -1,13 +1,13 @@
 ---
 name: step1_breastfed_prev
-description: Breastfeeding progress toaster message
+description: Previous breastfeeding toaster message
 priority: 1
 condition: "step1_first_visit.isEmpty()"
 actions:
   - "isRelevant = true"
 ---
 name: step1_time_to_breastfeed
-description: Breastfeeding progress toaster message
+description: Time to breastfeed message
 priority: 1
 condition: "step1_first_visit.isEmpty()"
 actions:
@@ -16,7 +16,7 @@ actions:
 name: step1_breastfeed_progress
 description: Breastfeeding progress toaster message
 priority: 1
-condition: "step1_breastfeed_current.contains('Yes') && step1_visit_months.isEmpty()"
+condition: "step1_breastfeed_current.contains('Yes') && step1_visit_month_15_18_21_24 == true"
 actions:
   - "isRelevant = true"
 ---
@@ -89,5 +89,19 @@ name: step1_child_suckling_demo
 description: Breastfeeding demo toaster message
 priority: 1
 condition: "step1_child_suckling_well.contains('No')"
+actions:
+  - "isRelevant = true"
+---
+name: step1_important_feeding_child
+description: Important feeding child
+priority: 1
+condition: "step1_breastfeed_current.contains('No') && step1_visit_month_15_18_21_24 == true"
+actions:
+  - "isRelevant = true"
+---
+name: step1_other_food_child_feeds
+description: Other food child is feeding relevance
+priority: 1
+condition: "step1_visit_month_15_18_21_24 == true"
 actions:
   - "isRelevant = true"

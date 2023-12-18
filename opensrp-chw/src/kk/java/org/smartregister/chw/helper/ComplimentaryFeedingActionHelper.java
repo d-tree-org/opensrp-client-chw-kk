@@ -23,6 +23,11 @@ public class ComplimentaryFeedingActionHelper extends HomeVisitActionHelper {
     private String complementaryFeedingCounselling = "";
     private String jsonPayload;
 
+    public ComplimentaryFeedingActionHelper(Context context){
+        this.context = context;
+        this.alert = null;
+    }
+
     public ComplimentaryFeedingActionHelper(Context context, Alert alert){
         this.alert = alert;
         this.context = context;
@@ -51,7 +56,11 @@ public class ComplimentaryFeedingActionHelper extends HomeVisitActionHelper {
 
     @Override
     public String evaluateSubTitle() {
-        return MessageFormat.format(context.getString(R.string.counselled_mother_for_comp_feeding)+" : {0}", complementaryFeedingCounselling.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
+        if(!complementaryFeedingCounselling.isEmpty()){
+            return MessageFormat.format(context.getString(R.string.counselled_mother_for_comp_feeding)+" : {0}", complementaryFeedingCounselling.equals("yes") ? context.getString(R.string.yes) : context.getString(R.string.no));
+        }else{
+            return "";
+        }
     }
 
     @Override

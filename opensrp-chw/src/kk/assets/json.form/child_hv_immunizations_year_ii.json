@@ -1,0 +1,342 @@
+{
+  "count": "1",
+  "encounter_type": "Immunizations",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_immunization.step1.title}}",
+    "fields": [
+      {
+        "key": "clinic_card",
+        "type": "native_radio",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.clinic_card.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "has_clinic_card_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_immunization.step1.has_clinic_card_note.text}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "spacer",
+        "spacer_height": "16dp"
+      },
+      {
+        "key": "received_ipv",
+        "type": "native_radio",
+        "hidden": true,
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.received_ipv.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        },
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "received_surua_rubella2",
+        "type": "native_radio",
+        "hidden": true,
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.received_surua_rubella2.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "received_vitamin_a_droplets",
+        "type": "native_radio",
+        "hidden": true,
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.received_vitamin_a_droplets.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "received_deworming_tablets",
+        "type": "native_radio",
+        "hidden": true,
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.received_deworming_tablets.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "vaccines_up_to_date",
+        "type": "native_radio",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "label": "{{child_hv_immunization.step1.vaccines_up_to_date.label}}",
+        "options": [
+          {
+            "key": "yes",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.yes.text}}"
+          },
+          {
+            "key": "no",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.options.no.text}}"
+          }
+        ],
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        }
+      },
+      {
+        "key": "up_to_date_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_immunization.step1.vaccinations_up_to_date_note.text_year_ii}}",
+        "label_text_style": "normal",
+        "toaster_type": "info",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "vaccines_not_up_to_date_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "label": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.hint}}",
+        "options": [
+          {
+            "key": "vaccine_not_available",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "vaccine_not_available",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.vaccine_not_available.text}}"
+          },
+          {
+            "key": "family_refused",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "family_refused",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.family_refused.text}}"
+          },
+          {
+            "key": "clinic_closed",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "clinic_closed",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.clinic_closed.text}}"
+          },
+          {
+            "key": "return_another_day",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "return_another_day",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.return_another_day.text}}"
+          },
+          {
+            "key": "could_not_go",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "could_not_go",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.could_not_go.text}}"
+          },
+          {
+            "key": "does_not_know",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "does_not_know",
+            "openmrs_entity_parent": "",
+            "text": "{{child_hv_immunization.step1.vaccines_not_up_to_date_note.options.does_not_know.text}}"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_immunizations_relevance.yml"
+            }
+          }
+        },
+        "v_required": {
+          "value": "true",
+          "err": "{{child_hv_immunization.step1.v_required.err}}"
+        }
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_immunizations"
+}

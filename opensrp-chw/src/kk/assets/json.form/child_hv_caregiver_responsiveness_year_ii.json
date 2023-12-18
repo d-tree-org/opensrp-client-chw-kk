@@ -1,0 +1,189 @@
+{
+  "count": "1",
+  "encounter_type": "Caregiver Responsiveness",
+  "entity_id": "",
+  "metadata": {
+    "start": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "start",
+      "openmrs_entity_id": "163137AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "end": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "end",
+      "openmrs_entity_id": "163138AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "today": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "encounter",
+      "openmrs_entity_id": "encounter_date"
+    },
+    "deviceid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "deviceid",
+      "openmrs_entity_id": "163149AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "subscriberid": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "subscriberid",
+      "openmrs_entity_id": "163150AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "simserial": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "simserial",
+      "openmrs_entity_id": "163151AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "phonenumber": {
+      "openmrs_entity_parent": "",
+      "openmrs_entity": "concept",
+      "openmrs_data_type": "phonenumber",
+      "openmrs_entity_id": "163152AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    },
+    "encounter_location": ""
+  },
+  "step1": {
+    "title": "{{child_hv_caregiver_responsiveness.step1.title}}",
+    "fields": [
+      {
+        "key": "caregiver_interacts_with_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.hint_year_ii}}",
+        "label_info_text": "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.hint_year_ii}}",
+        "values": [
+          "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.values[0]}}",
+          "{{child_hv_caregiver_responsiveness.step1.caregiver_interacts_with_child.values[1]}}"
+        ],
+        "keys": [
+          "Moves toward and with child, and talks to or makes sounds with child, responds to child",
+          "Does not move with child, or controls child’s movements or is not responsive to child"
+        ],
+        "openmrs_choice_ids": {
+          "responds_to_child": "",
+          "not_responsive_to_child": ""
+        }
+      },
+      {
+        "key": "caregiver_interaction_praise",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_caregiver_responsiveness.step1.caregiver_interaction_praise.text_year_ii}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_caregiver_responsiveness.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "caregiver_interaction_advise",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_caregiver_responsiveness.step1.caregiver_interaction_advise.text_year_ii}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_caregiver_responsiveness.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "caregiver_comfort_child",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.hint}}",
+        "label_info_text": "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.hint}}",
+        "values": [
+          "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.values[0]}}",
+          "{{child_hv_caregiver_responsiveness.step1.caregiver_comfort_child.values[1]}}"
+        ],
+        "keys": [
+          "Yes",
+          "No"
+        ],
+        "openmrs_choice_ids": {
+          "Yes": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+          "No": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        }
+      },
+      {
+        "key": "caregiver_response_cue",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "1802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "openmrs_data_type": "select one",
+        "type": "spinner",
+        "hint": "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.hint_year_ii}}",
+        "label_info_text": "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.hint_year_ii}}",
+        "values": [
+          "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.values[0]}}",
+          "{{child_hv_caregiver_responsiveness.step1.caregiver_response_cue.values[1]}}"
+        ],
+        "keys": [
+          "Looks into child’s eyes and talks softly to child, gently touches child or holds child closely",
+          "Is not able to comfort child, and child does not look to caregiver for comfort"
+        ],
+        "openmrs_choice_ids": {
+          "Looks into child’s eyes and talks softly to child, gently touches child or holds child closely": "",
+          "Is not able to comfort child, and child does not look to caregiver for comfort": ""
+        }
+      },
+      {
+        "key": "is_not_comforting",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_caregiver_responsiveness.step1.is_not_comforting.text_year_ii}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "problem",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_caregiver_responsiveness.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "respond_to_child_cue_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_caregiver_responsiveness.step1.respond_to_child_cue_note.text}}",
+        "text_color": "#2D2E2D",
+        "toaster_type": "positive",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_caregiver_responsiveness.yml"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "properties_file_name": "child_hv_caregiver_responsiveness"
+}
