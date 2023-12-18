@@ -81,10 +81,9 @@ public class BreastfeedingHelperYearII extends HomeVisitActionHelper {
     @Override
     public String evaluateSubTitle() {
         String breastFeedCurrentText = getBreastFeedCurrentText(breastfeed_current);
-        if(!StringUtils.isBlank(breastfeed_current) && !StringUtils.isBlank(other_food_child_feeds)){
-            return MessageFormat.format("{0}: {1}\n{2}: {3}",
-                    context.getString(R.string.newborn_care_breastfeeding_current), breastFeedCurrentText,
-                    context.getString(R.string.newborn_care_breastfeeding_other_food), getTranslatedOtherFood(context, other_food_child_feeds));
+        if(!StringUtils.isBlank(breastfeed_current)){
+            return MessageFormat.format("{0}: {1}",
+                    context.getString(R.string.newborn_care_breastfeeding_current), breastFeedCurrentText);
         }else{
             return "";
         }
@@ -102,7 +101,7 @@ public class BreastfeedingHelperYearII extends HomeVisitActionHelper {
     @Override
     public BaseAncHomeVisitAction.Status evaluateStatusOnPayload() {
         BaseAncHomeVisitAction.Status status = BaseAncHomeVisitAction.Status.PENDING;
-        if(!StringUtils.isBlank(breastfeed_current) && !StringUtils.isBlank(other_food_child_feeds)){
+        if(!StringUtils.isBlank(breastfeed_current)){
             if(breastfeed_current.equalsIgnoreCase("No")){
                 status = BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
             }else {
