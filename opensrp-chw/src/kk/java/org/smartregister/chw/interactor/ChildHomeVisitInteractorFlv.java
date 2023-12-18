@@ -1,7 +1,5 @@
 package org.smartregister.chw.interactor;
 
-import android.content.Context;
-
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -20,7 +18,7 @@ import org.smartregister.chw.actionhelper.MalariaPreventionActionHelperYearII;
 import org.smartregister.chw.actionhelper.MalnutritionScreeningActionHelper;
 import org.smartregister.chw.actionhelper.NeonatalDangerSignsActionHelper;
 import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelper;
-import org.smartregister.chw.actionhelper.NewBornCareBreastfeedingHelperYearII;
+import org.smartregister.chw.actionhelper.BreastfeedingHelperYearII;
 import org.smartregister.chw.actionhelper.NewBornCareIntroductionHelper;
 import org.smartregister.chw.actionhelper.NewbornCordCareActionHelper;
 import org.smartregister.chw.actionhelper.PlayAssessmentCounselingActionHelper;
@@ -189,7 +187,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     private void evaluateYearIIModules(int childAgeInMonth) throws Exception {
         evaluateFamilyMemberInvolvement(); // All 12 months
         evaluateToddlerDangerSignYearII(); // All 12 months
-        evaluateBreastFeedingYearII(); // All 12 months
+        evaluateBreastFeedingYearII(childAgeInMonth); // All 12 months
         evaluateComplementaryFeedingYearII(childAgeInMonth); // Month 16 onwards
         evaluateMalnutritionScreeningYearII(childAgeInMonth); //15, 18, 21, 24
         evaluateImmunizationsYearII(childAgeInMonth); //12, 13, 18, 19, 21,
@@ -916,11 +914,11 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(context.getString(R.string.family_member_involvement), action);
     }
   
-    protected void evaluateBreastFeedingYearII() throws Exception {
+    protected void evaluateBreastFeedingYearII(int childAgeInMonths) throws Exception {
         String title = context.getString(R.string.ccd_breastfeeding);
         ;
 
-        NewBornCareBreastfeedingHelperYearII helper = new NewBornCareBreastfeedingHelperYearII(context);
+        BreastfeedingHelperYearII helper = new BreastfeedingHelperYearII(context, childAgeInMonths);
 
         Map<String, List<VisitDetail>> details = getDetails(KKCoreConstants.ChildVisitEvents.CCD_BREASTFEEDING);
 

@@ -11,26 +11,32 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.smartregister.chw.R;
 import org.smartregister.chw.anc.actionhelper.HomeVisitActionHelper;
+import org.smartregister.chw.anc.domain.VisitDetail;
 import org.smartregister.chw.anc.model.BaseAncHomeVisitAction;
 import org.smartregister.chw.anc.util.JsonFormUtils;
 
 import java.text.MessageFormat;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import timber.log.Timber;
 
-public class NewBornCareBreastfeedingHelperYearII  extends HomeVisitActionHelper {
-    private final Context context;
+public class BreastfeedingHelperYearII extends HomeVisitActionHelper {
+    private Context context;
 
     private String jsonString;
     private int childAgeInMonths;
     private String breastfeed_current;
     private String other_food_child_feeds;
-    private String important_feeding_child;
-    private String breastfeed_progress;
 
-    public NewBornCareBreastfeedingHelperYearII(Context context, int childAge) {
+    public BreastfeedingHelperYearII(Context context, int childAge) {
         this.childAgeInMonths = childAge;
+    }
+
+    @Override
+    public void onJsonFormLoaded(String jsonString, Context context, Map<String, List<VisitDetail>> details) {
+        this.jsonString = jsonString;
         this.context = context;
     }
 
@@ -45,9 +51,9 @@ public class NewBornCareBreastfeedingHelperYearII  extends HomeVisitActionHelper
             //15, 18, 21, 24
             if (childAgeInMonths == 15 || childAgeInMonths == 18 ||
                 childAgeInMonths == 21 || childAgeInMonths == 24){
-                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "other_food_child_feeds")).put(JsonFormConstants.HIDDEN, true);
-                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "important_feeding_child")).put(JsonFormConstants.HIDDEN, true);
-                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "breastfeed_progress")).put(JsonFormConstants.HIDDEN, true);
+                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "visit_month_15_18_21_24")).put(JsonFormConstants.VALUE, true);
+            }else{
+                Objects.requireNonNull(JsonFormUtils.getFieldJSONObject(fields, "visit_month_15_18_21_24")).put(JsonFormConstants.VALUE, false);
             }
 
             return jsonObject.toString();
@@ -61,14 +67,12 @@ public class NewBornCareBreastfeedingHelperYearII  extends HomeVisitActionHelper
     @Override
     public void onPayloadReceived(String jsonPayload) {
 
-        this.jsonString = jsonPayload;
+        jsonString = jsonPayload;
 
         try {
             JSONObject jsonObject = new JSONObject(jsonPayload);
             breastfeed_current = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "breastfeed_current");
             other_food_child_feeds = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "other_food_child_feeds");
-            important_feeding_child = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "important_feeding_child");
-            breastfeed_progress = org.smartregister.chw.util.JsonFormUtils.getValue(jsonObject, "breastfeed_progress");
         } catch (Exception e) {
             Timber.e(e);
         }
