@@ -71,8 +71,8 @@
         "type": "label",
         "text": "{{child_hv_breastfeeding.step1.breastfeeding_intro.text}}",
         "has_bg": true,
-        "left_padding": "20dp",
-        "right_padding": "20dp",
+        "left_padding": "10dp",
+        "right_padding": "10dp",
         "text_size": "7sp"
       },
       {
