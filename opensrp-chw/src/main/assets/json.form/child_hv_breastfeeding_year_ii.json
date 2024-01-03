@@ -64,6 +64,18 @@
         "type": "hidden"
       },
       {
+        "key": "breastfeeding_intro",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "breastfeeding_intro",
+        "type": "label",
+        "text": "{{child_hv_breastfeeding.step1.breastfeeding_intro.text}}",
+        "has_bg": true,
+        "left_padding": "20dp",
+        "right_padding": "20dp",
+        "text_size": "7sp"
+      },
+      {
         "key": "breastfeed_current",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
