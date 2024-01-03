@@ -116,7 +116,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "{{child_hv_ccd_communication_assessment.step1.child_communication_observation.label}}",
+        "label": "{{child_hv_ccd_communication_assessment.step1.child_communication_observation.label.year_ii}}",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
@@ -225,6 +225,25 @@
             }
           }
         }
+      },
+      {
+        "key": "young_child_communication_note",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "young_child_communication_note",
+        "type": "label",
+        "text": "{{child_hv_ccd_communication_assessment.step1.young_child_communication_note.text.year_ii}}",
+        "text_color": "#2D2E2D",
+        "has_bg": true,
+        "bg_color": "#bce5f7"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp"
       },
       {
         "key": "communication_counselling_note",
