@@ -227,6 +227,39 @@
         }
       },
       {
+        "key": "spacer_young_children",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_ccd_communication_assessment_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "young_children_words_communication",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_ccd_communication_assessment.step1.young_children_words_communication.text.year_ii}}",
+        "toaster_type": "info",
+        "has_bg": true
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "15dp"
+      },
+      {
         "key": "communication_counselling_note",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
