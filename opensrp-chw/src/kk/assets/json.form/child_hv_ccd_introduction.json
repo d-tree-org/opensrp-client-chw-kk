@@ -149,17 +149,6 @@
         "has_bg": true
       },
       {
-        "key": "page_bango_kitita",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "type": "label",
-        "text": "{{child_hv_introduction.step1.page_bango_kitita.text}}",
-        "text_color": "#000000",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
-      },
-      {
         "key": "spacer",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -177,17 +166,6 @@
         "text_color": "#000000",
         "label_text_style": "italic",
         "has_bg": true
-      },
-      {
-        "key": "reinforce_activities",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "type": "label",
-        "text": "{{child_hv_introduction.step1.reinforce_activities.text}}",
-        "text_color": "#000000",
-        "has_bg": true,
-        "bg_color": "#f595df",
-        "label_text_style": "italic"
       }
     ]
   },
