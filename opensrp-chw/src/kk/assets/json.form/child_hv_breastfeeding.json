@@ -347,20 +347,27 @@
         "text_color": "#00cf71",
         "toaster_type": "warning",
         "relevance": {
-          "step1:other_food_child_feeds": {
-            "ex-checkbox": [
-              {
-                "or": [
-                  "infant_formula",
-                  "plain_water",
-                  "juice",
-                  "clear_broth_soup",
-                  "milk_from_other_animals",
-                  "soft_food",
-                  "something_else"
-                ]
-              }
-            ]
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "child_not_breastfeeds",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_breastfeeding.step1.child_not_breastfeeds.text}}",
+        "text_color": "#00cf71",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
           }
         }
       },
