@@ -159,7 +159,7 @@
         }
       },
       {
-        "key": "communicates_with_child_note",
+        "key": "communicates_with_child_note_year_ii",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
@@ -174,6 +174,14 @@
             }
           }
         }
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "8dp"
       },
       {
         "key": "not_communicates_with_child_note",

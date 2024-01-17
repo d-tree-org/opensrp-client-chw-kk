@@ -33,3 +33,10 @@ priority: 1
 condition: "((step1_child_communication_observation.contains('chk_force_smile') || step1_child_communication_observation.contains('chk_child_asleep')) && step1_less_than_six_months == 0) || ((step1_child_communication_observation.contains('chk_sounds_and_gestures') || step1_child_communication_observation.contains('chk_looks_into_eyes')) && step1_less_than_six_months == 0)"
 actions:
   - "isRelevant = true"
+---
+name: step1_communicates_with_child_note_year_ii
+description:
+priority: 1
+condition: "(step1_child_communication_observation.contains('chk_sounds_and_gestures') || step1_child_communication_observation.contains('chk_looks_into_eyes')) && step1_less_than_six_months == 0"
+actions:
+  - "isRelevant = true"
