@@ -202,6 +202,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDChildSafetyYearII(childAgeInMonth); //12, 15, 18, 21, 24
         evaluateMalariaPreventionYearII(childAgeInMonth); //12, 15, 18, 21
         evaluateChildPMTCT(childAgeInMonth); // 15, 18, 21
+        evaluateFamilyMemberInvolvementReminderNextVisit();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -1135,6 +1136,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .build();
         actionList.put(title, childPmtctAction);
+    }
+
+    private void evaluateFamilyMemberInvolvementReminderNextVisit() throws Exception {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.family_member_involvement_next_visit))
+                .withOptional(false)
+                .withFormName("child_hv_family_member_involvement_next_visit")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.family_member_involvement_next_visit), action);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
