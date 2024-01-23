@@ -223,4 +223,5 @@
     <string name="ccd_child_safety_subtitle_year_ii">Mlezi ameelimishwa juu ya usalama wa mtoto</string>
     <string name="child_safety_year_ii">Usalama wa mtoto: Kuzuia ajali</string>
     <string name="family_member_involvement">Kuwahusisha wanafamila wengine</string>
+    <string name="family_member_involvement_next_visit">Kuwakumbusha wanafamila kuhudhuria tembeleo lijalo</string>
 </resources>
