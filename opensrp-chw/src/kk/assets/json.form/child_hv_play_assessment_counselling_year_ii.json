@@ -179,7 +179,8 @@
         "text_color": "#C0C0C0",
         "label_info_text": "{{child_hv_play_assessment_counselling.step1.interaction_with_baby.label_info_text}}",
         "exclusive": [
-          "does_not_play"
+          "does_not_play",
+          "child_asleep"
         ],
         "options": [
           {
