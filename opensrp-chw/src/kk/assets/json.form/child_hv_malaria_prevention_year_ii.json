@@ -56,8 +56,8 @@
         "openmrs_entity_id": "1802AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
         "openmrs_data_type": "select one",
         "type": "spinner",
-        "hint": "{{child_hv_malaria_prevention.step1.llitn_last_night.hint_year_ii}}",
-        "label_info_text": "{{child_hv_malaria_prevention.step1.llitn_last_night.hint_year_ii}}",
+        "hint": "{{child_hv_malaria_prevention.step1.llitn_last_night.hint.year_ii}}",
+        "label_info_text": "{{child_hv_malaria_prevention.step1.llitn_last_night.hint.year_ii}}",
         "values": [
           "{{child_hv_malaria_prevention.step1.llitn_last_night.values[0]}}",
           "{{child_hv_malaria_prevention.step1.llitn_last_night.values[1]}}"
@@ -78,7 +78,7 @@
         "openmrs_entity_id": "",
         "openmrs_data_type": "",
         "type": "label",
-        "text": "{{child_hv_malaria_prevention.step1.llin_condition_instructions.text_year_ii}}",
+        "text": "{{child_hv_malaria_prevention.step1.llin_condition_instructions.text.year_ii}}",
         "label_text_size": "12sp",
         "label_text_style": "italic",
         "label_text_color": "#000000",
@@ -116,30 +116,9 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "toaster_notes",
-        "text": "{{child_hv_malaria_prevention.step1.llin_advice_note.text_year_ii}}",
+        "text": "{{child_hv_malaria_prevention.step1.llin_advice_note.text.year_ii}}",
         "text_color": "#00cf71",
         "toaster_type": "info"
-      },
-      {
-        "key": "spacer",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "",
-        "openmrs_entity_id": "spacer",
-        "type": "spacer",
-        "spacer_height": "20dp"
-      },
-      {
-        "key": "llin_outro",
-        "openmrs_entity_parent": "",
-        "openmrs_entity": "concept",
-        "openmrs_entity_id": "",
-        "openmrs_data_type": "",
-        "type": "label",
-        "text": "{{child_hv_malaria_prevention.step1.llin_outro.text}}",
-        "label_text_size": "18sp",
-        "label_text_style": "italic",
-        "label_text_color": "#000000",
-        "has_bg": true
       }
     ]
   },

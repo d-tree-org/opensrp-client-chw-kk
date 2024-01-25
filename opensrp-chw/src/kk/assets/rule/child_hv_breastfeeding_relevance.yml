@@ -105,3 +105,47 @@ priority: 1
 condition: "step1_visit_month_15_18_21_24 == true"
 actions:
   - "isRelevant = true"
+---
+name: step1_child_not_exclusive_breastfeeds
+description: exclusive breastfeeding toaster message below six month
+priority: 1
+condition: "(
+              step1_other_food_child_feeds.contains('infant_formula') || 
+              step1_other_food_child_feeds.contains('plain_water') || 
+              step1_other_food_child_feeds.contains('juice') || 
+              step1_other_food_child_feeds.contains('clear_broth_soup') || 
+              step1_other_food_child_feeds.contains('milk_from_other_animals') || 
+              step1_other_food_child_feeds.contains('soft_food') || 
+              step1_other_food_child_feeds.contains('something_else')
+            ) && step1_visit_months.isEmpty()"
+actions:
+  - "isRelevant = true"
+---
+name: step1_child_exclusive_breastfeeds
+description: exclusive breastfeeding breastfeeds
+priority: 1
+condition: "step1_other_food_child_feeds.contains('none') && step1_visit_months.isEmpty()"
+actions:
+  - "isRelevant = true"
+---
+name: step1_child_not_breastfeeds
+description: breastfeeding toaster message starting from six month
+priority: 1
+condition: "(
+              step1_other_food_child_feeds.contains('infant_formula') || 
+              step1_other_food_child_feeds.contains('plain_water') || 
+              step1_other_food_child_feeds.contains('juice') || 
+              step1_other_food_child_feeds.contains('clear_broth_soup') || 
+              step1_other_food_child_feeds.contains('milk_from_other_animals') || 
+              step1_other_food_child_feeds.contains('soft_food') || 
+              step1_other_food_child_feeds.contains('something_else')
+            ) && !step1_visit_months.isEmpty()"
+actions:
+  - "isRelevant = true"
+---
+name: step1_child_not_exclusive_breastfeeds_above_6m
+description: Child not exclusive breastfeeds above six month
+priority: 1
+condition: "step1_other_food_child_feeds.contains('none') && !step1_visit_months.isEmpty()"
+actions:
+  - "isRelevant = true"

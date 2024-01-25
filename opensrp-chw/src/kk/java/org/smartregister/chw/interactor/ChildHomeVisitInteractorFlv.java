@@ -203,6 +203,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDChildDisciplineYearII(); // All 12 months
         evaluateProblemSolvingYearII(); // All 12 months
         evaluateCCDDevelopmentScreeningYearII(); // All 12 months
+        evaluateFamilyMemberInvolvementReminderNextVisit();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
@@ -1002,7 +1003,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withBaseEntityID(memberObject.getBaseEntityId())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvProblemSolving())
+                .withFormName("child_hv_problem_solving_year_ii")
                 .build();
 
         actionList.put(title, action);
@@ -1077,7 +1078,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withBaseEntityID(memberObject.getBaseEntityId())
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .withPayloadType(BaseAncHomeVisitAction.PayloadType.SERVICE)
-                .withFormName(KkConstants.KKJSON_FORM_CONSTANT.KKCHILD_HOME_VISIT.getChildHvMalariaPrevention())
+                .withFormName("child_hv_malaria_prevention_year_ii")
                 .build();
 
         actionList.put(title, action);
@@ -1134,6 +1135,15 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
                 .build();
         actionList.put(title, childPmtctAction);
+    }
+
+    private void evaluateFamilyMemberInvolvementReminderNextVisit() throws Exception {
+        BaseAncHomeVisitAction action = new BaseAncHomeVisitAction.Builder(context, context.getString(R.string.family_member_involvement_next_visit))
+                .withOptional(false)
+                .withFormName("child_hv_family_member_involvement_next_visit")
+                .withProcessingMode(BaseAncHomeVisitAction.ProcessingMode.COMBINED)
+                .build();
+        actionList.put(context.getString(R.string.family_member_involvement_next_visit), action);
     }
 
     private String getBreastfeedingServiceTittle(String serviceName) {
