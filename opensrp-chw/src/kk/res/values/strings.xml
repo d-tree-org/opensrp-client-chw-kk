@@ -242,4 +242,5 @@
     <string name="ccd_child_safety_subtitle_year_ii">Counselled caregiver for child safety</string>
     <string name="child_safety_year_ii">Child safety observation and counselling: Prevention of Accidents</string>
     <string name="family_member_involvement">Family members involvement</string>
+    <string name="family_member_involvement_next_visit">Family members involvement: Reminder for next visit</string>
 </resources>

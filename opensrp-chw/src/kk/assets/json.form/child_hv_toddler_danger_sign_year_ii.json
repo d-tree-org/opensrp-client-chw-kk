@@ -50,13 +50,33 @@
     "title": "{{child_hv_toddler_danger_sign.step1.title}}",
     "fields": [
       {
+        "key": "child_communication_demo_caregiver",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "label",
+        "text": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.label.i.year_ii}}",
+        "text_color": "#000000",
+        "label_text_style": "italic",
+        "has_bg": true,
+        "bg_color": "#bce5f7"
+      },
+      {
+        "key": "spacer",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp"
+      },
+      {
         "key": "child_danger_signs",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
         "label_info_image_src": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.label_info_image_src}}",
-        "label": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.label.year_ii}}",
+        "label": "{{child_hv_toddler_danger_sign.step1.child_danger_signs.label.ii.year_ii}}",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
