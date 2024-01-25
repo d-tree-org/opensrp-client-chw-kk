@@ -116,7 +116,7 @@
         "openmrs_entity": "concept",
         "openmrs_entity_id": "",
         "type": "check_box",
-        "label": "{{child_hv_ccd_communication_assessment.step1.child_communication_observation.label}}",
+        "label": "{{child_hv_ccd_communication_assessment.step1.child_communication_observation.label.year_ii}}",
         "label_text_style": "normal",
         "text_color": "#C0C0C0",
         "exclusive": [
