@@ -56,11 +56,15 @@ public class ChildPMTCTActionHelper extends HomeVisitActionHelper {
             return BaseAncHomeVisitAction.Status.PARTIALLY_COMPLETED;
         }
 
-        if (hiv_test.contains("chk_hiv_test_yes") && hiv_status.contains("chk_hiv_status_negative")){
+        if (hiv_test.contains("chk_hiv_test_yes") && disclose_status.contains("chk_hiv_disclosing_status_yes") && taking_art.contains("chk_taking_art_yes")){
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
 
-        if (hiv_test.contains("chk_hiv_test_yes") && hiv_status.contains("chk_hiv_status_positive") && taking_art.contains("chk_taking_art_yes")){
+        if (hiv_test.contains("chk_hiv_test_yes") && hiv_status.contains("chk_hiv_test_negative")){
+            return BaseAncHomeVisitAction.Status.COMPLETED;
+        }
+
+        if (hiv_test.contains("chk_hiv_test_yes") && hiv_status.contains("chk_hiv_test_positive") && taking_art.contains("chk_taking_art_yes")){
             return BaseAncHomeVisitAction.Status.COMPLETED;
         }
 
