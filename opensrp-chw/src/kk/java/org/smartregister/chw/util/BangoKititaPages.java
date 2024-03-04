@@ -2,6 +2,7 @@ package org.smartregister.chw.util;
 
 import org.smartregister.chw.R;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -103,6 +104,10 @@ public class BangoKititaPages {
                         return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_COMMUNICATION_ASSESSMENT.get(DAY_8));
                     }
                 }
+            }else{
+                String monthsAge = "Month " + getChildAgeInMonths(childAge);
+                String pageReference = PAGES_COMMUNICATION_ASSESSMENT.get(monthsAge);
+                return getPages(context, pageReference);
             }
         }
         return "";
@@ -145,9 +150,43 @@ public class BangoKititaPages {
                         return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_PLAY_ASSESSMENT.get(DAY_8));
                     }
                 }
+            }else {
+                String monthsAge = "Month " + getChildAgeInMonths(childAge);
+                String pageReference = PAGES_PLAY_ASSESSMENT.get(monthsAge);
+                return getPages(context, pageReference);
             }
         }
         return "";
+    }
+
+    private static int getChildAgeInMonths(String childAge){
+        int childAgeInMonths = 0;
+        String[] ageParts = childAge.split("y");
+
+        // Handle the case where there might be extra spaces
+        int years = Integer.parseInt(ageParts[0].trim());
+
+        if (ageParts.length > 1) {
+            // Extract months part and remove "m"
+            int months = Integer.parseInt(ageParts[1].replace("m", "").trim());
+            childAgeInMonths = (years * 12) + months;
+        } else {
+            // Only years are provided
+            childAgeInMonths = years * 12;
+        }
+
+        return childAgeInMonths;
+    }
+
+    private static String getPages(android.content.Context context, String pageReference){
+        if (pageReference != null) {
+            String[] pages = pageReference.split(",");
+            return pages.length == 1 ?
+                    String.format(context.getString(R.string.bango_kitita_page_number_one_page), pages[0]) :
+                    String.format(context.getString(R.string.bango_kitita_page_number_two_pages), pages[0], pages[1]);
+        }else {
+            return "";
+        }
     }
 
 }
