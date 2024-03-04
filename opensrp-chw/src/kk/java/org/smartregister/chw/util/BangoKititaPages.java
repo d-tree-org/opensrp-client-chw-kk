@@ -27,6 +27,17 @@ public class BangoKititaPages {
     public static final String MONTH_10 = "Month 10";
     public static final String MONTH_11 = "Month 11";
     public static final String MONTH_12 = "Month 12";
+    public static final String MONTH_13 = "Month 13";
+    public static final String MONTH_14 = "Month 14";
+    public static final String MONTH_15 = "Month 15";
+    public static final String MONTH_16 = "Month 16";
+    public static final String MONTH_17 = "Month 17";
+    public static final String MONTH_18 = "Month 18";
+    public static final String MONTH_19 = "Month 19";
+    public static final String MONTH_20 = "Month 20";
+    public static final String MONTH_21 = "Month 21";
+    public static final String MONTH_22 = "Month 22";
+    public static final String MONTH_23 = "Month 23";
 
     // Pages are comma separated, we can use that to split and construct a page reference as
     // follow if it is a single page reference then .split of the page will have a length of
@@ -47,6 +58,17 @@ public class BangoKititaPages {
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_10, "77,81");
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_11, "83,87");
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_12, "89,91");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_13, "96, 98");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_14, "99");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_15, "102, 104");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_16, "105");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_17, "108, 110");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_18, "111, 113");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_19, "114");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_20, "117, 119");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_21, "121, 123");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_22, "124, 126");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_23, "127, 129");
     }
 
     //Adding Play assessment pages
@@ -65,6 +87,17 @@ public class BangoKititaPages {
         PAGES_PLAY_ASSESSMENT.put(MONTH_10, "79");
         PAGES_PLAY_ASSESSMENT.put(MONTH_11, "85");
         PAGES_PLAY_ASSESSMENT.put(MONTH_12, "93");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_13, "97");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_14, "100, 101");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_15, "103");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_16, "106, 107");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_17, "109");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_18, "112");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_19, "115, 116");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_20, "118");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_21, "121");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_22, "125");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_23, "128");
     }
 
     public static String getBangoKititaPageCommunicatinAssessment(String childAge, android.content.Context context) {
