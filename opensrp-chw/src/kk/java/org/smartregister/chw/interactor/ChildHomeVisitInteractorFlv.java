@@ -189,19 +189,17 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateFamilyMemberInvolvement(); // All 12 months
         evaluateToddlerDangerSignYearII(); // All 12 months
         evaluateBreastFeedingYearII(childAgeInMonth); // All 12 months
+        evaluateChildPMTCT(childAgeInMonth); // 15, 18, 21
         evaluateComplementaryFeedingYearII(childAgeInMonth); // Month 16 onwards
         evaluateMalnutritionScreeningYearII(childAgeInMonth); //15, 18, 21, 24
         evaluateImmunizationsYearII(childAgeInMonth); //12, 13, 15, 18, 19, 21
-
         evaluateCCDChildSafetyYearII(childAgeInMonth); //12, 15, 18, 21, 24
         evaluateMalariaPreventionYearII(childAgeInMonth); //12, 15, 18, 21
-        evaluateChildPMTCT(childAgeInMonth); // 15, 18, 21
-
-        evaluateChildPlayAssessmentCounselingYearII(); //All 12 months
         evaluateCCDCommunicationAssessmentYearII(); // All 12 months
+        evaluateChildPlayAssessmentCounselingYearII(); //All 12 months
+        evaluateProblemSolvingYearII(); // All 12 months
         evaluateCareGiverResponsivenessYearII(); // All 12 months
         evaluateCCDChildDisciplineYearII(); // All 12 months
-        evaluateProblemSolvingYearII(); // All 12 months
         evaluateCCDDevelopmentScreeningYearII(); // All 12 months
         evaluateFamilyMemberInvolvementReminderNextVisit();
     }
