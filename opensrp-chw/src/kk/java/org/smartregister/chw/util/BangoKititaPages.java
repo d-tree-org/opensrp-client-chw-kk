@@ -2,6 +2,7 @@ package org.smartregister.chw.util;
 
 import org.smartregister.chw.R;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -26,6 +27,17 @@ public class BangoKititaPages {
     public static final String MONTH_10 = "Month 10";
     public static final String MONTH_11 = "Month 11";
     public static final String MONTH_12 = "Month 12";
+    public static final String MONTH_13 = "Month 13";
+    public static final String MONTH_14 = "Month 14";
+    public static final String MONTH_15 = "Month 15";
+    public static final String MONTH_16 = "Month 16";
+    public static final String MONTH_17 = "Month 17";
+    public static final String MONTH_18 = "Month 18";
+    public static final String MONTH_19 = "Month 19";
+    public static final String MONTH_20 = "Month 20";
+    public static final String MONTH_21 = "Month 21";
+    public static final String MONTH_22 = "Month 22";
+    public static final String MONTH_23 = "Month 23";
 
     // Pages are comma separated, we can use that to split and construct a page reference as
     // follow if it is a single page reference then .split of the page will have a length of
@@ -46,6 +58,17 @@ public class BangoKititaPages {
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_10, "77,81");
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_11, "83,87");
         PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_12, "89,91");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_13, "96, 98");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_14, "99");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_15, "102, 104");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_16, "105");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_17, "108, 110");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_18, "111, 113");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_19, "114");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_20, "117, 119");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_21, "121, 123");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_22, "124, 126");
+        PAGES_COMMUNICATION_ASSESSMENT.put(MONTH_23, "127, 129");
     }
 
     //Adding Play assessment pages
@@ -64,6 +87,17 @@ public class BangoKititaPages {
         PAGES_PLAY_ASSESSMENT.put(MONTH_10, "79");
         PAGES_PLAY_ASSESSMENT.put(MONTH_11, "85");
         PAGES_PLAY_ASSESSMENT.put(MONTH_12, "93");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_13, "97");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_14, "100, 101");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_15, "103");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_16, "106, 107");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_17, "109");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_18, "112");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_19, "115, 116");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_20, "118");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_21, "121");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_22, "125");
+        PAGES_PLAY_ASSESSMENT.put(MONTH_23, "128");
     }
 
     public static String getBangoKititaPageCommunicatinAssessment(String childAge, android.content.Context context) {
@@ -103,6 +137,10 @@ public class BangoKititaPages {
                         return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_COMMUNICATION_ASSESSMENT.get(DAY_8));
                     }
                 }
+            }else{
+                String monthsAge = "Month " + getChildAgeInMonths(childAge);
+                String pageReference = PAGES_COMMUNICATION_ASSESSMENT.get(monthsAge);
+                return getPages(context, pageReference);
             }
         }
         return "";
@@ -145,9 +183,43 @@ public class BangoKititaPages {
                         return String.format(context.getString(R.string.bango_kitita_page_number_one_page), PAGES_PLAY_ASSESSMENT.get(DAY_8));
                     }
                 }
+            }else {
+                String monthsAge = "Month " + getChildAgeInMonths(childAge);
+                String pageReference = PAGES_PLAY_ASSESSMENT.get(monthsAge);
+                return getPages(context, pageReference);
             }
         }
         return "";
+    }
+
+    private static int getChildAgeInMonths(String childAge){
+        int childAgeInMonths = 0;
+        String[] ageParts = childAge.split("y");
+
+        // Handle the case where there might be extra spaces
+        int years = Integer.parseInt(ageParts[0].trim());
+
+        if (ageParts.length > 1) {
+            // Extract months part and remove "m"
+            int months = Integer.parseInt(ageParts[1].replace("m", "").trim());
+            childAgeInMonths = (years * 12) + months;
+        } else {
+            // Only years are provided
+            childAgeInMonths = years * 12;
+        }
+
+        return childAgeInMonths;
+    }
+
+    private static String getPages(android.content.Context context, String pageReference){
+        if (pageReference != null) {
+            String[] pages = pageReference.split(",");
+            return pages.length == 1 ?
+                    String.format(context.getString(R.string.bango_kitita_page_number_one_page), pages[0]) :
+                    String.format(context.getString(R.string.bango_kitita_page_number_two_pages), pages[0], pages[1]);
+        }else {
+            return "";
+        }
     }
 
 }
