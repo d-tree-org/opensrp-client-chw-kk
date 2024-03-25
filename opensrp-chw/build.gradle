@@ -313,7 +313,7 @@ dependencies {
         exclude group: 'com.google.android.material', module: 'material'
     }
 
-    implementation('org.smartregister:opensrp-client-native-form:2.1.16-SNAPSHOT-KK-2') {
+    implementation('org.smartregister:opensrp-client-native-form:2.1.16-SNAPSHOT-KK-3') {
         transitive = true
         exclude group: 'id.zelory', module: 'compressor'
         exclude group: 'com.google.android.material', module: 'material'

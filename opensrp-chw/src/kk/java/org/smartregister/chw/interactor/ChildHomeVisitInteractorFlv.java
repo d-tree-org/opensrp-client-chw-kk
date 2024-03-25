@@ -189,20 +189,18 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateFamilyMemberInvolvement(); // All 12 months
         evaluateToddlerDangerSignYearII(); // All 12 months
         evaluateBreastFeedingYearII(childAgeInMonth); // All 12 months
+        evaluateChildPMTCT(childAgeInMonth); // 15, 18, 21
         evaluateComplementaryFeedingYearII(childAgeInMonth); // Month 16 onwards
         evaluateMalnutritionScreeningYearII(childAgeInMonth); //15, 18, 21, 24
         evaluateImmunizationsYearII(childAgeInMonth); //12, 13, 15, 18, 19, 21
-
         evaluateCCDChildSafetyYearII(childAgeInMonth); //12, 15, 18, 21, 24
         evaluateMalariaPreventionYearII(childAgeInMonth); //12, 15, 18, 21
-        evaluateChildPMTCT(childAgeInMonth); // 15, 18, 21
-
-        evaluateChildPlayAssessmentCounselingYearII(); //All 12 months
         evaluateCCDCommunicationAssessmentYearII(); // All 12 months
+        evaluateChildPlayAssessmentCounselingYearII(); //All 12 months
+        evaluateProblemSolvingYearII(); // All 12 months
         evaluateCareGiverResponsivenessYearII(); // All 12 months
         evaluateCCDChildDisciplineYearII(); // All 12 months
-        evaluateProblemSolvingYearII(); // All 12 months
-        evaluateCCDDevelopmentScreeningYearII(); // All 12 months
+        evaluateCCDDevelopmentScreeningYearII(childAgeInMonth); // 12, 15, 18, 21, 24
         evaluateFamilyMemberInvolvementReminderNextVisit();
     }
 
@@ -890,7 +888,16 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         actionList.put(title, child_safety_action);
     }
 
-    private void evaluateCCDDevelopmentScreeningYearII() throws Exception {
+    private void evaluateCCDDevelopmentScreeningYearII(int childAgeInMonths) throws Exception {
+
+        if (childAgeInMonths != 12 &&
+                childAgeInMonths != 15 &&
+                childAgeInMonths != 18 &&
+                childAgeInMonths != 21 &&
+                childAgeInMonths != 24
+        )
+            return;
+
         String title = context.getString(R.string.ccd_development_screening);
         CCDDevelopmentScreeningActionYearII ccdDevelopmentScreeningActionYearII = new CCDDevelopmentScreeningActionYearII();
 

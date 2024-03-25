@@ -76,10 +76,17 @@
 
                 </FrameLayout>
 
-                <include
-                    layout="@layout/gc_register_contents"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <include
+                        layout="@layout/gc_register_contents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+               </ScrollView>
 
             </RelativeLayout>
 
