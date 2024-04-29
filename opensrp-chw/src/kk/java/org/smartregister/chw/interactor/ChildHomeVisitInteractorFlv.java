@@ -160,28 +160,28 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
     private void evaluateYearIModules(int childAgeInDays, int childAgeInMonth,
                                       Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
         evaluateFamilyMemberInvolvement();
-        evaluateToddlerDangerSign(serviceWrapperMap);
         evaluateNeonatalDangerSigns(serviceWrapperMap);
 
         if (childAgeInDays >= 35 && childAgeInDays < 50) {
             evaluateNeonatalDangerSigns5W();
         }
 
-        evaluateNewBornCareIntro(serviceWrapperMap);
-        evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
-        evaluateNewbornCordCare(serviceWrapperMap);
+        evaluateToddlerDangerSign(serviceWrapperMap);
         evaluateMalnutritionScreening(serviceWrapperMap);
+        evaluateNewBornCareIntro(serviceWrapperMap);
         evaluateBreastFeeding(serviceWrapperMap);
         evaluateComplementaryFeeding(serviceWrapperMap);
+        evaluateNewbornCordCare(serviceWrapperMap);
+        evaluateKMCSkinToSkinCounselling(serviceWrapperMap);
         evaluateImmunizations(serviceWrapperMap);
         evaluateMalariaPrevention(serviceWrapperMap);
         evaluateCCDChildSafety(serviceWrapperMap);
         evaluateCCDIntro(serviceWrapperMap);
-        evaluateChildPlayAssessmentCounseling(serviceWrapperMap, childAgeInMonth);
         evaluateCCDCommunicationAssessment(serviceWrapperMap, childAgeInMonth);
+        evaluateChildPlayAssessmentCounseling(serviceWrapperMap, childAgeInMonth);
+        evaluateProblemSolving(serviceWrapperMap);
         evaluateCareGiverResponsiveness(serviceWrapperMap);
         evaluateCCDChildDiscipline(serviceWrapperMap);
-        evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
         evaluateFamilyMemberInvolvementReminderNextVisit();
     }
