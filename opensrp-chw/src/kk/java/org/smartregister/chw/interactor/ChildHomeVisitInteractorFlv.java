@@ -159,6 +159,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateYearIModules(int childAgeInDays, int childAgeInMonth,
                                       Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
+        evaluateFamilyMemberInvolvement();
         evaluateToddlerDangerSign(serviceWrapperMap);
         evaluateNeonatalDangerSigns(serviceWrapperMap);
 
@@ -182,6 +183,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCCDChildDiscipline(serviceWrapperMap);
         evaluateProblemSolving(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
+        evaluateFamilyMemberInvolvementReminderNextVisit();
     }
 
     private void evaluateYearIIModules(int childAgeInMonth) throws Exception {
