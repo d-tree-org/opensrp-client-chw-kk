@@ -142,6 +142,7 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             childAgeInMonth = convertAgeToMonths(childAge);
 
             evaluateVisitLocation( );
+            evaluateFamilyMemberInvolvement();
 
             if (childAgeInMonth <= 12) { //Child is less than one year
                 evaluateYearIModules(childAgeInDays, childAgeInMonth, serviceWrapperMap);
@@ -150,6 +151,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
             if (childAgeInMonth > 12) { //Child is more than one year
                 evaluateYearIIModules(childAgeInMonth);
             }
+
+            evaluateFamilyMemberInvolvementReminderNextVisit();
         } catch (BaseAncHomeVisitAction.ValidationException e) {
             throw (e);
         } catch (Exception e) {
@@ -159,7 +162,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
 
     private void evaluateYearIModules(int childAgeInDays, int childAgeInMonth,
                                       Map<String, ServiceWrapper> serviceWrapperMap) throws Exception {
-        evaluateFamilyMemberInvolvement();
         evaluateNeonatalDangerSigns(serviceWrapperMap);
 
         if (childAgeInDays >= 35 && childAgeInDays < 50) {
@@ -183,12 +185,10 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCareGiverResponsiveness(serviceWrapperMap);
         evaluateCCDChildDiscipline(serviceWrapperMap);
         evaluateCCDDevelopmentScreening(serviceWrapperMap);
-        evaluateFamilyMemberInvolvementReminderNextVisit();
     }
 
     private void evaluateYearIIModules(int childAgeInMonth) throws Exception {
 
-        evaluateFamilyMemberInvolvement(); // All 12 months
         evaluateToddlerDangerSignYearII(); // All 12 months
         evaluateBreastFeedingYearII(childAgeInMonth); // All 12 months
         evaluateChildPMTCT(childAgeInMonth); // 15, 18, 21
@@ -203,7 +203,6 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
         evaluateCareGiverResponsivenessYearII(); // All 12 months
         evaluateCCDChildDisciplineYearII(); // All 12 months
         evaluateCCDDevelopmentScreeningYearII(childAgeInMonth); // 12, 15, 18, 21, 24
-        evaluateFamilyMemberInvolvementReminderNextVisit();
     }
 
     private void evaluateVisitLocation() throws BaseAncHomeVisitAction.ValidationException {
