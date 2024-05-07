@@ -162,8 +162,8 @@
         "openmrs_entity_id": "",
         "openmrs_data_type": "challenges_breastfeed",
         "type": "spinner",
-        "hint": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint}}",
-        "label_info_text": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint}}",
+        "hint": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint.year_ii}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint.year_ii}}",
         "values": [
           "{{child_hv_breastfeeding.step1.challenges_breastfeed.values[0]}}",
           "{{child_hv_breastfeeding.step1.challenges_breastfeed.values[1]}}"
