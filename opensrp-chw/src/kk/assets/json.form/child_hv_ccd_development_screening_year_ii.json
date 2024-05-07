@@ -57,6 +57,14 @@
         "type": "hidden"
       },
       {
+        "key": "is_extension",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "",
+        "type": "hidden",
+        "value": "true"
+      },
+      {
         "key": "screening_title",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
