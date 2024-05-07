@@ -44,9 +44,9 @@ actions:
 name: step1_times_child_breastfeeds_note
 description: Breastfeeding times toaster message
 priority: 1
-condition: "step1_times_child_breastfeeds.contains('twice_a_day') ||
+condition: "step1_breastfeed_current.contains('Yes') && (step1_times_child_breastfeeds.contains('twice_a_day') ||
             step1_times_child_breastfeeds.contains('three_times_a_day') ||
-            step1_times_child_breastfeeds.contains('four_time_a_day')"
+            step1_times_child_breastfeeds.contains('four_time_a_day'))"
 actions:
   - "isRelevant = true"
 ---
@@ -147,5 +147,12 @@ name: step1_child_not_exclusive_breastfeeds_above_6m
 description: Child not exclusive breastfeeds above six month
 priority: 1
 condition: "step1_other_food_child_feeds.contains('none') && !step1_visit_months.isEmpty()"
+actions:
+  - "isRelevant = true"
+---
+name: step1_breastfeed_current_no
+description: Breastfeed current no
+priority: 1
+condition: "step1_breastfeed_current.contains('No')"
 actions:
   - "isRelevant = true"
