@@ -102,6 +102,23 @@
         }
       },
       {
+        "key": "breastfeed_current_no",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_breastfeeding.step1.breastfeed_current_no.text.year_ii}}",
+        "text_color": "#00cf71",
+        "toaster_type": "warning",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_breastfeeding_relevance.yml"
+            }
+          }
+        }
+      },
+      {
         "key": "important_feeding_child",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",
@@ -145,8 +162,8 @@
         "openmrs_entity_id": "",
         "openmrs_data_type": "challenges_breastfeed",
         "type": "spinner",
-        "hint": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint}}",
-        "label_info_text": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint}}",
+        "hint": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint.year_ii}}",
+        "label_info_text": "{{child_hv_breastfeeding.step1.challenges_breastfeed.hint.year_ii}}",
         "values": [
           "{{child_hv_breastfeeding.step1.challenges_breastfeed.values[0]}}",
           "{{child_hv_breastfeeding.step1.challenges_breastfeed.values[1]}}"
