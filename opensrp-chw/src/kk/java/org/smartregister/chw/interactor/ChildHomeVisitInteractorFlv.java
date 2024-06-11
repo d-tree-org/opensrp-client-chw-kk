@@ -1101,7 +1101,8 @@ public class ChildHomeVisitInteractorFlv extends DefaultChildHomeVisitInteractor
                 childAgeInMonths != 15 &&
                 childAgeInMonths != 18 &&
                 childAgeInMonths != 19 &&
-                childAgeInMonths != 21
+                childAgeInMonths != 21 &&
+                childAgeInMonths != 24
         )
             return;
 
