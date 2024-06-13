@@ -64,6 +64,13 @@
         "type": "hidden"
       },
       {
+        "key": "session_number",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "session_number",
+        "type": "hidden"
+      },
+      {
         "key": "session_place",
         "openmrs_entity_parent": "",
         "openmrs_entity": "concept",

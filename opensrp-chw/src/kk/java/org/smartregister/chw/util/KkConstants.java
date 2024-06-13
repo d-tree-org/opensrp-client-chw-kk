@@ -152,6 +152,8 @@ public class KkConstants extends Constants{
 
         public static final String GC_SESSION_DATE = "session_date";
 
+        public static final String GC_SESSION_NUMBER = "session_number";
+
         public static final String GC_SESSION_NOT_DONE_REASON = "session_not_done_reason";
 
         public static final String GC_SESSION_NOT_DONE_OTHER_REASON = "session_not_done_reason_other";
