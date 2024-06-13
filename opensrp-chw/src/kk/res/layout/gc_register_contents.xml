@@ -11,7 +11,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:paddingHorizontal="24dp"
-        android:paddingVertical="8dp"
+        android:paddingVertical="5dp"
         android:layout_marginTop="8dp"
         android:id="@+id/ll_sessions_summary">
 
@@ -28,7 +28,7 @@
         <RelativeLayout
             android:id="@+id/rl_sessions_summary_number"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@color/red_overlay">
 
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ll_sessions_summary"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="14dp"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/summary_separator"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
@@ -75,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/did_the_session_take_place"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:textSize="16sp"
             android:textColor="@color/black"
             android:fontFamily="@font/google_sans_medium"/>
@@ -84,11 +84,11 @@
             android:id="@+id/sp_session_took_place"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/spinner_background"
             android:fontFamily="@font/google_sans_regular"
             android:paddingLeft="4dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextSessionDateLayout"/>
@@ -200,31 +200,66 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editTextSessionDateLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/select_session_date"
-                android:textColorHint="?android:attr/textColorPrimary"
+                android:layout_marginTop="5dp"
+                android:id="@+id/ll_session_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editTextSessionDateLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editTextSessionDate"
-                    android:inputType="text"
-                    android:textSize="16sp"
-                    android:focusable="false"
-                    android:fontFamily="@font/google_sans_regular"
-                    android:textColor="?android:attr/textColorPrimary" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="4dp"
+                    android:hint="@string/select_session_date"
+                    android:textColorHint="?android:attr/textColorPrimary">
 
-            </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextSessionDate"
+                        android:inputType="text"
+                        android:textSize="16sp"
+                        android:focusable="false"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:textColor="?android:attr/textColorPrimary" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/editTextSessionNumberLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="@string/select_session_number"
+                    android:textColorHint="?android:attr/textColorPrimary">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextSessionNumber"
+                        android:inputType="number"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/google_sans_regular"
+                        android:textColor="?android:attr/textColorPrimary" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinnerTypeOfPlace"
@@ -239,7 +274,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSessionDateLayout"/>
+                app:layout_constraintTop_toBottomOf="@+id/ll_session_date"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editTextGps"
