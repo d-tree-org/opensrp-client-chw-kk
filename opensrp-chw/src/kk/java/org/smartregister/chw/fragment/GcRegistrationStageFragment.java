@@ -52,6 +52,8 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
 
     //New sessions implementation
     private TextInputEditText etSessionDate;
+
+    private TextInputEditText etSessionNumber;
     private AppCompatSpinner spTypeOfPlace;
     private AppCompatSpinner spDidSessionTakePlace;
     private LinearLayoutCompat llNoSessionContainer;
@@ -151,6 +153,13 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
                 etSessionDate.setError(null);
             }
 
+            if (etSessionNumber.getText().toString().isEmpty()) {
+                etSessionNumber.setError(getString(R.string.session_number_required));
+                isStepValid = false;
+            } else {
+                etSessionNumber.setError(null);
+            }
+
             // Validate session place
             if (spTypeOfPlace.getSelectedItemPosition() == 0) {
                 isStepValid = false;
@@ -198,6 +207,9 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         spNoSessionSpinner = view.findViewById(R.id.sp_no_session_reason);
 
         etSessionDate = view.findViewById(R.id.editTextSessionDate);
+        etSessionNumber = view.findViewById(R.id.editTextSessionNumber);
+        etSessionNumber.setFocusable(true);
+        etSessionNumber.setClickable(true);
         spTypeOfPlace = view.findViewById(R.id.spinnerTypeOfPlace);
         etGps = view.findViewById(R.id.editTextGps);
         etDuration = view.findViewById(R.id.editTextDuration);
@@ -244,6 +256,8 @@ public class GcRegistrationStageFragment extends BaseGroupSessionRegisterFragmen
         if (sessionTookPlace) {
             //long sessionDateValue = DateUtil.getMillis(selectedDateTime);
             sessionModel.setSessionDate(getFormattedSessionDate(selectedDateTime));
+
+            sessionModel.setSessionNumber(Objects.requireNonNull(etSessionNumber.getText()).toString());
 
             String sessionPlaceString = spTypeOfPlace.getSelectedItem().toString();
             sessionModel.setSessionPlace(sessionPlaceString);
