@@ -76,7 +76,7 @@
     <string name="malaria_prevention_llin_condition_fair">Fair</string>
     <string name="child_play_and_assessment_counselling"><b>CCD</b>: Play Assessment and Counselling</string>
     <string name="ccd_problem_solving"><b>CCD</b>: Problem Solving</string>
-    <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues</string>
+    <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues and Counselling</string>
     <string name="newborn_care_cord_care">Essential Newborn Care: Cord Care</string>
     <string name="ccd_play_child">Caregiver play with child</string>
     <string name="ccd_communication_with_child">Communicating with child</string>
@@ -103,8 +103,8 @@
 
     <string name="toddler_danger_sign_month"> Toddler danger sign </string>
     <string name="ccd_introduction"> <b>CCD</b>: Introduction</string>
-    <string name="ccd_development_screening"> <b>CCD</b>: Development screening </string>
-    <string name="ccd_communication_assessment"> <b>CCD</b>: Communication assessment </string>
+    <string name="ccd_development_screening"> <b>CCD</b>: Development Screening Assessment</string>
+    <string name="ccd_communication_assessment"> <b>CCD</b>: Communication Assessment and Counselling </string>
     <string name="ccd_child_discipline"> <b>CCD</b>: Child Discipline Assessment and Counselling</string>
     <string name="complimentary_feeding_year_ii">Nutrition</string>
     <string name="ccd_breastfeeding">Breastfeeding</string>
