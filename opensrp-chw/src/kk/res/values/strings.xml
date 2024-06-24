@@ -76,7 +76,7 @@
     <string name="malaria_prevention_llin_condition_fair">Fair</string>
     <string name="child_play_and_assessment_counselling"><b>CCD</b>: Play Assessment and Counselling</string>
     <string name="ccd_problem_solving"><b>CCD</b>: Problem Solving</string>
-    <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues</string>
+    <string name="ccd_caregiver_responsiveness"><b>CCD</b>: Caregiver Responsiveness to Child Behavior/Cues and Counselling</string>
     <string name="newborn_care_cord_care">Essential Newborn Care: Cord Care</string>
     <string name="ccd_play_child">Caregiver play with child</string>
     <string name="ccd_communication_with_child">Communicating with child</string>
@@ -103,8 +103,8 @@
 
     <string name="toddler_danger_sign_month"> Toddler danger sign </string>
     <string name="ccd_introduction"> <b>CCD</b>: Introduction</string>
-    <string name="ccd_development_screening"> <b>CCD</b>: Development screening </string>
-    <string name="ccd_communication_assessment"> <b>CCD</b>: Communication assessment </string>
+    <string name="ccd_development_screening"> <b>CCD</b>: Development Screening Assessment</string>
+    <string name="ccd_communication_assessment"> <b>CCD</b>: Communication Assessment and Counselling </string>
     <string name="ccd_child_discipline"> <b>CCD</b>: Child Discipline Assessment and Counselling</string>
     <string name="complimentary_feeding_year_ii">Nutrition</string>
     <string name="ccd_breastfeeding">Breastfeeding</string>
@@ -183,6 +183,7 @@
     <string name="select_child_for_gs">Select Child Present</string>
     <string name="did_you_divide_children_age_groups">Did you divide children into different age groups?</string>
     <string name="select_session_date">Select session date</string>
+    <string name="select_session_number">Session number</string>
     <string name="records_of_sessions_this_month">Records of sessions this month</string>
     <string name="did_the_session_take_place">Did the session take place</string>
     <string name="did_another_session_take_place">Did another session take place</string>
@@ -243,4 +244,5 @@
     <string name="child_safety_year_ii">Child safety observation and counselling: Prevention of Accidents</string>
     <string name="family_member_involvement">Family members involvement</string>
     <string name="family_member_involvement_next_visit">Family members involvement: Reminder for next visit</string>
+    <string name="session_number_required">Session number is required</string>
 </resources>

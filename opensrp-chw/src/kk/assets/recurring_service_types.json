@@ -3284,6 +3284,20 @@
             "offset": "+12m"
           }
         }
+      },
+      {
+        "id": "267",
+        "name": "Malnutrition Screening month12",
+        "schedule": {
+          "due": {
+            "reference": "dob",
+            "offset": "+1m"
+          },
+          "expiry": {
+            "reference": "dob",
+            "offset": "+13m"
+          }
+        }
       }
     ]
   },

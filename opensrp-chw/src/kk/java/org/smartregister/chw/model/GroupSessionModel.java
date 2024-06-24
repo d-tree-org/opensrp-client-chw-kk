@@ -33,6 +33,8 @@ public class GroupSessionModel {
     private int durationInMinutes;
     private boolean childrenDividedInGroups;
 
+    private String sessionNumber;
+
     private Location gpsLocation;
     public GroupSessionModel(){
 
@@ -193,5 +195,13 @@ public class GroupSessionModel {
     }
     public int getDurationInMinutes() {
         return durationInMinutes;
+    }
+
+    public void setSessionNumber(String sessionNumber) {
+        this.sessionNumber = sessionNumber;
+    }
+
+    public String getSessionNumber() {
+        return sessionNumber;
     }
 }

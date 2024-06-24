@@ -63,8 +63,8 @@
 
     <string name="toddler_danger_sign_month"> Dalili za hatari za mtoto </string>
     <string name="ccd_introduction"> <b>CCD</b>: Mwanzo </string>
-    <string name="ccd_development_screening"> <b>CCD</b>: Maendeleo ya ukuaji </string>
-    <string name="ccd_communication_assessment"> <b>CCD</b>: Hali ya mawasiliano </string>
+    <string name="ccd_development_screening"> <b>CCD</b>: Tathmini ya maendeleo ya mtoto </string>
+    <string name="ccd_communication_assessment"> <b>CCD</b>: Tathmini maendeleo na fundisha kuhusu mawasiliano </string>
     <string name="ccd_child_discipline"> <b>CCD</b>: Ushauri juu ya namna ya kujenga nidhamu kwa mtoto </string>
     <string name="complimentary_feeding_year_ii">Lishe</string>
     <string name="ccd_breastfeeding">Unyonyeshaji wa maziwa ya mama</string>
@@ -164,6 +164,7 @@
     <string name="select_child_for_gs">Chagua Mtoto Aliyehudhuria</string>
     <string name="did_you_divide_children_age_groups">Je uliwatenganisha watoto kwenye makundi tofauti?</string>
     <string name="select_session_date">Tarehe ya kipindi</string>
+    <string name="select_session_number">Namba ya kipindi</string>
     <string name="records_of_sessions_this_month">Mafunzo ya vikundi mwezi huu</string>
     <string name="did_the_session_take_place">Je kipindi kilitokea?</string>
     <string name="did_another_session_take_place">Je kipindi kingine kilitokea?</string>
@@ -224,4 +225,5 @@
     <string name="child_safety_year_ii">Usalama wa mtoto: Kuzuia ajali</string>
     <string name="family_member_involvement">Kuwahusisha wanafamila wengine</string>
     <string name="family_member_involvement_next_visit">Kuwakumbusha wanafamila kuhudhuria tembeleo lijalo</string>
+    <string name="session_number_required">Namba ya kipindi inatakiwa</string>
 </resources>
