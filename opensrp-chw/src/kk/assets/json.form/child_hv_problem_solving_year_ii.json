@@ -84,8 +84,54 @@
         "text": "{{child_hv_problem_solving.step1.challenges_play_communicating.text}}",
         "text_color": "#2D2E2D",
         "toaster_type": "info",
-        "toaster_info_text": "{{child_hv_problem_solving.step1.challenges_play_communicating.toaster_info_text_year_ii}}",
-        "toaster_info_title": "{{child_hv_problem_solving.step1.challenges_play_communicating.toaster_info_title}}",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_problem_solving_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "spacer_01",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_problem_solving_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "listen_child_development_concerns",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "openmrs_data_type": "",
+        "type": "toaster_notes",
+        "text": "{{child_hv_problem_solving.step1.challenges_play_communicating.toaster_info_text_year_ii}}",
+        "toaster_type": "info",
+        "text_color": "#2D2E2D",
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "child_hv_problem_solving_relevance.yml"
+            }
+          }
+        }
+      },
+      {
+        "key": "spacer_02",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "",
+        "openmrs_entity_id": "spacer",
+        "type": "spacer",
+        "spacer_height": "10dp",
         "relevance": {
           "rules-engine": {
             "ex-rules": {
