@@ -119,6 +119,20 @@ public abstract class DefaultJsonFormUtilsFlv implements JsonFormUtils.Flavor {
         }
     }
 
+    @Override
+    public void populateReplaceUniqueIdField(JSONObject jsonObject) throws JSONException {
+
+        String jsonString =
+                "{\"key\":\"unique_identifier_update\",\"openmrs_entity_parent\":\"\",\"openmrs_entity\":\"concept\","
+                        + "\"openmrs_entity_id\":\"unique_identifier_update\",\"type\":\"check_box\",\"label\":\"{{family_member_register.step1.dob_unknown.label}}\","
+                        + "\"options\":[{\"key\":\"update_opensrp_id\",\"text\":\"{{family_member_register.step1.unique_identifier_update.options.update_opensrp_id.text}}\","
+                        + "\"text_size\":\"18px\",\"value\":\"false\"}],\"read_only\":false,\"value\":\"false\"}";
+        JSONObject updateOpenSRPIDField = new JSONObject(jsonString);
+        JSONArray fields = JsonFormUtils.fields(jsonObject, org.smartregister.util.JsonFormUtils.STEP1);
+        fields.put(fields.length(), updateOpenSRPIDField);
+
+    }
+
     private void computeDOBUnknown(JSONObject jsonObject, CommonPersonObjectClient client) throws JSONException {
         jsonObject.put(org.smartregister.family.util.JsonFormUtils.READ_ONLY, false);
         JSONObject optionsObject = jsonObject.getJSONArray(org.smartregister.family.util.Constants.JSON_FORM_KEY.OPTIONS).getJSONObject(0);

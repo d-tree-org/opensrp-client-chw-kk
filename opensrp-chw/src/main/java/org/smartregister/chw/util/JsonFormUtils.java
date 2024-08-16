@@ -377,10 +377,16 @@ public class JsonFormUtils extends CoreJsonFormUtils {
         return hintText.equalsIgnoreCase(valueText) ? "" : valueText;
     }
 
+    public static void populateReplaceUniqueIdField(JSONObject jsonObject) throws JSONException {
+        flavor.populateReplaceUniqueIdField(jsonObject);
+    }
+
     public interface Flavor {
         JSONObject getAutoJsonEditMemberFormString(String title, String formName, Context context, CommonPersonObjectClient client, String eventType, String familyName, boolean isPrimaryCaregiver);
 
         void processFieldsForMemberEdit(CommonPersonObjectClient client, JSONObject jsonObject, JSONArray jsonArray, String familyName, boolean isPrimaryCaregiver, Event ecEvent, Client ecClient) throws JSONException;
+
+        void populateReplaceUniqueIdField(JSONObject jsonObject) throws JSONException;
     }
 
 }
