@@ -5,10 +5,13 @@ import android.util.Pair;
 
 import com.vijay.jsonwizard.utils.FormUtils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.joda.time.Period;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.BuildConfig;
 import org.smartregister.chw.R;
@@ -35,6 +38,8 @@ import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
+import org.smartregister.domain.UniqueId;
+import org.smartregister.family.FamilyLibrary;
 import org.smartregister.family.util.DBConstants;
 
 import java.lang.ref.WeakReference;
@@ -79,12 +84,38 @@ public class ChildProfilePresenter extends CoreChildProfilePresenter {
     @Override
     public void updateChildProfile(String jsonString) {
         getView().showProgressDialog(R.string.updating);
+
+        if(StringUtils.isNotBlank(org.smartregister.util.JsonFormUtils.getFieldValue(jsonString, "unique_identifier_update"))) {
+            try {
+                jsonString = updateOpenSRPId(jsonString);
+            } catch (JSONException e) {
+                Timber.e(e);
+            }
+        }
+
         Pair<Client, Event> pair = new ChildRegisterModel().processRegistration(jsonString);
         if (pair == null) {
             return;
         }
 
         getInteractor().saveRegistration(pair, jsonString, true, this);
+    }
+
+    private String updateOpenSRPId(String jsonString) throws JSONException {
+        JSONObject form = new JSONObject(jsonString);
+        UniqueId uniqueId = FamilyLibrary.getInstance().getUniqueIdRepository().getNextUniqueId();
+        String newID = (uniqueId != null) ? uniqueId.getOpenmrsId().replace("-", "") : "";
+        form.put("current_opensrp_id", newID);
+        JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
+
+        if (fields != null) {
+            JSONObject uniqueIdObject = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, org.smartregister.chw.anc.util.DBConstants.KEY.UNIQUE_ID);
+            if (uniqueIdObject != null) {
+                uniqueIdObject.put(org.smartregister.chw.anc.util.JsonFormUtils.VALUE, newID);
+                FamilyLibrary.getInstance().getUniqueIdRepository().close(newID);
+            }
+        }
+        return form.toString();
     }
 
     @Override
