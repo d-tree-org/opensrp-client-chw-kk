@@ -58,15 +58,18 @@ import org.smartregister.chw.model.ReferralTypeModel;
 import org.smartregister.chw.presenter.AncMemberProfilePresenter;
 import org.smartregister.chw.presenter.FamilyRegisterPresenter;
 import org.smartregister.chw.schedulers.ChwScheduleTaskExecutor;
+import org.smartregister.chw.util.JsonFormUtilsFlv;
 import org.smartregister.chw.util.KKCoreConstants;
+import org.smartregister.clientandeventmodel.Client;
 import org.smartregister.clientandeventmodel.Event;
 import org.smartregister.commonregistry.AllCommonsRepository;
 import org.smartregister.commonregistry.CommonPersonObject;
 import org.smartregister.commonregistry.CommonPersonObjectClient;
 import org.smartregister.commonregistry.CommonRepository;
 import org.smartregister.domain.AlertStatus;
-import org.smartregister.domain.Client;
 import org.smartregister.domain.Task;
+import org.smartregister.domain.UniqueId;
+import org.smartregister.family.FamilyLibrary;
 import org.smartregister.family.domain.FamilyEventClient;
 import org.smartregister.family.interactor.FamilyProfileInteractor;
 import org.smartregister.family.util.JsonFormUtils;
@@ -206,8 +209,41 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
             CoreConstants.JSON_FORM.setLocaleAndAssetManager(ChwApplication.getCurrentLocale(), ChwApplication.getInstance().getApplicationContext().getAssets());
             PncRegisterActivity.startPncRegistrationActivity(AncMemberProfileActivity.this, memberObject.getBaseEntityId(), null, KKCoreConstants.ANC_PREGNANCY_OUTCOME.getPregnancyOutcome(), AncLibrary.getInstance().getUniqueIdRepository().getNextUniqueId().getOpenmrsId(), memberObject.getFamilyBaseEntityId(), memberObject.getFamilyName(), memberObject.getLastMenstrualPeriod());
             return true;
+        } else if (itemId == R.id.action_anc_member_registration) {
+            CommonRepository commonRepository = Utils.context().commonrepository(Utils.metadata().familyMemberRegister.tableName);
+
+            final CommonPersonObject commonPersonObject = commonRepository.findByBaseEntityId(memberObject.getBaseEntityId());
+            final CommonPersonObjectClient client =
+                    new CommonPersonObjectClient(commonPersonObject.getCaseId(), commonPersonObject.getDetails(), "");
+            client.setColumnmaps(commonPersonObject.getColumnmaps());
+
+            startEditMemberJsonForm(R.string.edit_anc_registration_form_title, client);
+
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startEditMemberJsonForm(Integer title_resource, CommonPersonObjectClient client) {
+
+        String titleString = title_resource != null ? getResources().getString(title_resource) : null;
+        boolean isPrimaryCareGiver = this.memberObject.getPrimaryCareGiver().equals(client.getCaseId());
+        String eventName = org.smartregister.chw.util.Utils.metadata().familyMemberRegister.updateEventType;
+        String everSchool = client.getColumnmaps().get(CoreConstants.JsonAssets.FAMILY_MEMBER.EVER_SCHOOL);
+        String schoolLevel = client.getColumnmaps().get(CoreConstants.JsonAssets.FAMILY_MEMBER.SCHOOL_LEVEL);
+
+        String uniqueID = client.getColumnmaps().get(org.smartregister.family.util.DBConstants.KEY.UNIQUE_ID);
+
+        NativeFormsDataBinder binder = new NativeFormsDataBinder(getContext(), client.getCaseId());
+        binder.setDataLoader(new FamilyMemberDataLoader(memberObject.getFamilyName(), isPrimaryCareGiver, everSchool, schoolLevel, titleString, eventName, uniqueID));
+        JSONObject jsonObject = binder.getPrePopulatedForm(CoreConstants.JSON_FORM.getFamilyMemberRegister());
+        try {
+            //org.smartregister.chw.util.JsonFormUtils.populateReplaceUniqueIdField(jsonObject);
+            if (jsonObject != null)
+                startFormActivity(jsonObject);
+        } catch (Exception e) {
+            Timber.e(e);
+        }
     }
 
     @Override
@@ -228,8 +264,15 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
                 String jsonString = data.getStringExtra(org.smartregister.family.util.Constants.JSON_FORM_EXTRA.JSON);
                 JSONObject form = new JSONObject(jsonString);
                 if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(Utils.metadata().familyMemberRegister.updateEventType)) {
-                    FamilyEventClient familyEventClient =
-                            new FamilyProfileModel(memberObject.getFamilyName()).processUpdateMemberRegistration(jsonString, memberObject.getBaseEntityId());
+                    boolean updateOpenSRPID = StringUtils.isNotBlank(org.smartregister.util.JsonFormUtils.getFieldValue(jsonString, "unique_identifier_update"));
+                    FamilyEventClient familyEventClient;
+                    if (updateOpenSRPID) {
+                        updateClientOpensrpId(form);
+                        familyEventClient = new FamilyProfileModel(memberObject.getFamilyName()).processUpdateMemberRegistration(form.toString(), memberObject.getBaseEntityId());
+                    } else {
+                        familyEventClient =
+                                new FamilyProfileModel(memberObject.getFamilyName()).processUpdateMemberRegistration(jsonString, memberObject.getBaseEntityId());
+                    }
                     new FamilyProfileInteractor().saveRegistration(familyEventClient, jsonString, true, ancMemberProfilePresenter());
                 } else if (form.getString(JsonFormUtils.ENCOUNTER_TYPE).equals(CoreConstants.EventType.UPDATE_ANC_REGISTRATION)) {
                     JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
@@ -251,6 +294,20 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
             ChwScheduleTaskExecutor.getInstance().execute(memberObject.getBaseEntityId(), CoreConstants.EventType.ANC_HOME_VISIT, new Date());
             finish();
         }
+    }
+
+    private void updateClientOpensrpId(JSONObject form) throws JSONException {
+        UniqueId uniqueId = FamilyLibrary.getInstance().getUniqueIdRepository().getNextUniqueId();
+        String newID = uniqueId != null ? uniqueId.getOpenmrsId() : "";
+        form.put("current_opensrp_id", newID.replace("-", ""));
+        JSONArray fields = org.smartregister.util.JsonFormUtils.fields(form);
+        updateUniqueIdd(fields, newID.replace("-", ""));
+    }
+
+    private void updateUniqueIdd(JSONArray fields, String newID) throws JSONException {
+        JSONObject uniqueIdObject = org.smartregister.util.JsonFormUtils.getFieldJSONObject(fields, DBConstants.KEY.UNIQUE_ID);
+        uniqueIdObject.put(org.smartregister.chw.anc.util.JsonFormUtils.VALUE, newID);
+        FamilyLibrary.getInstance().getUniqueIdRepository().close(newID);
     }
 
     private void updateLmpdFromEdd(JSONArray fields) throws JSONException {
@@ -357,10 +414,10 @@ public class AncMemberProfileActivity extends CoreAncMemberProfileActivity imple
     @Override
     public void setFamilyStatus(AlertStatus status) {
         super.setFamilyStatus(status);
-        alertStatus=status;
-        TextView tvFamilyStatus=findViewById(R.id.textview_family_has);
+        alertStatus = status;
+        TextView tvFamilyStatus = findViewById(R.id.textview_family_has);
         Integer dueServiceCount = ScheduleDao.getDueServicesCount(memberObject.getFamilyBaseEntityId());
-        if(dueServiceCount != null){
+        if (dueServiceCount != null) {
             if (dueServiceCount == 0) {
                 tvFamilyStatus.setText(NCUtils.fromHtml(getString(R.string.family_has_nothing_due)));
             }
