@@ -353,6 +353,23 @@
           "value": "true",
           "err": "{{child_enrollment.step1.physically_challenged.v_required.err}}"
         }
+      },
+      {
+        "key": "unique_identifier_update",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "",
+        "type": "check_box",
+        "label": "{{family_member_register.step1.dob_unknown.label}}",
+        "options": [
+          {
+            "key": "unique_identifier_update",
+            "text": "{{family_member_register.step1.unique_identifier_update.options.update_opensrp_id.text}}",
+            "value": "false",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "unique_identifier_update"
+          }
+        ]
       }
     ]
   },
