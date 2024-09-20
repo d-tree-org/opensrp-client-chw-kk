@@ -67,6 +67,9 @@ public class ChwRepositoryFlv {
                 case 14:
                     upgradeToVersion14(db);
                     break;
+                case 15:
+                    upgradeToVersion15(db);
+                    break;
                 default:
                     break;
             }
@@ -205,6 +208,15 @@ public class ChwRepositoryFlv {
             IMDatabaseUtils.accessAssetsAndFillDataBaseForVaccineTypes(context, db);
         } catch (Exception e) {
             Timber.e(e);
+        }
+    }
+
+    private static void upgradeToVersion15(SQLiteDatabase db) {
+        try {
+            // To add the ec_group_session
+            db.execSQL("CREATE TABLE ec_group_session(id VARCHAR NULL, relationalid VARCHAR NULL, sessionid VARCHAR NULL, details VARCHAR NULL, is_closed VARCHAR NULL, base_entity_id VARCHAR NULL, session_id VARCHAR NULL, session_date VARCHAR NULL, session_place VARCHAR NULL, session_duration VARCHAR NULL) ");
+        } catch (Exception e) {
+            Timber.e(e, "upgradeToVersion15");
         }
     }
 
